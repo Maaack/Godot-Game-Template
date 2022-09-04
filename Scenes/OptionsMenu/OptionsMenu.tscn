@@ -1,0 +1,223 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/OptionsMenu/OptionsMenu.gd" type="Script" id=2]
+
+[node name="OptionsMenu" type="VBoxContainer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -152.5
+margin_top = -150.0
+margin_right = 152.5
+margin_bottom = 150.0
+rect_min_size = Vector2( 305, 300 )
+custom_constants/separation = 20
+script = ExtResource( 2 )
+
+[node name="MasterControl" type="HBoxContainer" parent="."]
+margin_right = 305.0
+margin_bottom = 16.0
+
+[node name="MasterLabel" type="Label" parent="MasterControl"]
+margin_top = 1.0
+margin_right = 101.0
+margin_bottom = 15.0
+size_flags_horizontal = 3
+text = "Master :"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MasterHSlider" type="HSlider" parent="MasterControl"]
+margin_left = 105.0
+margin_right = 305.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 200, 0 )
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.05
+value = 1.0
+tick_count = 11
+ticks_on_borders = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SFXControl" type="HBoxContainer" parent="."]
+margin_top = 36.0
+margin_right = 305.0
+margin_bottom = 52.0
+
+[node name="SFXLabel" type="Label" parent="SFXControl"]
+margin_top = 1.0
+margin_right = 101.0
+margin_bottom = 15.0
+size_flags_horizontal = 3
+text = "SFX :"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SFXHSlider" type="HSlider" parent="SFXControl"]
+margin_left = 105.0
+margin_right = 305.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 200, 0 )
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.05
+value = 1.0
+tick_count = 11
+ticks_on_borders = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VoiceControl" type="HBoxContainer" parent="."]
+visible = false
+margin_top = 72.0
+margin_right = 305.0
+margin_bottom = 88.0
+
+[node name="VoiceLabel" type="Label" parent="VoiceControl"]
+margin_top = 1.0
+margin_right = 101.0
+margin_bottom = 15.0
+size_flags_horizontal = 3
+text = "Voice :"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VoiceHSlider" type="HSlider" parent="VoiceControl"]
+margin_left = 105.0
+margin_right = 305.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 200, 0 )
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.05
+value = 1.0
+tick_count = 11
+ticks_on_borders = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MusicControl" type="HBoxContainer" parent="."]
+margin_top = 72.0
+margin_right = 305.0
+margin_bottom = 88.0
+
+[node name="MusicLabel" type="Label" parent="MusicControl"]
+margin_top = 1.0
+margin_right = 101.0
+margin_bottom = 15.0
+size_flags_horizontal = 3
+text = "Music :"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MusicHSlider" type="HSlider" parent="MusicControl"]
+margin_left = 105.0
+margin_right = 305.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 200, 0 )
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.05
+value = 1.0
+tick_count = 11
+ticks_on_borders = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MuteControl" type="HBoxContainer" parent="."]
+margin_top = 108.0
+margin_right = 305.0
+margin_bottom = 148.0
+rect_min_size = Vector2( 0, 40 )
+
+[node name="MuteLabel" type="Label" parent="MuteControl"]
+margin_top = 13.0
+margin_right = 225.0
+margin_bottom = 27.0
+size_flags_horizontal = 3
+text = "Mute :"
+
+[node name="MuteButton" type="CheckButton" parent="MuteControl"]
+margin_left = 229.0
+margin_right = 305.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ResetGameControl" type="HBoxContainer" parent="."]
+visible = false
+margin_top = 204.0
+margin_right = 305.0
+margin_bottom = 236.0
+rect_min_size = Vector2( 0, 32 )
+
+[node name="ResetLabel" type="Label" parent="ResetGameControl"]
+margin_top = 9.0
+margin_right = 229.0
+margin_bottom = 23.0
+size_flags_horizontal = 3
+text = "Reset Game :"
+
+[node name="ResetButton" type="Button" parent="ResetGameControl"]
+margin_left = 233.0
+margin_right = 305.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 72, 32 )
+text = "reset"
+
+[node name="ResetCancelButton" type="Button" parent="ResetGameControl"]
+visible = false
+margin_left = 115.0
+margin_right = 197.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 82, 32 )
+text = "cancel"
+
+[node name="DividerLabel" type="Label" parent="ResetGameControl"]
+visible = false
+margin_left = 201.0
+margin_top = 9.0
+margin_right = 206.0
+margin_bottom = 23.0
+text = "/"
+
+[node name="ResetConfirmButton" type="Button" parent="ResetGameControl"]
+visible = false
+margin_left = 210.0
+margin_right = 305.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 95, 32 )
+text = "confirm"
+
+[node name="ResetConfirmationLabel" type="Label" parent="ResetGameControl"]
+visible = false
+margin_left = 201.0
+margin_top = 9.0
+margin_right = 206.0
+margin_bottom = 23.0
+text = "reset!"
+
+[node name="VocalAudioStreamPlayers" type="Node" parent="."]
+
+[node name="SFXAudioStreamPlayers" type="Node" parent="."]
+
+[connection signal="value_changed" from="MasterControl/MasterHSlider" to="." method="_on_MasterHSlider_value_changed"]
+[connection signal="value_changed" from="SFXControl/SFXHSlider" to="." method="_on_SFXHSlider_value_changed"]
+[connection signal="value_changed" from="VoiceControl/VoiceHSlider" to="." method="_on_VoiceHSlider_value_changed"]
+[connection signal="value_changed" from="MusicControl/MusicHSlider" to="." method="_on_MusicHSlider_value_changed"]
+[connection signal="toggled" from="MuteControl/MuteButton" to="." method="_on_MuteButton_toggled"]
+[connection signal="pressed" from="ResetGameControl/ResetButton" to="." method="_on_ResetButton_pressed"]
+[connection signal="pressed" from="ResetGameControl/ResetCancelButton" to="." method="_on_ResetCancelButton_pressed"]
+[connection signal="pressed" from="ResetGameControl/ResetConfirmButton" to="." method="_on_ResetConfirmButton_pressed"]

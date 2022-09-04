@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Credits/Credits.gd" type="Script" id=4]
+[ext_resource path="res://Scenes/Credits/HiddenScrollBar.tres" type="Theme" id=6]
+
+[node name="Credits" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 6 )
+scroll_horizontal_enabled = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+margin_right = 1024.0
+margin_bottom = 2071.0
+rect_min_size = Vector2( 1024, 0 )
+
+[node name="HeaderSpace" type="Control" parent="ScrollContainer/VBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 1024.0
+rect_min_size = Vector2( 0, 1024 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer"]
+margin_top = 1028.0
+margin_right = 1024.0
+margin_bottom = 1043.0
+rect_min_size = Vector2( 1024, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 5
+bbcode_enabled = true
+fit_content_height = true
+scroll_active = false
+selection_enabled = true
+
+[node name="FooterSpace" type="Control" parent="ScrollContainer/VBoxContainer"]
+margin_top = 1047.0
+margin_right = 1024.0
+margin_bottom = 2071.0
+rect_min_size = Vector2( 0, 1024 )
+
+[node name="ScrollResetTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[connection signal="scroll_ended" from="ScrollContainer" to="." method="_on_ScrollContainer_scroll_ended"]
+[connection signal="gui_input" from="ScrollContainer/VBoxContainer/RichTextLabel" to="." method="_on_RichTextLabel_gui_input"]
+[connection signal="meta_clicked" from="ScrollContainer/VBoxContainer/RichTextLabel" to="." method="_on_RichTextLabel_meta_clicked"]
+[connection signal="timeout" from="ScrollResetTimer" to="." method="_on_ScrollResetTimer_timeout"]

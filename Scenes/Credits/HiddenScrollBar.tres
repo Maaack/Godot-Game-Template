@@ -1,0 +1,14 @@
+[gd_resource type="Theme" load_steps=2 format=2]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[resource]
+VScrollBar/icons/decrement = null
+VScrollBar/icons/decrement_highlight = null
+VScrollBar/icons/increment = null
+VScrollBar/icons/increment_highlight = null
+VScrollBar/styles/grabber = null
+VScrollBar/styles/grabber_highlight = null
+VScrollBar/styles/grabber_pressed = null
+VScrollBar/styles/scroll = SubResource( 1 )
+VScrollBar/styles/scroll_focus = null

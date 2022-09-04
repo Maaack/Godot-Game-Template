@@ -1,0 +1,49 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/UI/SoundButton/SoundButton.tscn" type="PackedScene" id=2]
+
+[node name="MainMenuButtons" type="Control"]
+margin_left = 128.0
+margin_top = 128.0
+margin_right = 896.0
+margin_bottom = 472.0
+
+[node name="ButtonsContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -96.0
+margin_top = -128.0
+margin_right = 96.0
+margin_bottom = 128.0
+custom_constants/separation = 16
+
+[node name="PlayButton" parent="ButtonsContainer" instance=ExtResource( 2 )]
+margin_right = 192.0
+margin_bottom = 40.0
+text = "play"
+
+[node name="TutorialButton" parent="ButtonsContainer" instance=ExtResource( 2 )]
+margin_top = 56.0
+margin_right = 192.0
+margin_bottom = 96.0
+text = "tutorial"
+
+[node name="OptionsButton" parent="ButtonsContainer" instance=ExtResource( 2 )]
+margin_top = 112.0
+margin_right = 192.0
+margin_bottom = 152.0
+text = "options"
+
+[node name="CreditsButton" parent="ButtonsContainer" instance=ExtResource( 2 )]
+margin_top = 168.0
+margin_right = 192.0
+margin_bottom = 208.0
+text = "credits"
+
+[node name="ExitButton" parent="ButtonsContainer" instance=ExtResource( 2 )]
+margin_top = 224.0
+margin_right = 192.0
+margin_bottom = 264.0
+text = "exit"

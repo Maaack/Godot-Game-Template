@@ -1,0 +1,10 @@
+.import/
+.idea/
+.DS_Store
+exports/
+Exports/
+*.import
+*.png.import
+export.cfg
+export_presets.cfg
+addons/
