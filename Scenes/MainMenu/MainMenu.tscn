@@ -37,111 +37,75 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=1]
 resource_name = "Intro"
-length = 5.0
-tracks/0/type = "value"
-tracks/0/path = NodePath("MenuContainer/MainMenuButtons/ButtonsContainer/PlayButton:visible")
+length = 2.4
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 3, 5 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ false, true, true ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("MenuContainer/MainMenuButtons/ButtonsContainer/OptionsButton:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 4, 5 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ false, true, true ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("MenuContainer/MainMenuButtons/ButtonsContainer/CreditsButton:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 4.5, 5 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ false, true, true ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("MenuContainer/MainMenuButtons/ButtonsContainer/ExitButton:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("MenuContainer/MainMenuButtons/ButtonsContainer/TutorialButton:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0, 3.5, 5 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ false, true, true ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("TitleContainer/Titles/TitlesContainer/Title:percent_visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0, 0.7, 5 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ 0.0, 1.0, 1.0 ]
-}
-tracks/6/type = "value"
-tracks/6/path = NodePath("TitleContainer/Titles/TitlesContainer/SubTitle:percent_visible")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
-"times": PoolRealArray( 0, 1, 2.8, 5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 0,
-"values": [ 0.0, 0.0, 1.0, 1.0 ]
-}
-tracks/7/type = "method"
-tracks/7/path = NodePath(".")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/keys = {
-"times": PoolRealArray( 5 ),
+"times": PoolRealArray( 2.4 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
 "method": "intro_done"
 } ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("TitleContainer/Titles/TitlesContainer/Title:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("TitleContainer/Titles/TitlesContainer/SubTitle:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.8, 1.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("MenuContainer/MainMenuButtons:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1.6, 2.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("MenuContainer/MainMenuButtons:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
 
 [sub_resource type="Animation" id=6]
 resource_name = "MainMenuOpen"
 length = 0.1
 tracks/0/type = "value"
-tracks/0/path = NodePath("MenuContainer/MainMenuButtons/ButtonsContainer/PlayButton:visible")
+tracks/0/path = NodePath("TitleContainer/Titles/TitlesContainer/Title:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -149,11 +113,11 @@ tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("MenuContainer/MainMenuButtons/ButtonsContainer/OptionsButton:visible")
+tracks/1/path = NodePath("TitleContainer/Titles/TitlesContainer/SubTitle:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -161,11 +125,11 @@ tracks/1/enabled = true
 tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("MenuContainer/MainMenuButtons/ButtonsContainer/CreditsButton:visible")
+tracks/2/path = NodePath("MenuContainer/MainMenuButtons:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -173,11 +137,11 @@ tracks/2/enabled = true
 tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("MenuContainer/MainMenuButtons/ButtonsContainer/ExitButton:visible")
+tracks/3/path = NodePath("MenuContainer/MainMenuButtons:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -187,42 +151,6 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("MenuContainer/MainMenuButtons/ButtonsContainer/TutorialButton:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("TitleContainer/Titles/TitlesContainer/Title:percent_visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 1.0 ]
-}
-tracks/6/type = "value"
-tracks/6/path = NodePath("TitleContainer/Titles/TitlesContainer/SubTitle:percent_visible")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 1.0 ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -259,28 +187,32 @@ length = 0.5
 
 [sub_resource type="Animation" id=2]
 length = 0.001
-tracks/0/type = "bezier"
-tracks/0/path = NodePath("TitleContainer/Titles/TitlesContainer/Title:visible_characters")
+tracks/0/type = "value"
+tracks/0/path = NodePath("MenuContainer/MainMenuButtons:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
 }
-tracks/1/type = "bezier"
-tracks/1/path = NodePath("TitleContainer/Titles/TitlesContainer/SubTitle:visible_characters")
+tracks/1/type = "value"
+tracks/1/path = NodePath("FlowControlContainer/FlowControl/BackButton:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("MenuContainer/MainMenuButtons/ButtonsContainer/PlayButton:visible")
+tracks/2/path = NodePath("TitleContainer/Titles/TitlesContainer/Title:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -289,10 +221,10 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ false ]
+"values": [ Color( 1, 1, 1, 1 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("MenuContainer/MainMenuButtons/ButtonsContainer/OptionsButton:visible")
+tracks/3/path = NodePath("TitleContainer/Titles/TitlesContainer/SubTitle:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -301,10 +233,10 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ false ]
+"values": [ Color( 1, 1, 1, 1 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("MenuContainer/MainMenuButtons/ButtonsContainer/CreditsButton:visible")
+tracks/4/path = NodePath("MenuContainer/MainMenuButtons:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -313,79 +245,7 @@ tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ false ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("MenuContainer/MainMenuButtons/ButtonsContainer/ExitButton:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-tracks/6/type = "value"
-tracks/6/path = NodePath("MenuContainer/MainMenuButtons/ButtonsContainer/TutorialButton:visible")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-tracks/7/type = "value"
-tracks/7/path = NodePath("TitleContainer/Titles/TitlesContainer/Title:percent_visible")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0.0 ]
-}
-tracks/8/type = "value"
-tracks/8/path = NodePath("TitleContainer/Titles/TitlesContainer/SubTitle:percent_visible")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0.0 ]
-}
-tracks/9/type = "value"
-tracks/9/path = NodePath("MenuContainer/MainMenuButtons:visible")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ true ]
-}
-tracks/10/type = "value"
-tracks/10/path = NodePath("FlowControlContainer/FlowControl/BackButton:visible")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
+"values": [ Color( 1, 1, 1, 1 ) ]
 }
 
 [sub_resource type="AnimationNodeAnimation" id=12]
@@ -479,7 +339,6 @@ margin_right = 832.0
 margin_bottom = 14.0
 text = "Title"
 align = 1
-percent_visible = 0.0
 
 [node name="SubTitle" type="Label" parent="TitleContainer/Titles/TitlesContainer"]
 margin_top = 38.0
@@ -487,7 +346,6 @@ margin_right = 832.0
 margin_bottom = 52.0
 text = "Subtitle"
 align = 1
-percent_visible = 0.0
 
 [node name="VersionNameLabel" type="Label" parent="TitleContainer/Titles"]
 unique_name_in_owner = true
@@ -507,21 +365,6 @@ custom_constants/margin_left = 128
 custom_constants/margin_bottom = 128
 
 [node name="MainMenuButtons" parent="MenuContainer" instance=ExtResource( 2 )]
-
-[node name="PlayButton" parent="MenuContainer/MainMenuButtons/ButtonsContainer" index="0"]
-visible = false
-
-[node name="TutorialButton" parent="MenuContainer/MainMenuButtons/ButtonsContainer" index="1"]
-visible = false
-
-[node name="OptionsButton" parent="MenuContainer/MainMenuButtons/ButtonsContainer" index="2"]
-visible = false
-
-[node name="CreditsButton" parent="MenuContainer/MainMenuButtons/ButtonsContainer" index="3"]
-visible = false
-
-[node name="ExitButton" parent="MenuContainer/MainMenuButtons/ButtonsContainer" index="4"]
-visible = false
 
 [node name="OptionsMenu" parent="." instance=ExtResource( 6 )]
 visible = false
