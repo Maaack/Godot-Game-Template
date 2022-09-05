@@ -10,19 +10,20 @@ anchor_bottom = 0.5
 margin_left = -152.5
 margin_top = -150.0
 margin_right = 152.5
-margin_bottom = 150.0
-rect_min_size = Vector2( 305, 300 )
-custom_constants/separation = 20
+margin_bottom = 110.0
+rect_min_size = Vector2( 305, 260 )
+custom_constants/separation = 8
 script = ExtResource( 2 )
 
 [node name="MasterControl" type="HBoxContainer" parent="."]
 margin_right = 305.0
-margin_bottom = 16.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 0, 30 )
 
 [node name="MasterLabel" type="Label" parent="MasterControl"]
-margin_top = 1.0
+margin_top = 8.0
 margin_right = 101.0
-margin_bottom = 15.0
+margin_bottom = 22.0
 size_flags_horizontal = 3
 text = "Master :"
 __meta__ = {
@@ -31,8 +32,9 @@ __meta__ = {
 
 [node name="MasterHSlider" type="HSlider" parent="MasterControl"]
 margin_left = 105.0
+margin_top = 7.0
 margin_right = 305.0
-margin_bottom = 16.0
+margin_bottom = 23.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_vertical = 4
 max_value = 1.0
@@ -45,14 +47,15 @@ __meta__ = {
 }
 
 [node name="SFXControl" type="HBoxContainer" parent="."]
-margin_top = 36.0
+margin_top = 38.0
 margin_right = 305.0
-margin_bottom = 52.0
+margin_bottom = 68.0
+rect_min_size = Vector2( 0, 30 )
 
 [node name="SFXLabel" type="Label" parent="SFXControl"]
-margin_top = 1.0
+margin_top = 8.0
 margin_right = 101.0
-margin_bottom = 15.0
+margin_bottom = 22.0
 size_flags_horizontal = 3
 text = "SFX :"
 __meta__ = {
@@ -61,8 +64,9 @@ __meta__ = {
 
 [node name="SFXHSlider" type="HSlider" parent="SFXControl"]
 margin_left = 105.0
+margin_top = 7.0
 margin_right = 305.0
-margin_bottom = 16.0
+margin_bottom = 23.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_vertical = 4
 max_value = 1.0
@@ -79,6 +83,7 @@ visible = false
 margin_top = 72.0
 margin_right = 305.0
 margin_bottom = 88.0
+rect_min_size = Vector2( 0, 30 )
 
 [node name="VoiceLabel" type="Label" parent="VoiceControl"]
 margin_top = 1.0
@@ -106,14 +111,15 @@ __meta__ = {
 }
 
 [node name="MusicControl" type="HBoxContainer" parent="."]
-margin_top = 72.0
+margin_top = 76.0
 margin_right = 305.0
-margin_bottom = 88.0
+margin_bottom = 106.0
+rect_min_size = Vector2( 0, 30 )
 
 [node name="MusicLabel" type="Label" parent="MusicControl"]
-margin_top = 1.0
+margin_top = 8.0
 margin_right = 101.0
-margin_bottom = 15.0
+margin_bottom = 22.0
 size_flags_horizontal = 3
 text = "Music :"
 __meta__ = {
@@ -122,8 +128,9 @@ __meta__ = {
 
 [node name="MusicHSlider" type="HSlider" parent="MusicControl"]
 margin_left = 105.0
+margin_top = 7.0
 margin_right = 305.0
-margin_bottom = 16.0
+margin_bottom = 23.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_vertical = 4
 max_value = 1.0
@@ -136,9 +143,9 @@ __meta__ = {
 }
 
 [node name="MuteControl" type="HBoxContainer" parent="."]
-margin_top = 108.0
+margin_top = 114.0
 margin_right = 305.0
-margin_bottom = 148.0
+margin_bottom = 154.0
 rect_min_size = Vector2( 0, 40 )
 
 [node name="MuteLabel" type="Label" parent="MuteControl"]
@@ -158,9 +165,9 @@ __meta__ = {
 
 [node name="ResetGameControl" type="HBoxContainer" parent="."]
 visible = false
-margin_top = 204.0
+margin_top = 168.0
 margin_right = 305.0
-margin_bottom = 236.0
+margin_bottom = 200.0
 rect_min_size = Vector2( 0, 32 )
 
 [node name="ResetLabel" type="Label" parent="ResetGameControl"]
@@ -209,6 +216,27 @@ margin_right = 206.0
 margin_bottom = 23.0
 text = "reset!"
 
+[node name="FullscreenControl" type="HBoxContainer" parent="."]
+margin_top = 162.0
+margin_right = 305.0
+margin_bottom = 202.0
+rect_min_size = Vector2( 0, 40 )
+
+[node name="FullscreenLabel" type="Label" parent="FullscreenControl"]
+margin_top = 13.0
+margin_right = 225.0
+margin_bottom = 27.0
+size_flags_horizontal = 3
+text = "Fullscreen :"
+
+[node name="FullscreenButton" type="CheckButton" parent="FullscreenControl"]
+margin_left = 229.0
+margin_right = 305.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="VocalAudioStreamPlayers" type="Node" parent="."]
 
 [node name="SFXAudioStreamPlayers" type="Node" parent="."]
@@ -221,3 +249,4 @@ text = "reset!"
 [connection signal="pressed" from="ResetGameControl/ResetButton" to="." method="_on_ResetButton_pressed"]
 [connection signal="pressed" from="ResetGameControl/ResetCancelButton" to="." method="_on_ResetCancelButton_pressed"]
 [connection signal="pressed" from="ResetGameControl/ResetConfirmButton" to="." method="_on_ResetConfirmButton_pressed"]
+[connection signal="toggled" from="FullscreenControl/FullscreenButton" to="." method="_on_FullscreenButton_toggled"]

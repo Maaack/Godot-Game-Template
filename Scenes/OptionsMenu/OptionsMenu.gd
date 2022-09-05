@@ -7,13 +7,16 @@ const VOICE_AUDIO_BUS = 'Voice'
 const SFX_AUDIO_BUS = 'SFX'
 const MUSIC_AUDIO_BUS = 'Music'
 const MUTE_SETTING = 'Mute'
+const FULLSCREEN_ENABLED = 'FullscreenEnabled'
 const AUDIO_SECTION = 'AudioSettings'
+const VIDEO_SECTION = 'VideoSettings'
 
 onready var master_slider = $MasterControl/MasterHSlider
 onready var sfx_slider = $SFXControl/SFXHSlider
 onready var voice_slider = $VoiceControl/VoiceHSlider
 onready var music_slider = $MusicControl/MusicHSlider
 onready var mute_button = $MuteControl/MuteButton
+onready var fullscreen_button = $FullscreenControl/FullscreenButton
 
 var play_audio_streams : bool = false
 
@@ -56,6 +59,18 @@ func _update_ui():
 	voice_slider.value = _get_bus_volume_2_linear(VOICE_AUDIO_BUS)
 	music_slider.value = _get_bus_volume_2_linear(MUSIC_AUDIO_BUS)
 	mute_button.pressed = _is_muted()
+	fullscreen_button.pressed = OS.window_fullscreen
+
+func _set_init_config_if_empty() -> void:
+	if not Config.has_section(VIDEO_SECTION):
+		Config.set_config(VIDEO_SECTION, FULLSCREEN_ENABLED, OS.window_fullscreen)
+	if not Config.has_section(AUDIO_SECTION):
+		Config.set_config(AUDIO_SECTION, MASTER_AUDIO_BUS, _get_bus_volume_2_linear(MASTER_AUDIO_BUS))
+		Config.set_config(AUDIO_SECTION, SFX_AUDIO_BUS, _get_bus_volume_2_linear(SFX_AUDIO_BUS))
+		Config.set_config(AUDIO_SECTION, VOICE_AUDIO_BUS, _get_bus_volume_2_linear(VOICE_AUDIO_BUS))
+		Config.set_config(AUDIO_SECTION, MUSIC_AUDIO_BUS, _get_bus_volume_2_linear(MUSIC_AUDIO_BUS))
+		Config.set_config(AUDIO_SECTION, MUTE_SETTING, _is_muted())
+
 
 func _set_init_config():
 	Config.set_config(AUDIO_SECTION, MASTER_AUDIO_BUS, _get_bus_volume_2_linear(MASTER_AUDIO_BUS))
@@ -64,7 +79,16 @@ func _set_init_config():
 	Config.set_config(AUDIO_SECTION, MUSIC_AUDIO_BUS, _get_bus_volume_2_linear(MUSIC_AUDIO_BUS))
 	Config.set_config(AUDIO_SECTION, MUTE_SETTING, _is_muted())
 
-func _sync_with_config():
+func _set_fullscreen_enabled_from_config() -> void:
+	var fullscreen_enabled : bool = OS.window_fullscreen
+	fullscreen_enabled = Config.get_config(VIDEO_SECTION, FULLSCREEN_ENABLED, fullscreen_enabled)
+	OS.window_fullscreen = fullscreen_enabled
+
+func _set_fullscreen_enabled(value : bool) -> void:
+	OS.window_fullscreen = value
+	Config.set_config(VIDEO_SECTION, FULLSCREEN_ENABLED, value)
+
+func _set_audio_buses_from_config():
 	if not Config.has_section(AUDIO_SECTION):
 		_set_init_config()
 	var master_audio_value : float = _get_bus_volume_2_linear(MASTER_AUDIO_BUS)
@@ -82,6 +106,11 @@ func _sync_with_config():
 	_set_bus_linear_2_volume(VOICE_AUDIO_BUS, voice_audio_value)
 	_set_bus_linear_2_volume(MUSIC_AUDIO_BUS, music_audio_value)
 	_set_mute(mute_audio_flag)
+
+func _sync_with_config() -> void:
+	_set_init_config_if_empty()
+	_set_fullscreen_enabled_from_config()
+	_set_audio_buses_from_config()
 	_update_ui()
 
 func _ready():
@@ -106,6 +135,9 @@ func _on_MusicHSlider_value_changed(value):
 
 func _on_MuteButton_toggled(button_pressed):
 	_set_mute(button_pressed)
+
+func _on_FullscreenButton_toggled(button_pressed):
+	_set_fullscreen_enabled(button_pressed)
 
 func _unhandled_key_input(event):
 	if event.is_action_released('ui_mute'):
