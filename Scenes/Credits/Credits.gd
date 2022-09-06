@@ -95,4 +95,4 @@ func _on_ScrollResetTimer_timeout():
 
 func _on_RichTextLabel_meta_clicked(meta:String):
 	if meta.begins_with("https://"):
-		OS.shell_open(meta)
+		var _err = OS.shell_open(meta)

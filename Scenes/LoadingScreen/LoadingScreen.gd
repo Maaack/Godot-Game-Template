@@ -4,7 +4,7 @@ const LOADING_COMPLETE_TEXT = "Loading Complete!"
 
 func set_new_scene(scene_resource : Resource):
 	var scene_instance : Node = scene_resource.instance()
-	scene_instance.connect("ready", self, "queue_free")
+	var _err = scene_instance.connect("ready", self, "queue_free")
 	get_node("/root").add_child(scene_instance)
 	get_tree().current_scene = scene_instance
 
