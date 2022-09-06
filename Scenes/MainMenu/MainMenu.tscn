@@ -413,6 +413,7 @@ text = "Back"
 [connection signal="pressed" from="MenuContainer/MainMenuButtons/ButtonsContainer/OptionsButton" to="." method="_on_OptionsButton_pressed"]
 [connection signal="pressed" from="MenuContainer/MainMenuButtons/ButtonsContainer/CreditsButton" to="." method="_on_CreditsButton_pressed"]
 [connection signal="pressed" from="MenuContainer/MainMenuButtons/ButtonsContainer/ExitButton" to="." method="_on_ExitButton_pressed"]
+[connection signal="end_reached" from="CreditsContainer/Credits" to="." method="_on_Credits_end_reached"]
 [connection signal="pressed" from="FlowControlContainer/FlowControl/BackButton" to="." method="_on_BackButton_pressed"]
 
 [editable path="MenuContainer/MainMenuButtons"]

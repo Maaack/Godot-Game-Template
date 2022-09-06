@@ -14,6 +14,7 @@ var total_run_time : float = 0.0
 var total_games_started : int = 0
 var first_version_played : String = UNKNOWN_VERSION setget set_first_version_played
 var last_version_played : String = UNKNOWN_VERSION setget set_last_version_played
+var current_version : String = UNKNOWN_VERSION
 var update_counter : float = 0.0
 
 func _process(delta):
@@ -51,8 +52,8 @@ func set_version_played(version : String) -> void:
 	self.first_version_played = version
 	self.last_version_played = version
 
-func game_played(version : String) -> void:
-	set_version_played(version)
+func game_played() -> void:
+	set_version_played(current_version)
 	total_games_started += 1
 	Config.set_config(GAME_LOG_SECTION, TOTAL_GAMES_STARTED, total_games_started)
 

@@ -29,6 +29,7 @@ margin_top = 1028.0
 margin_right = 1024.0
 margin_bottom = 1043.0
 rect_min_size = Vector2( 1024, 0 )
+focus_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
 bbcode_enabled = true

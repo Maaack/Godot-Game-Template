@@ -14,6 +14,7 @@ export(DynamicFont) var h3_font
 export(DynamicFont) var h4_font
 export(float) var current_speed : float = 1.0
 
+var is_scrolling : bool = true
 
 func load_file(file_path):
 	var file : File = File.new()
@@ -61,29 +62,36 @@ func set_header_and_footer():
 func reset():
 	$ScrollContainer.scroll_vertical = 0
 	set_header_and_footer()
-	set_process(true)
 
 func _ready():
 	set_file_path(attribution_file_path)
 	set_header_and_footer()
 	set_process(false)
 
+func _check_end_reached(previous_scroll):
+	if previous_scroll != $ScrollContainer.scroll_vertical:
+		return
+	set_process(false)
+	emit_signal("end_reached")
+
+func _scroll_container() -> void:
+	if not is_scrolling or round(current_speed) == 0:
+		return
+	var previous_scroll = $ScrollContainer.scroll_vertical
+	$ScrollContainer.scroll_vertical += round(current_speed)
+	_check_end_reached(previous_scroll)
+
 func _process(_delta):
-	if round(current_speed) > 0:
-		var previous_scroll = $ScrollContainer.scroll_vertical
-		$ScrollContainer.scroll_vertical += round(current_speed)
-		if previous_scroll == $ScrollContainer.scroll_vertical:
-			set_process(false)
-			emit_signal("end_reached")
+	_scroll_container()
 
 func _on_RichTextLabel_gui_input(event):
 	if event is InputEventMouseButton:
-		set_process(false)
+		is_scrolling = false
 		scroll_timer.start()
 
 func _on_ScrollResetTimer_timeout():
 	set_header_and_footer()
-	set_process(true)
+	is_scrolling = true
 
 func _on_RichTextLabel_meta_clicked(meta:String):
 	if meta.begins_with("https://"):
