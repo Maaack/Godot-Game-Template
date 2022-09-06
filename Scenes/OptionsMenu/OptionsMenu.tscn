@@ -163,11 +163,32 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="FullscreenControl" type="HBoxContainer" parent="."]
+margin_top = 162.0
+margin_right = 305.0
+margin_bottom = 202.0
+rect_min_size = Vector2( 0, 40 )
+
+[node name="FullscreenLabel" type="Label" parent="FullscreenControl"]
+margin_top = 13.0
+margin_right = 225.0
+margin_bottom = 27.0
+size_flags_horizontal = 3
+text = "Fullscreen :"
+
+[node name="FullscreenButton" type="CheckButton" parent="FullscreenControl"]
+margin_left = 229.0
+margin_right = 305.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="ResetGameControl" type="HBoxContainer" parent="."]
 visible = false
-margin_top = 168.0
+margin_top = 210.0
 margin_right = 305.0
-margin_bottom = 200.0
+margin_bottom = 242.0
 rect_min_size = Vector2( 0, 32 )
 
 [node name="ResetLabel" type="Label" parent="ResetGameControl"]
@@ -216,27 +237,6 @@ margin_right = 206.0
 margin_bottom = 23.0
 text = "reset!"
 
-[node name="FullscreenControl" type="HBoxContainer" parent="."]
-margin_top = 162.0
-margin_right = 305.0
-margin_bottom = 202.0
-rect_min_size = Vector2( 0, 40 )
-
-[node name="FullscreenLabel" type="Label" parent="FullscreenControl"]
-margin_top = 13.0
-margin_right = 225.0
-margin_bottom = 27.0
-size_flags_horizontal = 3
-text = "Fullscreen :"
-
-[node name="FullscreenButton" type="CheckButton" parent="FullscreenControl"]
-margin_left = 229.0
-margin_right = 305.0
-margin_bottom = 40.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="VocalAudioStreamPlayers" type="Node" parent="."]
 
 [node name="SFXAudioStreamPlayers" type="Node" parent="."]
@@ -246,7 +246,7 @@ __meta__ = {
 [connection signal="value_changed" from="VoiceControl/VoiceHSlider" to="." method="_on_VoiceHSlider_value_changed"]
 [connection signal="value_changed" from="MusicControl/MusicHSlider" to="." method="_on_MusicHSlider_value_changed"]
 [connection signal="toggled" from="MuteControl/MuteButton" to="." method="_on_MuteButton_toggled"]
+[connection signal="toggled" from="FullscreenControl/FullscreenButton" to="." method="_on_FullscreenButton_toggled"]
 [connection signal="pressed" from="ResetGameControl/ResetButton" to="." method="_on_ResetButton_pressed"]
 [connection signal="pressed" from="ResetGameControl/ResetCancelButton" to="." method="_on_ResetCancelButton_pressed"]
 [connection signal="pressed" from="ResetGameControl/ResetConfirmButton" to="." method="_on_ResetConfirmButton_pressed"]
-[connection signal="toggled" from="FullscreenControl/FullscreenButton" to="." method="_on_FullscreenButton_toggled"]

@@ -55,3 +55,6 @@ func game_played(version : String) -> void:
 	set_version_played(version)
 	total_games_started += 1
 	Config.set_config(GAME_LOG_SECTION, TOTAL_GAMES_STARTED, total_games_started)
+
+func reset_game_data() -> void:
+	pass

@@ -139,6 +139,28 @@ func _on_MuteButton_toggled(button_pressed):
 func _on_FullscreenButton_toggled(button_pressed):
 	_set_fullscreen_enabled(button_pressed)
 
+func _on_ResetButton_pressed():
+	$ResetGameControl/ResetButton.hide()
+	$ResetGameControl/ResetCancelButton.show()
+	$ResetGameControl/DividerLabel.show()
+	$ResetGameControl/ResetConfirmButton.show()
+
+func _on_ResetCancelButton_pressed():
+	$ResetGameControl/ResetCancelButton.hide()
+	$ResetGameControl/DividerLabel.hide()
+	$ResetGameControl/ResetConfirmButton.hide()
+	$ResetGameControl/ResetButton.show()
+
+func _on_ResetConfirmButton_pressed():
+	GameLog.reset_game_memory()
+	$ResetGameControl/ResetCancelButton.hide()
+	$ResetGameControl/DividerLabel.hide()
+	$ResetGameControl/ResetConfirmButton.hide()
+	$ResetGameControl/ResetConfirmationLabel.show()
+	yield(get_tree().create_timer(5), "timeout")
+	$ResetGameControl/ResetConfirmationLabel.hide()
+	$ResetGameControl/ResetButton.show()
+
 func _unhandled_key_input(event):
 	if event.is_action_released('ui_mute'):
 		mute_button.pressed = !(mute_button.pressed)
