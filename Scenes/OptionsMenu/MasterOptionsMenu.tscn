@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/OptionsMenu/Audio/AudioOptionsMenu.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/OptionsMenu/Video/VideoOptionsMenu.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/OptionsMenu/Game/GameOptionsMenu.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/OptionsMenu/Input/InputOptionsMenu.tscn" type="PackedScene" id=4]
+
+[node name="MasterOptionsMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="TabContainer" type="TabContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Input" parent="TabContainer" instance=ExtResource( 4 )]
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="Audio" parent="TabContainer" instance=ExtResource( 1 )]
+visible = false
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 359.0
+margin_top = 237.0
+margin_right = 664.0
+margin_bottom = 391.0
+
+[node name="Video" parent="TabContainer" instance=ExtResource( 2 )]
+visible = false
+
+[node name="Game" parent="TabContainer" instance=ExtResource( 3 )]
+visible = false

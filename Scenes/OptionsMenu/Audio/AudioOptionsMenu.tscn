@@ -1,0 +1,175 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/OptionsMenu/Audio/AudioOptionsMenu.gd" type="Script" id=1]
+
+[node name="Audio" type="CenterContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 305, 0 )
+script = ExtResource( 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 362.0
+margin_top = 223.0
+margin_right = 662.0
+margin_bottom = 377.0
+rect_min_size = Vector2( 300, 0 )
+custom_constants/separation = 8
+
+[node name="MasterControl" type="HBoxContainer" parent="VBoxContainer"]
+margin_right = 300.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 0, 30 )
+
+[node name="MasterLabel" type="Label" parent="VBoxContainer/MasterControl"]
+margin_top = 8.0
+margin_right = 96.0
+margin_bottom = 22.0
+size_flags_horizontal = 3
+text = "Master :"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MasterHSlider" type="HSlider" parent="VBoxContainer/MasterControl"]
+margin_left = 100.0
+margin_top = 7.0
+margin_right = 300.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 200, 0 )
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.05
+value = 1.0
+tick_count = 11
+ticks_on_borders = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SFXControl" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 38.0
+margin_right = 300.0
+margin_bottom = 68.0
+rect_min_size = Vector2( 0, 30 )
+
+[node name="SFXLabel" type="Label" parent="VBoxContainer/SFXControl"]
+margin_top = 8.0
+margin_right = 96.0
+margin_bottom = 22.0
+size_flags_horizontal = 3
+text = "SFX :"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SFXHSlider" type="HSlider" parent="VBoxContainer/SFXControl"]
+margin_left = 100.0
+margin_top = 7.0
+margin_right = 300.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 200, 0 )
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.05
+value = 1.0
+tick_count = 11
+ticks_on_borders = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VoiceControl" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
+margin_top = 72.0
+margin_right = 305.0
+margin_bottom = 102.0
+rect_min_size = Vector2( 0, 30 )
+
+[node name="VoiceLabel" type="Label" parent="VBoxContainer/VoiceControl"]
+margin_top = 1.0
+margin_right = 101.0
+margin_bottom = 15.0
+size_flags_horizontal = 3
+text = "Voice :"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VoiceHSlider" type="HSlider" parent="VBoxContainer/VoiceControl"]
+margin_left = 105.0
+margin_right = 305.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 200, 0 )
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.05
+value = 1.0
+tick_count = 11
+ticks_on_borders = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MusicControl" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 76.0
+margin_right = 300.0
+margin_bottom = 106.0
+rect_min_size = Vector2( 0, 30 )
+
+[node name="MusicLabel" type="Label" parent="VBoxContainer/MusicControl"]
+margin_top = 8.0
+margin_right = 96.0
+margin_bottom = 22.0
+size_flags_horizontal = 3
+text = "Music :"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MusicHSlider" type="HSlider" parent="VBoxContainer/MusicControl"]
+margin_left = 100.0
+margin_top = 7.0
+margin_right = 300.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 200, 0 )
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.05
+value = 1.0
+tick_count = 11
+ticks_on_borders = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MuteControl" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 114.0
+margin_right = 300.0
+margin_bottom = 154.0
+rect_min_size = Vector2( 0, 40 )
+
+[node name="MuteLabel" type="Label" parent="VBoxContainer/MuteControl"]
+margin_top = 13.0
+margin_right = 220.0
+margin_bottom = 27.0
+size_flags_horizontal = 3
+text = "Mute :"
+
+[node name="MuteButton" type="CheckButton" parent="VBoxContainer/MuteControl"]
+margin_left = 224.0
+margin_right = 300.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VocalAudioStreamPlayers" type="Node" parent="."]
+
+[node name="SFXAudioStreamPlayers" type="Node" parent="."]
+
+[connection signal="value_changed" from="VBoxContainer/MasterControl/MasterHSlider" to="." method="_on_MasterHSlider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/SFXControl/SFXHSlider" to="." method="_on_SFXHSlider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/VoiceControl/VoiceHSlider" to="." method="_on_VoiceHSlider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/MusicControl/MusicHSlider" to="." method="_on_MusicHSlider_value_changed"]
+[connection signal="toggled" from="VBoxContainer/MuteControl/MuteButton" to="." method="_on_MuteButton_toggled"]

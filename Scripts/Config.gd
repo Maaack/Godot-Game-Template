@@ -35,3 +35,7 @@ func get_config(section: String, key: String, default = null):
 func has_section(section: String):
 	load_config_file()
 	return config_file.has_section(section)
+
+func get_section_keys(section: String):
+	load_config_file()
+	return config_file.get_section_keys(section)
