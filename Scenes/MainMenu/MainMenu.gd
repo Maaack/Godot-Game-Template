@@ -36,7 +36,7 @@ func _on_TutorialButton_pressed():
 	pass
 
 func _on_OptionsButton_pressed():
-	_open_sub_menu($OptionsMenu)
+	_open_sub_menu($MasterOptionsMenu)
 
 func _on_CreditsButton_pressed():
 	_open_sub_menu($CreditsContainer/Credits)

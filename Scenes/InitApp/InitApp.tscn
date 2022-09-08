@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/InitApp/InitApp.gd" type="Script" id=1]
+
+[node name="InitApp" type="Node"]
+script = ExtResource( 1 )
+next_scene = "res://Scenes/MainMenu/MainMenu.tscn"
