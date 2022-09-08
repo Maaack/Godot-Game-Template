@@ -60,8 +60,8 @@ func _setup_for_web():
 	if OS.has_feature("web"):
 		$MarginContainer/Main/ButtonContainer/Exit.disabled = true
 
-func 	_setup_version_name():
-	GameLog.current_version = version_name
+func _setup_version_name():
+	AppLog.version_opened(version_name)
 	$"%VersionNameLabel".text = "v%s" % version_name
 
 func _ready():
