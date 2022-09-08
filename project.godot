@@ -13,15 +13,9 @@ _global_script_classes=[ {
 "class": "AppSettings",
 "language": "GDScript",
 "path": "res://Scripts/AppSettings.gd"
-}, {
-"base": "Button",
-"class": "SoundButton",
-"language": "GDScript",
-"path": "res://Scenes/UI/SoundButton/SoundButton.gd"
 } ]
 _global_script_class_icons={
-"AppSettings": "",
-"SoundButton": ""
+"AppSettings": ""
 }
 
 [application]

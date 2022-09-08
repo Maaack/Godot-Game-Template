@@ -1,4 +1,3 @@
-class_name SoundButton
 extends Button
 
 func _pressed():
