@@ -46,8 +46,6 @@ func _assign_key_to_action(action_event : InputEventKey, action_name : String) -
 func _ready():
 	AppSettings.set_inputs_from_config()
 	_update_ui()
-	$KeyAssignmentDialog.get_ok().focus_mode = FOCUS_NONE
-	$KeyAssignmentDialog.get_cancel().focus_mode = FOCUS_NONE
 
 func _input(event):
 	if not event.is_pressed() or not is_editing_key_binding():
