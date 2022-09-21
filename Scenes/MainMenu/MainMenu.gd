@@ -11,7 +11,7 @@ func load_scene(scene_path : String):
 	SceneLoader.load_scene(scene_path)
 
 func play_game():
-	GameLog.game_played()
+	GameLog.game_started()
 	SceneLoader.load_scene(game_scene)
 
 func _open_sub_menu(menu : Control):

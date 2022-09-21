@@ -17,7 +17,7 @@ scroll_horizontal_enabled = false
 [node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
 margin_right = 1024.0
 margin_bottom = 2071.0
-rect_min_size = Vector2( 1024, 0 )
+size_flags_horizontal = 3
 
 [node name="HeaderSpace" type="Control" parent="ScrollContainer/VBoxContainer"]
 margin_right = 1024.0
