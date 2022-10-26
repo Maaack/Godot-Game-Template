@@ -13,7 +13,10 @@ static func game_started() -> void:
 static func level_reached(level_number : int) -> void:
 	var max_level_reached = Config.get_config(GAME_LOG_SECTION, MAX_LEVEL_REACHED, 0)
 	max_level_reached = max(level_number, max_level_reached)
-	Config.set_config(GAME_LOG_SECTION, TOTAL_GAMES_STARTED, max_level_reached)
+	Config.set_config(GAME_LOG_SECTION, MAX_LEVEL_REACHED, max_level_reached)
+
+static func get_max_level_reached() -> int:
+	return Config.get_config(GAME_LOG_SECTION, MAX_LEVEL_REACHED, 0)
 
 static func reset_game_data() -> void:
 	Config.set_config(GAME_LOG_SECTION, MAX_LEVEL_REACHED, 0)
