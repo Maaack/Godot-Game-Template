@@ -56,7 +56,8 @@ static func set_inputs_from_config() -> void:
 		for old_event in InputMap.get_action_list(action_name):
 			if old_event is InputEventKey:
 				InputMap.action_erase_event(action_name, old_event)
-		InputMap.action_add_event(action_name, event)
+		if InputMap.has_action(action_name):
+			InputMap.action_add_event(action_name, event)
 
 static func init_input_config() -> void:
 	if not Config.has_section(INPUT_SECTION):
