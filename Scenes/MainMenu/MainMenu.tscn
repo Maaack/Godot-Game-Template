@@ -391,6 +391,7 @@ anchor_bottom = 0.0
 margin_top = 128.0
 margin_right = 1024.0
 margin_bottom = 568.0
+scroll_active = false
 
 [node name="FlowControlContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0

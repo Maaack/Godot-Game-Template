@@ -5,7 +5,6 @@ signal end_reached
 
 onready var scroll_container = $ScrollContainer
 onready var rich_text_label = $ScrollContainer/VBoxContainer/RichTextLabel
-onready var scroll_timer = $ScrollResetTimer
 
 export(String) var attribution_file_path : String = "res://ATTRIBUTION.md" setget set_file_path
 export(DynamicFont) var h1_font
@@ -13,8 +12,9 @@ export(DynamicFont) var h2_font
 export(DynamicFont) var h3_font
 export(DynamicFont) var h4_font
 export(float) var current_speed : float = 1.0
+export var scroll_active : bool = true
 
-var is_scrolling : bool = true
+var scroll_paused : bool = false
 
 func load_file(file_path):
 	var file : File = File.new()
@@ -61,21 +61,24 @@ func set_header_and_footer():
 
 func reset():
 	$ScrollContainer.scroll_vertical = 0
+	scroll_active = true
 	set_header_and_footer()
 
 func _ready():
 	set_file_path(attribution_file_path)
 	set_header_and_footer()
-	set_process(false)
+
+func end_reached():
+	scroll_active = false
+	emit_signal("end_reached")
 
 func _check_end_reached(previous_scroll):
 	if previous_scroll != $ScrollContainer.scroll_vertical:
 		return
-	set_process(false)
-	emit_signal("end_reached")
+	end_reached()
 
 func _scroll_container() -> void:
-	if not is_scrolling or round(current_speed) == 0:
+	if not scroll_active or scroll_paused or round(current_speed) == 0:
 		return
 	var previous_scroll = $ScrollContainer.scroll_vertical
 	$ScrollContainer.scroll_vertical += round(current_speed)
@@ -86,12 +89,14 @@ func _process(_delta):
 
 func _on_RichTextLabel_gui_input(event):
 	if event is InputEventMouseButton:
-		is_scrolling = false
-		scroll_timer.start()
+		scroll_paused = true
+		_start_scroll_timer()
 
-func _on_ScrollResetTimer_timeout():
+func _start_scroll_timer():
+	var timer = get_tree().create_timer(1.5)
+	yield(timer, "timeout")
 	set_header_and_footer()
-	is_scrolling = true
+	scroll_paused = false
 
 func _on_RichTextLabel_meta_clicked(meta:String):
 	if meta.begins_with("https://"):
