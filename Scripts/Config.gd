@@ -38,4 +38,6 @@ func has_section(section: String):
 
 func get_section_keys(section: String):
 	load_config_file()
-	return config_file.get_section_keys(section)
+	if config_file.has_section(section):
+		return config_file.get_section_keys(section)
+	return PoolStringArray()
