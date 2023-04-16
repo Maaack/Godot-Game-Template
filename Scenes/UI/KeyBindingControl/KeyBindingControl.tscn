@@ -1,34 +1,26 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://b3cfalxu0jjtr"]
 
-[ext_resource path="res://Scenes/UI/KeyBindingControl/KeyBindingControl.gd" type="Script" id=1]
+[ext_resource type="Script" path="res://Scenes/UI/KeyBindingControl/KeyBindingControl.gd" id="1"]
 
 [node name="KeyBindingControl" type="HBoxContainer"]
-margin_right = 300.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 0, 40 )
-script = ExtResource( 1 )
-scancode = 69
+custom_minimum_size = Vector2(0, 40)
+offset_right = 300.0
+offset_bottom = 40.0
+script = ExtResource("1")
+keycode = 69
 
 [node name="ActionLabel" type="Label" parent="."]
-margin_top = 13.0
-margin_right = 80.0
-margin_bottom = 27.0
-rect_min_size = Vector2( 80, 0 )
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
 text = "Action :"
 
 [node name="AssignedKeyLabel" type="Label" parent="."]
-margin_left = 84.0
-margin_top = 13.0
-margin_right = 259.0
-margin_bottom = 27.0
+layout_mode = 2
 size_flags_horizontal = 3
 text = "E"
-align = 1
 
 [node name="EditButton" type="Button" parent="."]
-margin_left = 263.0
-margin_right = 300.0
-margin_bottom = 40.0
+layout_mode = 2
 text = "edit"
 
 [connection signal="pressed" from="EditButton" to="." method="_on_EditButton_pressed"]

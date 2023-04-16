@@ -1,8 +1,8 @@
 extends Control
 
 
-export(String, FILE, "*.tscn") var game_scene : String
-export(String) var version_name = '0.0.0'
+@export var game_scene : String # (String, FILE, "*.tscn")
+@export var version_name: String = '0.0.0'
 
 var animation_state_machine : AnimationNodeStateMachinePlayback
 var sub_menu

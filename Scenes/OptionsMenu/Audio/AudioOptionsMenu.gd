@@ -1,10 +1,10 @@
 extends Control
 
-onready var master_slider = $VBoxContainer/MasterControl/MasterHSlider
-onready var sfx_slider = $VBoxContainer/SFXControl/SFXHSlider
-onready var voice_slider = $VBoxContainer/VoiceControl/VoiceHSlider
-onready var music_slider = $VBoxContainer/MusicControl/MusicHSlider
-onready var mute_button = $VBoxContainer/MuteControl/MuteButton
+@onready var master_slider = $VBoxContainer/MasterControl/MasterHSlider
+@onready var sfx_slider = $VBoxContainer/SFXControl/SFXHSlider
+@onready var voice_slider = $VBoxContainer/VoiceControl/VoiceHSlider
+@onready var music_slider = $VBoxContainer/MusicControl/MusicHSlider
+@onready var mute_button = $VBoxContainer/MuteControl/MuteButton
 
 var play_audio_streams : bool = false
 
@@ -22,7 +22,7 @@ func _update_ui():
 	sfx_slider.value = AppSettings.get_bus_volume(AppSettings.SFX_AUDIO_BUS)
 	voice_slider.value = AppSettings.get_bus_volume(AppSettings.VOICE_AUDIO_BUS)
 	music_slider.value = AppSettings.get_bus_volume(AppSettings.MUSIC_AUDIO_BUS)
-	mute_button.pressed = AppSettings.is_muted()
+	mute_button.button_pressed = AppSettings.is_muted()
 
 func _ready():
 	AppSettings.init_audio_config()
@@ -47,4 +47,4 @@ func _on_MuteButton_toggled(button_pressed):
 
 func _unhandled_key_input(event):
 	if event.is_action_released('ui_mute'):
-		mute_button.pressed = !(mute_button.pressed)
+		mute_button.button_pressed = !(mute_button.pressed)

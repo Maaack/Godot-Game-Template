@@ -1,100 +1,84 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=5 format=3 uid="uid://cdwvtbtwmrqbn"]
 
-[ext_resource path="res://Scenes/OptionsMenu/OptionsMenu.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/PauseMenu/PauseMenu.gd" type="Script" id=2]
-[ext_resource path="res://Themes/MainMenuTheme.tres" type="Theme" id=3]
-[ext_resource path="res://Scenes/UI/SoundButton/SoundButton.tscn" type="PackedScene" id=4]
+[ext_resource type="PackedScene" path="res://Scenes/OptionsMenu/OptionsMenu.tscn" id="1"]
+[ext_resource type="Script" path="res://Scenes/PauseMenu/PauseMenu.gd" id="2"]
+[ext_resource type="Theme" path="res://Themes/MainMenuTheme.tres" id="3"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/SoundButton/SoundButton.tscn" id="4"]
 
 [node name="PauseMenu" type="CanvasLayer"]
-pause_mode = 2
+process_mode = 2
 layer = 10
-script = ExtResource( 2 )
+script = ExtResource("2")
 
 [node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = ExtResource( 3 )
+theme = ExtResource("3")
 
 [node name="Background" type="ColorRect" parent="Control"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 256.0
-margin_right = -256.0
-color = Color( 0, 0, 0, 1 )
+offset_left = 256.0
+offset_right = -256.0
+color = Color(0, 0, 0, 1)
 
 [node name="Title" type="Label" parent="Control"]
+layout_mode = 0
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -93.5
-margin_top = 50.0
-margin_right = 93.5
-margin_bottom = 131.0
+offset_left = -93.5
+offset_top = 50.0
+offset_right = 93.5
+offset_bottom = 131.0
 text = "Pause"
-align = 1
 
 [node name="ButtonsContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -116.5
-margin_top = -116.0
-margin_right = 116.5
-margin_bottom = 116.0
-custom_constants/separation = 24
+offset_left = -116.5
+offset_top = -116.0
+offset_right = 116.5
+offset_bottom = 116.0
+theme_override_constants/separation = 24
 
-[node name="ResumeBtn" parent="Control/ButtonsContainer" instance=ExtResource( 4 )]
-margin_right = 233.0
-margin_bottom = 40.0
+[node name="ResumeBtn" parent="Control/ButtonsContainer" instance=ExtResource("4")]
+layout_mode = 2
 text = "Resume"
 
-[node name="RestartBtn" parent="Control/ButtonsContainer" instance=ExtResource( 4 )]
-margin_top = 64.0
-margin_right = 233.0
-margin_bottom = 104.0
+[node name="RestartBtn" parent="Control/ButtonsContainer" instance=ExtResource("4")]
+layout_mode = 2
 text = "Restart"
 
-[node name="OptionsBtn" parent="Control/ButtonsContainer" instance=ExtResource( 4 )]
-margin_top = 128.0
-margin_right = 233.0
-margin_bottom = 168.0
+[node name="OptionsBtn" parent="Control/ButtonsContainer" instance=ExtResource("4")]
+layout_mode = 2
 text = "Options"
 
-[node name="MainMenuBtn" parent="Control/ButtonsContainer" instance=ExtResource( 4 )]
-margin_top = 192.0
-margin_right = 233.0
-margin_bottom = 232.0
+[node name="MainMenuBtn" parent="Control/ButtonsContainer" instance=ExtResource("4")]
+layout_mode = 2
 text = "Return to Main Menu"
 
-[node name="ExitBtn" parent="Control/ButtonsContainer" instance=ExtResource( 4 )]
-margin_top = 256.0
-margin_right = 233.0
-margin_bottom = 296.0
+[node name="ExitBtn" parent="Control/ButtonsContainer" instance=ExtResource("4")]
+layout_mode = 2
 text = "Exit Game"
 
 [node name="ConfirmRestart" type="ConfirmationDialog" parent="Control"]
-margin_right = 266.0
-margin_bottom = 72.0
-popup_exclusive = true
-window_title = "Confirm"
 dialog_text = "Restart the game?"
 
 [node name="ConfirmMainMenu" type="ConfirmationDialog" parent="Control"]
-margin_right = 200.0
-margin_bottom = 70.0
-popup_exclusive = true
-window_title = "Confirm"
 dialog_text = "Go back to main menu?"
 
 [node name="ConfirmExit" type="ConfirmationDialog" parent="Control"]
-margin_right = 200.0
-margin_bottom = 70.0
-popup_exclusive = true
-window_title = "Confirm"
 dialog_text = "Quit the game?"
 
-[node name="OptionsMenu" parent="Control" instance=ExtResource( 1 )]
+[node name="OptionsMenu" parent="Control" instance=ExtResource("1")]
 visible = false
+layout_mode = 0
 
 [connection signal="pressed" from="Control/ButtonsContainer/ResumeBtn" to="." method="_on_ResumeBtn_pressed"]
 [connection signal="pressed" from="Control/ButtonsContainer/RestartBtn" to="." method="_on_RestartBtn_pressed"]

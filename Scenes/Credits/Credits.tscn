@@ -1,47 +1,41 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://t2dui8ppm3a4"]
 
-[ext_resource path="res://Scenes/Credits/Credits.gd" type="Script" id=4]
-[ext_resource path="res://Scenes/Credits/HiddenScrollBar.tres" type="Theme" id=6]
+[ext_resource type="Script" path="res://Scenes/Credits/Credits.gd" id="4"]
 
 [node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 4 )
+script = ExtResource("4")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = ExtResource( 6 )
-scroll_horizontal_enabled = false
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
-margin_right = 1024.0
-margin_bottom = 2071.0
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="HeaderSpace" type="Control" parent="ScrollContainer/VBoxContainer"]
-margin_right = 1024.0
-margin_bottom = 1024.0
-rect_min_size = Vector2( 0, 1024 )
+custom_minimum_size = Vector2(0, 1024)
+layout_mode = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer"]
-margin_top = 1028.0
-margin_right = 1024.0
-margin_bottom = 1043.0
-rect_min_size = Vector2( 1024, 0 )
-focus_mode = 2
+custom_minimum_size = Vector2(1024, 0)
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
 bbcode_enabled = true
-fit_content_height = true
+fit_content = true
 scroll_active = false
-selection_enabled = true
 
 [node name="FooterSpace" type="Control" parent="ScrollContainer/VBoxContainer"]
-margin_top = 1047.0
-margin_right = 1024.0
-margin_bottom = 2071.0
-rect_min_size = Vector2( 0, 1024 )
+custom_minimum_size = Vector2(0, 1024)
+layout_mode = 2
 
 [node name="ScrollResetTimer" type="Timer" parent="."]
 wait_time = 1.5

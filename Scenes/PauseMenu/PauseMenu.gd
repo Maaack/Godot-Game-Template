@@ -35,7 +35,7 @@ func _on_ConfirmRestart_confirmed():
 func _on_ConfirmMainMenu_confirmed():
 	InGameMenuController.close_menu()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	get_tree().change_scene("res://Scenes/MainMenu/MainMenu.tscn")
+	get_tree().change_scene_to_file("res://Scenes/MainMenu/MainMenu.tscn")
 
 func _on_ConfirmExit_confirmed():
 	get_tree().quit()
