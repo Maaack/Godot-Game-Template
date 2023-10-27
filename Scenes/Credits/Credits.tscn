@@ -7,12 +7,20 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("4")
+h1_font_size = 64
+h2_font_size = 48
+h3_font_size = 32
+h4_font_size = 24
+scroll_active = false
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
+scroll_vertical = 1277
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 
@@ -21,20 +29,47 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="HeaderSpace" type="Control" parent="ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 1024)
+custom_minimum_size = Vector2(0, 648)
 layout_mode = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(1024, 0)
+custom_minimum_size = Vector2(1152, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
 bbcode_enabled = true
+text = "[center]# Attribution
+## Collaborators
+
+### Role
+Person 1  
+Person 2  
+[url=]Person w/ Link[/url]  
+
+
+## Sourced / Unaffiliated
+### Asset Type
+#### Use Case
+Author: [url=]Name[/url]  
+Source: [url=]Domain : webpage.html[/url]  
+License: [url=]License[/url]
+
+
+## Tools
+#### Godot
+Author: [url=https://godotengine.org/contact]Juan Linietsky, Ariel Manzur, and contributors[/url]  
+Source: [url=https://godotengine.org/]godotengine.org[/url]  
+License: [url=https://github.com/godotengine/godot/blob/master/LICENSE.txt]MIT License[/url] 
+
+#### Git
+Author: [url=https://github.com/torvalds]Linus Torvalds[/url]  
+Source: [url=https://git-scm.com/downloads]git-scm.com[/url]  
+License: [url=https://opensource.org/licenses/GPL-2.0]GNU General Public License version 2[/url][/center]"
 fit_content = true
 scroll_active = false
 
 [node name="FooterSpace" type="Control" parent="ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 1024)
+custom_minimum_size = Vector2(0, 648)
 layout_mode = 2
 
 [node name="ScrollResetTimer" type="Timer" parent="."]

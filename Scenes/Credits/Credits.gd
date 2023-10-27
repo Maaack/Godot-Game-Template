@@ -7,10 +7,10 @@ signal end_reached
 @onready var rich_text_label = $ScrollContainer/VBoxContainer/RichTextLabel
 
 @export_file("*.md") var attribution_file_path: String = "res://ATTRIBUTION.md": set = set_file_path
-@export var h1_font: FontFile
-@export var h2_font: FontFile
-@export var h3_font: FontFile
-@export var h4_font: FontFile
+@export var h1_font_size: int
+@export var h2_font_size: int
+@export var h3_font_size: int
+@export var h4_font_size: int
 @export var current_speed: float = 1.0
 @export var scroll_active : bool = true
 
@@ -31,15 +31,14 @@ func regex_replace_urls(credits:String):
 
 func regex_replace_titles(credits:String):
 	var iter = 0
-	var heading_fonts : Array = [h1_font, h2_font, h3_font, h4_font]
-	for heading_font in heading_fonts:
-		if heading_font is FontFile:
-			iter += 1
-			var regex = RegEx.new()
-			var match_string : String = "([^#])#{%d}\\s([^\n]*)" % iter
-			var replace_string : String = "$1[font=%s]$2[/font]" % [heading_font.resource_path]
-			regex.compile(match_string)
-			credits = regex.sub(credits, replace_string, true)
+	var heading_font_sizes : Array[int] = [h1_font_size, h2_font_size, h3_font_size, h4_font_size]
+	for heading_font_size in heading_font_sizes:
+		iter += 1
+		var regex = RegEx.new()
+		var match_string : String = "([^#])#{%d}\\s([^\n]*)" % iter
+		var replace_string : String = "$1[font_size=%d]$2[/font_size]" % [heading_font_size]
+		regex.compile(match_string)
+		credits = regex.sub(credits, replace_string, true)
 	return credits
 
 func set_file_path(file_path:String):
@@ -47,8 +46,7 @@ func set_file_path(file_path:String):
 	var text : String = load_file(attribution_file_path)
 	if text == "":
 		return
-	# TODO: Figure out why this doesn't work anymore
-	# text = text.right(text.find("\n")) # Trims first line "ATTRIBUTION"
+	text = text.right(-text.find("\n")) # Trims first line "ATTRIBUTION"
 	text = regex_replace_urls(text)
 	text = regex_replace_titles(text)
 	$ScrollContainer/VBoxContainer/RichTextLabel.text = "[center]%s[/center]" % [text]
@@ -76,15 +74,21 @@ func _check_end_reached(previous_scroll):
 		return
 	_end_reached()
 
-func _scroll_container() -> void:
-	if not scroll_active or scroll_paused or round(current_speed) == 0:
+func _scroll_container(amount : float) -> void:
+	if not scroll_active or scroll_paused or round(amount) == 0:
 		return
 	var previous_scroll = $ScrollContainer.scroll_vertical
-	$ScrollContainer.scroll_vertical += round(current_speed)
+	$ScrollContainer.scroll_vertical += round(amount)
 	_check_end_reached(previous_scroll)
 
 func _process(_delta):
-	_scroll_container()
+	if Engine.is_editor_hint():
+		return
+	var input_axis = Input.get_axis("move_up", "move_down")
+	if input_axis != 0:
+		_scroll_container(10 * input_axis)
+	else:
+		_scroll_container(current_speed)
 
 func _on_RichTextLabel_gui_input(event):
 	if event is InputEventMouseButton:
