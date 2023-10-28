@@ -105,28 +105,23 @@ func _sync_with_config() -> void:
 func _ready():
 	_sync_with_config()
 
-func _on_ReturnButton_pressed():
-	emit_signal("return_button_pressed")
-
-func _on_MasterHSlider_value_changed(value):
+func _on_master_h_slider_value_changed(value):
 	_set_bus_linear_2_volume(MASTER_AUDIO_BUS, value)
 
-func _on_SFXHSlider_value_changed(value):
+func _on_sfxh_slider_value_changed(value):
 	_set_bus_linear_2_volume(SFX_AUDIO_BUS, value)
-	_play_next_sfx_audio_stream()
 
-func _on_VoiceHSlider_value_changed(value):
+func _on_voice_h_slider_value_changed(value):
 	_set_bus_linear_2_volume(VOICE_AUDIO_BUS, value)
-	_play_next_vocal_audio_stream()
 
-func _on_MusicHSlider_value_changed(value):
+func _on_music_h_slider_value_changed(value):
 	_set_bus_linear_2_volume(MUSIC_AUDIO_BUS, value)
 
-func _on_MuteButton_toggled(button_pressed):
+func _on_mute_button_toggled(button_pressed):
 	_set_mute(button_pressed)
 
-func _on_FullscreenButton_toggled(button_pressed):
+func _on_fullscreen_button_toggled(button_pressed):
 	_set_fullscreen_enabled(button_pressed)
 
-func _on_ResetGameControl_reset_confirmed():
+func _on_reset_game_control_reset_confirmed():
 	GameLog.reset_game_data()

@@ -121,14 +121,10 @@ layout_mode = 2
 [node name="ResetGameControl" parent="." instance=ExtResource("1")]
 layout_mode = 2
 
-[node name="VocalAudioStreamPlayers" type="Node" parent="."]
-
-[node name="SFXAudioStreamPlayers" type="Node" parent="."]
-
-[connection signal="value_changed" from="MasterControl/MasterHSlider" to="." method="_on_MasterHSlider_value_changed"]
-[connection signal="value_changed" from="SFXControl/SFXHSlider" to="." method="_on_SFXHSlider_value_changed"]
-[connection signal="value_changed" from="VoiceControl/VoiceHSlider" to="." method="_on_VoiceHSlider_value_changed"]
-[connection signal="value_changed" from="MusicControl/MusicHSlider" to="." method="_on_MusicHSlider_value_changed"]
-[connection signal="toggled" from="MuteControl/MuteButton" to="." method="_on_MuteButton_toggled"]
-[connection signal="toggled" from="FullscreenControl/FullscreenButton" to="." method="_on_FullscreenButton_toggled"]
-[connection signal="reset_confirmed" from="ResetGameControl" to="." method="_on_ResetGameControl_reset_confirmed"]
+[connection signal="value_changed" from="MasterControl/MasterHSlider" to="." method="_on_master_h_slider_value_changed"]
+[connection signal="value_changed" from="SFXControl/SFXHSlider" to="." method="_on_sfxh_slider_value_changed"]
+[connection signal="value_changed" from="VoiceControl/VoiceHSlider" to="." method="_on_voice_h_slider_value_changed"]
+[connection signal="value_changed" from="MusicControl/MusicHSlider" to="." method="_on_music_h_slider_value_changed"]
+[connection signal="toggled" from="MuteControl/MuteButton" to="." method="_on_mute_button_toggled"]
+[connection signal="toggled" from="FullscreenControl/FullscreenButton" to="." method="_on_fullscreen_button_toggled"]
+[connection signal="reset_confirmed" from="ResetGameControl" to="." method="_on_reset_game_control_reset_confirmed"]
