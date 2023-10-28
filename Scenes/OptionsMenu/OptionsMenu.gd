@@ -1,7 +1,5 @@
 extends Control
 
-signal return_button_pressed
-
 const MASTER_AUDIO_BUS = 'Master'
 const VOICE_AUDIO_BUS = 'Voice'
 const SFX_AUDIO_BUS = 'SFX'
@@ -43,15 +41,6 @@ func _set_mute(mute_flag : bool) -> void:
 	var bus_index : int = AudioServer.get_bus_index(MASTER_AUDIO_BUS)
 	AudioServer.set_bus_mute(bus_index, mute_flag)
 	Config.set_config(AUDIO_SECTION, MUTE_SETTING, mute_flag)
-
-func _play_next_audio_stream(_stream_parent : Node) -> void:
-	pass
-
-func _play_next_vocal_audio_stream() -> void:
-	_play_next_audio_stream($VocalAudioStreamPlayers)
-
-func _play_next_sfx_audio_stream() -> void:
-	_play_next_audio_stream($SFXAudioStreamPlayers)
 
 func _update_ui():
 	master_slider.value = _get_bus_volume_2_linear(MASTER_AUDIO_BUS)
@@ -141,7 +130,3 @@ func _on_FullscreenButton_toggled(button_pressed):
 
 func _on_ResetGameControl_reset_confirmed():
 	GameLog.reset_game_data()
-
-func _unhandled_key_input(event):
-	if event.is_action_released('ui_mute'):
-		mute_button.button_pressed = !(mute_button.pressed)
