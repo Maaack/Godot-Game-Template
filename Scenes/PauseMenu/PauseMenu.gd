@@ -1,6 +1,8 @@
 extends CanvasLayer
 
+@export var options_packed_scene : PackedScene
 @export_file("*.tscn") var main_menu_scene : String
+
 var popup_open
 
 func close_popup():
@@ -24,11 +26,22 @@ func _unhandled_key_input(event):
 			close_popup()
 			close_options_menu()
 
+func _setup_options():
+	if options_packed_scene == null:
+		%OptionsButton.hide()
+	else:
+		var options_scene = options_packed_scene.instantiate()
+		%OptionsContainer.call_deferred("add_child", options_scene)
+
+func _setup_main_menu():
+	if main_menu_scene.is_empty():
+		%MainMenuButton.hide()
+
 func _ready():
 	if OS.has_feature("web"):
 		%ExitButton.hide()
-	if main_menu_scene.is_empty():
-		%MainMenuButton.hide()
+	_setup_options()
+	_setup_main_menu()
 
 func _on_resume_button_pressed():
 	InGameMenuController.close_menu()
