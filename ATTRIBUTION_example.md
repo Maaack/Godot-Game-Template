@@ -1,10 +1,19 @@
 # Attribution
 ## Collaborators
 
-### Godot Game Template
-Author: [Marek](https://github.com/Maaack)  
-Source: [github: Godot-Game-Template](https://github.com/Maaack/Godot-Game-Template)  
-License: [MIT License](LICENSE.txt)  
+### Role
+Person 1  
+Person 2  
+[Person w/ Link]()  
+
+
+## Sourced / Unaffiliated
+### Asset Type
+#### Use Case
+Author: [Name]()  
+Source: [Domain : webpage.html]()  
+License: [License]()
+
 
 ## Tools
 #### Godot
