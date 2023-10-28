@@ -232,7 +232,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -244,7 +244,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -256,7 +256,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -268,7 +268,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2kqig"]
@@ -328,6 +328,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("4")
 script = ExtResource("1")
+options_packed_scene = ExtResource("3")
+credits_packed_scene = ExtResource("8")
 
 [node name="MenuAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -376,6 +378,7 @@ theme_override_constants/margin_bottom = 16
 layout_mode = 2
 
 [node name="Title" type="Label" parent="MarginContainer/VBoxContainer/TitlesMargin/TitlesContainer"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Title"
@@ -383,6 +386,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="SubTitle" type="Label" parent="MarginContainer/VBoxContainer/TitlesMargin/TitlesContainer"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Subtitle"
@@ -395,6 +399,8 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_bottom = 16
 
 [node name="MenuButtons" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MenuMargin"]
+visible = false
+modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 
 [node name="PlayButton" parent="MarginContainer/VBoxContainer/MenuMargin/MenuButtons" instance=ExtResource("5")]
@@ -403,10 +409,12 @@ layout_mode = 2
 text = "Play"
 
 [node name="OptionsButton" parent="MarginContainer/VBoxContainer/MenuMargin/MenuButtons" instance=ExtResource("5")]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Options"
 
 [node name="CreditsButton" parent="MarginContainer/VBoxContainer/MenuMargin/MenuButtons" instance=ExtResource("5")]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Credits"
 
@@ -415,23 +423,18 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Exit"
 
-[node name="MasterOptionsMenu" parent="." instance=ExtResource("3")]
+[node name="OptionsContainer" type="MarginContainer" parent="."]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = -240.0
-offset_right = 200.0
-offset_bottom = 240.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="CreditsContainer" type="MarginContainer" parent="."]
+unique_name_in_owner = true
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -440,11 +443,6 @@ theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 32
-
-[node name="Credits" parent="CreditsContainer" instance=ExtResource("8")]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
 
 [node name="FlowControlContainer" type="MarginContainer" parent="."]
 layout_mode = 0
@@ -474,5 +472,4 @@ text = "Back"
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MenuMargin/MenuButtons/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MenuMargin/MenuButtons/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MenuMargin/MenuButtons/ExitButton" to="." method="_on_exit_button_pressed"]
-[connection signal="end_reached" from="CreditsContainer/Credits" to="." method="_on_credits_end_reached"]
 [connection signal="pressed" from="FlowControlContainer/FlowControl/BackButton" to="." method="_on_back_button_pressed"]
