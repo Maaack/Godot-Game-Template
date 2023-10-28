@@ -1,47 +1,47 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://cd0jbh4metflb"]
 
-[ext_resource path="res://Themes/MainMenuTheme.tres" type="Theme" id=1]
-[ext_resource path="res://Scenes/LoadingScreen/LoadingScreen.gd" type="Script" id=3]
+[ext_resource type="Theme" path="res://Themes/BaseTheme.tres" id="2_24ab6"]
+[ext_resource type="Script" path="res://Scenes/LoadingScreen/LoadingScreen.gd" id="3"]
 
 [node name="LoadingScreen" type="CanvasLayer"]
 layer = 20
-script = ExtResource( 3 )
+script = ExtResource("3")
 
 [node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = ExtResource( 1 )
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_24ab6")
 
 [node name="Panel" type="Panel" parent="Control"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = 30.0
-margin_top = -23.0
-margin_right = -30.0
-margin_bottom = 98.0
-custom_constants/separation = 50
+offset_left = 30.0
+offset_top = -23.0
+offset_right = -30.0
+offset_bottom = 98.0
+theme_override_constants/separation = 50
 
 [node name="Title" type="Label" parent="Control/VBoxContainer"]
-margin_right = 964.0
-margin_bottom = 21.0
+layout_mode = 2
 text = "Loading"
-align = 1
+horizontal_alignment = 1
 
 [node name="ProgressBar" type="ProgressBar" parent="Control/VBoxContainer"]
-margin_top = 71.0
-margin_right = 964.0
-margin_bottom = 121.0
-rect_min_size = Vector2( 0, 50 )
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+max_value = 1.0
 
 [node name="ErrorMsg" type="AcceptDialog" parent="Control"]
-margin_right = 136.0
-margin_bottom = 72.0
-popup_exclusive = true
-window_title = "Alerte !"
 
-[connection signal="confirmed" from="Control/ErrorMsg" to="Control" method="_on_ErrorMsg_confirmed"]
+[connection signal="confirmed" from="Control/ErrorMsg" to="." method="_on_error_msg_confirmed"]

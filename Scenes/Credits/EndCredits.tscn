@@ -1,74 +1,61 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://djoy112dkgjda"]
 
-[ext_resource path="res://Scenes/Credits/Credits.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Themes/MainMenuTheme.tres" type="Theme" id=2]
-[ext_resource path="res://Scenes/Credits/EndCredits.gd" type="Script" id=4]
+[ext_resource type="PackedScene" uid="uid://t2dui8ppm3a4" path="res://Scenes/Credits/Credits.tscn" id="1"]
+[ext_resource type="Theme" path="res://Themes/MainMenuTheme.tres" id="2"]
+[ext_resource type="Script" path="res://Scenes/Credits/EndCredits.gd" id="4"]
 
-[node name="EndCredits" instance=ExtResource( 1 )]
-theme = ExtResource( 2 )
-script = ExtResource( 4 )
-
-[node name="RichTextLabel" parent="ScrollContainer/VBoxContainer" index="1"]
-focus_mode = 0
+[node name="EndCredits" instance=ExtResource("1")]
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2")
+script = ExtResource("4")
 
 [node name="CenterContainer" type="CenterContainer" parent="." index="1"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 2
 
 [node name="EndMessagePanel" type="Panel" parent="CenterContainer" index="0"]
 unique_name_in_owner = true
 visible = false
-margin_left = 332.0
-margin_top = 240.0
-margin_right = 692.0
-margin_bottom = 360.0
-rect_min_size = Vector2( 360, 120 )
+custom_minimum_size = Vector2(360, 120)
+layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/EndMessagePanel" index="0"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="ThankPlayer" type="Label" parent="CenterContainer/EndMessagePanel/VBoxContainer" index="0"]
-margin_right = 360.0
-margin_bottom = 58.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Thanks for playing"
-align = 1
-valign = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="CenterContainer/EndMessagePanel/VBoxContainer" index="1"]
-margin_top = 62.0
-margin_right = 360.0
-margin_bottom = 120.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/EndMessagePanel/VBoxContainer/CenterContainer" index="0"]
-margin_left = 108.0
-margin_top = 19.0
-margin_right = 252.0
-margin_bottom = 39.0
+layout_mode = 2
 size_flags_vertical = 3
-custom_constants/separation = 24
+theme_override_constants/separation = 24
 
 [node name="MenuButton" type="Button" parent="CenterContainer/EndMessagePanel/VBoxContainer/CenterContainer/HBoxContainer" index="0"]
-margin_right = 60.0
-margin_bottom = 28.0
-rect_min_size = Vector2( 60, 0 )
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Menu"
 
 [node name="ExitButton" type="Button" parent="CenterContainer/EndMessagePanel/VBoxContainer/CenterContainer/HBoxContainer" index="1"]
 unique_name_in_owner = true
-margin_left = 84.0
-margin_right = 144.0
-margin_bottom = 28.0
-rect_min_size = Vector2( 60, 0 )
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Exit"

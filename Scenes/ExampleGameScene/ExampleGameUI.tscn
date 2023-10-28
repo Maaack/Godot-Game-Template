@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxkq10mmjl517"]
+
+[ext_resource type="Script" path="res://Scenes/ExampleGameScene/ExampleGameUI.gd" id="1_1a5jn"]
+[ext_resource type="Script" path="res://Scripts/PauseMenuController.gd" id="2_ub818"]
+[ext_resource type="PackedScene" uid="uid://cdwvtbtwmrqbn" path="res://Scenes/PauseMenu/PauseMenu.tscn" id="3_peepb"]
+
+[node name="ExampleGameUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1a5jn")
+
+[node name="PauseMenuController" type="Node" parent="."]
+script = ExtResource("2_ub818")
+pause_menu_packed = ExtResource("3_peepb")

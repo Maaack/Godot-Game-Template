@@ -1,4 +1,5 @@
 .import/
+.godot/
 .idea/
 .DS_Store
 exports/

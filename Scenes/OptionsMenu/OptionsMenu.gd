@@ -1,7 +1,5 @@
 extends Control
 
-signal return_button_pressed
-
 const MASTER_AUDIO_BUS = 'Master'
 const VOICE_AUDIO_BUS = 'Voice'
 const SFX_AUDIO_BUS = 'SFX'
@@ -11,12 +9,12 @@ const FULLSCREEN_ENABLED = 'FullscreenEnabled'
 const AUDIO_SECTION = 'AudioSettings'
 const VIDEO_SECTION = 'VideoSettings'
 
-onready var master_slider = $MasterControl/MasterHSlider
-onready var sfx_slider = $SFXControl/SFXHSlider
-onready var voice_slider = $VoiceControl/VoiceHSlider
-onready var music_slider = $MusicControl/MusicHSlider
-onready var mute_button = $MuteControl/MuteButton
-onready var fullscreen_button = $FullscreenControl/FullscreenButton
+@onready var master_slider = $MasterControl/MasterHSlider
+@onready var sfx_slider = $SFXControl/SFXHSlider
+@onready var voice_slider = $VoiceControl/VoiceHSlider
+@onready var music_slider = $MusicControl/MusicHSlider
+@onready var mute_button = $MuteControl/MuteButton
+@onready var fullscreen_button = $FullscreenControl/FullscreenButton
 
 var play_audio_streams : bool = false
 
@@ -25,13 +23,13 @@ func _get_bus_volume_2_linear(bus_name : String) -> float:
 	if bus_index < 0:
 		return 0.0
 	var volume_db : float = AudioServer.get_bus_volume_db(bus_index)
-	return db2linear(volume_db)
+	return db_to_linear(volume_db)
 
 func _set_bus_linear_2_volume(bus_name : String, linear : float) -> void:
 	var bus_index : int = AudioServer.get_bus_index(bus_name)
 	if bus_index < 0:
 		return
-	var volume_db : float = linear2db(linear)
+	var volume_db : float = linear_to_db(linear)
 	AudioServer.set_bus_volume_db(bus_index, volume_db)
 	Config.set_config(AUDIO_SECTION, bus_name, linear)
 
@@ -44,26 +42,17 @@ func _set_mute(mute_flag : bool) -> void:
 	AudioServer.set_bus_mute(bus_index, mute_flag)
 	Config.set_config(AUDIO_SECTION, MUTE_SETTING, mute_flag)
 
-func _play_next_audio_stream(_stream_parent : Node) -> void:
-	pass
-
-func _play_next_vocal_audio_stream() -> void:
-	_play_next_audio_stream($VocalAudioStreamPlayers)
-
-func _play_next_sfx_audio_stream() -> void:
-	_play_next_audio_stream($SFXAudioStreamPlayers)
-
 func _update_ui():
 	master_slider.value = _get_bus_volume_2_linear(MASTER_AUDIO_BUS)
 	sfx_slider.value = _get_bus_volume_2_linear(SFX_AUDIO_BUS)
 	voice_slider.value = _get_bus_volume_2_linear(VOICE_AUDIO_BUS)
 	music_slider.value = _get_bus_volume_2_linear(MUSIC_AUDIO_BUS)
-	mute_button.pressed = _is_muted()
-	fullscreen_button.pressed = OS.window_fullscreen
+	mute_button.button_pressed = _is_muted()
+	fullscreen_button.button_pressed = ((get_window().mode == Window.MODE_EXCLUSIVE_FULLSCREEN) or (get_window().mode == Window.MODE_FULLSCREEN))
 
 func _set_init_config_if_empty() -> void:
 	if not Config.has_section(VIDEO_SECTION):
-		Config.set_config(VIDEO_SECTION, FULLSCREEN_ENABLED, OS.window_fullscreen)
+		Config.set_config(VIDEO_SECTION, FULLSCREEN_ENABLED, ((get_window().mode == Window.MODE_EXCLUSIVE_FULLSCREEN) or (get_window().mode == Window.MODE_FULLSCREEN)))
 	if not Config.has_section(AUDIO_SECTION):
 		Config.set_config(AUDIO_SECTION, MASTER_AUDIO_BUS, _get_bus_volume_2_linear(MASTER_AUDIO_BUS))
 		Config.set_config(AUDIO_SECTION, SFX_AUDIO_BUS, _get_bus_volume_2_linear(SFX_AUDIO_BUS))
@@ -80,12 +69,12 @@ func _set_init_config():
 	Config.set_config(AUDIO_SECTION, MUTE_SETTING, _is_muted())
 
 func _set_fullscreen_enabled_from_config() -> void:
-	var fullscreen_enabled : bool = OS.window_fullscreen
+	var fullscreen_enabled : bool = ((get_window().mode == Window.MODE_EXCLUSIVE_FULLSCREEN) or (get_window().mode == Window.MODE_FULLSCREEN))
 	fullscreen_enabled = Config.get_config(VIDEO_SECTION, FULLSCREEN_ENABLED, fullscreen_enabled)
-	OS.window_fullscreen = fullscreen_enabled
+	get_window().mode = Window.MODE_EXCLUSIVE_FULLSCREEN if (fullscreen_enabled) else Window.MODE_WINDOWED
 
 func _set_fullscreen_enabled(value : bool) -> void:
-	OS.window_fullscreen = value
+	get_window().mode = Window.MODE_EXCLUSIVE_FULLSCREEN if (value) else Window.MODE_WINDOWED
 	Config.set_config(VIDEO_SECTION, FULLSCREEN_ENABLED, value)
 
 func _set_audio_buses_from_config():
@@ -116,32 +105,23 @@ func _sync_with_config() -> void:
 func _ready():
 	_sync_with_config()
 
-func _on_ReturnButton_pressed():
-	emit_signal("return_button_pressed")
-
-func _on_MasterHSlider_value_changed(value):
+func _on_master_h_slider_value_changed(value):
 	_set_bus_linear_2_volume(MASTER_AUDIO_BUS, value)
 
-func _on_SFXHSlider_value_changed(value):
+func _on_sfxh_slider_value_changed(value):
 	_set_bus_linear_2_volume(SFX_AUDIO_BUS, value)
-	_play_next_sfx_audio_stream()
 
-func _on_VoiceHSlider_value_changed(value):
+func _on_voice_h_slider_value_changed(value):
 	_set_bus_linear_2_volume(VOICE_AUDIO_BUS, value)
-	_play_next_vocal_audio_stream()
 
-func _on_MusicHSlider_value_changed(value):
+func _on_music_h_slider_value_changed(value):
 	_set_bus_linear_2_volume(MUSIC_AUDIO_BUS, value)
 
-func _on_MuteButton_toggled(button_pressed):
+func _on_mute_button_toggled(button_pressed):
 	_set_mute(button_pressed)
 
-func _on_FullscreenButton_toggled(button_pressed):
+func _on_fullscreen_button_toggled(button_pressed):
 	_set_fullscreen_enabled(button_pressed)
 
-func _on_ResetGameControl_reset_confirmed():
+func _on_reset_game_control_reset_confirmed():
 	GameLog.reset_game_data()
-
-func _unhandled_key_input(event):
-	if event.is_action_released('ui_mute'):
-		mute_button.pressed = !(mute_button.pressed)
