@@ -11,6 +11,7 @@ const VOICE_AUDIO_BUS = 'Voice'
 const SFX_AUDIO_BUS = 'SFX'
 const MUSIC_AUDIO_BUS = 'Music'
 const MUTE_SETTING = 'Mute'
+const MASTER_BUS_INDEX = 0
 
 const INPUT_MAP_2D : Dictionary = {
 	"move_up" : "Up",
@@ -85,51 +86,34 @@ static func get_bus_volume(bus_name : String) -> float:
 	var volume_db : float = AudioServer.get_bus_volume_db(bus_index)
 	return db_to_linear(volume_db)
 
-static func set_bus_volume(bus_name : String, linear : float) -> void:
+static func set_bus_volume(bus_name : String, volume_db : float) -> void:
 	var bus_index : int = AudioServer.get_bus_index(bus_name)
 	if bus_index < 0:
 		return
-	var volume_db : float = linear_to_db(linear)
 	AudioServer.set_bus_volume_db(bus_index, volume_db)
-	Config.set_config(AUDIO_SECTION, bus_name, linear)
+	Config.set_config(AUDIO_SECTION, bus_name, volume_db)
+
+static func set_bus_volume_from_linear(bus_name : String, linear : float) -> void:
+	set_bus_volume(bus_name, linear_to_db(linear))
 
 static func is_muted() -> bool:
-	var bus_index : int = AudioServer.get_bus_index(MASTER_AUDIO_BUS)
-	return AudioServer.is_bus_mute(bus_index)
+	return AudioServer.is_bus_mute(MASTER_BUS_INDEX)
 
 static func set_mute(mute_flag : bool) -> void:
-	var bus_index : int = AudioServer.get_bus_index(MASTER_AUDIO_BUS)
-	AudioServer.set_bus_mute(bus_index, mute_flag)
+	AudioServer.set_bus_mute(MASTER_BUS_INDEX, mute_flag)
 	Config.set_config(AUDIO_SECTION, MUTE_SETTING, mute_flag)
 
-static func reset_audio_config() -> void:
-	Config.set_config(AUDIO_SECTION, MASTER_AUDIO_BUS, get_bus_volume(MASTER_AUDIO_BUS))
-	Config.set_config(AUDIO_SECTION, SFX_AUDIO_BUS, get_bus_volume(SFX_AUDIO_BUS))
-	Config.set_config(AUDIO_SECTION, VOICE_AUDIO_BUS, get_bus_volume(VOICE_AUDIO_BUS))
-	Config.set_config(AUDIO_SECTION, MUSIC_AUDIO_BUS, get_bus_volume(MUSIC_AUDIO_BUS))
-	Config.set_config(AUDIO_SECTION, MUTE_SETTING, is_muted())
-
 static func set_audio_from_config():
-	var master_audio_value : float = get_bus_volume(MASTER_AUDIO_BUS)
-	var sfx_audio_value : float = get_bus_volume(MASTER_AUDIO_BUS)
-	var voice_audio_value : float = get_bus_volume(MASTER_AUDIO_BUS)
-	var music_audio_value : float = get_bus_volume(MASTER_AUDIO_BUS)
+	for bus_iter in AudioServer.bus_count:
+		var bus_name : String = AudioServer.get_bus_name(bus_iter)
+		var bus_volume_db : float = AudioServer.get_bus_volume_db(bus_iter)
+		bus_volume_db = Config.get_config(AUDIO_SECTION, bus_name, bus_volume_db)
+		AudioServer.set_bus_volume_db(bus_iter, bus_volume_db)
 	var mute_audio_flag : bool = is_muted()
-	master_audio_value = Config.get_config(AUDIO_SECTION, MASTER_AUDIO_BUS, master_audio_value)
-	sfx_audio_value = Config.get_config(AUDIO_SECTION, SFX_AUDIO_BUS, sfx_audio_value)
-	voice_audio_value = Config.get_config(AUDIO_SECTION, VOICE_AUDIO_BUS, voice_audio_value)
-	music_audio_value = Config.get_config(AUDIO_SECTION, MUSIC_AUDIO_BUS, music_audio_value)
 	mute_audio_flag = Config.get_config(AUDIO_SECTION, MUTE_SETTING, mute_audio_flag)
-	set_bus_volume(MASTER_AUDIO_BUS, master_audio_value)
-	set_bus_volume(SFX_AUDIO_BUS, sfx_audio_value)
-	set_bus_volume(VOICE_AUDIO_BUS, voice_audio_value)
-	set_bus_volume(MUSIC_AUDIO_BUS, music_audio_value)
 	set_mute(mute_audio_flag)
 
 static func init_audio_config() -> void:
-	if not Config.has_section(AUDIO_SECTION):
-		# reset_audio_config()
-		return
 	set_audio_from_config()
 
 # Video
@@ -140,6 +124,9 @@ static func set_fullscreen_enabled(value : bool, window : Window) -> void:
 
 static func reset_video_config(window : Window) -> void:
 	Config.set_config(VIDEO_SECTION, FULLSCREEN_ENABLED, ((window.mode == Window.MODE_EXCLUSIVE_FULLSCREEN) or (window.mode == Window.MODE_FULLSCREEN)))
+
+static func is_fullscreen(window : Window) -> bool:
+	return (window.mode == Window.MODE_EXCLUSIVE_FULLSCREEN) or (window.mode == Window.MODE_FULLSCREEN)
 
 static func set_video_from_config(window : Window) -> void:
 	var fullscreen_enabled : bool = (window.mode == Window.MODE_EXCLUSIVE_FULLSCREEN) or (window.mode == Window.MODE_FULLSCREEN)
