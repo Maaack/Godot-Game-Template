@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dp3rgqaehb3xu"]
 
 [ext_resource type="Script" path="res://Scenes/OptionsMenu/Input/InputOptionsMenu.gd" id="1"]
-[ext_resource type="Theme" path="res://Themes/MainMenuTheme.tres" id="2"]
+[ext_resource type="Theme" path="res://Themes/BaseTheme.tres" id="2"]
 [ext_resource type="Script" path="res://Scenes/OptionsMenu/Input/KeyAssignmentDialog.gd" id="3_wsh2h"]
 
 [node name="Input" type="CenterContainer"]
