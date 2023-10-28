@@ -14,7 +14,7 @@ func _process(_delta):
 		ResourceLoader.THREAD_LOAD_IN_PROGRESS:
 			$Control/VBoxContainer/ProgressBar.value = SceneLoader.get_progress()
 		ResourceLoader.THREAD_LOAD_LOADED:
-			$Control/VBoxContainer/ProgressBar.value = 100
+			$Control/VBoxContainer/ProgressBar.value = 1.0
 			$Control/VBoxContainer/Title.text = LOADING_COMPLETE_TEXT
 			set_process(false)
 			await get_tree().create_timer(0.1).timeout
@@ -25,7 +25,7 @@ func _process(_delta):
 			$Control/ErrorMsg.popup_centered()
 			set_process(false)
 
-func _on_ErrorMsg_confirmed():
+func _on_error_msg_confirmed():
 	var err = get_tree().change_scene_to_file(ProjectSettings.get_setting("application/run/main_scene"))
 	if err:
 		print("failed to load main scene: %d" % err)

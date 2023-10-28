@@ -35,11 +35,13 @@ theme_override_constants/separation = 50
 [node name="Title" type="Label" parent="Control/VBoxContainer"]
 layout_mode = 2
 text = "Loading"
+horizontal_alignment = 1
 
 [node name="ProgressBar" type="ProgressBar" parent="Control/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+max_value = 1.0
 
 [node name="ErrorMsg" type="AcceptDialog" parent="Control"]
 
-[connection signal="confirmed" from="Control/ErrorMsg" to="Control" method="_on_ErrorMsg_confirmed"]
+[connection signal="confirmed" from="Control/ErrorMsg" to="." method="_on_error_msg_confirmed"]
