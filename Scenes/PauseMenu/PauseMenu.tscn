@@ -6,9 +6,18 @@
 [ext_resource type="PackedScene" uid="uid://doj1dmgtf0a71" path="res://Scenes/UI/SoundButton/SoundButton.tscn" id="4"]
 
 [node name="PauseMenu" type="CanvasLayer"]
-process_mode = 2
+process_mode = 3
 layer = 10
 script = ExtResource("2")
+main_menu_scene = "res://Scenes/MainMenu/MainMenu.tscn"
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -17,85 +26,96 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 theme = ExtResource("2_wxnmy")
 
-[node name="Background" type="ColorRect" parent="Control"]
-layout_mode = 0
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 256.0
-offset_right = -256.0
-color = Color(0, 0, 0, 1)
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Title" type="Label" parent="Control"]
-layout_mode = 0
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -93.5
-offset_top = 50.0
-offset_right = 93.5
-offset_bottom = 131.0
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
 text = "Pause"
+horizontal_alignment = 1
 
-[node name="ButtonsContainer" type="VBoxContainer" parent="Control"]
-layout_mode = 0
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -116.5
-offset_top = -116.0
-offset_right = 116.5
-offset_bottom = 116.0
+[node name="MenuButtons" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
 theme_override_constants/separation = 24
 
-[node name="ResumeBtn" parent="Control/ButtonsContainer" instance=ExtResource("4")]
+[node name="ResumeButton" parent="Control/MarginContainer/VBoxContainer/MenuButtons" instance=ExtResource("4")]
 layout_mode = 2
 text = "Resume"
 
-[node name="RestartBtn" parent="Control/ButtonsContainer" instance=ExtResource("4")]
+[node name="RestartButton" parent="Control/MarginContainer/VBoxContainer/MenuButtons" instance=ExtResource("4")]
 layout_mode = 2
 text = "Restart"
 
-[node name="OptionsBtn" parent="Control/ButtonsContainer" instance=ExtResource("4")]
+[node name="OptionsButton" parent="Control/MarginContainer/VBoxContainer/MenuButtons" instance=ExtResource("4")]
 layout_mode = 2
 text = "Options"
 
-[node name="MainMenuBtn" parent="Control/ButtonsContainer" instance=ExtResource("4")]
+[node name="MainMenuButton" parent="Control/MarginContainer/VBoxContainer/MenuButtons" instance=ExtResource("4")]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Return to Main Menu"
 
-[node name="ExitBtn" parent="Control/ButtonsContainer" instance=ExtResource("4")]
+[node name="ExitButton" parent="Control/MarginContainer/VBoxContainer/MenuButtons" instance=ExtResource("4")]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Exit Game"
 
+[node name="CenterContainer" type="CenterContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="SubMenuContainer" type="VBoxContainer" parent="Control/CenterContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="OptionsMenu" parent="Control/CenterContainer/SubMenuContainer" instance=ExtResource("1")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/CenterContainer/SubMenuContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="BackButton" type="Button" parent="Control/CenterContainer/SubMenuContainer/HBoxContainer"]
+layout_mode = 2
+text = "back"
+
 [node name="ConfirmRestart" type="ConfirmationDialog" parent="Control"]
+unique_name_in_owner = true
 dialog_text = "Restart the game?"
 
 [node name="ConfirmMainMenu" type="ConfirmationDialog" parent="Control"]
+unique_name_in_owner = true
 dialog_text = "Go back to main menu?"
 
 [node name="ConfirmExit" type="ConfirmationDialog" parent="Control"]
+unique_name_in_owner = true
 dialog_text = "Quit the game?"
 
-[node name="OptionsMenu" parent="Control" instance=ExtResource("1")]
-visible = false
-layout_mode = 0
-anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 305.0
-offset_bottom = 260.0
-
-[connection signal="pressed" from="Control/ButtonsContainer/ResumeBtn" to="." method="_on_ResumeBtn_pressed"]
-[connection signal="pressed" from="Control/ButtonsContainer/RestartBtn" to="." method="_on_RestartBtn_pressed"]
-[connection signal="pressed" from="Control/ButtonsContainer/OptionsBtn" to="." method="_on_OptionsBtn_pressed"]
-[connection signal="pressed" from="Control/ButtonsContainer/MainMenuBtn" to="." method="_on_MainMenuBtn_pressed"]
-[connection signal="pressed" from="Control/ButtonsContainer/ExitBtn" to="." method="_on_ExitBtn_pressed"]
-[connection signal="confirmed" from="Control/ConfirmRestart" to="." method="_on_ConfirmRestart_confirmed"]
-[connection signal="confirmed" from="Control/ConfirmMainMenu" to="." method="_on_ConfirmMainMenu_confirmed"]
-[connection signal="confirmed" from="Control/ConfirmExit" to="." method="_on_ConfirmExit_confirmed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/MenuButtons/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/MenuButtons/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/MenuButtons/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/MenuButtons/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/MenuButtons/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="Control/CenterContainer/SubMenuContainer/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="confirmed" from="Control/ConfirmRestart" to="." method="_on_confirm_restart_confirmed"]
+[connection signal="confirmed" from="Control/ConfirmMainMenu" to="." method="_on_confirm_main_menu_confirmed"]
+[connection signal="confirmed" from="Control/ConfirmExit" to="." method="_on_confirm_exit_confirmed"]
