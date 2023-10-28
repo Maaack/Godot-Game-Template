@@ -20,7 +20,7 @@ scroll_active = false
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-scroll_vertical = 1277
+scroll_vertical = 100
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 
@@ -38,30 +38,21 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
 bbcode_enabled = true
-text = "[center]# Attribution
-## Collaborators
+text = "[center]
+[font_size=48]Collaborators[/font_size]
 
-### Role
-Person 1  
-Person 2  
-[url=]Person w/ Link[/url]  
+[font_size=32]Godot Game Template[/font_size]
+Author: [url=https://github.com/Maaack]Marek[/url]  
+Source: [url=https://github.com/Maaack/Godot-Game-Template]github: Godot-Game-Template[/url]  
+License: [url=LICENSE.txt]MIT License[/url]  
 
-
-## Sourced / Unaffiliated
-### Asset Type
-#### Use Case
-Author: [url=]Name[/url]  
-Source: [url=]Domain : webpage.html[/url]  
-License: [url=]License[/url]
-
-
-## Tools
-#### Godot
+[font_size=48]Tools[/font_size]
+[font_size=24]Godot[/font_size]
 Author: [url=https://godotengine.org/contact]Juan Linietsky, Ariel Manzur, and contributors[/url]  
 Source: [url=https://godotengine.org/]godotengine.org[/url]  
 License: [url=https://github.com/godotengine/godot/blob/master/LICENSE.txt]MIT License[/url] 
 
-#### Git
+[font_size=24]Git[/font_size]
 Author: [url=https://github.com/torvalds]Linus Torvalds[/url]  
 Source: [url=https://git-scm.com/downloads]git-scm.com[/url]  
 License: [url=https://opensource.org/licenses/GPL-2.0]GNU General Public License version 2[/url][/center]"
