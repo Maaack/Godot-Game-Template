@@ -5,7 +5,7 @@ var loading_screen = preload("res://Scenes/LoadingScreen/LoadingScreen.tscn")
 var scene_to_load : String
 
 func reload_current_scene() -> void:
-	load_scene(scene_to_load)
+	get_tree().reload_current_scene()
 
 func load_scene(path : String) -> void:
 	if path == "":

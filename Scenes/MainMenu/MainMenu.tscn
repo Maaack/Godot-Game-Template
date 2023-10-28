@@ -328,6 +328,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("4")
 script = ExtResource("1")
+game_scene_path = "res://Scenes/ExampleGameScene/ExampleGameScene.tscn"
 options_packed_scene = ExtResource("3")
 credits_packed_scene = ExtResource("8")
 

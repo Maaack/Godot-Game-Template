@@ -9,7 +9,7 @@ func open_menu(menu_scene : PackedScene, set_pause : bool = true) -> void:
 	saved_mouse_mode = Input.get_mouse_mode()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	current_menu = menu_scene.instantiate()
-	get_tree().current_scene.add_child(current_menu)
+	get_tree().current_scene.call_deferred("add_child", current_menu)
 	get_tree().paused = set_pause
 
 func close_menu() -> void:

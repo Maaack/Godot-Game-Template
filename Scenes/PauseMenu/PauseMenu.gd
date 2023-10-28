@@ -60,6 +60,7 @@ func _on_exit_button_pressed():
 
 func _on_confirm_restart_confirmed():
 	SceneLoader.reload_current_scene()
+	InGameMenuController.close_menu()
 
 func _on_confirm_main_menu_confirmed():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
