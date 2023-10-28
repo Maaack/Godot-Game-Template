@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://vh1ucj2rfbby"]
+[gd_scene load_steps=4 format=3 uid="uid://vh1ucj2rfbby"]
 
 [ext_resource type="PackedScene" uid="uid://cay00igbuqtfa" path="res://Scenes/UI/ResetGameControl/ResetGameControl.tscn" id="1"]
 [ext_resource type="Script" path="res://Scenes/OptionsMenu/OptionsMenu.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://bosy6wwf0vleq" path="res://Scenes/UI/AudioControl/AudioControl.tscn" id="2_xrxr1"]
 
 [node name="OptionsMenu" type="VBoxContainer"]
 custom_minimum_size = Vector2(305, 260)
@@ -16,83 +17,12 @@ offset_right = 152.5
 offset_bottom = 110.0
 theme_override_constants/separation = 8
 script = ExtResource("2")
+audio_control_scene = ExtResource("2_xrxr1")
 
-[node name="MasterControl" type="HBoxContainer" parent="."]
-custom_minimum_size = Vector2(0, 30)
+[node name="AudioBusesContainer" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
 layout_mode = 2
-
-[node name="MasterLabel" type="Label" parent="MasterControl"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Master :"
-
-[node name="MasterHSlider" type="HSlider" parent="MasterControl"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_vertical = 4
-max_value = 1.0
-step = 0.05
-value = 1.0
-tick_count = 11
-ticks_on_borders = true
-
-[node name="SFXControl" type="HBoxContainer" parent="."]
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
-
-[node name="SFXLabel" type="Label" parent="SFXControl"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "SFX :"
-
-[node name="SFXHSlider" type="HSlider" parent="SFXControl"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_vertical = 4
-max_value = 1.0
-step = 0.05
-value = 1.0
-tick_count = 11
-ticks_on_borders = true
-
-[node name="VoiceControl" type="HBoxContainer" parent="."]
-visible = false
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
-
-[node name="VoiceLabel" type="Label" parent="VoiceControl"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Voice :"
-
-[node name="VoiceHSlider" type="HSlider" parent="VoiceControl"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_vertical = 4
-max_value = 1.0
-step = 0.05
-value = 1.0
-tick_count = 11
-ticks_on_borders = true
-
-[node name="MusicControl" type="HBoxContainer" parent="."]
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
-
-[node name="MusicLabel" type="Label" parent="MusicControl"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Music :"
-
-[node name="MusicHSlider" type="HSlider" parent="MusicControl"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_vertical = 4
-max_value = 1.0
-step = 0.05
-value = 1.0
-tick_count = 11
-ticks_on_borders = true
+theme_override_constants/separation = 8
 
 [node name="MuteControl" type="HBoxContainer" parent="."]
 custom_minimum_size = Vector2(0, 40)
@@ -121,10 +51,6 @@ layout_mode = 2
 [node name="ResetGameControl" parent="." instance=ExtResource("1")]
 layout_mode = 2
 
-[connection signal="value_changed" from="MasterControl/MasterHSlider" to="." method="_on_master_h_slider_value_changed"]
-[connection signal="value_changed" from="SFXControl/SFXHSlider" to="." method="_on_sfxh_slider_value_changed"]
-[connection signal="value_changed" from="VoiceControl/VoiceHSlider" to="." method="_on_voice_h_slider_value_changed"]
-[connection signal="value_changed" from="MusicControl/MusicHSlider" to="." method="_on_music_h_slider_value_changed"]
 [connection signal="toggled" from="MuteControl/MuteButton" to="." method="_on_mute_button_toggled"]
 [connection signal="toggled" from="FullscreenControl/FullscreenButton" to="." method="_on_fullscreen_button_toggled"]
 [connection signal="reset_confirmed" from="ResetGameControl" to="." method="_on_reset_game_control_reset_confirmed"]

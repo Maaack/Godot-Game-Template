@@ -9,14 +9,11 @@ const FULLSCREEN_ENABLED = 'FullscreenEnabled'
 const AUDIO_SECTION = 'AudioSettings'
 const VIDEO_SECTION = 'VideoSettings'
 
-@onready var master_slider = $MasterControl/MasterHSlider
-@onready var sfx_slider = $SFXControl/SFXHSlider
-@onready var voice_slider = $VoiceControl/VoiceHSlider
-@onready var music_slider = $MusicControl/MusicHSlider
 @onready var mute_button = $MuteControl/MuteButton
 @onready var fullscreen_button = $FullscreenControl/FullscreenButton
 
-var play_audio_streams : bool = false
+@export var audio_control_scene : PackedScene
+@export var hide_busses : Array[String]
 
 func _get_bus_volume_2_linear(bus_name : String) -> float:
 	var bus_index : int = AudioServer.get_bus_index(bus_name)
@@ -25,12 +22,15 @@ func _get_bus_volume_2_linear(bus_name : String) -> float:
 	var volume_db : float = AudioServer.get_bus_volume_db(bus_index)
 	return db_to_linear(volume_db)
 
-func _set_bus_linear_2_volume(bus_name : String, linear : float) -> void:
+func _set_bus_volume(bus_name : String, volume_db : float) -> void:
 	var bus_index : int = AudioServer.get_bus_index(bus_name)
 	if bus_index < 0:
 		return
-	var volume_db : float = linear_to_db(linear)
 	AudioServer.set_bus_volume_db(bus_index, volume_db)
+
+func _set_bus_from_linear(bus_name : String, linear : float) -> void:
+	var volume_db : float = linear_to_db(linear)
+	_set_bus_volume(bus_name, volume_db)
 	Config.set_config(AUDIO_SECTION, bus_name, linear)
 
 func _is_muted() -> bool:
@@ -42,11 +42,24 @@ func _set_mute(mute_flag : bool) -> void:
 	AudioServer.set_bus_mute(bus_index, mute_flag)
 	Config.set_config(AUDIO_SECTION, MUTE_SETTING, mute_flag)
 
+func _add_audio_control(bus_name, bus_value):
+	if audio_control_scene == null or bus_name in hide_busses:
+		return
+	var audio_control = audio_control_scene.instantiate()
+	audio_control.bus_name = bus_name
+	audio_control.bus_value = bus_value
+	%AudioBusesContainer.call_deferred("add_child", audio_control)
+	audio_control.connect("bus_value_changed", _set_bus_from_linear)
+
+func _add_audio_bus_controls():
+	var bus_count : int = AudioServer.bus_count
+	for bus_iter in bus_count:
+		var bus_name : String = AudioServer.get_bus_name(bus_iter)
+		var bus_volume_db : float = AudioServer.get_bus_volume_db(bus_iter)
+		_add_audio_control(bus_name, db_to_linear(bus_volume_db))
+
 func _update_ui():
-	master_slider.value = _get_bus_volume_2_linear(MASTER_AUDIO_BUS)
-	sfx_slider.value = _get_bus_volume_2_linear(SFX_AUDIO_BUS)
-	voice_slider.value = _get_bus_volume_2_linear(VOICE_AUDIO_BUS)
-	music_slider.value = _get_bus_volume_2_linear(MUSIC_AUDIO_BUS)
+	_add_audio_bus_controls()
 	mute_button.button_pressed = _is_muted()
 	fullscreen_button.button_pressed = ((get_window().mode == Window.MODE_EXCLUSIVE_FULLSCREEN) or (get_window().mode == Window.MODE_FULLSCREEN))
 
@@ -90,10 +103,10 @@ func _set_audio_buses_from_config():
 	voice_audio_value = Config.get_config(AUDIO_SECTION, VOICE_AUDIO_BUS, voice_audio_value)
 	music_audio_value = Config.get_config(AUDIO_SECTION, MUSIC_AUDIO_BUS, music_audio_value)
 	mute_audio_flag = Config.get_config(AUDIO_SECTION, MUTE_SETTING, mute_audio_flag)
-	_set_bus_linear_2_volume(MASTER_AUDIO_BUS, master_audio_value)
-	_set_bus_linear_2_volume(SFX_AUDIO_BUS, sfx_audio_value)
-	_set_bus_linear_2_volume(VOICE_AUDIO_BUS, voice_audio_value)
-	_set_bus_linear_2_volume(MUSIC_AUDIO_BUS, music_audio_value)
+	_set_bus_from_linear(MASTER_AUDIO_BUS, master_audio_value)
+	_set_bus_from_linear(SFX_AUDIO_BUS, sfx_audio_value)
+	_set_bus_from_linear(VOICE_AUDIO_BUS, voice_audio_value)
+	_set_bus_from_linear(MUSIC_AUDIO_BUS, music_audio_value)
 	_set_mute(mute_audio_flag)
 
 func _sync_with_config() -> void:
@@ -104,18 +117,6 @@ func _sync_with_config() -> void:
 
 func _ready():
 	_sync_with_config()
-
-func _on_master_h_slider_value_changed(value):
-	_set_bus_linear_2_volume(MASTER_AUDIO_BUS, value)
-
-func _on_sfxh_slider_value_changed(value):
-	_set_bus_linear_2_volume(SFX_AUDIO_BUS, value)
-
-func _on_voice_h_slider_value_changed(value):
-	_set_bus_linear_2_volume(VOICE_AUDIO_BUS, value)
-
-func _on_music_h_slider_value_changed(value):
-	_set_bus_linear_2_volume(MUSIC_AUDIO_BUS, value)
 
 func _on_mute_button_toggled(button_pressed):
 	_set_mute(button_pressed)
