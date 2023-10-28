@@ -18,7 +18,6 @@ func _add_audio_bus_controls():
 	for bus_iter in AudioServer.bus_count:
 		var bus_name : String = AudioServer.get_bus_name(bus_iter)
 		var linear : float = AppSettings.get_bus_volume_to_linear(bus_name)
-		print("Settings %s to %f" % [bus_name, linear])
 		_add_audio_control(bus_name, linear)
 
 func _update_ui():

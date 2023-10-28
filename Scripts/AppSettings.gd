@@ -6,10 +6,6 @@ const AUDIO_SECTION = 'AudioSettings'
 const VIDEO_SECTION = 'VideoSettings'
 
 const FULLSCREEN_ENABLED = 'FullscreenEnabled'
-const MASTER_AUDIO_BUS = 'Master'
-const VOICE_AUDIO_BUS = 'Voice'
-const SFX_AUDIO_BUS = 'SFX'
-const MUSIC_AUDIO_BUS = 'Music'
 const MUTE_SETTING = 'Mute'
 const MASTER_BUS_INDEX = 0
 
