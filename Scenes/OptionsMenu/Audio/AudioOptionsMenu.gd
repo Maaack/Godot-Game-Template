@@ -44,7 +44,3 @@ func _on_MusicHSlider_value_changed(value):
 
 func _on_MuteButton_toggled(button_pressed):
 	AppSettings.set_mute(button_pressed)
-
-func _unhandled_key_input(event):
-	if event.is_action_released('ui_mute'):
-		mute_button.button_pressed = !(mute_button.pressed)

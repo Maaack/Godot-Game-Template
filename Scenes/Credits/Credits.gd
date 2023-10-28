@@ -84,7 +84,7 @@ func _scroll_container(amount : float) -> void:
 func _process(_delta):
 	if Engine.is_editor_hint():
 		return
-	var input_axis = Input.get_axis("move_up", "move_down")
+	var input_axis = Input.get_axis("ui_up", "ui_down")
 	if input_axis != 0:
 		_scroll_container(10 * input_axis)
 	else:
