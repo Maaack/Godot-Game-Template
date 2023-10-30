@@ -1,6 +1,12 @@
 extends Control
 
-@export var action_name_map : Dictionary = {}
+@export var action_name_map : Dictionary = {
+	"move_up" : "Up",
+	"move_down" : "Down",
+	"move_left" : "Left",
+	"move_right" : "Right",
+	"interact" : "Interact"
+}
 @export var add_button_texture : Texture2D
 @export var remove_button_texture : Texture2D
 
