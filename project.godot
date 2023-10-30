@@ -17,7 +17,6 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Config="*res://Scripts/Config.gd"
 InGameMenuController="*res://Scripts/InGameMenuController.gd"
 SceneLoader="*res://Scripts/SceneLoader.gd"
 AppLogger="*res://Scripts/AppLogger.gd"
