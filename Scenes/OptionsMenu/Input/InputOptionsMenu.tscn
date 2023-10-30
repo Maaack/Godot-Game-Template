@@ -5,8 +5,10 @@
 [ext_resource type="Script" path="res://Scenes/OptionsMenu/Input/KeyAssignmentDialog.gd" id="3_wsh2h"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_7h8wy"]
+size = Vector2(16, 16)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_nq02i"]
+size = Vector2(16, 16)
 
 [node name="Input" type="CenterContainer"]
 anchors_preset = 15
