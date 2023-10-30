@@ -20,6 +20,7 @@ var tree_item_action_map : Dictionary = {}
 var assigned_input_events : Dictionary = {}
 var editing_action_name : String = ""
 var editing_item
+var last_input_readable_name
 
 func _popup_add_action_event(item : TreeItem) -> void:
 	if item not in tree_item_add_map:
@@ -57,7 +58,7 @@ func _get_input_text(input_event : InputEvent):
 
 func _add_input_event_as_tree_item(action_name : String, input_event : InputEvent, parent_item : TreeItem):
 	var input_tree_item : TreeItem = %Tree.create_item(parent_item)
-	input_tree_item.set_text(0, _get_input_text(input_event))
+	input_tree_item.set_text(0, InputEventHelper.get_text(input_event))
 	input_tree_item.add_button(0, remove_button_texture, -1, false, "Remove")
 	tree_item_remove_map[input_tree_item] = input_event
 	tree_item_action_map[input_tree_item] = action_name
@@ -91,7 +92,7 @@ func _build_ui_tree():
 		_add_action_as_tree_item(readable_name, action_name, input_events)
 
 func _assign_input_event(input_event : InputEvent, action_name : String):
-	assigned_input_events[_get_input_text(input_event)] = action_name
+	assigned_input_events[InputEventHelper.get_text(input_event)] = action_name
 		
 func _assign_input_event_to_action(input_event : InputEvent, action_name : String) -> void:
 	_assign_input_event(input_event, action_name)
@@ -104,7 +105,7 @@ func _can_remove_input_event(action_name : String) -> bool:
 	return InputMap.action_get_events(action_name).size() > 1
 
 func _remove_input_event(input_event : InputEvent):
-	assigned_input_events.erase(_get_input_text(input_event))
+	assigned_input_events.erase(InputEventHelper.get_text(input_event))
 
 func _remove_input_event_from_action(input_event : InputEvent, action_name : String) -> void:
 	_remove_input_event(input_event)
@@ -118,8 +119,8 @@ func _build_assigned_input_events():
 			_assign_input_event(input_event, action_name)
 
 func _get_action_for_input_event(input_event : InputEvent) -> String:
-	if _get_input_text(input_event) in assigned_input_events:
-		return assigned_input_events[_get_input_text(input_event)] 
+	if InputEventHelper.get_text(input_event) in assigned_input_events:
+		return assigned_input_events[InputEventHelper.get_text(input_event)] 
 	return ""
 
 func _ready():
@@ -128,12 +129,12 @@ func _ready():
 
 func _on_KeyAssignmentDialog_confirmed():
 	var last_input_event = $KeyAssignmentDialog.last_input_event
-	var input_readable_name = $KeyAssignmentDialog.dialog_text
+	last_input_readable_name = $KeyAssignmentDialog.dialog_text
 	if last_input_event != null:
 		var assigned_action := _get_action_for_input_event(last_input_event)
 		if not assigned_action.is_empty():
 			var readable_action_name = _get_action_readable_name(assigned_action)
-			$AlreadyAssignedDialog.dialog_text = ALREADY_ASSIGNED_TEXT % [input_readable_name, readable_action_name]
+			$AlreadyAssignedDialog.dialog_text = ALREADY_ASSIGNED_TEXT % [last_input_readable_name, readable_action_name]
 			$AlreadyAssignedDialog.popup_centered()
 		else:
 			_assign_input_event_to_action(last_input_event, editing_action_name)

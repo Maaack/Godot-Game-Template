@@ -36,14 +36,15 @@ layout_mode = 2
 text = "Reset"
 
 [node name="KeyAssignmentDialog" type="ConfirmationDialog" parent="."]
+title = "Assign Key"
+size = Vector2i(400, 100)
 theme = ExtResource("2")
-dialog_text = "Press a key..."
+dialog_text = "Press a key or button..."
 script = ExtResource("3_wsh2h")
 
 [node name="OneInputMinimumDialog" type="AcceptDialog" parent="."]
-title = "Removing Failed"
+title = "Cannot Remove"
 size = Vector2i(398, 100)
-dialog_text = "At least one key or button must be assigned."
 
 [node name="AlreadyAssignedDialog" type="AcceptDialog" parent="."]
 title = "Already Assigned"
