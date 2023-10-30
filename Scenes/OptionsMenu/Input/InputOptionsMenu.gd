@@ -77,7 +77,7 @@ func _build_ui_tree():
 		var readable_name : String = _get_action_readable_name(action_name)
 		_add_tree_item(readable_name, input_events)
 
-func _assign_key_to_action(input_event : InputEventKey, action_name : String) -> void:
+func _assign_key_to_action(input_event : InputEvent, action_name : String) -> void:
 	InputMap.action_add_event(action_name, input_event)
 	var action_events = InputMap.action_get_events(action_name)
 	AppSettings.set_config_input_events(action_name, action_events)
