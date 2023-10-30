@@ -25,9 +25,7 @@ func _record_mouse_event(event : InputEventMouseButton):
 			dialog_text = "X2 Mouse Button"
 	get_ok_button().disabled = false
 
-
-
-func _input(event):
+func _unhandled_input(event):
 	if not visible:
 		return
 	if event is InputEventKey:
@@ -35,6 +33,12 @@ func _input(event):
 		dialog_text = OS.get_keycode_string(event.get_keycode_with_modifiers())
 		get_ok_button().disabled = false
 	elif event is InputEventMouseButton and event.is_released():
-		await(get_tree().create_timer(0.05).timeout)
 		_record_mouse_event(event)
-		
+
+func _input(event):
+	if not visible:
+		return
+	if event is InputEventMouseButton and event.is_released():
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			await(get_tree().create_timer(0.05).timeout)
+		_record_mouse_event(event)
