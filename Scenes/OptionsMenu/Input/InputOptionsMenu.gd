@@ -49,6 +49,7 @@ func _update_action_name_map():
 			action_name_map[readable_name] = readable_name
 
 func _start_tree():
+	%Tree.clear()
 	%Tree.create_item()
 
 func _add_input_event_as_tree_item(action_name : String, input_event : InputEvent, parent_item : TreeItem):
@@ -160,5 +161,4 @@ func _on_tree_button_clicked(item, column, id, mouse_button_index):
 
 func _on_reset_button_pressed():
 	AppSettings.reset_to_default_inputs()
-	%Tree.clear()
 	_build_ui_tree()
