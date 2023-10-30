@@ -9,25 +9,6 @@ const FULLSCREEN_ENABLED = 'FullscreenEnabled'
 const MUTE_SETTING = 'Mute'
 const MASTER_BUS_INDEX = 0
 
-const INPUT_MAP_2D : Dictionary = {
-	"move_up" : "Up",
-	"move_down" : "Down",
-	"move_left" : "Left",
-	"move_right" : "Right",
-	"dash" : "Dash",
-	"interact" : "Interact",
-}
-
-const INPUT_MAP_3D : Dictionary = {
-	"move_forward" : "Forward",
-	"move_backward" : "Backward",
-	"move_left" : "Left",
-	"move_right" : "Right",
-	"run" : "Run",
-	"jump" : "Jump",
-	"interact" : "Interact",
-}
-const INPUT_MAP = INPUT_MAP_2D
 # Input
 static var default_action_events : Dictionary
 
