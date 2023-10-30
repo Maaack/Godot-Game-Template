@@ -39,4 +39,4 @@ func _on_fullscreen_button_toggled(button_pressed):
 	AppSettings.set_fullscreen_enabled(button_pressed, get_window())
 
 func _on_reset_game_control_reset_confirmed():
-	GameLog.reset_game_data()
+	GameLevelLog.reset_game_data()
