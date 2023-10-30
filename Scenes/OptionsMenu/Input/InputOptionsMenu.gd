@@ -51,11 +51,6 @@ func _update_action_name_map():
 func _start_tree():
 	%Tree.create_item()
 
-func _get_input_text(input_event : InputEvent):
-	if not input_event is InputEventKey:
-		return input_event.as_text()
-	return OS.get_keycode_string(input_event.get_physical_keycode_with_modifiers())
-
 func _add_input_event_as_tree_item(action_name : String, input_event : InputEvent, parent_item : TreeItem):
 	var input_tree_item : TreeItem = %Tree.create_item(parent_item)
 	input_tree_item.set_text(0, InputEventHelper.get_text(input_event))
