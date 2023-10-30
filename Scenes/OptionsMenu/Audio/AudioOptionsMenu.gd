@@ -1,50 +1,32 @@
 extends Control
 
-@onready var master_slider = $VBoxContainer/MasterControl/MasterHSlider
-@onready var sfx_slider = $VBoxContainer/SFXControl/SFXHSlider
-@onready var voice_slider = $VBoxContainer/VoiceControl/VoiceHSlider
-@onready var music_slider = $VBoxContainer/MusicControl/MusicHSlider
+@export var audio_control_scene : PackedScene
+@export var hide_busses : Array[String]
+
 @onready var mute_button = $VBoxContainer/MuteControl/MuteButton
 
-var play_audio_streams : bool = false
+func _add_audio_control(bus_name, bus_value):
+	if audio_control_scene == null or bus_name in hide_busses:
+		return
+	var audio_control = audio_control_scene.instantiate()
+	audio_control.bus_name = bus_name
+	audio_control.bus_value = bus_value
+	%AudioControlContainer.call_deferred("add_child", audio_control)
+	audio_control.connect("bus_value_changed", AppSettings.set_bus_volume_from_linear)
 
-func _play_next_audio_stream(_stream_parent : Node) -> void:
-	pass
-
-func _play_next_vocal_audio_stream() -> void:
-	_play_next_audio_stream($VocalAudioStreamPlayers)
-
-func _play_next_sfx_audio_stream() -> void:
-	_play_next_audio_stream($SFXAudioStreamPlayers)
+func _add_audio_bus_controls():
+	for bus_iter in AudioServer.bus_count:
+		var bus_name : String = AudioServer.get_bus_name(bus_iter)
+		var linear : float = AppSettings.get_bus_volume_to_linear(bus_name)
+		_add_audio_control(bus_name, linear)
 
 func _update_ui():
-	master_slider.value = AppSettings.get_bus_volume(AppSettings.MASTER_AUDIO_BUS)
-	sfx_slider.value = AppSettings.get_bus_volume(AppSettings.SFX_AUDIO_BUS)
-	voice_slider.value = AppSettings.get_bus_volume(AppSettings.VOICE_AUDIO_BUS)
-	music_slider.value = AppSettings.get_bus_volume(AppSettings.MUSIC_AUDIO_BUS)
+	_add_audio_bus_controls()
 	mute_button.button_pressed = AppSettings.is_muted()
 
 func _ready():
 	AppSettings.init_audio_config()
 	_update_ui()
 
-func _on_MasterHSlider_value_changed(value):
-	AppSettings.set_bus_volume(AppSettings.MASTER_AUDIO_BUS, value)
-
-func _on_SFXHSlider_value_changed(value):
-	AppSettings.set_bus_volume(AppSettings.SFX_AUDIO_BUS, value)
-	_play_next_sfx_audio_stream()
-
-func _on_VoiceHSlider_value_changed(value):
-	AppSettings.set_bus_volume(AppSettings.VOICE_AUDIO_BUS, value)
-	_play_next_vocal_audio_stream()
-
-func _on_MusicHSlider_value_changed(value):
-	AppSettings.set_bus_volume(AppSettings.MUSIC_AUDIO_BUS, value)
-
 func _on_MuteButton_toggled(button_pressed):
 	AppSettings.set_mute(button_pressed)
-
-func _unhandled_key_input(event):
-	if event.is_action_released('ui_mute'):
-		mute_button.button_pressed = !(mute_button.pressed)

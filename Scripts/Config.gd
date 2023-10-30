@@ -36,6 +36,10 @@ func has_section(section: String):
 	load_config_file()
 	return config_file.has_section(section)
 
+func erase_section(section: String):
+	if has_section(section):
+		config_file.erase_section(section)
+
 func get_section_keys(section: String):
 	load_config_file()
 	if config_file.has_section(section):

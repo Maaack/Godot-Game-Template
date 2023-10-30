@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://c8vnncjwqcpab"]
+[gd_scene load_steps=3 format=3 uid="uid://c8vnncjwqcpab"]
 
 [ext_resource type="Script" path="res://Scenes/OptionsMenu/Audio/AudioOptionsMenu.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://bosy6wwf0vleq" path="res://Scenes/UI/AudioControl/AudioControl.tscn" id="2_0jh6g"]
 
 [node name="Audio" type="CenterContainer"]
 custom_minimum_size = Vector2(305, 0)
@@ -8,88 +9,16 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource("1")
+audio_control_scene = ExtResource("2_0jh6g")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="MasterControl" type="HBoxContainer" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 30)
+[node name="AudioControlContainer" type="VBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-
-[node name="MasterLabel" type="Label" parent="VBoxContainer/MasterControl"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Master :"
-
-[node name="MasterHSlider" type="HSlider" parent="VBoxContainer/MasterControl"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_vertical = 4
-max_value = 1.0
-step = 0.05
-value = 1.0
-tick_count = 11
-ticks_on_borders = true
-
-[node name="SFXControl" type="HBoxContainer" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
-
-[node name="SFXLabel" type="Label" parent="VBoxContainer/SFXControl"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "SFX :"
-
-[node name="SFXHSlider" type="HSlider" parent="VBoxContainer/SFXControl"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_vertical = 4
-max_value = 1.0
-step = 0.05
-value = 1.0
-tick_count = 11
-ticks_on_borders = true
-
-[node name="VoiceControl" type="HBoxContainer" parent="VBoxContainer"]
-visible = false
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
-
-[node name="VoiceLabel" type="Label" parent="VBoxContainer/VoiceControl"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Voice :"
-
-[node name="VoiceHSlider" type="HSlider" parent="VBoxContainer/VoiceControl"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_vertical = 4
-max_value = 1.0
-step = 0.05
-value = 1.0
-tick_count = 11
-ticks_on_borders = true
-
-[node name="MusicControl" type="HBoxContainer" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
-
-[node name="MusicLabel" type="Label" parent="VBoxContainer/MusicControl"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Music :"
-
-[node name="MusicHSlider" type="HSlider" parent="VBoxContainer/MusicControl"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_vertical = 4
-max_value = 1.0
-step = 0.05
-value = 1.0
-tick_count = 11
-ticks_on_borders = true
 
 [node name="MuteControl" type="HBoxContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
@@ -107,8 +36,4 @@ layout_mode = 2
 
 [node name="SFXAudioStreamPlayers" type="Node" parent="."]
 
-[connection signal="value_changed" from="VBoxContainer/MasterControl/MasterHSlider" to="." method="_on_MasterHSlider_value_changed"]
-[connection signal="value_changed" from="VBoxContainer/SFXControl/SFXHSlider" to="." method="_on_SFXHSlider_value_changed"]
-[connection signal="value_changed" from="VBoxContainer/VoiceControl/VoiceHSlider" to="." method="_on_VoiceHSlider_value_changed"]
-[connection signal="value_changed" from="VBoxContainer/MusicControl/MusicHSlider" to="." method="_on_MusicHSlider_value_changed"]
 [connection signal="toggled" from="VBoxContainer/MuteControl/MuteButton" to="." method="_on_MuteButton_toggled"]
