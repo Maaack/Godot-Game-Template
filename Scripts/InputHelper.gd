@@ -1,20 +1,26 @@
 extends Node
 class_name InputEventHelper
 
+const JOYSTICK_LEFT_NAME = "Left Gamepad Joystick"
+const JOYSTICK_RIGHT_NAME = "Right Gamepad Joystick"
+
 const JOY_BUTTON_NAMES : Dictionary = {
-	JOY_BUTTON_A: "Button A",
-	JOY_BUTTON_B: "Button B",
-	JOY_BUTTON_X: "Button X",
-	JOY_BUTTON_Y: "Button Y",
-	JOY_BUTTON_LEFT_SHOULDER: "Button Left Shoulder",
-	JOY_BUTTON_RIGHT_SHOULDER: "Button Right Shoulder",
-	JOY_BUTTON_LEFT_STICK: "Button Left Stick",
-	JOY_BUTTON_RIGHT_STICK: "Button Right Stick",
+	JOY_BUTTON_A: "A Gamepad Button",
+	JOY_BUTTON_B: "B Gamepad Button",
+	JOY_BUTTON_X: "X Gamepad Button",
+	JOY_BUTTON_Y: "Y Gamepad Button",
+	JOY_BUTTON_LEFT_SHOULDER: "Left Shoulder Gamepad Button",
+	JOY_BUTTON_RIGHT_SHOULDER: "Right Shoulder Gamepad Button",
+	JOY_BUTTON_LEFT_STICK: "Left Stick Gamepad Button",
+	JOY_BUTTON_RIGHT_STICK: "Right Stick Gamepad Button",
+	JOY_BUTTON_START : "Start Gamepad Button",
+	JOY_BUTTON_GUIDE : "Guide Gamepad Button",
+	JOY_BUTTON_BACK : "Back Gamepad Button",
 }
 
 const JOY_AXIS_NAMES : Dictionary = {
-	JOY_AXIS_TRIGGER_LEFT: "Button Left Trigger",
-	JOY_AXIS_TRIGGER_RIGHT: "Button Right Trigger",
+	JOY_AXIS_TRIGGER_LEFT: "Left Trigger Gamepad Button",
+	JOY_AXIS_TRIGGER_RIGHT: "Right Trigger Gamepad Button",
 }
 
 static func get_text(event : InputEvent) -> String:
@@ -29,18 +35,18 @@ static func get_text(event : InputEvent) -> String:
 			return JOY_AXIS_NAMES[event.axis]
 		match(event.axis):
 			JOY_AXIS_LEFT_X:
-				full_string = "Left Joystick "
+				full_string = JOYSTICK_LEFT_NAME
 				direction_string = "Right" if is_right_or_down else "Left"
 			JOY_AXIS_LEFT_Y:
-				full_string = "Left Joystick "
+				full_string = JOYSTICK_LEFT_NAME
 				direction_string = "Down" if is_right_or_down else "Up"
 			JOY_AXIS_RIGHT_X:
-				full_string = "Right Joystick "
+				full_string = JOYSTICK_RIGHT_NAME
 				direction_string = "Right" if is_right_or_down else "Left"
 			JOY_AXIS_RIGHT_Y:
-				full_string = "Right Joystick "
+				full_string = JOYSTICK_RIGHT_NAME
 				direction_string = "Down" if is_right_or_down else "Up"
-		full_string += direction_string
+		full_string += " " + direction_string
 		return full_string
 	elif event is InputEventKey:
 		return OS.get_keycode_string(event.get_physical_keycode_with_modifiers())
