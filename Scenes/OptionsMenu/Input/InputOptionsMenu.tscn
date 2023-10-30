@@ -45,6 +45,10 @@ title = "Removing Failed"
 size = Vector2i(398, 100)
 dialog_text = "At least one key or button must be assigned."
 
+[node name="AlreadyAssignedDialog" type="AcceptDialog" parent="."]
+title = "Already Assigned"
+size = Vector2i(398, 100)
+
 [connection signal="button_clicked" from="VBoxContainer/Tree" to="." method="_on_tree_button_clicked"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]
 [connection signal="canceled" from="KeyAssignmentDialog" to="." method="_on_key_assignment_dialog_canceled"]
