@@ -19,14 +19,14 @@ add_button_texture = SubResource("PlaceholderTexture2D_7h8wy")
 remove_button_texture = SubResource("PlaceholderTexture2D_nq02i")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-custom_minimum_size = Vector2(300, 300)
+custom_minimum_size = Vector2(300, 280)
 layout_mode = 2
 theme_override_constants/separation = 8
 
 [node name="Tree" type="Tree" parent="VBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(300, 300)
 layout_mode = 2
+size_flags_vertical = 3
 hide_root = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
