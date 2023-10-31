@@ -23,7 +23,7 @@ static func _clear_config_input_events():
 
 static func remove_action_input_event(action_name : String, input_event : InputEvent):
 	InputMap.action_erase_event(action_name, input_event)
-	var config_events : Array = get_config_input_events(action_name)
+	var config_events : Array = get_config_input_events(action_name, [])
 	config_events.erase(input_event)
 	set_config_input_events(action_name, config_events)
 
