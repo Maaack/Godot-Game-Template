@@ -6,7 +6,7 @@ signal end_reached
 @onready var scroll_container = $ScrollContainer
 @onready var rich_text_label = $ScrollContainer/VBoxContainer/RichTextLabel
 
-@export_file("*.md") var attribution_file_path: String = "res://ATTRIBUTION.md": set = set_file_path
+@export_file("*.md") var attribution_file_path: String = "res://ATTRIBUTION.md"
 @export var h1_font_size: int
 @export var h2_font_size: int
 @export var h3_font_size: int
@@ -41,8 +41,7 @@ func regex_replace_titles(credits:String):
 		credits = regex.sub(credits, replace_string, true)
 	return credits
 
-func set_file_path(file_path:String):
-	attribution_file_path = file_path
+func _update_text_from_file():
 	var text : String = load_file(attribution_file_path)
 	if text == "":
 		return
@@ -50,6 +49,10 @@ func set_file_path(file_path:String):
 	text = regex_replace_urls(text)
 	text = regex_replace_titles(text)
 	$ScrollContainer/VBoxContainer/RichTextLabel.text = "[center]%s[/center]" % [text]
+
+func set_file_path(file_path:String):
+	attribution_file_path = file_path
+	_update_text_from_file()
 
 func set_header_and_footer():
 	$ScrollContainer/VBoxContainer/HeaderSpace.custom_minimum_size.y = size.y

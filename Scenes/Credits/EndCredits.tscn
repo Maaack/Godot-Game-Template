@@ -1,14 +1,52 @@
 [gd_scene load_steps=4 format=3 uid="uid://djoy112dkgjda"]
 
 [ext_resource type="PackedScene" uid="uid://t2dui8ppm3a4" path="res://Scenes/Credits/Credits.tscn" id="1"]
-[ext_resource type="Theme" path="res://Themes/MainMenuTheme.tres" id="2"]
+[ext_resource type="Theme" path="res://Themes/BaseTheme.tres" id="2"]
 [ext_resource type="Script" path="res://Scenes/Credits/EndCredits.gd" id="4"]
 
 [node name="EndCredits" instance=ExtResource("1")]
-grow_horizontal = 2
-grow_vertical = 2
 theme = ExtResource("2")
 script = ExtResource("4")
+main_menu_scene = "res://Scenes/MainMenu/MainMenu.tscn"
+scroll_active = true
+
+[node name="ScrollContainer" parent="." index="0"]
+scroll_vertical = 0
+
+[node name="RichTextLabel" parent="ScrollContainer/VBoxContainer" index="1"]
+text = "[center]
+[font_size=48]Collaborators[/font_size]
+
+[font_size=32]Role[/font_size]
+Person 1  
+Person 2  
+[url=]Person w/ Link[/url]  
+
+
+[font_size=48]Sourced / Unaffiliated[/font_size]
+[font_size=32]Asset Type[/font_size]
+[font_size=24]Use Case[/font_size]
+Author: [url=]Name[/url]  
+Source: [url=]Domain : webpage.html[/url]  
+License: [url=]License[/url]
+
+
+[font_size=48]Tools[/font_size]
+[font_size=24]Godot[/font_size]
+Author: [url=https://godotengine.org/contact]Juan Linietsky, Ariel Manzur, and contributors[/url]  
+Source: [url=https://godotengine.org/]godotengine.org[/url]  
+License: [url=https://github.com/godotengine/godot/blob/master/LICENSE.txt]MIT License[/url] 
+
+[font_size=24]Git[/font_size]
+Author: [url=https://github.com/torvalds]Linus Torvalds[/url]  
+Source: [url=https://git-scm.com/downloads]git-scm.com[/url]  
+License: [url=https://opensource.org/licenses/GPL-2.0]GNU General Public License version 2[/url]
+
+[font_size=24]Godot Game Template[/font_size]
+Author: [url=https://github.com/Maaack]Marek[/url]  
+Source: [url=https://github.com/Maaack/Godot-Game-Template]github: Godot-Game-Template[/url]  
+License: [url=LICENSE.txt]MIT License[/url]  
+[/center]"
 
 [node name="CenterContainer" type="CenterContainer" parent="." index="1"]
 layout_mode = 0
@@ -33,7 +71,9 @@ anchor_bottom = 1.0
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "Thanks for playing"
+text = "Thanks for playing!"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="CenterContainer/EndMessagePanel/VBoxContainer" index="1"]
 layout_mode = 2
@@ -46,6 +86,7 @@ size_flags_vertical = 3
 theme_override_constants/separation = 24
 
 [node name="MenuButton" type="Button" parent="CenterContainer/EndMessagePanel/VBoxContainer/CenterContainer/HBoxContainer" index="0"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 size_flags_horizontal = 3
