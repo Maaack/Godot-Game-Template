@@ -100,6 +100,9 @@ static func set_audio_from_config():
 		var bus_name : String = AudioServer.get_bus_name(bus_iter)
 		var bus_volume_db : float = AudioServer.get_bus_volume_db(bus_iter)
 		bus_volume_db = Config.get_config(AUDIO_SECTION, bus_name, bus_volume_db)
+		if is_nan(bus_volume_db):
+			bus_volume_db = 1.0
+			Config.set_config(AUDIO_SECTION, bus_name, bus_volume_db)
 		AudioServer.set_bus_volume_db(bus_iter, bus_volume_db)
 	var mute_audio_flag : bool = is_muted()
 	mute_audio_flag = Config.get_config(AUDIO_SECTION, MUTE_SETTING, mute_audio_flag)
