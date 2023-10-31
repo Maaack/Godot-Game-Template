@@ -6,25 +6,26 @@ extends CanvasLayer
 var popup_open
 
 func close_popup():
-	if popup_open != null and popup_open.visible:
+	if popup_open != null:
 		popup_open.hide()
-		popup_open == null
+		popup_open = null
 
 func close_options_menu():
 	%SubMenuContainer.hide()
-	%MenuButtons.show()
+	%MenuContainer.show()
 
 func open_options_menu():
 	%SubMenuContainer.show()
-	%MenuButtons.hide()
+	%MenuContainer.hide()
 
-func _unhandled_key_input(event):
+func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):
-		if popup_open == null:
-			InGameMenuController.close_menu()
-		else:
+		if popup_open != null:
 			close_popup()
+		elif %SubMenuContainer.visible:
 			close_options_menu()
+		else:
+			InGameMenuController.close_menu()
 
 func _setup_options():
 	if options_packed_scene == null:
@@ -48,15 +49,18 @@ func _on_resume_button_pressed():
 
 func _on_restart_button_pressed():
 	%ConfirmRestart.popup_centered()
+	popup_open = %ConfirmRestart
 
 func _on_options_button_pressed():
 	open_options_menu()
 
 func _on_main_menu_button_pressed():
 	%ConfirmMainMenu.popup_centered()
+	popup_open = %ConfirmMainMenu
 
 func _on_exit_button_pressed():
 	%ConfirmExit.popup_centered()
+	popup_open = %ConfirmExit
 
 func _on_confirm_restart_confirmed():
 	SceneLoader.reload_current_scene()

@@ -30,7 +30,8 @@ grow_vertical = 2
 mouse_filter = 1
 theme = ExtResource("2_wxnmy")
 
-[node name="MarginContainer" type="MarginContainer" parent="Control"]
+[node name="MenuContainer" type="MarginContainer" parent="Control"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -38,38 +39,37 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MenuContainer"]
 layout_mode = 2
 
-[node name="Title" type="Label" parent="Control/MarginContainer/VBoxContainer"]
+[node name="Title" type="Label" parent="Control/MenuContainer/VBoxContainer"]
 layout_mode = 2
 text = "Pause"
 horizontal_alignment = 1
 
-[node name="MenuButtons" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
+[node name="MenuButtons" type="VBoxContainer" parent="Control/MenuContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 24
 
-[node name="ResumeButton" parent="Control/MarginContainer/VBoxContainer/MenuButtons" instance=ExtResource("4")]
+[node name="ResumeButton" parent="Control/MenuContainer/VBoxContainer/MenuButtons" instance=ExtResource("4")]
 layout_mode = 2
 text = "Resume"
 
-[node name="RestartButton" parent="Control/MarginContainer/VBoxContainer/MenuButtons" instance=ExtResource("4")]
+[node name="RestartButton" parent="Control/MenuContainer/VBoxContainer/MenuButtons" instance=ExtResource("4")]
 layout_mode = 2
 text = "Restart"
 
-[node name="OptionsButton" parent="Control/MarginContainer/VBoxContainer/MenuButtons" instance=ExtResource("4")]
+[node name="OptionsButton" parent="Control/MenuContainer/VBoxContainer/MenuButtons" instance=ExtResource("4")]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Options"
 
-[node name="MainMenuButton" parent="Control/MarginContainer/VBoxContainer/MenuButtons" instance=ExtResource("4")]
+[node name="MainMenuButton" parent="Control/MenuContainer/VBoxContainer/MenuButtons" instance=ExtResource("4")]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Return to Main Menu"
 
-[node name="ExitButton" parent="Control/MarginContainer/VBoxContainer/MenuButtons" instance=ExtResource("4")]
+[node name="ExitButton" parent="Control/MenuContainer/VBoxContainer/MenuButtons" instance=ExtResource("4")]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Exit Game"
@@ -115,11 +115,11 @@ dialog_text = "Go back to main menu?"
 unique_name_in_owner = true
 dialog_text = "Quit the game?"
 
-[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/MenuButtons/ResumeButton" to="." method="_on_resume_button_pressed"]
-[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/MenuButtons/RestartButton" to="." method="_on_restart_button_pressed"]
-[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/MenuButtons/OptionsButton" to="." method="_on_options_button_pressed"]
-[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/MenuButtons/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
-[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/MenuButtons/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="Control/MenuContainer/VBoxContainer/MenuButtons/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Control/MenuContainer/VBoxContainer/MenuButtons/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="Control/MenuContainer/VBoxContainer/MenuButtons/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="Control/MenuContainer/VBoxContainer/MenuButtons/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="Control/MenuContainer/VBoxContainer/MenuButtons/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="Control/CenterContainer/SubMenuContainer/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="confirmed" from="Control/ConfirmRestart" to="." method="_on_confirm_restart_confirmed"]
 [connection signal="confirmed" from="Control/ConfirmMainMenu" to="." method="_on_confirm_main_menu_confirmed"]
