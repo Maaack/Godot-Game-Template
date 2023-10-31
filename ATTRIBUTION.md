@@ -2,7 +2,7 @@
 ## Collaborators
 
 ### Godot Game Template
-Author: [Marek](https://github.com/Maaack)  
+Author: [Marek Belski](https://github.com/Maaack)  
 Source: [github: Godot-Game-Template](https://github.com/Maaack/Godot-Game-Template)  
 License: [MIT License](LICENSE.txt)  
 

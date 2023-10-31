@@ -25,3 +25,8 @@ License: [MIT License](https://github.com/godotengine/godot/blob/master/LICENSE.
 Author: [Linus Torvalds](https://github.com/torvalds)  
 Source: [git-scm.com](https://git-scm.com/downloads)  
 License: [GNU General Public License version 2](https://opensource.org/licenses/GPL-2.0)
+
+#### Godot Game Template
+Author: [Marek Belski](https://github.com/Maaack)  
+Source: [github: Godot-Game-Template](https://github.com/Maaack/Godot-Game-Template)  
+License: [MIT License](LICENSE.txt)  
