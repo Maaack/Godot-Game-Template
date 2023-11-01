@@ -4,10 +4,7 @@ extends "res://Scenes/Credits/Credits.gd"
 @export_file("*.tscn") var main_menu_scene : String
 
 func _end_reached():
-	var node = get_node_or_null("%EndMessagePanel")
-	if node == null:
-		return
-	node.show()
+	%EndMessagePanel.show()
 	super._end_reached()
 
 func _on_MenuButton_pressed():
@@ -22,3 +19,10 @@ func _ready():
 	if OS.has_feature("web"):
 		%ExitButton.hide()
 	super._ready()
+
+func _unhandled_input(event):
+	if event.is_action_pressed("ui_cancel"):
+		if not %EndMessagePanel.visible:
+			_end_reached()
+		else:
+			get_tree().quit()
