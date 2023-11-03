@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://cnk2y3bx5fsin"]
+
+[ext_resource type="PackedScene" uid="uid://dp3rgqaehb3xu" path="res://App/Scenes/Menus/OptionsMenu/Input/InputOptionsMenu.tscn" id="1_11l3i"]
+[ext_resource type="PackedScene" uid="uid://c8vnncjwqcpab" path="res://App/Scenes/Menus/OptionsMenu/Audio/AudioOptionsMenu.tscn" id="2_274li"]
+[ext_resource type="PackedScene" path="res://App/Scenes/Menus/OptionsMenu/Video/VideoOptionsMenu.tscn" id="3_x4syf"]
+[ext_resource type="PackedScene" uid="uid://d2mir68lswbox" path="res://Example/OptionsMenu/Game/GameOptionsMenu.tscn" id="4_lx3e1"]
+
+[node name="MasterOptionsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+tab_alignment = 1
+
+[node name="Controls" parent="TabContainer" instance=ExtResource("1_11l3i")]
+layout_mode = 2
+
+[node name="Audio" parent="TabContainer" instance=ExtResource("2_274li")]
+visible = false
+layout_mode = 2
+
+[node name="Video" parent="TabContainer" instance=ExtResource("3_x4syf")]
+visible = false
+layout_mode = 2
+
+[node name="Game" parent="TabContainer" instance=ExtResource("4_lx3e1")]
+visible = false
+layout_mode = 2

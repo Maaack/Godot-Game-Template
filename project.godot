@@ -11,19 +11,19 @@ config_version=5
 [application]
 
 config/name="Game Template"
-run/main_scene="res://Scenes/InitApp/InitApp.tscn"
+run/main_scene="res://App/Scenes/InitApp/InitApp.tscn"
 config/features=PackedStringArray("4.1")
 config/icon="res://icon.png"
 
 [autoload]
 
-InGameMenuController="*res://Scripts/InGameMenuController.gd"
-SceneLoader="*res://Scripts/SceneLoader.gd"
-AppLogger="*res://Scripts/AppLogger.gd"
+InGameMenuController="*res://App/Scripts/InGameMenuController.gd"
+SceneLoader="*res://App/Scripts/SceneLoader.gd"
+RuntimeLogger="res://Example/Scripts/RuntimeLogger.gd"
 
 [gui]
 
-theme/custom="res://Themes/BaseTheme.tres"
+theme/custom="res://App/Themes/BaseTheme.tres"
 common/drop_mouse_on_gui_input_disabled=true
 
 [input]
