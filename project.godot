@@ -23,6 +23,7 @@ AppLogger="*res://Scripts/AppLogger.gd"
 
 [gui]
 
+theme/custom="res://Themes/BaseTheme.tres"
 common/drop_mouse_on_gui_input_disabled=true
 
 [input]

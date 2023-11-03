@@ -1,8 +1,7 @@
-[gd_scene load_steps=23 format=3 uid="uid://c6k5nnpbypshi"]
+[gd_scene load_steps=22 format=3 uid="uid://c6k5nnpbypshi"]
 
 [ext_resource type="Script" path="res://Scenes/MainMenu/MainMenu.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://bvwl11s2p0hd" path="res://Scenes/OptionsMenu/MasterOptionsMenu.tscn" id="3"]
-[ext_resource type="Theme" path="res://Themes/BaseTheme.tres" id="4"]
 [ext_resource type="PackedScene" uid="uid://doj1dmgtf0a71" path="res://Scenes/UI/SoundButton/SoundButton.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://t2dui8ppm3a4" path="res://Scenes/Credits/Credits.tscn" id="8"]
 
@@ -326,7 +325,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("4")
 script = ExtResource("1")
 game_scene_path = "res://Scenes/ExampleGameScene/ExampleGameUI.tscn"
 options_packed_scene = ExtResource("3")

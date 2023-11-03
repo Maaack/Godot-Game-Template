@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://dp3rgqaehb3xu"]
+[gd_scene load_steps=5 format=3 uid="uid://dp3rgqaehb3xu"]
 
 [ext_resource type="Script" path="res://Scenes/OptionsMenu/Input/InputOptionsMenu.gd" id="1"]
-[ext_resource type="Theme" path="res://Themes/BaseTheme.tres" id="2"]
 [ext_resource type="Script" path="res://Scenes/OptionsMenu/Input/KeyAssignmentDialog.gd" id="3_wsh2h"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_7h8wy"]
@@ -40,7 +39,6 @@ text = "Reset"
 [node name="KeyAssignmentDialog" type="ConfirmationDialog" parent="."]
 title = "Assign Key"
 size = Vector2i(400, 100)
-theme = ExtResource("2")
 dialog_text = "Press a key or button..."
 script = ExtResource("3_wsh2h")
 
