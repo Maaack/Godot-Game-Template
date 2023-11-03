@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dtdpd6o5xj4dq"]
 
 [ext_resource type="Script" path="res://App/Scenes/Menus/PauseMenu/PauseMenu.gd" id="1_i1bp2"]
-[ext_resource type="PackedScene" uid="uid://dbxphb45qufyg" path="res://Example/OptionsMenu/OptionsMenu.tscn" id="2_ge84d"]
+[ext_resource type="PackedScene" uid="uid://dbxphb45qufyg" path="res://Example/Scenes/Menus/OptionsMenu/OptionsMenu.tscn" id="2_ge84d"]
 [ext_resource type="PackedScene" uid="uid://doj1dmgtf0a71" path="res://App/Scenes/UI/SoundButton/SoundButton.tscn" id="3_86duh"]
 
 [node name="PauseMenu" type="CanvasLayer"]
@@ -9,7 +9,7 @@ process_mode = 3
 layer = 10
 script = ExtResource("1_i1bp2")
 options_packed_scene = ExtResource("2_ge84d")
-main_menu_scene = "res://Example/MainMenu/MainMenu.tscn"
+main_menu_scene = "res://Example/Scenes/Menus/MainMenu/MainMenu.tscn"
 
 [node name="Background" type="ColorRect" parent="."]
 anchors_preset = 15

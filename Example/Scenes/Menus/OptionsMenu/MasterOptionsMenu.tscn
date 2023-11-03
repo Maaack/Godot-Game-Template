@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dp3rgqaehb3xu" path="res://App/Scenes/Menus/OptionsMenu/Input/InputOptionsMenu.tscn" id="1_11l3i"]
 [ext_resource type="PackedScene" uid="uid://c8vnncjwqcpab" path="res://App/Scenes/Menus/OptionsMenu/Audio/AudioOptionsMenu.tscn" id="2_274li"]
 [ext_resource type="PackedScene" path="res://App/Scenes/Menus/OptionsMenu/Video/VideoOptionsMenu.tscn" id="3_x4syf"]
-[ext_resource type="PackedScene" uid="uid://d2mir68lswbox" path="res://Example/OptionsMenu/Game/GameOptionsMenu.tscn" id="4_lx3e1"]
+[ext_resource type="PackedScene" uid="uid://d2mir68lswbox" path="res://Example/Scenes/Menus/OptionsMenu/Game/GameOptionsMenu.tscn" id="4_lx3e1"]
 
 [node name="MasterOptionsMenu" type="Control"]
 layout_mode = 3

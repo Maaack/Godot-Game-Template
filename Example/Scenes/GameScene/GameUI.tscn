@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://dxkq10mmjl517"]
 
-[ext_resource type="Script" path="res://Example/GameScene/GameUI.gd" id="1_qogx6"]
-[ext_resource type="Script" path="res://App/Scripts/PauseMenuController.gd" id="2_fnlp4"]
-[ext_resource type="PackedScene" uid="uid://dtdpd6o5xj4dq" path="res://Example/PauseMenu/PauseMenu.tscn" id="3_7vbhn"]
+[ext_resource type="Script" path="res://Example/Scenes/GameScene/GameUI.gd" id="1_vn54u"]
+[ext_resource type="Script" path="res://App/Scripts/PauseMenuController.gd" id="2_bmhjc"]
+[ext_resource type="PackedScene" uid="uid://dtdpd6o5xj4dq" path="res://Example/Scenes/Menus/PauseMenu/PauseMenu.tscn" id="3_n6jen"]
 
 [node name="GameUI" type="Control"]
 layout_mode = 3
@@ -11,11 +11,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_qogx6")
+script = ExtResource("1_vn54u")
 
 [node name="PauseMenuController" type="Node" parent="."]
-script = ExtResource("2_fnlp4")
-pause_menu_packed = ExtResource("3_7vbhn")
+script = ExtResource("2_bmhjc")
+pause_menu_packed = ExtResource("3_n6jen")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1

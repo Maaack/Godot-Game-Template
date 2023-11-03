@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://d2mir68lswbox"]
 
-[ext_resource type="Script" path="res://Example/OptionsMenu/Game/GameOptionsMenu.gd" id="1"]
-[ext_resource type="PackedScene" uid="uid://cay00igbuqtfa" path="res://Example/OptionsMenu/Game/ResetGameControl/ResetGameControl.tscn" id="2"]
+[ext_resource type="Script" path="res://Example/Scenes/Menus/OptionsMenu/Game/GameOptionsMenu.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://cay00igbuqtfa" path="res://Example/Scenes/Menus/OptionsMenu/Game/ResetGameControl/ResetGameControl.tscn" id="2"]
 
 [node name="Game" type="CenterContainer"]
 anchors_preset = 15

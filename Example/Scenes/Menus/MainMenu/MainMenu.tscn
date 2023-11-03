@@ -1,7 +1,7 @@
 [gd_scene load_steps=22 format=3 uid="uid://sbluwaaplbsg"]
 
-[ext_resource type="Script" path="res://Example/MainMenu/MainMenu.gd" id="1_yww1j"]
-[ext_resource type="PackedScene" uid="uid://cnk2y3bx5fsin" path="res://Example/OptionsMenu/MasterOptionsMenu.tscn" id="2_3vb8r"]
+[ext_resource type="Script" path="res://Example/Scenes/Menus/MainMenu/MainMenu.gd" id="1_yww1j"]
+[ext_resource type="PackedScene" uid="uid://cnk2y3bx5fsin" path="res://Example/Scenes/Menus/OptionsMenu/MasterOptionsMenu.tscn" id="2_3vb8r"]
 [ext_resource type="PackedScene" uid="uid://t2dui8ppm3a4" path="res://App/Scenes/Credits/Credits.tscn" id="3_6k3js"]
 [ext_resource type="PackedScene" uid="uid://doj1dmgtf0a71" path="res://App/Scenes/UI/SoundButton/SoundButton.tscn" id="4_cgaxl"]
 
@@ -326,7 +326,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_yww1j")
-game_scene_path = "res://Example/GameScene/GameUI.tscn"
+game_scene_path = "res://Example/Scenes/GameScene/GameUI.tscn"
 options_packed_scene = ExtResource("2_3vb8r")
 credits_packed_scene = ExtResource("3_6k3js")
 
