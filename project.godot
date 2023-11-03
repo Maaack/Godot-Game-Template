@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Game Template"
-run/main_scene="res://App/Scenes/InitApp/InitApp.tscn"
+run/main_scene="res://Example/InitApp/InitApp.tscn"
 config/features=PackedStringArray("4.1")
 config/icon="res://icon.png"
 
@@ -19,7 +19,6 @@ config/icon="res://icon.png"
 
 InGameMenuController="*res://App/Scripts/InGameMenuController.gd"
 SceneLoader="*res://App/Scripts/SceneLoader.gd"
-RuntimeLogger="res://Example/Scripts/RuntimeLogger.gd"
 
 [gui]
 
