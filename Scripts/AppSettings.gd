@@ -63,10 +63,6 @@ static func set_inputs_from_config() -> void:
 	for action_name in action_list:
 		set_input_from_config(action_name)
 
-static func init_input_config() -> void:
-	set_default_inputs()
-	set_inputs_from_config()
-
 # Audio
 
 static func get_bus_volume(bus_name : String) -> float:
@@ -108,9 +104,6 @@ static func set_audio_from_config():
 	mute_audio_flag = Config.get_config(AUDIO_SECTION, MUTE_SETTING, mute_audio_flag)
 	set_mute(mute_audio_flag)
 
-static func init_audio_config() -> void:
-	set_audio_from_config()
-
 # Video
 
 static func set_fullscreen_enabled(value : bool, window : Window) -> void:
@@ -128,15 +121,13 @@ static func set_video_from_config(window : Window) -> void:
 	fullscreen_enabled = Config.get_config(VIDEO_SECTION, FULLSCREEN_ENABLED, fullscreen_enabled)
 	window.mode = Window.MODE_EXCLUSIVE_FULLSCREEN if (fullscreen_enabled) else Window.MODE_WINDOWED
 
-static func init_video_config(window : Window) -> void:
-	if not Config.has_section(VIDEO_SECTION):
-		# reset_video_config()
-		return
-	set_video_from_config(window)
-
 # All
 
-static func initialize_from_config(window : Window) -> void:
-	init_input_config()
-	init_audio_config()
-	init_video_config(window)
+static func set_from_config() -> void:
+	set_default_inputs()
+	set_inputs_from_config()
+	set_audio_from_config()
+
+static func set_from_config_and_window(window : Window) -> void:
+	set_from_config()
+	set_video_from_config(window)

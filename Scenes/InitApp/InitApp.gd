@@ -1,7 +1,7 @@
 extends Node
 
-@export var next_scene : String # (String, FILE, "*.tscn")
+@export_file("*.tscn") var next_scene : String
 
 func _ready():
-	AppSettings.initialize_from_config(get_window())
+	AppSettings.set_from_config_and_window(get_window())
 	SceneLoader.load_scene(next_scene)

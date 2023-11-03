@@ -25,7 +25,6 @@ func _update_ui():
 	mute_button.button_pressed = AppSettings.is_muted()
 
 func _ready():
-	AppSettings.init_audio_config()
 	_update_ui()
 
 func _on_MuteButton_toggled(button_pressed):
