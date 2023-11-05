@@ -52,6 +52,8 @@ func _process(_delta):
 						return
 					if loading_progress == 0:
 						%ErrorMessage.dialog_text = "Loading Error: Failed to start."
+						if OS.has_feature("web"):
+							%ErrorMessage.dialog_text += "\nTry refreshing the page."
 					else:
 						%ErrorMessage.dialog_text = "Loading Error: Failed at %d%%." % (loading_progress * 100.0)
 					%ErrorMessage.popup_centered()
