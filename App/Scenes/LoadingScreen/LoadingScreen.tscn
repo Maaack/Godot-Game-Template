@@ -33,7 +33,7 @@ theme_override_constants/separation = 50
 [node name="Title" type="Label" parent="Control/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Loading"
+text = "Loading..."
 horizontal_alignment = 1
 
 [node name="ProgressBar" type="ProgressBar" parent="Control/VBoxContainer"]
