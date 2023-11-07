@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dbxphb45qufyg"]
+[gd_scene load_steps=5 format=3 uid="uid://dbxphb45qufyg"]
 
 [ext_resource type="Script" path="res://Example/Scenes/Menus/OptionsMenu/OptionsMenu.gd" id="1_xl822"]
 [ext_resource type="PackedScene" uid="uid://bosy6wwf0vleq" path="res://App/Scenes/Menus/OptionsMenu/Audio/AudioControl/AudioControl.tscn" id="2_ks0dq"]
+[ext_resource type="Script" path="res://App/Scripts/CaptureFocus.gd" id="3_7fh3l"]
 [ext_resource type="PackedScene" uid="uid://cay00igbuqtfa" path="res://Example/Scenes/Menus/OptionsMenu/Game/ResetGameControl/ResetGameControl.tscn" id="3_geyfk"]
 
 [node name="OptionsMenu" type="VBoxContainer"]
@@ -23,6 +24,8 @@ audio_control_scene = ExtResource("2_ks0dq")
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 8
+script = ExtResource("3_7fh3l")
+search_depth = 2
 
 [node name="MuteControl" type="HBoxContainer" parent="."]
 custom_minimum_size = Vector2(0, 40)
@@ -51,6 +54,7 @@ layout_mode = 2
 [node name="ResetGameControl" parent="." instance=ExtResource("3_geyfk")]
 layout_mode = 2
 
+[connection signal="visibility_changed" from="AudioControlContainer" to="AudioControlContainer" method="_on_visibility_changed"]
 [connection signal="toggled" from="MuteControl/MuteButton" to="." method="_on_mute_button_toggled"]
 [connection signal="toggled" from="FullscreenControl/FullscreenButton" to="." method="_on_fullscreen_button_toggled"]
 [connection signal="reset_confirmed" from="ResetGameControl" to="." method="_on_reset_game_control_reset_confirmed"]

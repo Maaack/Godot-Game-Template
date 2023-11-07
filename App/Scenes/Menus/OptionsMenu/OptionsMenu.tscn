@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://vh1ucj2rfbby"]
+[gd_scene load_steps=4 format=3 uid="uid://vh1ucj2rfbby"]
 
 [ext_resource type="Script" path="res://App/Scenes/Menus/OptionsMenu/OptionsMenu.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://bosy6wwf0vleq" path="res://App/Scenes/Menus/OptionsMenu/Audio/AudioControl/AudioControl.tscn" id="2_xrxr1"]
+[ext_resource type="Script" path="res://App/Scripts/CaptureFocus.gd" id="3_xfg0m"]
 
 [node name="OptionsMenu" type="VBoxContainer"]
 custom_minimum_size = Vector2(305, 260)
@@ -22,6 +23,8 @@ audio_control_scene = ExtResource("2_xrxr1")
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 8
+script = ExtResource("3_xfg0m")
+search_depth = 2
 
 [node name="MuteControl" type="HBoxContainer" parent="."]
 custom_minimum_size = Vector2(0, 40)
@@ -47,5 +50,6 @@ text = "Fullscreen :"
 [node name="FullscreenButton" type="CheckButton" parent="FullscreenControl"]
 layout_mode = 2
 
+[connection signal="visibility_changed" from="AudioControlContainer" to="AudioControlContainer" method="_on_visibility_changed"]
 [connection signal="toggled" from="MuteControl/MuteButton" to="." method="_on_mute_button_toggled"]
 [connection signal="toggled" from="FullscreenControl/FullscreenButton" to="." method="_on_fullscreen_button_toggled"]

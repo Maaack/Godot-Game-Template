@@ -36,7 +36,9 @@ func intro_done():
 
 func _input(event):
 	if animation_state_machine.get_current_node() == "Intro" and \
-		(event is InputEventMouseButton or event is InputEventKey):
+		(event is InputEventMouseButton or \
+		event is InputEventJoypadButton or \
+		event is InputEventKey):
 		intro_done()
 
 func _setup_for_web():

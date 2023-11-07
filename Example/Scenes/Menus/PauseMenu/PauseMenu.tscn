@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dtdpd6o5xj4dq"]
+[gd_scene load_steps=5 format=3 uid="uid://dtdpd6o5xj4dq"]
 
 [ext_resource type="Script" path="res://App/Scenes/Menus/PauseMenu/PauseMenu.gd" id="1_i1bp2"]
 [ext_resource type="PackedScene" uid="uid://dbxphb45qufyg" path="res://Example/Scenes/Menus/OptionsMenu/OptionsMenu.tscn" id="2_ge84d"]
 [ext_resource type="PackedScene" uid="uid://doj1dmgtf0a71" path="res://App/Scenes/UI/SoundButton/SoundButton.tscn" id="3_86duh"]
+[ext_resource type="Script" path="res://App/Scripts/CaptureFocus.gd" id="3_txb03"]
 
 [node name="PauseMenu" type="CanvasLayer"]
 process_mode = 3
@@ -50,6 +51,7 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 24
 alignment = 1
+script = ExtResource("3_txb03")
 
 [node name="ResumeButton" parent="Control/MenuContainer/VBoxContainer/MenuButtons" instance=ExtResource("3_86duh")]
 layout_mode = 2
@@ -115,6 +117,7 @@ dialog_text = "Go back to main menu?"
 unique_name_in_owner = true
 dialog_text = "Quit the game?"
 
+[connection signal="visibility_changed" from="Control/MenuContainer/VBoxContainer/MenuButtons" to="Control/MenuContainer/VBoxContainer/MenuButtons" method="_on_visibility_changed"]
 [connection signal="pressed" from="Control/MenuContainer/VBoxContainer/MenuButtons/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="Control/MenuContainer/VBoxContainer/MenuButtons/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="Control/MenuContainer/VBoxContainer/MenuButtons/OptionsButton" to="." method="_on_options_button_pressed"]

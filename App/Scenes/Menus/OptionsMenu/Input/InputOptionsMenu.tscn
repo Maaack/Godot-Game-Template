@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dp3rgqaehb3xu"]
+[gd_scene load_steps=6 format=3 uid="uid://dp3rgqaehb3xu"]
 
 [ext_resource type="Script" path="res://App/Scenes/Menus/OptionsMenu/Input/InputOptionsMenu.gd" id="1"]
+[ext_resource type="Script" path="res://App/Scripts/CaptureFocus.gd" id="2_wft4x"]
 [ext_resource type="Script" path="res://App/Scenes/Menus/OptionsMenu/Input/KeyAssignmentDialog.gd" id="3_wsh2h"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_7h8wy"]
@@ -21,6 +22,7 @@ remove_button_texture = SubResource("PlaceholderTexture2D_nq02i")
 custom_minimum_size = Vector2(300, 280)
 layout_mode = 2
 theme_override_constants/separation = 8
+script = ExtResource("2_wft4x")
 
 [node name="Tree" type="Tree" parent="VBoxContainer"]
 unique_name_in_owner = true
@@ -50,6 +52,7 @@ size = Vector2i(398, 100)
 title = "Already Assigned"
 size = Vector2i(398, 100)
 
+[connection signal="visibility_changed" from="VBoxContainer" to="VBoxContainer" method="_on_visibility_changed"]
 [connection signal="button_clicked" from="VBoxContainer/Tree" to="." method="_on_tree_button_clicked"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]
 [connection signal="canceled" from="KeyAssignmentDialog" to="." method="_on_key_assignment_dialog_canceled"]

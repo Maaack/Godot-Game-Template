@@ -1,9 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://sbluwaaplbsg"]
+[gd_scene load_steps=23 format=3 uid="uid://sbluwaaplbsg"]
 
 [ext_resource type="Script" path="res://Example/Scenes/Menus/MainMenu/MainMenu.gd" id="1_yww1j"]
 [ext_resource type="PackedScene" uid="uid://cnk2y3bx5fsin" path="res://Example/Scenes/Menus/OptionsMenu/MasterOptionsMenu.tscn" id="2_3vb8r"]
 [ext_resource type="PackedScene" uid="uid://t2dui8ppm3a4" path="res://App/Scenes/Credits/Credits.tscn" id="3_6k3js"]
 [ext_resource type="PackedScene" uid="uid://doj1dmgtf0a71" path="res://App/Scenes/UI/SoundButton/SoundButton.tscn" id="4_cgaxl"]
+[ext_resource type="Script" path="res://App/Scripts/CaptureFocus.gd" id="4_mqxbe"]
 
 [sub_resource type="Animation" id="5"]
 resource_name = "CloseSubMenu"
@@ -403,6 +404,7 @@ visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 alignment = 1
+script = ExtResource("4_mqxbe")
 
 [node name="PlayButton" parent="MarginContainer/VBoxContainer/MenuMargin/MenuButtons" instance=ExtResource("4_cgaxl")]
 unique_name_in_owner = true
@@ -469,6 +471,7 @@ offset_top = -40.0
 offset_right = 62.0
 text = "Back"
 
+[connection signal="visibility_changed" from="MarginContainer/VBoxContainer/MenuMargin/MenuButtons" to="MarginContainer/VBoxContainer/MenuMargin/MenuButtons" method="_on_visibility_changed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MenuMargin/MenuButtons/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MenuMargin/MenuButtons/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MenuMargin/MenuButtons/CreditsButton" to="." method="_on_credits_button_pressed"]

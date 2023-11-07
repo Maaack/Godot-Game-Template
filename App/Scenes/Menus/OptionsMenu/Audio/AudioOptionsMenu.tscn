@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://c8vnncjwqcpab"]
+[gd_scene load_steps=4 format=3 uid="uid://c8vnncjwqcpab"]
 
 [ext_resource type="Script" path="res://App/Scenes/Menus/OptionsMenu/Audio/AudioOptionsMenu.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://bosy6wwf0vleq" path="res://App/Scenes/Menus/OptionsMenu/Audio/AudioControl/AudioControl.tscn" id="2_0jh6g"]
+[ext_resource type="Script" path="res://App/Scripts/CaptureFocus.gd" id="3_dtraq"]
 
 [node name="Audio" type="CenterContainer"]
 custom_minimum_size = Vector2(305, 0)
@@ -15,6 +16,8 @@ audio_control_scene = ExtResource("2_0jh6g")
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme_override_constants/separation = 8
+script = ExtResource("3_dtraq")
+search_depth = 3
 
 [node name="AudioControlContainer" type="VBoxContainer" parent="VBoxContainer"]
 unique_name_in_owner = true
@@ -32,8 +35,5 @@ text = "Mute :"
 [node name="MuteButton" type="CheckButton" parent="VBoxContainer/MuteControl"]
 layout_mode = 2
 
-[node name="VocalAudioStreamPlayers" type="Node" parent="."]
-
-[node name="SFXAudioStreamPlayers" type="Node" parent="."]
-
+[connection signal="visibility_changed" from="VBoxContainer" to="VBoxContainer" method="_on_visibility_changed"]
 [connection signal="toggled" from="VBoxContainer/MuteControl/MuteButton" to="." method="_on_MuteButton_toggled"]
