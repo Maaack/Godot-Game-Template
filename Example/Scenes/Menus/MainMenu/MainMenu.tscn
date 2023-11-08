@@ -400,6 +400,7 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_bottom = 16
 
 [node name="MenuButtons" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MenuMargin"]
+unique_name_in_owner = true
 visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
