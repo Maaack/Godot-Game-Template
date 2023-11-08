@@ -92,7 +92,8 @@ func _on_exit_button_pressed():
 	get_tree().quit()
 
 func _on_credits_end_reached():
-	_close_sub_menu()
+	if sub_menu == credits_scene:
+		_close_sub_menu()
 
 func _on_back_button_pressed():
 	_close_sub_menu()
