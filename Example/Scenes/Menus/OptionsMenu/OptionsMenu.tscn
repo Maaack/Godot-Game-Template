@@ -54,7 +54,6 @@ layout_mode = 2
 [node name="ResetGameControl" parent="." instance=ExtResource("3_geyfk")]
 layout_mode = 2
 
-[connection signal="visibility_changed" from="AudioControlContainer" to="AudioControlContainer" method="_on_visibility_changed"]
 [connection signal="toggled" from="MuteControl/MuteButton" to="." method="_on_mute_button_toggled"]
 [connection signal="toggled" from="FullscreenControl/FullscreenButton" to="." method="_on_fullscreen_button_toggled"]
 [connection signal="reset_confirmed" from="ResetGameControl" to="." method="_on_reset_game_control_reset_confirmed"]

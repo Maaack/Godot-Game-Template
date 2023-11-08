@@ -19,3 +19,8 @@ func _check_visible_and_joypad():
 
 func _on_visibility_changed():
 	call_deferred("_check_visible_and_joypad")
+
+func _ready():
+	if is_inside_tree():
+		_check_visible_and_joypad()
+		connect("visibility_changed", _on_visibility_changed)

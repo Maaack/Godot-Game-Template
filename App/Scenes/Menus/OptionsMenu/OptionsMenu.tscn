@@ -50,6 +50,5 @@ text = "Fullscreen :"
 [node name="FullscreenButton" type="CheckButton" parent="FullscreenControl"]
 layout_mode = 2
 
-[connection signal="visibility_changed" from="AudioControlContainer" to="AudioControlContainer" method="_on_visibility_changed"]
 [connection signal="toggled" from="MuteControl/MuteButton" to="." method="_on_mute_button_toggled"]
 [connection signal="toggled" from="FullscreenControl/FullscreenButton" to="." method="_on_fullscreen_button_toggled"]

@@ -19,5 +19,4 @@ search_depth = 2
 [node name="ResetGameControl" parent="VBoxContainer" instance=ExtResource("2")]
 layout_mode = 2
 
-[connection signal="visibility_changed" from="VBoxContainer" to="VBoxContainer" method="_on_visibility_changed"]
 [connection signal="reset_confirmed" from="VBoxContainer/ResetGameControl" to="." method="_on_ResetGameControl_reset_confirmed"]

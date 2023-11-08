@@ -52,7 +52,6 @@ size = Vector2i(398, 100)
 title = "Already Assigned"
 size = Vector2i(398, 100)
 
-[connection signal="visibility_changed" from="VBoxContainer" to="VBoxContainer" method="_on_visibility_changed"]
 [connection signal="button_clicked" from="VBoxContainer/Tree" to="." method="_on_tree_button_clicked"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]
 [connection signal="canceled" from="KeyAssignmentDialog" to="." method="_on_key_assignment_dialog_canceled"]

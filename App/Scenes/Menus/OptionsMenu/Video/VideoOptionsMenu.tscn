@@ -27,5 +27,4 @@ text = "Fullscreen :"
 [node name="FullscreenButton" type="CheckButton" parent="VBoxContainer/FullscreenControl"]
 layout_mode = 2
 
-[connection signal="visibility_changed" from="VBoxContainer" to="VBoxContainer" method="_on_visibility_changed"]
 [connection signal="toggled" from="VBoxContainer/FullscreenControl/FullscreenButton" to="." method="_on_FullscreenButton_toggled"]

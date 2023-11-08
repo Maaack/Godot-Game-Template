@@ -1,8 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://c6k5nnpbypshi"]
+[gd_scene load_steps=23 format=3 uid="uid://c6k5nnpbypshi"]
 
 [ext_resource type="Script" path="res://App/Scenes/Menus/MainMenu/MainMenu.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://bvwl11s2p0hd" path="res://App/Scenes/Menus/OptionsMenu/MasterOptionsMenu.tscn" id="2_ewwbc"]
 [ext_resource type="PackedScene" uid="uid://t2dui8ppm3a4" path="res://App/Scenes/Credits/Credits.tscn" id="3_lcwf5"]
+[ext_resource type="Script" path="res://App/Scripts/CaptureFocus.gd" id="4_l1ebe"]
 [ext_resource type="PackedScene" uid="uid://doj1dmgtf0a71" path="res://App/Scenes/UI/SoundButton/SoundButton.tscn" id="5"]
 
 [sub_resource type="Animation" id="5"]
@@ -402,6 +403,7 @@ visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 alignment = 1
+script = ExtResource("4_l1ebe")
 
 [node name="PlayButton" parent="MarginContainer/VBoxContainer/MenuMargin/MenuButtons" instance=ExtResource("5")]
 unique_name_in_owner = true

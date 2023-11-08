@@ -117,7 +117,6 @@ dialog_text = "Go back to main menu?"
 unique_name_in_owner = true
 dialog_text = "Quit the game?"
 
-[connection signal="visibility_changed" from="Control/MenuContainer/VBoxContainer/MenuButtons" to="Control/MenuContainer/VBoxContainer/MenuButtons" method="_on_visibility_changed"]
 [connection signal="pressed" from="Control/MenuContainer/VBoxContainer/MenuButtons/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="Control/MenuContainer/VBoxContainer/MenuButtons/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="Control/MenuContainer/VBoxContainer/MenuButtons/OptionsButton" to="." method="_on_options_button_pressed"]

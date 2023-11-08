@@ -35,5 +35,4 @@ text = "Mute :"
 [node name="MuteButton" type="CheckButton" parent="VBoxContainer/MuteControl"]
 layout_mode = 2
 
-[connection signal="visibility_changed" from="VBoxContainer" to="VBoxContainer" method="_on_visibility_changed"]
 [connection signal="toggled" from="VBoxContainer/MuteControl/MuteButton" to="." method="_on_MuteButton_toggled"]

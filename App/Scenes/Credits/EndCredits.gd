@@ -1,5 +1,5 @@
 @tool
-extends "res://Scenes/Menus/Credits/Credits.gd"
+extends "./Credits.gd"
 
 @export_file("*.tscn") var main_menu_scene : String
 

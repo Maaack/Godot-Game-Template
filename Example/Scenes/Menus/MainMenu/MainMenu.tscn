@@ -471,7 +471,6 @@ offset_top = -40.0
 offset_right = 62.0
 text = "Back"
 
-[connection signal="visibility_changed" from="MarginContainer/VBoxContainer/MenuMargin/MenuButtons" to="MarginContainer/VBoxContainer/MenuMargin/MenuButtons" method="_on_visibility_changed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MenuMargin/MenuButtons/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MenuMargin/MenuButtons/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MenuMargin/MenuButtons/CreditsButton" to="." method="_on_credits_button_pressed"]
