@@ -1,7 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://kwifjoc33wbf"]
 
-[ext_resource type="Script" path="res://App/Scenes/InitApp/InitApp.gd" id="1_giypu"]
+[ext_resource type="PackedScene" uid="uid://brp0f5m041sho" path="res://App/Scenes/InitApp/InitApp.tscn" id="1_jg7hl"]
 
-[node name="InitApp" type="Node"]
-script = ExtResource("1_giypu")
+[node name="InitApp" instance=ExtResource("1_jg7hl")]
 next_scene = "res://Example/Scenes/Menus/MainMenu/MainMenu.tscn"
