@@ -1,11 +1,11 @@
 [gd_scene load_steps=4 format=3 uid="uid://djoy112dkgjda"]
 
-[ext_resource type="PackedScene" uid="uid://t2dui8ppm3a4" path="res://App/Scenes/Credits/Credits.tscn" id="1"]
-[ext_resource type="Script" path="res://App/Scripts/CaptureFocus.gd" id="3_826l6"]
-[ext_resource type="Script" path="res://App/Scenes/Credits/EndCredits.gd" id="4"]
+[ext_resource type="PackedScene" uid="uid://t2dui8ppm3a4" path="res://App/Scenes/Credits/Credits.tscn" id="1_h6cgt"]
+[ext_resource type="Script" path="res://Example/Scenes/EndCredits/EndCredits.gd" id="2_p3aca"]
+[ext_resource type="Script" path="res://App/Scripts/CaptureFocus.gd" id="3_j7is3"]
 
-[node name="EndCredits" instance=ExtResource("1")]
-script = ExtResource("4")
+[node name="EndCredits" instance=ExtResource("1_h6cgt")]
+script = ExtResource("2_p3aca")
 main_menu_scene = "res://App/Scenes/Menus/MainMenu/MainMenu.tscn"
 scroll_active = true
 
@@ -48,7 +48,7 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 24
-script = ExtResource("3_826l6")
+script = ExtResource("3_j7is3")
 
 [node name="MenuButton" type="Button" parent="CenterContainer/EndMessagePanel/VBoxContainer/CenterContainer/HBoxContainer" index="0"]
 unique_name_in_owner = true
