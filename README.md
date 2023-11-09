@@ -7,7 +7,7 @@ This template has a dynamic main menu, pause menu, and credits scene. Multiple o
 
 ### App (Base)
 
-The `App/` folder holds the core components of the menus application. It represents the minimum features and complexity.
+The `App/` folder holds the core components of the menus application.
 
 -   Main Menu    
 -   Options Menus
@@ -21,7 +21,7 @@ The `App/` folder holds the core components of the menus application. It represe
 
 ### Extras
 
-The `Extras/` folder holds components that generally extend the core features.
+The `Extras/` folder holds components that extend the core application.
 
 -   Scripts for logging game starts, progress through levels, and playtime.
 -   A `GameUI.tscn` scene that displays inputs and can trigger the pause menu.
@@ -39,7 +39,9 @@ The `Extras/` folder holds components that generally extend the core features.
 
 To begin with, use the `Extras/` folder, and make changes there. However, to start minimally, use just the `App/` folder. Compare [Features](#features) to decide.
 
-If you just want to use just the minimum App:
+#### Minimal
+
+If you just want to use just the projects minimum `App/` folder:
 
 1.  Go to `Project > Project Settings… > General > Application > Run`.
     
@@ -49,6 +51,10 @@ If you just want to use just the minimum App:
     
 
 The remaining instructions will apply the same for either folder you decide to use.
+
+#### Extra Minimal
+
+The pause menu feature can be removed if not used. From the `App/` folder, delete `PauseMenu/*`, `PauseMenuController.gd`, and `InGameMenuController.gd`. The last will need to be removed from the project's autoload, as well.
 
 ### New Project
 These instructions assume starting with the entire contents of the project folder.
