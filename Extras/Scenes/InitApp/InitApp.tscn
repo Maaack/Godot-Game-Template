@@ -3,4 +3,4 @@
 [ext_resource type="PackedScene" uid="uid://brp0f5m041sho" path="res://App/Scenes/InitApp/InitApp.tscn" id="1_jg7hl"]
 
 [node name="InitApp" instance=ExtResource("1_jg7hl")]
-next_scene = "res://Example/Scenes/Menus/MainMenu/MainMenu.tscn"
+next_scene = "res://Extras/Scenes/Menus/MainMenu/MainMenu.tscn"

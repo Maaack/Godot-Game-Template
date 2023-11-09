@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://dbxphb45qufyg"]
 
 [ext_resource type="PackedScene" uid="uid://vh1ucj2rfbby" path="res://App/Scenes/Menus/OptionsMenu/OptionsMenu.tscn" id="1_hfc4d"]
-[ext_resource type="Script" path="res://Example/Scenes/Menus/OptionsMenu/OptionsMenu.gd" id="1_xl822"]
-[ext_resource type="PackedScene" uid="uid://cay00igbuqtfa" path="res://Example/Scenes/Menus/OptionsMenu/Game/ResetGameControl/ResetGameControl.tscn" id="3_geyfk"]
+[ext_resource type="Script" path="res://Extras/Scenes/Menus/OptionsMenu/OptionsMenu.gd" id="1_xl822"]
+[ext_resource type="PackedScene" uid="uid://cay00igbuqtfa" path="res://Extras/Scenes/Menus/OptionsMenu/Game/ResetGameControl/ResetGameControl.tscn" id="3_geyfk"]
 
 [node name="OptionsMenu" instance=ExtResource("1_hfc4d")]
 script = ExtResource("1_xl822")

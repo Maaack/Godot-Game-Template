@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://dxkq10mmjl517"]
 
-[ext_resource type="Script" path="res://Example/Scenes/GameScene/GameUI.gd" id="1_vn54u"]
+[ext_resource type="Script" path="res://Extras/Scenes/GameScene/GameUI.gd" id="1_vn54u"]
 [ext_resource type="Script" path="res://App/Scripts/PauseMenuController.gd" id="2_bmhjc"]
-[ext_resource type="PackedScene" uid="uid://dtdpd6o5xj4dq" path="res://Example/Scenes/Menus/PauseMenu/PauseMenu.tscn" id="3_n6jen"]
+[ext_resource type="PackedScene" uid="uid://dtdpd6o5xj4dq" path="res://Extras/Scenes/Menus/PauseMenu/PauseMenu.tscn" id="3_n6jen"]
 
 [node name="GameUI" type="Control"]
 layout_mode = 3
