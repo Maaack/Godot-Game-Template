@@ -10,7 +10,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("4")
-attribution_file_path = "res://ATTRIBUTION_example.md"
 h1_font_size = 64
 h2_font_size = 48
 h3_font_size = 32
@@ -42,19 +41,10 @@ bbcode_enabled = true
 text = "[center]
 [font_size=48]Collaborators[/font_size]
 
-[font_size=32]Role[/font_size]
-Person 1  
-Person 2  
-[url=]Person w/ Link[/url]  
-
-
-[font_size=48]Sourced / Unaffiliated[/font_size]
-[font_size=32]Asset Type[/font_size]
-[font_size=24]Use Case[/font_size]
-Author: [url=]Name[/url]  
-Source: [url=]Domain : webpage.html[/url]  
-License: [url=]License[/url]
-
+[font_size=32]Godot Game Template[/font_size]
+Author: [url=https://github.com/Maaack]Marek Belski[/url]  
+Source: [url=https://github.com/Maaack/Godot-Game-Template]github: Godot-Game-Template[/url]  
+License: [url=LICENSE.txt]MIT License[/url]  
 
 [font_size=48]Tools[/font_size]
 [font_size=24]Godot[/font_size]
@@ -65,13 +55,7 @@ License: [url=https://github.com/godotengine/godot/blob/master/LICENSE.txt]MIT L
 [font_size=24]Git[/font_size]
 Author: [url=https://github.com/torvalds]Linus Torvalds[/url]  
 Source: [url=https://git-scm.com/downloads]git-scm.com[/url]  
-License: [url=https://opensource.org/licenses/GPL-2.0]GNU General Public License version 2[/url]
-
-[font_size=24]Godot Game Template[/font_size]
-Author: [url=https://github.com/Maaack]Marek Belski[/url]  
-Source: [url=https://github.com/Maaack/Godot-Game-Template]github: Godot-Game-Template[/url]  
-License: [url=LICENSE.txt]MIT License[/url]  
-[/center]"
+License: [url=https://opensource.org/licenses/GPL-2.0]GNU General Public License version 2[/url][/center]"
 fit_content = true
 scroll_active = false
 
