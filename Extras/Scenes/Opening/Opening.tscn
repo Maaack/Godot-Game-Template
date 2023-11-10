@@ -1,0 +1,69 @@
+[gd_scene load_steps=6 format=3 uid="uid://sikc02ddepyt"]
+
+[ext_resource type="Script" path="res://Extras/Scenes/Opening/Opening.gd" id="1_fcjph"]
+[ext_resource type="Texture2D" uid="uid://b4xpcuksnx4y0" path="res://icon.svg" id="2_psnkk"]
+
+[sub_resource type="Animation" id="Animation_nsnod"]
+resource_name = "FadeInOut"
+length = 2.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ImagesContainer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 1.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_4b2uu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ImagesContainer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uc3w8"]
+_data = {
+"FadeInOut": SubResource("Animation_nsnod"),
+"RESET": SubResource("Animation_4b2uu")
+}
+
+[node name="Opening" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fcjph")
+next_scene = "res://Extras/Scenes/Menus/MainMenu/MainMenu.tscn"
+images = Array[Texture2D]([ExtResource("2_psnkk")])
+end_delay = 1.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_uc3w8")
+}
+
+[node name="ImagesContainer" type="MarginContainer" parent="."]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
