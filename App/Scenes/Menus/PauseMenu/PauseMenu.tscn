@@ -7,7 +7,7 @@
 
 [node name="PauseMenu" type="CanvasLayer"]
 process_mode = 3
-layer = 10
+layer = 100
 script = ExtResource("2")
 options_packed_scene = ExtResource("2_gvw4i")
 main_menu_scene = "res://App/Scenes/Menus/MainMenu/MainMenu.tscn"

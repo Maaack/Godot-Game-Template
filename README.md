@@ -1,7 +1,13 @@
 # Godot Game Template
 For Godot 4.1.3
 
-This template has a dynamic main menu, pause menu, and credits scene. Multiple options menus to choose from with key rebinding and persistent config settings.
+This template has a main menu, pause menu, and credits scene. It supports basic accessibility features like input rebinding, sound, and video controls.
+
+
+## Use Case
+Setup menus and accessibility features in about 15 minutes. Spend more time updating the `ATTRIBUTION.md`.
+
+The core components can support a larger project, but the template was originally built to support smaller projects and game jams.
 
 ## Features
 
@@ -36,6 +42,13 @@ The `Extras/` folder holds components that extend the core application.
     -   `InitApp.tscn`
 
   
+### How it Works
+- `SceneLoader.tscn` needs to be set to autoload. It works with `LoadingScreen.tscn` to load in scenes in cases where a progress bar will be shown.  
+- `InitApp.tscn` is the project's main scene. It loads all the configuration settings from the config file (if it exists) into game. It then loads the next scene (`Opening.tscn` or `MainMenu.tscn`).  
+- `Opening.tscn` is a simple scene for fading in/out a few images at the start of the game. It then loads the next scene (`MainMenu.tscn`).  
+- `MainMenu.tscn` is where a player can start the game, change settings, watch credits, or quit. It can link to the path of a game scene to play, and the packed scene of an options menu to use.  
+- `Credits.tscn` reads from `ATTRIBUTION.md` to automatically generate the content for it's scrolling text label.  
+- `PauseMenu.tscn` works with `PauseMenuController.gd` and `InGameMenuController.gd`. `InGameMenuController.gd` needs to be set to autoload, and `PauseMenuController` is added onto a Node in a scene expected to be run in-game. Triggering `ui-cancel` in that scene will then bring up `PauseMenu.tscn` on a higher canvas layer.
 
 ## Usage
 
