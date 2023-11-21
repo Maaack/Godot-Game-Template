@@ -3,6 +3,9 @@ For Godot 4.1.3
 
 This template has a main menu, pause menu, and credits scene. It supports basic accessibility features like input rebinding, sound, and video controls.
 
+![Main Menu](/Media/Screenshot-2-1.png)  
+![Key Rebinding](/Media/Screenshot-2-2.png)  
+![Key Rebinding](/Media/Screenshot-2-4.png)  
 
 ## Use Case
 Setup menus and accessibility features in about 15 minutes. Spend more time updating the `ATTRIBUTION.md`.
