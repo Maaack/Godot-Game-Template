@@ -3,6 +3,8 @@ For Godot 4.1.3
 
 This template has a main menu, pause menu, and credits scene. It supports basic accessibility features like input rebinding, sound, and video controls.
 
+[Example on itch.io](https://maaack.itch.io/godot-game-template)
+
 ![Main Menu](/Media/Screenshot-2-1.png)  
 ![Key Rebinding](/Media/Screenshot-2-2.png)  
 ![Key Rebinding](/Media/Screenshot-2-4.png)  
