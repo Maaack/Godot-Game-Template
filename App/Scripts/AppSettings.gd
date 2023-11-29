@@ -33,6 +33,9 @@ static func set_input_from_config(action_name : String):
 	var config_events = get_config_input_events(action_name, action_events)
 	if config_events == action_events:
 		return
+	if config_events.is_empty():
+		Config.erase_section_key(INPUT_SECTION, action_name)
+		return
 	InputMap.action_erase_events(action_name)
 	for config_event in config_events:
 		if config_event not in action_events:
