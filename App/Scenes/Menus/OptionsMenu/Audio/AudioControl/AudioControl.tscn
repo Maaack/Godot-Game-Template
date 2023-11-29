@@ -13,7 +13,7 @@ size_flags_horizontal = 3
 text = "Audio Bus :"
 
 [node name="BusHSlider" type="HSlider" parent="."]
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
 size_flags_vertical = 4
 max_value = 1.0

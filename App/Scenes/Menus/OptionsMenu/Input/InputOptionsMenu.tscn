@@ -10,17 +10,22 @@ size = Vector2(16, 16)
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_nq02i"]
 size = Vector2(16, 16)
 
-[node name="Controls" type="CenterContainer"]
+[node name="Controls" type="MarginContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_bottom = 16
 script = ExtResource("1")
 add_button_texture = SubResource("PlaceholderTexture2D_7h8wy")
 remove_button_texture = SubResource("PlaceholderTexture2D_nq02i")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-custom_minimum_size = Vector2(300, 280)
+custom_minimum_size = Vector2(400, 280)
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_constants/separation = 8
 script = ExtResource("2_wft4x")
 
