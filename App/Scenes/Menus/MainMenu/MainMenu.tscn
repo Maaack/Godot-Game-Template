@@ -308,13 +308,13 @@ advance_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_63dxc"]
 
 [sub_resource type="AnimationNodeStateMachine" id="8"]
-states/End/position = Vector2(928, 123)
+states/End/position = Vector2(958, 123)
 states/Intro/node = SubResource("7")
-states/Intro/position = Vector2(230, 123)
+states/Intro/position = Vector2(259, 123)
 states/OpenMainMenu/node = SubResource("10")
-states/OpenMainMenu/position = Vector2(461, 123)
+states/OpenMainMenu/position = Vector2(472, 123)
 states/OpenSubMenu/node = SubResource("13")
-states/OpenSubMenu/position = Vector2(712, 123)
+states/OpenSubMenu/position = Vector2(734, 123)
 states/Start/position = Vector2(82, 123)
 transitions = ["Intro", "OpenMainMenu", SubResource("11"), "OpenMainMenu", "OpenSubMenu", SubResource("14"), "Start", "Intro", SubResource("AnimationNodeStateMachineTransition_j0orr"), "OpenSubMenu", "OpenMainMenu", SubResource("AnimationNodeStateMachineTransition_63dxc")]
 graph_offset = Vector2(51, 80)
