@@ -1,5 +1,5 @@
 # Godot Game Template
-For Godot 4.1.3
+For Godot 4.2
 
 This template has a main menu, pause menu, and credits scene. It supports basic accessibility features like input rebinding, sound, and video controls.
 
@@ -10,7 +10,7 @@ This template has a main menu, pause menu, and credits scene. It supports basic 
 ![Key Rebinding](/Media/Screenshot-2-4.png)  
 
 ## Use Case
-Setup menus and accessibility features in about 15 minutes. Spend more time updating the `ATTRIBUTION.md`.
+Setup menus and accessibility features in about 15 minutes.
 
 The core components can support a larger project, but the template was originally built to support smaller projects and game jams.
 
