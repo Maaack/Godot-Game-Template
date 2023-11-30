@@ -349,7 +349,6 @@ layout_mode = 2
 [node name="TitlesMargin" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_top = 16
-theme_override_constants/margin_bottom = 16
 
 [node name="TitlesContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TitlesMargin"]
 layout_mode = 2
@@ -365,7 +364,7 @@ vertical_alignment = 1
 [node name="SubTitle" type="Label" parent="MarginContainer/VBoxContainer/TitlesMargin/TitlesContainer"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 text = "Subtitle"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -380,27 +379,36 @@ theme_override_constants/margin_bottom = 16
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
+theme_override_constants/separation = 16
 alignment = 1
 script = ExtResource("4_l1ebe")
 
 [node name="PlayButton" parent="MarginContainer/VBoxContainer/MenuMargin/MenuButtons" instance=ExtResource("5")]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
+size_flags_horizontal = 4
 text = "Play"
 
 [node name="OptionsButton" parent="MarginContainer/VBoxContainer/MenuMargin/MenuButtons" instance=ExtResource("5")]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
+size_flags_horizontal = 4
 text = "Options"
 
 [node name="CreditsButton" parent="MarginContainer/VBoxContainer/MenuMargin/MenuButtons" instance=ExtResource("5")]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
+size_flags_horizontal = 4
 text = "Credits"
 
 [node name="ExitButton" parent="MarginContainer/VBoxContainer/MenuMargin/MenuButtons" instance=ExtResource("5")]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
+size_flags_horizontal = 4
 text = "Exit"
 
 [node name="OptionsContainer" type="MarginContainer" parent="."]
@@ -441,6 +449,7 @@ mouse_filter = 2
 [node name="BackButton" parent="FlowControlContainer/FlowControl" instance=ExtResource("5")]
 unique_name_in_owner = true
 visible = false
+custom_minimum_size = Vector2(62, 40)
 layout_mode = 0
 anchor_top = 1.0
 anchor_bottom = 1.0

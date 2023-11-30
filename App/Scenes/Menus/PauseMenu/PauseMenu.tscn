@@ -41,39 +41,54 @@ grow_vertical = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/MenuContainer"]
 layout_mode = 2
 
-[node name="Title" type="Label" parent="Control/MenuContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Control/MenuContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/margin_top = 16
+
+[node name="Title" type="Label" parent="Control/MenuContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "Pause"
 horizontal_alignment = 1
 
 [node name="MenuButtons" type="VBoxContainer" parent="Control/MenuContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/separation = 24
+theme_override_constants/separation = 16
 alignment = 1
 script = ExtResource("3_43rgy")
 
 [node name="ResumeButton" parent="Control/MenuContainer/VBoxContainer/MenuButtons" instance=ExtResource("4")]
+custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
+size_flags_horizontal = 4
 text = "Resume"
 
 [node name="RestartButton" parent="Control/MenuContainer/VBoxContainer/MenuButtons" instance=ExtResource("4")]
+custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
+size_flags_horizontal = 4
 text = "Restart"
 
 [node name="OptionsButton" parent="Control/MenuContainer/VBoxContainer/MenuButtons" instance=ExtResource("4")]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
+size_flags_horizontal = 4
 text = "Options"
 
 [node name="MainMenuButton" parent="Control/MenuContainer/VBoxContainer/MenuButtons" instance=ExtResource("4")]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
-text = "Return to Main Menu"
+size_flags_horizontal = 4
+text = "Main Menu"
 
 [node name="ExitButton" parent="Control/MenuContainer/VBoxContainer/MenuButtons" instance=ExtResource("4")]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
+size_flags_horizontal = 4
 text = "Exit Game"
 
 [node name="CenterContainer" type="CenterContainer" parent="Control"]
@@ -102,6 +117,7 @@ layout_mode = 2
 alignment = 1
 
 [node name="BackButton" type="Button" parent="Control/CenterContainer/SubMenuContainer/HBoxContainer"]
+custom_minimum_size = Vector2(62, 40)
 layout_mode = 2
 text = "Back"
 
