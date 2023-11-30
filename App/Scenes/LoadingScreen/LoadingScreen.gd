@@ -27,13 +27,15 @@ func set_new_scene(scene_resource : Resource):
 	get_node("/root").add_child(scene_instance)
 	get_tree().current_scene = scene_instance
 
+func _load_next_scene():
+	var resource = SceneLoader.get_resource()
+	set_new_scene(resource)
+
 func _set_loading_complete():
 	if loading_complete:
 		return
 	loading_complete = true
-	await get_tree().create_timer(0.1).timeout
-	var resource = SceneLoader.get_resource()
-	set_new_scene(resource)
+	call_deferred("_load_next_scene")
 
 func _process(_delta):
 	var status = SceneLoader.get_status()
