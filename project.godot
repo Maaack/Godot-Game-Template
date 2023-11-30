@@ -12,13 +12,18 @@ config_version=5
 
 config/name="Game Template"
 run/main_scene="res://Extras/Scenes/InitApp/InitApp.tscn"
-config/features=PackedStringArray("4.1")
+config/features=PackedStringArray("4.2")
 config/icon="res://icon.png"
 
 [autoload]
 
 InGameMenuController="*res://App/Scripts/InGameMenuController.gd"
 SceneLoader="*res://App/Scripts/SceneLoader.gd"
+
+[display]
+
+window/size/viewport_width=640
+window/size/viewport_height=360
 
 [gui]
 
