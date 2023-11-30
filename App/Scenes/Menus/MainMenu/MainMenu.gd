@@ -25,13 +25,13 @@ func _open_sub_menu(menu : Control):
 func _close_sub_menu():
 	if sub_menu == null:
 		return
-	animation_state_machine.travel("MainMenuOpen")
+	animation_state_machine.travel("OpenMainMenu")
 	sub_menu.visible = false
 	sub_menu = null
-	animation_state_machine.travel("MainMenuOpen")
+	animation_state_machine.travel("OpenMainMenu")
 
 func intro_done():
-	animation_state_machine.travel("MainMenuOpen")
+	animation_state_machine.travel("OpenMainMenu")
 
 func _input(event):
 	if animation_state_machine.get_current_node() == "Intro" and \

@@ -1,50 +1,10 @@
-[gd_scene load_steps=23 format=3 uid="uid://c6k5nnpbypshi"]
+[gd_scene load_steps=20 format=3 uid="uid://c6k5nnpbypshi"]
 
 [ext_resource type="Script" path="res://App/Scenes/Menus/MainMenu/MainMenu.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://bvwl11s2p0hd" path="res://App/Scenes/Menus/OptionsMenu/MasterOptionsMenu.tscn" id="2_ewwbc"]
 [ext_resource type="PackedScene" uid="uid://t2dui8ppm3a4" path="res://App/Scenes/Credits/Credits.tscn" id="3_lcwf5"]
 [ext_resource type="Script" path="res://App/Scripts/CaptureFocus.gd" id="4_l1ebe"]
 [ext_resource type="PackedScene" uid="uid://doj1dmgtf0a71" path="res://App/Scenes/UI/SoundButton/SoundButton.tscn" id="5"]
-
-[sub_resource type="Animation" id="5"]
-resource_name = "CloseSubMenu"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("FlowControlContainer/FlowControl/BackButton:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MarginContainer/VBoxContainer/MenuMargin/MenuButtons:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("MarginContainer/VBoxContainer/TitlesMargin/TitlesContainer:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
 
 [sub_resource type="Animation" id="1"]
 resource_name = "Intro"
@@ -111,57 +71,17 @@ tracks/4/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
-
-[sub_resource type="Animation" id="6"]
-resource_name = "MainMenuOpen"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MarginContainer/VBoxContainer/TitlesMargin/TitlesContainer/Title:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MarginContainer/VBoxContainer/TitlesMargin/TitlesContainer/SubTitle:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("MarginContainer/VBoxContainer/MenuMargin/MenuButtons:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MarginContainer/VBoxContainer/TitlesMargin/TitlesContainer:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("MarginContainer/VBoxContainer/MenuMargin/MenuButtons:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="4"]
@@ -219,7 +139,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
+"update": 1,
 "values": [false]
 }
 tracks/1/type = "value"
@@ -270,25 +190,109 @@ tracks/4/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MarginContainer/VBoxContainer/TitlesMargin/TitlesContainer:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="6"]
+resource_name = "OpenMainMenu"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/VBoxContainer/TitlesMargin/TitlesContainer/Title:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarginContainer/VBoxContainer/TitlesMargin/TitlesContainer/SubTitle:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MarginContainer/VBoxContainer/MenuMargin/MenuButtons:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MarginContainer/VBoxContainer/MenuMargin/MenuButtons:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MarginContainer/VBoxContainer/TitlesMargin/TitlesContainer:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("FlowControlContainer/FlowControl/BackButton:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2kqig"]
 _data = {
-"CloseSubMenu": SubResource("5"),
 "Intro": SubResource("1"),
-"MainMenuOpen": SubResource("6"),
+"OpenMainMenu": SubResource("6"),
 "OpenSubMenu": SubResource("4"),
 "Outro": SubResource("3"),
 "RESET": SubResource("2")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="12"]
-animation = &"CloseSubMenu"
-
 [sub_resource type="AnimationNodeAnimation" id="7"]
 animation = &"Intro"
 
 [sub_resource type="AnimationNodeAnimation" id="10"]
-animation = &"MainMenuOpen"
+animation = &"OpenMainMenu"
 
 [sub_resource type="AnimationNodeAnimation" id="13"]
 animation = &"OpenSubMenu"
@@ -298,26 +302,22 @@ advance_condition = &"intro_done"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="14"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="15"]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="16"]
-switch_mode = 2
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_j0orr"]
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_63dxc"]
+
 [sub_resource type="AnimationNodeStateMachine" id="8"]
-states/CloseSubMenu/node = SubResource("12")
-states/CloseSubMenu/position = Vector2(700, 232)
+states/End/position = Vector2(928, 123)
 states/Intro/node = SubResource("7")
 states/Intro/position = Vector2(230, 123)
-states/MainMenuOpen/node = SubResource("10")
-states/MainMenuOpen/position = Vector2(461, 123)
+states/OpenMainMenu/node = SubResource("10")
+states/OpenMainMenu/position = Vector2(461, 123)
 states/OpenSubMenu/node = SubResource("13")
-states/OpenSubMenu/position = Vector2(700, 123)
+states/OpenSubMenu/position = Vector2(712, 123)
 states/Start/position = Vector2(82, 123)
-transitions = ["Intro", "MainMenuOpen", SubResource("11"), "MainMenuOpen", "OpenSubMenu", SubResource("14"), "OpenSubMenu", "CloseSubMenu", SubResource("15"), "CloseSubMenu", "MainMenuOpen", SubResource("16"), "Start", "Intro", SubResource("AnimationNodeStateMachineTransition_j0orr")]
+transitions = ["Intro", "OpenMainMenu", SubResource("11"), "OpenMainMenu", "OpenSubMenu", SubResource("14"), "Start", "Intro", SubResource("AnimationNodeStateMachineTransition_j0orr"), "OpenSubMenu", "OpenMainMenu", SubResource("AnimationNodeStateMachineTransition_63dxc")]
+graph_offset = Vector2(51, 80)
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -336,9 +336,11 @@ libraries = {
 }
 
 [node name="MenuAnimationTree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2kqig")
+}
 tree_root = SubResource("8")
 anim_player = NodePath("../MenuAnimationPlayer")
-active = true
 parameters/conditions/intro_done = false
 
 [node name="VersionNameLabel" type="Label" parent="."]
