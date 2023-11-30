@@ -54,10 +54,10 @@ tracks/3/path = NodePath("MarginContainer/VBoxContainer/MenuMargin/MenuButtons:v
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 1.6),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false, true]
+"values": [true]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -66,10 +66,10 @@ tracks/4/path = NodePath("MarginContainer/VBoxContainer/MenuMargin/MenuButtons:m
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(1.6, 2.4),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 1.6, 2.4),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
