@@ -1,5 +1,10 @@
 #!/bin/bash
-# butler managing command
+# butler manager command
+# Uploads directories as builds to matching itch.io channels.
+# HTML5 => html5
+# Linux => linux
+# Windows => win
+# MacOS => osx
 
 file=upload_destination.txt
 directories=("HTML5" "Linux" "Windows" "MacOS")
@@ -25,7 +30,7 @@ if [ -z "$destination" ]; then
     destination="$user_input"
 fi
 
-# Check for the existence of directories and print mapped strings
+# Check for the existence of directories and upload contents
 for ((i=0; i<${#directories[@]}; i++)); do
     dir="${directories[i]}"
     channel="${channels[i]}"
