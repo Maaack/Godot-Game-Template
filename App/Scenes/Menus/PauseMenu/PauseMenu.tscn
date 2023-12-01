@@ -91,32 +91,33 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Exit Game"
 
-[node name="CenterContainer" type="CenterContainer" parent="Control"]
+[node name="SubMenuContainer" type="MarginContainer" parent="Control"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(360, 360)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_bottom = 24
 
-[node name="SubMenuContainer" type="VBoxContainer" parent="Control/CenterContainer"]
-unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(360, 360)
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/SubMenuContainer"]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="OptionsContainer" type="MarginContainer" parent="Control/CenterContainer/SubMenuContainer"]
+[node name="OptionsContainer" type="MarginContainer" parent="Control/SubMenuContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/CenterContainer/SubMenuContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/SubMenuContainer/VBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="BackButton" type="Button" parent="Control/CenterContainer/SubMenuContainer/HBoxContainer"]
+[node name="BackButton" type="Button" parent="Control/SubMenuContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(62, 40)
 layout_mode = 2
 text = "Back"
@@ -138,7 +139,7 @@ dialog_text = "Quit the game?"
 [connection signal="pressed" from="Control/MenuContainer/VBoxContainer/MenuButtons/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="Control/MenuContainer/VBoxContainer/MenuButtons/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
 [connection signal="pressed" from="Control/MenuContainer/VBoxContainer/MenuButtons/ExitButton" to="." method="_on_exit_button_pressed"]
-[connection signal="pressed" from="Control/CenterContainer/SubMenuContainer/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="Control/SubMenuContainer/VBoxContainer/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="confirmed" from="Control/ConfirmRestart" to="." method="_on_confirm_restart_confirmed"]
 [connection signal="confirmed" from="Control/ConfirmMainMenu" to="." method="_on_confirm_main_menu_confirmed"]
 [connection signal="confirmed" from="Control/ConfirmExit" to="." method="_on_confirm_exit_confirmed"]

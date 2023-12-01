@@ -11,8 +11,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_bottom = 16
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_bottom = 24
 script = ExtResource("1")
 audio_control_scene = ExtResource("2_0jh6g")
 
