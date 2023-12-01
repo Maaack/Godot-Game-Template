@@ -29,6 +29,21 @@ size_flags_horizontal = 3
 text = "Fullscreen :"
 
 [node name="FullscreenButton" type="CheckButton" parent="VBoxContainer/FullscreenControl"]
+unique_name_in_owner = true
 layout_mode = 2
 
-[connection signal="toggled" from="VBoxContainer/FullscreenControl/FullscreenButton" to="." method="_on_FullscreenButton_toggled"]
+[node name="ResolutionControl" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="ResolutionLabel" type="Label" parent="VBoxContainer/ResolutionControl"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Resolution :"
+
+[node name="ResolutionOptions" type="OptionButton" parent="VBoxContainer/ResolutionControl"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[connection signal="toggled" from="VBoxContainer/FullscreenControl/FullscreenButton" to="." method="_on_fullscreen_button_toggled"]
+[connection signal="item_selected" from="VBoxContainer/ResolutionControl/ResolutionOptions" to="." method="_on_resolution_options_item_selected"]
