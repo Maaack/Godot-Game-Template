@@ -76,6 +76,8 @@ The remaining instructions will apply the same for either folder you decide to u
 
 The pause menu feature can be removed if not used. From the `App/` folder, delete `PauseMenu/*`, `PauseMenuController.gd`, and `InGameMenuController.gd`. The last will need to be removed from the project's autoload, as well.
 
+Lastly, this `README.md` and the `Media/` directory can both be removed.
+
 ### New Project
 These instructions assume starting with the entire contents of the project folder.
   
