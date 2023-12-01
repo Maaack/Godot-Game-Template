@@ -20,6 +20,11 @@ config/icon="res://icon.png"
 InGameMenuController="*res://App/Scripts/InGameMenuController.gd"
 SceneLoader="*res://App/Scripts/SceneLoader.gd"
 
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+
 [gui]
 
 theme/custom="res://App/Themes/BaseTheme.tres"
