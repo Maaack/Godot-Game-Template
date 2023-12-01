@@ -36,6 +36,9 @@ func _update_ui():
 	var current_resolution : Vector2i = window.size
 	fullscreen_button.button_pressed = AppSettings.is_fullscreen(window)
 	_preselect_resolution(window)
+	if OS.has_feature("web"):
+		resolution_options.disabled = true
+		resolution_options.tooltip_text = "Disabled for web"
 
 func _ready():
 	_update_ui()
