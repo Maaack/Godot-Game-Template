@@ -1,16 +1,51 @@
 extends Control
 
-const FULLSCREEN_ENABLED = 'FullscreenEnabled'
-const VIDEO_SECTION = 'VideoSettings'
+@export var resolutions_array : Array[Vector2i] = [
+	Vector2i(640, 360),
+	Vector2i(960, 540),
+	Vector2i(1024, 576),
+	Vector2i(1280, 720),
+	Vector2i(1600, 900),
+	Vector2i(1920, 1080),
+	Vector2i(2048, 1152),
+	Vector2i(2560, 1440),
+	Vector2i(3200, 1800),
+]
 
-@onready var fullscreen_button = $VBoxContainer/FullscreenControl/FullscreenButton
+@onready var fullscreen_button = %FullscreenButton
+@onready var resolution_options = %ResolutionOptions
+@onready var user_resolutions_array : Array[Vector2i] = resolutions_array.duplicate()
+
+func _preselect_resolution(window : Window):
+	var current_resolution : Vector2i = window.size
+	if not current_resolution in user_resolutions_array:
+		user_resolutions_array.append(current_resolution)
+		user_resolutions_array.sort()
+	resolution_options.clear()
+	for resolution in user_resolutions_array:
+		var resolution_string : String = "%d x %d" % [resolution.x, resolution.y]
+		resolution_options.add_item(resolution_string)
+		if not resolution in resolutions_array:
+			var last_index : int = resolution_options.item_count - 1
+			resolution_options.set_item_disabled(last_index, true)
+	var current_resolution_index : int = user_resolutions_array.find(current_resolution)
+	resolution_options.select(current_resolution_index)
 
 func _update_ui():
-	fullscreen_button.button_pressed = ((get_window().mode == Window.MODE_EXCLUSIVE_FULLSCREEN) or (get_window().mode == Window.MODE_FULLSCREEN))
+	var window : Window = get_window()
+	var current_resolution : Vector2i = window.size
+	fullscreen_button.button_pressed = AppSettings.is_fullscreen(window)
+	_preselect_resolution(window)
 
 func _ready():
 	_update_ui()
+	var window : Window = get_window()
+	window.connect("size_changed", _preselect_resolution.bind(window))
 
-func _on_FullscreenButton_toggled(button_pressed):
-	AppSettings.set_fullscreen_enabled(button_pressed, get_window())
+func _on_fullscreen_button_toggled(toggled_on):
+	AppSettings.set_fullscreen_enabled(toggled_on, get_window())
 
+func _on_resolution_options_item_selected(index):
+	if index < 0 or index >= user_resolutions_array.size():
+		return
+	AppSettings.set_resolution(user_resolutions_array[index], get_window())

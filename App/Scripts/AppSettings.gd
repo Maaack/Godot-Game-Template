@@ -6,6 +6,7 @@ const AUDIO_SECTION = 'AudioSettings'
 const VIDEO_SECTION = 'VideoSettings'
 
 const FULLSCREEN_ENABLED = 'FullscreenEnabled'
+const SCREEN_RESOLUTION = 'ScreenResolution'
 const MUTE_SETTING = 'Mute'
 const MASTER_BUS_INDEX = 0
 
@@ -114,6 +115,12 @@ static func set_fullscreen_enabled(value : bool, window : Window) -> void:
 	window.mode = Window.MODE_EXCLUSIVE_FULLSCREEN if (value) else Window.MODE_WINDOWED
 	Config.set_config(VIDEO_SECTION, FULLSCREEN_ENABLED, value)
 
+static func set_resolution(value : Vector2i, window : Window) -> void:
+	if value.x == 0 or value.y == 0:
+		return
+	window.size = value
+	Config.set_config(VIDEO_SECTION, SCREEN_RESOLUTION, value)
+
 static func reset_video_config(window : Window) -> void:
 	Config.set_config(VIDEO_SECTION, FULLSCREEN_ENABLED, ((window.mode == Window.MODE_EXCLUSIVE_FULLSCREEN) or (window.mode == Window.MODE_FULLSCREEN)))
 
@@ -121,9 +128,12 @@ static func is_fullscreen(window : Window) -> bool:
 	return (window.mode == Window.MODE_EXCLUSIVE_FULLSCREEN) or (window.mode == Window.MODE_FULLSCREEN)
 
 static func set_video_from_config(window : Window) -> void:
-	var fullscreen_enabled : bool = (window.mode == Window.MODE_EXCLUSIVE_FULLSCREEN) or (window.mode == Window.MODE_FULLSCREEN)
+	var fullscreen_enabled : bool = is_fullscreen(window)
+	var current_resolution : Vector2i = window.size
 	fullscreen_enabled = Config.get_config(VIDEO_SECTION, FULLSCREEN_ENABLED, fullscreen_enabled)
+	current_resolution = Config.get_config(VIDEO_SECTION, SCREEN_RESOLUTION, current_resolution)
 	window.mode = Window.MODE_EXCLUSIVE_FULLSCREEN if (fullscreen_enabled) else Window.MODE_WINDOWED
+	window.size = current_resolution
 
 # All
 
