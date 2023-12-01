@@ -127,14 +127,19 @@ static func reset_video_config(window : Window) -> void:
 static func is_fullscreen(window : Window) -> bool:
 	return (window.mode == Window.MODE_EXCLUSIVE_FULLSCREEN) or (window.mode == Window.MODE_FULLSCREEN)
 
+static func get_resolution(window : Window) -> Vector2i:
+	var current_resolution : Vector2i = window.size
+	current_resolution = Config.get_config(VIDEO_SECTION, SCREEN_RESOLUTION, current_resolution)
+	return current_resolution
+
 static func set_video_from_config(window : Window) -> void:
 	var fullscreen_enabled : bool = is_fullscreen(window)
-	var current_resolution : Vector2i = window.size
 	fullscreen_enabled = Config.get_config(VIDEO_SECTION, FULLSCREEN_ENABLED, fullscreen_enabled)
-	current_resolution = Config.get_config(VIDEO_SECTION, SCREEN_RESOLUTION, current_resolution)
-	window.mode = Window.MODE_EXCLUSIVE_FULLSCREEN if (fullscreen_enabled) else Window.MODE_WINDOWED
-	window.size = current_resolution
-
+	set_fullscreen_enabled(fullscreen_enabled, window)
+	if not (fullscreen_enabled or OS.has_feature("web")):
+		var current_resolution : Vector2i = get_resolution(window)
+		set_resolution(current_resolution, window)
+		
 # All
 
 static func set_from_config() -> void:

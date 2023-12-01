@@ -31,22 +31,32 @@ func _preselect_resolution(window : Window):
 	var current_resolution_index : int = user_resolutions_array.find(current_resolution)
 	resolution_options.select(current_resolution_index)
 
-func _update_ui():
-	var window : Window = get_window()
-	var current_resolution : Vector2i = window.size
-	fullscreen_button.button_pressed = AppSettings.is_fullscreen(window)
-	_preselect_resolution(window)
+func _update_resolution_options_enabled(window : Window):
 	if OS.has_feature("web"):
 		resolution_options.disabled = true
 		resolution_options.tooltip_text = "Disabled for web"
+	elif AppSettings.is_fullscreen(window):
+		resolution_options.disabled = true
+		resolution_options.tooltip_text = "Disabled for fullscreen"
+	else:
+		resolution_options.disabled = false
+		resolution_options.tooltip_text = "Select a screen size"
+
+func _update_ui(window : Window):
+	var current_resolution : Vector2i = window.size
+	fullscreen_button.button_pressed = AppSettings.is_fullscreen(window)
+	_preselect_resolution(window)
+	_update_resolution_options_enabled(window)
 
 func _ready():
-	_update_ui()
 	var window : Window = get_window()
+	_update_ui(window)
 	window.connect("size_changed", _preselect_resolution.bind(window))
 
 func _on_fullscreen_button_toggled(toggled_on):
-	AppSettings.set_fullscreen_enabled(toggled_on, get_window())
+	var window : Window = get_window()
+	AppSettings.set_fullscreen_enabled(toggled_on, window)
+	_update_resolution_options_enabled(window)
 
 func _on_resolution_options_item_selected(index):
 	if index < 0 or index >= user_resolutions_array.size():
