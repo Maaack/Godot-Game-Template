@@ -67,9 +67,9 @@ func _on_confirm_restart_confirmed():
 	InGameMenuController.close_menu()
 
 func _on_confirm_main_menu_confirmed():
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	SceneLoader.load_scene(main_menu_scene)
 	InGameMenuController.close_menu()
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _on_confirm_exit_confirmed():
 	get_tree().quit()

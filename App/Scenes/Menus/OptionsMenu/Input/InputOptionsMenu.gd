@@ -118,6 +118,7 @@ func _remove_input_event_from_action(input_event : InputEvent, action_name : Str
 	AppSettings.remove_action_input_event(action_name, input_event)
 
 func _build_assigned_input_events():
+	assigned_input_events.clear()
 	var action_names : Array[StringName] = AppSettings.get_filtered_action_names()
 	for action_name in action_names:
 		var input_events = InputMap.action_get_events(action_name)
@@ -181,6 +182,7 @@ func _on_tree_button_clicked(item, _column, _id, _mouse_button_index):
 
 func _on_reset_button_pressed():
 	AppSettings.reset_to_default_inputs()
+	_build_assigned_input_events()
 	_build_ui_tree()
 
 func _on_tree_item_activated():
