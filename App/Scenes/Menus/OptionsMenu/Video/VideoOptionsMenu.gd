@@ -10,6 +10,7 @@ extends Control
 	Vector2i(2048, 1152),
 	Vector2i(2560, 1440),
 	Vector2i(3200, 1800),
+	Vector2i(3840, 2160),
 ]
 
 @onready var fullscreen_button = %FullscreenButton
