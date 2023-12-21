@@ -5,6 +5,10 @@ const MAX_DEPTH = 16
 
 @export var root_path : NodePath = ^".."
 @export var audio_bus : StringName = &"SFX"
+@export var persistent : bool = true :
+	set(value):
+		persistent = value
+		_update_persistent_signals()
 
 @export_category("Button Sounds")
 @export var button_hover : AudioStream
@@ -25,6 +29,17 @@ var button_click_player : AudioStreamPlayer
 var tab_hover_player : AudioStreamPlayer
 var tab_changed_player : AudioStreamPlayer
 var tab_selected_player : AudioStreamPlayer
+
+func _update_persistent_signals():
+	if not is_inside_tree():
+		return
+	var tree_node = get_tree()
+	if persistent:
+		if not tree_node.node_added.is_connected(connect_ui_sounds):
+			tree_node.node_added.connect(connect_ui_sounds)
+	else:
+		if tree_node.node_added.is_connected(connect_ui_sounds):
+			tree_node.node_added.disconnect(connect_ui_sounds)
 
 func _build_stream_player(stream: AudioStream):
 	var stream_player : AudioStreamPlayer
@@ -81,4 +96,4 @@ func _recurive_connect_ui_sounds(current_node: Node, current_depth : int = 0) ->
 func _ready() -> void:
 	_build_all_stream_players()
 	_recurive_connect_ui_sounds(root_node)
-	get_tree().node_added.connect(connect_ui_sounds)
+	persistent = persistent
