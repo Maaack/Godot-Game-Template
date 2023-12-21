@@ -11,33 +11,33 @@ const MAX_DEPTH = 16
 		_update_persistent_signals()
 
 @export_category("Button Sounds")
-@export var button_hover : AudioStream
-@export var button_focus : AudioStream
-@export var button_click : AudioStream
+@export var button_hovered : AudioStream
+@export var button_focused : AudioStream
+@export var button_pressed : AudioStream
 
 @export_category("Tab Sounds")
-@export var tab_hover : AudioStream
+@export var tab_hovered : AudioStream
 @export var tab_changed : AudioStream
 @export var tab_selected : AudioStream
 
 @export_category("Slider Sounds")
-@export var slider_hover : AudioStream
-@export var slider_focus : AudioStream
+@export var slider_hovered : AudioStream
+@export var slider_focused : AudioStream
 @export var slider_drag_started : AudioStream
 @export var slider_drag_ended : AudioStream
 
 @onready var root_node : Node = get_node(root_path)
 
-var button_hover_player : AudioStreamPlayer
-var button_focus_player : AudioStreamPlayer
-var button_click_player : AudioStreamPlayer
+var button_hovered_player : AudioStreamPlayer
+var button_focused_player : AudioStreamPlayer
+var button_pressed_player : AudioStreamPlayer
 
-var tab_hover_player : AudioStreamPlayer
+var tab_hovered_player : AudioStreamPlayer
 var tab_changed_player : AudioStreamPlayer
 var tab_selected_player : AudioStreamPlayer
 
-var slider_hover_player : AudioStreamPlayer
-var slider_focus_player : AudioStreamPlayer
+var slider_hovered_player : AudioStreamPlayer
+var slider_focused_player : AudioStreamPlayer
 var slider_drag_started_player : AudioStreamPlayer
 var slider_drag_ended_player : AudioStreamPlayer
 
@@ -63,18 +63,18 @@ func _build_stream_player(stream : AudioStream, stream_name : String = ""):
 	return stream_player
 
 func _build_button_stream_players():
-	button_hover_player = _build_stream_player(button_hover, "ButtonHover")
-	button_focus_player = _build_stream_player(button_focus, "ButtonFocus")
-	button_click_player = _build_stream_player(button_click, "ButtonClick")
+	button_hovered_player = _build_stream_player(button_hovered, "ButtonHovered")
+	button_focused_player = _build_stream_player(button_focused, "ButtonFocused")
+	button_pressed_player = _build_stream_player(button_pressed, "ButtonClicked")
 
 func _build_tab_stream_players():
-	tab_hover_player = _build_stream_player(tab_hover, "TabHovered")
+	tab_hovered_player = _build_stream_player(tab_hovered, "TabHovered")
 	tab_changed_player = _build_stream_player(tab_changed, "TabChanged")
 	tab_selected_player = _build_stream_player(tab_selected, "TabSelected")
 
 func _build_slider_stream_players():
-	slider_hover_player = _build_stream_player(slider_hover, "SliderHover")
-	slider_focus_player = _build_stream_player(slider_focus, "SliderFocus")
+	slider_hovered_player = _build_stream_player(slider_hovered, "SliderHovered")
+	slider_focused_player = _build_stream_player(slider_focused, "SliderFocused")
 	slider_drag_started_player = _build_stream_player(slider_drag_started, "SliderDragStarted")
 	slider_drag_ended_player = _build_stream_player(slider_drag_ended, "SliderDragEnded")
 
@@ -100,16 +100,16 @@ func _connect_signal_stream_players(node : Node, stream_player : AudioStreamPlay
 
 func connect_ui_sounds(node: Node) -> void:
 	if node is Button:
-		_connect_signal_stream_players(node, button_hover_player, &"mouse_entered", _play_stream)
-		_connect_signal_stream_players(node, button_focus_player, &"focus_entered", _play_stream)
-		_connect_signal_stream_players(node, button_click_player, &"pressed", _play_stream)
+		_connect_signal_stream_players(node, button_hovered_player, &"mouse_entered", _play_stream)
+		_connect_signal_stream_players(node, button_focused_player, &"focus_entered", _play_stream)
+		_connect_signal_stream_players(node, button_pressed_player, &"pressed", _play_stream)
 	elif node is TabBar:
-		_connect_signal_stream_players(node, tab_hover_player, &"tab_hovered", _tab_event_play_stream)
+		_connect_signal_stream_players(node, tab_hovered_player, &"tab_hovered", _tab_event_play_stream)
 		_connect_signal_stream_players(node, tab_changed_player, &"tab_changed", _tab_event_play_stream)
 		_connect_signal_stream_players(node, tab_selected_player, &"tab_selected", _tab_event_play_stream)
 	elif node is Slider:
-		_connect_signal_stream_players(node, slider_hover_player, &"mouse_entered", _play_stream)
-		_connect_signal_stream_players(node, slider_focus_player, &"focus_entered", _play_stream)
+		_connect_signal_stream_players(node, slider_hovered_player, &"mouse_entered", _play_stream)
+		_connect_signal_stream_players(node, slider_focused_player, &"focus_entered", _play_stream)
 		_connect_signal_stream_players(node, slider_drag_started_player, &"drag_started", _play_stream)
 		_connect_signal_stream_players(node, slider_drag_ended_player, &"drag_ended", _slider_drag_ended_play_stream)
 
