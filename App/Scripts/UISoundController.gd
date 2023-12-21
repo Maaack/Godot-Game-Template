@@ -83,6 +83,8 @@ func _build_all_stream_players():
 	_build_slider_stream_players()
 
 func _play_stream(stream_player : AudioStreamPlayer):
+	if not stream_player.is_inside_tree():
+		return
 	stream_player.play()
 
 func _tab_event_play_stream(_tab_idx : int, stream_player : AudioStreamPlayer):
