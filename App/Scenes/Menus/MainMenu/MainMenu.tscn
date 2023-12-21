@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bvwl11s2p0hd" path="res://App/Scenes/Menus/OptionsMenu/MasterOptionsMenu.tscn" id="2_ewwbc"]
 [ext_resource type="PackedScene" uid="uid://t2dui8ppm3a4" path="res://App/Scenes/Credits/Credits.tscn" id="3_lcwf5"]
 [ext_resource type="Script" path="res://App/Scripts/CaptureFocus.gd" id="4_l1ebe"]
-[ext_resource type="PackedScene" uid="uid://doj1dmgtf0a71" path="res://App/Scenes/UI/SoundButton/SoundButton.tscn" id="5"]
+[ext_resource type="Script" path="res://App/Scripts/UISoundController.gd" id="6_bs342"]
 
 [sub_resource type="Animation" id="1"]
 resource_name = "Intro"
@@ -379,36 +379,34 @@ theme_override_constants/margin_bottom = 16
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_constants/separation = 16
 alignment = 1
 script = ExtResource("4_l1ebe")
 
-[node name="PlayButton" parent="MarginContainer/VBoxContainer/MenuMargin/MenuButtons" instance=ExtResource("5")]
+[node name="PlayButton" type="Button" parent="MarginContainer/VBoxContainer/MenuMargin/MenuButtons"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
-size_flags_horizontal = 4
 text = "Play"
 
-[node name="OptionsButton" parent="MarginContainer/VBoxContainer/MenuMargin/MenuButtons" instance=ExtResource("5")]
+[node name="OptionsButton" type="Button" parent="MarginContainer/VBoxContainer/MenuMargin/MenuButtons"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
-size_flags_horizontal = 4
-text = "Options"
+text = "Options
+"
 
-[node name="CreditsButton" parent="MarginContainer/VBoxContainer/MenuMargin/MenuButtons" instance=ExtResource("5")]
+[node name="CreditsButton" type="Button" parent="MarginContainer/VBoxContainer/MenuMargin/MenuButtons"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
-size_flags_horizontal = 4
 text = "Credits"
 
-[node name="ExitButton" parent="MarginContainer/VBoxContainer/MenuMargin/MenuButtons" instance=ExtResource("5")]
+[node name="ExitButton" type="Button" parent="MarginContainer/VBoxContainer/MenuMargin/MenuButtons"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
-size_flags_horizontal = 4
 text = "Exit"
 
 [node name="OptionsContainer" type="MarginContainer" parent="."]
@@ -446,16 +444,21 @@ theme_override_constants/margin_bottom = 16
 layout_mode = 2
 mouse_filter = 2
 
-[node name="BackButton" parent="FlowControlContainer/FlowControl" instance=ExtResource("5")]
+[node name="BackButton" type="Button" parent="FlowControlContainer/FlowControl"]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(62, 40)
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_top = -40.0
 offset_right = 62.0
+grow_vertical = 0
 text = "Back"
+
+[node name="UISoundController" type="Node" parent="."]
+script = ExtResource("6_bs342")
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MenuMargin/MenuButtons/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MenuMargin/MenuButtons/OptionsButton" to="." method="_on_options_button_pressed"]

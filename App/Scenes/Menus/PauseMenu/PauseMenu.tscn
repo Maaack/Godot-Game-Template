@@ -1,16 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://cdwvtbtwmrqbn"]
+[gd_scene load_steps=4 format=3 uid="uid://cdwvtbtwmrqbn"]
 
 [ext_resource type="Script" path="res://App/Scenes/Menus/PauseMenu/PauseMenu.gd" id="2"]
-[ext_resource type="PackedScene" uid="uid://vh1ucj2rfbby" path="res://App/Scenes/Menus/OptionsMenu/OptionsMenu.tscn" id="2_gvw4i"]
 [ext_resource type="Script" path="res://App/Scripts/CaptureFocus.gd" id="3_43rgy"]
-[ext_resource type="PackedScene" uid="uid://doj1dmgtf0a71" path="res://App/Scenes/UI/SoundButton/SoundButton.tscn" id="4"]
+[ext_resource type="Script" path="res://App/Scripts/UISoundController.gd" id="3_hgthy"]
 
 [node name="PauseMenu" type="CanvasLayer"]
 process_mode = 3
 layer = 100
 script = ExtResource("2")
-options_packed_scene = ExtResource("2_gvw4i")
-main_menu_scene = "res://App/Scenes/Menus/MainMenu/MainMenu.tscn"
 
 [node name="Background" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -53,42 +50,38 @@ horizontal_alignment = 1
 
 [node name="MenuButtons" type="VBoxContainer" parent="Control/MenuContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 3
 theme_override_constants/separation = 16
 alignment = 1
 script = ExtResource("3_43rgy")
 
-[node name="ResumeButton" parent="Control/MenuContainer/VBoxContainer/MenuButtons" instance=ExtResource("4")]
+[node name="ResumeButton" type="Button" parent="Control/MenuContainer/VBoxContainer/MenuButtons"]
 custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
-size_flags_horizontal = 4
 text = "Resume"
 
-[node name="RestartButton" parent="Control/MenuContainer/VBoxContainer/MenuButtons" instance=ExtResource("4")]
+[node name="RestartButton" type="Button" parent="Control/MenuContainer/VBoxContainer/MenuButtons"]
 custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
-size_flags_horizontal = 4
 text = "Restart"
 
-[node name="OptionsButton" parent="Control/MenuContainer/VBoxContainer/MenuButtons" instance=ExtResource("4")]
+[node name="OptionsButton" type="Button" parent="Control/MenuContainer/VBoxContainer/MenuButtons"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
-size_flags_horizontal = 4
 text = "Options"
 
-[node name="MainMenuButton" parent="Control/MenuContainer/VBoxContainer/MenuButtons" instance=ExtResource("4")]
+[node name="MainMenuButton" type="Button" parent="Control/MenuContainer/VBoxContainer/MenuButtons"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
-size_flags_horizontal = 4
 text = "Main Menu"
 
-[node name="ExitButton" parent="Control/MenuContainer/VBoxContainer/MenuButtons" instance=ExtResource("4")]
+[node name="ExitButton" type="Button" parent="Control/MenuContainer/VBoxContainer/MenuButtons"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
-size_flags_horizontal = 4
 text = "Exit Game"
 
 [node name="SubMenuContainer" type="MarginContainer" parent="Control"]
@@ -133,6 +126,9 @@ dialog_text = "Go back to main menu?"
 [node name="ConfirmExit" type="ConfirmationDialog" parent="Control"]
 unique_name_in_owner = true
 dialog_text = "Quit the game?"
+
+[node name="UISoundController" type="Node" parent="."]
+script = ExtResource("3_hgthy")
 
 [connection signal="pressed" from="Control/MenuContainer/VBoxContainer/MenuButtons/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="Control/MenuContainer/VBoxContainer/MenuButtons/RestartButton" to="." method="_on_restart_button_pressed"]
