@@ -29,6 +29,7 @@ The `App/` folder holds the core components of the menus application.
 -   Simple Config Interface
 -   Keyboard/Mouse Support
 -   Gamepad Support
+-   Centralized UI Sound Control
 
 ### Extras
 
@@ -53,6 +54,7 @@ The `Extras/` folder holds components that extend the core application.
 - `Opening.tscn` is a simple scene for fading in/out a few images at the start of the game. It then loads the next scene (`MainMenu.tscn`).  
 - `MainMenu.tscn` is where a player can start the game, change settings, watch credits, or quit. It can link to the path of a game scene to play, and the packed scene of an options menu to use.  
 - `Credits.tscn` reads from `ATTRIBUTION.md` to automatically generate the content for it's scrolling text label.  
+- `UISoundController.gd` will automatically attach sounds to buttons, tab bars, sliders, and line edits in the scene. `UISoundControllerAutoload.tscn` can be enabled in the project autoloads to apply settings project-wide.
 - `PauseMenu.tscn` works with `PauseMenuController.gd` and `InGameMenuController.gd`. `InGameMenuController.gd` needs to be set to autoload, and `PauseMenuController` is added onto a Node in a scene expected to be run in-game. Triggering `ui-cancel` in that scene will then bring up `PauseMenu.tscn` on a higher canvas layer.
 
 ## Usage
@@ -93,6 +95,7 @@ These instructions assume starting with the entire contents of the project folde
     6.  Update the `Text` to `"Game Name"`.
     7.  Save the scene.
 
+
 2.  Point the main menu to the game scene.
     
 
@@ -100,6 +103,7 @@ These instructions assume starting with the entire contents of the project folde
     2.  Select the `MainMenu` node.
     3.  Update `Game Scene Path` to the path of “Game Name” game scene.
     4.  Save the scene.
+
 
 3.  Update the project’s inputs.
     
@@ -114,7 +118,30 @@ These instructions assume starting with the entire contents of the project folde
     8.  Save the scene.
     
 
-4.  Update the game credits / attribution.
+4.  Add sound effects to the UI.
+
+
+    1.  By scene.
+
+
+        1.  Open `MainMenu.tscn` and `PauseMenu.tscn`.
+        2.  Select the `UISoundController` node.
+        3.  Add audio streams to the various UI node events.
+        4.  Save the scenes.
+   
+    2.  Project-wide.
+
+
+        1.  Open `UISoundControllerAutoload.tscn`.
+        2.  Select the `UISoundController` node.
+        3.  Add audio streams to the various UI node events.
+        4.  Save the scene.
+        5.  Go to `Project > Project Settings… > Autoload`.
+        6.  Enable `UISoundControllerAutoload`.
+        7.  Close the window.
+
+
+5.  Update the game credits / attribution.
     
 
     1.  Copy `ATTRIBUTION_example.md` over `ATTRIBUTION.md`.
@@ -179,7 +206,31 @@ For an existing project, just copy over the `App/` folder (optionally the `Extra
     4.  Update the `Add Button Texture` and `Remove Button Texture` with textures.
     5.  Save the scene.
 
-6.  Update the game credits / attribution.
+
+6.  Add sound effects to the UI.
+
+
+    1.  By scene.
+
+
+        1.  Open `MainMenu.tscn` and `PauseMenu.tscn`.
+        2.  Select the `UISoundController` node.
+        3.  Add audio streams to the various UI node events.
+        4.  Save the scenes.
+   
+    2.  Project-wide.
+
+
+        1.  Open `UISoundControllerAutoload.tscn`.
+        2.  Select the `UISoundController` node.
+        3.  Add audio streams to the various UI node events.
+        4.  Save the scene.
+        5.  Go to `Project > Project Settings… > Autoload`.
+        6.  Enable `UISoundControllerAutoload`.
+        7.  Close the window.
+   
+
+7.  Update the game credits / attribution.
     
 
     1.  Copy `ATTRIBUTION_example.md` over `ATTRIBUTION.md`.
