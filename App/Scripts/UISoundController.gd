@@ -15,7 +15,7 @@ const MAX_DEPTH = 16
 @export var button_focused : AudioStream
 @export var button_pressed : AudioStream
 
-@export_group("Tab Bar Sounds")
+@export_group("TabBar Sounds")
 @export var tab_hovered : AudioStream
 @export var tab_changed : AudioStream
 @export var tab_selected : AudioStream
@@ -25,6 +25,13 @@ const MAX_DEPTH = 16
 @export var slider_focused : AudioStream
 @export var slider_drag_started : AudioStream
 @export var slider_drag_ended : AudioStream
+
+@export_group("LineEdit Sounds")
+@export var line_hovered : AudioStream
+@export var line_focused : AudioStream
+@export var line_text_changed : AudioStream
+@export var line_text_submitted : AudioStream
+@export var line_text_change_rejected : AudioStream
 
 @onready var root_node : Node = get_node(root_path)
 
@@ -40,6 +47,12 @@ var slider_hovered_player : AudioStreamPlayer
 var slider_focused_player : AudioStreamPlayer
 var slider_drag_started_player : AudioStreamPlayer
 var slider_drag_ended_player : AudioStreamPlayer
+
+var line_hovered_player : AudioStreamPlayer
+var line_focused_player : AudioStreamPlayer
+var line_text_changed_player : AudioStreamPlayer
+var line_text_submitted_player : AudioStreamPlayer
+var line_text_change_rejected_player : AudioStreamPlayer
 
 func _update_persistent_signals():
 	if not is_inside_tree():
@@ -78,10 +91,18 @@ func _build_slider_stream_players():
 	slider_drag_started_player = _build_stream_player(slider_drag_started, "SliderDragStarted")
 	slider_drag_ended_player = _build_stream_player(slider_drag_ended, "SliderDragEnded")
 
+func _build_line_stream_players():
+	line_hovered_player = _build_stream_player(line_hovered, "LineHovered")
+	line_focused_player = _build_stream_player(line_focused, "LineFocused")
+	line_text_changed_player = _build_stream_player(line_text_changed, "LineTextChanged")
+	line_text_submitted_player = _build_stream_player(line_text_submitted, "LineTextSubmitted")
+	line_text_change_rejected_player = _build_stream_player(line_text_change_rejected, "LineTextChangeRejected")
+
 func _build_all_stream_players():
 	_build_button_stream_players()
 	_build_tab_stream_players()
 	_build_slider_stream_players()
+	_build_line_stream_players()
 
 func _play_stream(stream_player : AudioStreamPlayer):
 	if not stream_player.is_inside_tree():
@@ -92,6 +113,9 @@ func _tab_event_play_stream(_tab_idx : int, stream_player : AudioStreamPlayer):
 	_play_stream(stream_player)
 
 func _slider_drag_ended_play_stream(_value_changed : bool, stream_player : AudioStreamPlayer):
+	_play_stream(stream_player)
+
+func _line_event_play_stream(_new_text : String, stream_player : AudioStreamPlayer):
 	_play_stream(stream_player)
 
 func _connect_signal_stream_players(node : Node, stream_player : AudioStreamPlayer, signal_name : StringName, callable : Callable) -> void:
@@ -112,6 +136,12 @@ func connect_ui_sounds(node: Node) -> void:
 		_connect_signal_stream_players(node, slider_focused_player, &"focus_entered", _play_stream)
 		_connect_signal_stream_players(node, slider_drag_started_player, &"drag_started", _play_stream)
 		_connect_signal_stream_players(node, slider_drag_ended_player, &"drag_ended", _slider_drag_ended_play_stream)
+	elif node is LineEdit:
+		_connect_signal_stream_players(node, line_hovered_player, &"mouse_entered", _play_stream)
+		_connect_signal_stream_players(node, line_focused_player, &"focus_entered", _play_stream)
+		_connect_signal_stream_players(node, line_text_changed_player, &"text_changed", _line_event_play_stream)
+		_connect_signal_stream_players(node, line_text_submitted_player, &"text_submitted", _line_event_play_stream)
+		_connect_signal_stream_players(node, line_text_change_rejected_player, &"text_change_rejected", _line_event_play_stream)
 
 func _recurive_connect_ui_sounds(current_node: Node, current_depth : int = 0) -> void:
 	if current_depth >= MAX_DEPTH:
