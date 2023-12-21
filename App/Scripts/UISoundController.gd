@@ -70,21 +70,19 @@ func _play_stream(stream_player : AudioStreamPlayer):
 func _tab_play_stream(_tab_idx : int, stream_player : AudioStreamPlayer):
 	_play_stream(stream_player)
 
+func _connect_signal_stream_players(node : Node, stream_player : AudioStreamPlayer, signal_name : StringName, callable : Callable) -> void:
+	if stream_player != null and not node.is_connected(signal_name, callable.bind(stream_player)):
+		node.connect(signal_name, callable.bind(stream_player))
+
 func connect_ui_sounds(node: Node) -> void:
 	if node is Button:
-		if button_hover_player != null and not node.mouse_entered.is_connected(_play_stream.bind(button_hover_player)):
-			node.mouse_entered.connect(_play_stream.bind(button_hover_player))
-		if button_focus_player != null and not node.focus_entered.is_connected(_play_stream.bind(button_focus_player)):
-			node.focus_entered.connect(_play_stream.bind(button_focus_player))
-		if button_click_player != null and not node.pressed.is_connected(_play_stream.bind(button_click_player)):
-			node.pressed.connect(_play_stream.bind(button_click_player))
+		_connect_signal_stream_players(node, button_hover_player, &"mouse_entered", _play_stream)
+		_connect_signal_stream_players(node, button_focus_player, &"focus_entered", _play_stream)
+		_connect_signal_stream_players(node, button_click_player, &"pressed", _play_stream)
 	elif node is TabBar:
-		if tab_hover_player != null and not node.tab_hovered.is_connected(_tab_play_stream.bind(tab_hover_player)):
-			node.tab_hovered.connect(_tab_play_stream.bind(tab_hover_player))
-		if tab_changed_player != null and not node.tab_changed.is_connected(_tab_play_stream.bind(tab_changed_player)):
-			node.tab_changed.connect(_tab_play_stream.bind(tab_changed_player))
-		if tab_selected_player != null and not node.tab_selected.is_connected(_tab_play_stream.bind(tab_selected_player)):
-			node.tab_selected.connect(_tab_play_stream.bind(tab_selected_player))
+		_connect_signal_stream_players(node, tab_hover_player, &"tab_hovered", _tab_play_stream)
+		_connect_signal_stream_players(node, tab_changed_player, &"tab_changed", _tab_play_stream)
+		_connect_signal_stream_players(node, tab_selected_player, &"tab_selected", _tab_play_stream)
 
 func _recurive_connect_ui_sounds(current_node: Node, current_depth : int = 0) -> void:
 	if current_depth >= MAX_DEPTH:
