@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://App/Scenes/Menus/PauseMenu/PauseMenu.gd" id="2"]
 [ext_resource type="Script" path="res://App/Scripts/CaptureFocus.gd" id="3_43rgy"]
-[ext_resource type="Script" path="res://App/Scripts/ButtonSoundController.gd" id="3_hgthy"]
+[ext_resource type="Script" path="res://App/Scripts/UISoundController.gd" id="3_hgthy"]
 
 [node name="PauseMenu" type="CanvasLayer"]
 process_mode = 3

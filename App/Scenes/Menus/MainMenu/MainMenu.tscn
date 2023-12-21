@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bvwl11s2p0hd" path="res://App/Scenes/Menus/OptionsMenu/MasterOptionsMenu.tscn" id="2_ewwbc"]
 [ext_resource type="PackedScene" uid="uid://t2dui8ppm3a4" path="res://App/Scenes/Credits/Credits.tscn" id="3_lcwf5"]
 [ext_resource type="Script" path="res://App/Scripts/CaptureFocus.gd" id="4_l1ebe"]
-[ext_resource type="Script" path="res://App/Scripts/ButtonSoundController.gd" id="6_bs342"]
+[ext_resource type="Script" path="res://App/Scripts/UISoundController.gd" id="6_bs342"]
 
 [sub_resource type="Animation" id="1"]
 resource_name = "Intro"

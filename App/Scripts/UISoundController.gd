@@ -1,5 +1,5 @@
 extends Node
-class_name ButtonSoundController
+class_name UISoundController
 
 @export var root_path : NodePath = ^".."
 @export var audio_bus : StringName = &"SFX"

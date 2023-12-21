@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cc37235kj4384"]
-
-[ext_resource type="Script" path="res://App/Scripts/ButtonSoundController.gd" id="1_eplko"]
-
-[node name="ButtonSoundControllerAutoload" type="Node"]
-script = ExtResource("1_eplko")
