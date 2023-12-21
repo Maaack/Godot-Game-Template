@@ -118,30 +118,30 @@ func _slider_drag_ended_play_stream(_value_changed : bool, stream_player : Audio
 func _line_event_play_stream(_new_text : String, stream_player : AudioStreamPlayer):
 	_play_stream(stream_player)
 
-func _connect_signal_stream_players(node : Node, stream_player : AudioStreamPlayer, signal_name : StringName, callable : Callable) -> void:
+func _connect_stream_player(node : Node, stream_player : AudioStreamPlayer, signal_name : StringName, callable : Callable) -> void:
 	if stream_player != null and not node.is_connected(signal_name, callable.bind(stream_player)):
 		node.connect(signal_name, callable.bind(stream_player))
 
 func connect_ui_sounds(node: Node) -> void:
 	if node is Button:
-		_connect_signal_stream_players(node, button_hovered_player, &"mouse_entered", _play_stream)
-		_connect_signal_stream_players(node, button_focused_player, &"focus_entered", _play_stream)
-		_connect_signal_stream_players(node, button_pressed_player, &"pressed", _play_stream)
+		_connect_stream_player(node, button_hovered_player, &"mouse_entered", _play_stream)
+		_connect_stream_player(node, button_focused_player, &"focus_entered", _play_stream)
+		_connect_stream_player(node, button_pressed_player, &"pressed", _play_stream)
 	elif node is TabBar:
-		_connect_signal_stream_players(node, tab_hovered_player, &"tab_hovered", _tab_event_play_stream)
-		_connect_signal_stream_players(node, tab_changed_player, &"tab_changed", _tab_event_play_stream)
-		_connect_signal_stream_players(node, tab_selected_player, &"tab_selected", _tab_event_play_stream)
+		_connect_stream_player(node, tab_hovered_player, &"tab_hovered", _tab_event_play_stream)
+		_connect_stream_player(node, tab_changed_player, &"tab_changed", _tab_event_play_stream)
+		_connect_stream_player(node, tab_selected_player, &"tab_selected", _tab_event_play_stream)
 	elif node is Slider:
-		_connect_signal_stream_players(node, slider_hovered_player, &"mouse_entered", _play_stream)
-		_connect_signal_stream_players(node, slider_focused_player, &"focus_entered", _play_stream)
-		_connect_signal_stream_players(node, slider_drag_started_player, &"drag_started", _play_stream)
-		_connect_signal_stream_players(node, slider_drag_ended_player, &"drag_ended", _slider_drag_ended_play_stream)
+		_connect_stream_player(node, slider_hovered_player, &"mouse_entered", _play_stream)
+		_connect_stream_player(node, slider_focused_player, &"focus_entered", _play_stream)
+		_connect_stream_player(node, slider_drag_started_player, &"drag_started", _play_stream)
+		_connect_stream_player(node, slider_drag_ended_player, &"drag_ended", _slider_drag_ended_play_stream)
 	elif node is LineEdit:
-		_connect_signal_stream_players(node, line_hovered_player, &"mouse_entered", _play_stream)
-		_connect_signal_stream_players(node, line_focused_player, &"focus_entered", _play_stream)
-		_connect_signal_stream_players(node, line_text_changed_player, &"text_changed", _line_event_play_stream)
-		_connect_signal_stream_players(node, line_text_submitted_player, &"text_submitted", _line_event_play_stream)
-		_connect_signal_stream_players(node, line_text_change_rejected_player, &"text_change_rejected", _line_event_play_stream)
+		_connect_stream_player(node, line_hovered_player, &"mouse_entered", _play_stream)
+		_connect_stream_player(node, line_focused_player, &"focus_entered", _play_stream)
+		_connect_stream_player(node, line_text_changed_player, &"text_changed", _line_event_play_stream)
+		_connect_stream_player(node, line_text_submitted_player, &"text_submitted", _line_event_play_stream)
+		_connect_stream_player(node, line_text_change_rejected_player, &"text_change_rejected", _line_event_play_stream)
 
 func _recurive_connect_ui_sounds(current_node: Node, current_depth : int = 0) -> void:
 	if current_depth >= MAX_DEPTH:
