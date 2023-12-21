@@ -10,17 +10,17 @@ const MAX_DEPTH = 16
 		persistent = value
 		_update_persistent_signals()
 
-@export_category("Button Sounds")
+@export_group("Button Sounds")
 @export var button_hovered : AudioStream
 @export var button_focused : AudioStream
 @export var button_pressed : AudioStream
 
-@export_category("Tab Sounds")
+@export_group("Tab Bar Sounds")
 @export var tab_hovered : AudioStream
 @export var tab_changed : AudioStream
 @export var tab_selected : AudioStream
 
-@export_category("Slider Sounds")
+@export_group("Slider Sounds")
 @export var slider_hovered : AudioStream
 @export var slider_focused : AudioStream
 @export var slider_drag_started : AudioStream
