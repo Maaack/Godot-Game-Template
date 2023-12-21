@@ -20,6 +20,12 @@ const MAX_DEPTH = 16
 @export var tab_changed : AudioStream
 @export var tab_selected : AudioStream
 
+@export_category("Slider Sounds")
+@export var slider_hover : AudioStream
+@export var slider_focus : AudioStream
+@export var slider_drag_started : AudioStream
+@export var slider_drag_ended : AudioStream
+
 @onready var root_node : Node = get_node(root_path)
 
 var button_hover_player : AudioStreamPlayer
@@ -29,6 +35,11 @@ var button_click_player : AudioStreamPlayer
 var tab_hover_player : AudioStreamPlayer
 var tab_changed_player : AudioStreamPlayer
 var tab_selected_player : AudioStreamPlayer
+
+var slider_hover_player : AudioStreamPlayer
+var slider_focus_player : AudioStreamPlayer
+var slider_drag_started_player : AudioStreamPlayer
+var slider_drag_ended_player : AudioStreamPlayer
 
 func _update_persistent_signals():
 	if not is_inside_tree():
@@ -60,14 +71,24 @@ func _build_tab_stream_players():
 	tab_changed_player = _build_stream_player(tab_changed)
 	tab_selected_player = _build_stream_player(tab_selected)
 
+func _build_slider_stream_players():
+	slider_hover_player = _build_stream_player(slider_hover)
+	slider_focus_player = _build_stream_player(slider_focus)
+	slider_drag_started_player = _build_stream_player(slider_drag_started)
+	slider_drag_ended_player = _build_stream_player(slider_drag_ended)
+
 func _build_all_stream_players():
 	_build_button_stream_players()
 	_build_tab_stream_players()
+	_build_slider_stream_players()
 
 func _play_stream(stream_player : AudioStreamPlayer):
 	stream_player.play()
 
-func _tab_play_stream(_tab_idx : int, stream_player : AudioStreamPlayer):
+func _tab_event_play_stream(_tab_idx : int, stream_player : AudioStreamPlayer):
+	_play_stream(stream_player)
+
+func _slider_drag_ended_play_stream(_value_changed : bool, stream_player : AudioStreamPlayer):
 	_play_stream(stream_player)
 
 func _connect_signal_stream_players(node : Node, stream_player : AudioStreamPlayer, signal_name : StringName, callable : Callable) -> void:
@@ -80,9 +101,14 @@ func connect_ui_sounds(node: Node) -> void:
 		_connect_signal_stream_players(node, button_focus_player, &"focus_entered", _play_stream)
 		_connect_signal_stream_players(node, button_click_player, &"pressed", _play_stream)
 	elif node is TabBar:
-		_connect_signal_stream_players(node, tab_hover_player, &"tab_hovered", _tab_play_stream)
-		_connect_signal_stream_players(node, tab_changed_player, &"tab_changed", _tab_play_stream)
-		_connect_signal_stream_players(node, tab_selected_player, &"tab_selected", _tab_play_stream)
+		_connect_signal_stream_players(node, tab_hover_player, &"tab_hovered", _tab_event_play_stream)
+		_connect_signal_stream_players(node, tab_changed_player, &"tab_changed", _tab_event_play_stream)
+		_connect_signal_stream_players(node, tab_selected_player, &"tab_selected", _tab_event_play_stream)
+	elif node is Slider:
+		_connect_signal_stream_players(node, slider_hover_player, &"mouse_entered", _play_stream)
+		_connect_signal_stream_players(node, slider_focus_player, &"focus_entered", _play_stream)
+		_connect_signal_stream_players(node, slider_drag_started_player, &"drag_started", _play_stream)
+		_connect_signal_stream_players(node, slider_drag_ended_player, &"drag_ended", _slider_drag_ended_play_stream)
 
 func _recurive_connect_ui_sounds(current_node: Node, current_depth : int = 0) -> void:
 	if current_depth >= MAX_DEPTH:
