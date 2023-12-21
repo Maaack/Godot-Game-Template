@@ -14,22 +14,19 @@ var button_hover_player : AudioStreamPlayer
 var button_focus_player : AudioStreamPlayer
 var button_click_player : AudioStreamPlayer
 
+func _build_stream_player(stream: AudioStream):
+	var stream_player : AudioStreamPlayer
+	if stream != null:
+		stream_player = AudioStreamPlayer.new()
+		stream_player.stream = stream
+		stream_player.bus = audio_bus
+		add_child(stream_player)
+	return stream_player
+
 func _build_stream_players():
-	if button_hover != null:
-		button_hover_player = AudioStreamPlayer.new()
-		button_hover_player.stream = button_hover
-		button_hover_player.bus = audio_bus
-		add_child(button_hover_player)
-	if button_focus != null:
-		button_focus_player = AudioStreamPlayer.new()
-		button_focus_player.stream = button_focus
-		button_focus_player.bus = audio_bus
-		add_child(button_focus_player)
-	if button_click != null:
-		button_click_player = AudioStreamPlayer.new()
-		button_click_player.stream = button_click
-		button_click_player.bus = audio_bus
-		add_child(button_click_player)
+	button_hover_player = _build_stream_player(button_hover)
+	button_focus_player = _build_stream_player(button_focus)
+	button_click_player = _build_stream_player(button_click)
 
 func _play_stream(stream_player : AudioStreamPlayer):
 	stream_player.play()
