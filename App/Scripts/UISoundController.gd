@@ -52,30 +52,31 @@ func _update_persistent_signals():
 		if tree_node.node_added.is_connected(connect_ui_sounds):
 			tree_node.node_added.disconnect(connect_ui_sounds)
 
-func _build_stream_player(stream: AudioStream):
+func _build_stream_player(stream : AudioStream, stream_name : String = ""):
 	var stream_player : AudioStreamPlayer
 	if stream != null:
 		stream_player = AudioStreamPlayer.new()
 		stream_player.stream = stream
 		stream_player.bus = audio_bus
+		stream_player.name = stream_name + "AudioStreamPlayer"
 		add_child(stream_player)
 	return stream_player
 
 func _build_button_stream_players():
-	button_hover_player = _build_stream_player(button_hover)
-	button_focus_player = _build_stream_player(button_focus)
-	button_click_player = _build_stream_player(button_click)
+	button_hover_player = _build_stream_player(button_hover, "ButtonHover")
+	button_focus_player = _build_stream_player(button_focus, "ButtonFocus")
+	button_click_player = _build_stream_player(button_click, "ButtonClick")
 
 func _build_tab_stream_players():
-	tab_hover_player = _build_stream_player(tab_hover)
-	tab_changed_player = _build_stream_player(tab_changed)
-	tab_selected_player = _build_stream_player(tab_selected)
+	tab_hover_player = _build_stream_player(tab_hover, "TabHovered")
+	tab_changed_player = _build_stream_player(tab_changed, "TabChanged")
+	tab_selected_player = _build_stream_player(tab_selected, "TabSelected")
 
 func _build_slider_stream_players():
-	slider_hover_player = _build_stream_player(slider_hover)
-	slider_focus_player = _build_stream_player(slider_focus)
-	slider_drag_started_player = _build_stream_player(slider_drag_started)
-	slider_drag_ended_player = _build_stream_player(slider_drag_ended)
+	slider_hover_player = _build_stream_player(slider_hover, "SliderHover")
+	slider_focus_player = _build_stream_player(slider_focus, "SliderFocus")
+	slider_drag_started_player = _build_stream_player(slider_drag_started, "SliderDragStarted")
+	slider_drag_ended_player = _build_stream_player(slider_drag_ended, "SliderDragEnded")
 
 func _build_all_stream_players():
 	_build_button_stream_players()
