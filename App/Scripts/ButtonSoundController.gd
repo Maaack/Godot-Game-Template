@@ -39,7 +39,6 @@ func _ready() -> void:
 func connect_button_sounds(current_node: Node) -> void:
 	for node in current_node.get_children():
 		if node is Button:
-			print(node)
 			if button_hover_player != null and not node.mouse_entered.is_connected(_play_stream.bind(button_hover_player)):
 				node.mouse_entered.connect(_play_stream.bind(button_hover_player))
 			if button_focus_player != null and not node.focus_entered.is_connected(_play_stream.bind(button_focus_player)):
