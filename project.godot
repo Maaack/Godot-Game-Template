@@ -19,6 +19,7 @@ config/icon="res://icon.png"
 
 InGameMenuController="*res://App/Scripts/InGameMenuController.gd"
 SceneLoader="*res://App/Scripts/SceneLoader.gd"
+ButtonSoundControllerAutoload="res://Extras/Scenes/ButtonSoundController/ButtonSoundControllerAutoload.tscn"
 
 [display]
 
