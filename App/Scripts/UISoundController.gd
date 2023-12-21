@@ -154,3 +154,8 @@ func _ready() -> void:
 	_build_all_stream_players()
 	_recurive_connect_ui_sounds(root_node)
 	persistent = persistent
+
+func _exit_tree():
+	var tree_node = get_tree()
+	if tree_node.node_added.is_connected(connect_ui_sounds):
+			tree_node.node_added.disconnect(connect_ui_sounds)
