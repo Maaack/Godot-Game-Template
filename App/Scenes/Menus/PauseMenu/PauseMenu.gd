@@ -25,7 +25,7 @@ func _unhandled_input(event):
 		elif %SubMenuContainer.visible:
 			close_options_menu()
 		else:
-			InGameMenuController.close_menu()
+			InGameMenuController.close_menu(get_tree())
 
 func _setup_options():
 	if options_packed_scene == null:
@@ -45,7 +45,7 @@ func _ready():
 	_setup_main_menu()
 
 func _on_resume_button_pressed():
-	InGameMenuController.close_menu()
+	InGameMenuController.close_menu(get_tree())
 
 func _on_restart_button_pressed():
 	%ConfirmRestart.popup_centered()
@@ -63,12 +63,14 @@ func _on_exit_button_pressed():
 	popup_open = %ConfirmExit
 
 func _on_confirm_restart_confirmed():
+	var scene_tree = get_tree()
 	SceneLoader.reload_current_scene()
-	InGameMenuController.close_menu()
+	InGameMenuController.close_menu(scene_tree)
 
 func _on_confirm_main_menu_confirmed():
+	var scene_tree = get_tree()
 	SceneLoader.load_scene(main_menu_scene)
-	InGameMenuController.close_menu()
+	InGameMenuController.close_menu(scene_tree)
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _on_confirm_exit_confirmed():
