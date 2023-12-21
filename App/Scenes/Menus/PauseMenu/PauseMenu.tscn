@@ -127,7 +127,7 @@ dialog_text = "Go back to main menu?"
 unique_name_in_owner = true
 dialog_text = "Quit the game?"
 
-[node name="ButtonSoundController" type="Node" parent="."]
+[node name="UISoundController" type="Node" parent="."]
 script = ExtResource("3_hgthy")
 
 [connection signal="pressed" from="Control/MenuContainer/VBoxContainer/MenuButtons/ResumeButton" to="." method="_on_resume_button_pressed"]

@@ -457,7 +457,7 @@ offset_right = 62.0
 grow_vertical = 0
 text = "Back"
 
-[node name="ButtonSoundController" type="Node" parent="."]
+[node name="UISoundController" type="Node" parent="."]
 script = ExtResource("6_bs342")
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MenuMargin/MenuButtons/PlayButton" to="." method="_on_play_button_pressed"]
