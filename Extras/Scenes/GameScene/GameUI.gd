@@ -1,5 +1,7 @@
 extends Control
 
+@export var win_scene : PackedScene
+@export var lose_scene : PackedScene
 @onready var action_names = AppSettings.get_filtered_action_names()
 
 func _get_inputs_as_string():
@@ -19,4 +21,12 @@ func _process(delta):
 		$Label.text = _get_inputs_as_string()
 	else:
 		$Label.text = ""
-		
+
+func _ready():
+	InGameMenuController.scene_tree = get_tree()
+
+func _on_lose_button_pressed():
+	InGameMenuController.open_menu(lose_scene, get_viewport())
+
+func _on_win_button_pressed():
+	InGameMenuController.open_menu(win_scene, get_viewport())
