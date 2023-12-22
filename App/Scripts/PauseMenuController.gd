@@ -1,4 +1,5 @@
 extends Node
+class_name PauseMenuController
 
 @export var pause_menu_packed : PackedScene
 
