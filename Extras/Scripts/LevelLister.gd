@@ -2,6 +2,8 @@
 extends SceneLister
 class_name LevelLister
 
+signal end_reached
+
 @export_group("Debugging")
 @export var force_level : int = -1
 
@@ -14,10 +16,13 @@ func get_current_level_file():
 		current_level = 0
 	return files[current_level]
 
-func increment_level():
+func increment_level() -> bool:
 	var current_level = GameLevelLog.get_current_level()
 	current_level += 1
 	if current_level >= files.size():
-		current_level = 0
+		emit_signal("end_reached")
+		current_level = files.size() - 1
+		return false
 	GameLevelLog.level_reached(current_level)
+	return true
 	
