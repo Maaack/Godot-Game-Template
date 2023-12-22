@@ -37,6 +37,7 @@ The `Extras/` folder holds components that extend the core application.
 
 -   Example Game Scene
 -   Opening Scene
+-   Success & Failure Scenes
 -   End Credits
 -   Logging Scripts
 -   Reset Logs Option
@@ -52,10 +53,11 @@ The `Extras/` folder holds components that extend the core application.
 - `InitApp.tscn` is the project's main scene. It loads all the configuration settings from the config file (if it exists) into game. It then loads the next scene (`Opening.tscn` or `MainMenu.tscn`).  
 - `Opening.tscn` is a simple scene for fading in/out a few images at the start of the game. It then loads the next scene (`MainMenu.tscn`).  
 - `MainMenu.tscn` is where a player can start the game, change settings, watch credits, or quit. It can link to the path of a game scene to play, and the packed scene of an options menu to use.  
-- `SceneLoader.tscn` is set to autoload. It works with `LoadingScreen.tscn` to load in scenes in cases where a progress bar will be shown.  
+- `SceneLoader.tscn` loads scenes with `LoadingScreen.tscn` in cases where a progress bar is desired. It is set as an autoload.  
 - `Credits.tscn` reads from `ATTRIBUTION.md` to automatically generate the content for it's scrolling text label.  
-- `UISoundController.gd` will automatically attach sounds to buttons, tab bars, sliders, and line edits in the scene. `UISoundControllerAutoload.tscn` can be enabled in the project autoloads to apply settings project-wide.
-- `PauseMenu.tscn` works with `PauseMenuController.gd` and `InGameMenuController.gd`. Add the `PauseMenuController` node to a scene tree and run the scene. Triggering `ui-cancel` in that scene will then bring up `PauseMenu.tscn` on a higher canvas layer.
+- The `UISoundController` node automatically attaches sounds to buttons, tab bars, sliders, and line edits in the scene. `UISoundControllerAutoload.tscn` can be enabled in the project autoloads to apply settings project-wide.
+- `InGameMenuController.gd` controls opening and closing a menu and pausing the game in the background.
+- The `PauseMenuController` node loads the `PauseMenu.tscn` (using `InGameMenuController.gd`) when triggering `ui-cancel`.
 
 ## Usage
 
