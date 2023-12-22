@@ -18,7 +18,9 @@ config/icon="res://icon.png"
 [autoload]
 
 SceneLoader="*res://App/Scripts/SceneLoader.gd"
-UISoundControllerAutoload="res://Extras/Scenes/UISoundController/UISoundControllerAutoload.tscn"
+ProjectUiSoundController="res://Extras/Scenes/Autoloads/ProjectUISoundController.tscn"
+ProjectLevelLoader="res://Extras/Scenes/Autoloads/ProjectLevelLoader.tscn"
+RuntimeLogger="res://Extras/Scripts/RuntimeLogger.gd"
 
 [display]
 
