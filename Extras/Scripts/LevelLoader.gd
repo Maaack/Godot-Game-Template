@@ -15,7 +15,7 @@ class_name LevelLoader
 				if not file.ends_with(".tscn"):
 					continue
 				level_files.append(level_dir + "/" + file)
-				
+
 @export_group("Debugging")
 @export var force_level : int = -1
 
