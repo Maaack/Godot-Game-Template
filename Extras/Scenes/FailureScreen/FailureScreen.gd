@@ -27,6 +27,7 @@ func _on_main_menu_button_pressed():
 
 func _on_restart_button_pressed():
 	SceneLoader.reload_current_scene()
+	InGameMenuController.close_menu()
 
 func _on_confirm_main_menu_confirmed():
 	SceneLoader.load_scene(main_menu_scene)
