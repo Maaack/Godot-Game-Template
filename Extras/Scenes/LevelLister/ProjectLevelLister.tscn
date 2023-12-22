@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" path="res://Extras/Scripts/LevelLister.gd" id="1_4vxtd"]
 
-[node name="ProjectLevelLoader" type="Node"]
+[node name="ProjectLevelLister" type="Node"]
 script = ExtResource("1_4vxtd")
