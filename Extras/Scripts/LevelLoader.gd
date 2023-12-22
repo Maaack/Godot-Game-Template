@@ -5,8 +5,9 @@ class_name LevelLoader
 signal level_loaded
 signal levels_finished
 
+## Container where the level instance will be added.
 @export var level_container : Node
-## Loads a level on start
+## Loads a level on start.
 @export var auto_load : bool = true
 @export_group("Debugging")
 @export var force_level : int = -1

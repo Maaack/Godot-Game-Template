@@ -2,7 +2,10 @@
 extends Node
 class_name SceneLister
 
+## List of paths to scene files.
+## Prefilled in the editor by selecting a directory.
 @export var files : Array[String]
+## Prefill files with any scenes in the directory.
 @export_dir var directory : String :
 	set(value):
 		directory = value
