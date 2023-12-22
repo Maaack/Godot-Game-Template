@@ -39,8 +39,8 @@ The `Extras/` folder holds components that extend the core application.
 -   Opening Scene
 -   Success & Failure Scenes
 -   End Credits
+-   Level Advancement
 -   Logging Scripts
--   Reset Logs Option
 -   Additional Inherited Scenes from `App/`:
     -   `OptionsMenu.tscn`
     -   `MasterOptionsMenu.tscn`
@@ -58,6 +58,7 @@ The `Extras/` folder holds components that extend the core application.
 - The `UISoundController` node automatically attaches sounds to buttons, tab bars, sliders, and line edits in the scene. `UISoundControllerAutoload.tscn` can be enabled in the project autoloads to apply settings project-wide.
 - `InGameMenuController.gd` controls opening and closing a menu and pausing the game in the background.
 - The `PauseMenuController` node loads the `PauseMenu.tscn` (using `InGameMenuController.gd`) when triggering `ui-cancel`.
+- `GameUI.tscn` is a demo game scene that displays recognized action inputs, and features the `PauseMenuController` node, the `LevelLoader` node to advance through levels, and `InGameMenuController.gd` to show `SuccessScene.tscn` or `FailureScene.tscn`.
 
 ## Usage
 
