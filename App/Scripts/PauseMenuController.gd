@@ -4,4 +4,7 @@ extends Node
 
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
-		InGameMenuController.open_menu_from_node(pause_menu_packed, self)
+		InGameMenuController.open_menu(pause_menu_packed, get_viewport())
+
+func _ready():
+	InGameMenuController.scene_tree = get_tree()
