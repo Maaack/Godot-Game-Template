@@ -1,23 +1,31 @@
 extends Node
+class_name InGameMenuController
 
-var current_menu : CanvasLayer
-var saved_mouse_mode : int
-var saved_focus_control
+static var current_menu : CanvasLayer
+static var scene_tree : SceneTree
+static var saved_mouse_mode : int
+static var saved_focus_control
 
-func open_menu(menu_scene : PackedScene, set_pause : bool = true) -> void:
+static func open_menu(menu_scene : PackedScene, viewport : Viewport, set_pause : bool = true) -> void:
+	if scene_tree == null:
+		push_error("scene_tree is null")
+		return
 	if is_instance_valid(current_menu):
 		return
 	saved_mouse_mode = Input.get_mouse_mode()
-	saved_focus_control = get_viewport().gui_get_focus_owner()
+	saved_focus_control = viewport.gui_get_focus_owner()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	current_menu = menu_scene.instantiate()
-	get_tree().current_scene.call_deferred("add_child", current_menu)
-	get_tree().paused = set_pause
+	scene_tree.current_scene.call_deferred("add_child", current_menu)
+	scene_tree.paused = set_pause
 
-func close_menu() -> void:
+static func close_menu() -> void:
+	if scene_tree == null:
+		push_error("scene_tree is null")
+		return
 	if is_instance_valid(current_menu):
 		current_menu.queue_free()
 	Input.set_mouse_mode(saved_mouse_mode)
-	get_tree().paused = false
+	scene_tree.paused = false
 	if is_instance_valid(saved_focus_control):
 		saved_focus_control.grab_focus()

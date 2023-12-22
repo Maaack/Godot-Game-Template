@@ -49,13 +49,13 @@ The `Extras/` folder holds components that extend the core application.
 
   
 ### How it Works
-- `SceneLoader.tscn` needs to be set to autoload. It works with `LoadingScreen.tscn` to load in scenes in cases where a progress bar will be shown.  
 - `InitApp.tscn` is the project's main scene. It loads all the configuration settings from the config file (if it exists) into game. It then loads the next scene (`Opening.tscn` or `MainMenu.tscn`).  
 - `Opening.tscn` is a simple scene for fading in/out a few images at the start of the game. It then loads the next scene (`MainMenu.tscn`).  
 - `MainMenu.tscn` is where a player can start the game, change settings, watch credits, or quit. It can link to the path of a game scene to play, and the packed scene of an options menu to use.  
+- `SceneLoader.tscn` is set to autoload. It works with `LoadingScreen.tscn` to load in scenes in cases where a progress bar will be shown.  
 - `Credits.tscn` reads from `ATTRIBUTION.md` to automatically generate the content for it's scrolling text label.  
 - `UISoundController.gd` will automatically attach sounds to buttons, tab bars, sliders, and line edits in the scene. `UISoundControllerAutoload.tscn` can be enabled in the project autoloads to apply settings project-wide.
-- `PauseMenu.tscn` works with `PauseMenuController.gd` and `InGameMenuController.gd`. `InGameMenuController.gd` needs to be set to autoload, and `PauseMenuController` is added onto a Node in a scene expected to be run in-game. Triggering `ui-cancel` in that scene will then bring up `PauseMenu.tscn` on a higher canvas layer.
+- `PauseMenu.tscn` works with `PauseMenuController.gd` and `InGameMenuController.gd`. Add the `PauseMenuController` node to a scene tree and run the scene. Triggering `ui-cancel` in that scene will then bring up `PauseMenu.tscn` on a higher canvas layer.
 
 ## Usage
 
@@ -70,13 +70,14 @@ If you just want to use just the projects minimum `App/` folder:
 1.  Go to `Project > Project Settings… > General > Application > Run`.
 2.  Update `Main Scene` to `res://App/Scenes/InitApp/InitApp.tscn`.
 3.  Close the window.
+4.  Delete the `Extras/` folder.
     
 
 The remaining instructions will apply the same for either folder you decide to use.
 
 #### Extra Minimal
 
-The pause menu feature can be removed if not used. From the `App/` folder, delete `PauseMenu/*`, `PauseMenuController.gd`, and `InGameMenuController.gd`. The last will need to be removed from the project's autoload, as well.
+The pause menu feature can be removed if not used. From the `App/` folder, delete `PauseMenu/*`, `PauseMenuController.gd`, and `InGameMenuController.gd`.
 
 Lastly, this `README.md` and the `Media/` directory can both be removed.
 
@@ -129,7 +130,8 @@ These instructions assume starting with the entire contents of the project folde
         3.  Add audio streams to the various UI node events.
         4.  Save the scenes.
    
-    2.  Project-wide.
+   
+    2.  Project-wide, with `Extras/`.
 
 
         1.  Open `UISoundControllerAutoload.tscn`.
@@ -148,6 +150,8 @@ These instructions assume starting with the entire contents of the project folde
     2.  Update `ATTRIBUTION.md` with “Game Name” credits, following the example.
     3.  Reload `Credits.tscn` scene to apply changes from `ATTRIBUTION.md`.
     4.  Include the attribution in exports.
+
+
         1.  Go to Project > Export.
         2.  Select one of “Game Name” presets (or set them up).
         3.  Select the Resources tab.
@@ -175,9 +179,8 @@ For an existing project, just copy over the `App/` folder (optionally the `Extra
 
     1.  Go to Project > Project Settings… > Autoload.
     2.  Add `res://App/Scripts/SceneLoader.gd`.
-    3.  Add `res://App/Scripts/InGameMenuController.gd`.
-    4.  Optionally add `res://Extras/Scripts/RuntimeLogger.gd`.
-    5.  Close the window.
+    3.  Optionally add `res://Extras/Scripts/RuntimeLogger.gd`.
+    4.  Close the window.
 
 3.  Update the project’s name.
     
@@ -217,8 +220,9 @@ For an existing project, just copy over the `App/` folder (optionally the `Extra
         2.  Select the `UISoundController` node.
         3.  Add audio streams to the various UI node events.
         4.  Save the scenes.
-   
-    2.  Project-wide.
+
+
+    2.  Project-wide, with `Extras/`.
 
 
         1.  Open `UISoundControllerAutoload.tscn`.
@@ -237,6 +241,8 @@ For an existing project, just copy over the `App/` folder (optionally the `Extra
     2.  Update `ATTRIBUTION.md` with “Game Name” credits, following the example.
     3.  Reload `Credits.tscn` scene to apply changes from `ATTRIBUTION.md`.
     4.  Include the attribution in exports.
+
+
         1.  Go to Project > Export.
         2.  Select one of “Game Name” presets (or set them up).
         3.  Select the Resources tab.
