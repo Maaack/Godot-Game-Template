@@ -1,5 +1,6 @@
 class_name GameLevelLog
 extends GameLog
+## Extends [GameLog] to log current and max level reached through [Config]. 
 
 const MAX_LEVEL_REACHED = "MaxLevelReached"
 const CURRENT_LEVEL = "CurrentLevel"

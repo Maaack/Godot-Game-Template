@@ -1,4 +1,5 @@
 extends Node
+## Autoload class for loading scenes while showing a progress bar.
 
 signal scene_loaded
 

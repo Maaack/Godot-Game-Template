@@ -1,5 +1,6 @@
 class_name PauseMenuController
 extends Node
+## Node for opening a pause menu when detecting a 'ui_cancel' event.
 
 @export var pause_menu_packed : PackedScene
 

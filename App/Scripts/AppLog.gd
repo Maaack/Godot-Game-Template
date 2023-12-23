@@ -1,5 +1,6 @@
 class_name AppLog
 extends Node
+## Logs application version and opened count through [Config].
 
 const APP_LOG_SECTION = "AppLog"
 const APP_OPENED = "AppOpened"
