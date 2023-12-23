@@ -1,5 +1,5 @@
-extends Node
 class_name AppSettings
+extends Node
 
 const INPUT_SECTION = 'InputSettings'
 const AUDIO_SECTION = 'AudioSettings'

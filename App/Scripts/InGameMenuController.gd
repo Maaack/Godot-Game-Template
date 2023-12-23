@@ -1,5 +1,5 @@
-extends Node
 class_name InGameMenuController
+extends Node
 
 static var current_menu : CanvasLayer
 static var scene_tree : SceneTree

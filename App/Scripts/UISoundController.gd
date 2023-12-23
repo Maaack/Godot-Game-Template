@@ -1,5 +1,5 @@
-extends Node
 class_name UISoundController
+extends Node
 
 const MAX_DEPTH = 16
 

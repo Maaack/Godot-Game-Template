@@ -1,5 +1,5 @@
-extends Node
 class_name Config
+extends Node
 
 const CONFIG_FILE_LOCATION := "user://config.cfg"
 const DEFAULT_CONFIG_FILE_LOCATION := "res://default_config.cfg"

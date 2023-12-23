@@ -1,6 +1,6 @@
 @tool
-extends SceneLister
 class_name LevelLoader
+extends SceneLister
 
 signal level_loaded
 signal levels_finished

@@ -1,5 +1,5 @@
-extends Node
 class_name InputEventHelper
+extends Node
 
 const JOYSTICK_LEFT_NAME = "Left Gamepad Joystick"
 const JOYSTICK_RIGHT_NAME = "Right Gamepad Joystick"
