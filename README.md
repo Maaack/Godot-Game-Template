@@ -64,7 +64,11 @@ The `Extras/` folder holds components that extend the core application.
 
 ### App vs. Extras
 
-To begin with, use the `Extras/` folder, and make changes there. However, to start minimally, use just the `App/` folder. Compare [Features](#features) to decide.
+`App/` contains the core features of the package. On first use, it's recommended to keep the `Extras/` folder, and make changes there. Features can be added and removed as needed.
+
+To start minimally, use just the `App/` folder, and safely remove the `Extras/` folder by following the [minimal](#minimal) instructions.
+
+Compare [features](#features) to decide which approach is best for your project.
 
 #### Minimal
 
@@ -72,8 +76,14 @@ If you just want to use just the projects minimum `App/` folder:
 
 1.  Go to `Project > Project Settings… > General > Application > Run`.
 2.  Update `Main Scene` to `res://App/Scenes/InitApp/InitApp.tscn`.
-3.  Close the window.
-4.  Delete the `Extras/` folder.
+3.  Go to `Project > Project Settings… > Autoload`.
+4.  Remove autoloads that start with the path `res://Extras/...`.
+    1.  `ProjectUiSoundController`
+    2.  `ProjectLevelLoader`
+    3.  `RuntimeLogger`
+5.  Close the window.
+6.  Delete the `Extras/` folder.
+7.  Reload the project.
     
 
 The remaining instructions will apply the same for either folder you decide to use.
@@ -172,7 +182,7 @@ For an existing project, just copy over the `App/` folder (optionally the `Extra
 1.  Update the project’s main scene.
     
 
-    1.  Go to Project > Project Settings… > General > Application > Run.
+    1.  Go to `Project > Project Settings… > General > Application > Run`.
     2.  Update `Main Scene` to `res://…/InitApp.tscn`.
     3.  Close the window.
     
@@ -180,9 +190,9 @@ For an existing project, just copy over the `App/` folder (optionally the `Extra
 2.  Update the project’s autoloads.
     
 
-    1.  Go to Project > Project Settings… > Autoload.
+    1.  Go to `Project > Project Settings… > Autoload`.
     2.  Add `res://App/Scripts/SceneLoader.gd`.
-    3.  Optionally add `res://Extras/Scripts/RuntimeLogger.gd`.
+    3.  Optionally enable `res://Extras/Scripts/RuntimeLogger.gd`.
     4.  Close the window.
 
 3.  Update the project’s name.

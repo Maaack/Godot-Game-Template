@@ -27,5 +27,5 @@ static func close_menu() -> void:
 		current_menu.queue_free()
 	Input.set_mouse_mode(saved_mouse_mode)
 	scene_tree.paused = false
-	if is_instance_valid(saved_focus_control):
+	if is_instance_valid(saved_focus_control) and saved_focus_control.is_inside_tree():
 		saved_focus_control.grab_focus()

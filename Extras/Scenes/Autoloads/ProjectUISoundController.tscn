@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" path="res://App/Scripts/UISoundController.gd" id="1_dmagn"]
 
-[node name="UISoundControllerAutoload" type="Node"]
+[node name="ProjectUISoundController" type="Node"]
 script = ExtResource("1_dmagn")

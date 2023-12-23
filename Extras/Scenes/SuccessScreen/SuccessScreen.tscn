@@ -19,13 +19,15 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.501961)
 
-[node name="CenterContainer" type="Control" parent="."]
+[node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Panel" type="Panel" parent="CenterContainer"]
+[node name="Panel" type="Panel" parent="Control"]
 custom_minimum_size = Vector2(410, 240)
 layout_mode = 1
 anchors_preset = 8
@@ -40,7 +42,7 @@ offset_bottom = 120.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="Control/Panel"]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -49,11 +51,11 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/Panel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Panel/MarginContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="Title" type="Label" parent="CenterContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="Title" type="Label" parent="Control/Panel/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
@@ -61,24 +63,24 @@ text = "You won!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ButtonsContainer" type="HBoxContainer" parent="CenterContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="ButtonsContainer" type="HBoxContainer" parent="Control/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 alignment = 1
 script = ExtResource("3_rix3y")
 
-[node name="ContinueButton" type="Button" parent="CenterContainer/Panel/MarginContainer/VBoxContainer/ButtonsContainer"]
+[node name="ContinueButton" type="Button" parent="Control/Panel/MarginContainer/VBoxContainer/ButtonsContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
 text = "Continue"
 
-[node name="MainMenuButton" type="Button" parent="CenterContainer/Panel/MarginContainer/VBoxContainer/ButtonsContainer"]
+[node name="MainMenuButton" type="Button" parent="Control/Panel/MarginContainer/VBoxContainer/ButtonsContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
 text = "Main Menu"
 
-[node name="ExitButton" type="Button" parent="CenterContainer/Panel/MarginContainer/VBoxContainer/ButtonsContainer"]
+[node name="ExitButton" type="Button" parent="Control/Panel/MarginContainer/VBoxContainer/ButtonsContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
@@ -95,8 +97,8 @@ dialog_text = "Quit the game?"
 [node name="UISoundController" type="Node" parent="."]
 script = ExtResource("3_smu5k")
 
-[connection signal="pressed" from="CenterContainer/Panel/MarginContainer/VBoxContainer/ButtonsContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
-[connection signal="pressed" from="CenterContainer/Panel/MarginContainer/VBoxContainer/ButtonsContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
-[connection signal="pressed" from="CenterContainer/Panel/MarginContainer/VBoxContainer/ButtonsContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="Control/Panel/MarginContainer/VBoxContainer/ButtonsContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="Control/Panel/MarginContainer/VBoxContainer/ButtonsContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="Control/Panel/MarginContainer/VBoxContainer/ButtonsContainer/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="confirmed" from="ConfirmMainMenu" to="." method="_on_confirm_main_menu_confirmed"]
 [connection signal="confirmed" from="ConfirmExit" to="." method="_on_confirm_exit_confirmed"]
