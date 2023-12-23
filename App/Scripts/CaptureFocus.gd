@@ -1,3 +1,4 @@
+class_name CaptureFocus
 extends Container
 
 @export var search_depth : int = 1
