@@ -1,5 +1,6 @@
 class_name GameLog
 extends Node
+## Logs total count of games started through [Config].
 
 const GAME_LOG_SECTION = "GameLog"
 const TOTAL_GAMES_STARTED = "TotalGamesStarted"

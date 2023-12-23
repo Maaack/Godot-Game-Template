@@ -1,5 +1,6 @@
-extends Node
 class_name AppSettings
+extends Node
+## Interface to read/write general application settings through [Config].
 
 const INPUT_SECTION = 'InputSettings'
 const AUDIO_SECTION = 'AudioSettings'

@@ -1,5 +1,14 @@
+class_name CaptureFocus
 extends Container
+## Node that captures UI focus for joypad users.
+##
+## This script assists with capturing UI focus for joypad users when
+## opening, closing, or switching between menus.
+## When attached to a node, it will check if it was changed to visible
+## and a joypad is being used. If both are true, it will capture focus
+## on the first eligible node in its scene tree.
 
+## Hierarchical depth to search in the scene tree.
 @export var search_depth : int = 1
 
 func _focus_first_search(control_node : Control, levels : int = 1):

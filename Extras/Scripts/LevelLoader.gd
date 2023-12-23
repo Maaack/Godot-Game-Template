@@ -1,6 +1,7 @@
 @tool
-extends SceneLister
 class_name LevelLoader
+extends SceneLister
+## Extends [SceneLister] to manage level advancement through [GameLevelLog].
 
 signal level_loaded
 signal levels_finished
