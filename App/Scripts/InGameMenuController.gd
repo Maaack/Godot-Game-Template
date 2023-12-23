@@ -1,9 +1,10 @@
 class_name InGameMenuController
 extends Node
-## Interface for managing an in-game menu that can safely pause the game.
+## Interface for managing a single in-game menu at a time.
 ##
-## This (static) class manages one menu at a time. The scene_tree property
-## must be set for the static methods to work.
+## This (static) class manages one in-game menu at a time.
+## It can optionally safely pause and unpause the game for the menu.
+## The scene_tree property must be set for the static methods to work.
 
 static var current_menu : CanvasLayer
 static var scene_tree : SceneTree

@@ -1,6 +1,6 @@
 class_name CaptureMouse
 extends Control
-## Node that captures the mouse for games that require it. 
+## Control node that captures the mouse for games that require it. 
 ##
 ## Used for games that use the mouse to move the camera (ex. FPS or third-person shooters).
 
