@@ -20,13 +20,11 @@ func load_scene(scene_path : String, in_background : bool = false) -> void:
 	if scene_path == null or scene_path.is_empty():
 		push_error("no path given to load")
 		return
-	if scene_to_load != path:
-		scene_to_load = path
-		ResourceLoader.load_threaded_request(scene_to_load)
-	else:
+	if ResourceLoader.has_cached(scene_path):
 		call_deferred("emit_signal", "scene_loaded")
 		return
-	get_tree().paused = false
+	_scene_path = scene_path
+	ResourceLoader.load_threaded_request(_scene_path)
 	if in_background:
 		set_process(true)
 	else:
