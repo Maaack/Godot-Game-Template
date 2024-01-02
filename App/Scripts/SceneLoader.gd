@@ -3,9 +3,12 @@ extends Node
 
 signal scene_loaded
 
-var _loading_screen = preload("res://App/Scenes/LoadingScreen/LoadingScreen.tscn")
+var _loading_screen : PackedScene
 var _scene_path : String
 var _loaded_resource : Resource
+
+func set_loading_screen(loading_screen_path : String):
+	_loading_screen = load(loading_screen_path)
 
 func reload_current_scene() -> void:
 	get_tree().reload_current_scene()
