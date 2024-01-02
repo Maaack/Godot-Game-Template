@@ -21,15 +21,9 @@ func _reset_loading_stage():
 	stall_stage = StallStage.STARTED
 	%LoadingTimer.start()
 
-func set_new_scene(scene_resource : Resource):
-	var scene_instance : Node = scene_resource.instantiate()
-	var _err = scene_instance.connect("ready", Callable(self, "queue_free"))
-	get_node("/root").add_child(scene_instance)
-	get_tree().current_scene = scene_instance
-
 func _load_next_scene():
 	var resource = SceneLoader.get_resource()
-	set_new_scene(resource)
+	get_tree().change_scene_to_packed(resource)
 
 func _set_loading_complete():
 	if loading_complete:
