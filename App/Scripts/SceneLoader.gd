@@ -3,22 +3,22 @@ extends Node
 
 signal scene_loaded
 
-var loading_screen = preload("res://App/Scenes/LoadingScreen/LoadingScreen.tscn")
-var scene_to_load : String
-var loaded_resource : Resource
+var _loading_screen = preload("res://App/Scenes/LoadingScreen/LoadingScreen.tscn")
+var _scene_path : String
+var _loaded_resource : Resource
 
 func reload_current_scene() -> void:
 	get_tree().reload_current_scene()
 
-func show_loading_screen():
-	var err = get_tree().change_scene_to_packed(loading_screen)
+func load_loading_screen():
+	var err = get_tree().change_scene_to_packed(_loading_screen)
 	if err:
-		print("failed to load loading screen: %d" % err)
+		push_error("failed to load loading screen: %d" % err)
 		get_tree().quit()
 
-func load_scene(path : String, in_background : bool = false) -> void:
-	if path == null or path.is_empty():
-		print("no path given to load")
+func load_scene(scene_path : String, in_background : bool = false) -> void:
+	if scene_path == null or scene_path.is_empty():
+		push_error("no path given to load")
 		return
 	if scene_to_load != path:
 		scene_to_load = path
@@ -30,27 +30,27 @@ func load_scene(path : String, in_background : bool = false) -> void:
 	if in_background:
 		set_process(true)
 	else:
-		show_loading_screen()
+		load_loading_screen()
 
 func get_status():
-	if scene_to_load == null or scene_to_load == "":
+	if _scene_path == null or _scene_path == "":
 		return ResourceLoader.THREAD_LOAD_INVALID_RESOURCE
-	return ResourceLoader.load_threaded_get_status(scene_to_load)
+	return ResourceLoader.load_threaded_get_status(_scene_path)
 
 func get_progress():
-	if scene_to_load == null or scene_to_load == "":
+	if _scene_path == null or _scene_path == "":
 		return
 	var progress_array : Array = []
-	ResourceLoader.load_threaded_get_status(scene_to_load, progress_array)
+	ResourceLoader.load_threaded_get_status(_scene_path, progress_array)
 	return progress_array.pop_back()
 
 func get_resource():
-	if scene_to_load == null or scene_to_load == "":
+	if _scene_path == null or _scene_path == "":
 		return ResourceLoader.THREAD_LOAD_INVALID_RESOURCE
-	var current_loaded_resource = ResourceLoader.load_threaded_get(scene_to_load)
+	var current_loaded_resource = ResourceLoader.load_threaded_get(_scene_path)
 	if current_loaded_resource != null:
-		loaded_resource = current_loaded_resource
-	return loaded_resource
+		_loaded_resource = current_loaded_resource
+	return _loaded_resource
 
 func _process(delta):
 	var status = get_status()
