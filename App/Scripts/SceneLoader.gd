@@ -9,48 +9,54 @@ var _scene_path : String
 var _loaded_resource : Resource
 var _background_loading : bool
 
-func get_status():
+func _check_scene_path() -> bool:
 	if _scene_path == null or _scene_path == "":
+		push_warning("scene path is empty")
+		return false
+	return true
+
+func get_status() -> ResourceLoader.ThreadLoadStatus:
+	if not _check_scene_path():
 		return ResourceLoader.THREAD_LOAD_INVALID_RESOURCE
 	return ResourceLoader.load_threaded_get_status(_scene_path)
 
-func get_progress():
-	if _scene_path == null or _scene_path == "":
-		return
+func get_progress() -> float:
+	if not _check_scene_path():
+		return 0.0
 	var progress_array : Array = []
 	ResourceLoader.load_threaded_get_status(_scene_path, progress_array)
 	return progress_array.pop_back()
 
 func get_resource():
-	if _scene_path == null or _scene_path == "":
-		return ResourceLoader.THREAD_LOAD_INVALID_RESOURCE
+	if not _check_scene_path():
+		return
 	var current_loaded_resource = ResourceLoader.load_threaded_get(_scene_path)
 	if current_loaded_resource != null:
 		_loaded_resource = current_loaded_resource
 	return _loaded_resource
 
-func _change_scene_to_resource():
+func _change_scene_to_resource() -> void:
 	var err = get_tree().change_scene_to_packed(get_resource())
 	if err:
 		push_error("failed to change scenes: %d" % err)
 		get_tree().quit()
 
-func _change_scene_to_loading_screen():
+func _change_scene_to_loading_screen() -> void:
 	var err = get_tree().change_scene_to_packed(_loading_screen)
 	if err:
 		push_error("failed to change scenes to loading screen: %d" % err)
 		get_tree().quit()
 
-func set_loading_screen(loading_screen_path : String):
+func set_loading_screen(loading_screen_path : String) -> void:
 	if loading_screen_path == "":
 		push_warning("loading screen path is empty")
 		return
 	_loading_screen = load(loading_screen_path)
 
-func has_loading_screen():
+func has_loading_screen() -> bool:
 	return _loading_screen != null
 
-func _check_loading_screen():
+func _check_loading_screen() -> bool:
 	if not has_loading_screen():
 		push_error("loading screen is not set")
 		return false
@@ -70,6 +76,9 @@ func load_scene(scene_path : String, in_background : bool = false) -> void:
 		set_process(true)
 	else:
 		_change_scene_to_loading_screen()
+
+func _ready():
+	set_process(false)
 
 func _process(_delta):
 	var status = get_status()
