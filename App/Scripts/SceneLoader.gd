@@ -68,10 +68,10 @@ func get_resource():
 		_loaded_resource = current_loaded_resource
 	return _loaded_resource
 
-func _switch_scene_to_resource():
+func _change_scene_to_resource():
 	var err = get_tree().change_scene_to_packed(get_resource())
 	if err:
-		push_error("failed to switch scenes: %d" % err)
+		push_error("failed to change scenes: %d" % err)
 		get_tree().quit()
 
 func _process(_delta):
@@ -83,5 +83,5 @@ func _process(_delta):
 			emit_signal("scene_loaded")
 			set_process(false)
 			if not _background_loading:
-				_switch_scene_to_resource()
+				_change_scene_to_resource()
 				
