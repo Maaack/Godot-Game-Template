@@ -50,10 +50,10 @@ The `Extras/` folder holds components that extend the core application.
 
   
 ### How it Works
-- `InitApp.tscn` is the project's main scene. It loads all the configuration settings from the config file (if it exists) into game. It then loads the next scene (`Opening.tscn` or `MainMenu.tscn`).  
+- `InitApp.tscn` is the project's main scene. It loads all the configuration settings from the config file (if it exists) into game and sets the loading screen. It then loads the next scene (`Opening.tscn` or `MainMenu.tscn`).  
 - `Opening.tscn` is a simple scene for fading in/out a few images at the start of the game. It then loads the next scene (`MainMenu.tscn`).  
 - `MainMenu.tscn` is where a player can start the game, change settings, watch credits, or quit. It can link to the path of a game scene to play, and the packed scene of an options menu to use.  
-- `SceneLoader.tscn` loads scenes with `LoadingScreen.tscn` in cases where a progress bar is desired. It is set as an autoload.  
+- `SceneLoader.gd` is an autoload script. It can load scenes in the background or with a loading screen (`LoadingScreen.tscn` by default).  
 - `Credits.tscn` reads from `ATTRIBUTION.md` to automatically generate the content for it's scrolling text label.  
 - The `UISoundController` node automatically attaches sounds to buttons, tab bars, sliders, and line edits in the scene. `UISoundControllerAutoload.tscn` can be enabled in the project autoloads to apply settings project-wide.
 - `InGameMenuController.gd` controls opening and closing a menu and pausing the game in the background.
