@@ -6,8 +6,8 @@ const LOADING_TEXT = "Loading..."
 const LOADING_TEXT_WAITING = "Still Loading..."
 
 enum StallStage{STARTED, WAITING, GIVE_UP}
-var stall_stage : StallStage = StallStage.STARTED
-var loading_complete : bool = false
+var _stall_stage : StallStage = StallStage.STARTED
+var _loading_complete : bool = false
 
 var loading_progress : float = 0.0 :
 	set(value):
@@ -18,7 +18,7 @@ var loading_progress : float = 0.0 :
 		_reset_loading_stage()
 
 func _reset_loading_stage():
-	stall_stage = StallStage.STARTED
+	_stall_stage = StallStage.STARTED
 	%LoadingTimer.start()
 
 func _load_next_scene():
@@ -26,9 +26,9 @@ func _load_next_scene():
 	get_tree().change_scene_to_packed(resource)
 
 func _set_loading_complete():
-	if loading_complete:
+	if _loading_complete:
 		return
-	loading_complete = true
+	_loading_complete = true
 	call_deferred("_load_next_scene")
 
 func _process(_delta):
@@ -36,7 +36,7 @@ func _process(_delta):
 	match(status):
 		ResourceLoader.THREAD_LOAD_IN_PROGRESS:
 			loading_progress = SceneLoader.get_progress()
-			match stall_stage:
+			match _stall_stage:
 				StallStage.STARTED:
 					%ErrorMessage.hide()
 					%Title.text = LOADING_TEXT
@@ -55,7 +55,7 @@ func _process(_delta):
 					%ErrorMessage.popup_centered()
 		ResourceLoader.THREAD_LOAD_LOADED:
 			loading_progress = 1.0
-			match stall_stage:
+			match _stall_stage:
 				StallStage.STARTED:
 					%ErrorMessage.hide()
 					%Title.text = LOADING_COMPLETE_TEXT
@@ -74,11 +74,13 @@ func _process(_delta):
 			set_process(false)
 
 func _on_loading_timer_timeout():
-	stall_stage += 1
-	if stall_stage >= StallStage.size():
-		stall_stage = StallStage.GIVE_UP
-	else:
-		%LoadingTimer.start()
+	var prev_stage : StallStage = _stall_stage
+	match prev_stage:
+		StallStage.STARTED:
+			_stall_stage = StallStage.WAITING
+			%LoadingTimer.start()
+		StallStage.WAITING:
+			_stall_stage = StallStage.GIVE_UP
 
 func _on_error_message_confirmed():
 	var err = get_tree().change_scene_to_file(ProjectSettings.get_setting("application/run/main_scene"))
