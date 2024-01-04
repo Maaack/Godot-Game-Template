@@ -7,7 +7,7 @@ extends Control
 
 func next():
 	var status = SceneLoader.get_status()
-	if SceneLoader.get_status() == ResourceLoader.THREAD_LOAD_LOADED:
+	if status == ResourceLoader.THREAD_LOAD_LOADED:
 		var packed_scene = SceneLoader.get_resource()
 		get_tree().change_scene_to_packed(packed_scene)
 	else:

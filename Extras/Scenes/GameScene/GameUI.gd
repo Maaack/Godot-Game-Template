@@ -16,7 +16,7 @@ func _get_inputs_as_string():
 					all_inputs += " + " + action_name
 	return all_inputs
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_anything_pressed():
 		$Label.text = _get_inputs_as_string()
 	else:
