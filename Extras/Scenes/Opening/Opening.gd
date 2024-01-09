@@ -4,14 +4,14 @@ extends Control
 @export var images : Array[Texture2D]
 @export var start_delay : float = 0.5
 @export var end_delay : float = 0.5
+@export var show_loading_screen : bool = false
 
 func next():
 	var status = SceneLoader.get_status()
-	if status == ResourceLoader.THREAD_LOAD_LOADED:
-		var packed_scene = SceneLoader.get_resource()
-		get_tree().change_scene_to_packed(packed_scene)
+	if show_loading_screen or status != ResourceLoader.THREAD_LOAD_LOADED:
+		SceneLoader.change_scene_to_loading_screen()
 	else:
-		SceneLoader.show_loading_screen()
+		SceneLoader.change_scene_to_resource()
 
 func _add_textures_to_container(textures : Array[Texture2D]):
 	for texture in textures:
