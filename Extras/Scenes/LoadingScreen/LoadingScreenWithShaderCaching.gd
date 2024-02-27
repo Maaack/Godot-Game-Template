@@ -31,6 +31,7 @@ func _load_next_scene():
 	_changing_to_next_scene = true
 	if is_loading_shader_cache():
 		_show_all_draw_passes_once()
+		await(get_tree().create_timer(0.25).timeout)
 	SceneLoader.change_scene_to_resource()
 
 func _show_all_draw_passes_once():
