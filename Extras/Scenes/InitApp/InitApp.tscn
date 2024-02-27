@@ -4,4 +4,3 @@
 
 [node name="InitApp" instance=ExtResource("1_jg7hl")]
 _next_scene = "res://Extras/Scenes/Opening/Opening.tscn"
-_game_scene = "res://Extras/Scenes/GameScene/GameUI.tscn"

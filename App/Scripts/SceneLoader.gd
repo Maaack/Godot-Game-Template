@@ -5,7 +5,6 @@ extends Node
 signal scene_loaded
 
 var _loading_screen : PackedScene
-var _game_scene_path : String
 var _scene_path : String
 var _loaded_resource : Resource
 var _background_loading : bool
@@ -54,14 +53,8 @@ func set_loading_screen(loading_screen_path : String) -> void:
 		return
 	_loading_screen = load(loading_screen_path)
 
-func set_main_game_scene_path(main_game_scene_path : String) -> void:
-	if main_game_scene_path == "":
-		push_warning("game screen path is empty")
-		return
-	_game_scene_path = main_game_scene_path
-
-func is_loading_main_game_scene() -> bool:
-	return _game_scene_path == _scene_path
+func is_loading_scene(check_scene_path) -> bool:
+	return check_scene_path == _scene_path
 
 func has_loading_screen() -> bool:
 	return _loading_screen != null
