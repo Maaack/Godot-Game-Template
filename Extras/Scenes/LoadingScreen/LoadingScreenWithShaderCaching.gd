@@ -12,10 +12,13 @@ var _caching_progress : float = 0.0 :
 			return
 		_caching_progress = value
 		update_total_loading_progress()
-		
+
+func is_loading_shader_cache():
+	return _cache_spatial_shader and SceneLoader.is_loading_scene(_cache_shaders_scene)
+
 func update_total_loading_progress():
 	var partial_total = _scene_loading_progress
-	if _cache_spatial_shader:
+	if is_loading_shader_cache():
 		partial_total += _caching_progress
 		partial_total /= 2
 	_total_loading_progress = partial_total
@@ -24,10 +27,9 @@ func _load_next_scene():
 	if _changing_to_next_scene:
 		return
 	_changing_to_next_scene = true
-	if _cache_spatial_shader and SceneLoader.is_loading_scene(_cache_shaders_scene):
+	if is_loading_shader_cache():
 		_show_all_draw_passes_once()
-	else:
-		SceneLoader.change_scene_to_resource()
+	SceneLoader.change_scene_to_resource()
 
 func _show_all_draw_passes_once():
 	var all_materials = _traverse_folders(_spatial_shader_material_dir)
@@ -37,19 +39,16 @@ func _show_all_draw_passes_once():
 		_load_material(material_path)
 		cached_material_count += 1
 		_caching_progress = float(cached_material_count) / total_material_count
-	_load_world_scene()
-		
+
 func _traverse_folders(dir_path:String) -> PackedStringArray:
 	var material_list:PackedStringArray = []
 	var dir = DirAccess.open(dir_path)
 	if not dir:
 		push_error("failed to access the path ", dir_path)
 		return []
-	
 	if dir.list_dir_begin() != OK:
 		push_error("failed to access the path ", dir_path)
 		return []
-	
 	var file_name = dir.get_next()
 	while file_name != "":
 		if not dir.current_is_dir():
@@ -62,12 +61,9 @@ func _traverse_folders(dir_path:String) -> PackedStringArray:
 		file_name = dir.get_next()
 	
 	return material_list
-	
+
 func _load_material(path:String):
 	var material_shower = QUADMESH_PLACEHOLDER.instantiate()
 	var material := ResourceLoader.load(path) as Material
 	material_shower.set_surface_override_material(0, material)
 	%SpatialShaderTypeCaches.add_child(material_shower)
-
-func _load_world_scene():
-	SceneLoader.change_scene_to_resource()
