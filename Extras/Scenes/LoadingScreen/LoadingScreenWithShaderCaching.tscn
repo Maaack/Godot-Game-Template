@@ -5,7 +5,7 @@
 
 [node name="LoadingScreen" instance=ExtResource("1_87itf")]
 script = ExtResource("2_wgd8a")
-_spatial_shader_material_dir = "res://Extras/Materials/"
+_spatial_shader_material_dir = "res://Extras/Materials"
 _matching_extensions = Array[String]([".tres", ".material", ".res"])
 _ignore_subfolders = Array[String]([".", ".."])
 _cache_spatial_shader = true

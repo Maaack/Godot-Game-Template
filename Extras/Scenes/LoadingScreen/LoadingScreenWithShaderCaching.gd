@@ -2,7 +2,7 @@ extends LoadingScreen
 
 const QUADMESH_PLACEHOLDER = preload("res://Extras/Scenes/LoadingScreen/QuadMeshPlaceholder.tscn")
 
-@export_dir var _spatial_shader_material_dir : String = "res://Extras/Materials/"
+@export_dir var _spatial_shader_material_dir : String
 @export var _matching_extensions : Array[String] = [".tres", ".material", ".res"]
 @export var _ignore_subfolders : Array[String] = [".", ".."]
 @export var _cache_spatial_shader : bool = false
@@ -45,6 +45,8 @@ func _show_all_draw_passes_once():
 
 func _traverse_folders(dir_path:String) -> PackedStringArray:
 	var material_list:PackedStringArray = []
+	if not dir_path.ends_with("/"):
+		dir_path += "/"
 	var dir = DirAccess.open(dir_path)
 	if not dir:
 		push_error("failed to access the path ", dir_path)
@@ -65,7 +67,7 @@ func _traverse_folders(dir_path:String) -> PackedStringArray:
 		else:
 			var subfolder_name = file_name
 			if not subfolder_name in _ignore_subfolders:
-				material_list.append_array(_traverse_folders(dir_path + subfolder_name + "/"))
+				material_list.append_array(_traverse_folders(dir_path + subfolder_name))
 		file_name = dir.get_next()
 	
 	return material_list
