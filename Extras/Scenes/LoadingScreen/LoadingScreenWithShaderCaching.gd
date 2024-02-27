@@ -2,7 +2,9 @@ extends LoadingScreen
 
 const QUADMESH_PLACEHOLDER = preload("res://Extras/Scenes/LoadingScreen/QuadMeshPlaceholder.tscn")
 
-@export_dir var _spatial_shader_material_dir : String = "res://Assets/Materials/"
+@export_dir var _spatial_shader_material_dir : String = "res://Extras/Materials/"
+@export var _matching_extensions : Array[String] = [".tres", ".material", ".res"]
+@export var _ignore_subfolders : Array[String] = [".", ".."]
 @export var _cache_spatial_shader : bool = false
 @export_file("*.tscn") var _cache_shaders_scene : String
 
@@ -52,11 +54,16 @@ func _traverse_folders(dir_path:String) -> PackedStringArray:
 	var file_name = dir.get_next()
 	while file_name != "":
 		if not dir.current_is_dir():
-			if not file_name.ends_with(".import") and not file_name.ends_with(".png"):
+			var matches : bool = false
+			for extension in _matching_extensions:
+				if file_name.ends_with(extension):
+					matches = true
+					break
+			if matches:
 				material_list.append(dir_path + file_name)
 		else:
 			var subfolder_name = file_name
-			if subfolder_name != "." and subfolder_name != ".." and subfolder_name != "Noise":
+			if not subfolder_name in _ignore_subfolders:
 				material_list.append_array(_traverse_folders(dir_path + subfolder_name + "/"))
 		file_name = dir.get_next()
 	
