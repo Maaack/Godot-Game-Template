@@ -2,7 +2,6 @@ extends Node
 
 @export_file("*.tscn") var _loading_screen : String
 @export_file("*.tscn") var _next_scene : String
-@export_file("*.tscn") var _game_scene : String
 @export var _use_loading_screen : bool = false
 
 func _load_next_scene():
@@ -15,5 +14,4 @@ func _ready():
 	AppLog.app_opened()
 	AppSettings.set_from_config_and_window(get_window())
 	SceneLoader.set_loading_screen(_loading_screen)
-	SceneLoader.set_main_game_scene_path(_game_scene)
 	call_deferred("_load_next_scene")

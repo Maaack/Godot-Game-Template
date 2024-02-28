@@ -6,7 +6,6 @@
 process_mode = 3
 layer = 20
 script = ExtResource("1_gbk34")
-_cache_spatial_shader = true
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -52,13 +51,6 @@ unique_name_in_owner = true
 wait_time = 10.0
 one_shot = true
 autostart = true
-
-[node name="SpatialShaderTypeCaches" type="Node3D" parent="."]
-unique_name_in_owner = true
-
-[node name="Camera3D" type="Camera3D" parent="SpatialShaderTypeCaches"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.408)
-current = true
 
 [connection signal="confirmed" from="Control/ErrorMessage" to="." method="_on_error_message_confirmed"]
 [connection signal="timeout" from="LoadingTimer" to="." method="_on_loading_timer_timeout"]
