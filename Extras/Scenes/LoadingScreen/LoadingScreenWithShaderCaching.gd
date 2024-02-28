@@ -3,11 +3,11 @@ extends LoadingScreen
 const QUADMESH_PLACEHOLDER = preload("res://Extras/Scenes/LoadingScreen/QuadMeshPlaceholder.tscn")
 
 @export_dir var _spatial_shader_material_dir : String
+@export_file("*.tscn") var _cache_shaders_scene : String
+@export_group("Advanced")
 @export var _matching_extensions : Array[String] = [".tres", ".material", ".res"]
 @export var _ignore_subfolders : Array[String] = [".", ".."]
-@export var _cache_spatial_shader : bool = false
-@export var _shader_delay_timer : float = 0.25
-@export_file("*.tscn") var _cache_shaders_scene : String
+@export var _shader_delay_timer : float = 0.1
 
 var _loading_shader_cache : bool = false
 
@@ -20,7 +20,7 @@ var _caching_progress : float = 0.0 :
 
 func can_load_shader_cache():
 	return not _spatial_shader_material_dir.is_empty() and \
-	_cache_spatial_shader and \
+	not _cache_shaders_scene.is_empty() and \
 	SceneLoader.is_loading_scene(_cache_shaders_scene)
 
 func update_total_loading_progress():
