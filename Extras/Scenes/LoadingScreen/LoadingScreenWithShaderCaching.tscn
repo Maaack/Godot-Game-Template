@@ -9,6 +9,7 @@ _spatial_shader_material_dir = "res://Extras/Materials"
 _matching_extensions = Array[String]([".tres", ".material", ".res"])
 _ignore_subfolders = Array[String]([".", ".."])
 _cache_spatial_shader = true
+_shader_delay_timer = 0.1
 _cache_shaders_scene = "res://Extras/Scenes/GameScene/GameUI.tscn"
 
 [node name="SpatialShaderTypeCaches" type="Node3D" parent="." index="2"]

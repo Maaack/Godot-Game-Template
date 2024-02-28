@@ -27,20 +27,24 @@ var _total_loading_progress : float = 0.0 :
 
 func update_total_loading_progress():
 	_total_loading_progress = _scene_loading_progress
-	
+
 func _reset_loading_stage():
 	_stall_stage = StallStage.STARTED
 	%LoadingTimer.start()
+
+func _try_loading_next_scene():
+	if not _scene_loading_complete:
+		return
+	_load_next_scene()
 
 func _load_next_scene():
 	if _changing_to_next_scene:
 		return
 	_changing_to_next_scene = true
-	SceneLoader.change_scene_to_resource()
+	SceneLoader.call_deferred("change_scene_to_resource")
 
 func _process(_delta):
-	if _scene_loading_complete:
-		call_deferred("_load_next_scene")
+	_try_loading_next_scene()
 	var status = SceneLoader.get_status()
 	match(status):
 		ResourceLoader.THREAD_LOAD_IN_PROGRESS:

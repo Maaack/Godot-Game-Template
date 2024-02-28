@@ -9,6 +9,8 @@ const QUADMESH_PLACEHOLDER = preload("res://Extras/Scenes/LoadingScreen/QuadMesh
 @export var _shader_delay_timer : float = 0.25
 @export_file("*.tscn") var _cache_shaders_scene : String
 
+var _loading_shader_cache : bool = false
+
 var _caching_progress : float = 0.0 :
 	set(value):
 		if value <= _caching_progress:
@@ -16,27 +18,25 @@ var _caching_progress : float = 0.0 :
 		_caching_progress = value
 		update_total_loading_progress()
 
-func is_loading_shader_cache():
+func can_load_shader_cache():
 	return not _spatial_shader_material_dir.is_empty() and \
 	_cache_spatial_shader and \
 	SceneLoader.is_loading_scene(_cache_shaders_scene)
 
 func update_total_loading_progress():
 	var partial_total = _scene_loading_progress
-	if is_loading_shader_cache():
+	if can_load_shader_cache():
 		partial_total += _caching_progress
 		partial_total /= 2
 	_total_loading_progress = partial_total
 
-func _load_next_scene():
-	if _changing_to_next_scene:
-		return
-	_changing_to_next_scene = true
-	if is_loading_shader_cache():
+func _try_loading_next_scene():
+	if can_load_shader_cache() and not _loading_shader_cache:
+		_loading_shader_cache = true
 		_show_all_draw_passes_once()
-		if _shader_delay_timer > 0:
-			await(get_tree().create_timer(_shader_delay_timer).timeout)
-	SceneLoader.change_scene_to_resource()
+	if can_load_shader_cache() and _caching_progress < 1.0:
+		return
+	super._try_loading_next_scene()
 
 func _show_all_draw_passes_once():
 	var all_materials = _traverse_folders(_spatial_shader_material_dir)
@@ -46,6 +46,8 @@ func _show_all_draw_passes_once():
 		_load_material(material_path)
 		cached_material_count += 1
 		_caching_progress = float(cached_material_count) / total_material_count
+		if _shader_delay_timer > 0:
+			await(get_tree().create_timer(_shader_delay_timer).timeout)
 
 func _traverse_folders(dir_path:String) -> PackedStringArray:
 	var material_list:PackedStringArray = []
