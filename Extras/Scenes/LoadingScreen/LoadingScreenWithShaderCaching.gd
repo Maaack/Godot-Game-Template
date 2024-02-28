@@ -6,6 +6,7 @@ const QUADMESH_PLACEHOLDER = preload("res://Extras/Scenes/LoadingScreen/QuadMesh
 @export var _matching_extensions : Array[String] = [".tres", ".material", ".res"]
 @export var _ignore_subfolders : Array[String] = [".", ".."]
 @export var _cache_spatial_shader : bool = false
+@export var _shader_delay_timer : float = 0.25
 @export_file("*.tscn") var _cache_shaders_scene : String
 
 var _caching_progress : float = 0.0 :
@@ -16,7 +17,9 @@ var _caching_progress : float = 0.0 :
 		update_total_loading_progress()
 
 func is_loading_shader_cache():
-	return _cache_spatial_shader and SceneLoader.is_loading_scene(_cache_shaders_scene)
+	return not _spatial_shader_material_dir.is_empty() and \
+	_cache_spatial_shader and \
+	SceneLoader.is_loading_scene(_cache_shaders_scene)
 
 func update_total_loading_progress():
 	var partial_total = _scene_loading_progress
@@ -31,7 +34,8 @@ func _load_next_scene():
 	_changing_to_next_scene = true
 	if is_loading_shader_cache():
 		_show_all_draw_passes_once()
-		await(get_tree().create_timer(0.25).timeout)
+		if _shader_delay_timer > 0:
+			await(get_tree().create_timer(_shader_delay_timer).timeout)
 	SceneLoader.change_scene_to_resource()
 
 func _show_all_draw_passes_once():
