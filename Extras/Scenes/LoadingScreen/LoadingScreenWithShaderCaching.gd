@@ -17,6 +17,7 @@ var _caching_progress : float = 0.0 :
 			return
 		_caching_progress = value
 		update_total_loading_progress()
+		_reset_loading_stage()
 
 func can_load_shader_cache():
 	return not _spatial_shader_material_dir.is_empty() and \
