@@ -41,12 +41,14 @@ The `Extras/` folder holds components that extend the core application.
 -   End Credits
 -   Level Advancement
 -   Logging Scripts
+-   Shader Pre-caching
 -   Additional Inherited Scenes from `App/`:
     -   `OptionsMenu.tscn`
     -   `MasterOptionsMenu.tscn`
     -   `MainMenu.tscn` 
     -   `PauseMenu.tscn`
     -   `InitApp.tscn`
+    -   `LoadingScreenWithShaderCaching.tscn`
 
   
 ### How it Works
