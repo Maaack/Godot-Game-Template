@@ -3,6 +3,7 @@ class_name LevelLoader
 extends SceneLister
 ## Extends [SceneLister] to manage level advancement through [GameLevelLog].
 
+signal level_load_started
 signal level_loaded
 signal levels_finished
 
@@ -52,6 +53,7 @@ func load_level(level_id : int = get_current_level_id()):
 	_clear_current_level()
 	var level_file = get_level_file(level_id)
 	SceneLoader.load_scene(level_file, true)
+	emit_signal("level_load_started")
 	await(SceneLoader.scene_loaded)
 	current_level = _attach_level(SceneLoader.get_resource())
 	emit_signal("level_loaded")
