@@ -5,8 +5,9 @@ const LOADING_COMPLETE_TEXT = "Loading Complete!"
 const LOADING_COMPLETE_TEXT_WAITING = "Any Moment Now..."
 const LOADING_TEXT = "Loading..."
 const LOADING_TEXT_WAITING = "Still Loading..."
+const LOADING_TEXT_STILL_WAITING = "Still Loading... (%d seconds)"
 
-enum StallStage{STARTED, WAITING, GIVE_UP}
+enum StallStage{STARTED, WAITING, STILL_WAITING, GIVE_UP}
 var _stall_stage : StallStage = StallStage.STARTED
 var _scene_loading_complete : bool = false
 var _scene_loading_progress : float = 0.0 :
@@ -20,6 +21,7 @@ var _total_loading_progress : float = 0.0 :
 	set(value):
 		_total_loading_progress = value
 		%ProgressBar.value = _total_loading_progress
+var _loading_start_time : int
 
 func update_total_loading_progress():
 	_total_loading_progress = _scene_loading_progress
@@ -39,6 +41,9 @@ func _load_next_scene():
 	_changing_to_next_scene = true
 	SceneLoader.call_deferred("change_scene_to_resource")
 
+func _get_seconds_waiting() -> int:
+	return Time.get_ticks_msec() - _loading_start_time / 1000
+
 func _process(_delta):
 	_try_loading_next_scene()
 	var status = SceneLoader.get_status()
@@ -52,6 +57,9 @@ func _process(_delta):
 				StallStage.WAITING:
 					%ErrorMessage.hide()
 					%Title.text = LOADING_TEXT_WAITING
+				StallStage.STILL_WAITING:
+					%ErrorMessage.hide()
+					%Title.text = LOADING_TEXT_STILL_WAITING % _get_seconds_waiting()
 				StallStage.GIVE_UP:
 					if %ErrorMessage.visible:
 						return
@@ -72,6 +80,9 @@ func _process(_delta):
 				StallStage.WAITING:
 					%ErrorMessage.hide()
 					%Title.text = LOADING_COMPLETE_TEXT_WAITING
+				StallStage.STILL_WAITING:
+					%ErrorMessage.hide()
+					%Title.text = LOADING_TEXT_STILL_WAITING % _get_seconds_waiting()
 				StallStage.GIVE_UP:
 					if %ErrorMessage.visible:
 						return
@@ -92,6 +103,8 @@ func _on_loading_timer_timeout():
 			_stall_stage = StallStage.WAITING
 			%LoadingTimer.start()
 		StallStage.WAITING:
+			_stall_stage = StallStage.STILL_WAITING
+		StallStage.STILL_WAITING:
 			_stall_stage = StallStage.GIVE_UP
 
 func _on_error_message_confirmed():
@@ -104,5 +117,6 @@ func reset():
 	show()
 	_reset_loading_stage()
 	_scene_loading_progress = 0.0
+	_loading_start_time = Time.get_ticks_msec()
 	%ErrorMessage.hide()
 	set_process(true)
