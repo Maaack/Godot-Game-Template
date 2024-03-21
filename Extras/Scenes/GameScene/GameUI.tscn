@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dxkq10mmjl517"]
+[gd_scene load_steps=9 format=3 uid="uid://dxkq10mmjl517"]
 
 [ext_resource type="Script" path="res://Extras/Scenes/GameScene/GameUI.gd" id="1_vn54u"]
 [ext_resource type="Script" path="res://App/Scripts/PauseMenuController.gd" id="2_bmhjc"]
 [ext_resource type="PackedScene" uid="uid://dt5ses55itjy4" path="res://Extras/Scenes/SuccessScreen/SuccessScreen.tscn" id="2_p81qm"]
 [ext_resource type="PackedScene" uid="uid://cp3p3kqcjh0me" path="res://Extras/Scenes/FailureScreen/FailureScreen.tscn" id="3_gmq5y"]
 [ext_resource type="PackedScene" uid="uid://dtdpd6o5xj4dq" path="res://Extras/Scenes/Menus/PauseMenu/PauseMenu.tscn" id="3_n6jen"]
+[ext_resource type="PackedScene" uid="uid://cd0jbh4metflb" path="res://App/Scenes/LoadingScreen/LoadingScreen.tscn" id="4_4r4kr"]
 [ext_resource type="Script" path="res://Extras/Scenes/GameScene/InputDisplayLabel.gd" id="6_6hq0m"]
 [ext_resource type="Script" path="res://Extras/Scripts/LevelLoader.gd" id="7_dgyvu"]
 
@@ -18,6 +19,9 @@ grow_vertical = 2
 script = ExtResource("1_vn54u")
 win_scene = ExtResource("2_p81qm")
 lose_scene = ExtResource("3_gmq5y")
+
+[node name="LoadingScreen" parent="." instance=ExtResource("4_4r4kr")]
+visible = false
 
 [node name="PauseMenuController" type="Node" parent="."]
 script = ExtResource("2_bmhjc")
@@ -52,5 +56,6 @@ level_container = NodePath("../Control")
 files = Array[String](["res://Extras/Scenes/GameScene/Levels/Level1.tscn", "res://Extras/Scenes/GameScene/Levels/Level2.tscn", "res://Extras/Scenes/GameScene/Levels/Level3.tscn"])
 directory = "res://Extras/Scenes/GameScene/Levels"
 
+[connection signal="level_load_started" from="LevelLoader" to="." method="_on_level_loader_level_load_started"]
 [connection signal="level_loaded" from="LevelLoader" to="." method="_on_level_loader_level_loaded"]
 [connection signal="levels_finished" from="LevelLoader" to="." method="_on_level_loader_levels_finished"]

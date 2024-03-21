@@ -152,7 +152,7 @@ func reset():
 	%ErrorMessage.hide()
 	set_process(true)
 
-func complete():
+func close():
 	set_process(false)
 	%ErrorMessage.hide()
 	hide()
