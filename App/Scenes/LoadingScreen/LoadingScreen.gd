@@ -3,6 +3,7 @@ extends CanvasLayer
 
 const LOADING_COMPLETE_TEXT = "Loading Complete!"
 const LOADING_COMPLETE_TEXT_WAITING = "Any Moment Now..."
+const LOADING_COMPLETE_TEXT_STILL_WAITING = "Any Moment Now... (%d seconds)"
 const LOADING_TEXT = "Loading..."
 const LOADING_TEXT_WAITING = "Still Loading..."
 const LOADING_TEXT_STILL_WAITING = "Still Loading... (%d seconds)"
@@ -60,6 +61,23 @@ func _reset_scene_loading_progress():
 	_scene_loading_progress = 0.0
 	_scene_loading_complete = false
 
+func _show_loading_stalled_error_message():
+	if %ErrorMessage.visible:
+		return
+	if _scene_loading_progress == 0:
+		%ErrorMessage.dialog_text = "Loading Error: Stalled at start."
+		if OS.has_feature("web"):
+			%ErrorMessage.dialog_text += "\nTry refreshing the page."
+	else:
+		%ErrorMessage.dialog_text = "Loading Error: Stalled at %d%%." % (_scene_loading_progress * 100.0)
+	%ErrorMessage.popup_centered()
+
+func _show_scene_switching_error_message():
+	if %ErrorMessage.visible:
+		return
+	%ErrorMessage.dialog_text = "Loading Error: Failed to switch scenes."
+	%ErrorMessage.popup_centered()
+
 func _update_in_progress_messaging():
 	match _stall_stage:
 		StallStage.STARTED:
@@ -72,15 +90,8 @@ func _update_in_progress_messaging():
 			%ErrorMessage.hide()
 			%Title.text = LOADING_TEXT_STILL_WAITING % _get_seconds_waiting()
 		StallStage.GIVE_UP:
-			if %ErrorMessage.visible:
-				return
-			if _scene_loading_progress == 0:
-				%ErrorMessage.dialog_text = "Loading Error: Stalled at start."
-				if OS.has_feature("web"):
-					%ErrorMessage.dialog_text += "\nTry refreshing the page."
-			else:
-				%ErrorMessage.dialog_text = "Loading Error: Stalled at %d%%." % (_scene_loading_progress * 100.0)
-			%ErrorMessage.popup_centered()
+			_show_loading_stalled_error_message()
+			%Title.text = LOADING_TEXT_STILL_WAITING % _get_seconds_waiting()
 
 func _update_loaded_messaging():
 	match _stall_stage:
@@ -92,12 +103,10 @@ func _update_loaded_messaging():
 			%Title.text = LOADING_COMPLETE_TEXT_WAITING
 		StallStage.STILL_WAITING:
 			%ErrorMessage.hide()
-			%Title.text = LOADING_TEXT_STILL_WAITING % _get_seconds_waiting()
+			%Title.text = LOADING_COMPLETE_TEXT_STILL_WAITING % _get_seconds_waiting()
 		StallStage.GIVE_UP:
-			if %ErrorMessage.visible:
-				return
-			%ErrorMessage.dialog_text = "Loading Error: Failed to switch scenes."
-			%ErrorMessage.popup_centered()
+			_show_scene_switching_error_message()
+			%Title.text = LOADING_COMPLETE_TEXT_STILL_WAITING % _get_seconds_waiting()
 
 func _process(_delta):
 	_try_loading_next_scene()
@@ -142,3 +151,8 @@ func reset():
 	_reset_loading_start_time()
 	%ErrorMessage.hide()
 	set_process(true)
+
+func complete():
+	set_process(false)
+	%ErrorMessage.hide()
+	hide()
