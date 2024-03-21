@@ -45,7 +45,7 @@ func _load_next_scene():
 	SceneLoader.call_deferred("change_scene_to_resource")
 
 func _get_seconds_waiting() -> int:
-	return Time.get_ticks_msec() - _loading_start_time / 1000
+	return (Time.get_ticks_msec() - _loading_start_time) / 1000
 
 func _update_scene_loading_progress():
 	var new_progress = SceneLoader.get_progress()
