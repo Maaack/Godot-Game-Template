@@ -11,8 +11,6 @@ var _stall_stage : StallStage = StallStage.STARTED
 var _scene_loading_complete : bool = false
 var _scene_loading_progress : float = 0.0 :
 	set(value):
-		if value <= _scene_loading_progress:
-			return
 		_scene_loading_progress = value
 		update_total_loading_progress()
 		_reset_loading_stage()
@@ -20,8 +18,6 @@ var _scene_loading_progress : float = 0.0 :
 var _changing_to_next_scene : bool = false
 var _total_loading_progress : float = 0.0 :
 	set(value):
-		if value <= _total_loading_progress:
-			return
 		_total_loading_progress = value
 		%ProgressBar.value = _total_loading_progress
 
@@ -81,9 +77,12 @@ func _process(_delta):
 						return
 					%ErrorMessage.dialog_text = "Loading Error: Failed to switch scenes."
 					%ErrorMessage.popup_centered()
-		ResourceLoader.THREAD_LOAD_FAILED, ResourceLoader.THREAD_LOAD_INVALID_RESOURCE:
+		ResourceLoader.THREAD_LOAD_FAILED:
 			%ErrorMessage.dialog_text = "Loading Error: %d" % status
 			%ErrorMessage.popup_centered()
+			set_process(false)
+		ResourceLoader.THREAD_LOAD_INVALID_RESOURCE:
+			%ErrorMessage.hide()
 			set_process(false)
 
 func _on_loading_timer_timeout():
@@ -100,3 +99,10 @@ func _on_error_message_confirmed():
 	if err:
 		print("failed to load main scene: %d" % err)
 		get_tree().quit()
+
+func reset():
+	show()
+	_reset_loading_stage()
+	_scene_loading_progress = 0.0
+	%ErrorMessage.hide()
+	set_process(true)
