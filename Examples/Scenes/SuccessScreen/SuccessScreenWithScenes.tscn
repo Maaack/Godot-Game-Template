@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://duroffod7xmi1"]
+
+[ext_resource type="PackedScene" uid="uid://dt5ses55itjy4" path="res://App/Extras/Scenes/SuccessScreen/SuccessScreen.tscn" id="1_473qq"]
+
+[node name="SuccessScreen" instance=ExtResource("1_473qq")]
+next_scene = "res://Examples/Scenes/EndCredits/EndCredits.tscn"
+main_menu_scene = "res://Examples/Scenes/Menus/MainMenu/MainMenuWithAnimations.tscn"

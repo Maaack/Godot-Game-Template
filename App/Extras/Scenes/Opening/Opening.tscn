@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://sikc02ddepyt"]
+[gd_scene load_steps=5 format=3 uid="uid://sikc02ddepyt"]
 
 [ext_resource type="Script" path="res://App/Extras/Scenes/Opening/Opening.gd" id="1_fcjph"]
-[ext_resource type="Texture2D" uid="uid://b1o6mhwyq1j7s" path="res://Assets/Images/logo_vertical_color_dark.png" id="2_70swx"]
 
 [sub_resource type="Animation" id="Animation_nsnod"]
 resource_name = "FadeInOut"
@@ -48,8 +47,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fcjph")
-next_scene = "res://Examples/Scenes/Menus/MainMenu/MainMenuWithAnimations.tscn"
-images = Array[Texture2D]([ExtResource("2_70swx")])
 end_delay = 1.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

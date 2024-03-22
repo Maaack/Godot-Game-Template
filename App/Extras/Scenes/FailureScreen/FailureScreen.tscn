@@ -8,7 +8,6 @@
 process_mode = 3
 layer = 10
 script = ExtResource("2")
-main_menu_scene = "res://Examples/Scenes/Menus/MainMenu/MainMenuWithAnimations.tscn"
 
 [node name="Background" type="ColorRect" parent="."]
 anchors_preset = 15
