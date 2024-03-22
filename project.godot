@@ -29,7 +29,6 @@ window/size/viewport_height=720
 
 [gui]
 
-theme/custom="res://App/Base/Themes/BaseTheme.tres"
 common/drop_mouse_on_gui_input_disabled=true
 
 [input]
