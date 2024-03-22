@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://sbluwaaplbsg"]
+[gd_scene load_steps=18 format=3 uid="uid://sbluwaaplbsg"]
 
 [ext_resource type="PackedScene" uid="uid://c6k5nnpbypshi" path="res://App/Scenes/Menus/MainMenu/MainMenu.tscn" id="1_y2dvq"]
 [ext_resource type="Script" path="res://Extras/Scenes/Menus/MainMenu/MainMenu.gd" id="1_yww1j"]
@@ -69,6 +69,18 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [0, 2]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("VersionNameLabel:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1.6, 2.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="6"]
@@ -146,6 +158,18 @@ tracks/5/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("VersionNameLabel:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="4"]
 resource_name = "OpenSubMenu"
@@ -174,10 +198,6 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
 }
-
-[sub_resource type="Animation" id="3"]
-resource_name = "Outro"
-length = 0.5
 
 [sub_resource type="Animation" id="2"]
 length = 0.001
@@ -253,13 +273,24 @@ tracks/5/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("VersionNameLabel:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2kqig"]
 _data = {
 "Intro": SubResource("1"),
 "OpenMainMenu": SubResource("6"),
 "OpenSubMenu": SubResource("4"),
-"Outro": SubResource("3"),
 "RESET": SubResource("2")
 }
 
@@ -312,6 +343,9 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_vikuh")
 anim_player = NodePath("../MenuAnimationPlayer")
 parameters/conditions/intro_done = false
+
+[node name="VersionNameLabel" parent="." index="3"]
+modulate = Color(1, 1, 1, 0)
 
 [node name="Title" parent="MenuContainer/VBoxContainer/TitlesMargin/TitlesContainer" index="0"]
 modulate = Color(1, 1, 1, 0)
