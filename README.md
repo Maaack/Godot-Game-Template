@@ -18,11 +18,10 @@ The core components can support a larger project, but the template was originall
 
 ### App (Base)
 
-The `App/` folder holds the core components of the menus application.
+The `App/Base` folder holds the core components of the menus application.
 
 -   Main Menu    
 -   Options Menus
--   Pause Menu
 -   Credits
 -   Loading Screen
 -   Persistent Settings
@@ -33,24 +32,30 @@ The `App/` folder holds the core components of the menus application.
 
 ### Extras
 
-The `Extras/` folder holds components that extend the core application.
+The `App/Extras` folder holds components that extend the core application.
 
--   Example Game Scene
+-   Pause Menu
 -   Opening Scene
 -   Success & Failure Scenes
--   End Credits
--   Level Advancement
 -   Logging Scripts
+-   Autoload Scenes
+ 
+### Examples 
+
+The `Examples` folder contains an example project using inherited scenes from the `App`.
+
+-   Example Game Scene
+-   Level Advancement
+-   End Credits
 -   Shader Pre-caching
 -   Additional Inherited Scenes from `App/`:
-    -   `OptionsMenu.tscn`
-    -   `MasterOptionsMenu.tscn`
-    -   `MainMenu.tscn` 
-    -   `PauseMenu.tscn`
-    -   `InitApp.tscn`
+    -   `OptionsMenuWithReset.tscn`
+    -   `MasterOptionsMenuWithGameTab.tscn`
+    -   `MainMenuWithAnimations.tscn` 
+    -   `PauseMenuWithScenes.tscn`
+    -   `InitAppWithOpening.tscn`
     -   `LoadingScreenWithShaderCaching.tscn`
 
-  
 ### How it Works
 - `InitApp.tscn` is the project's main scene. It loads all the configuration settings from the config file (if it exists) into game and sets the loading screen. It then loads the next scene (`Opening.tscn` or `MainMenu.tscn`).  
 - `Opening.tscn` is a simple scene for fading in/out a few images at the start of the game. It then loads the next scene (`MainMenu.tscn`).  
@@ -64,37 +69,38 @@ The `Extras/` folder holds components that extend the core application.
 
 ## Usage
 
-### App vs. Extras
+### Examples
 
-`App/` contains the core features of the package. On first use, it's recommended to keep the `Extras/` folder, and make changes there. Features can be added and removed as needed.
+Changes can be made directly to the contents of the `Examples/` folder. Alternatively, the folder can be copied or renamed. By default, the project's main scene is `InitAppWithOpening.tscn`, and it links to other scenes in the `Examples/` directory. All the scenes and links can be reasonably safely changed to suit the developer's needs.
 
-To start minimally, use just the `App/` folder, and safely remove the `Extras/` folder by following the [minimal](#minimal) instructions.
+### Base vs. Extras
+
+`App/Base/` contains the core features of the package. On first use, it's recommended to keep the `App/Extras/` folder. Features can be added and removed as needed.
+
+If a developer wants to start minimally, they may use just the `App/Base/` folder, and safely remove the `App/Extras/` folder by following the [minimal](#minimal) instructions.
 
 Compare [features](#features) to decide which approach is best for your project.
 
 #### Minimal
 
-If you just want to use just the projects minimum `App/` folder:
+If you just want to use just the projects minimum `App/Base/` folder:
 
 1.  Go to `Project > Project Settings… > General > Application > Run`.
-2.  Update `Main Scene` to `res://App/Scenes/InitApp/InitApp.tscn`.
+2.  Update `Main Scene` to `res://App/Base/Scenes/InitApp/InitApp.tscn`.
 3.  Go to `Project > Project Settings… > Autoload`.
-4.  Remove autoloads that start with the path `res://Extras/...`.
+4.  Remove autoloads that start with the path `res://App/Extras...`.
     1.  `ProjectUiSoundController`
     2.  `ProjectLevelLoader`
     3.  `RuntimeLogger`
 5.  Close the window.
-6.  Delete the `Extras/` folder.
-7.  Reload the project.
+7.  Delete the `Media/` folder.
+6.  Delete the `Examples/` folder.
+8.  Delete the `App/Extras/` folder.
+9.  Reload the project.
     
+Lastly, this `README.md` can both be removed or updated to match your project.
 
 The remaining instructions will apply the same for either folder you decide to use.
-
-#### Extra Minimal
-
-The pause menu feature can be removed if not used. From the `App/` folder, delete `PauseMenu/*`, `PauseMenuController.gd`, and `InGameMenuController.gd`.
-
-Lastly, this `README.md` and the `Media/` directory can both be removed.
 
 ### New Project
 These instructions assume starting with the entire contents of the project folder.
@@ -158,13 +164,14 @@ These instructions assume starting with the entire contents of the project folde
         7.  Close the window.
 
 
-5.  Update the game credits / attribution.
+5.  Update the game credits / attribution and license.
     
 
-    1.  Copy `ATTRIBUTION_example.md` over `ATTRIBUTION.md`.
-    2.  Update `ATTRIBUTION.md` with “Game Name” credits, following the example.
-    3.  Reload `Credits.tscn` scene to apply changes from `ATTRIBUTION.md`.
-    4.  Include the attribution in exports.
+    1.  Keep, update, or remove `LICENSE.txt`.
+    2.  Copy `ATTRIBUTION_example.md` over `ATTRIBUTION.md`.
+    3.  Update `ATTRIBUTION.md` with “Game Name” credits, following the example.
+    4.  Reload `Credits.tscn` scene to apply changes from `ATTRIBUTION.md`.
+    5.  Include the attribution in exports.
 
 
         1.  Go to Project > Export.
@@ -193,8 +200,8 @@ For an existing project, just copy over the `App/` folder (optionally the `Extra
     
 
     1.  Go to `Project > Project Settings… > Autoload`.
-    2.  Add `res://App/Scripts/SceneLoader.gd`.
-    3.  Optionally enable `res://Extras/Scripts/RuntimeLogger.gd`.
+    2.  Add `res://App/Base/Scripts/SceneLoader.gd`.
+    3.  Optionally enable `res://App/Extras/Scripts/RuntimeLogger.gd`.
     4.  Close the window.
 
 3.  Update the project’s name.
@@ -249,13 +256,14 @@ For an existing project, just copy over the `App/` folder (optionally the `Extra
         7.  Close the window.
    
 
-7.  Update the game credits / attribution.
+7.  Update the game credits / attribution and license.
     
 
-    1.  Copy `ATTRIBUTION_example.md` over `ATTRIBUTION.md`.
-    2.  Update `ATTRIBUTION.md` with “Game Name” credits, following the example.
-    3.  Reload `Credits.tscn` scene to apply changes from `ATTRIBUTION.md`.
-    4.  Include the attribution in exports.
+    1.  Keep, update, or remove `LICENSE.txt`.
+    2.  Copy `ATTRIBUTION_example.md` over `ATTRIBUTION.md`.
+    3.  Update `ATTRIBUTION.md` with “Game Name” credits, following the example.
+    4.  Reload `Credits.tscn` scene to apply changes from `ATTRIBUTION.md`.
+    5.  Include the attribution in exports.
 
 
         1.  Go to Project > Export.

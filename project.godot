@@ -11,16 +11,16 @@ config_version=5
 [application]
 
 config/name="Game Template"
-run/main_scene="res://Extras/Scenes/InitApp/InitAppWithOpening.tscn"
+run/main_scene="res://Examples/Scenes/InitApp/InitAppWithOpening.tscn"
 config/features=PackedStringArray("4.2")
 config/icon="res://icon.png"
 
 [autoload]
 
-SceneLoader="*res://App/Scripts/SceneLoader.gd"
-ProjectUiSoundController="res://Extras/Scenes/Autoloads/ProjectUISoundController.tscn"
-ProjectLevelLoader="res://Extras/Scenes/Autoloads/ProjectLevelLoader.tscn"
-RuntimeLogger="res://Extras/Scripts/RuntimeLogger.gd"
+SceneLoader="*res://App/Base/Scripts/SceneLoader.gd"
+ProjectUiSoundController="res://App/Extras/Scenes/Autoloads/ProjectUISoundController.tscn"
+ProjectLevelLoader="res://App/Extras/Scenes/Autoloads/ProjectLevelLoader.tscn"
+RuntimeLogger="res://App/Extras/Scripts/RuntimeLogger.gd"
 
 [display]
 
@@ -29,7 +29,7 @@ window/size/viewport_height=720
 
 [gui]
 
-theme/custom="res://App/Themes/BaseTheme.tres"
+theme/custom="res://App/Base/Themes/BaseTheme.tres"
 common/drop_mouse_on_gui_input_disabled=true
 
 [input]
