@@ -171,15 +171,6 @@ These instructions assume starting with the entire contents of the project folde
     2.  Copy `ATTRIBUTION_example.md` over `ATTRIBUTION.md`.
     3.  Update `ATTRIBUTION.md` with “Game Name” credits, following the example.
     4.  Reload `Credits.tscn` scene to apply changes from `ATTRIBUTION.md`.
-    5.  Include the attribution in exports.
-
-
-        1.  Go to Project > Export.
-        2.  Select one of “Game Name” presets (or set them up).
-        3.  Select the Resources tab.
-        4.  Update `Filters to export non-resource file/folders` to include `ATTRIBUTION.md`.
-        5.  Close the window.
-    
 
 
 ### Existing Project
@@ -263,14 +254,6 @@ For an existing project, just copy over the `App/` folder (optionally the `Extra
     2.  Copy `ATTRIBUTION_example.md` over `ATTRIBUTION.md`.
     3.  Update `ATTRIBUTION.md` with “Game Name” credits, following the example.
     4.  Reload `Credits.tscn` scene to apply changes from `ATTRIBUTION.md`.
-    5.  Include the attribution in exports.
-
-
-        1.  Go to Project > Export.
-        2.  Select one of “Game Name” presets (or set them up).
-        3.  Select the Resources tab.
-        4.  Update `Filters to export non-resource file/folders` to include `ATTRIBUTION.md`.
-        5.  Close the window.
    
 
 ## Links
