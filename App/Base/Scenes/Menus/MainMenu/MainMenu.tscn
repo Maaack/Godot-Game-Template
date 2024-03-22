@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://c6k5nnpbypshi"]
 
-[ext_resource type="Script" path="res://App/Scenes/Menus/MainMenu/MainMenu.gd" id="1"]
-[ext_resource type="Script" path="res://App/Scripts/CaptureFocus.gd" id="4_l1ebe"]
-[ext_resource type="Script" path="res://App/Scripts/UISoundController.gd" id="6_bs342"]
+[ext_resource type="Script" path="res://App/Base/Scenes/Menus/MainMenu/MainMenu.gd" id="1"]
+[ext_resource type="Script" path="res://App/Base/Scripts/CaptureFocus.gd" id="4_l1ebe"]
+[ext_resource type="Script" path="res://App/Base/Scripts/UISoundController.gd" id="6_bs342"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3

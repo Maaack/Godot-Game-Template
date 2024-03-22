@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bosy6wwf0vleq"]
 
-[ext_resource type="Script" path="res://App/Scenes/Menus/OptionsMenu/Audio/AudioControl/AudioControl.gd" id="1_caab0"]
+[ext_resource type="Script" path="res://App/Base/Scenes/Menus/OptionsMenu/Audio/AudioControl/AudioControl.gd" id="1_caab0"]
 
 [node name="AudioControl" type="HBoxContainer"]
 offset_right = 40.0

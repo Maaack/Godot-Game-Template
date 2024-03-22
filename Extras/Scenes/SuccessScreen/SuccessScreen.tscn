@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://dt5ses55itjy4"]
 
 [ext_resource type="Script" path="res://Extras/Scenes/SuccessScreen/SuccessScreen.gd" id="1_wo104"]
-[ext_resource type="Script" path="res://App/Scripts/CaptureFocus.gd" id="3_rix3y"]
-[ext_resource type="Script" path="res://App/Scripts/UISoundController.gd" id="3_smu5k"]
+[ext_resource type="Script" path="res://App/Base/Scripts/CaptureFocus.gd" id="3_rix3y"]
+[ext_resource type="Script" path="res://App/Base/Scripts/UISoundController.gd" id="3_smu5k"]
 
 [node name="SuccessScreen" type="CanvasLayer"]
 process_mode = 3

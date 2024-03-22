@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://vh1ucj2rfbby"]
 
-[ext_resource type="Script" path="res://App/Scenes/Menus/OptionsMenu/OptionsMenu.gd" id="2"]
-[ext_resource type="PackedScene" uid="uid://bosy6wwf0vleq" path="res://App/Scenes/Menus/OptionsMenu/Audio/AudioControl/AudioControl.tscn" id="2_xrxr1"]
-[ext_resource type="Script" path="res://App/Scripts/CaptureFocus.gd" id="3_xfg0m"]
+[ext_resource type="Script" path="res://App/Base/Scenes/Menus/OptionsMenu/OptionsMenu.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://bosy6wwf0vleq" path="res://App/Base/Scenes/Menus/OptionsMenu/Audio/AudioControl/AudioControl.tscn" id="2_xrxr1"]
+[ext_resource type="Script" path="res://App/Base/Scripts/CaptureFocus.gd" id="3_xfg0m"]
 
 [node name="OptionsMenu" type="VBoxContainer"]
 custom_minimum_size = Vector2(400, 260)

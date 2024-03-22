@@ -77,7 +77,7 @@ Compare [features](#features) to decide which approach is best for your project.
 If you just want to use just the projects minimum `App/` folder:
 
 1.  Go to `Project > Project Settings… > General > Application > Run`.
-2.  Update `Main Scene` to `res://App/Scenes/InitApp/InitApp.tscn`.
+2.  Update `Main Scene` to `res://App/Base/Scenes/InitApp/InitApp.tscn`.
 3.  Go to `Project > Project Settings… > Autoload`.
 4.  Remove autoloads that start with the path `res://Extras/...`.
     1.  `ProjectUiSoundController`
@@ -193,7 +193,7 @@ For an existing project, just copy over the `App/` folder (optionally the `Extra
     
 
     1.  Go to `Project > Project Settings… > Autoload`.
-    2.  Add `res://App/Scripts/SceneLoader.gd`.
+    2.  Add `res://App/Base/Scripts/SceneLoader.gd`.
     3.  Optionally enable `res://Extras/Scripts/RuntimeLogger.gd`.
     4.  Close the window.
 

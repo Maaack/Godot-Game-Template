@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://dp3rgqaehb3xu"]
 
-[ext_resource type="Script" path="res://App/Scenes/Menus/OptionsMenu/Input/InputOptionsMenu.gd" id="1"]
-[ext_resource type="Script" path="res://App/Scripts/CaptureFocus.gd" id="2_wft4x"]
-[ext_resource type="Script" path="res://App/Scenes/Menus/OptionsMenu/Input/KeyAssignmentDialog.gd" id="3_wsh2h"]
+[ext_resource type="Script" path="res://App/Base/Scenes/Menus/OptionsMenu/Input/InputOptionsMenu.gd" id="1"]
+[ext_resource type="Script" path="res://App/Base/Scripts/CaptureFocus.gd" id="2_wft4x"]
+[ext_resource type="Script" path="res://App/Base/Scenes/Menus/OptionsMenu/Input/KeyAssignmentDialog.gd" id="3_wsh2h"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_7h8wy"]
 size = Vector2(16, 16)

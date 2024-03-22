@@ -17,7 +17,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-SceneLoader="*res://App/Scripts/SceneLoader.gd"
+SceneLoader="*res://App/Base/Scripts/SceneLoader.gd"
 ProjectUiSoundController="res://Extras/Scenes/Autoloads/ProjectUISoundController.tscn"
 ProjectLevelLoader="res://Extras/Scenes/Autoloads/ProjectLevelLoader.tscn"
 RuntimeLogger="res://Extras/Scripts/RuntimeLogger.gd"
@@ -29,7 +29,7 @@ window/size/viewport_height=720
 
 [gui]
 
-theme/custom="res://App/Themes/BaseTheme.tres"
+theme/custom="res://App/Base/Themes/BaseTheme.tres"
 common/drop_mouse_on_gui_input_disabled=true
 
 [input]

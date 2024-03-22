@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b2numvphf2kau"]
 
-[ext_resource type="Script" path="res://App/Scenes/Menus/OptionsMenu/Video/VideoOptionsMenu.gd" id="1"]
-[ext_resource type="Script" path="res://App/Scripts/CaptureFocus.gd" id="2_dgrai"]
+[ext_resource type="Script" path="res://App/Base/Scenes/Menus/OptionsMenu/Video/VideoOptionsMenu.gd" id="1"]
+[ext_resource type="Script" path="res://App/Base/Scripts/CaptureFocus.gd" id="2_dgrai"]
 
 [node name="Video" type="MarginContainer"]
 anchors_preset = 15

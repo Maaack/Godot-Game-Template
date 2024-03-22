@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cnk2y3bx5fsin"]
 
-[ext_resource type="PackedScene" uid="uid://bvwl11s2p0hd" path="res://App/Scenes/Menus/OptionsMenu/MasterOptionsMenu.tscn" id="1_w1bqi"]
+[ext_resource type="PackedScene" uid="uid://bvwl11s2p0hd" path="res://App/Base/Scenes/Menus/OptionsMenu/MasterOptionsMenu.tscn" id="1_w1bqi"]
 [ext_resource type="PackedScene" uid="uid://d2mir68lswbox" path="res://Extras/Scenes/Menus/OptionsMenu/Game/GameOptionsMenu.tscn" id="2_0aq8t"]
 
 [node name="MasterOptionsMenu" instance=ExtResource("1_w1bqi")]

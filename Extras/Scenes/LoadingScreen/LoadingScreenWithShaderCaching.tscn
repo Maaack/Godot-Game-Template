@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://geb2nqrjbxqt"]
 
-[ext_resource type="PackedScene" uid="uid://cd0jbh4metflb" path="res://App/Scenes/LoadingScreen/LoadingScreen.tscn" id="1_87itf"]
+[ext_resource type="PackedScene" uid="uid://cd0jbh4metflb" path="res://App/Base/Scenes/LoadingScreen/LoadingScreen.tscn" id="1_87itf"]
 [ext_resource type="Script" path="res://Extras/Scenes/LoadingScreen/LoadingScreenWithShaderCaching.gd" id="2_wgd8a"]
 
 [node name="LoadingScreen" instance=ExtResource("1_87itf")]

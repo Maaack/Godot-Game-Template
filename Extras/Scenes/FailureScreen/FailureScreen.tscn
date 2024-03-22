@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://cp3p3kqcjh0me"]
 
 [ext_resource type="Script" path="res://Extras/Scenes/FailureScreen/FailureScreen.gd" id="2"]
-[ext_resource type="Script" path="res://App/Scripts/CaptureFocus.gd" id="2_2n6cd"]
-[ext_resource type="Script" path="res://App/Scripts/UISoundController.gd" id="3_6hy0s"]
+[ext_resource type="Script" path="res://App/Base/Scripts/CaptureFocus.gd" id="2_2n6cd"]
+[ext_resource type="Script" path="res://App/Base/Scripts/UISoundController.gd" id="3_6hy0s"]
 
 [node name="FailureScreen" type="CanvasLayer"]
 process_mode = 3

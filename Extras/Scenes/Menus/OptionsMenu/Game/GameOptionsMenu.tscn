@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Extras/Scenes/Menus/OptionsMenu/Game/GameOptionsMenu.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://cay00igbuqtfa" path="res://Extras/Scenes/Menus/OptionsMenu/Game/ResetGameControl/ResetGameControl.tscn" id="2"]
-[ext_resource type="Script" path="res://App/Scripts/CaptureFocus.gd" id="2_abxdb"]
+[ext_resource type="Script" path="res://App/Base/Scripts/CaptureFocus.gd" id="2_abxdb"]
 
 [node name="Game" type="MarginContainer"]
 anchors_preset = 15
