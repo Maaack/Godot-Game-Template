@@ -6,7 +6,7 @@
 
 [node name="EndCredits" instance=ExtResource("1_h6cgt")]
 script = ExtResource("2_p3aca")
-main_menu_scene = "res://Extras/Scenes/Menus/MainMenu/MainMenu.tscn"
+main_menu_scene = "res://Extras/Scenes/Menus/MainMenu/MainMenuWithAnimations.tscn"
 scroll_active = true
 
 [node name="ScrollContainer" parent="." index="0"]
