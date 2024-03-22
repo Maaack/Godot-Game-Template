@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cdwvtbtwmrqbn"]
 
-[ext_resource type="Script" path="res://App/Base/Scenes/Menus/PauseMenu/PauseMenu.gd" id="2"]
+[ext_resource type="Script" path="res://App/Extras/Scenes/PauseMenu/PauseMenu.gd" id="2"]
 [ext_resource type="Script" path="res://App/Base/Scripts/CaptureFocus.gd" id="3_43rgy"]
 [ext_resource type="Script" path="res://App/Base/Scripts/UISoundController.gd" id="3_hgthy"]
 
