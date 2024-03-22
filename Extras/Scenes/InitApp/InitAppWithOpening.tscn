@@ -4,4 +4,4 @@
 
 [node name="InitApp" instance=ExtResource("1_mnf61")]
 _loading_screen = "res://Extras/Scenes/LoadingScreen/LoadingScreenWithShaderCaching.tscn"
-_next_scene = "res://Extras/Scenes/Opening/Opening.tscn"
+_next_scene = "res://App/Extras/Scenes/Opening/Opening.tscn"

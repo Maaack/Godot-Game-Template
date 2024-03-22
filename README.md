@@ -194,7 +194,7 @@ For an existing project, just copy over the `App/` folder (optionally the `Extra
 
     1.  Go to `Project > Project Settings… > Autoload`.
     2.  Add `res://App/Base/Scripts/SceneLoader.gd`.
-    3.  Optionally enable `res://Extras/Scripts/RuntimeLogger.gd`.
+    3.  Optionally enable `res://App/Extras/Scripts/RuntimeLogger.gd`.
     4.  Close the window.
 
 3.  Update the project’s name.

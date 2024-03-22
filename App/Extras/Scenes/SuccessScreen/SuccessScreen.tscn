@@ -1,13 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://cp3p3kqcjh0me"]
+[gd_scene load_steps=4 format=3 uid="uid://dt5ses55itjy4"]
 
-[ext_resource type="Script" path="res://Extras/Scenes/FailureScreen/FailureScreen.gd" id="2"]
-[ext_resource type="Script" path="res://App/Base/Scripts/CaptureFocus.gd" id="2_2n6cd"]
-[ext_resource type="Script" path="res://App/Base/Scripts/UISoundController.gd" id="3_6hy0s"]
+[ext_resource type="Script" path="res://App/Extras/Scenes/SuccessScreen/SuccessScreen.gd" id="1_wo104"]
+[ext_resource type="Script" path="res://App/Base/Scripts/CaptureFocus.gd" id="3_rix3y"]
+[ext_resource type="Script" path="res://App/Base/Scripts/UISoundController.gd" id="3_smu5k"]
 
-[node name="FailureScreen" type="CanvasLayer"]
+[node name="SuccessScreen" type="CanvasLayer"]
 process_mode = 3
 layer = 10
-script = ExtResource("2")
+script = ExtResource("1_wo104")
+next_scene = "res://Extras/Scenes/EndCredits/EndCredits.tscn"
 main_menu_scene = "res://Extras/Scenes/Menus/MainMenu/MainMenuWithAnimations.tscn"
 
 [node name="Background" type="ColorRect" parent="."]
@@ -42,12 +43,9 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="Control/Panel"]
-layout_mode = 1
-anchors_preset = 15
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
@@ -61,19 +59,20 @@ alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
-text = "You lose."
+text = "You won!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ButtonsContainer" type="HBoxContainer" parent="Control/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 alignment = 1
-script = ExtResource("2_2n6cd")
+script = ExtResource("3_rix3y")
 
-[node name="RestartButton" type="Button" parent="Control/Panel/MarginContainer/VBoxContainer/ButtonsContainer"]
+[node name="ContinueButton" type="Button" parent="Control/Panel/MarginContainer/VBoxContainer/ButtonsContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
-text = "Restart"
+text = "Continue"
 
 [node name="MainMenuButton" type="Button" parent="Control/Panel/MarginContainer/VBoxContainer/ButtonsContainer"]
 unique_name_in_owner = true
@@ -85,7 +84,7 @@ text = "Main Menu"
 unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
-text = "Exit Game"
+text = "Exit"
 
 [node name="ConfirmMainMenu" type="ConfirmationDialog" parent="."]
 initial_position = 2
@@ -96,9 +95,9 @@ initial_position = 2
 dialog_text = "Quit the game?"
 
 [node name="UISoundController" type="Node" parent="."]
-script = ExtResource("3_6hy0s")
+script = ExtResource("3_smu5k")
 
-[connection signal="pressed" from="Control/Panel/MarginContainer/VBoxContainer/ButtonsContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="Control/Panel/MarginContainer/VBoxContainer/ButtonsContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="Control/Panel/MarginContainer/VBoxContainer/ButtonsContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
 [connection signal="pressed" from="Control/Panel/MarginContainer/VBoxContainer/ButtonsContainer/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="confirmed" from="ConfirmMainMenu" to="." method="_on_confirm_main_menu_confirmed"]
