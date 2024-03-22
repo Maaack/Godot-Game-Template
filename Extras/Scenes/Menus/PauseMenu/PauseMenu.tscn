@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dtdpd6o5xj4dq"]
 
 [ext_resource type="PackedScene" uid="uid://cdwvtbtwmrqbn" path="res://App/Scenes/Menus/PauseMenu/PauseMenu.tscn" id="1_wyugv"]
-[ext_resource type="PackedScene" uid="uid://dbxphb45qufyg" path="res://Extras/Scenes/Menus/OptionsMenu/OptionsMenu.tscn" id="2_ge84d"]
+[ext_resource type="PackedScene" uid="uid://dbxphb45qufyg" path="res://Extras/Scenes/Menus/OptionsMenu/OptionsMenuWithReset.tscn" id="2_ge84d"]
 
 [node name="PauseMenu" instance=ExtResource("1_wyugv")]
 options_packed_scene = ExtResource("2_ge84d")
