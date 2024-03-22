@@ -16,10 +16,11 @@ signal end_reached
 
 var scroll_paused : bool = false
 
-func load_file(file_path):
+func load_file(file_path) -> String:
 	var file_string = FileAccess.get_file_as_string(file_path)
 	if file_string == null:
-		print("File open error: %s" % FileAccess.get_open_error())
+		push_warning("File open error: %s" % FileAccess.get_open_error())
+		return ""
 	return file_string
 
 func regex_replace_urls(credits:String):
