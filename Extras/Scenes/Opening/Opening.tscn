@@ -48,7 +48,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fcjph")
-next_scene = "res://Extras/Scenes/Menus/MainMenu/MainMenu.tscn"
+next_scene = "res://Extras/Scenes/Menus/MainMenu/MainMenuWithAnimations.tscn"
 images = Array[Texture2D]([ExtResource("2_70swx")])
 end_delay = 1.0
 
