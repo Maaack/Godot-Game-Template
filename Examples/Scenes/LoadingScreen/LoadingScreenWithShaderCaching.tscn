@@ -1,12 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://geb2nqrjbxqt"]
 
 [ext_resource type="PackedScene" uid="uid://cd0jbh4metflb" path="res://App/Base/Scenes/LoadingScreen/LoadingScreen.tscn" id="1_87itf"]
-[ext_resource type="Script" path="res://Extras/Scenes/LoadingScreen/LoadingScreenWithShaderCaching.gd" id="2_wgd8a"]
+[ext_resource type="Script" path="res://Examples/Scenes/LoadingScreen/LoadingScreenWithShaderCaching.gd" id="2_wgd8a"]
 
 [node name="LoadingScreen" instance=ExtResource("1_87itf")]
 script = ExtResource("2_wgd8a")
 _spatial_shader_material_dir = ""
-_cache_shaders_scene = "res://Extras/Scenes/GameScene/GameUI.tscn"
+_cache_shaders_scene = "res://Examples/Scenes/GameScene/GameUI.tscn"
 _matching_extensions = Array[String]([".tres", ".material", ".res"])
 _ignore_subfolders = Array[String]([".", ".."])
 _shader_delay_timer = 0.1

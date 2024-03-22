@@ -1,6 +1,6 @@
 extends LoadingScreen
 
-const QUADMESH_PLACEHOLDER = preload("res://Extras/Scenes/LoadingScreen/QuadMeshPlaceholder.tscn")
+const QUADMESH_PLACEHOLDER = preload("res://Examples/Scenes/LoadingScreen/QuadMeshPlaceholder.tscn")
 
 @export_dir var _spatial_shader_material_dir : String
 @export_file("*.tscn") var _cache_shaders_scene : String

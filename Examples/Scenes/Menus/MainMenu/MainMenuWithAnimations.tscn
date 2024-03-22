@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://sbluwaaplbsg"]
 
-[ext_resource type="PackedScene" uid="uid://bu1fmh7ltlnbm" path="res://Extras/Scenes/Menus/MainMenu/MainMenuWithScenes.tscn" id="1_6ic5b"]
-[ext_resource type="Script" path="res://Extras/Scenes/Menus/MainMenu/MainMenuWithAnimations.gd" id="2_xe54b"]
+[ext_resource type="PackedScene" uid="uid://bu1fmh7ltlnbm" path="res://Examples/Scenes/Menus/MainMenu/MainMenuWithScenes.tscn" id="1_6ic5b"]
+[ext_resource type="Script" path="res://Examples/Scenes/Menus/MainMenu/MainMenuWithAnimations.gd" id="2_xe54b"]
 
 [sub_resource type="Animation" id="1"]
 resource_name = "Intro"

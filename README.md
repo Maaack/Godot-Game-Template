@@ -79,7 +79,7 @@ If you just want to use just the projects minimum `App/` folder:
 1.  Go to `Project > Project Settings… > General > Application > Run`.
 2.  Update `Main Scene` to `res://App/Base/Scenes/InitApp/InitApp.tscn`.
 3.  Go to `Project > Project Settings… > Autoload`.
-4.  Remove autoloads that start with the path `res://Extras/...`.
+4.  Remove autoloads that start with the path `res://App/Extras...`.
     1.  `ProjectUiSoundController`
     2.  `ProjectLevelLoader`
     3.  `RuntimeLogger`
