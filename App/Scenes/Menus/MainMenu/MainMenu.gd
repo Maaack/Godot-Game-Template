@@ -1,12 +1,12 @@
+class_name MainMenu
 extends Control
 
 
 @export_file("*.tscn") var game_scene_path : String
 @export var options_packed_scene : PackedScene
 @export var credits_packed_scene : PackedScene
-@export var version_name: String = '0.0.0'
+@export var version_name : String = '0.0.0'
 
-var animation_state_machine : AnimationNodeStateMachinePlayback
 var options_scene
 var credits_scene
 var sub_menu
@@ -18,23 +18,18 @@ func play_game():
 	SceneLoader.load_scene(game_scene_path)
 
 func _open_sub_menu(menu : Control):
-	menu.visible = true
 	sub_menu = menu
-	animation_state_machine.travel("OpenSubMenu")
+	sub_menu.show()
+	%BackButton.show()
+	%MenuContainer.hide()
 
 func _close_sub_menu():
 	if sub_menu == null:
 		return
-	animation_state_machine.travel("OpenMainMenu")
-	sub_menu.visible = false
+	sub_menu.hide()
 	sub_menu = null
-	animation_state_machine.travel("OpenMainMenu")
-
-func intro_done():
-	animation_state_machine.travel("OpenMainMenu")
-
-func _is_in_intro():
-	return animation_state_machine.get_current_node() == "Intro"
+	%BackButton.hide()
+	%MenuContainer.show()
 
 func _event_is_mouse_button_released(event : InputEvent):
 	return event is InputEventMouseButton and not event.is_pressed()
@@ -46,8 +41,6 @@ func _event_skips_intro(event : InputEvent):
 		_event_is_mouse_button_released(event)
 
 func _input(event):
-	if _is_in_intro() and _event_skips_intro(event):
-		intro_done()
 	if event.is_action_released("ui_accept") and get_viewport().gui_get_focus_owner() == null:
 		%MenuButtons.focus_first()
 
@@ -87,7 +80,6 @@ func _ready():
 	_setup_options()
 	_setup_credits()
 	_setup_play()
-	animation_state_machine = $MenuAnimationTree.get("parameters/playback")
 
 func _on_play_button_pressed():
 	play_game()

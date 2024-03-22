@@ -1,299 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://c6k5nnpbypshi"]
+[gd_scene load_steps=4 format=3 uid="uid://c6k5nnpbypshi"]
 
 [ext_resource type="Script" path="res://App/Scenes/Menus/MainMenu/MainMenu.gd" id="1"]
-[ext_resource type="PackedScene" uid="uid://bvwl11s2p0hd" path="res://App/Scenes/Menus/OptionsMenu/MasterOptionsMenu.tscn" id="2_ewwbc"]
-[ext_resource type="PackedScene" uid="uid://t2dui8ppm3a4" path="res://App/Scenes/Credits/Credits.tscn" id="3_lcwf5"]
 [ext_resource type="Script" path="res://App/Scripts/CaptureFocus.gd" id="4_l1ebe"]
 [ext_resource type="Script" path="res://App/Scripts/UISoundController.gd" id="6_bs342"]
-
-[sub_resource type="Animation" id="1"]
-resource_name = "Intro"
-length = 2.4
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(2.4),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"intro_done"
-}]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MarginContainer/VBoxContainer/TitlesMargin/TitlesContainer/Title:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("MarginContainer/VBoxContainer/TitlesMargin/TitlesContainer/SubTitle:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.8, 1.6),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("MarginContainer/VBoxContainer/MenuMargin/MenuButtons:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 1.6, 2.4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("FlowControlContainer:mouse_filter")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 2.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, 2]
-}
-
-[sub_resource type="Animation" id="6"]
-resource_name = "OpenMainMenu"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MarginContainer/VBoxContainer/TitlesMargin/TitlesContainer/Title:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MarginContainer/VBoxContainer/TitlesMargin/TitlesContainer/SubTitle:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("MarginContainer/VBoxContainer/MenuMargin/MenuButtons:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("FlowControlContainer/FlowControl/BackButton:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("FlowControlContainer:mouse_filter")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [2]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("MarginContainer:modulate")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="4"]
-resource_name = "OpenSubMenu"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("FlowControlContainer/FlowControl/BackButton:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MarginContainer:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="3"]
-resource_name = "Outro"
-length = 0.5
-
-[sub_resource type="Animation" id="2"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("FlowControlContainer/FlowControl/BackButton:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MarginContainer/VBoxContainer/TitlesMargin/TitlesContainer/Title:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("MarginContainer/VBoxContainer/TitlesMargin/TitlesContainer/SubTitle:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("MarginContainer/VBoxContainer/MenuMargin/MenuButtons:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("FlowControlContainer:mouse_filter")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [2]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("MarginContainer:modulate")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_2kqig"]
-_data = {
-"Intro": SubResource("1"),
-"OpenMainMenu": SubResource("6"),
-"OpenSubMenu": SubResource("4"),
-"Outro": SubResource("3"),
-"RESET": SubResource("2")
-}
-
-[sub_resource type="AnimationNodeAnimation" id="7"]
-animation = &"Intro"
-
-[sub_resource type="AnimationNodeAnimation" id="10"]
-animation = &"OpenMainMenu"
-
-[sub_resource type="AnimationNodeAnimation" id="13"]
-animation = &"OpenSubMenu"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="11"]
-advance_condition = &"intro_done"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="14"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_j0orr"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_63dxc"]
-
-[sub_resource type="AnimationNodeStateMachine" id="8"]
-states/End/position = Vector2(958, 123)
-states/Intro/node = SubResource("7")
-states/Intro/position = Vector2(259, 123)
-states/OpenMainMenu/node = SubResource("10")
-states/OpenMainMenu/position = Vector2(472, 123)
-states/OpenSubMenu/node = SubResource("13")
-states/OpenSubMenu/position = Vector2(734, 123)
-states/Start/position = Vector2(82, 123)
-transitions = ["Intro", "OpenMainMenu", SubResource("11"), "OpenMainMenu", "OpenSubMenu", SubResource("14"), "Start", "Intro", SubResource("AnimationNodeStateMachineTransition_j0orr"), "OpenSubMenu", "OpenMainMenu", SubResource("AnimationNodeStateMachineTransition_63dxc")]
-graph_offset = Vector2(51, 80)
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -303,21 +12,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1")
-options_packed_scene = ExtResource("2_ewwbc")
-credits_packed_scene = ExtResource("3_lcwf5")
-
-[node name="MenuAnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_2kqig")
-}
-
-[node name="MenuAnimationTree" type="AnimationTree" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_2kqig")
-}
-tree_root = SubResource("8")
-anim_player = NodePath("../MenuAnimationPlayer")
-parameters/conditions/intro_done = false
 
 [node name="BackgroundTextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -345,7 +39,8 @@ grow_horizontal = 0
 grow_vertical = 0
 horizontal_alignment = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MenuContainer" type="MarginContainer" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -353,67 +48,64 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuContainer"]
 layout_mode = 2
 
-[node name="TitlesMargin" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+[node name="TitlesMargin" type="MarginContainer" parent="MenuContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_top = 16
 
-[node name="TitlesContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TitlesMargin"]
+[node name="TitlesContainer" type="VBoxContainer" parent="MenuContainer/VBoxContainer/TitlesMargin"]
 layout_mode = 2
 
-[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/TitlesMargin/TitlesContainer"]
-modulate = Color(1, 1, 1, 0)
+[node name="Title" type="Label" parent="MenuContainer/VBoxContainer/TitlesMargin/TitlesContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Title"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SubTitle" type="Label" parent="MarginContainer/VBoxContainer/TitlesMargin/TitlesContainer"]
-modulate = Color(1, 1, 1, 0)
+[node name="SubTitle" type="Label" parent="MenuContainer/VBoxContainer/TitlesMargin/TitlesContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Subtitle"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MenuMargin" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+[node name="MenuMargin" type="MarginContainer" parent="MenuContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="MenuButtons" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MenuMargin"]
+[node name="MenuButtons" type="VBoxContainer" parent="MenuContainer/VBoxContainer/MenuMargin"]
 unique_name_in_owner = true
-modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 16
 alignment = 1
 script = ExtResource("4_l1ebe")
 
-[node name="PlayButton" type="Button" parent="MarginContainer/VBoxContainer/MenuMargin/MenuButtons"]
+[node name="PlayButton" type="Button" parent="MenuContainer/VBoxContainer/MenuMargin/MenuButtons"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
 text = "Play"
 
-[node name="OptionsButton" type="Button" parent="MarginContainer/VBoxContainer/MenuMargin/MenuButtons"]
+[node name="OptionsButton" type="Button" parent="MenuContainer/VBoxContainer/MenuMargin/MenuButtons"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
 text = "Options
 "
 
-[node name="CreditsButton" type="Button" parent="MarginContainer/VBoxContainer/MenuMargin/MenuButtons"]
+[node name="CreditsButton" type="Button" parent="MenuContainer/VBoxContainer/MenuMargin/MenuButtons"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
 text = "Credits"
 
-[node name="ExitButton" type="Button" parent="MarginContainer/VBoxContainer/MenuMargin/MenuButtons"]
+[node name="ExitButton" type="Button" parent="MenuContainer/VBoxContainer/MenuMargin/MenuButtons"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
@@ -470,8 +162,8 @@ text = "Back"
 [node name="UISoundController" type="Node" parent="."]
 script = ExtResource("6_bs342")
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/MenuMargin/MenuButtons/PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/MenuMargin/MenuButtons/OptionsButton" to="." method="_on_options_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/MenuMargin/MenuButtons/CreditsButton" to="." method="_on_credits_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/MenuMargin/MenuButtons/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="MenuContainer/VBoxContainer/MenuMargin/MenuButtons/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="MenuContainer/VBoxContainer/MenuMargin/MenuButtons/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="MenuContainer/VBoxContainer/MenuMargin/MenuButtons/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="MenuContainer/VBoxContainer/MenuMargin/MenuButtons/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="FlowControlContainer/FlowControl/BackButton" to="." method="_on_back_button_pressed"]
