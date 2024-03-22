@@ -9,7 +9,7 @@ process_mode = 3
 layer = 10
 script = ExtResource("1_wo104")
 next_scene = "res://Extras/Scenes/EndCredits/EndCredits.tscn"
-main_menu_scene = "res://Extras/Scenes/Menus/MainMenu/MainMenu.tscn"
+main_menu_scene = "res://Extras/Scenes/Menus/MainMenu/MainMenuWithAnimations.tscn"
 
 [node name="Background" type="ColorRect" parent="."]
 anchors_preset = 15
