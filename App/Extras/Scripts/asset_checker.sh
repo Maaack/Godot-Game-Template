@@ -1,4 +1,11 @@
 #!/bin/bash
+# asset checker command
+# Used for quickly checking that assets (like audio files) are being used where expected.
+# 
+# Recursively searches through scene files (.tscn, .scn, .res)
+# for occurrences of asset types (default: AudioStream).
+# It then outputs the paths of assets discovered,
+# along with the file names that use them.
 
 short_flag=false
 asset_type="AudioStream"
