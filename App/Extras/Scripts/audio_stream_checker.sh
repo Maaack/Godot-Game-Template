@@ -1,5 +1,23 @@
 #!/bin/bash
 
+short_flag=false
+
+print_usage() {
+  printf "Usage: -s"
+}
+
+while getopts 's' flag; do
+  case "${flag}" in
+    s) 
+       short_flag=true
+       ;;
+    *) 
+       print_usage
+       exit 1 
+       ;;
+  esac
+done
+
 # Initialize an associative array to store paths and corresponding files
 declare -A path_files
 
@@ -32,10 +50,10 @@ for path in "${sorted_paths[@]}"; do
     IFS='|' read -r -a files_array <<< "${path_files[$path]}"
     files_count=${#files_array[@]}
     printf "%-80s | Uses: %s\n" "$path" "$files_count"
-    for file in "${files_array[@]}"; do
-        printf "\t%82s\n" "$file"
-    done
-    echo
+    if ! $short_flag ; then
+        for file in "${files_array[@]}"; do
+            printf "\t%82s\n" "$file"
+        done
+        echo
+    fi
 done
-
-
