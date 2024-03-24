@@ -1,13 +1,17 @@
 #!/bin/bash
 
 short_flag=false
+asset_type="AudioStream"
 
 print_usage() {
-  printf "Usage: -s"
+  printf "Usage: -sa %s\n" "$asset_type"
 }
 
-while getopts 's' flag; do
+while getopts 'a:s' flag; do
   case "${flag}" in
+    a) 
+       asset_type="${OPTARG}"
+       ;;
     s) 
        short_flag=true
        ;;
@@ -33,7 +37,7 @@ while IFS=: read -r file line; do
             path_files["$path"]+="|$file"
         fi
     fi
-done < <(egrep -ir --include=*.tscn "type=\"AudioStream\"")
+done < <(egrep -ir --include=*.{tscn,scn,res} "type=\"$asset_type\"")
 
 # Get the paths and sort them
 sorted_paths=()
