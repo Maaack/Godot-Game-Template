@@ -27,13 +27,15 @@ unset IFS
 
 # Print out the results
 for path in "${sorted_paths[@]}"; do
-    echo "$path"
     # Note: Bash does not support having arrays as values of associative array.
     # Splitting the concatenated files string on the pipe `|` separator.
     IFS='|' read -r -a files_array <<< "${path_files[$path]}"
+    files_count=${#files_array[@]}
+    printf "%-80s | Uses: %s\n" "$path" "$files_count"
     for file in "${files_array[@]}"; do
-        printf "%128s\n" "$file"
+        printf "\t%82s\n" "$file"
     done
+    echo
 done
 
 
