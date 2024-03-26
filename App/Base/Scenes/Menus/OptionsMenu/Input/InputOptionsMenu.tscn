@@ -1,14 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dp3rgqaehb3xu"]
+[gd_scene load_steps=4 format=3 uid="uid://dp3rgqaehb3xu"]
 
 [ext_resource type="Script" path="res://App/Base/Scenes/Menus/OptionsMenu/Input/InputOptionsMenu.gd" id="1"]
 [ext_resource type="Script" path="res://App/Base/Scripts/CaptureFocus.gd" id="2_wft4x"]
 [ext_resource type="Script" path="res://App/Base/Scenes/Menus/OptionsMenu/Input/KeyAssignmentDialog.gd" id="3_wsh2h"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_7h8wy"]
-size = Vector2(16, 16)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_nq02i"]
-size = Vector2(16, 16)
 
 [node name="Controls" type="MarginContainer"]
 anchors_preset = 15
@@ -19,8 +13,6 @@ grow_vertical = 2
 theme_override_constants/margin_top = 24
 theme_override_constants/margin_bottom = 24
 script = ExtResource("1")
-add_button_texture = SubResource("PlaceholderTexture2D_7h8wy")
-remove_button_texture = SubResource("PlaceholderTexture2D_nq02i")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(400, 280)
