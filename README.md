@@ -16,9 +16,9 @@ The core components can support a larger project, but the template was originall
 
 ## Features
 
-### App (Base)
+### Base
 
-The `App/Base` folder holds the core components of the menus application.
+The `base/` folder holds the core components of the menus application.
 
 -   Main Menu    
 -   Options Menus
@@ -32,7 +32,7 @@ The `App/Base` folder holds the core components of the menus application.
 
 ### Extras
 
-The `App/Extras` folder holds components that extend the core application.
+The `extras/` folder holds components that extend the core application.
 
 -   Pause Menu
 -   Opening Scene
@@ -42,13 +42,13 @@ The `App/Extras` folder holds components that extend the core application.
  
 ### Examples 
 
-The `Examples` folder contains an example project using inherited scenes from the `App`.
+The `examples/` folder contains an example project using inherited scenes from the `base/` and `extras/`.
 
 -   Example Game Scene
 -   Level Advancement
 -   End Credits
 -   Shader Pre-caching
--   Additional Inherited Scenes from `App/`:
+-   Additional Inherited Scenes:
     -   `OptionsMenuWithReset.tscn`
     -   `MasterOptionsMenuWithGameTab.tscn`
     -   `MainMenuWithAnimations.tscn` 
@@ -71,39 +71,42 @@ The `Examples` folder contains an example project using inherited scenes from th
 
 ### Examples
 
-Changes can be made directly to the contents of the `Examples/` folder. Alternatively, the folder can be copied or renamed. By default, the project's main scene is `InitAppWithOpening.tscn`, and it links to other scenes in the `Examples/` directory. All the scenes and links can be reasonably safely changed to suit the developer's needs.
+Changes can be made directly to the contents of the `examples/` folder. Alternatively, the folder can be copied or renamed. By default, the project's main scene is `InitAppWithOpening.tscn`, and it links to other scenes in the `examples/` directory. All the scenes and links can be reasonably safely changed to suit the developer's needs.
 
 ### Base vs. Extras
 
-`App/Base/` contains the core features of the package. On first use, it's recommended to keep the `App/Extras/` folder. Features can be added and removed as needed.
+`base/` contains the core features of the package. On first use, it's recommended to keep the `extras/` folder. Features can be added and removed as needed.
 
-If a developer wants to start minimally, they may use just the `App/Base/` folder, and safely remove the `App/Extras/` folder by following the [minimal](#minimal) instructions.
+If a developer wants to start minimally, they may use just the `base/` folder, and safely remove the `extras/` folder by following the [minimal](#minimal) instructions.
 
 Compare [features](#features) to decide which approach is best for your project.
 
 #### Minimal
 
-If you just want to use just the projects minimum `App/Base/` folder:
+If you just want to use just the projects minimum `base/` folder:
 
 1.  Go to `Project > Project Settings… > General > Application > Run`.
-2.  Update `Main Scene` to `res://App/Base/Scenes/InitApp/InitApp.tscn`.
+2.  Update `Main Scene` to `res://addons/maaacks_game_template/base/scenes/InitApp/InitApp.tscn`.
 3.  Go to `Project > Project Settings… > Autoload`.
-4.  Remove autoloads that start with the path `res://App/Extras...`.
+4.  Remove autoloads that start with the path `res://addons/maaacks_game_template/extras/*`.
     1.  `ProjectUiSoundController`
     2.  `ProjectLevelLoader`
     3.  `RuntimeLogger`
 5.  Close the window.
-7.  Delete the `Media/` folder.
-6.  Delete the `Examples/` folder.
-8.  Delete the `App/Extras/` folder.
-9.  Reload the project.
+6.  Delete the extra folders from the plugin:
+    1.  `res://addons/maaacks_game_template/extras/`
+    2.  `res://addons/maaacks_game_template/examples/`
+7.  If using the template version, delete the extra folders from the project's root directory:
+    1.  `res://Media/`
+    2.  `res://Examples/`
+8.  Reload the project.
     
 Lastly, this `README.md` can both be removed or updated to match your project.
 
-The remaining instructions will apply the same for either folder you decide to use.
+The remaining instructions will apply roughly the same.
 
 ### New Project
-These instructions assume starting with the entire contents of the project folder.
+These instructions assume starting with the entire contents of the project folder. This will be the case when cloning the repo, or starting from the *template* version in the Godot Asset Library.
   
 
 1.  Update the project’s name.
@@ -151,30 +154,35 @@ These instructions assume starting with the entire contents of the project folde
         4.  Save the scenes.
    
    
-    2.  Project-wide, with `Extras/`.
+    2.  Project-wide, with `extras/`.
 
 
-        1.  Open `UISoundControllerAutoload.tscn`.
-        2.  Select the `UISoundController` node.
-        3.  Add audio streams to the various UI node events.
-        4.  Save the scene.
-        5.  Go to `Project > Project Settings… > Autoload`.
-        6.  Enable `UISoundControllerAutoload`.
-        7.  Close the window.
+        1.  Go to `Project > Project Settings… > Autoload`.
+        2.  Make sure `UISoundControllerAutoload` is listed.
+            1.  Note: It does not need a global variable enabled.
+        3.  Close the window.        
+        4.  Open `UISoundControllerAutoload.tscn`.
+        5.  Select the `UISoundController` node.
+        6.  Add audio streams to the various UI node events.
+        7.  Save the scene.
+
 
 
 5.  Update the game credits / attribution and license.
     
 
-    1.  Keep, update, or remove `LICENSE.txt`.
-    2.  Copy `ATTRIBUTION_example.md` over `ATTRIBUTION.md`.
-    3.  Update `ATTRIBUTION.md` with “Game Name” credits, following the example.
-    4.  Reload `Credits.tscn` scene to apply changes from `ATTRIBUTION.md`.
+    1.  Keep, update, or remove `res://LICENSE.txt`.
+    2.  Copy `res://ATTRIBUTION_example.md` over `res://ATTRIBUTION.md`.
+    3.  Update `res://ATTRIBUTION.md` with “Game Name” credits, following the example.
+    4.  Open `Credits.tscn`.
+    5.  Select the `Credits` node.
+    6.  Update the `Attribution File Path` to `res://ATTRIBUTION.md`.
+    7.  Reload `Credits.tscn` scene to apply changes from `res://ATTRIBUTION.md`.
 
 
 ### Existing Project
 
-For an existing project, just copy over the `App/` folder (optionally the `Extras/` folder, as well).
+For an existing project, developers can copy the contents of the `addons/` folder into their project. This will be the case when installing the application from the *plugin* version in the Godot Asset Library.
 
   
 
@@ -182,7 +190,7 @@ For an existing project, just copy over the `App/` folder (optionally the `Extra
     
 
     1.  Go to `Project > Project Settings… > General > Application > Run`.
-    2.  Update `Main Scene` to `res://…/InitApp.tscn`.
+    2.  Update `Main Scene` to `res://addons/maaacks_game_template/base/scenes/InitApp/InitApp.tscn`.
     3.  Close the window.
     
 
@@ -190,8 +198,11 @@ For an existing project, just copy over the `App/` folder (optionally the `Extra
     
 
     1.  Go to `Project > Project Settings… > Autoload`.
-    2.  Add `res://App/Base/Scripts/SceneLoader.gd`.
-    3.  Optionally enable `res://App/Extras/Scripts/RuntimeLogger.gd`.
+    2.  Add `res://addons/maaacks_game_template/base/scripts/SceneLoader.gd`.
+    3.  Optionally add:
+        1.  `res://addons/maaacks_game_template/extras/scenes/Autoloads/ProjectUISoundController.tscn`
+        1.  `res://addons/maaacks_game_template/extras/scenes/Autoloads/ProjectLevelLoader.tscn`
+        2.  `res://addons/maaacks_game_template/extras/scripts/RuntimeLogger.gd`.
     4.  Close the window.
 
 3.  Update the project’s name.
@@ -233,25 +244,28 @@ For an existing project, just copy over the `App/` folder (optionally the `Extra
         4.  Save the scenes.
 
 
-    2.  Project-wide, with `Extras/`.
+    2.  Project-wide, with `extras/`.
 
 
-        1.  Open `UISoundControllerAutoload.tscn`.
-        2.  Select the `UISoundController` node.
-        3.  Add audio streams to the various UI node events.
-        4.  Save the scene.
-        5.  Go to `Project > Project Settings… > Autoload`.
-        6.  Enable `UISoundControllerAutoload`.
-        7.  Close the window.
+        1.  Go to `Project > Project Settings… > Autoload`.
+        2.  Make sure `UISoundControllerAutoload` is listed.
+            1.  Note: It does not need a global variable enabled.
+        3.  Close the window.        
+        4.  Open `UISoundControllerAutoload.tscn`.
+        5.  Select the `UISoundController` node.
+        6.  Add audio streams to the various UI node events.
+        7.  Save the scene.
    
 
-7.  Update the game credits / attribution and license.
+7.  Update the game credits / attribution.
     
 
-    1.  Keep, update, or remove `LICENSE.txt`.
-    2.  Copy `ATTRIBUTION_example.md` over `ATTRIBUTION.md`.
-    3.  Update `ATTRIBUTION.md` with “Game Name” credits, following the example.
-    4.  Reload `Credits.tscn` scene to apply changes from `ATTRIBUTION.md`.
+    1.  Copy `res://addons/maaacks_game_template/ATTRIBUTION_example.md` to your project's root directory as `res://ATTRIBUTION.md`.
+    2.  Update `res://ATTRIBUTION.md` with “Game Name” credits, following the example.
+    3.  Open `Credits.tscn`.
+    4.  Select the `Credits` node.
+    5.  Update the `Attribution File Path` to `res://ATTRIBUTION.md`.
+    6.  Reload `Credits.tscn` scene to apply changes from `res://ATTRIBUTION.md`.
    
 
 ## Links
