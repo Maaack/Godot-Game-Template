@@ -17,15 +17,19 @@ config/icon="res://icon.png"
 
 [autoload]
 
-SceneLoader="*res://App/Base/Scripts/SceneLoader.gd"
-ProjectUiSoundController="res://App/Extras/Scenes/Autoloads/ProjectUISoundController.tscn"
-ProjectLevelLoader="res://App/Extras/Scenes/Autoloads/ProjectLevelLoader.tscn"
-RuntimeLogger="res://App/Extras/Scripts/RuntimeLogger.gd"
+SceneLoader="*res://addons/maaacks_game_template/base/scripts/SceneLoader.gd"
+ProjectUiSoundController="res://addons/maaacks_game_template/extras/scenes/Autoloads/ProjectUISoundController.tscn"
+ProjectLevelLoader="res://addons/maaacks_game_template/extras/scenes/Autoloads/ProjectLevelLoader.tscn"
+RuntimeLogger="res://addons/maaacks_game_template/extras/scripts/RuntimeLogger.gd"
 
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/maaacks_game_template/plugin.cfg")
 
 [gui]
 

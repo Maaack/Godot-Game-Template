@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://bosy6wwf0vleq"]
+
+[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/Audio/AudioControl/AudioControl.gd" id="1_caab0"]
+
+[node name="AudioControl" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_caab0")
+
+[node name="BusLabel" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Audio Bus :"
+
+[node name="BusHSlider" type="HSlider" parent="."]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.05
+value = 1.0
+tick_count = 11
+ticks_on_borders = true
+
+[connection signal="value_changed" from="BusHSlider" to="." method="_on_bus_h_slider_value_changed"]

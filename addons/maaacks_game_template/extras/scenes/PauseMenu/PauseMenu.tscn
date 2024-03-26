@@ -1,0 +1,152 @@
+[gd_scene load_steps=4 format=3 uid="uid://cdwvtbtwmrqbn"]
+
+[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scenes/PauseMenu/PauseMenu.gd" id="2"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/CaptureFocus.gd" id="3_43rgy"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/UISoundController.gd" id="3_hgthy"]
+
+[node name="PauseMenu" type="CanvasLayer"]
+process_mode = 3
+layer = 100
+script = ExtResource("2")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="BackgroundColor" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="BackgroundTextureRect" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MenuContainer" type="MarginContainer" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MenuContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/MenuContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 16
+
+[node name="Title" type="Label" parent="Control/MenuContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Pause"
+horizontal_alignment = 1
+
+[node name="MenuButtons" type="VBoxContainer" parent="Control/MenuContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+alignment = 1
+script = ExtResource("3_43rgy")
+
+[node name="ResumeButton" type="Button" parent="Control/MenuContainer/VBoxContainer/MenuButtons"]
+custom_minimum_size = Vector2(128, 40)
+layout_mode = 2
+text = "Resume"
+
+[node name="RestartButton" type="Button" parent="Control/MenuContainer/VBoxContainer/MenuButtons"]
+custom_minimum_size = Vector2(128, 40)
+layout_mode = 2
+text = "Restart"
+
+[node name="OptionsButton" type="Button" parent="Control/MenuContainer/VBoxContainer/MenuButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 40)
+layout_mode = 2
+text = "Options"
+
+[node name="MainMenuButton" type="Button" parent="Control/MenuContainer/VBoxContainer/MenuButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 40)
+layout_mode = 2
+text = "Main Menu"
+
+[node name="ExitButton" type="Button" parent="Control/MenuContainer/VBoxContainer/MenuButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 40)
+layout_mode = 2
+text = "Exit Game"
+
+[node name="SubMenuContainer" type="MarginContainer" parent="Control"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(360, 360)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/SubMenuContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="OptionsContainer" type="MarginContainer" parent="Control/SubMenuContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/SubMenuContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="BackButton" type="Button" parent="Control/SubMenuContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(62, 40)
+layout_mode = 2
+text = "Back"
+
+[node name="ConfirmRestart" type="ConfirmationDialog" parent="Control"]
+unique_name_in_owner = true
+dialog_text = "Restart the game?"
+
+[node name="ConfirmMainMenu" type="ConfirmationDialog" parent="Control"]
+unique_name_in_owner = true
+dialog_text = "Go back to main menu?"
+
+[node name="ConfirmExit" type="ConfirmationDialog" parent="Control"]
+unique_name_in_owner = true
+dialog_text = "Quit the game?"
+
+[node name="UISoundController" type="Node" parent="."]
+script = ExtResource("3_hgthy")
+
+[connection signal="pressed" from="Control/MenuContainer/VBoxContainer/MenuButtons/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Control/MenuContainer/VBoxContainer/MenuButtons/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="Control/MenuContainer/VBoxContainer/MenuButtons/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="Control/MenuContainer/VBoxContainer/MenuButtons/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="Control/MenuContainer/VBoxContainer/MenuButtons/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="Control/SubMenuContainer/VBoxContainer/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="confirmed" from="Control/ConfirmRestart" to="." method="_on_confirm_restart_confirmed"]
+[connection signal="confirmed" from="Control/ConfirmMainMenu" to="." method="_on_confirm_main_menu_confirmed"]
+[connection signal="confirmed" from="Control/ConfirmExit" to="." method="_on_confirm_exit_confirmed"]

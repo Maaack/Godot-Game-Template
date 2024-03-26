@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://brp0f5m041sho"]
+
+[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scenes/InitApp/InitApp.gd" id="1_gvtll"]
+
+[node name="InitApp" type="Node"]
+script = ExtResource("1_gvtll")
+_loading_screen = "res://addons/maaacks_game_template/base/scenes/LoadingScreen/LoadingScreen.tscn"
+_next_scene = "res://addons/maaacks_game_template/base/scenes/Menus/MainMenu/MainMenu.tscn"

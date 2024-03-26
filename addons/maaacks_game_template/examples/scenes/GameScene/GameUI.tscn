@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=3 uid="uid://bde0cbmryrv5s"]
+
+[ext_resource type="Script" path="res://addons/maaacks_game_template/examples/scenes/GameScene/GameUI.gd" id="1_lpkm8"]
+[ext_resource type="PackedScene" uid="uid://ta2xbceba8ec" path="res://addons/maaacks_game_template/examples/scenes/SuccessScreen/SuccessScreenWithScenes.tscn" id="2_3aw6s"]
+[ext_resource type="PackedScene" uid="uid://duvowpap0jwaq" path="res://addons/maaacks_game_template/examples/scenes/FailureScreen/FailureScreenWithScenes.tscn" id="3_28mfg"]
+[ext_resource type="PackedScene" uid="uid://cd0jbh4metflb" path="res://addons/maaacks_game_template/base/scenes/LoadingScreen/LoadingScreen.tscn" id="4_acyv5"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/PauseMenuController.gd" id="5_fc8fx"]
+[ext_resource type="PackedScene" uid="uid://qeqh1euot2d0" path="res://addons/maaacks_game_template/examples/scenes/Menus/PauseMenu/PauseMenuWithScenes.tscn" id="6_w57cp"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/examples/scenes/GameScene/InputDisplayLabel.gd" id="7_f87ri"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/LevelLoader.gd" id="8_g1tvw"]
+
+[node name="GameUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lpkm8")
+win_scene = ExtResource("2_3aw6s")
+lose_scene = ExtResource("3_28mfg")
+
+[node name="LoadingScreen" parent="." instance=ExtResource("4_acyv5")]
+visible = false
+
+[node name="PauseMenuController" type="Node" parent="."]
+script = ExtResource("5_fc8fx")
+pause_menu_packed = ExtResource("6_w57cp")
+
+[node name="InputDisplayLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+horizontal_alignment = 1
+autowrap_mode = 2
+script = ExtResource("7_f87ri")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LevelLoader" type="Node" parent="." node_paths=PackedStringArray("level_container")]
+script = ExtResource("8_g1tvw")
+level_container = NodePath("../Control")
+files = Array[String](["res://addons/maaacks_game_template/examples/scenes/GameScene/Levels/Level1.tscn", "res://addons/maaacks_game_template/examples/scenes/GameScene/Levels/Level2.tscn", "res://addons/maaacks_game_template/examples/scenes/GameScene/Levels/Level3.tscn"])
+directory = "res://addons/maaacks_game_template/examples/scenes/GameScene/Levels"
+
+[connection signal="level_load_started" from="LevelLoader" to="." method="_on_level_loader_level_load_started"]
+[connection signal="level_loaded" from="LevelLoader" to="." method="_on_level_loader_level_loaded"]
+[connection signal="levels_finished" from="LevelLoader" to="." method="_on_level_loader_levels_finished"]

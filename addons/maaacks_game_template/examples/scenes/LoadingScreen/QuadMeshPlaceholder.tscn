@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1nvjo55xpy3g"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_el52t"]
+size = Vector2(0.001, 0.001)
+
+[node name="MeshPlaceholder" type="MeshInstance3D"]
+mesh = SubResource("QuadMesh_el52t")

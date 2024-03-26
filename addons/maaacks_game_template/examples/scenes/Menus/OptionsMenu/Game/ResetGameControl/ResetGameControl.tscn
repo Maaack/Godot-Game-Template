@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://w5i7wl2xlos"]
+
+[ext_resource type="Script" path="res://addons/maaacks_game_template/examples/scenes/Menus/OptionsMenu/Game/ResetGameControl/ResetGameControl.gd" id="1_wkygd"]
+
+[node name="ResetGameControl" type="HBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+offset_top = 210.0
+offset_right = 305.0
+offset_bottom = 242.0
+script = ExtResource("1_wkygd")
+
+[node name="ResetLabel" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Reset Game :"
+
+[node name="ResetButton" type="Button" parent="."]
+custom_minimum_size = Vector2(72, 32)
+layout_mode = 2
+text = "reset"
+
+[node name="ConfirmResetDialog" type="ConfirmationDialog" parent="."]
+dialog_text = "Do you want to reset your game data?"
+
+[connection signal="pressed" from="ResetButton" to="." method="_on_ResetButton_pressed"]
+[connection signal="canceled" from="ConfirmResetDialog" to="." method="_on_confirm_reset_dialog_canceled"]
+[connection signal="confirmed" from="ConfirmResetDialog" to="." method="_on_ConfirmResetDialog_confirmed"]

@@ -1,0 +1,74 @@
+[gd_scene load_steps=2 format=3 uid="uid://t2dui8ppm3a4"]
+
+[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scenes/Credits/Credits.gd" id="4"]
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4")
+attribution_file_path = "res://addons/maaacks_game_template/ATTRIBUTION.md"
+h1_font_size = 64
+h2_font_size = 48
+h3_font_size = 32
+h4_font_size = 24
+scroll_active = false
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+scroll_vertical = 100
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HeaderSpace" type="Control" parent="ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 720)
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(1280, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+bbcode_enabled = true
+text = "[center]
+[font_size=48]Collaborators[/font_size]
+
+[font_size=32]Godot Game Template[/font_size]
+Author: [url=https://github.com/Maaack/Godot-Game-Template/graphs/contributors]Marek Belski and contributors[/url]  
+Source: [url=https://github.com/Maaack/Godot-Game-Template]github: Godot-Game-Template[/url]  
+License: [url=LICENSE.txt]MIT License[/url]  
+
+[font_size=48]Tools[/font_size]
+[font_size=24]Godot[/font_size]
+Author: [url=https://godotengine.org/contact]Juan Linietsky, Ariel Manzur, and contributors[/url]  
+Source: [url=https://godotengine.org/]godotengine.org[/url]  
+License: [url=https://github.com/godotengine/godot/blob/master/LICENSE.txt]MIT License[/url] 
+
+[font_size=24]Git[/font_size]
+Author: [url=https://github.com/torvalds]Linus Torvalds[/url]  
+Source: [url=https://git-scm.com/downloads]git-scm.com[/url]  
+License: [url=https://opensource.org/licenses/GPL-2.0]GNU General Public License version 2[/url][/center]"
+fit_content = true
+scroll_active = false
+
+[node name="FooterSpace" type="Control" parent="ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 720)
+layout_mode = 2
+
+[node name="ScrollResetTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[connection signal="scroll_ended" from="ScrollContainer" to="." method="_on_ScrollContainer_scroll_ended"]
+[connection signal="gui_input" from="ScrollContainer/VBoxContainer/RichTextLabel" to="." method="_on_RichTextLabel_gui_input"]
+[connection signal="meta_clicked" from="ScrollContainer/VBoxContainer/RichTextLabel" to="." method="_on_RichTextLabel_meta_clicked"]
+[connection signal="timeout" from="ScrollResetTimer" to="." method="_on_ScrollResetTimer_timeout"]
