@@ -1,4 +1,4 @@
-extends "res://App/Base/Scenes/Menus/MainMenu/MainMenu.gd"
+extends MainMenu
 
 var animation_state_machine : AnimationNodeStateMachinePlayback
 

@@ -1,13 +1,13 @@
 [gd_scene load_steps=9 format=3 uid="uid://dxkq10mmjl517"]
 
 [ext_resource type="Script" path="res://Examples/Scenes/GameScene/GameUI.gd" id="1_vn54u"]
-[ext_resource type="Script" path="res://App/Extras/Scripts/PauseMenuController.gd" id="2_bmhjc"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/PauseMenuController.gd" id="2_bmhjc"]
 [ext_resource type="PackedScene" uid="uid://duroffod7xmi1" path="res://Examples/Scenes/SuccessScreen/SuccessScreenWithScenes.tscn" id="2_nqkbc"]
 [ext_resource type="PackedScene" uid="uid://3shqv5bkeaki" path="res://Examples/Scenes/FailureScreen/FailureScreenWithScenes.tscn" id="3_5vekb"]
 [ext_resource type="PackedScene" uid="uid://dtdpd6o5xj4dq" path="res://Examples/Scenes/Menus/PauseMenu/PauseMenuWithScenes.tscn" id="3_n6jen"]
-[ext_resource type="PackedScene" uid="uid://cd0jbh4metflb" path="res://App/Base/Scenes/LoadingScreen/LoadingScreen.tscn" id="4_4r4kr"]
+[ext_resource type="PackedScene" uid="uid://cd0jbh4metflb" path="res://addons/maaacks_game_template/base/scenes/LoadingScreen/LoadingScreen.tscn" id="4_4r4kr"]
 [ext_resource type="Script" path="res://Examples/Scenes/GameScene/InputDisplayLabel.gd" id="6_6hq0m"]
-[ext_resource type="Script" path="res://App/Extras/Scripts/LevelLoader.gd" id="7_dgyvu"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/LevelLoader.gd" id="7_dgyvu"]
 
 [node name="GameUI" type="Control"]
 layout_mode = 3
