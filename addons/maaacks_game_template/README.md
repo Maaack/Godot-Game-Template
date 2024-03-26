@@ -5,9 +5,10 @@ This template has a main menu, pause menu, and credits scene. It supports basic 
 
 [Example on itch.io](https://maaack.itch.io/godot-game-template)
 
-![Main Menu](/Media/Screenshot-2-1.png)  
-![Key Rebinding](/Media/Screenshot-2-2.png)  
-![Key Rebinding](/Media/Screenshot-2-4.png)  
+![Main Menu](/Media/Screenshot-3-1.png)  
+![Key Rebinding](/Media/Screenshot-3-2.png)  
+![Audio Controls](/Media/Screenshot-3-4.png)  
+![Pause Menu](/Media/Screenshot-3-6.png)  
 
 ## Use Case
 Setup menus and accessibility features in about 15 minutes.
