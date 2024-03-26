@@ -179,6 +179,8 @@ These instructions assume starting with the entire contents of the project folde
     6.  Update the `Attribution File Path` to `res://ATTRIBUTION.md`.
     7.  Reload `Credits.tscn` scene to apply changes from `res://ATTRIBUTION.md`.
 
+6.  If using Git for version control, update `.gitignore` to include `addons/`.
+   
 
 ### Existing Project
 
