@@ -1,9 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dp3rgqaehb3xu"]
+[gd_scene load_steps=4 format=3 uid="uid://dp3rgqaehb3xu"]
 
 [ext_resource type="Script" path="res://App/Base/Scenes/Menus/OptionsMenu/Input/InputOptionsMenu.gd" id="1"]
-[ext_resource type="Texture2D" uid="uid://5slhskoqilj1" path="res://Examples/Assets/Images/addition_symbol.png" id="2_5p2lm"]
 [ext_resource type="Script" path="res://App/Base/Scripts/CaptureFocus.gd" id="2_wft4x"]
-[ext_resource type="Texture2D" uid="uid://nbxqewc81ogg" path="res://Examples/Assets/Images/subtraction_symbol.png" id="3_k31gt"]
 [ext_resource type="Script" path="res://App/Base/Scenes/Menus/OptionsMenu/Input/KeyAssignmentDialog.gd" id="3_wsh2h"]
 
 [node name="Controls" type="MarginContainer"]
@@ -15,8 +13,6 @@ grow_vertical = 2
 theme_override_constants/margin_top = 24
 theme_override_constants/margin_bottom = 24
 script = ExtResource("1")
-add_button_texture = ExtResource("2_5p2lm")
-remove_button_texture = ExtResource("3_k31gt")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(400, 280)

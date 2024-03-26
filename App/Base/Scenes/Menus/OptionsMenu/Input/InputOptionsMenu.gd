@@ -65,7 +65,8 @@ func _start_tree():
 func _add_input_event_as_tree_item(action_name : String, input_event : InputEvent, parent_item : TreeItem):
 	var input_tree_item : TreeItem = %Tree.create_item(parent_item)
 	input_tree_item.set_text(0, InputEventHelper.get_text(input_event))
-	input_tree_item.add_button(0, remove_button_texture, -1, false, "Remove")
+	if remove_button_texture != null:
+		input_tree_item.add_button(0, remove_button_texture, -1, false, "Remove")
 	tree_item_remove_map[input_tree_item] = input_event
 	tree_item_action_map[input_tree_item] = action_name
 
@@ -74,7 +75,8 @@ func _add_action_as_tree_item(readable_name : String, action_name : String, inpu
 	var action_tree_item : TreeItem = %Tree.create_item(root_tree_item)
 	action_tree_item.set_text(0, readable_name)
 	tree_item_add_map[action_tree_item] = action_name
-	action_tree_item.add_button(0, add_button_texture, -1, false, "Add")
+	if add_button_texture != null:
+		action_tree_item.add_button(0, add_button_texture, -1, false, "Add")
 	for input_event in input_events:
 		_add_input_event_as_tree_item(action_name, input_event, action_tree_item)
 
