@@ -133,11 +133,10 @@ These instructions assume starting with the entire contents of the project folde
     1.  Go to `Project > Project Settings… > Input Map`.
     2.  Update the input actions and keybindings for “Game Name”.
     3.  Close the window.
-    4.  Open `InputOptionsMenu.tscn`.
+    4.  Open `InputOptionsMenu.tscn` (or `MasterOptionsMenu`, which contains an instance of the scene).
     5.  Select the `Controls` node.
     6.  Update the `Action Name Map` to show readable names for “Game Name” input actions.
-    7.  Update the `Add Button Texture` and `Remove Button Texture` with textures.
-    8.  Save the scene.
+    7.  Save the scene.
     
 
 4.  Add sound effects to the UI.
@@ -216,11 +215,10 @@ For an existing project, just copy over the `App/` folder (optionally the `Extra
 5.  Update the project’s inputs.
     
 
-    1.  Open `InputOptionsMenu.tscn`.
+    1.  Open `InputOptionsMenu.tscn` (or `MasterOptionsMenu`, which contains an instance of the scene).
     2.  Select the `Controls` node.
     3.  Update the `Action Name Map` to show readable names for “Game Name” input actions.
-    4.  Update the `Add Button Texture` and `Remove Button Texture` with textures.
-    5.  Save the scene.
+    4.  Save the scene.
 
 
 6.  Add sound effects to the UI.
