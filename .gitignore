@@ -14,8 +14,7 @@ export_presets.cfg
 data_*/
 mono_crash.*.json
 
-# Export folders and addons
-addons/
+# Export folders
 exports/
 Exports/
 
