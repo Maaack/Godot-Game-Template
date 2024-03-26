@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://vh1ucj2rfbby" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/OptionsMenu.tscn" id="1_hvpon"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/examples/scenes/Menus/OptionsMenu/OptionsMenuWithReset.gd" id="2_uved3"]
-[ext_resource type="PackedScene" uid="uid://cay00igbuqtfa" path="res://addons/maaacks_game_template/examples/scenes/Menus/OptionsMenu/Game/ResetGameControl/ResetGameControl.tscn" id="3_ws48w"]
+[ext_resource type="PackedScene" uid="uid://w5i7wl2xlos" path="res://addons/maaacks_game_template/examples/scenes/Menus/OptionsMenu/Game/ResetGameControl/ResetGameControl.tscn" id="3_ws48w"]
 
 [node name="OptionsMenu" instance=ExtResource("1_hvpon")]
 script = ExtResource("2_uved3")
