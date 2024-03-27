@@ -61,17 +61,18 @@ These instructions assume starting with the entire contents of the project folde
         7.  Save the scene.
 
 
-
-5.  Update the game credits / attribution and license.
+5.  Update the game credits / attribution.
     
 
-    1.  Keep, update, or remove `res://LICENSE.txt`.
-    2.  Copy `res://ATTRIBUTION_example.md` over `res://ATTRIBUTION.md`.
-    3.  Update `res://ATTRIBUTION.md` with “Game Name” credits, following the example.
-    4.  Open `Credits.tscn`.
-    5.  Select the `Credits` node.
-    6.  Update the `Attribution File Path` to `res://ATTRIBUTION.md`.
-    7.  Reload `Credits.tscn` scene to apply changes from `res://ATTRIBUTION.md`.
+    1. Copy `res://ATTRIBUTION_example.md` over `res://ATTRIBUTION.md`.
+    2.  Update `res://ATTRIBUTION.md` with “Game Name” credits, following the example.
+    3.  Open `Credits.tscn`.
+    4.  Select the `Credits` node.
+    5.  Update the `Attribution File Path` to `res://ATTRIBUTION.md`.
+    6.  Reload `Credits.tscn` scene to apply changes from `res://ATTRIBUTION.md`.
+    7.  Save the scene.
 
-6.  If using Git for version control, update `.gitignore` to include `addons/`.
+6.  Keep, update, or remove `res://LICENSE.txt`.
+
+7.  If using Git for version control, update `.gitignore` to include `addons/`.
    
