@@ -86,7 +86,7 @@ In the template version, the project's main scene starts as `InitAppWithOpening.
 
 `extras/` contains features that supplement or extend the core features. Some are dependent on `base/`, while others are stand-alone. Many of the scripts and scenes are used in the `examples/` scenes. 
 
-Compare [features](#features) to decide which approach is best for your project.
+See the [features](#features) section for more details.
 
 #### Minimal
 
