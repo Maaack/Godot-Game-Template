@@ -8,7 +8,9 @@ For an existing project, developers can copy the contents of the `addons/` folde
     
 
     1.  Go to `Project > Project Settings… > General > Application > Run`.
-    2.  Update `Main Scene` to `res://addons/maaacks_game_template/base/scenes/InitApp/InitApp.tscn`.
+    2.  Update `Main Scene` to `res://addons/maaacks_game_template/examples/scenes/InitApp/InitAppWithOpening.tscn`.
+        1.  Alternatively, use `res://addons/maaacks_game_template/base/scenes/InitApp/InitApp.tscn` for a minimal use-case.
+        2.  The developer can also create their own scene inheriting from `InitApp.tscn` and set it as the main scene.
     3.  Close the window.
     
 
@@ -23,7 +25,7 @@ For an existing project, developers can copy the contents of the `addons/` folde
         2.  `res://addons/maaacks_game_template/extras/scripts/RuntimeLogger.gd`.
     4.  Close the window.
 
-3.  Update the project’s name.
+3.  Update the project’s name in the main menu.
     
 
     1.  Open `MainMenu.tscn`.
@@ -84,4 +86,5 @@ For an existing project, developers can copy the contents of the `addons/` folde
     4.  Select the `Credits` node.
     5.  Update the `Attribution File Path` to `res://ATTRIBUTION.md`.
     6.  Reload `Credits.tscn` scene to apply changes from `res://ATTRIBUTION.md`.
+    7.  Save the scene.
    
