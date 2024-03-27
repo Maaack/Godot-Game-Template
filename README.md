@@ -70,39 +70,27 @@ The `examples/` folder contains an example project using inherited scenes from t
 
 ## Usage
 
+Set your project's main scene to `InitApp.tscn`, `InitAppWithOpening.tscn`, or any scene that inherits from those. Then run the project.
+
 ### Examples
 
-Changes can be made directly to the contents of the `examples/` folder. Alternatively, the folder can be copied or renamed. By default, the project's main scene is `InitAppWithOpening.tscn`, and it links to other scenes in the `examples/` directory. All the scenes and links can be reasonably safely changed to suit the developer's needs.
+Changes can be made directly to the contents of the `examples/` folder. Alternatively, the folder can be copied or renamed. 
+
+Most scenes that a developer would commonly change are in the `examples/` directory, and all the scenes and links can be changed to suit the developer's needs. Scenes in `examples/` link to others within the same directory, though they often inherit from either `base/` or `extras/`. 
+
+In the template version, the project's main scene starts as `InitAppWithOpening.tscn` in `res://Examples/`. 
 
 ### Base vs. Extras
 
-`base/` contains the core features of the package. On first use, it's recommended to keep the `extras/` folder. Features can be added and removed as needed.
+`base/` contains the core features of the package. Main menu, options menus, and credits. It has no other dependencies.
 
-If a developer wants to start minimally, they may use just the `base/` folder, and safely remove the `extras/` folder by following the [minimal](#minimal) instructions.
+`extras/` contains features that supplement or extend the core features. Some are dependent on `base/`, while others are stand-alone. Many of the scripts and scenes are used in the `examples/` scenes. 
 
 Compare [features](#features) to decide which approach is best for your project.
 
 #### Minimal
 
-If you just want to use just the projects minimum `base/` folder:
-
-1.  Go to `Project > Project Settings… > General > Application > Run`.
-2.  Update `Main Scene` to `res://addons/maaacks_game_template/base/scenes/InitApp/InitApp.tscn`.
-3.  Go to `Project > Project Settings… > Autoload`.
-4.  Remove autoloads that start with the path `res://addons/maaacks_game_template/extras/*`.
-    1.  `ProjectUiSoundController`
-    2.  `ProjectLevelLoader`
-    3.  `RuntimeLogger`
-5.  Close the window.
-6.  Delete the extra folders from the plugin:
-    1.  `res://addons/maaacks_game_template/extras/`
-    2.  `res://addons/maaacks_game_template/examples/`
-7.  If using the template version, delete the extra folders from the project's root directory:
-    1.  `res://Media/`
-    2.  `res://Examples/`
-8.  Reload the project.
-    
-Lastly, this `README.md` can both be removed or updated to match your project.
+Advanced users that just want to use the project's minimum `base/` contents can safely remove `extras/` by following the [Minimal Install Instructions](/addons/maaacks_game_template/docs/MinimalInstall.md).  
 
 The remaining instructions will apply roughly the same.
 
@@ -110,165 +98,13 @@ The remaining instructions will apply roughly the same.
 These instructions assume starting with the entire contents of the project folder. This will be the case when cloning the repo, or starting from the *template* version in the Godot Asset Library.
   
 
-1.  Update the project’s name.
-    
-
-    1.  Go to `Project > Project Settings… > General > Application > Config`.
-    2.  Update `Name` to `"Game Name"`.
-    3.  Close the window.
-    4.  Open `MainMenu.tscn`.
-    5.  Select the `Title` node.
-    6.  Update the `Text` to `"Game Name"`.
-    7.  Save the scene.
-
-
-2.  Point the main menu to the game scene.
-    
-
-    1.  Open `MainMenu.tscn`.
-    2.  Select the `MainMenu` node.
-    3.  Update `Game Scene Path` to the path of “Game Name” game scene.
-    4.  Save the scene.
-
-
-3.  Update the project’s inputs.
-    
-
-    1.  Go to `Project > Project Settings… > Input Map`.
-    2.  Update the input actions and keybindings for “Game Name”.
-    3.  Close the window.
-    4.  Open `InputOptionsMenu.tscn` (or `MasterOptionsMenu`, which contains an instance of the scene).
-    5.  Select the `Controls` node.
-    6.  Update the `Action Name Map` to show readable names for “Game Name” input actions.
-    7.  Save the scene.
-    
-
-4.  Add sound effects to the UI.
-
-
-    1.  By scene.
-
-
-        1.  Open `MainMenu.tscn` and `PauseMenu.tscn`.
-        2.  Select the `UISoundController` node.
-        3.  Add audio streams to the various UI node events.
-        4.  Save the scenes.
-   
-   
-    2.  Project-wide, with `extras/`.
-
-
-        1.  Go to `Project > Project Settings… > Autoload`.
-        2.  Make sure `UISoundControllerAutoload` is listed.
-            1.  Note: It does not need a global variable enabled.
-        3.  Close the window.        
-        4.  Open `UISoundControllerAutoload.tscn`.
-        5.  Select the `UISoundController` node.
-        6.  Add audio streams to the various UI node events.
-        7.  Save the scene.
-
-
-
-5.  Update the game credits / attribution and license.
-    
-
-    1.  Keep, update, or remove `res://LICENSE.txt`.
-    2.  Copy `res://ATTRIBUTION_example.md` over `res://ATTRIBUTION.md`.
-    3.  Update `res://ATTRIBUTION.md` with “Game Name” credits, following the example.
-    4.  Open `Credits.tscn`.
-    5.  Select the `Credits` node.
-    6.  Update the `Attribution File Path` to `res://ATTRIBUTION.md`.
-    7.  Reload `Credits.tscn` scene to apply changes from `res://ATTRIBUTION.md`.
-
-6.  If using Git for version control, update `.gitignore` to include `addons/`.
-   
+[New Project Instructions](/addons/maaacks_game_template/docs/NewProject.md)
 
 ### Existing Project
 
 For an existing project, developers can copy the contents of the `addons/` folder into their project. This will be the case when installing the application from the *plugin* version in the Godot Asset Library.
 
-  
-
-1.  Update the project’s main scene.
-    
-
-    1.  Go to `Project > Project Settings… > General > Application > Run`.
-    2.  Update `Main Scene` to `res://addons/maaacks_game_template/base/scenes/InitApp/InitApp.tscn`.
-    3.  Close the window.
-    
-
-2.  Update the project’s autoloads.
-    
-
-    1.  Go to `Project > Project Settings… > Autoload`.
-    2.  Add `res://addons/maaacks_game_template/base/scripts/SceneLoader.gd`.
-    3.  Optionally add:
-        1.  `res://addons/maaacks_game_template/extras/scenes/Autoloads/ProjectUISoundController.tscn`
-        1.  `res://addons/maaacks_game_template/extras/scenes/Autoloads/ProjectLevelLoader.tscn`
-        2.  `res://addons/maaacks_game_template/extras/scripts/RuntimeLogger.gd`.
-    4.  Close the window.
-
-3.  Update the project’s name.
-    
-
-    1.  Open `MainMenu.tscn`.
-    2.  Select the `Title` node.
-    3.  Update the `Text` to `Game Name`.
-    4.  Save the scene.
-    
-
-4.  Point the main menu to the game scene.
-    
-
-    1.  Open `MainMenu.tscn`.
-    2.  Select the `MainMenu` node.
-    3.  Update `Game Scene Path` to the path of “Game Name” game scene.
-    4.  Save the scene.
-    
-
-5.  Update the project’s inputs.
-    
-
-    1.  Open `InputOptionsMenu.tscn` (or `MasterOptionsMenu`, which contains an instance of the scene).
-    2.  Select the `Controls` node.
-    3.  Update the `Action Name Map` to show readable names for “Game Name” input actions.
-    4.  Save the scene.
-
-
-6.  Add sound effects to the UI.
-
-
-    1.  By scene.
-
-
-        1.  Open `MainMenu.tscn` and `PauseMenu.tscn`.
-        2.  Select the `UISoundController` node.
-        3.  Add audio streams to the various UI node events.
-        4.  Save the scenes.
-
-
-    2.  Project-wide, with `extras/`.
-
-
-        1.  Go to `Project > Project Settings… > Autoload`.
-        2.  Make sure `UISoundControllerAutoload` is listed.
-            1.  Note: It does not need a global variable enabled.
-        3.  Close the window.        
-        4.  Open `UISoundControllerAutoload.tscn`.
-        5.  Select the `UISoundController` node.
-        6.  Add audio streams to the various UI node events.
-        7.  Save the scene.
-   
-
-7.  Update the game credits / attribution.
-    
-
-    1.  Copy `res://addons/maaacks_game_template/ATTRIBUTION_example.md` to your project's root directory as `res://ATTRIBUTION.md`.
-    2.  Update `res://ATTRIBUTION.md` with “Game Name” credits, following the example.
-    3.  Open `Credits.tscn`.
-    4.  Select the `Credits` node.
-    5.  Update the `Attribution File Path` to `res://ATTRIBUTION.md`.
-    6.  Reload `Credits.tscn` scene to apply changes from `res://ATTRIBUTION.md`.
+[Existing Project Instructions](/addons/maaacks_game_template/docs/ExistingProject.md)  
    
 
 ## Links
