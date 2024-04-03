@@ -9,10 +9,15 @@ script = ExtResource("2_p3aca")
 main_menu_scene = "res://Examples/Scenes/Menus/MainMenu/MainMenuWithAnimations.tscn"
 scroll_active = true
 
-[node name="ScrollContainer" parent="." index="0"]
+[node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="." index="0"]
+process_mode = 3
+autoplay = true
+bus = &"Music"
+
+[node name="ScrollContainer" parent="." index="1"]
 scroll_vertical = 0
 
-[node name="CenterContainer" type="CenterContainer" parent="." index="1"]
+[node name="CenterContainer" type="CenterContainer" parent="." index="2"]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
