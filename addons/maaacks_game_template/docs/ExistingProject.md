@@ -52,7 +52,7 @@ For an existing project, developers can copy the contents of the `addons/` folde
     4.  Save the scene.
 
 
-6.  Add sound effects to the UI.
+6.  Add background music and sound effects to the UI.
 
     1.  Add `Music` and `SFX` to the project's default audio busses.
 
@@ -61,27 +61,40 @@ For an existing project, developers can copy the contents of the `addons/` folde
         3.  Name the two new busses `Music` and `SFX`.
         4.  Save the project.
 
+    1.  Add background music to the Main Menu.
 
-    2.  By scene.
+        1.  Import the music asset into the project.
+        2.  Open `MainMenu.tscn`.
+        3.  Select the `BackgroundMusicPlayer` node.
+        4.  Assign the music asset to the `stream` property.
+        5.  Save the scene.
+        6.  Optionally, repeat steps 3-5 for background music nodes in:
+            1.  `GameUI.tscn`
+            2.  `EndCredits.tscn`
 
 
-        1.  Open `MainMenu.tscn` and `PauseMenu.tscn`.
-        2.  Select the `UISoundController` node.
-        3.  Add audio streams to the various UI node events.
-        4.  Save the scenes.
+    2.  Add sound effects to UI elements.
+
+        1.  By scene.
 
 
-    3.  Project-wide, with `extras/`.
+            1.  Open `MainMenu.tscn` and `PauseMenu.tscn`.
+            2.  Select the `UISoundController` node.
+            3.  Add audio streams to the various UI node events.
+            4.  Save the scenes.
 
 
-        1.  Go to `Project > Project Settings… > Autoload`.
-        2.  Make sure `UISoundControllerAutoload` is listed.
-            1.  Note: It does not need a global variable enabled.
-        3.  Close the window.        
-        4.  Open `UISoundControllerAutoload.tscn`.
-        5.  Select the `UISoundController` node.
-        6.  Add audio streams to the various UI node events.
-        7.  Save the scene.
+        2.  Project-wide, with `extras/`.
+
+
+            1.  Go to `Project > Project Settings… > Autoload`.
+            2.  Make sure `UISoundControllerAutoload` is listed.
+                1.  Note: It does not need a global variable enabled.
+            3.  Close the window.        
+            4.  Open `UISoundControllerAutoload.tscn`.
+            5.  Select the `UISoundController` node.
+            6.  Add audio streams to the various UI node events.
+            7.  Save the scene.
    
 
 7.  Update the game credits / attribution.
