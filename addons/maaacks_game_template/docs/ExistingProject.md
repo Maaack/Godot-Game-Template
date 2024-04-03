@@ -54,8 +54,15 @@ For an existing project, developers can copy the contents of the `addons/` folde
 
 6.  Add sound effects to the UI.
 
+    1.  Add `Music` and `SFX` to the project's default audio busses.
 
-    1.  By scene.
+        1.  Open the Audio bus editor.
+        2.  Click the button "Add Bus" twice (x2).
+        3.  Name the two new busses `Music` and `SFX`.
+        4.  Save the project.
+
+
+    2.  By scene.
 
 
         1.  Open `MainMenu.tscn` and `PauseMenu.tscn`.
@@ -64,7 +71,7 @@ For an existing project, developers can copy the contents of the `addons/` folde
         4.  Save the scenes.
 
 
-    2.  Project-wide, with `extras/`.
+    3.  Project-wide, with `extras/`.
 
 
         1.  Go to `Project > Project Settings… > Autoload`.
