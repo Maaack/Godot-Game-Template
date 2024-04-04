@@ -4,12 +4,15 @@ extends Node
 ##
 ## This node manages all of the music players under the provided node path.
 ## The expected use-case is to attach this script to an autoloaded scene,
-## but alternatives use-cases are supported.
+## but alternatives uses are supported.
 
 const MAX_DEPTH = 16
+const MINIMUM_VOLUME_DB = -80
 
 @export var root_path : NodePath = ^".."
 @export var audio_bus : StringName = &"Music"
+@export_range(-80, 24) var volume_db : float
+@export var fade_out_duration : float = 0.0
 
 ## Continually check any new nodes added to the scene tree.
 @export var persistent : bool = true :
@@ -22,61 +25,87 @@ const MAX_DEPTH = 16
 @onready var root_node : Node = get_node(root_path)
 
 var music_stream_player : AudioStreamPlayer
+var music_stream : AudioStream
 
 func _update_persistent_signals():
 	if not is_inside_tree():
 		return
 	var tree_node = get_tree()
 	if persistent:
-		if not tree_node.node_added.is_connected(intercept_music_player):
-			tree_node.node_added.connect(intercept_music_player)
+		if not tree_node.node_added.is_connected(check_for_music_player):
+			tree_node.node_added.connect(check_for_music_player)
 	else:
-		if tree_node.node_added.is_connected(intercept_music_player):
-			tree_node.node_added.disconnect(intercept_music_player)
+		if tree_node.node_added.is_connected(check_for_music_player):
+			tree_node.node_added.disconnect(check_for_music_player)
 
-func _build_stream_player(stream : AudioStream, stream_name : String = "") -> AudioStreamPlayer:
-	var stream_player : AudioStreamPlayer
-	if stream != null:
-		stream_player = AudioStreamPlayer.new()
-		stream_player.stream = stream
-		stream_player.bus = audio_bus
-		stream_player.finished.connect(func (): stream_player.queue_free())
-		if not name.is_empty():
-			stream_player.name = stream_name
-		add_child(stream_player)
-		
-	return stream_player
-
-func play_stream(stream : AudioStream, stream_name : String = ""):
+func fade_out_and_free( duration : float = 0.0 ):
 	if music_stream_player == null:
-		music_stream_player = _build_stream_player(stream, stream_name)
-	if stream == null and not empty_streams_stop_player:
 		return
-	if music_stream_player.stream != stream:
-		music_stream_player.stop()
-		music_stream_player.stream = stream
-	if not music_stream_player.playing:
-		music_stream_player.play()
+	var stream_player = music_stream_player
+	var tween = fade_out( duration )
+	if tween != null:
+		await( tween.finished )
+	stream_player.queue_free()
 
-func intercept_music_player(node: Node) -> void:
-	if node is AudioStreamPlayer:
-		if node.bus == audio_bus and node.autoplay:
-			play_stream(node.stream, node.name)
-			node.autoplay = false
+func fade_out( duration : float = 0.0 ):
+	if not is_zero_approx(duration):
+		var tween = get_tree().create_tween()
+		tween.tween_property(music_stream_player, "volume_db", MINIMUM_VOLUME_DB, duration)
+		return tween
+
+func fade_in( duration : float = 0.0 ):
+	if not is_zero_approx(duration):
+		var tween = get_tree().create_tween()
+		tween.tween_property(music_stream_player, "volume_db", volume_db, duration)
+		return tween
+
+func stop():
+	if music_stream_player == null:
+		return
+	music_stream_player.stop()
+
+func play():
+	if music_stream_player == null:
+		return
+	music_stream_player.volume_db = volume_db
+	music_stream_player.play()
+
+func _is_matching_stream( stream_player : AudioStreamPlayer ) -> bool:
+	if stream_player.bus != audio_bus:
+		return false
+	if music_stream_player == null:
+		return false
+	return music_stream_player.stream == stream_player.stream
+
+func reparent_music_player( stream_player : AudioStreamPlayer ):
+	stream_player.call_deferred("reparent", self)
+	music_stream_player = stream_player
+	music_stream_player.volume_db = volume_db
+
+func check_for_music_player( node: Node ) -> void:
+	if node == music_stream_player : return
+	if node is AudioStreamPlayer and node.autoplay:
+		if _is_matching_stream(node):
 			node.stop()
+			node.queue_free()
+			if not music_stream_player.playing:
+				play()
+		else:
+			fade_out_and_free(fade_out_duration)
+			reparent_music_player(node)
 
-func _recursive_intercept_music_player(current_node: Node, current_depth : int = 0) -> void:
+func _recursive_check_for_music_player( current_node: Node, current_depth : int = 0 ) -> void:
 	if current_depth >= MAX_DEPTH:
 		return
 	for node in current_node.get_children():
-		intercept_music_player(node)
-		_recursive_intercept_music_player(node, current_depth + 1)
+		check_for_music_player(node)
+		_recursive_check_for_music_player(node, current_depth + 1)
 
 func _ready() -> void:
-	_recursive_intercept_music_player(root_node)
+	_recursive_check_for_music_player(root_node)
 	persistent = persistent
 
 func _exit_tree():
 	var tree_node = get_tree()
-	if tree_node.node_added.is_connected(intercept_music_player):
-		tree_node.node_added.disconnect(intercept_music_player)
+	if tree_node.node_added.is_connected(check_for_music_player):
+		tree_node.node_added.disconnect(check_for_music_player)
