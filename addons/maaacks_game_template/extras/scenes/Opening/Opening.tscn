@@ -49,6 +49,11 @@ grow_vertical = 2
 script = ExtResource("1_fcjph")
 end_delay = 1.0
 
+[node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+autoplay = true
+bus = &"Music"
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {
