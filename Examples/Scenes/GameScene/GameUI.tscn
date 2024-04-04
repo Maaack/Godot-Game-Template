@@ -20,6 +20,11 @@ script = ExtResource("1_vn54u")
 win_scene = ExtResource("2_nqkbc")
 lose_scene = ExtResource("3_5vekb")
 
+[node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+autoplay = true
+bus = &"Music"
+
 [node name="LoadingScreen" parent="." instance=ExtResource("4_4r4kr")]
 visible = false
 
