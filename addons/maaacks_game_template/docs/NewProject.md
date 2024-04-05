@@ -52,8 +52,9 @@ These instructions assume starting with the entire contents of the project folde
         4.  Assign the music asset to the `stream` property.
         5.  Save the scene.
         6.  Optionally, repeat steps 3-5 for background music nodes in:
-            1.  `GameUI.tscn`
-            2.  `EndCredits.tscn`
+            1.  `Opening.tscn`
+            2.  `GameUI.tscn`
+            3.  `EndCredits.tscn`
 
 
     3.  Add sound effects to UI elements.
@@ -71,14 +72,10 @@ These instructions assume starting with the entire contents of the project folde
         2.  Project-wide, with `extras/`.
 
 
-            1.  Go to `Project > Project Settings… > Autoload`.
-            2.  Make sure `UISoundControllerAutoload` is listed.
-                1.  Note: It does not need a global variable enabled.
-            3.  Close the window.        
-            4.  Open `UISoundControllerAutoload.tscn`.
-            5.  Select the `UISoundController` node.
-            6.  Add audio streams to the various UI node events.
-            7.  Save the scene.
+            1.  Open `ProjectUISoundController.tscn`.
+            2.  Select the `UISoundController` node.
+            3.  Add audio streams to the various UI node events.
+            4.  Save the scene.
 
 
 5.  Update the game credits / attribution.
