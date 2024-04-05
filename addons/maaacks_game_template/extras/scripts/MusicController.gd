@@ -3,6 +3,8 @@ extends Node
 ## Controller for music playback across scenes.
 ##
 ## This node manages all of the music players under the provided node path.
+## It detects stream players that match the audio bus and have autoplay on.
+## It then reparents the stream player to itself, and handles any blending.
 ## The expected use-case is to attach this script to an autoloaded scene,
 ## but alternatives uses are supported.
 
@@ -10,7 +12,9 @@ const MAX_DEPTH = 16
 const MINIMUM_VOLUME_DB = -80
 const MAXIMUM_VOLUME_DB = 24
 
+## Detect stream players added under the scene tree.
 @export var root_path : NodePath = ^".."
+## Detect stream players with matching audio bus.
 @export var audio_bus : StringName = &"Music"
 ## Continually check any new nodes added to the scene tree.
 @export var persistent : bool = true :
@@ -20,6 +24,7 @@ const MAXIMUM_VOLUME_DB = 24
 
 @export_group("Playback")
 @export_range(MINIMUM_VOLUME_DB, MAXIMUM_VOLUME_DB) var volume_db : float
+## Matched stream players with no stream set will stop current playback.
 @export var empty_streams_stop_player : bool = true
 
 @export_group("Blending")
