@@ -9,15 +9,9 @@ extends Node
 
 const MAX_DEPTH = 16
 const MINIMUM_VOLUME_DB = -80
-const MAXIMUM_VOLUME_DB = 24
 
 ## Detect stream players with matching audio bus.
 @export var audio_bus : StringName = &"Music"
-
-@export_group("Playback")
-@export_range(MINIMUM_VOLUME_DB, MAXIMUM_VOLUME_DB) var volume_db : float
-## Matched stream players with no stream set will stop current playback.
-@export var empty_streams_stop_player : bool = true
 
 @export_group("Blending")
 @export var fade_out_duration : float = 0.0 :
@@ -32,8 +26,16 @@ const MAXIMUM_VOLUME_DB = 24
 		if fade_in_duration < 0:
 			fade_in_duration = 0
 
+@export var blend_volume_duration : float = 0.0 :
+	set(value):
+		blend_volume_duration = value
+		if blend_volume_duration < 0:
+			blend_volume_duration = 0
+
+## Matched stream players with no stream set will stop current playback.
+@export var empty_streams_stop_player : bool = true
+
 var music_stream_player : AudioStreamPlayer
-var music_stream : AudioStream
 
 func fade_out( duration : float = 0.0 ):
 	if not is_zero_approx(duration):
@@ -43,10 +45,18 @@ func fade_out( duration : float = 0.0 ):
 
 func fade_in( duration : float = 0.0 ):
 	if not is_zero_approx(duration):
+		var target_volume_db = music_stream_player.volume_db
 		music_stream_player.volume_db = MINIMUM_VOLUME_DB
 		var tween = get_tree().create_tween()
-		tween.tween_property(music_stream_player, "volume_db", volume_db, duration)
+		tween.tween_property(music_stream_player, "volume_db", target_volume_db, duration)
 		return tween
+
+func blend_to( target_volume_db : float, duration : float = 0.0 ):
+	if not is_zero_approx(duration):
+		var tween = get_tree().create_tween()
+		tween.tween_property(music_stream_player, "volume_db", target_volume_db, duration)
+		return tween
+	music_stream_player.volume_db = target_volume_db
 
 func stop():
 	if music_stream_player == null:
@@ -56,7 +66,6 @@ func stop():
 func play():
 	if music_stream_player == null:
 		return
-	music_stream_player.volume_db = volume_db
 	music_stream_player.play()
 
 func fade_out_and_free( duration : float = 0.0 ):
@@ -73,8 +82,6 @@ func play_and_fade_in( duration : float = 0.0 ):
 		return
 	music_stream_player.play()
 	var tween = fade_in( duration )
-	if tween == null:
-		music_stream_player.volume_db = volume_db
 
 func _is_matching_stream( stream_player : AudioStreamPlayer ) -> bool:
 	if stream_player.bus != audio_bus:
@@ -96,6 +103,7 @@ func check_for_music_player( node: Node ) -> void:
 	if node == music_stream_player : return
 	if node is AudioStreamPlayer and node.autoplay:
 		if _is_matching_stream(node):
+			blend_to(node.volume_db, blend_volume_duration)
 			node.stop()
 			node.queue_free()
 			if not music_stream_player.playing:
