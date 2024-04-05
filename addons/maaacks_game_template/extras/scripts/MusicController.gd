@@ -101,17 +101,17 @@ func _blend_in_stream_player( stream_player : AudioStreamPlayer ):
 
 func check_for_music_player( node: Node ) -> void:
 	if node == music_stream_player : return
-	if node is AudioStreamPlayer and node.autoplay:
-		if _is_matching_stream(node):
-			blend_to(node.volume_db, blend_volume_duration)
-			node.stop()
-			node.queue_free()
-			if not music_stream_player.playing:
-				play()
-		else:
-			if node.stream == null and not empty_streams_stop_player:
-				return
-			_blend_in_stream_player(node)
+	if not (node is AudioStreamPlayer and node.autoplay) : return
+	if _is_matching_stream(node):
+		blend_to(node.volume_db, blend_volume_duration)
+		node.stop()
+		node.queue_free()
+		if not music_stream_player.playing:
+			play()
+	else:
+		if node.stream == null and not empty_streams_stop_player:
+			return
+		_blend_in_stream_player(node)
 
 func _ready() -> void:
 	var tree_node = get_tree()
