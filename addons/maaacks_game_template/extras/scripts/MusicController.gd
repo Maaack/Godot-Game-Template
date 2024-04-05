@@ -2,25 +2,17 @@ class_name MusicController
 extends Node
 ## Controller for music playback across scenes.
 ##
-## This node manages all of the music players under the provided node path.
+## This node persistently checks for stream players added to the scene tree.
 ## It detects stream players that match the audio bus and have autoplay on.
-## It then reparents the stream player to itself, and handles any blending.
-## The expected use-case is to attach this script to an autoloaded scene,
-## but alternatives uses are supported.
+## It then reparents the stream players to itself, and handles blending.
+## The expected use-case is to attach this script to an autoloaded scene.
 
 const MAX_DEPTH = 16
 const MINIMUM_VOLUME_DB = -80
 const MAXIMUM_VOLUME_DB = 24
 
-## Detect stream players added under the scene tree.
-@export var root_path : NodePath = ^".."
 ## Detect stream players with matching audio bus.
 @export var audio_bus : StringName = &"Music"
-## Continually check any new nodes added to the scene tree.
-@export var persistent : bool = true :
-	set(value):
-		persistent = value
-		_update_persistent_signals()
 
 @export_group("Playback")
 @export_range(MINIMUM_VOLUME_DB, MAXIMUM_VOLUME_DB) var volume_db : float
@@ -40,21 +32,8 @@ const MAXIMUM_VOLUME_DB = 24
 		if fade_in_duration < 0:
 			fade_in_duration = 0
 
-@onready var root_node : Node = get_node(root_path)
-
 var music_stream_player : AudioStreamPlayer
 var music_stream : AudioStream
-
-func _update_persistent_signals():
-	if not is_inside_tree():
-		return
-	var tree_node = get_tree()
-	if persistent:
-		if not tree_node.node_added.is_connected(check_for_music_player):
-			tree_node.node_added.connect(check_for_music_player)
-	else:
-		if tree_node.node_added.is_connected(check_for_music_player):
-			tree_node.node_added.disconnect(check_for_music_player)
 
 func fade_out( duration : float = 0.0 ):
 	if not is_zero_approx(duration):
@@ -126,16 +105,10 @@ func check_for_music_player( node: Node ) -> void:
 				return
 			_blend_in_stream_player(node)
 
-func _recursive_check_for_music_player( current_node: Node, current_depth : int = 0 ) -> void:
-	if current_depth >= MAX_DEPTH:
-		return
-	for node in current_node.get_children():
-		check_for_music_player(node)
-		_recursive_check_for_music_player(node, current_depth + 1)
-
 func _ready() -> void:
-	_recursive_check_for_music_player(root_node)
-	persistent = persistent
+	var tree_node = get_tree()
+	if not tree_node.node_added.is_connected(check_for_music_player):
+		tree_node.node_added.connect(check_for_music_player)
 
 func _exit_tree():
 	var tree_node = get_tree()
