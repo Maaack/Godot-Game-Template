@@ -149,16 +149,16 @@ func connect_ui_sounds(node: Node) -> void:
 		_connect_stream_player(node, line_text_submitted_player, &"text_submitted", _line_event_play_stream)
 		_connect_stream_player(node, line_text_change_rejected_player, &"text_change_rejected", _line_event_play_stream)
 
-func _recurive_connect_ui_sounds(current_node: Node, current_depth : int = 0) -> void:
+func _recursive_connect_ui_sounds(current_node: Node, current_depth : int = 0) -> void:
 	if current_depth >= MAX_DEPTH:
 		return
 	for node in current_node.get_children():
 		connect_ui_sounds(node)
-		_recurive_connect_ui_sounds(node, current_depth + 1)
+		_recursive_connect_ui_sounds(node, current_depth + 1)
 
 func _ready() -> void:
 	_build_all_stream_players()
-	_recurive_connect_ui_sounds(root_node)
+	_recursive_connect_ui_sounds(root_node)
 	persistent = persistent
 
 func _exit_tree():
