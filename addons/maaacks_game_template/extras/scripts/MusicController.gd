@@ -8,6 +8,7 @@ extends Node
 
 const MAX_DEPTH = 16
 const MINIMUM_VOLUME_DB = -80
+const MAXIMUM_VOLUME_DB = 24
 
 @export var root_path : NodePath = ^".."
 @export var audio_bus : StringName = &"Music"
@@ -18,7 +19,7 @@ const MINIMUM_VOLUME_DB = -80
 		_update_persistent_signals()
 
 @export_group("Playback")
-@export_range(-80, 24) var volume_db : float
+@export_range(MINIMUM_VOLUME_DB, MAXIMUM_VOLUME_DB) var volume_db : float
 @export var empty_streams_stop_player : bool = true
 
 @export_group("Blending")
@@ -50,15 +51,6 @@ func _update_persistent_signals():
 		if tree_node.node_added.is_connected(check_for_music_player):
 			tree_node.node_added.disconnect(check_for_music_player)
 
-func fade_out_and_free( duration : float = 0.0 ):
-	if music_stream_player == null:
-		return
-	var stream_player = music_stream_player
-	var tween = fade_out( duration )
-	if tween != null:
-		await( tween.finished )
-	stream_player.queue_free()
-
 func fade_out( duration : float = 0.0 ):
 	if not is_zero_approx(duration):
 		var tween = get_tree().create_tween()
@@ -83,11 +75,22 @@ func play():
 	music_stream_player.volume_db = volume_db
 	music_stream_player.play()
 
+func fade_out_and_free( duration : float = 0.0 ):
+	if music_stream_player == null:
+		return
+	var stream_player = music_stream_player
+	var tween = fade_out( duration )
+	if tween != null:
+		await( tween.finished )
+	stream_player.queue_free()
+
 func play_and_fade_in( duration : float = 0.0 ):
 	if music_stream_player == null:
 		return
 	music_stream_player.play()
-	fade_in( duration )
+	var tween = fade_in( duration )
+	if tween == null:
+		music_stream_player.volume_db = volume_db
 
 func _is_matching_stream( stream_player : AudioStreamPlayer ) -> bool:
 	if stream_player.bus != audio_bus:
