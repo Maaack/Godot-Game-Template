@@ -18,10 +18,10 @@ config/icon="res://icon.png"
 [autoload]
 
 SceneLoader="*res://addons/maaacks_game_template/base/scripts/SceneLoader.gd"
-ProjectUiSoundController="res://addons/maaacks_game_template/extras/scenes/Autoloads/ProjectUISoundController.tscn"
-ProjectLevelLoader="res://addons/maaacks_game_template/extras/scenes/Autoloads/ProjectLevelLoader.tscn"
-RuntimeLogger="res://addons/maaacks_game_template/extras/scripts/RuntimeLogger.gd"
-ProjectMusicController="res://addons/maaacks_game_template/extras/scenes/Autoloads/ProjectMusicController.tscn"
+RuntimeLogger="*res://addons/maaacks_game_template/extras/scripts/RuntimeLogger.gd"
+ProjectLevelLoader="*res://addons/maaacks_game_template/extras/scenes/Autoloads/ProjectLevelLoader.tscn"
+ProjectMusicController="*res://addons/maaacks_game_template/extras/scenes/Autoloads/ProjectMusicController.tscn"
+ProjectUISoundController="*res://addons/maaacks_game_template/extras/scenes/Autoloads/ProjectUISoundController.tscn"
 
 [display]
 
