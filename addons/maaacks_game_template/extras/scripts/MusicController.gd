@@ -68,20 +68,20 @@ func play():
 		return
 	music_stream_player.play()
 
-func fade_out_and_free( duration : float = 0.0 ):
+func _fade_out_and_free():
 	if music_stream_player == null:
 		return
 	var stream_player = music_stream_player
-	var tween = fade_out( duration )
+	var tween = fade_out( fade_out_duration )
 	if tween != null:
 		await( tween.finished )
 	stream_player.queue_free()
 
-func play_and_fade_in( duration : float = 0.0 ):
+func _play_and_fade_in():
 	if music_stream_player == null:
 		return
 	music_stream_player.play()
-	var tween = fade_in( duration )
+	fade_in( fade_in_duration )
 
 func _is_matching_stream( stream_player : AudioStreamPlayer ) -> bool:
 	if stream_player.bus != audio_bus:
@@ -90,14 +90,14 @@ func _is_matching_stream( stream_player : AudioStreamPlayer ) -> bool:
 		return false
 	return music_stream_player.stream == stream_player.stream
 
-func reparent_music_player( stream_player : AudioStreamPlayer ):
+func _reparent_music_player( stream_player : AudioStreamPlayer ):
 	stream_player.call_deferred("reparent", self)
 	music_stream_player = stream_player
 
 func _blend_in_stream_player( stream_player : AudioStreamPlayer ):
-	fade_out_and_free(fade_out_duration)
-	reparent_music_player(stream_player)
-	play_and_fade_in(fade_in_duration)
+	_fade_out_and_free()
+	_reparent_music_player(stream_player)
+	_play_and_fade_in()
 
 func check_for_music_player( node: Node ) -> void:
 	if node == music_stream_player : return
