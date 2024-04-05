@@ -23,7 +23,7 @@ For an existing project, developers can copy the contents of the `addons/` folde
     4.  Save the scene.
     
 
-4.  Point the main menu to the game scene.
+3.  Point the main menu to the game scene.
     
 
     1.  Open `MainMenu.tscn`.
@@ -32,7 +32,7 @@ For an existing project, developers can copy the contents of the `addons/` folde
     4.  Save the scene.
     
 
-5.  Update the project’s inputs.
+4.  Update the project’s inputs.
     
 
     1.  Open `InputOptionsMenu.tscn` (or `MasterOptionsMenu`, which contains an instance of the scene).
@@ -41,7 +41,7 @@ For an existing project, developers can copy the contents of the `addons/` folde
     4.  Save the scene.
 
 
-6.  Add background music and sound effects to the UI.
+5.  Add background music and sound effects to the UI.
 
     1.  Add `Music` and `SFX` to the project's default audio busses.
 
@@ -83,7 +83,7 @@ For an existing project, developers can copy the contents of the `addons/` folde
             4.  Save the scene.
    
 
-7.  Update the game credits / attribution.
+6.  Update the game credits / attribution.
     
 
     1.  Copy `res://addons/maaacks_game_template/ATTRIBUTION_example.md` to your project's root directory as `res://ATTRIBUTION.md`.
