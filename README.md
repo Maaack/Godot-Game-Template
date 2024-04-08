@@ -15,44 +15,6 @@ Setup menus and accessibility features in about 15 minutes.
 
 The core components can support a larger project, but the template was originally built to support smaller projects and game jams.
 
-## Installation
-
-### Godot Asset Library
-This package is available as both a template and a plugin, meaning it can be used to start a new project, or added to an existing project. 
-
-When starting a new project:
-
-1.  Go to the `Asset Library Projects` tab.
-2.  Search for "Maaack's Game Template".
-3.  Click on the result to open the template details.
-4.  Click to Download.
-5.  Give the project a new name and destination.
-6.  Click to Install & Edit.
-7.  Continue with the [New Project Instructions](/addons/maaacks_game_template/docs/NewProject.md)
-
-When editing an existing project:
-
-1.  Go to the `AssetLib` tab.
-2.  Search for "Maaack's Game Template Plugin".
-3.  Click on the result to open the plugin details.
-4.  Click to Download.
-5.  Check that contents are getting installed to `addons/` and there are no conflicts.
-6.  Click to Install.
-7.  Reload the project (you may see errors before you do this).
-8.  Enable the plugin from the Project Settings > Plugins tab.
-9.  Continue with the [Existing Project Instructions](/addons/maaacks_game_template/docs/ExistingProject.md)  
-
-
-### GitHub
-
-
-1.  Download the latest release version from [GitHub](https://github.com/Maaack/Godot-Game-Template/releases/latest).  
-2.  Extract the contents of the archive.
-3.  Move the `addons/maaacks_game_template` folder into your project's `addons/` folder.  
-4.  Open/Reload the project.  
-5.  Enable the plugin from the Project Settings > Plugins tab.  
-6.  Continue with the [Existing Project Instructions](/addons/maaacks_game_template/docs/ExistingProject.md) 
-
 ## Features
 
 ### Base
@@ -108,6 +70,48 @@ The `examples/` folder contains an example project using inherited scenes from t
 - The `PauseMenuController` node loads the `PauseMenu.tscn` (using `InGameMenuController.gd`) when triggering `ui-cancel`.
 - `GameUI.tscn` is a demo game scene that displays recognized action inputs, and features the `PauseMenuController` node, the `LevelLoader` node to advance through levels, and `InGameMenuController.gd` to show `SuccessScene.tscn` or `FailureScene.tscn`.
 
+## Installation
+
+### Godot Asset Library
+This package is available as both a template and a plugin, meaning it can be used to start a new project, or added to an existing project. 
+
+When starting a new project:
+
+1.  Go to the `Asset Library Projects` tab.
+2.  Search for "Maaack's Game Template".
+3.  Click on the result to open the template details.
+4.  Click to Download.
+5.  Give the project a new name and destination.
+6.  Click to Install & Edit.
+7.  Continue with the [New Project Instructions](/addons/maaacks_game_template/docs/NewProject.md)
+
+When editing an existing project:
+
+1.  Go to the `AssetLib` tab.
+2.  Search for "Maaack's Game Template Plugin".
+3.  Click on the result to open the plugin details.
+4.  Click to Download.
+5.  Check that contents are getting installed to `addons/` and there are no conflicts.
+6.  Click to Install.
+7.  Reload the project (you may see errors before you do this).
+8.  Enable the plugin from the Project Settings > Plugins tab.
+9.  Continue with the [Existing Project Instructions](/addons/maaacks_game_template/docs/ExistingProject.md)  
+
+
+### GitHub
+
+
+1.  Download the latest release version from [GitHub](https://github.com/Maaack/Godot-Game-Template/releases/latest).  
+2.  Extract the contents of the archive.
+3.  Move the `addons/maaacks_game_template` folder into your project's `addons/` folder.  
+4.  Open/Reload the project.  
+5.  Enable the plugin from the Project Settings > Plugins tab.  
+6.  Continue with the [Existing Project Instructions](/addons/maaacks_game_template/docs/ExistingProject.md) 
+
+#### Minimal
+
+Advanced users that just want to use the project's minimum `base/` contents can safely remove `extras/` by following the [Minimal Install Instructions](/addons/maaacks_game_template/docs/MinimalInstall.md).  
+
 ## Usage
 
 ### Main Scene
@@ -135,9 +139,6 @@ For an existing project, developers can copy the contents of the `addons/` folde
 [Existing Project Instructions](/addons/maaacks_game_template/docs/ExistingProject.md)  
    
 
-#### Minimal
-
-Advanced users that just want to use the project's minimum `base/` contents can safely remove `extras/` by following the [Minimal Install Instructions](/addons/maaacks_game_template/docs/MinimalInstall.md).  
 
 ## Links
 [Attribution](ATTRIBUTION.md)  
