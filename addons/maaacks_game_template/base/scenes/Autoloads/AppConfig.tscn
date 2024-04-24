@@ -4,4 +4,3 @@
 
 [node name="AppConfig" type="Node"]
 script = ExtResource("1_o0k5w")
-_loading_screen = "res://addons/maaacks_game_template/base/scenes/LoadingScreen/LoadingScreen.tscn"
