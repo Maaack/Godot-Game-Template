@@ -4,6 +4,7 @@ extends Node
 
 signal scene_loaded
 
+@export_file("*.tscn") var loading_screen_path : String : set = set_loading_screen
 var _loading_screen : PackedScene
 var _scene_path : String
 var _loaded_resource : Resource
@@ -47,7 +48,8 @@ func change_scene_to_loading_screen() -> void:
 		push_error("failed to change scenes to loading screen: %d" % err)
 		get_tree().quit()
 
-func set_loading_screen(loading_screen_path : String) -> void:
+func set_loading_screen(value : String) -> void:
+	loading_screen_path = value
 	if loading_screen_path == "":
 		push_warning("loading screen path is empty")
 		return

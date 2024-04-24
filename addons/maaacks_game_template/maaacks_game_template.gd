@@ -4,7 +4,7 @@ extends EditorPlugin
 
 func _enter_tree():
 	add_autoload_singleton("AppConfig", "res://addons/maaacks_game_template/base/scenes/Autoloads/AppConfig.tscn")
-	add_autoload_singleton("SceneLoader", "res://addons/maaacks_game_template/base/scripts/SceneLoader.gd")
+	add_autoload_singleton("SceneLoader", "res://addons/maaacks_game_template/base/scenes/Autoloads/SceneLoader.tscn")
 	add_autoload_singleton("ProjectMusicController", "res://addons/maaacks_game_template/extras/scenes/Autoloads/ProjectMusicController.tscn")
 	add_autoload_singleton("ProjectUISoundController", "res://addons/maaacks_game_template/extras/scenes/Autoloads/ProjectUISoundController.tscn")
 
