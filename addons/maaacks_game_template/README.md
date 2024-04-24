@@ -55,11 +55,10 @@ The `examples/` folder contains an example project using inherited scenes from t
     -   Master Options Menu w/ Game Options tab 
     -   Main Menu w/ Animations
     -   Pause Menu w/ Linked Scenes
-    -   Init App w/ Opening Scene
     -   Loading Screen w/ Shader Pre-caching 
 
 ### How it Works
-- `InitApp.tscn` is the project's main scene. It loads all the configuration settings from the config file (if it exists) into game and sets the loading screen. It then loads the next scene (`Opening.tscn` or `MainMenu.tscn`).  
+- `AppConfig.tscn` is set as the first autoload. It loads all the configuration settings from the config file (if it exists) into game and sets the loading screen.  
 - `Opening.tscn` is a simple scene for fading in/out a few images at the start of the game. It then loads the next scene (`MainMenu.tscn`).  
 - `MainMenu.tscn` is where a player can start the game, change settings, watch credits, or quit. It can link to the path of a game scene to play, and the packed scene of an options menu to use.  
 - `SceneLoader.gd` is an autoload script. It can load scenes in the background or with a loading screen (`LoadingScreen.tscn` by default).  
@@ -116,9 +115,9 @@ Advanced users that just want to use the project's minimum `base/` contents can 
 
 ### Main Scene
 
-Set your project's main scene to `InitApp.tscn`, `InitAppWithOpening.tscn`, or any scene that inherits from those.
+Set your project's main scene to `MainMenu.tscn`, `Opening.tscn`, or any scene that inherits from those.
 
-In the template version, the project's main scene starts as `InitAppWithOpening.tscn` in `res://Examples/`. 
+In the template version, the project's main scene starts as `OpeningWithLogo.tscn.tscn` in `res://Examples/`.
 
 ### Examples
 
