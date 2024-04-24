@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://kwifjoc33wbf"]
-
-[ext_resource type="PackedScene" uid="uid://brp0f5m041sho" path="res://addons/maaacks_game_template/base/scenes/InitApp/InitApp.tscn" id="1_8ltih"]
-
-[node name="InitApp" instance=ExtResource("1_8ltih")]
-_loading_screen = "res://Examples/Scenes/LoadingScreen/LoadingScreenWithShaderCaching.tscn"
-_next_scene = "res://Examples/Scenes/Opening/OpeningWithLogo.tscn"

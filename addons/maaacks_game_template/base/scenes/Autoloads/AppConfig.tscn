@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjke6crjg14a0"]
+
+[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scenes/Autoloads/AppConfig.gd" id="1_o0k5w"]
+
+[node name="AppConfig" type="Node"]
+script = ExtResource("1_o0k5w")

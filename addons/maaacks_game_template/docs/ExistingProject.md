@@ -8,9 +8,8 @@ For an existing project, developers can copy the contents of the `addons/` folde
     
 
     1.  Go to `Project > Project Settings… > General > Application > Run`.
-    2.  Update `Main Scene` to `res://addons/maaacks_game_template/examples/scenes/InitApp/InitAppWithOpening.tscn`.
-        1.  Alternatively, use `res://addons/maaacks_game_template/base/scenes/InitApp/InitApp.tscn` for a minimal use-case.
-        2.  The developer can also create their own scene inheriting from `InitApp.tscn` and set it as the main scene.
+    2.  Update `Main Scene` to `MainMenu.tscn` or `Opening.tscn`.
+        1.  Alternatively, any scene the inherits from one of these. A few exist in the `examples/` folder.
     3.  Close the window.
     
 

@@ -11,15 +11,14 @@ config_version=5
 [application]
 
 config/name="Game Template"
-run/main_scene="res://Examples/Scenes/InitApp/InitAppWithOpening.tscn"
+run/main_scene="res://Examples/Scenes/Opening/OpeningWithLogo.tscn"
 config/features=PackedStringArray("4.2")
 config/icon="res://icon.png"
 
 [autoload]
 
-SceneLoader="*res://addons/maaacks_game_template/base/scripts/SceneLoader.gd"
-RuntimeLogger="*res://addons/maaacks_game_template/extras/scripts/RuntimeLogger.gd"
-ProjectLevelLoader="*res://addons/maaacks_game_template/extras/scenes/Autoloads/ProjectLevelLoader.tscn"
+AppConfig="*res://addons/maaacks_game_template/base/scenes/Autoloads/AppConfig.tscn"
+SceneLoader="*res://addons/maaacks_game_template/base/scenes/Autoloads/SceneLoader.tscn"
 ProjectMusicController="*res://addons/maaacks_game_template/extras/scenes/Autoloads/ProjectMusicController.tscn"
 ProjectUISoundController="*res://addons/maaacks_game_template/extras/scenes/Autoloads/ProjectUISoundController.tscn"
 
