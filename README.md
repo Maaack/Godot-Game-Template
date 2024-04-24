@@ -1,14 +1,14 @@
 # Godot Game Template
 For Godot 4.2
 
-This template has a main menu, pause menu, and credits scene. It supports basic accessibility features like input rebinding, sound, and video controls.
+This template has a main menu, options menus, pause menu, credits, scene loader, extra tools, and an example game scene.
 
 [Example on itch.io](https://maaack.itch.io/godot-game-template)
 
-![Main Menu](/Media/Screenshot-3-1.png)  
-![Key Rebinding](/Media/Screenshot-3-2.png)  
-![Audio Controls](/Media/Screenshot-3-4.png)  
-![Pause Menu](/Media/Screenshot-3-6.png)  
+![Main Menu](/addons/maaacks_game_template/media/Screenshot-3-1.png)  
+![Key Rebinding](/addons/maaacks_game_template/media/Screenshot-3-2.png)  
+![Audio Controls](/addons/maaacks_game_template/media/Screenshot-3-4.png)  
+![Pause Menu](/addons/maaacks_game_template/media/Screenshot-3-6.png)  
 
 ## Use Case
 Setup menus and accessibility features in about 15 minutes.
@@ -73,6 +73,8 @@ The `examples/` folder contains an example project using inherited scenes from t
 
 ### Godot Asset Library
 This package is available as both a template and a plugin, meaning it can be used to start a new project, or added to an existing project. 
+
+![Package Icon](/addons/maaacks_game_template/media/Game-Icon-black-transparent-256x256.png)  
 
 When starting a new project:
 
