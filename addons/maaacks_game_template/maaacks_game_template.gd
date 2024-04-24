@@ -11,7 +11,5 @@ func _enter_tree():
 func _exit_tree():
 	remove_autoload_singleton("AppConfig")
 	remove_autoload_singleton("SceneLoader")
-	remove_autoload_singleton("RuntimeLogger")
-	remove_autoload_singleton("ProjectLevelLoader")
 	remove_autoload_singleton("ProjectMusicController")
 	remove_autoload_singleton("ProjectUISoundController")
