@@ -80,10 +80,11 @@ layout_mode = 2
 alignment = 1
 script = ExtResource("2_2n6cd")
 
-[node name="RestartButton" type="Button" parent="Control/Panel/MarginContainer/VBoxContainer/ButtonsContainer"]
+[node name="ExitButton" type="Button" parent="Control/Panel/MarginContainer/VBoxContainer/ButtonsContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
-text = "Restart"
+text = "Exit Game"
 
 [node name="MainMenuButton" type="Button" parent="Control/Panel/MarginContainer/VBoxContainer/ButtonsContainer"]
 unique_name_in_owner = true
@@ -91,11 +92,10 @@ custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
 text = "Main Menu"
 
-[node name="ExitButton" type="Button" parent="Control/Panel/MarginContainer/VBoxContainer/ButtonsContainer"]
-unique_name_in_owner = true
+[node name="RestartButton" type="Button" parent="Control/Panel/MarginContainer/VBoxContainer/ButtonsContainer"]
 custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
-text = "Exit Game"
+text = "Restart"
 
 [node name="ConfirmMainMenu" type="ConfirmationDialog" parent="."]
 initial_position = 2
@@ -108,8 +108,8 @@ dialog_text = "Quit the game?"
 [node name="UISoundController" type="Node" parent="."]
 script = ExtResource("3_6hy0s")
 
-[connection signal="pressed" from="Control/Panel/MarginContainer/VBoxContainer/ButtonsContainer/RestartButton" to="." method="_on_restart_button_pressed"]
-[connection signal="pressed" from="Control/Panel/MarginContainer/VBoxContainer/ButtonsContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
 [connection signal="pressed" from="Control/Panel/MarginContainer/VBoxContainer/ButtonsContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="Control/Panel/MarginContainer/VBoxContainer/ButtonsContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="Control/Panel/MarginContainer/VBoxContainer/ButtonsContainer/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="confirmed" from="ConfirmMainMenu" to="." method="_on_confirm_main_menu_confirmed"]
 [connection signal="confirmed" from="ConfirmExit" to="." method="_on_confirm_exit_confirmed"]
