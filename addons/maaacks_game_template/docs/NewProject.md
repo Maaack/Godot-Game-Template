@@ -11,11 +11,10 @@ These instructions assume starting with the entire contents of the project folde
     3.  Close the window.
     4.  Open `MainMenu.tscn`.
     5.  Select the `Title` node.
-    6.  Select the `Title` node.
-    7.  Update the `Text` to your project's title.
-    8.  Select the `Subtitle` node.
-    9.  Update the `Text` to a desired subtitle or empty.
-    10. Save the scene.
+    6.  Update the `Text` to your project's title.
+    7.  Select the `Subtitle` node.
+    8.  Update the `Text` to a desired subtitle or empty.
+    9.  Save the scene.
     
 
 2.  Link the main menu to the game scene.
@@ -93,5 +92,5 @@ These instructions assume starting with the entire contents of the project folde
 
 6.  Keep, update, or remove `res://LICENSE.txt`.
 
-7.  If using Git for version control, update `.gitignore` to include `addons/`.
+7.  Optionally, if using Git for version control, update `.gitignore` to include `addons/`.
    
