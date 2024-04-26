@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dxkq10mmjl517"]
+[gd_scene load_steps=10 format=3 uid="uid://dxkq10mmjl517"]
 
 [ext_resource type="Script" path="res://Examples/Scenes/GameScene/GameUI.gd" id="1_vn54u"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/PauseMenuController.gd" id="2_bmhjc"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cd0jbh4metflb" path="res://addons/maaacks_game_template/base/scenes/LoadingScreen/LoadingScreen.tscn" id="4_4r4kr"]
 [ext_resource type="Script" path="res://Examples/Scenes/GameScene/InputDisplayLabel.gd" id="6_6hq0m"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/LevelLoader.gd" id="7_dgyvu"]
+[ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/scenes/MusicPlayers/BackgroundMusicPlayer.tscn" id="7_fogki"]
 
 [node name="GameUI" type="Control"]
 layout_mode = 3
@@ -30,10 +31,7 @@ level_container = NodePath("../Control")
 files = Array[String](["res://Examples/Scenes/GameScene/Levels/Level1.tscn", "res://Examples/Scenes/GameScene/Levels/Level2.tscn", "res://Examples/Scenes/GameScene/Levels/Level3.tscn"])
 directory = "res://Examples/Scenes/GameScene/Levels"
 
-[node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="."]
-process_mode = 3
-autoplay = true
-bus = &"Music"
+[node name="BackgroundMusicPlayer" parent="." instance=ExtResource("7_fogki")]
 
 [node name="LoadingScreen" parent="." instance=ExtResource("4_4r4kr")]
 visible = false
