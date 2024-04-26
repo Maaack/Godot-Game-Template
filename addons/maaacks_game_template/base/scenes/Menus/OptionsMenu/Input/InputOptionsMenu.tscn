@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dp3rgqaehb3xu"]
+[gd_scene load_steps=6 format=3 uid="uid://dp3rgqaehb3xu"]
 
 [ext_resource type="Script" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/Input/InputOptionsMenu.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://c1eqf1cse1hch" path="res://addons/maaacks_game_template/base/assets/images/addition_symbol.png" id="2_dw35t"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/CaptureFocus.gd" id="2_wft4x"]
+[ext_resource type="Texture2D" uid="uid://bteq3ica74h30" path="res://addons/maaacks_game_template/base/assets/images/subtraction_symbol.png" id="3_lngdd"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/Input/KeyAssignmentDialog.gd" id="3_wsh2h"]
 
 [node name="Controls" type="MarginContainer"]
@@ -13,6 +15,8 @@ grow_vertical = 2
 theme_override_constants/margin_top = 24
 theme_override_constants/margin_bottom = 24
 script = ExtResource("1")
+add_button_texture = ExtResource("2_dw35t")
+remove_button_texture = ExtResource("3_lngdd")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(400, 280)
