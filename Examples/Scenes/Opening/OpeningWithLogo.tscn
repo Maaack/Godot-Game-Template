@@ -1,8 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://b53lcrioc6qsn"]
-
-[ext_resource type="PackedScene" uid="uid://sikc02ddepyt" path="res://addons/maaacks_game_template/extras/scenes/Opening/Opening.tscn" id="1_cwqk6"]
-[ext_resource type="Texture2D" uid="uid://b1o6mhwyq1j7s" path="res://Examples/Assets/Images/logo_vertical_color_dark.png" id="2_3fui6"]
-
-[node name="Opening" instance=ExtResource("1_cwqk6")]
-next_scene = "res://Examples/Scenes/Menus/MainMenu/MainMenuWithAnimations.tscn"
-images = Array[Texture2D]([ExtResource("2_3fui6")])
