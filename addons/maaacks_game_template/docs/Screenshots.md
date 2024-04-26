@@ -5,6 +5,7 @@
 ![Key Rebinding](/addons/maaacks_game_template/media/Screenshot-3-3.png)  
 ![Audio Controls](/addons/maaacks_game_template/media/Screenshot-3-4.png)  
 ![Credits Screen](/addons/maaacks_game_template/media/Screenshot-3-5.png)  
+![Pause Screen](/addons/maaacks_game_template/media/Screenshot-3-6.png)  
 ![Loading Screen 50% Loaded](/addons/maaacks_game_template/media/Screenshot-3-7.png)  
 ![Loading Screen Still Loading](/addons/maaacks_game_template/media/Screenshot-3-8.png)  
 ![Loading Screen Error Message](/addons/maaacks_game_template/media/Screenshot-3-9.png)  
