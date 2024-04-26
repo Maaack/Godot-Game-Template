@@ -53,10 +53,16 @@ Author: [url=https://godotengine.org/contact]Juan Linietsky, Ariel Manzur, and c
 Source: [url=https://godotengine.org/]godotengine.org[/url]  
 License: [url=https://github.com/godotengine/godot/blob/master/LICENSE.txt]MIT License[/url] 
 
+[font_size=24]Visual Studio Code[/font_size]
+Author: [url=https://opensource.microsoft.com/]Microsoft[/url]  
+Source: [url=https://github.com/microsoft/vscode]github: vscode[/url]  
+License: [url=https://github.com/microsoft/vscode/blob/main/LICENSE.txt]MIT License[/url]
+
 [font_size=24]Git[/font_size]
 Author: [url=https://github.com/torvalds]Linus Torvalds[/url]  
 Source: [url=https://git-scm.com/downloads]git-scm.com[/url]  
-License: [url=https://opensource.org/licenses/GPL-2.0]GNU General Public License version 2[/url][/center]"
+License: [url=https://opensource.org/licenses/GPL-2.0]GNU General Public License version 2[/url]
+[/center]"
 fit_content = true
 scroll_active = false
 

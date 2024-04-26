@@ -9,6 +9,7 @@ This template has a main menu, options menus, pause menu, credits, scene loader,
 ![Key Rebinding](/addons/maaacks_game_template/media/Screenshot-3-2.png)  
 ![Audio Controls](/addons/maaacks_game_template/media/Screenshot-3-4.png)  
 ![Pause Menu](/addons/maaacks_game_template/media/Screenshot-3-6.png)  
+[All screenshots](/addons/maaacks_game_template/docs/Screenshots.md)
 
 ## Use Case
 Setup menus and accessibility features in about 15 minutes.
@@ -29,7 +30,8 @@ The `base/` folder holds the core components of the menus application.
 -   Simple Config Interface
 -   Keyboard/Mouse Support
 -   Gamepad Support
--   Centralized UI Sound Control
+-   UI Sound Controller
+-   Background Music Controller
 
 ### Extras
 
@@ -39,7 +41,6 @@ The `extras/` folder holds components that extend the core application.
 -   Opening Scene
 -   Success & Failure Scenes
 -   Logging Scripts
--   Centrallized Music Control
 -   Additional Autoloaded Classes
 -   Scripts for Testing & Releasing
  
@@ -63,12 +64,12 @@ The `examples/` folder contains an example project using inherited scenes from t
 - `Opening.tscn` is a simple scene for fading in/out a few images at the start of the game. It then loads the next scene (`MainMenu.tscn`).  
 - `MainMenu.tscn` is where a player can start the game, change settings, watch credits, or quit. It can link to the path of a game scene to play, and the packed scene of an options menu to use.  
 - `Credits.tscn` reads from `ATTRIBUTION.md` to automatically generate the content for it's scrolling text label.  
-- `ProjectMusicController.tscn` is an autoload scene that keeps music playing between scenes. It detects music stream players as they are added to the scene tree, reparents them to itself, and blends the tracks.  
-- The `UISoundController` node automatically attaches sounds to buttons, tab bars, sliders, and line edits in the scene. `ProjectUISoundController.tscn` can used to apply UI sound effects project-wide.
+- The `UISoundController` node automatically attaches sounds to buttons, tab bars, sliders, and line edits in the scene. `ProjectUISoundController.tscn` is an autload used to apply UI sounds project-wide.
+- `ProjectMusicController.tscn` is an autoload that keeps music playing between scenes. It detects music stream players as they are added to the scene tree, reparents them to itself, and blends the tracks.  
 - `InGameMenuController.gd` controls opening and closing a menu and pausing the game in the background.
 - The `PauseMenuController` node loads the `PauseMenu.tscn` (using `InGameMenuController.gd`) when triggering `ui-cancel`.
 - `GameUI.tscn` is a demo game scene that displays recognized action inputs, and features the `PauseMenuController` node, the `LevelLoader` node to advance through levels, and `InGameMenuController.gd` to show `SuccessScene.tscn` or `FailureScene.tscn`.
-
+  
 ## Installation
 
 ### Godot Asset Library
@@ -111,9 +112,11 @@ When editing an existing project:
 
 #### Minimal
 
-Advanced users that just want to use the project's minimum `base/` contents can safely remove `extras/` by following the [Minimal Install Instructions](/addons/maaacks_game_template/docs/MinimalInstall.md).  
+Users that want a minimal set of features can try [Maaack's Menu Template](https://github.com/Maaack/Godot-Menu-Template).  
 
 ## Usage
+
+Developers can make changes directly to the contents of the scenes in `addons/maaacks_game_template/base/scenes/`. However, before making major changes, it is recommended developers make copy of a scene, or inherit from one, and save it in their project's directory outside of `addons/`. This avoids changes getting lost either from the package updating, or because of a `.gitignore`.
 
 ### Main Scene
 
@@ -135,14 +138,14 @@ These instructions assume starting with the entire contents of the project folde
 
 ### Existing Project
 
-For an existing project, developers can copy the contents of the `addons/` folder into their project. This will also be the case when installing the application from the *plugin* version in the Godot Asset Library.
+For an existing project, developers can copy the contents of the `addons/` folder into their project. This will also be the case when installing the *plugin* version in the Godot Asset Library.
 
 [Existing Project Instructions](/addons/maaacks_game_template/docs/ExistingProject.md)  
    
 
 
 ## Links
-[Attribution](ATTRIBUTION.md)  
-[License](LICENSE.txt)  
+[Attribution](/addons/maaacks_game_template/ATTRIBUTION.md)  
+[License](/addons/maaacks_game_template/LICENSE.txt)  
 [Godot Asset Library - Template](https://godotengine.org/asset-library/asset/2703)  
 [Godot Asset Library - Plugin](https://godotengine.org/asset-library/asset/2709)  
