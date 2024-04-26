@@ -20,6 +20,16 @@ script = ExtResource("1_lpkm8")
 win_scene = ExtResource("2_3aw6s")
 lose_scene = ExtResource("3_28mfg")
 
+[node name="PauseMenuController" type="Node" parent="."]
+script = ExtResource("5_fc8fx")
+pause_menu_packed = ExtResource("6_w57cp")
+
+[node name="LevelLoader" type="Node" parent="." node_paths=PackedStringArray("level_container")]
+script = ExtResource("8_g1tvw")
+level_container = NodePath("../Control")
+files = Array[String](["res://addons/maaacks_game_template/examples/scenes/GameScene/Levels/Level1.tscn", "res://addons/maaacks_game_template/examples/scenes/GameScene/Levels/Level2.tscn", "res://addons/maaacks_game_template/examples/scenes/GameScene/Levels/Level3.tscn"])
+directory = "res://addons/maaacks_game_template/examples/scenes/GameScene/Levels"
+
 [node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 autoplay = true
@@ -27,10 +37,6 @@ bus = &"Music"
 
 [node name="LoadingScreen" parent="." instance=ExtResource("4_acyv5")]
 visible = false
-
-[node name="PauseMenuController" type="Node" parent="."]
-script = ExtResource("5_fc8fx")
-pause_menu_packed = ExtResource("6_w57cp")
 
 [node name="InputDisplayLabel" type="Label" parent="."]
 layout_mode = 1
@@ -54,12 +60,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="LevelLoader" type="Node" parent="." node_paths=PackedStringArray("level_container")]
-script = ExtResource("8_g1tvw")
-level_container = NodePath("../Control")
-files = Array[String](["res://addons/maaacks_game_template/examples/scenes/GameScene/Levels/Level1.tscn", "res://addons/maaacks_game_template/examples/scenes/GameScene/Levels/Level2.tscn", "res://addons/maaacks_game_template/examples/scenes/GameScene/Levels/Level3.tscn"])
-directory = "res://addons/maaacks_game_template/examples/scenes/GameScene/Levels"
 
 [connection signal="level_load_started" from="LevelLoader" to="." method="_on_level_loader_level_load_started"]
 [connection signal="level_loaded" from="LevelLoader" to="." method="_on_level_loader_level_loaded"]
