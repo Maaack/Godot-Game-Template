@@ -4,16 +4,24 @@ extends EditorPlugin
 const EXAMPLE_DIRECTORY_PATH = "res://addons/maaacks_game_template/examples/"
 const UID_PREG_MATCH = r'uid="uid:\/\/[0-9a-z]+" '
 const MAIN_SCENE_RELATIVE_PATH = "scenes/Opening/OpeningWithLogo.tscn"
+const MAIN_SCENE_UPDATE_TEXT = "Current:\n%s\n\nNew:\n%s\n"
 
 func _update_main_scene(main_scene_path : String):
 	ProjectSettings.set_setting("application/run/main_scene", main_scene_path)
 	ProjectSettings.save()
 
-func _open_main_scene_confirmation_dialog(target_path : String):
+func _check_main_scene_needs_updating(target_path : String):
+	var current_main_scene_path = ProjectSettings.get_setting("application/run/main_scene", "")
+	var new_main_scene_path = target_path + MAIN_SCENE_RELATIVE_PATH
+	if new_main_scene_path == current_main_scene_path:
+		return
+	_open_main_scene_confirmation_dialog(current_main_scene_path, new_main_scene_path)
+
+func _open_main_scene_confirmation_dialog(current_main_scene : String, new_main_scene : String):
 	var main_confirmation_scene : PackedScene = load("res://addons/maaacks_game_template/installer/MainSceneConfirmationDialog.tscn")
 	var main_confirmation_instance : ConfirmationDialog = main_confirmation_scene.instantiate()
-	var main_scene_path = target_path + MAIN_SCENE_RELATIVE_PATH
-	main_confirmation_instance.confirmed.connect(_update_main_scene.bind(main_scene_path))
+	main_confirmation_instance.dialog_text += MAIN_SCENE_UPDATE_TEXT % [current_main_scene, new_main_scene]
+	main_confirmation_instance.confirmed.connect(_update_main_scene.bind(new_main_scene))
 	add_child(main_confirmation_instance)
 
 func _replace_file_contents(file_path : String, target_path : String):
@@ -97,11 +105,12 @@ func _copy_directory_path(dir_path : String, target_path : String):
 
 func _copy_to_directory(target_path : String):
 	ProjectSettings.set_setting("maaacks_game_template/copy_path", target_path)
+	ProjectSettings.save()
 	if not target_path.ends_with("/"):
 		target_path += "/"
 	_copy_directory_path(EXAMPLE_DIRECTORY_PATH, target_path)
 	_resave_resources(target_path, ["tres", "tscn"])
-	_open_main_scene_confirmation_dialog(target_path)
+	_check_main_scene_needs_updating(target_path)
 
 func _open_path_dialog():
 	var destination_scene : PackedScene = load("res://addons/maaacks_game_template/installer/DestinationDialog.tscn")
@@ -113,6 +122,7 @@ func _open_confirmation_dialog():
 	var confirmation_scene : PackedScene = load("res://addons/maaacks_game_template/installer/CopyConfirmationDialog.tscn")
 	var confirmation_instance : ConfirmationDialog = confirmation_scene.instantiate()
 	confirmation_instance.confirmed.connect(_open_path_dialog)
+	confirmation_instance.canceled.connect(_check_main_scene_needs_updating.bind(EXAMPLE_DIRECTORY_PATH))
 	add_child(confirmation_instance)
 
 func _show_plugin_dialogues():
@@ -121,6 +131,7 @@ func _show_plugin_dialogues():
 			return
 	_open_confirmation_dialog()
 	ProjectSettings.set_setting("maaacks_game_template/disable_plugin_dialogues", true)
+	ProjectSettings.save()
 
 func _enter_tree():
 	add_autoload_singleton("AppConfig", "res://addons/maaacks_game_template/base/scenes/Autoloads/AppConfig.tscn")
