@@ -41,11 +41,13 @@ func _replace_file_contents(file_path : String, target_path : String):
 	file.close()
 
 func _save_resource(resource_path : String, resource_destination : String, whitelisted_extensions : PackedStringArray = []) -> Error:
-	var file_object = load(resource_path)
 	var extension : String = resource_path.get_extension()
 	if whitelisted_extensions.size() > 0:
 		if not extension in whitelisted_extensions:
 			return OK
+	if extension == "import":
+		return OK
+	var file_object = load(resource_path)
 	if file_object is Resource:
 		var possible_extensions = ResourceSaver.get_recognized_extensions(file_object)
 		if possible_extensions.has(extension):
@@ -66,7 +68,7 @@ func _resave_resources(dir_path : String, whitelisted_extensions : PackedStringA
 			var full_file_path = dir_path + file_name
 			if dir.current_is_dir():
 				_resave_resources(full_file_path, whitelisted_extensions)
-			elif not file_name.ends_with(".import"):
+			else:
 				error = _save_resource(full_file_path, full_file_path, whitelisted_extensions)
 			file_name = dir.get_next()
 		if error:
@@ -76,6 +78,16 @@ func _resave_resources(dir_path : String, whitelisted_extensions : PackedStringA
 
 func _copy_file_path(file_path : String, destination_path : String, target_path : String) -> Error:
 	var error = _save_resource(file_path, destination_path)
+	if error == ERR_FILE_UNRECOGNIZED:
+		# Copy image files and other assets
+		var dir = DirAccess.open("res://")
+		dir.copy(file_path, destination_path)
+		# Reimport image files to create new .import
+		var file_system = EditorInterface.get_resource_filesystem()
+		# TODO in progress here
+		# file_system.resources_reimported.connect()
+		file_system.reimport_files([destination_path])
+		return OK
 	if not error:
 		_replace_file_contents(destination_path, target_path)
 	return error
@@ -95,7 +107,7 @@ func _copy_directory_path(dir_path : String, target_path : String):
 			if dir.current_is_dir():
 				error = dir.make_dir(destination_path)
 				_copy_directory_path(full_file_path, target_path)
-			elif not file_name.ends_with(".import"):
+			else:
 				error = _copy_file_path(full_file_path, destination_path, target_path)
 			file_name = dir.get_next()
 		if error:
