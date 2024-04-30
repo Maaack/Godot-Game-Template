@@ -176,6 +176,7 @@ func _enter_tree():
 	add_autoload_singleton("SceneLoader", "res://addons/maaacks_game_template/base/scenes/Autoloads/SceneLoader.tscn")
 	add_autoload_singleton("ProjectMusicController", "res://addons/maaacks_game_template/base/scenes/Autoloads/ProjectMusicController.tscn")
 	add_autoload_singleton("ProjectUISoundController", "res://addons/maaacks_game_template/base/scenes/Autoloads/ProjectUISoundController.tscn")
+	add_tool_menu_item("Copy Template Examples...", _open_path_dialog)
 	_show_plugin_dialogues()
 	_resave_if_recently_opened()
 
@@ -184,3 +185,4 @@ func _exit_tree():
 	remove_autoload_singleton("SceneLoader")
 	remove_autoload_singleton("ProjectMusicController")
 	remove_autoload_singleton("ProjectUISoundController")
+	remove_tool_menu_item("Copy Template Examples...")
