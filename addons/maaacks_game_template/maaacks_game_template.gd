@@ -7,6 +7,7 @@ const MAIN_SCENE_RELATIVE_PATH = "scenes/Opening/OpeningWithLogo.tscn"
 const MAIN_SCENE_UPDATE_TEXT = "Current:\n%s\n\nNew:\n%s\n"
 const MAIN_SCENE_CHECK_DELAY : float = 0.5
 const REIMPORT_FILE_DELAY : float = 0.2
+const OPEN_EDITOR_DELAY : float = 0.1
 
 func _get_plugin_name():
 	return "Maaack's Game Template"
@@ -66,30 +67,7 @@ func _save_resource(resource_path : String, resource_destination : String, white
 			return ERR_FILE_UNRECOGNIZED
 	return OK
 
-func _resave_resources(dir_path : String, whitelisted_extensions : PackedStringArray = []):
-	if not dir_path.ends_with("/"):
-		dir_path += "/"
-	var dir = DirAccess.open(dir_path)
-	if dir:
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
-		var error : Error
-		while file_name != "" and error == 0:
-			var full_file_path = dir_path + file_name
-			if dir.current_is_dir():
-				_resave_resources(full_file_path, whitelisted_extensions)
-			else:
-				error = _save_resource(full_file_path, full_file_path, whitelisted_extensions)
-			file_name = dir.get_next()
-		if error:
-			push_error("plugin error - resaving resource: %s" % error)
-	else:
-		push_error("plugin error - accessing path: %s" % dir_path)
-
-func _resave_text_resource_and_scene_files(target_path : String):
-	_resave_resources(target_path, ["tres", "tscn"])
-
-func _start_timer_for_reimporting_file(file_path : String):
+func _delayed_reimporting_file(file_path : String):
 	var timer: Timer = Timer.new()
 	var callable := func():
 		timer.stop()
@@ -110,7 +88,7 @@ func _copy_file_path(file_path : String, destination_path : String, target_path 
 		if not error:
 			var file_system = EditorInterface.get_resource_filesystem()
 			file_system.update_file(destination_path)
-			_start_timer_for_reimporting_file(destination_path)
+			_delayed_reimporting_file(destination_path)
 		return error
 	if not error:
 		_replace_file_contents(destination_path, target_path)
@@ -140,11 +118,11 @@ func _copy_directory_path(dir_path : String, target_path : String):
 	else:
 		push_error("plugin error - accessing path: %s" % dir_path)
 
-func _start_timer_for_main_scene_step(target_path : String):
+func _delayed_saving_and_check_main_scene(target_path : String):
 	var timer: Timer = Timer.new()
 	var callable := func():
 		timer.stop()
-		_resave_text_resource_and_scene_files(target_path)
+		EditorInterface.save_all_scenes()
 		_check_main_scene_needs_updating(target_path)
 		timer.queue_free()
 	timer.timeout.connect(callable)
@@ -157,12 +135,13 @@ func _copy_to_directory(target_path : String):
 	if not target_path.ends_with("/"):
 		target_path += "/"
 	_copy_directory_path(EXAMPLE_DIRECTORY_PATH, target_path)
-	_start_timer_for_main_scene_step(target_path)
+	_delayed_saving_and_check_main_scene(target_path)
 
 func _open_path_dialog():
 	var destination_scene : PackedScene = load("res://addons/maaacks_game_template/installer/DestinationDialog.tscn")
 	var destination_instance : FileDialog = destination_scene.instantiate()
 	destination_instance.dir_selected.connect(_copy_to_directory)
+	destination_instance.canceled.connect(_check_main_scene_needs_updating.bind(EXAMPLE_DIRECTORY_PATH))
 	add_child(destination_instance)
 
 func _open_confirmation_dialog():
@@ -180,12 +159,25 @@ func _show_plugin_dialogues():
 	ProjectSettings.set_setting("maaacks_game_template/disable_plugin_dialogues", true)
 	ProjectSettings.save()
 
+func _resave_if_recently_opened():
+	if Engine.get_physics_frames() == 0:
+		var timer: Timer = Timer.new()
+		var callable := func():
+			if Engine.get_frames_per_second() >= 10:
+				timer.stop()
+				EditorInterface.save_scene()
+				timer.queue_free()
+		timer.timeout.connect(callable)
+		add_child(timer)
+		timer.start(OPEN_EDITOR_DELAY)
+
 func _enter_tree():
 	add_autoload_singleton("AppConfig", "res://addons/maaacks_game_template/base/scenes/Autoloads/AppConfig.tscn")
 	add_autoload_singleton("SceneLoader", "res://addons/maaacks_game_template/base/scenes/Autoloads/SceneLoader.tscn")
 	add_autoload_singleton("ProjectMusicController", "res://addons/maaacks_game_template/base/scenes/Autoloads/ProjectMusicController.tscn")
 	add_autoload_singleton("ProjectUISoundController", "res://addons/maaacks_game_template/base/scenes/Autoloads/ProjectUISoundController.tscn")
 	_show_plugin_dialogues()
+	_resave_if_recently_opened()
 
 func _exit_tree():
 	remove_autoload_singleton("AppConfig")
