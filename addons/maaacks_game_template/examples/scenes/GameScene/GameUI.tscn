@@ -1,11 +1,11 @@
 [gd_scene load_steps=10 format=3 uid="uid://bde0cbmryrv5s"]
 
 [ext_resource type="Script" path="res://addons/maaacks_game_template/examples/scenes/GameScene/GameUI.gd" id="1_lpkm8"]
-[ext_resource type="PackedScene" uid="uid://ta2xbceba8ec" path="res://addons/maaacks_game_template/examples/scenes/SuccessScreen/SuccessScreenWithScenes.tscn" id="2_3aw6s"]
-[ext_resource type="PackedScene" uid="uid://duvowpap0jwaq" path="res://addons/maaacks_game_template/examples/scenes/FailureScreen/FailureScreenWithScenes.tscn" id="3_28mfg"]
+[ext_resource type="PackedScene" uid="uid://ta2xbceba8ec" path="res://addons/maaacks_game_template/examples/scenes/WinScreen/WinScreenWithScenes.tscn" id="2_3aw6s"]
+[ext_resource type="PackedScene" uid="uid://duvowpap0jwaq" path="res://addons/maaacks_game_template/examples/scenes/LoseScreen/LoseScreenWithScenes.tscn" id="3_28mfg"]
 [ext_resource type="PackedScene" uid="uid://cd0jbh4metflb" path="res://addons/maaacks_game_template/base/scenes/LoadingScreen/LoadingScreen.tscn" id="4_acyv5"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/PauseMenuController.gd" id="5_fc8fx"]
-[ext_resource type="PackedScene" uid="uid://qeqh1euot2d0" path="res://addons/maaacks_game_template/examples/scenes/Menus/PauseMenu/PauseMenuWithScenes.tscn" id="6_w57cp"]
+[ext_resource type="PackedScene" uid="uid://qeqh1euot2d0" path="res://addons/maaacks_game_template/examples/scenes/Menus/PauseMenu/PauseMenuWithScenes.tscn" id="5_r56ir"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/examples/scenes/GameScene/InputDisplayLabel.gd" id="7_f87ri"]
 [ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/scenes/MusicPlayers/BackgroundMusicPlayer.tscn" id="7_yr75v"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/LevelLoader.gd" id="8_g1tvw"]
@@ -23,7 +23,7 @@ lose_scene = ExtResource("3_28mfg")
 
 [node name="PauseMenuController" type="Node" parent="."]
 script = ExtResource("5_fc8fx")
-pause_menu_packed = ExtResource("6_w57cp")
+pause_menu_packed = ExtResource("5_r56ir")
 
 [node name="LevelLoader" type="Node" parent="." node_paths=PackedStringArray("level_container")]
 script = ExtResource("8_g1tvw")

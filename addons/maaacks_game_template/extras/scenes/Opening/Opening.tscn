@@ -47,6 +47,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fcjph")
+next_scene = "res://addons/maaacks_game_template/base/scenes/Menus/MainMenu/MainMenu.tscn"
 end_delay = 1.0
 
 [node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="."]
