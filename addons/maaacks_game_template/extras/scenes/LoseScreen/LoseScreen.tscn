@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/UISoundController.gd" id="2_haoyh"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/CaptureFocus.gd" id="3_mqffv"]
 
-[node name="FailureScreen" type="CanvasLayer"]
+[node name="LoseScreen" type="CanvasLayer"]
 process_mode = 3
 layer = 10
 script = ExtResource("1_vd50a")

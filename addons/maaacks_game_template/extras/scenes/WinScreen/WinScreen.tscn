@@ -1,17 +1,17 @@
 [gd_scene load_steps=4 format=3 uid="uid://dt5ses55itjy4"]
 
-[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scenes/WinScreen/WinScreen.gd" id="1_wo104"]
-[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/CaptureFocus.gd" id="3_rix3y"]
-[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/UISoundController.gd" id="3_smu5k"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scenes/WinScreen/WinScreen.gd" id="1_elvr7"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/UISoundController.gd" id="2_g47g8"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/CaptureFocus.gd" id="3_am347"]
 
-[node name="SuccessScreen" type="CanvasLayer"]
+[node name="WinScreen" type="CanvasLayer"]
 process_mode = 3
 layer = 10
-script = ExtResource("1_wo104")
+script = ExtResource("1_elvr7")
 main_menu_scene = "res://addons/maaacks_game_template/base/scenes/Menus/MainMenu/MainMenu.tscn"
 
 [node name="UISoundController" type="Node" parent="."]
-script = ExtResource("3_smu5k")
+script = ExtResource("2_g47g8")
 
 [node name="BackgroundColor" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -66,7 +66,7 @@ vertical_alignment = 1
 [node name="ButtonsContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 alignment = 1
-script = ExtResource("3_rix3y")
+script = ExtResource("3_am347")
 
 [node name="ExitButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/ButtonsContainer"]
 unique_name_in_owner = true
