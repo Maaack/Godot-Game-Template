@@ -39,7 +39,7 @@ The `extras/` folder holds components that extend the core application.
 
 -   Pause Menu
 -   Opening Scene
--   Success & Failure Scenes
+-   Win & Lose Scenes
 -   Logging Scripts
 -   Additional Autoloaded Classes
 -   Scripts for Testing & Releasing
@@ -68,7 +68,7 @@ The `examples/` folder contains an example project using inherited scenes from t
 - `ProjectMusicController.tscn` is an autoload that keeps music playing between scenes. It detects music stream players as they are added to the scene tree, reparents them to itself, and blends the tracks.  
 - `InGameMenuController.gd` controls opening and closing a menu and pausing the game in the background.
 - The `PauseMenuController` node loads the `PauseMenu.tscn` (using `InGameMenuController.gd`) when triggering `ui-cancel`.
-- `GameUI.tscn` is a demo game scene that displays recognized action inputs, and features the `PauseMenuController` node, the `LevelLoader` node to advance through levels, and `InGameMenuController.gd` to show `SuccessScene.tscn` or `FailureScene.tscn`.
+- `GameUI.tscn` is a demo game scene that displays recognized action inputs, and features the `PauseMenuController` node, the `LevelLoader` node to advance through levels, and `InGameMenuController.gd` to show `WinScreen.tscn` or `LoseScreen.tscn`.
   
 ## Installation
 
