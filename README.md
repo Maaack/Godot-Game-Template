@@ -100,7 +100,7 @@ When editing an existing project:
     If it's enabled for the first time,
     1.  A dialogue window will appear asking to copy the example scenes out of addons/.
     2.  Another dialogue window will ask to update the project's main scene.
-    3.  Reload the project (scripts may show old paths before you do this).
+    3.  Reload the project (just to be safe).
 9.  Continue with the [Existing Project Instructions](/addons/maaacks_game_template/docs/ExistingProject.md)  
 
 
@@ -122,15 +122,7 @@ Users that want a minimal set of features can try [Maaack's Menus Template](http
 
 Changes can be made directly to scenes and scripts outside of `addons/`. 
 
- Scenes link to others within the same directory, though they often inherit from either `base/` or `extras/`. 
-
-A copy of the contents of `examples/` directory is made outside of `addons/` when the plugin is enabled. However, if this is skipped, it is recommended developers inherit from scenes they want to use, and save the inherited scene outside of `addons/`. This avoids changes getting lost either from the package updating, or because of a `.gitignore`.
-
-### Examples
-
-Changes can be made directly to the contents of the `examples/` folder. Alternatively, the folder can be copied or renamed. 
-
-Most scenes that a developer would commonly change are in the `examples/` directory, and all the scenes and links can be changed to suit the developer's needs. Scenes in `examples/` link to others within the same directory, though they often inherit from either `base/` or `extras/`. 
+A copy of the `examples/` directory is made outside of `addons/` when the plugin is enabled for the first time. However, if this is skipped, it is recommended developers inherit from scenes they want to use, and save the inherited scene outside of `addons/`. This avoids changes getting lost either from the package updating, or because of a `.gitignore`.
 
 ### New Project
 These instructions assume starting with the entire contents of the project folder. This will be the case when cloning the repo, or starting from the *template* version in the Godot Asset Library.
@@ -140,7 +132,7 @@ These instructions assume starting with the entire contents of the project folde
 
 ### Existing Project
 
-For an existing project, developers can copy the contents of the `addons/` folder into their project. This will also be the case when installing the *plugin* version in the Godot Asset Library.
+These instructions assume starting with just the contents of `addons/`. This will be the case when installing the *plugin* version in the Godot Asset Library.
 
 [Existing Project Instructions](/addons/maaacks_game_template/docs/ExistingProject.md)  
    

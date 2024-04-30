@@ -96,7 +96,11 @@ When editing an existing project:
 5.  Check that contents are getting installed to `addons/` and there are no conflicts.
 6.  Click to Install.
 7.  Reload the project (you may see errors before you do this).
-8.  Enable the plugin from the Project Settings > Plugins tab.
+8.  Enable the plugin from the Project Settings > Plugins tab.  
+    If it's enabled for the first time,
+    1.  A dialogue window will appear asking to copy the example scenes out of addons/.
+    2.  Another dialogue window will ask to update the project's main scene.
+    3.  Reload the project (just to be safe).
 9.  Continue with the [Existing Project Instructions](/addons/maaacks_game_template/docs/ExistingProject.md)  
 
 
@@ -116,19 +120,9 @@ Users that want a minimal set of features can try [Maaack's Menus Template](http
 
 ## Usage
 
-Developers can make changes directly to the contents of the scenes in `addons/maaacks_game_template/base/scenes/`. However, before making major changes, it is recommended developers make copy of a scene, or inherit from one, and save it in their project's directory outside of `addons/`. This avoids changes getting lost either from the package updating, or because of a `.gitignore`.
+Changes can be made directly to scenes and scripts outside of `addons/`. 
 
-### Main Scene
-
-Set your project's main scene to `MainMenu.tscn`, `Opening.tscn`, or any scene that inherits from those.
-
-In the template version, the project's main scene starts as `OpeningWithLogo.tscn.tscn`.
-
-### Examples
-
-Changes can be made directly to the contents of the `examples/` folder. Alternatively, the folder can be copied or renamed. 
-
-Most scenes that a developer would commonly change are in the `examples/` directory, and all the scenes and links can be changed to suit the developer's needs. Scenes in `examples/` link to others within the same directory, though they often inherit from either `base/` or `extras/`. 
+A copy of the `examples/` directory is made outside of `addons/` when the plugin is enabled for the first time. However, if this is skipped, it is recommended developers inherit from scenes they want to use, and save the inherited scene outside of `addons/`. This avoids changes getting lost either from the package updating, or because of a `.gitignore`.
 
 ### New Project
 These instructions assume starting with the entire contents of the project folder. This will be the case when cloning the repo, or starting from the *template* version in the Godot Asset Library.
@@ -138,7 +132,7 @@ These instructions assume starting with the entire contents of the project folde
 
 ### Existing Project
 
-For an existing project, developers can copy the contents of the `addons/` folder into their project. This will also be the case when installing the *plugin* version in the Godot Asset Library.
+These instructions assume starting with just the contents of `addons/`. This will be the case when installing the *plugin* version in the Godot Asset Library.
 
 [Existing Project Instructions](/addons/maaacks_game_template/docs/ExistingProject.md)  
    
