@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://b8kr3y0cjxr8m"]
+
+[node name="MainSceneConfirmationDialog" type="ConfirmationDialog"]
+initial_position = 2
+size = Vector2i(400, 210)
+visible = true
+exclusive = false
+ok_button_text = "Yes"
+dialog_text = "Would you like to update the project's main scene?
+
+"
+dialog_autowrap = true
+cancel_button_text = "No"

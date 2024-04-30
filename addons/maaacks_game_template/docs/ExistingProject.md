@@ -1,10 +1,9 @@
 # Existing Project
 
-For an existing project, developers can copy the contents of the `addons/` folder into their project. This will be the case when installing the *plugin* version in the Godot Asset Library.
+These instructions assume starting with just the contents of `addons/`. This will be the case when installing the *plugin* version in the Godot Asset Library.
 
-  
 
-1.  Update the project’s main scene.
+1.  Update the project’s main scene (if skipped during plugin install).
     
 
     1.  Go to `Project > Project Settings… > General > Application > Run`.
