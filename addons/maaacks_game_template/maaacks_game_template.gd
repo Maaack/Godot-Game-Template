@@ -1,16 +1,19 @@
 @tool
 extends EditorPlugin
 
-const UID_PREG_MATCH = r'uid="uid:\/\/[0-9a-z]+" '
+const PLUGIN_NAME = "Maaack's Game Template"
+const PROJECT_SETTINGS_PATH = "maaacks_game_template/"
+
 const EXAMPLES_RELATIVE_PATH = "examples/"
 const MAIN_SCENE_RELATIVE_PATH = "scenes/Opening/OpeningWithLogo.tscn"
 const MAIN_SCENE_UPDATE_TEXT = "Current:\n%s\n\nNew:\n%s\n"
+const UID_PREG_MATCH = r'uid="uid:\/\/[0-9a-z]+" '
 const MAIN_SCENE_CHECK_DELAY : float = 0.5
 const REIMPORT_FILE_DELAY : float = 0.2
 const OPEN_EDITOR_DELAY : float = 0.1
 
 func _get_plugin_name():
-	return "Maaack's Game Template"
+	return PLUGIN_NAME
 
 func get_plugin_path() -> String:
 	return get_script().resource_path.get_base_dir() + "/"
@@ -136,7 +139,7 @@ func _delayed_saving_and_check_main_scene(target_path : String):
 	timer.start(MAIN_SCENE_CHECK_DELAY)
 
 func _copy_to_directory(target_path : String):
-	ProjectSettings.set_setting("maaacks_game_template/copy_path", target_path)
+	ProjectSettings.set_setting(PROJECT_SETTINGS_PATH + "copy_path", target_path)
 	ProjectSettings.save()
 	if not target_path.ends_with("/"):
 		target_path += "/"
@@ -158,11 +161,11 @@ func _open_confirmation_dialog():
 	add_child(confirmation_instance)
 
 func _show_plugin_dialogues():
-	if ProjectSettings.has_setting("maaacks_game_template/disable_plugin_dialogues") :
-		if ProjectSettings.get_setting("maaacks_game_template/disable_plugin_dialogues") :
+	if ProjectSettings.has_setting(PROJECT_SETTINGS_PATH + "disable_plugin_dialogues") :
+		if ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + "disable_plugin_dialogues") :
 			return
 	_open_confirmation_dialog()
-	ProjectSettings.set_setting("maaacks_game_template/disable_plugin_dialogues", true)
+	ProjectSettings.set_setting(PROJECT_SETTINGS_PATH + "disable_plugin_dialogues", true)
 	ProjectSettings.save()
 
 func _resave_if_recently_opened():
@@ -182,7 +185,7 @@ func _enter_tree():
 	add_autoload_singleton("SceneLoader", get_plugin_path() + "base/scenes/Autoloads/SceneLoader.tscn")
 	add_autoload_singleton("ProjectMusicController", get_plugin_path() + "base/scenes/Autoloads/ProjectMusicController.tscn")
 	add_autoload_singleton("ProjectUISoundController", get_plugin_path() + "base/scenes/Autoloads/ProjectUISoundController.tscn")
-	add_tool_menu_item("Copy Template Examples...", _open_path_dialog)
+	add_tool_menu_item("Copy " + _get_plugin_name() + " Examples...", _open_path_dialog)
 	_show_plugin_dialogues()
 	_resave_if_recently_opened()
 
@@ -191,4 +194,4 @@ func _exit_tree():
 	remove_autoload_singleton("SceneLoader")
 	remove_autoload_singleton("ProjectMusicController")
 	remove_autoload_singleton("ProjectUISoundController")
-	remove_tool_menu_item("Copy Template Examples...")
+	remove_tool_menu_item("Copy " + _get_plugin_name() + " Examples...",)
