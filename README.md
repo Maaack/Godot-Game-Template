@@ -98,9 +98,8 @@ When editing an existing project:
 7.  Reload the project (you may see errors before you do this).
 8.  Enable the plugin from the Project Settings > Plugins tab.  
     If it's enabled for the first time,
-    1.  A dialogue window will appear asking to copy the example scenes out of addons/.
+    1.  A dialogue window will appear asking to copy the example scenes out of `addons/`.
     2.  Another dialogue window will ask to update the project's main scene.
-    3.  Reload the project (just to be safe).
 9.  Continue with the [Existing Project Instructions](/addons/maaacks_game_template/docs/ExistingProject.md)  
 
 
