@@ -2,6 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://dt5ses55itjy4" path="res://addons/maaacks_game_template/extras/scenes/WinScreen/WinScreen.tscn" id="1_n1ig8"]
 
-[node name="SuccessScreen" instance=ExtResource("1_n1ig8")]
+[node name="WinScreen" instance=ExtResource("1_n1ig8")]
 next_scene = "res://addons/maaacks_game_template/examples/scenes/EndCredits/EndCredits.tscn"
 main_menu_scene = "res://addons/maaacks_game_template/examples/scenes/Menus/MainMenu/MainMenuWithAnimations.tscn"
