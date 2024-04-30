@@ -24,6 +24,7 @@ func _ready():
 		%ExitButton.hide()
 	_setup_continue()
 	_setup_main_menu()
+	InGameMenuController.scene_tree = get_tree()
 
 func _on_exit_button_pressed():
 	$ConfirmExit.popup_centered()

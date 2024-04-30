@@ -18,6 +18,7 @@ func _ready():
 	if OS.has_feature("web"):
 		%ExitButton.hide()
 	_setup_main_menu()
+	InGameMenuController.scene_tree = get_tree()
 
 func _on_exit_button_pressed():
 	$ConfirmExit.popup_centered()
