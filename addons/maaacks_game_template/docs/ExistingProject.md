@@ -3,7 +3,7 @@
 These instructions assume starting with just the contents of `addons/`. This will be the case when installing the *plugin* version in the Godot Asset Library.
 
 
-1.  Update the project’s main scene (if you skipped the installer step).
+1.  Update the project’s main scene (if skipped during plugin install).
     
 
     1.  Go to `Project > Project Settings… > General > Application > Run`.
