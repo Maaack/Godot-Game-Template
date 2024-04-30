@@ -5,6 +5,8 @@ const EXAMPLE_DIRECTORY_PATH = "res://addons/maaacks_game_template/examples/"
 const UID_PREG_MATCH = r'uid="uid:\/\/[0-9a-z]+" '
 const MAIN_SCENE_RELATIVE_PATH = "scenes/Opening/OpeningWithLogo.tscn"
 const MAIN_SCENE_UPDATE_TEXT = "Current:\n%s\n\nNew:\n%s\n"
+const MAIN_SCENE_CHECK_DELAY : float = 0.5
+const REIMPORT_FILE_DELAY : float = 0.2
 
 func _update_main_scene(main_scene_path : String):
 	ProjectSettings.set_setting("application/run/main_scene", main_scene_path)
@@ -25,6 +27,10 @@ func _open_main_scene_confirmation_dialog(current_main_scene : String, new_main_
 	add_child(main_confirmation_instance)
 
 func _replace_file_contents(file_path : String, target_path : String):
+	var extension : String = file_path.get_extension()
+	if extension == "import":
+		# skip import files
+		return OK
 	var file = FileAccess.open(file_path, FileAccess.READ)
 	var regex = RegEx.new()
 	regex.compile(UID_PREG_MATCH)
@@ -46,6 +52,7 @@ func _save_resource(resource_path : String, resource_destination : String, white
 		if not extension in whitelisted_extensions:
 			return OK
 	if extension == "import":
+		# skip import files
 		return OK
 	var file_object = load(resource_path)
 	if file_object is Resource:
@@ -76,18 +83,32 @@ func _resave_resources(dir_path : String, whitelisted_extensions : PackedStringA
 	else:
 		push_error("plugin error - accessing path: %s" % dir_path)
 
+func _resave_text_resource_and_scene_files(target_path : String):
+	_resave_resources(target_path, ["tres", "tscn"])
+
+func _start_timer_for_reimporting_file(file_path : String):
+	var timer: Timer = Timer.new()
+	var callable := func():
+		timer.stop()
+		var file_system = EditorInterface.get_resource_filesystem()
+		file_system.reimport_files([file_path])
+		timer.queue_free()
+	timer.timeout.connect(callable)
+	add_child(timer)
+	timer.start(REIMPORT_FILE_DELAY)
+
 func _copy_file_path(file_path : String, destination_path : String, target_path : String) -> Error:
 	var error = _save_resource(file_path, destination_path)
 	if error == ERR_FILE_UNRECOGNIZED:
 		# Copy image files and other assets
 		var dir = DirAccess.open("res://")
-		dir.copy(file_path, destination_path)
+		error = dir.copy(file_path, destination_path)
 		# Reimport image files to create new .import
-		var file_system = EditorInterface.get_resource_filesystem()
-		# TODO in progress here
-		# file_system.resources_reimported.connect()
-		file_system.reimport_files([destination_path])
-		return OK
+		if not error:
+			var file_system = EditorInterface.get_resource_filesystem()
+			file_system.update_file(destination_path)
+			_start_timer_for_reimporting_file(destination_path)
+		return error
 	if not error:
 		_replace_file_contents(destination_path, target_path)
 	return error
@@ -105,7 +126,8 @@ func _copy_directory_path(dir_path : String, target_path : String):
 			var destination_path = target_path + relative_path + file_name
 			var full_file_path = dir_path + file_name
 			if dir.current_is_dir():
-				error = dir.make_dir(destination_path)
+				if not dir.dir_exists(destination_path):
+					error = dir.make_dir(destination_path)
 				_copy_directory_path(full_file_path, target_path)
 			else:
 				error = _copy_file_path(full_file_path, destination_path, target_path)
@@ -115,14 +137,24 @@ func _copy_directory_path(dir_path : String, target_path : String):
 	else:
 		push_error("plugin error - accessing path: %s" % dir_path)
 
+func _start_timer_for_main_scene_step(target_path : String):
+	var timer: Timer = Timer.new()
+	var callable := func():
+		timer.stop()
+		_resave_text_resource_and_scene_files(target_path)
+		_check_main_scene_needs_updating(target_path)
+		timer.queue_free()
+	timer.timeout.connect(callable)
+	add_child(timer)
+	timer.start(MAIN_SCENE_CHECK_DELAY)
+
 func _copy_to_directory(target_path : String):
 	ProjectSettings.set_setting("maaacks_game_template/copy_path", target_path)
 	ProjectSettings.save()
 	if not target_path.ends_with("/"):
 		target_path += "/"
 	_copy_directory_path(EXAMPLE_DIRECTORY_PATH, target_path)
-	_resave_resources(target_path, ["tres", "tscn"])
-	_check_main_scene_needs_updating(target_path)
+	_start_timer_for_main_scene_step(target_path)
 
 func _open_path_dialog():
 	var destination_scene : PackedScene = load("res://addons/maaacks_game_template/installer/DestinationDialog.tscn")
