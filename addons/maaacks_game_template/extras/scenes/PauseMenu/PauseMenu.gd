@@ -43,6 +43,7 @@ func _ready():
 		%ExitButton.hide()
 	_setup_options()
 	_setup_main_menu()
+	InGameMenuController.scene_tree = get_tree()
 
 func _on_resume_button_pressed():
 	InGameMenuController.close_menu()
