@@ -8,6 +8,9 @@ const MAIN_SCENE_UPDATE_TEXT = "Current:\n%s\n\nNew:\n%s\n"
 const MAIN_SCENE_CHECK_DELAY : float = 0.5
 const REIMPORT_FILE_DELAY : float = 0.2
 
+func _get_plugin_name():
+	return "Maaack's Game Template"
+
 func _update_main_scene(main_scene_path : String):
 	ProjectSettings.set_setting("application/run/main_scene", main_scene_path)
 	ProjectSettings.save()
