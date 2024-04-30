@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Game Template"
-run/main_scene="res://Examples/Scenes/Opening/OpeningWithLogo.tscn"
+run/main_scene="res://addons/maaacks_game_template/examples/scenes/Opening/OpeningWithLogo.tscn"
 config/features=PackedStringArray("4.2")
 config/icon="res://icon.png"
 

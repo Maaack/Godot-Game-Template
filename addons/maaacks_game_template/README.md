@@ -112,7 +112,7 @@ When editing an existing project:
 
 #### Minimal
 
-Users that want a minimal set of features can try [Maaack's Menu Template](https://github.com/Maaack/Godot-Menu-Template).  
+Users that want a minimal set of features can try [Maaack's Menus Template](https://github.com/Maaack/Godot-Menus-Template).  
 
 ## Usage
 
@@ -122,7 +122,7 @@ Developers can make changes directly to the contents of the scenes in `addons/ma
 
 Set your project's main scene to `MainMenu.tscn`, `Opening.tscn`, or any scene that inherits from those.
 
-In the template version, the project's main scene starts as `OpeningWithLogo.tscn.tscn` in `res://Examples/`.
+In the template version, the project's main scene starts as `OpeningWithLogo.tscn.tscn`.
 
 ### Examples
 
