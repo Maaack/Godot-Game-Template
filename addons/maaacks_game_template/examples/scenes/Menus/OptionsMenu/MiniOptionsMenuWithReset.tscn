@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://dr1ard3qf6t81"]
+
+[ext_resource type="PackedScene" uid="uid://c6obwfb7wbibn" path="res://addons/maaacks_game_template/examples/scenes/Menus/OptionsMenu/MiniOptionsMenu.tscn" id="1_swuya"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/examples/scenes/Menus/OptionsMenu/MiniOptionsMenuWithReset.gd" id="2_84xi1"]
+[ext_resource type="PackedScene" uid="uid://w5i7wl2xlos" path="res://addons/maaacks_game_template/examples/scenes/Menus/OptionsMenu/Game/ResetGameControl/ResetGameControl.tscn" id="3_7aalw"]
+
+[node name="MiniOptionsMenu" instance=ExtResource("1_swuya")]
+script = ExtResource("2_84xi1")
+
+[node name="ResetGameControl" parent="." index="3" instance=ExtResource("3_7aalw")]
+layout_mode = 2
+
+[connection signal="reset_confirmed" from="ResetGameControl" to="." method="_on_reset_game_control_reset_confirmed"]

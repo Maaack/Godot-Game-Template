@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://vh1ucj2rfbby"]
 
-[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/OptionsMenu.gd" id="2"]
-[ext_resource type="PackedScene" uid="uid://bosy6wwf0vleq" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/Audio/AudioControl/AudioControl.tscn" id="2_xrxr1"]
-[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/CaptureFocus.gd" id="3_xfg0m"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/MiniOptionsMenu.gd" id="1_32vm2"]
+[ext_resource type="PackedScene" uid="uid://bosy6wwf0vleq" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/Audio/AudioControl/AudioControl.tscn" id="2_0006y"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/CaptureFocus.gd" id="3_7qt1o"]
 
-[node name="OptionsMenu" type="VBoxContainer"]
+[node name="MiniOptionsMenu" type="VBoxContainer"]
 custom_minimum_size = Vector2(400, 260)
 anchors_preset = 8
 anchor_left = 0.5
@@ -20,14 +20,14 @@ grow_vertical = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 8
 alignment = 1
-script = ExtResource("2")
-audio_control_scene = ExtResource("2_xrxr1")
+script = ExtResource("1_32vm2")
+audio_control_scene = ExtResource("2_0006y")
 
 [node name="AudioControlContainer" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 8
-script = ExtResource("3_xfg0m")
+script = ExtResource("3_7qt1o")
 search_depth = 2
 
 [node name="MuteControl" type="HBoxContainer" parent="."]

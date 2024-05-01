@@ -1,5 +1,5 @@
 @tool
-extends "res://addons/maaacks_game_template/base/scenes/Credits/Credits.gd"
+extends Credits
 
 @export_file("*.tscn") var main_menu_scene : String
 

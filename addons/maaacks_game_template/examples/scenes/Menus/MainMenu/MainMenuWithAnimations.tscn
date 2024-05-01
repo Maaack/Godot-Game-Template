@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://de7myf2ybhwk5"]
 
-[ext_resource type="PackedScene" uid="uid://byvydukidk6i2" path="res://addons/maaacks_game_template/examples/scenes/Menus/MainMenu/MainMenuWithScenes.tscn" id="1_0i2sc"]
+[ext_resource type="PackedScene" uid="uid://byvydukidk6i2" path="res://addons/maaacks_game_template/examples/scenes/Menus/MainMenu/MainMenu.tscn" id="1_0i2sc"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/examples/scenes/Menus/MainMenu/MainMenuWithAnimations.gd" id="2_ncvk7"]
 
 [sub_resource type="Animation" id="1"]
