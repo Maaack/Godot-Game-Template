@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://hmx6o472ropw"]
+
+[ext_resource type="PackedScene" uid="uid://bvwl11s2p0hd" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/MasterOptionsMenu.tscn" id="1_uaidt"]
+[ext_resource type="PackedScene" uid="uid://dp3rgqaehb3xu" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/Input/InputOptionsMenu.tscn" id="2_15wl6"]
+[ext_resource type="PackedScene" uid="uid://c8vnncjwqcpab" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/Audio/AudioOptionsMenu.tscn" id="3_qg4me"]
+[ext_resource type="PackedScene" uid="uid://b2numvphf2kau" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/Video/VideoOptionsMenu.tscn" id="4_1t848"]
+
+[node name="MasterOptionsMenu" instance=ExtResource("1_uaidt")]
+
+[node name="Controls" parent="TabContainer" index="1" instance=ExtResource("2_15wl6")]
+layout_mode = 2
+
+[node name="Audio" parent="TabContainer" index="2" instance=ExtResource("3_qg4me")]
+visible = false
+layout_mode = 2
+
+[node name="Video" parent="TabContainer" index="3" instance=ExtResource("4_1t848")]
+visible = false
+layout_mode = 2

@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://3shqv5bkeaki"]
-
-[ext_resource type="PackedScene" uid="uid://cp3p3kqcjh0me" path="res://addons/maaacks_game_template/extras/scenes/FailureScreen/FailureScreen.tscn" id="1_6po0x"]
-
-[node name="FailureScreen" instance=ExtResource("1_6po0x")]
-main_menu_scene = "res://Examples/Scenes/Menus/MainMenu/MainMenuWithAnimations.tscn"

@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://c6k5nnpbypshi"]
+[gd_scene load_steps=7 format=3 uid="uid://c6k5nnpbypshi"]
 
 [ext_resource type="Script" path="res://addons/maaacks_game_template/base/scenes/Menus/MainMenu/MainMenu.gd" id="1"]
-[ext_resource type="PackedScene" uid="uid://bvwl11s2p0hd" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/MasterOptionsMenu.tscn" id="2_67m86"]
+[ext_resource type="PackedScene" uid="uid://hmx6o472ropw" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/MasterOptionsMenuWithTabs.tscn" id="2_qvrrd"]
 [ext_resource type="PackedScene" uid="uid://t2dui8ppm3a4" path="res://addons/maaacks_game_template/base/scenes/Credits/Credits.tscn" id="3_5dhvp"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/CaptureFocus.gd" id="4_l1ebe"]
+[ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/scenes/MusicPlayers/BackgroundMusicPlayer.tscn" id="4_w8sbm"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/UISoundController.gd" id="6_bs342"]
 
 [node name="MainMenu" type="Control"]
@@ -14,13 +15,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1")
-options_packed_scene = ExtResource("2_67m86")
+options_packed_scene = ExtResource("2_qvrrd")
 credits_packed_scene = ExtResource("3_5dhvp")
 
-[node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="."]
-process_mode = 3
-autoplay = true
-bus = &"Music"
+[node name="UISoundController" type="Node" parent="."]
+script = ExtResource("6_bs342")
+
+[node name="BackgroundMusicPlayer" parent="." instance=ExtResource("4_w8sbm")]
 
 [node name="BackgroundTextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -167,9 +168,6 @@ offset_top = -40.0
 offset_right = 62.0
 grow_vertical = 0
 text = "Back"
-
-[node name="UISoundController" type="Node" parent="."]
-script = ExtResource("6_bs342")
 
 [connection signal="pressed" from="MenuContainer/VBoxContainer/MenuMargin/MenuButtons/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="MenuContainer/VBoxContainer/MenuMargin/MenuButtons/OptionsButton" to="." method="_on_options_button_pressed"]

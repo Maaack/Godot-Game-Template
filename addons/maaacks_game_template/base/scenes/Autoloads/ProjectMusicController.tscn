@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://r5t485lr3p7t"]
+
+[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/MusicController.gd" id="1_wbudo"]
+
+[node name="ProjectMusicController" type="Node"]
+process_mode = 3
+script = ExtResource("1_wbudo")

@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://ckx50am7thhd2"]
+
+[node name="DestinationDialog" type="FileDialog"]
+title = "Select a Destination"
+initial_position = 2
+size = Vector2i(400, 400)
+visible = true
+exclusive = false
+ok_button_text = "Select Current Folder"
+mode_overrides_title = false
+file_mode = 2

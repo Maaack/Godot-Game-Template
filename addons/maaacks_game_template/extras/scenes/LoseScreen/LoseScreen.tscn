@@ -1,0 +1,100 @@
+[gd_scene load_steps=4 format=3 uid="uid://cp3p3kqcjh0me"]
+
+[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scenes/LoseScreen/LoseScreen.gd" id="1_vd50a"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/UISoundController.gd" id="2_haoyh"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/CaptureFocus.gd" id="3_mqffv"]
+
+[node name="LoseScreen" type="CanvasLayer"]
+process_mode = 3
+layer = 10
+script = ExtResource("1_vd50a")
+main_menu_scene = "res://addons/maaacks_game_template/base/scenes/Menus/MainMenu/MainMenu.tscn"
+
+[node name="UISoundController" type="Node" parent="."]
+script = ExtResource("2_haoyh")
+
+[node name="BackgroundColor" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.501961)
+
+[node name="BackgroundTextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(410, 240)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -205.0
+offset_top = -120.0
+offset_right = 205.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="LoseMessage" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+text = "You lose."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonsContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+script = ExtResource("3_mqffv")
+
+[node name="ExitButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/ButtonsContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 40)
+layout_mode = 2
+text = "Exit Game"
+
+[node name="MainMenuButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/ButtonsContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 40)
+layout_mode = 2
+text = "Main Menu"
+
+[node name="RestartButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/ButtonsContainer"]
+custom_minimum_size = Vector2(128, 40)
+layout_mode = 2
+text = "Restart"
+
+[node name="ConfirmMainMenu" type="ConfirmationDialog" parent="."]
+initial_position = 2
+dialog_text = "Go back to main menu?"
+
+[node name="ConfirmExit" type="ConfirmationDialog" parent="."]
+initial_position = 2
+dialog_text = "Quit the game?"
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/ButtonsContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/ButtonsContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/ButtonsContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="confirmed" from="ConfirmMainMenu" to="." method="_on_confirm_main_menu_confirmed"]
+[connection signal="confirmed" from="ConfirmExit" to="." method="_on_confirm_exit_confirmed"]

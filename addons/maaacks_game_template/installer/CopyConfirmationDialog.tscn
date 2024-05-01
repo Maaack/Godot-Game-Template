@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cyx4i4v30bw4o"]
+
+[node name="CopyConfirmationDialog" type="ConfirmationDialog"]
+initial_position = 2
+size = Vector2i(400, 210)
+visible = true
+exclusive = false
+ok_button_text = "Yes"
+dialog_text = "Plugin enabled. It is recommended to copy the example scenes to a destination outside of the addons/ folder before editing them.
+
+Would you like to copy the examples now?"
+dialog_autowrap = true
+cancel_button_text = "No"

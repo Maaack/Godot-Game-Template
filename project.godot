@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Game Template"
-run/main_scene="res://Examples/Scenes/Opening/OpeningWithLogo.tscn"
+run/main_scene="res://scenes/Opening/OpeningWithLogo.tscn"
 config/features=PackedStringArray("4.2")
 config/icon="res://icon.png"
 
@@ -19,8 +19,8 @@ config/icon="res://icon.png"
 
 AppConfig="*res://addons/maaacks_game_template/base/scenes/Autoloads/AppConfig.tscn"
 SceneLoader="*res://addons/maaacks_game_template/base/scenes/Autoloads/SceneLoader.tscn"
-ProjectMusicController="*res://addons/maaacks_game_template/extras/scenes/Autoloads/ProjectMusicController.tscn"
-ProjectUISoundController="*res://addons/maaacks_game_template/extras/scenes/Autoloads/ProjectUISoundController.tscn"
+ProjectMusicController="*res://addons/maaacks_game_template/base/scenes/Autoloads/ProjectMusicController.tscn"
+ProjectUISoundController="*res://addons/maaacks_game_template/base/scenes/Autoloads/ProjectUISoundController.tscn"
 
 [display]
 
@@ -93,6 +93,11 @@ interact={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":0,"pressure":0.0,"pressed":true,"script":null)
 ]
 }
+
+[maaacks_game_template]
+
+disable_plugin_dialogues=true
+copy_path="res://"
 
 [physics]
 
