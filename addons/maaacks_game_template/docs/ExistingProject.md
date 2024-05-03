@@ -88,11 +88,7 @@ These instructions assume starting with just the contents of `addons/`. This wil
 6.  Update the game credits / attribution.
     
 
-    1.  Copy `res://addons/maaacks_game_template/ATTRIBUTION_example.md` to your project's root directory as `res://ATTRIBUTION.md`.
-    2.  Update `res://ATTRIBUTION.md` with the project's credits, following the example.
-    3.  Open `Credits.tscn`.
-    4.  Select the `Credits` node.
-    5.  Update the `Attribution File Path` to `res://ATTRIBUTION.md`.
-    6.  Reload the `Credits.tscn` scene to update the contents.
-    7.  Save the scene.
-   
+    1.  Update the example `ATTRIBUTION.md` with the project's credits.
+    2.  Open `Credits.tscn`.
+    3.  Check the `CreditsLabel` has updated with the text.
+    4.  Save the scene.

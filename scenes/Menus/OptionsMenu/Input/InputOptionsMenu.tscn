@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bpa6njassgrkt"]
+[gd_scene load_steps=3 format=3 uid="uid://dtv2dia1lnqhj"]
 
-[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/Input/InputOptionsMenu.tscn" id="1_x4n5i"]
-[ext_resource type="Script" path="res://scenes/Menus/OptionsMenu/Input/InputOptionsMenu.gd" id="2_4svay"]
+[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/Input/InputOptionsMenu.tscn" id="1_v7fso"]
+[ext_resource type="Script" path="res://scenes/Menus/OptionsMenu/Input/InputOptionsMenu.gd" id="2_e3khe"]
 
-[node name="Controls" instance=ExtResource("1_x4n5i")]
-script = ExtResource("2_4svay")
+[node name="Controls" instance=ExtResource("1_v7fso")]
+script = ExtResource("2_e3khe")
 add_button_texture = null
 remove_button_texture = null
