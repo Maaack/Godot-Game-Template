@@ -1,7 +1,35 @@
-[gd_scene load_steps=3 format=3 uid="uid://b7xvww1e8ovn5"]
+[gd_scene load_steps=3 format=3 uid="uid://i5axmhr3avjk"]
 
-[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/scenes/Credits/Credits.tscn" id="1_265ql"]
-[ext_resource type="Script" path="res://scenes/Credits/Credits.gd" id="2_3axa4"]
+[ext_resource type="PackedScene" uid="uid://t2dui8ppm3a4" path="res://addons/maaacks_game_template/base/scenes/Credits/Credits.tscn" id="1_lvsew"]
+[ext_resource type="Script" path="res://scenes/Credits/Credits.gd" id="2_vc45y"]
 
-[node name="Credits" instance=ExtResource("1_265ql")]
-script = ExtResource("2_3axa4")
+[node name="Credits" instance=ExtResource("1_lvsew")]
+script = ExtResource("2_vc45y")
+attribution_file_path = "res://ATTRIBUTION.md"
+scroll_active = true
+
+[node name="CreditsLabel" parent="ScrollContainer/VBoxContainer" index="1"]
+text = "[center]
+[font_size=48]Collaborators[/font_size]
+
+[font_size=32]Godot Game Template[/font_size]
+Author: [url=https://github.com/Maaack/Godot-Game-Template/graphs/contributors]Marek Belski and contributors[/url]  
+Source: [url=https://github.com/Maaack/Godot-Game-Template]github: Godot-Game-Template[/url]  
+License: [url=LICENSE.txt]MIT License[/url]  
+
+[font_size=48]Tools[/font_size]
+[font_size=24]Godot[/font_size]
+Author: [url=https://godotengine.org/contact]Juan Linietsky, Ariel Manzur, and contributors[/url]  
+Source: [url=https://godotengine.org/]godotengine.org[/url]  
+License: [url=https://github.com/godotengine/godot/blob/master/LICENSE.txt]MIT License[/url] 
+
+[font_size=24]Visual Studio Code[/font_size]
+Author: [url=https://opensource.microsoft.com/]Microsoft[/url]  
+Source: [url=https://github.com/microsoft/vscode]github: vscode[/url]  
+License: [url=https://github.com/microsoft/vscode/blob/main/LICENSE.txt]MIT License[/url]
+
+[font_size=24]Git[/font_size]
+Author: [url=https://github.com/torvalds]Linus Torvalds[/url]  
+Source: [url=https://git-scm.com/downloads]git-scm.com[/url]  
+License: [url=https://opensource.org/licenses/GPL-2.0]GNU General Public License version 2[/url]
+[/center]"

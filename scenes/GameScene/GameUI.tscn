@@ -1,14 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://cudh1cxaskpoe"]
+[gd_scene load_steps=10 format=3 uid="uid://i1642vm52ood"]
 
-[ext_resource type="Script" path="res://scenes/GameScene/GameUI.gd" id="1_jxhd3"]
-[ext_resource type="PackedScene" path="res://scenes/WinScreen/WinScreen.tscn" id="2_nkmcd"]
-[ext_resource type="PackedScene" path="res://scenes/LoseScreen/LoseScreen.tscn" id="3_ewpkg"]
-[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/PauseMenuController.gd" id="4_t2wej"]
-[ext_resource type="PackedScene" path="res://scenes/Menus/PauseMenu/PauseMenu.tscn" id="5_06bi7"]
-[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/LevelLoader.gd" id="6_yn5ws"]
-[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/scenes/MusicPlayers/BackgroundMusicPlayer.tscn" id="7_td8de"]
-[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/scenes/LoadingScreen/LoadingScreen.tscn" id="8_xnn2o"]
-[ext_resource type="Script" path="res://scenes/GameScene/InputDisplayLabel.gd" id="9_bds4e"]
+[ext_resource type="Script" path="res://scenes/GameScene/GameUI.gd" id="1_h7s5q"]
+[ext_resource type="PackedScene" uid="uid://co1162l2b721p" path="res://scenes/WinScreen/WinScreen.tscn" id="2_man8p"]
+[ext_resource type="PackedScene" uid="uid://xs8sx1dfwap0" path="res://scenes/LoseScreen/LoseScreen.tscn" id="3_4itlv"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/PauseMenuController.gd" id="4_bwcto"]
+[ext_resource type="PackedScene" uid="uid://cldw1m5udrone" path="res://scenes/Menus/PauseMenu/PauseMenu.tscn" id="5_i0sb5"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/LevelLoader.gd" id="6_6g3q5"]
+[ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/scenes/MusicPlayers/BackgroundMusicPlayer.tscn" id="7_q6j13"]
+[ext_resource type="PackedScene" uid="uid://cd0jbh4metflb" path="res://addons/maaacks_game_template/base/scenes/LoadingScreen/LoadingScreen.tscn" id="8_tadri"]
+[ext_resource type="Script" path="res://scenes/GameScene/InputDisplayLabel.gd" id="9_xlm4y"]
 
 [node name="GameUI" type="Control"]
 layout_mode = 3
@@ -17,23 +17,23 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_jxhd3")
-win_scene = ExtResource("2_nkmcd")
-lose_scene = ExtResource("3_ewpkg")
+script = ExtResource("1_h7s5q")
+win_scene = ExtResource("2_man8p")
+lose_scene = ExtResource("3_4itlv")
 
 [node name="PauseMenuController" type="Node" parent="."]
-script = ExtResource("4_t2wej")
-pause_menu_packed = ExtResource("5_06bi7")
+script = ExtResource("4_bwcto")
+pause_menu_packed = ExtResource("5_i0sb5")
 
 [node name="LevelLoader" type="Node" parent="." node_paths=PackedStringArray("level_container")]
-script = ExtResource("6_yn5ws")
+script = ExtResource("6_6g3q5")
 level_container = NodePath("../Control")
 files = Array[String](["res://scenes/GameScene/Levels/Level1.tscn", "res://scenes/GameScene/Levels/Level2.tscn", "res://scenes/GameScene/Levels/Level3.tscn"])
 directory = "res://scenes/GameScene/Levels"
 
-[node name="BackgroundMusicPlayer" parent="." instance=ExtResource("7_td8de")]
+[node name="BackgroundMusicPlayer" parent="." instance=ExtResource("7_q6j13")]
 
-[node name="LoadingScreen" parent="." instance=ExtResource("8_xnn2o")]
+[node name="LoadingScreen" parent="." instance=ExtResource("8_tadri")]
 visible = false
 
 [node name="InputDisplayLabel" type="Label" parent="."]
@@ -49,7 +49,7 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 64
 horizontal_alignment = 1
 autowrap_mode = 2
-script = ExtResource("9_bds4e")
+script = ExtResource("9_xlm4y")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 1

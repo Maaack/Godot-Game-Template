@@ -1,8 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cbuea21cqv1ex"]
+[gd_scene load_steps=4 format=3 uid="uid://bcrv7luxe5228"]
 
-[ext_resource type="Script" path="res://scenes/Menus/OptionsMenu/Game/GameOptionsMenu.gd" id="1_mh1qm"]
-[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/CaptureFocus.gd" id="2_houga"]
-[ext_resource type="PackedScene" path="res://scenes/Menus/OptionsMenu/Game/ResetGameControl/ResetGameControl.tscn" id="3_kfle2"]
+[ext_resource type="Script" path="res://scenes/Menus/OptionsMenu/Game/GameOptionsMenu.gd" id="1_y458y"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/CaptureFocus.gd" id="2_at7sa"]
+[ext_resource type="PackedScene" path="res://scenes/Menus/OptionsMenu/Game/ResetGameControl/ResetGameControl.tscn" id="3_av2al"]
 
 [node name="Game" type="MarginContainer"]
 anchors_preset = 15
@@ -10,17 +10,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 theme_override_constants/margin_top = 24
 theme_override_constants/margin_bottom = 24
-script = ExtResource("1_mh1qm")
+script = ExtResource("1_y458y")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 alignment = 1
-script = ExtResource("2_houga")
+script = ExtResource("2_at7sa")
 search_depth = 2
 
-[node name="ResetGameControl" parent="VBoxContainer" instance=ExtResource("3_kfle2")]
+[node name="ResetGameControl" parent="VBoxContainer" instance=ExtResource("3_av2al")]
 layout_mode = 2
 
 [connection signal="reset_confirmed" from="VBoxContainer/ResetGameControl" to="." method="_on_ResetGameControl_reset_confirmed"]
