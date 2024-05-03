@@ -4,9 +4,6 @@ extends Control
 
 signal end_reached
 
-@onready var scroll_container = $ScrollContainer
-@onready var rich_text_label = $ScrollContainer/VBoxContainer/RichTextLabel
-
 @export_file("*.md") var attribution_file_path: String = "res://ATTRIBUTION.md"
 @export var h1_font_size: int
 @export var h2_font_size: int
@@ -50,16 +47,16 @@ func _update_text_from_file():
 	text = text.right(-text.find("\n")) # Trims first line "ATTRIBUTION"
 	text = regex_replace_urls(text)
 	text = regex_replace_titles(text)
-	$ScrollContainer/VBoxContainer/RichTextLabel.text = "[center]%s[/center]" % [text]
+	%CreditsLabel.text = "[center]%s[/center]" % [text]
 
 func set_file_path(file_path:String):
 	attribution_file_path = file_path
 	_update_text_from_file()
 
 func set_header_and_footer():
-	$ScrollContainer/VBoxContainer/HeaderSpace.custom_minimum_size.y = size.y
-	$ScrollContainer/VBoxContainer/FooterSpace.custom_minimum_size.y = size.y
-	$ScrollContainer/VBoxContainer/RichTextLabel.custom_minimum_size.x = size.x
+	%HeaderSpace.custom_minimum_size.y = size.y
+	%FooterSpace.custom_minimum_size.y = size.y
+	%CreditsLabel.custom_minimum_size.x = size.x
 
 func reset():
 	$ScrollContainer.scroll_vertical = 0
@@ -95,7 +92,7 @@ func _process(_delta):
 	else:
 		_scroll_container(current_speed)
 
-func _on_RichTextLabel_gui_input(event):
+func _on_CreditsLabel_gui_input(event):
 	if event is InputEventMouseButton:
 		scroll_paused = true
 		_start_scroll_timer()
@@ -106,6 +103,6 @@ func _start_scroll_timer():
 	set_header_and_footer()
 	scroll_paused = false
 
-func _on_RichTextLabel_meta_clicked(meta:String):
+func _on_CreditsLabel_meta_clicked(meta:String):
 	if meta.begins_with("https://"):
 		var _err = OS.shell_open(meta)
