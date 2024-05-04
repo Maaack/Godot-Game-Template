@@ -12,4 +12,5 @@ script = ExtResource("1_jvl5q")
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+text = " :"
 vertical_alignment = 1

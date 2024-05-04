@@ -34,10 +34,10 @@ theme_override_constants/separation = 8
 [node name="MuteControl" parent="VBoxContainer" instance=ExtResource("4_ojfec")]
 unique_name_in_owner = true
 layout_mode = 2
-option_section = 2
 option_name = "Mute"
-section = "AudioSettings"
+option_section = 2
 key = "Mute"
+section = "AudioSettings"
 
 [node name="CheckButton" type="CheckButton" parent="VBoxContainer/MuteControl"]
 layout_mode = 2

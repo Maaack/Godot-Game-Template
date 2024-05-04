@@ -18,13 +18,6 @@ const OptionSectionNames : Dictionary = {
 	OptionSections.VIDEO : AppSettings.VIDEO_SECTION,
 }
 
-@export var option_section : OptionSections :
-	set(value):
-		var _update_config : bool = OptionSectionNames[option_section] == section
-		option_section = value
-		if _update_config:
-			section = OptionSectionNames[option_section]
-		
 @export var option_name : String :
 	set(value):
 		var _update_config : bool = option_name.to_pascal_case() == key
@@ -33,10 +26,16 @@ const OptionSectionNames : Dictionary = {
 			%OptionLabel.text = "%s%s" % [option_name, label_suffix]
 		if _update_config:
 			key = option_name.to_pascal_case()
+@export var option_section : OptionSections :
+	set(value):
+		var _update_config : bool = OptionSectionNames[option_section] == section
+		option_section = value
+		if _update_config:
+			section = OptionSectionNames[option_section]
 
 @export_group("Config Names")
-@export var section : String
 @export var key : String
+@export var section : String
 
 @export_group("Extras")
 @export var label_suffix : String = " :"
