@@ -27,16 +27,19 @@ const OptionSectionNames : Dictionary = {
 		
 @export var option_name : String :
 	set(value):
-		var _update_config : bool = option_name.to_snake_case() == key
+		var _update_config : bool = option_name.to_pascal_case() == key
 		option_name = value
 		if is_inside_tree():
-			%OptionLabel.text = option_name
+			%OptionLabel.text = "%s%s" % [option_name, label_suffix]
 		if _update_config:
-			key = option_name.to_snake_case()
+			key = option_name.to_pascal_case()
 
 @export_group("Config Names")
 @export var section : String
 @export var key : String
+
+@export_group("Extras")
+@export var label_suffix : String = " :"
 
 func _on_setting_changed(value):
 	Config.set_config(section, key, value)
@@ -45,7 +48,7 @@ func _on_setting_changed(value):
 func _get_setting(default : Variant = null) -> Variant:
 	return Config.get_config(section, key, default)
 
-func _on_child_entered_tree(node):
+func _connect_option_inputs(node):
 	if node is Button:
 		if node is OptionButton:
 			node.item_selected.connect(_on_setting_changed)
@@ -69,3 +72,6 @@ func _on_child_entered_tree(node):
 func _ready():
 	option_section = option_section
 	option_name = option_name
+	child_entered_tree.connect(_connect_option_inputs)
+	for child in get_children():
+		_connect_option_inputs(child)
