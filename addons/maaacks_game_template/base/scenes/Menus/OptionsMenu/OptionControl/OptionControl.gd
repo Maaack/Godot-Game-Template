@@ -2,7 +2,7 @@
 class_name OptionControl
 extends HBoxContainer
 
-signal setting_changed(section : String, key : String, value)
+signal setting_changed(value)
 
 enum OptionSections{
 	NONE,
@@ -43,7 +43,7 @@ const OptionSectionNames : Dictionary = {
 
 func _on_setting_changed(value):
 	Config.set_config(section, key, value)
-	setting_changed.emit(section, key, value)
+	setting_changed.emit(value)
 
 func _get_setting(default : Variant = null) -> Variant:
 	return Config.get_config(section, key, default)
@@ -52,26 +52,35 @@ func _connect_option_inputs(node):
 	if node is Button:
 		if node is OptionButton:
 			node.item_selected.connect(_on_setting_changed)
-			node.select(_get_setting(false) as int)
 		elif node is ColorPickerButton:
 			node.color_changed.connect(_on_setting_changed)
-			node.color = _get_setting(Color.WHITE) as Color
 		else:
 			node.toggled.connect(_on_setting_changed)
-			node.button_pressed = _get_setting(false) as bool
 	if node is Range:
 		node.value_changed.connect(_on_setting_changed)
-		node.value = _get_setting(0.0) as float
 	if node is LineEdit:
 		node.text_changed.connect(_on_setting_changed)
-		node.text = "%s" % _get_setting("")
 	if node is TextEdit:
 		node.text_changed.connect(_on_setting_changed)
-		node.text = "%s" % _get_setting("")
+
+func set_value(value : Variant):
+	for node in get_children():
+		if node is Button:
+			if node is OptionButton:
+				node.select(value as int)
+			elif node is ColorPickerButton:
+				node.color = value as Color
+			else:
+				node.button_pressed = value as bool
+		if node is Range:
+			node.value = value as float
+		if node is LineEdit or node is TextEdit:
+			node.text = "%s" % value
 
 func _ready():
 	option_section = option_section
 	option_name = option_name
-	child_entered_tree.connect(_connect_option_inputs)
+	set_value(_get_setting())
 	for child in get_children():
 		_connect_option_inputs(child)
+	child_entered_tree.connect(_connect_option_inputs)
