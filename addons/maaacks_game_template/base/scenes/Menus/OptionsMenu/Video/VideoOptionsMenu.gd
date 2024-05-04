@@ -1,4 +1,3 @@
-@tool
 extends Control
 
 func _preselect_resolution(window : Window):

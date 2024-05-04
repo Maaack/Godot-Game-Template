@@ -33,14 +33,10 @@ func _set_titles_from_values():
 func _value_title_map(value : Variant) -> String:
 	return "%s" % value
 
-func _get_setting(default : Variant = null) -> Variant:
-	var config_value = Config.get_config(section, key, default)
-	if config_value in option_values:
-		return option_values.find(config_value)
-	return 0
-
 func set_value(value : Variant):
 	if option_values.is_empty(): return
+	if value == null:
+		return super.set_value(-1)
 	custom_option_values = option_values.duplicate()
 	if value not in custom_option_values:
 		custom_option_values.append(value)
