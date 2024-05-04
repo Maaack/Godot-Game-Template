@@ -119,10 +119,6 @@ static func set_resolution(value : Vector2i, window : Window) -> void:
 	if value.x == 0 or value.y == 0:
 		return
 	window.size = value
-	Config.set_config(VIDEO_SECTION, SCREEN_RESOLUTION, value)
-
-static func reset_video_config(window : Window) -> void:
-	Config.set_config(VIDEO_SECTION, FULLSCREEN_ENABLED, ((window.mode == Window.MODE_EXCLUSIVE_FULLSCREEN) or (window.mode == Window.MODE_FULLSCREEN)))
 
 static func is_fullscreen(window : Window) -> bool:
 	return (window.mode == Window.MODE_EXCLUSIVE_FULLSCREEN) or (window.mode == Window.MODE_FULLSCREEN)

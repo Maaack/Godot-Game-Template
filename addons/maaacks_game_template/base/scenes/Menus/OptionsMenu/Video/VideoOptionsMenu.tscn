@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://b2numvphf2kau"]
+[gd_scene load_steps=5 format=3 uid="uid://b2numvphf2kau"]
 
 [ext_resource type="Script" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/Video/VideoOptionsMenu.gd" id="1"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/CaptureFocus.gd" id="2_dgrai"]
 [ext_resource type="PackedScene" uid="uid://bsxh6v7j0257h" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/OptionControl/ToggleOptionControl.tscn" id="3_uded6"]
+[ext_resource type="PackedScene" uid="uid://c01ayjblhcg1t" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/OptionControl/Vector2ListOptionControl.tscn" id="4_gwtfq"]
 
 [node name="Video" type="MarginContainer"]
 anchors_preset = 15
@@ -28,18 +29,16 @@ option_section = 3
 key = "FullscreenEnabled"
 section = "VideoSettings"
 
-[node name="ResolutionControl" type="HBoxContainer" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-
-[node name="ResolutionLabel" type="Label" parent="VBoxContainer/ResolutionControl"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Resolution :"
-
-[node name="ResolutionOptions" type="OptionButton" parent="VBoxContainer/ResolutionControl"]
+[node name="ResolutionControl" parent="VBoxContainer" instance=ExtResource("4_gwtfq")]
 unique_name_in_owner = true
 layout_mode = 2
+tooltip_text = "Select a screen size"
+option_values = [Vector2i(640, 360), Vector2i(960, 540), Vector2i(1024, 576), Vector2i(1280, 720), Vector2i(1600, 900), Vector2i(1920, 1080), Vector2i(2048, 1152), Vector2i(2560, 1440), Vector2i(3200, 1800), Vector2i(3840, 2160)]
+option_titles = Array[String](["640 x 360", "960 x 540", "1024 x 576", "1280 x 720", "1600 x 900", "1920 x 1080", "2048 x 1152", "2560 x 1440", "3200 x 1800", "3840 x 2160"])
+option_name = "Resolution"
+option_section = 3
+key = "ScreenResolution"
+section = "VideoSettings"
 
 [connection signal="setting_changed" from="VBoxContainer/FullscreenControl" to="." method="_on_fullscreen_control_setting_changed"]
-[connection signal="item_selected" from="VBoxContainer/ResolutionControl/ResolutionOptions" to="." method="_on_resolution_options_item_selected"]
+[connection signal="setting_changed" from="VBoxContainer/ResolutionControl" to="." method="_on_resolution_control_setting_changed"]
