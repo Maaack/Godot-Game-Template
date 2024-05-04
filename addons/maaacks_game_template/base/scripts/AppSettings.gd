@@ -95,7 +95,6 @@ static func is_muted() -> bool:
 
 static func set_mute(mute_flag : bool) -> void:
 	AudioServer.set_bus_mute(MASTER_BUS_INDEX, mute_flag)
-	Config.set_config(AUDIO_SECTION, MUTE_SETTING, mute_flag)
 
 static func set_audio_from_config():
 	for bus_iter in AudioServer.bus_count:

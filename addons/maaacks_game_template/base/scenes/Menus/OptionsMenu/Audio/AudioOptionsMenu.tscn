@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c8vnncjwqcpab"]
+[gd_scene load_steps=5 format=3 uid="uid://c8vnncjwqcpab"]
 
 [ext_resource type="Script" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/Audio/AudioOptionsMenu.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://bosy6wwf0vleq" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/Audio/AudioControl/AudioControl.tscn" id="2_0jh6g"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/CaptureFocus.gd" id="3_dtraq"]
+[ext_resource type="PackedScene" uid="uid://d7te75il06t7" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/OptionControl/OptionControl.tscn" id="4_ojfec"]
 
 [node name="Audio" type="MarginContainer"]
 custom_minimum_size = Vector2(305, 0)
@@ -30,16 +31,15 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="MuteControl" type="HBoxContainer" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 40)
+[node name="MuteControl" parent="VBoxContainer" instance=ExtResource("4_ojfec")]
+unique_name_in_owner = true
+layout_mode = 2
+option_section = 2
+option_name = "Mute"
+section = "AudioSettings"
+key = "Mute"
+
+[node name="CheckButton" type="CheckButton" parent="VBoxContainer/MuteControl"]
 layout_mode = 2
 
-[node name="MuteLabel" type="Label" parent="VBoxContainer/MuteControl"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Mute :"
-
-[node name="MuteButton" type="CheckButton" parent="VBoxContainer/MuteControl"]
-layout_mode = 2
-
-[connection signal="toggled" from="VBoxContainer/MuteControl/MuteButton" to="." method="_on_MuteButton_toggled"]
+[connection signal="setting_changed" from="VBoxContainer/MuteControl" to="." method="_on_mute_control_setting_changed"]

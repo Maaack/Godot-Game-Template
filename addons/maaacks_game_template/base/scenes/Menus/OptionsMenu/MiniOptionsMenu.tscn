@@ -31,16 +31,15 @@ theme_override_constants/separation = 8
 script = ExtResource("3_7qt1o")
 search_depth = 2
 
-[node name="MuteControl" type="HBoxContainer" parent="."]
-custom_minimum_size = Vector2(0, 40)
+[node name="MuteControl" parent="." instance=ExtResource("4_b20fb")]
+unique_name_in_owner = true
 layout_mode = 2
+option_section = 2
+option_name = "Mute"
+section = "AudioSettings"
+key = "Mute"
 
-[node name="MuteLabel" type="Label" parent="MuteControl"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Mute :"
-
-[node name="MuteButton" type="CheckButton" parent="MuteControl"]
+[node name="CheckButton" type="CheckButton" parent="MuteControl"]
 layout_mode = 2
 
 [node name="FullscreenControl" parent="." instance=ExtResource("4_b20fb")]
@@ -54,5 +53,5 @@ key = "FullscreenEnabled"
 [node name="CheckButton" type="CheckButton" parent="FullscreenControl"]
 layout_mode = 2
 
-[connection signal="toggled" from="MuteControl/MuteButton" to="." method="_on_mute_button_toggled"]
+[connection signal="setting_changed" from="MuteControl" to="." method="_on_mute_control_setting_changed"]
 [connection signal="setting_changed" from="FullscreenControl" to="." method="_on_fullscreen_control_setting_changed"]

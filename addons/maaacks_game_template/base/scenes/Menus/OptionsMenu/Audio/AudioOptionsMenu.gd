@@ -3,7 +3,7 @@ extends Control
 @export var audio_control_scene : PackedScene
 @export var hide_busses : Array[String]
 
-@onready var mute_button = $VBoxContainer/MuteControl/MuteButton
+@onready var mute_control = %MuteControl
 
 func _add_audio_control(bus_name, bus_value):
 	if audio_control_scene == null or bus_name in hide_busses:
@@ -22,10 +22,10 @@ func _add_audio_bus_controls():
 
 func _update_ui():
 	_add_audio_bus_controls()
-	mute_button.button_pressed = AppSettings.is_muted()
+	mute_control.set_value(AppSettings.is_muted())
 
 func _ready():
 	_update_ui()
 
-func _on_MuteButton_toggled(button_pressed):
-	AppSettings.set_mute(button_pressed)
+func _on_mute_control_setting_changed(value):
+	AppSettings.set_mute(value)

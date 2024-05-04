@@ -1,6 +1,6 @@
 @tool
 class_name OptionControl
-extends HBoxContainer
+extends Control
 
 signal setting_changed(value)
 
