@@ -39,9 +39,10 @@ const OptionSectionNames : Dictionary = {
 
 @export_group("Extras")
 @export var label_suffix : String = " :"
-@export var property_type : Variant.Type = TYPE_FLOAT 
+@export var property_type : Variant.Type = TYPE_BOOL
 
 var default_value
+var _connected_nodes : Array
 
 func _on_setting_changed(value):
 	Config.set_config(section, key, value)
@@ -51,6 +52,7 @@ func _get_setting(default : Variant = null) -> Variant:
 	return Config.get_config(section, key, default)
 
 func _connect_option_inputs(node):
+	if node in _connected_nodes: return
 	if node is Button:
 		if node is OptionButton:
 			node.item_selected.connect(_on_setting_changed)
@@ -58,12 +60,13 @@ func _connect_option_inputs(node):
 			node.color_changed.connect(_on_setting_changed)
 		else:
 			node.toggled.connect(_on_setting_changed)
+		_connected_nodes.append(node)
 	if node is Range:
 		node.value_changed.connect(_on_setting_changed)
-	if node is LineEdit:
+		_connected_nodes.append(node)
+	if node is LineEdit or node is TextEdit:
 		node.text_changed.connect(_on_setting_changed)
-	if node is TextEdit:
-		node.text_changed.connect(_on_setting_changed)
+		_connected_nodes.append(node)
 
 func set_value(value : Variant):
 	if value == null:

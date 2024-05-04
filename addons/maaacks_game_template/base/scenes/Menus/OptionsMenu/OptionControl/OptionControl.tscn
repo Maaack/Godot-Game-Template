@@ -7,6 +7,7 @@ custom_minimum_size = Vector2(0, 40)
 offset_right = 400.0
 offset_bottom = 40.0
 script = ExtResource("1_jvl5q")
+default_value = false
 
 [node name="OptionLabel" type="Label" parent="."]
 unique_name_in_owner = true
