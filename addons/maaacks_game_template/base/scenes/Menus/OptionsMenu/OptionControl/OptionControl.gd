@@ -36,9 +36,10 @@ const OptionSectionNames : Dictionary = {
 @export_group("Config Names")
 @export var key : String
 @export var section : String
-
-@export_group("Extras")
+@export_group("Format")
 @export var label_suffix : String = " :"
+@export_group("Properties")
+@export var editable : bool = true : set = set_editable
 @export var property_type : Variant.Type = TYPE_BOOL
 
 var default_value
@@ -84,6 +85,14 @@ func set_value(value : Variant):
 		if node is LineEdit or node is TextEdit:
 			node.text = "%s" % value
 
+func set_editable(value : bool = true):
+	editable = value
+	for node in get_children():
+		if node is Button:
+			node.disabled = !editable
+		if node is Slider or node is SpinBox or node is LineEdit or node is TextEdit:
+			node.editable = editable
+
 func _ready():
 	option_section = option_section
 	option_name = option_name
@@ -96,10 +105,13 @@ func _set(property : StringName, value : Variant) -> bool:
 	if property == "value":
 		set_value(value)
 		return true
+	elif property == "editable":
+		set_editable(value)
+		return true
 	return false
 
 func _get_property_list():
 	return [
-		{ "name": "value", "type": property_type , "usage": PROPERTY_USAGE_NONE},
+		{ "name": "value", "type": property_type, "usage": PROPERTY_USAGE_NONE},
 		{ "name": "default_value", "type": property_type}
-]
+	]

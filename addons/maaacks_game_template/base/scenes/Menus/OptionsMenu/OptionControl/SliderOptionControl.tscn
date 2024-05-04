@@ -5,6 +5,7 @@
 [node name="OptionControl" instance=ExtResource("1_16hlr")]
 custom_minimum_size = Vector2(0, 28)
 offset_bottom = 28.0
+property_type = 3
 default_value = 1.0
 
 [node name="HSlider" type="HSlider" parent="." index="1"]
