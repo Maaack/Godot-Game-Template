@@ -5,8 +5,7 @@ extends OptionControl
 @export var option_values : Array :
 	set(value) :
 		option_values = value
-		custom_option_values = option_values.duplicate()
-		_set_titles_from_values()
+		_on_option_values_changed()
 
 @export var option_titles : Array[String] :
 	set(value):
@@ -14,7 +13,12 @@ extends OptionControl
 		if is_inside_tree():
 			_set_option_list(option_titles)
 
-var custom_option_values
+var custom_option_values : Array
+
+func _on_option_values_changed():
+	if option_values.is_empty(): return
+	custom_option_values = option_values.duplicate()
+	_set_titles_from_values()
 
 func _on_setting_changed(value):
 	if value < option_values.size():
@@ -36,7 +40,7 @@ func _get_setting(default : Variant = null) -> Variant:
 	return 0
 
 func set_value(value : Variant):
-	if option_values.size() == 0: return
+	if option_values.is_empty(): return
 	custom_option_values = option_values.duplicate()
 	if value not in custom_option_values:
 		custom_option_values.append(value)
