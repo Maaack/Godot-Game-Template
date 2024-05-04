@@ -114,7 +114,6 @@ static func set_audio_from_config():
 
 static func set_fullscreen_enabled(value : bool, window : Window) -> void:
 	window.mode = Window.MODE_EXCLUSIVE_FULLSCREEN if (value) else Window.MODE_WINDOWED
-	Config.set_config(VIDEO_SECTION, FULLSCREEN_ENABLED, value)
 
 static func set_resolution(value : Vector2i, window : Window) -> void:
 	if value.x == 0 or value.y == 0:

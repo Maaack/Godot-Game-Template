@@ -1,7 +1,7 @@
 extends Control
 
 @onready var mute_button = $MuteControl/MuteButton
-@onready var fullscreen_button = $FullscreenControl/FullscreenButton
+@onready var fullscreen_control = %FullscreenControl
 
 @export var audio_control_scene : PackedScene
 @export var hide_busses : Array[String]
@@ -24,7 +24,7 @@ func _add_audio_bus_controls():
 func _update_ui():
 	_add_audio_bus_controls()
 	mute_button.button_pressed = AppSettings.is_muted()
-	fullscreen_button.button_pressed = AppSettings.is_fullscreen(get_window())
+	fullscreen_control.set_value(AppSettings.is_fullscreen(get_window()))
 
 func _sync_with_config() -> void:
 	_update_ui()
@@ -35,5 +35,5 @@ func _ready():
 func _on_mute_button_toggled(button_pressed):
 	AppSettings.set_mute(button_pressed)
 
-func _on_fullscreen_button_toggled(button_pressed):
-	AppSettings.set_fullscreen_enabled(button_pressed, get_window())
+func _on_fullscreen_control_setting_changed(value):
+	AppSettings.set_fullscreen_enabled(value, get_window())

@@ -13,7 +13,7 @@ extends Control
 	Vector2i(3840, 2160),
 ]
 
-@onready var fullscreen_button = %FullscreenButton
+@onready var fullscreen_control = %FullscreenControl
 @onready var resolution_options = %ResolutionOptions
 @onready var user_resolutions_array : Array[Vector2i] = resolutions_array.duplicate()
 
@@ -44,7 +44,7 @@ func _update_resolution_options_enabled(window : Window):
 		resolution_options.tooltip_text = "Select a screen size"
 
 func _update_ui(window : Window):
-	fullscreen_button.button_pressed = AppSettings.is_fullscreen(window)
+	fullscreen_control.set_value(AppSettings.is_fullscreen(window))
 	_preselect_resolution(window)
 	_update_resolution_options_enabled(window)
 
@@ -53,9 +53,9 @@ func _ready():
 	_update_ui(window)
 	window.connect("size_changed", _preselect_resolution.bind(window))
 
-func _on_fullscreen_button_toggled(toggled_on):
+func _on_fullscreen_control_setting_changed(value):
 	var window : Window = get_window()
-	AppSettings.set_fullscreen_enabled(toggled_on, window)
+	AppSettings.set_fullscreen_enabled(value, window)
 	_update_resolution_options_enabled(window)
 
 func _on_resolution_options_item_selected(index):

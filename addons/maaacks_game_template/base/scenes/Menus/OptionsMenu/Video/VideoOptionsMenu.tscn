@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://b2numvphf2kau"]
+[gd_scene load_steps=4 format=3 uid="uid://b2numvphf2kau"]
 
 [ext_resource type="Script" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/Video/VideoOptionsMenu.gd" id="1"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/CaptureFocus.gd" id="2_dgrai"]
+[ext_resource type="PackedScene" uid="uid://d7te75il06t7" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/OptionControl/OptionControl.tscn" id="3_uded6"]
 
 [node name="Video" type="MarginContainer"]
 anchors_preset = 15
@@ -19,17 +20,15 @@ alignment = 1
 script = ExtResource("2_dgrai")
 search_depth = 2
 
-[node name="FullscreenControl" type="HBoxContainer" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-
-[node name="FullscreenLabel" type="Label" parent="VBoxContainer/FullscreenControl"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Fullscreen :"
-
-[node name="FullscreenButton" type="CheckButton" parent="VBoxContainer/FullscreenControl"]
+[node name="FullscreenControl" parent="VBoxContainer" instance=ExtResource("3_uded6")]
 unique_name_in_owner = true
+layout_mode = 2
+option_section = 3
+option_name = "Fullscreen"
+section = "VideoSettings"
+key = "FullscreenEnabled"
+
+[node name="CheckButton" type="CheckButton" parent="VBoxContainer/FullscreenControl"]
 layout_mode = 2
 
 [node name="ResolutionControl" type="HBoxContainer" parent="VBoxContainer"]
@@ -45,5 +44,5 @@ text = "Resolution :"
 unique_name_in_owner = true
 layout_mode = 2
 
-[connection signal="toggled" from="VBoxContainer/FullscreenControl/FullscreenButton" to="." method="_on_fullscreen_button_toggled"]
+[connection signal="setting_changed" from="VBoxContainer/FullscreenControl" to="." method="_on_fullscreen_control_setting_changed"]
 [connection signal="item_selected" from="VBoxContainer/ResolutionControl/ResolutionOptions" to="." method="_on_resolution_options_item_selected"]
