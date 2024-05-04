@@ -2,13 +2,16 @@ class_name AppSettings
 extends Node
 ## Interface to read/write general application settings through [Config].
 
-const INPUT_SECTION = 'InputSettings'
-const AUDIO_SECTION = 'AudioSettings'
-const VIDEO_SECTION = 'VideoSettings'
+const INPUT_SECTION = &'InputSettings'
+const AUDIO_SECTION = &'AudioSettings'
+const VIDEO_SECTION = &'VideoSettings'
+const GAME_SECTION = &'GameSettings'
+const APPLICATION_SECTION = &'ApplicationSettings'
+const CUSTOM_SECTION = &'CustomSettings'
 
-const FULLSCREEN_ENABLED = 'FullscreenEnabled'
-const SCREEN_RESOLUTION = 'ScreenResolution'
-const MUTE_SETTING = 'Mute'
+const FULLSCREEN_ENABLED = &'FullscreenEnabled'
+const SCREEN_RESOLUTION = &'ScreenResolution'
+const MUTE_SETTING = &'Mute'
 const MASTER_BUS_INDEX = 0
 
 # Input

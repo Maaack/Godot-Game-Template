@@ -9,6 +9,9 @@ enum OptionSections{
 	INPUT,
 	AUDIO,
 	VIDEO,
+	GAME,
+	APPLICATION,
+	CUSTOM,
 }
 
 const OptionSectionNames : Dictionary = {
@@ -16,6 +19,9 @@ const OptionSectionNames : Dictionary = {
 	OptionSections.INPUT : AppSettings.INPUT_SECTION,
 	OptionSections.AUDIO : AppSettings.AUDIO_SECTION,
 	OptionSections.VIDEO : AppSettings.VIDEO_SECTION,
+	OptionSections.GAME : AppSettings.GAME_SECTION,
+	OptionSections.APPLICATION : AppSettings.APPLICATION_SECTION,
+	OptionSections.CUSTOM : AppSettings.CUSTOM_SECTION,
 }
 
 @export var option_name : String :
@@ -26,6 +32,7 @@ const OptionSectionNames : Dictionary = {
 			%OptionLabel.text = "%s%s" % [option_name, label_suffix]
 		if _update_config:
 			key = option_name.to_pascal_case()
+
 @export var option_section : OptionSections :
 	set(value):
 		var _update_config : bool = OptionSectionNames[option_section] == section
