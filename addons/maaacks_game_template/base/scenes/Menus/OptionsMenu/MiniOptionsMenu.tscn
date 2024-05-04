@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/MiniOptionsMenu.gd" id="1_32vm2"]
 [ext_resource type="PackedScene" uid="uid://bosy6wwf0vleq" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/Audio/AudioControl/AudioControl.tscn" id="2_0006y"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/CaptureFocus.gd" id="3_7qt1o"]
-[ext_resource type="PackedScene" uid="uid://d7te75il06t7" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/OptionControl/OptionControl.tscn" id="4_b20fb"]
+[ext_resource type="PackedScene" uid="uid://bsxh6v7j0257h" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/OptionControl/ToggleOptionControl.tscn" id="4_b20fb"]
 
 [node name="MiniOptionsMenu" type="VBoxContainer"]
 custom_minimum_size = Vector2(400, 260)
@@ -39,9 +39,6 @@ option_section = 2
 key = "Mute"
 section = "AudioSettings"
 
-[node name="CheckButton" type="CheckButton" parent="MuteControl"]
-layout_mode = 2
-
 [node name="FullscreenControl" parent="." instance=ExtResource("4_b20fb")]
 unique_name_in_owner = true
 layout_mode = 2
@@ -49,9 +46,6 @@ option_name = "Fullscreen"
 option_section = 3
 key = "FullscreenEnabled"
 section = "VideoSettings"
-
-[node name="CheckButton" type="CheckButton" parent="FullscreenControl"]
-layout_mode = 2
 
 [connection signal="setting_changed" from="MuteControl" to="." method="_on_mute_control_setting_changed"]
 [connection signal="setting_changed" from="FullscreenControl" to="." method="_on_fullscreen_control_setting_changed"]
