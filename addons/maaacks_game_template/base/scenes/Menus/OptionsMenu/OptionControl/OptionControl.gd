@@ -39,6 +39,7 @@ const OptionSectionNames : Dictionary = {
 
 @export_group("Extras")
 @export var label_suffix : String = " :"
+@export var property_type : Variant.Type
 
 func _on_setting_changed(value):
 	Config.set_config(section, key, value)
@@ -83,3 +84,14 @@ func _ready():
 	for child in get_children():
 		_connect_option_inputs(child)
 	child_entered_tree.connect(_connect_option_inputs)
+
+func _set(property : StringName, value : Variant) -> bool:
+	if property == "value":
+		set_value(value)
+		return true
+	return false
+
+func _get_property_list():
+	return [
+		{ "name": "value", "type": property_type , "usage": PROPERTY_USAGE_NONE}
+	]

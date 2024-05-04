@@ -44,7 +44,7 @@ func _update_resolution_options_enabled(window : Window):
 		resolution_options.tooltip_text = "Select a screen size"
 
 func _update_ui(window : Window):
-	fullscreen_control.set_value(AppSettings.is_fullscreen(window))
+	fullscreen_control.value = AppSettings.is_fullscreen(window)
 	_preselect_resolution(window)
 	_update_resolution_options_enabled(window)
 

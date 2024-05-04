@@ -23,8 +23,8 @@ func _add_audio_bus_controls():
 
 func _update_ui():
 	_add_audio_bus_controls()
-	mute_control.set_value(AppSettings.is_muted())
-	fullscreen_control.set_value(AppSettings.is_fullscreen(get_window()))
+	mute_control.value = AppSettings.is_muted()
+	fullscreen_control.value = AppSettings.is_fullscreen(get_window())
 
 func _sync_with_config() -> void:
 	_update_ui()

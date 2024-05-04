@@ -22,7 +22,7 @@ func _add_audio_bus_controls():
 
 func _update_ui():
 	_add_audio_bus_controls()
-	mute_control.set_value(AppSettings.is_muted())
+	mute_control.value = AppSettings.is_muted()
 
 func _ready():
 	_update_ui()
