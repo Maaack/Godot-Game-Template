@@ -85,7 +85,6 @@ static func set_bus_volume(bus_name : String, volume_db : float) -> void:
 	if bus_index < 0:
 		return
 	AudioServer.set_bus_volume_db(bus_index, volume_db)
-	Config.set_config(AUDIO_SECTION, bus_name, volume_db)
 
 static func set_bus_volume_from_linear(bus_name : String, linear : float) -> void:
 	set_bus_volume(bus_name, linear_to_db(linear))
@@ -98,12 +97,14 @@ static func set_mute(mute_flag : bool) -> void:
 
 static func set_audio_from_config():
 	for bus_iter in AudioServer.bus_count:
-		var bus_name : String = AudioServer.get_bus_name(bus_iter)
+		var bus_name : String = AudioServer.get_bus_name(bus_iter).to_pascal_case()
 		var bus_volume_db : float = AudioServer.get_bus_volume_db(bus_iter)
-		bus_volume_db = Config.get_config(AUDIO_SECTION, bus_name, bus_volume_db)
-		if is_nan(bus_volume_db):
-			bus_volume_db = 1.0
-			Config.set_config(AUDIO_SECTION, bus_name, bus_volume_db)
+		var bus_volume : float = db_to_linear(bus_volume_db)
+		bus_volume = Config.get_config(AUDIO_SECTION, bus_name, bus_volume)
+		if is_nan(bus_volume):
+			bus_volume = 1.0
+			Config.set_config(AUDIO_SECTION, bus_name, bus_volume)
+		bus_volume_db = linear_to_db(bus_volume)
 		AudioServer.set_bus_volume_db(bus_iter, bus_volume_db)
 	var mute_audio_flag : bool = is_muted()
 	mute_audio_flag = Config.get_config(AUDIO_SECTION, MUTE_SETTING, mute_audio_flag)

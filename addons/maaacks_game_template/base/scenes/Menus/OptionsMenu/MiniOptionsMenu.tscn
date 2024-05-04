@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://vh1ucj2rfbby"]
 
 [ext_resource type="Script" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/MiniOptionsMenu.gd" id="1_32vm2"]
-[ext_resource type="PackedScene" uid="uid://bosy6wwf0vleq" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/Audio/AudioControl/AudioControl.tscn" id="2_0006y"]
+[ext_resource type="PackedScene" uid="uid://cl416gdb1fgwr" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/OptionControl/SliderOptionControl.tscn" id="2_kpc65"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/CaptureFocus.gd" id="3_7qt1o"]
 [ext_resource type="PackedScene" uid="uid://bsxh6v7j0257h" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/OptionControl/ToggleOptionControl.tscn" id="4_b20fb"]
 
@@ -22,7 +22,7 @@ size_flags_horizontal = 4
 theme_override_constants/separation = 8
 alignment = 1
 script = ExtResource("1_32vm2")
-audio_control_scene = ExtResource("2_0006y")
+audio_control_scene = ExtResource("2_kpc65")
 
 [node name="AudioControlContainer" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
