@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://co1162l2b721p"]
+[gd_scene load_steps=3 format=3 uid="uid://csnglbynwo57y"]
 
-[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/extras/scenes/WinScreen/WinScreen.tscn" id="1_5o72w"]
-[ext_resource type="Script" path="res://scenes/WinScreen/WinScreen.gd" id="2_15l23"]
+[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/extras/scenes/WinScreen/WinScreen.tscn" id="1_wpgqm"]
+[ext_resource type="Script" path="res://scenes/WinScreen/WinScreen.gd" id="2_ocwj7"]
 
-[node name="WinScreen" instance=ExtResource("1_5o72w")]
-script = ExtResource("2_15l23")
+[node name="WinScreen" instance=ExtResource("1_wpgqm")]
+script = ExtResource("2_ocwj7")
 next_scene = "res://scenes/EndCredits/EndCredits.tscn"
 main_menu_scene = "res://scenes/Menus/MainMenu/MainMenuWithAnimations.tscn"
