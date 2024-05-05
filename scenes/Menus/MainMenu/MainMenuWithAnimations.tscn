@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://dh3d4kkiwb5m6"]
 
-[ext_resource type="PackedScene" path="res://scenes/Menus/MainMenu/MainMenu.tscn" id="1_n32jb"]
+[ext_resource type="PackedScene" uid="uid://daa37km4a0nif" path="res://scenes/Menus/MainMenu/MainMenu.tscn" id="1_n32jb"]
 [ext_resource type="Script" path="res://scenes/Menus/MainMenu/MainMenuWithAnimations.gd" id="2_klo1c"]
 
 [sub_resource type="Animation" id="1"]
@@ -332,14 +332,11 @@ libraries = {
 }
 
 [node name="MenuAnimationTree" type="AnimationTree" parent="." index="2"]
-libraries = {
-"": SubResource("AnimationLibrary_2kqig")
-}
 tree_root = SubResource("AnimationNodeStateMachine_vikuh")
 anim_player = NodePath("../MenuAnimationPlayer")
 parameters/conditions/intro_done = false
 
-[node name="VersionNameLabel" parent="." index="3"]
+[node name="VersionNameLabel" parent="." index="5"]
 modulate = Color(1, 1, 1, 0)
 
 [node name="Title" parent="MenuContainer/VBoxContainer/TitlesMargin/TitlesContainer" index="0"]
