@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://d7te75il06t7"]
+
+[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/OptionControl/OptionControl.gd" id="1_jvl5q"]
+
+[node name="OptionControl" type="HBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+offset_right = 400.0
+offset_bottom = 40.0
+script = ExtResource("1_jvl5q")
+default_value = false
+
+[node name="OptionLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = " :"
+vertical_alignment = 1

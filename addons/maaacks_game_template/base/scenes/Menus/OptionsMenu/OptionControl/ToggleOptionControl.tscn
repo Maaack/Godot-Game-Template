@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsxh6v7j0257h"]
+
+[ext_resource type="PackedScene" uid="uid://d7te75il06t7" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/OptionControl/OptionControl.tscn" id="1_8rnmo"]
+
+[node name="OptionControl" instance=ExtResource("1_8rnmo")]
+
+[node name="CheckButton" type="CheckButton" parent="." index="1"]
+layout_mode = 2
