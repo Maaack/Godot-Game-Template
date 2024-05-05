@@ -16,3 +16,17 @@ option_name = "Anti-Aliasing"
 option_section = 3
 key = "Anti-aliasing"
 section = "VideoSettings"
+property_type = 2
+default_value = 0
+
+[node name="CameraShakeControl" parent="VBoxContainer" index="3" instance=ExtResource("3_12bxi")]
+layout_mode = 2
+option_values = [1.0, 0.75, 0.5, 0.0]
+option_titles = Array[String](["Normal", "Reduced", "Minimal", "None"])
+lock_titles = true
+option_name = "Camera Shake"
+option_section = 3
+key = "CameraShake"
+section = "VideoSettings"
+property_type = 3
+default_value = 1.0

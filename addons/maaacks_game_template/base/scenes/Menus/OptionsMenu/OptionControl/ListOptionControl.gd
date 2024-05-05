@@ -35,11 +35,20 @@ func _set_titles_from_values():
 func _value_title_map(value : Variant) -> String:
 	return "%s" % value
 
+func _match_value_to_other(value : Variant, other : Variant) -> Variant:
+	# Primarily for when the editor saves floats as ints instead
+	if value is int and other is float:
+		return float(value)
+	if value is float and other is int:
+		return int(round(value))
+	return value
+
 func set_value(value : Variant):
 	if option_values.is_empty(): return
 	if value == null:
 		return super.set_value(-1)
 	custom_option_values = option_values.duplicate()
+	value = _match_value_to_other(value, custom_option_values.front())
 	if value not in custom_option_values:
 		custom_option_values.append(value)
 		custom_option_values.sort()
