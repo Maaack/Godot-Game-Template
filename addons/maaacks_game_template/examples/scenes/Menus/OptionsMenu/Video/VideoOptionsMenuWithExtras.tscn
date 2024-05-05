@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://cck3omvlkhpix"]
+
+[ext_resource type="PackedScene" uid="uid://b8kb81us6g3kr" path="res://addons/maaacks_game_template/examples/scenes/Menus/OptionsMenu/Video/VideoOptionsMenu.tscn" id="1_nrerc"]
+[ext_resource type="PackedScene" uid="uid://b6bl3n5mp3m1e" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/OptionControl/ListOptionControl.tscn" id="2_tyiki"]
+
+[node name="Video" instance=ExtResource("1_nrerc")]
+
+[node name="AntiAliasingControl" parent="VBoxContainer" index="2" instance=ExtResource("2_tyiki")]
+layout_mode = 2
+option_values = [0, 1, 2, 3]
+option_titles = Array[String](["Disabled (Fastest)", "2x", "4x", "8x (Slowest)"])
+lock_titles = true
+option_name = "Anti-Aliasing"
+option_section = 3
+key = "Anti-aliasing"
+section = "VideoSettings"
+property_type = 2
+default_value = 0
+
+[node name="CameraShakeControl" parent="VBoxContainer" index="3" instance=ExtResource("2_tyiki")]
+layout_mode = 2
+option_values = [1.0, 0.75, 0.5, 0.0]
+option_titles = Array[String](["Normal", "Reduced", "Minimal", "None"])
+lock_titles = true
+option_name = "Camera Shake"
+option_section = 3
+key = "CameraShake"
+section = "VideoSettings"
+property_type = 3
+default_value = 1.0
