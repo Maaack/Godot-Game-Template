@@ -13,6 +13,7 @@ extends OptionControl
 		if is_inside_tree():
 			_set_option_list(option_titles)
 
+@export var lock_titles : bool = false
 var custom_option_values : Array
 
 func _on_option_values_changed():
@@ -25,6 +26,7 @@ func _on_setting_changed(value):
 		super._on_setting_changed(option_values[value])
 
 func _set_titles_from_values():
+	if lock_titles: return
 	var mapped_titles : Array[String] = []
 	for option_value in custom_option_values:
 		mapped_titles.append(_value_title_map(option_value))
