@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://buotbnp7sfax1"]
+[gd_scene load_steps=3 format=3 uid="uid://c1kl5gatntbg7"]
 
-[ext_resource type="PackedScene" path="res://scenes/Opening/Opening.tscn" id="1_8cnap"]
-[ext_resource type="Texture2D" path="res://assets/images/logo_vertical_color_dark.png" id="2_i57bw"]
+[ext_resource type="PackedScene" path="res://scenes/Opening/Opening.tscn" id="1_dayu1"]
+[ext_resource type="Texture2D" path="res://assets/images/logo_vertical_color_dark.png" id="2_3owg8"]
 
-[node name="Opening" instance=ExtResource("1_8cnap")]
-images = Array[Texture2D]([ExtResource("2_i57bw")])
+[node name="Opening" instance=ExtResource("1_dayu1")]
+images = Array[Texture2D]([ExtResource("2_3owg8")])

@@ -332,14 +332,11 @@ libraries = {
 }
 
 [node name="MenuAnimationTree" type="AnimationTree" parent="." index="2"]
-libraries = {
-"": SubResource("AnimationLibrary_2kqig")
-}
 tree_root = SubResource("AnimationNodeStateMachine_vikuh")
 anim_player = NodePath("../MenuAnimationPlayer")
 parameters/conditions/intro_done = false
 
-[node name="VersionNameLabel" parent="." index="3"]
+[node name="VersionNameLabel" parent="." index="5"]
 modulate = Color(1, 1, 1, 0)
 
 [node name="Title" parent="MenuContainer/VBoxContainer/TitlesMargin/TitlesContainer" index="0"]

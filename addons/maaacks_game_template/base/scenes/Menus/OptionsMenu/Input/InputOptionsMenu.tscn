@@ -25,17 +25,26 @@ size_flags_horizontal = 4
 theme_override_constants/separation = 8
 script = ExtResource("2_wft4x")
 
-[node name="Tree" type="Tree" parent="VBoxContainer"]
+[node name="InputMappingContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/InputMappingContainer"]
+layout_mode = 2
+text = "Actions & Inputs"
+horizontal_alignment = 1
+
+[node name="Tree" type="Tree" parent="VBoxContainer/InputMappingContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 hide_root = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/InputMappingContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="ResetButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="ResetButton" type="Button" parent="VBoxContainer/InputMappingContainer/HBoxContainer"]
 layout_mode = 2
 text = "Reset"
 
@@ -58,9 +67,9 @@ size = Vector2i(398, 100)
 title = "Already Assigned"
 size = Vector2i(398, 100)
 
-[connection signal="button_clicked" from="VBoxContainer/Tree" to="." method="_on_tree_button_clicked"]
-[connection signal="item_activated" from="VBoxContainer/Tree" to="." method="_on_tree_item_activated"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]
+[connection signal="button_clicked" from="VBoxContainer/InputMappingContainer/Tree" to="." method="_on_tree_button_clicked"]
+[connection signal="item_activated" from="VBoxContainer/InputMappingContainer/Tree" to="." method="_on_tree_item_activated"]
+[connection signal="pressed" from="VBoxContainer/InputMappingContainer/HBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]
 [connection signal="canceled" from="KeyAssignmentDialog" to="." method="_on_key_assignment_dialog_canceled"]
 [connection signal="confirmed" from="KeyAssignmentDialog" to="." method="_on_key_assignment_dialog_confirmed"]
 [connection signal="confirmed" from="KeyDeletionDialog" to="." method="_on_key_deletion_dialog_confirmed"]

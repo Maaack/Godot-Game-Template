@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4r3gcnm31uo6"]
+
+[ext_resource type="PackedScene" uid="uid://1e3vf4u3brfm" path="res://addons/maaacks_game_template/examples/scenes/Menus/OptionsMenu/Input/InputOptionsMenu.tscn" id="1_pi4g6"]
+[ext_resource type="PackedScene" uid="uid://cl416gdb1fgwr" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/OptionControl/SliderOptionControl.tscn" id="2_ax2ge"]
+
+[node name="Controls" instance=ExtResource("1_pi4g6")]
+
+[node name="VBoxContainer" parent="." index="0"]
+theme_override_constants/separation = 16
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer" index="0"]
+layout_mode = 2
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer" index="0"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="MouseSensitivityControl" parent="VBoxContainer/MarginContainer/VBoxContainer" index="0" instance=ExtResource("2_ax2ge")]
+layout_mode = 2
+option_name = "Mouse Sensitivity"
+option_section = 1
+key = "MouseSensitivity"
+section = "InputSettings"
+
+[node name="OptionLabel" parent="VBoxContainer/MarginContainer/VBoxContainer/MouseSensitivityControl" index="0"]
+text = "Mouse Sensitivity :"
+
+[node name="HSlider" parent="VBoxContainer/MarginContainer/VBoxContainer/MouseSensitivityControl" index="1"]
+min_value = 0.5
+max_value = 2.0
+tick_count = 16
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer" index="1"]
+layout_mode = 2
+
+[editable path="VBoxContainer/MarginContainer/VBoxContainer/MouseSensitivityControl"]

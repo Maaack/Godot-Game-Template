@@ -13,6 +13,7 @@ extends OptionControl
 		if is_inside_tree():
 			_set_option_list(option_titles)
 
+@export var lock_titles : bool = false
 var custom_option_values : Array
 
 func _on_option_values_changed():
@@ -25,6 +26,7 @@ func _on_setting_changed(value):
 		super._on_setting_changed(option_values[value])
 
 func _set_titles_from_values():
+	if lock_titles: return
 	var mapped_titles : Array[String] = []
 	for option_value in custom_option_values:
 		mapped_titles.append(_value_title_map(option_value))
@@ -33,11 +35,20 @@ func _set_titles_from_values():
 func _value_title_map(value : Variant) -> String:
 	return "%s" % value
 
+func _match_value_to_other(value : Variant, other : Variant) -> Variant:
+	# Primarily for when the editor saves floats as ints instead
+	if value is int and other is float:
+		return float(value)
+	if value is float and other is int:
+		return int(round(value))
+	return value
+
 func set_value(value : Variant):
 	if option_values.is_empty(): return
 	if value == null:
 		return super.set_value(-1)
 	custom_option_values = option_values.duplicate()
+	value = _match_value_to_other(value, custom_option_values.front())
 	if value not in custom_option_values:
 		custom_option_values.append(value)
 		custom_option_values.sort()
