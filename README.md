@@ -83,7 +83,7 @@ This package is available as both a template and a plugin, meaning it can be use
 When starting a new project:
 
 1.  Go to the `Asset Library Projects` tab.
-2.  Search for "Maaack's Game Template".
+2.  Search for "Maaack's Game Template". (Not GWJ specific)
 3.  Click on the result to open the template details.
 4.  Click to Download.
 5.  Give the project a new name and destination.
@@ -93,7 +93,7 @@ When starting a new project:
 When editing an existing project:
 
 1.  Go to the `AssetLib` tab.
-2.  Search for "Maaack's Game Template Plugin".
+2.  Search for "Maaack's GWJ Template".
 3.  Click on the result to open the plugin details.
 4.  Click to Download.
 5.  Check that contents are getting installed to `addons/` and there are no conflicts.
