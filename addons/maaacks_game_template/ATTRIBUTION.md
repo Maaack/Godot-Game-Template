@@ -6,6 +6,13 @@ Author: [Marek Belski and contributors](https://github.com/Maaack/Godot-Game-Tem
 Source: [github: Godot-Game-Template](https://github.com/Maaack/Godot-Game-Template)  
 License: [MIT License](LICENSE.txt)  
 
+## Sourced
+### Godot Wild Jam Logos
+Author: [Dawk](https://coreyaroberts.com/)  
+Source: [godotwildjam.com](https://godotwildjam.com/branding/)  
+License: ?
+
+
 ## Tools
 #### Godot
 Author: [Juan Linietsky, Ariel Manzur, and contributors](https://godotengine.org/contact)  
