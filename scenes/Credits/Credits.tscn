@@ -1,10 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://b543ybbkej3xl"]
+[gd_scene load_steps=3 format=3 uid="uid://cf85vrcmmctcp"]
 
 [ext_resource type="PackedScene" uid="uid://t2dui8ppm3a4" path="res://addons/maaacks_game_template/base/scenes/Credits/Credits.tscn" id="1_obqxd"]
-[ext_resource type="Script" path="res://scenes/Credits/Credits.gd" id="2_555il"]
+[ext_resource type="Script" path="res://scenes/Credits/Credits.gd" id="2_vddff"]
 
 [node name="Credits" instance=ExtResource("1_obqxd")]
-script = ExtResource("2_555il")
+script = ExtResource("2_vddff")
 attribution_file_path = "res://ATTRIBUTION.md"
 scroll_active = true
 
@@ -16,6 +16,13 @@ text = "[center]
 Author: [url=https://github.com/Maaack/Godot-Game-Template/graphs/contributors]Marek Belski and contributors[/url]  
 Source: [url=https://github.com/Maaack/Godot-Game-Template]github: Godot-Game-Template[/url]  
 License: [url=LICENSE.txt]MIT License[/url]  
+
+[font_size=48]Sourced[/font_size]
+[font_size=32]Godot Wild Jam Logos[/font_size]
+Author: [url=https://coreyaroberts.com/]Dawk[/url]  
+Source: [url=https://godotwildjam.com/branding/]godotwildjam.com[/url]  
+License: Copyrighted
+
 
 [font_size=48]Tools[/font_size]
 [font_size=24]Godot[/font_size]

@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://c1kl5gatntbg7"]
+[gd_scene load_steps=5 format=3 uid="uid://cprheg3kychpa"]
 
-[ext_resource type="PackedScene" path="res://scenes/Opening/Opening.tscn" id="1_dayu1"]
-[ext_resource type="Texture2D" path="res://assets/images/logo_vertical_color_dark.png" id="2_3owg8"]
+[ext_resource type="PackedScene" path="res://scenes/Opening/Opening.tscn" id="1_exqnj"]
+[ext_resource type="Texture2D" path="res://assets/images/GWJ-Full-Logo-tag-Orange2.svg" id="2_duv8v"]
+[ext_resource type="Texture2D" path="res://assets/images/ThemeBanner.png" id="3_0mwxx"]
+[ext_resource type="Texture2D" path="res://assets/images/WildcardsBanner.png" id="4_gdxs4"]
 
-[node name="Opening" instance=ExtResource("1_dayu1")]
-images = Array[Texture2D]([ExtResource("2_3owg8")])
+[node name="Opening" instance=ExtResource("1_exqnj")]
+images = Array[Texture2D]([ExtResource("2_duv8v"), ExtResource("3_0mwxx"), ExtResource("4_gdxs4")])
+
+[node name="ImagesContainer" parent="." index="2"]
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_right = 64

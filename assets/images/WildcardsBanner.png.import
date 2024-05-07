@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bal4rlaya6sf2"
-path="res://.godot/imported/logo_vertical_color_dark.png-005eb53cedce1d2e147bce4006c229d6.ctex"
+uid="uid://5d3cumnmrdhp"
+path="res://.godot/imported/WildcardsBanner.png-3e29b73f24137ff689eec9c7f22c26df.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/logo_vertical_color_dark.png"
-dest_files=["res://.godot/imported/logo_vertical_color_dark.png-005eb53cedce1d2e147bce4006c229d6.ctex"]
+source_file="res://assets/images/WildcardsBanner.png"
+dest_files=["res://.godot/imported/WildcardsBanner.png-3e29b73f24137ff689eec9c7f22c26df.ctex"]
 
 [params]
 

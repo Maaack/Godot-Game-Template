@@ -1,15 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://8uhund7171we"]
+[gd_scene load_steps=11 format=3 uid="uid://bua0vkxxsivv"]
 
-[ext_resource type="Script" path="res://scenes/GameScene/GameUI.gd" id="1_5obbm"]
-[ext_resource type="PackedScene" path="res://scenes/WinScreen/WinScreen.tscn" id="2_2abap"]
-[ext_resource type="PackedScene" path="res://scenes/LoseScreen/LoseScreen.tscn" id="3_wn68g"]
-[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/PauseMenuController.gd" id="4_acv8y"]
-[ext_resource type="PackedScene" path="res://scenes/Menus/PauseMenu/PauseMenu.tscn" id="5_w2te2"]
-[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/LevelLoader.gd" id="6_nqtsg"]
-[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/scenes/MusicPlayers/BackgroundMusicPlayer.tscn" id="7_k2ekm"]
-[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/scenes/LoadingScreen/LoadingScreen.tscn" id="8_04sij"]
-[ext_resource type="Script" path="res://scenes/GameScene/ConfigurableSubViewport.gd" id="9_t51cg"]
-[ext_resource type="Script" path="res://scenes/GameScene/InputDisplayLabel.gd" id="10_iy2hc"]
+[ext_resource type="Script" path="res://scenes/GameScene/GameUI.gd" id="1_1gaah"]
+[ext_resource type="PackedScene" path="res://scenes/WinScreen/WinScreen.tscn" id="2_abb7a"]
+[ext_resource type="PackedScene" path="res://scenes/LoseScreen/LoseScreen.tscn" id="3_a6x3s"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/PauseMenuController.gd" id="4_xotwc"]
+[ext_resource type="PackedScene" path="res://scenes/Menus/PauseMenu/PauseMenu.tscn" id="5_qs6nw"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/LevelLoader.gd" id="6_8m6ip"]
+[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/scenes/MusicPlayers/BackgroundMusicPlayer.tscn" id="7_5ll18"]
+[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/scenes/LoadingScreen/LoadingScreen.tscn" id="8_ypjce"]
+[ext_resource type="Script" path="res://scenes/GameScene/ConfigurableSubViewport.gd" id="9_o4kxy"]
+[ext_resource type="Script" path="res://scenes/GameScene/InputDisplayLabel.gd" id="10_k1yh2"]
 
 [node name="GameUI" type="Control"]
 layout_mode = 3
@@ -18,23 +18,23 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_5obbm")
-win_scene = ExtResource("2_2abap")
-lose_scene = ExtResource("3_wn68g")
+script = ExtResource("1_1gaah")
+win_scene = ExtResource("2_abb7a")
+lose_scene = ExtResource("3_a6x3s")
 
 [node name="PauseMenuController" type="Node" parent="."]
-script = ExtResource("4_acv8y")
-pause_menu_packed = ExtResource("5_w2te2")
+script = ExtResource("4_xotwc")
+pause_menu_packed = ExtResource("5_qs6nw")
 
 [node name="LevelLoader" type="Node" parent="." node_paths=PackedStringArray("level_container")]
-script = ExtResource("6_nqtsg")
+script = ExtResource("6_8m6ip")
 level_container = NodePath("../ViewportContainer/ConfigurableSubViewport")
 files = Array[String](["res://scenes/GameScene/Levels/Level1.tscn", "res://scenes/GameScene/Levels/Level2.tscn", "res://scenes/GameScene/Levels/Level3.tscn"])
 directory = "res://scenes/GameScene/Levels"
 
-[node name="BackgroundMusicPlayer" parent="." instance=ExtResource("7_k2ekm")]
+[node name="BackgroundMusicPlayer" parent="." instance=ExtResource("7_5ll18")]
 
-[node name="LoadingScreen" parent="." instance=ExtResource("8_04sij")]
+[node name="LoadingScreen" parent="." instance=ExtResource("8_ypjce")]
 visible = false
 
 [node name="ViewportContainer" type="SubViewportContainer" parent="."]
@@ -52,7 +52,7 @@ audio_listener_enable_2d = true
 audio_listener_enable_3d = true
 size = Vector2i(1280, 720)
 render_target_update_mode = 4
-script = ExtResource("9_t51cg")
+script = ExtResource("9_o4kxy")
 
 [node name="InputDisplayLabel" type="Label" parent="."]
 layout_mode = 1
@@ -67,7 +67,7 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 64
 horizontal_alignment = 1
 autowrap_mode = 2
-script = ExtResource("10_iy2hc")
+script = ExtResource("10_k1yh2")
 
 [connection signal="level_load_started" from="LevelLoader" to="." method="_on_level_loader_level_load_started"]
 [connection signal="level_loaded" from="LevelLoader" to="." method="_on_level_loader_level_loaded"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bal4rlaya6sf2"
-path="res://.godot/imported/logo_vertical_color_dark.png-005eb53cedce1d2e147bce4006c229d6.ctex"
+uid="uid://cut3atowcefj7"
+path="res://.godot/imported/ThemeBanner.png-256a45a4ec83f1e38286d473dd54dd99.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/logo_vertical_color_dark.png"
-dest_files=["res://.godot/imported/logo_vertical_color_dark.png-005eb53cedce1d2e147bce4006c229d6.ctex"]
+source_file="res://assets/images/ThemeBanner.png"
+dest_files=["res://.godot/imported/ThemeBanner.png-256a45a4ec83f1e38286d473dd54dd99.ctex"]
 
 [params]
 

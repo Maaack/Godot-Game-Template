@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cw3ldn10t68je"]
+[gd_scene load_steps=3 format=3 uid="uid://biuy0jnqd723a"]
 
-[ext_resource type="PackedScene" path="res://scenes/Menus/OptionsMenu/Video/VideoOptionsMenu.tscn" id="1_5salc"]
+[ext_resource type="PackedScene" path="res://scenes/Menus/OptionsMenu/Video/VideoOptionsMenu.tscn" id="1_6e6s4"]
 [ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/OptionControl/ListOptionControl.tscn" id="2_7g6mf"]
 
-[node name="Video" instance=ExtResource("1_5salc")]
+[node name="Video" instance=ExtResource("1_6e6s4")]
 
 [node name="AntiAliasingControl" parent="VBoxContainer" index="2" instance=ExtResource("2_7g6mf")]
 layout_mode = 2

@@ -1,7 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://dh3d4kkiwb5m6"]
+[gd_scene load_steps=16 format=3 uid="uid://8e28anl41km7"]
 
-[ext_resource type="PackedScene" uid="uid://daa37km4a0nif" path="res://scenes/Menus/MainMenu/MainMenu.tscn" id="1_n32jb"]
-[ext_resource type="Script" path="res://scenes/Menus/MainMenu/MainMenuWithAnimations.gd" id="2_klo1c"]
+[ext_resource type="PackedScene" path="res://scenes/Menus/MainMenu/MainMenu.tscn" id="1_l2700"]
+[ext_resource type="Script" path="res://scenes/Menus/MainMenu/MainMenuWithAnimations.gd" id="2_ocjwt"]
 
 [sub_resource type="Animation" id="1"]
 resource_name = "Intro"
@@ -323,8 +323,8 @@ states/Start/position = Vector2(82, 123)
 transitions = ["Intro", "OpenMainMenu", SubResource("11"), "OpenMainMenu", "OpenSubMenu", SubResource("14"), "Start", "Intro", SubResource("AnimationNodeStateMachineTransition_j0orr"), "OpenSubMenu", "OpenMainMenu", SubResource("AnimationNodeStateMachineTransition_63dxc")]
 graph_offset = Vector2(-180.277, 49)
 
-[node name="MainMenu" instance=ExtResource("1_n32jb")]
-script = ExtResource("2_klo1c")
+[node name="MainMenu" instance=ExtResource("1_l2700")]
+script = ExtResource("2_ocjwt")
 
 [node name="MenuAnimationPlayer" type="AnimationPlayer" parent="." index="1"]
 libraries = {

@@ -1,8 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cwlo8rtbdks0m"]
+[gd_scene load_steps=3 format=3 uid="uid://c6esxsveby4h8"]
 
-[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/extras/scenes/Opening/Opening.tscn" id="1_sj62i"]
-[ext_resource type="Script" path="res://scenes/Opening/Opening.gd" id="2_4vycb"]
+[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/extras/scenes/Opening/Opening.tscn" id="1_t63o6"]
+[ext_resource type="Script" path="res://scenes/Opening/Opening.gd" id="2_y6ylh"]
 
-[node name="Opening" instance=ExtResource("1_sj62i")]
-script = ExtResource("2_4vycb")
+[node name="Opening" instance=ExtResource("1_t63o6")]
+script = ExtResource("2_y6ylh")
 next_scene = "res://scenes/Menus/MainMenu/MainMenuWithAnimations.tscn"
