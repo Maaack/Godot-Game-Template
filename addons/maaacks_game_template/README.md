@@ -1,6 +1,9 @@
 # Godot Game Template
 For Godot 4.2
 
+A branch specific for the [Godot Wild Jam](https://godotwildjam.com/)!  
+![GWJ Logo](/addons/maaacks_game_template/media/GWJ-Half-Logo-Orange.svg)  
+
 This template has a main menu, options menus, pause menu, credits, scene loader, extra tools, and an example game scene.
 
 [Example on itch.io](https://maaack.itch.io/godot-game-template)
@@ -75,7 +78,7 @@ The `examples/` folder contains an example project using inherited scenes from t
 ### Godot Asset Library
 This package is available as both a template and a plugin, meaning it can be used to start a new project, or added to an existing project. 
 
-![Package Icon](/addons/maaacks_game_template/media/Game-Icon-black-transparent-256x256.png)  
+![Package Icon](/addons/maaacks_game_template/media/GWJ-Icon-black-transparent-256x256.png)  
 
 When starting a new project:
 
