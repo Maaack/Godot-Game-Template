@@ -14,6 +14,10 @@ Author: [Name]()
 Source: [Domain : webpage.html]()  
 License: [License]()
 
+### Godot Wild Jam Logos
+Author: [Dawk](https://coreyaroberts.com/)  
+Source: [godotwildjam.com](https://godotwildjam.com/branding/)  
+License: Copyrighted
 
 ## Tools
 #### Godot

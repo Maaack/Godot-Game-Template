@@ -10,7 +10,7 @@ License: [MIT License](LICENSE.txt)
 ### Godot Wild Jam Logos
 Author: [Dawk](https://coreyaroberts.com/)  
 Source: [godotwildjam.com](https://godotwildjam.com/branding/)  
-License: ?
+License: Copyrighted
 
 
 ## Tools
