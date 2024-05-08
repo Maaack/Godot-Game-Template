@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://vh1ucj2rfbby"]
+[gd_scene load_steps=5 format=3 uid="uid://vh1ucj2rfbby"]
 
 [ext_resource type="Script" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/MiniOptionsMenu.gd" id="1_32vm2"]
-[ext_resource type="PackedScene" uid="uid://bosy6wwf0vleq" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/Audio/AudioControl/AudioControl.tscn" id="2_0006y"]
+[ext_resource type="PackedScene" uid="uid://cl416gdb1fgwr" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/OptionControl/SliderOptionControl.tscn" id="2_kpc65"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/CaptureFocus.gd" id="3_7qt1o"]
+[ext_resource type="PackedScene" uid="uid://bsxh6v7j0257h" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/OptionControl/ToggleOptionControl.tscn" id="4_b20fb"]
 
 [node name="MiniOptionsMenu" type="VBoxContainer"]
 custom_minimum_size = Vector2(400, 260)
@@ -21,7 +22,7 @@ size_flags_horizontal = 4
 theme_override_constants/separation = 8
 alignment = 1
 script = ExtResource("1_32vm2")
-audio_control_scene = ExtResource("2_0006y")
+audio_control_scene = ExtResource("2_kpc65")
 
 [node name="AudioControlContainer" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
@@ -30,29 +31,21 @@ theme_override_constants/separation = 8
 script = ExtResource("3_7qt1o")
 search_depth = 2
 
-[node name="MuteControl" type="HBoxContainer" parent="."]
-custom_minimum_size = Vector2(0, 40)
+[node name="MuteControl" parent="." instance=ExtResource("4_b20fb")]
+unique_name_in_owner = true
 layout_mode = 2
+option_name = "Mute"
+option_section = 2
+key = "Mute"
+section = "AudioSettings"
 
-[node name="MuteLabel" type="Label" parent="MuteControl"]
+[node name="FullscreenControl" parent="." instance=ExtResource("4_b20fb")]
+unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 3
-text = "Mute :"
+option_name = "Fullscreen"
+option_section = 3
+key = "FullscreenEnabled"
+section = "VideoSettings"
 
-[node name="MuteButton" type="CheckButton" parent="MuteControl"]
-layout_mode = 2
-
-[node name="FullscreenControl" type="HBoxContainer" parent="."]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-
-[node name="FullscreenLabel" type="Label" parent="FullscreenControl"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Fullscreen :"
-
-[node name="FullscreenButton" type="CheckButton" parent="FullscreenControl"]
-layout_mode = 2
-
-[connection signal="toggled" from="MuteControl/MuteButton" to="." method="_on_mute_button_toggled"]
-[connection signal="toggled" from="FullscreenControl/FullscreenButton" to="." method="_on_fullscreen_button_toggled"]
+[connection signal="setting_changed" from="MuteControl" to="." method="_on_mute_control_setting_changed"]
+[connection signal="setting_changed" from="FullscreenControl" to="." method="_on_fullscreen_control_setting_changed"]

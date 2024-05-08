@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://cl416gdb1fgwr"]
+
+[ext_resource type="PackedScene" uid="uid://d7te75il06t7" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/OptionControl/OptionControl.tscn" id="1_16hlr"]
+
+[node name="OptionControl" instance=ExtResource("1_16hlr")]
+custom_minimum_size = Vector2(0, 28)
+offset_bottom = 28.0
+property_type = 3
+default_value = 1.0
+
+[node name="HSlider" type="HSlider" parent="." index="1"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.05
+value = 1.0
+tick_count = 11
+ticks_on_borders = true

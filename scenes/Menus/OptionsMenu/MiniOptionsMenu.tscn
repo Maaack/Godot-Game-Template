@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bclvg3xpy52px"]
+[gd_scene load_steps=3 format=3 uid="uid://db8lvubrena20"]
 
-[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/MiniOptionsMenu.tscn" id="1_ajub7"]
-[ext_resource type="Script" path="res://scenes/Menus/OptionsMenu/MiniOptionsMenu.gd" id="2_up0d6"]
+[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/MiniOptionsMenu.tscn" id="1_xynbw"]
+[ext_resource type="Script" path="res://scenes/Menus/OptionsMenu/MiniOptionsMenu.gd" id="2_n8w2b"]
 
-[node name="MiniOptionsMenu" instance=ExtResource("1_ajub7")]
-script = ExtResource("2_up0d6")
+[node name="MiniOptionsMenu" instance=ExtResource("1_xynbw")]
+script = ExtResource("2_n8w2b")
