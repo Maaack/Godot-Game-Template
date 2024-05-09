@@ -10,6 +10,11 @@ extends Container
 
 ## Hierarchical depth to search in the scene tree.
 @export var search_depth : int = 1
+@export var lock : bool = false :
+	set(value):
+		lock = value
+		if not lock:
+			update_focus()
 
 func _focus_first_search(control_node : Control, levels : int = 1):
 	if control_node == null or !control_node.is_visible_in_tree():
@@ -27,14 +32,18 @@ func _focus_first_search(control_node : Control, levels : int = 1):
 func focus_first():
 	_focus_first_search(self, search_depth)
 
-func _check_visible_and_joypad():
-	if is_visible_in_tree() and Input.get_connected_joypads().size() > 0:
+func update_focus():
+	if lock : return
+	if _is_visible_and_joypad():
 		focus_first()
 
+func _is_visible_and_joypad():
+	return is_visible_in_tree() and Input.get_connected_joypads().size() > 0
+
 func _on_visibility_changed():
-	call_deferred("_check_visible_and_joypad")
+	call_deferred("update_focus")
 
 func _ready():
 	if is_inside_tree():
-		_check_visible_and_joypad()
+		update_focus()
 		connect("visibility_changed", _on_visibility_changed)
