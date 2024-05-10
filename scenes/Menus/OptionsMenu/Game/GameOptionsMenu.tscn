@@ -1,8 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cukj0enkuctbb"]
+[gd_scene load_steps=4 format=3 uid="uid://dgjxg6jeg5npm"]
 
-[ext_resource type="Script" path="res://scenes/Menus/OptionsMenu/Game/GameOptionsMenu.gd" id="1_c6jpm"]
-[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/CaptureFocus.gd" id="2_y8t2p"]
-[ext_resource type="PackedScene" path="res://scenes/Menus/OptionsMenu/Game/ResetGameControl/ResetGameControl.tscn" id="3_qievk"]
+[ext_resource type="Script" path="res://scenes/Menus/OptionsMenu/Game/GameOptionsMenu.gd" id="1_f5cf4"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/CaptureFocus.gd" id="2_vni2s"]
+[ext_resource type="PackedScene" path="res://scenes/Menus/OptionsMenu/Game/ResetGameControl/ResetGameControl.tscn" id="3_cahmb"]
 
 [node name="Game" type="MarginContainer"]
 anchors_preset = 15
@@ -10,17 +10,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 theme_override_constants/margin_top = 24
 theme_override_constants/margin_bottom = 24
-script = ExtResource("1_c6jpm")
+script = ExtResource("1_f5cf4")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 alignment = 1
-script = ExtResource("2_y8t2p")
+script = ExtResource("2_vni2s")
 search_depth = 2
 
-[node name="ResetGameControl" parent="VBoxContainer" instance=ExtResource("3_qievk")]
+[node name="ResetGameControl" parent="VBoxContainer" instance=ExtResource("3_cahmb")]
 layout_mode = 2
 
 [connection signal="reset_confirmed" from="VBoxContainer/ResetGameControl" to="." method="_on_ResetGameControl_reset_confirmed"]

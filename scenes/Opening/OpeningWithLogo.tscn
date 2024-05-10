@@ -1,12 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://cprheg3kychpa"]
+[gd_scene load_steps=5 format=3 uid="uid://kvkkaepgs030"]
 
-[ext_resource type="PackedScene" path="res://scenes/Opening/Opening.tscn" id="1_exqnj"]
-[ext_resource type="Texture2D" path="res://assets/images/GWJ-Full-Logo-tag-Orange2.svg" id="2_duv8v"]
-[ext_resource type="Texture2D" path="res://assets/images/ThemeBanner.png" id="3_0mwxx"]
-[ext_resource type="Texture2D" path="res://assets/images/WildcardsBanner.png" id="4_gdxs4"]
+[ext_resource type="PackedScene" path="res://scenes/Opening/Opening.tscn" id="1_nckb5"]
+[ext_resource type="Texture2D" path="res://assets/images/GWJ-Full-Logo-tag-Orange2.svg" id="2_678wi"]
+[ext_resource type="Texture2D" path="res://assets/images/ThemeBanner.png" id="3_47sq4"]
+[ext_resource type="Texture2D" path="res://assets/images/WildcardsBanner.png" id="4_sk1fp"]
 
-[node name="Opening" instance=ExtResource("1_exqnj")]
-images = Array[Texture2D]([ExtResource("2_duv8v"), ExtResource("3_0mwxx"), ExtResource("4_gdxs4")])
+[node name="Opening" instance=ExtResource("1_nckb5")]
+images = Array[Texture2D]([ExtResource("2_678wi"), ExtResource("3_47sq4"), ExtResource("4_sk1fp")])
 
 [node name="ImagesContainer" parent="." index="2"]
 theme_override_constants/margin_left = 64
