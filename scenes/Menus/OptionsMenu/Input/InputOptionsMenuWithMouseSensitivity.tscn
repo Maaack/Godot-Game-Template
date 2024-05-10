@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cu7bwb6pbcuwi"]
+[gd_scene load_steps=3 format=3 uid="uid://ckiogikpg1i3"]
 
-[ext_resource type="PackedScene" path="res://scenes/Menus/OptionsMenu/Input/InputOptionsMenu.tscn" id="1_1l3ql"]
-[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/OptionControl/SliderOptionControl.tscn" id="2_vsgj7"]
+[ext_resource type="PackedScene" path="res://scenes/Menus/OptionsMenu/Input/InputOptionsMenu.tscn" id="1_w7ty3"]
+[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/OptionControl/SliderOptionControl.tscn" id="2_o2op5"]
 
-[node name="Controls" instance=ExtResource("1_1l3ql")]
+[node name="Controls" instance=ExtResource("1_w7ty3")]
 
 [node name="VBoxContainer" parent="." index="0"]
 theme_override_constants/separation = 16
@@ -18,7 +18,7 @@ layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="MouseSensitivityControl" parent="VBoxContainer/MarginContainer/VBoxContainer" index="0" instance=ExtResource("2_vsgj7")]
+[node name="MouseSensitivityControl" parent="VBoxContainer/MarginContainer/VBoxContainer" index="0" instance=ExtResource("2_o2op5")]
 layout_mode = 2
 option_name = "Mouse Sensitivity"
 option_section = 1

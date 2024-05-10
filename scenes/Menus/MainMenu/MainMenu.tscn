@@ -1,10 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://daa37km4a0nif"]
+[gd_scene load_steps=4 format=3 uid="uid://uacjonr6fobv"]
 
-[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/scenes/Menus/MainMenu/MainMenu.tscn" id="1_h4gat"]
-[ext_resource type="PackedScene" path="res://scenes/Menus/OptionsMenu/MasterOptionsMenuWithTabs.tscn" id="2_sphge"]
-[ext_resource type="PackedScene" path="res://scenes/Credits/Credits.tscn" id="3_j257y"]
+[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/scenes/Menus/MainMenu/MainMenu.tscn" id="1_qga4p"]
+[ext_resource type="PackedScene" path="res://scenes/Menus/OptionsMenu/MasterOptionsMenuWithTabs.tscn" id="2_ir3dh"]
+[ext_resource type="PackedScene" path="res://scenes/Credits/Credits.tscn" id="3_fhpuo"]
 
-[node name="MainMenu" instance=ExtResource("1_h4gat")]
+[node name="MainMenu" instance=ExtResource("1_qga4p")]
 game_scene_path = "res://scenes/GameScene/GameUI.tscn"
-options_packed_scene = ExtResource("2_sphge")
-credits_packed_scene = ExtResource("3_j257y")
+options_packed_scene = ExtResource("2_ir3dh")
+credits_packed_scene = ExtResource("3_fhpuo")
