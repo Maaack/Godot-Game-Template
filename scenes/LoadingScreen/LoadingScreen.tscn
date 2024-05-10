@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://6m7lv1en20xx"]
+[gd_scene load_steps=3 format=3 uid="uid://cu0qnbs756dtp"]
 
-[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/scenes/LoadingScreen/LoadingScreen.tscn" id="1_ionix"]
-[ext_resource type="Script" path="res://scenes/LoadingScreen/LoadingScreen.gd" id="2_mk31p"]
+[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/scenes/LoadingScreen/LoadingScreen.tscn" id="1_mivop"]
+[ext_resource type="Script" path="res://scenes/LoadingScreen/LoadingScreen.gd" id="2_s2qv1"]
 
-[node name="LoadingScreen" instance=ExtResource("1_ionix")]
-script = ExtResource("2_mk31p")
+[node name="LoadingScreen" instance=ExtResource("1_mivop")]
+script = ExtResource("2_s2qv1")

@@ -24,6 +24,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 8
 script = ExtResource("2_wft4x")
+search_depth = 2
 
 [node name="InputMappingContainer" type="VBoxContainer" parent="VBoxContainer"]
 layout_mode = 2

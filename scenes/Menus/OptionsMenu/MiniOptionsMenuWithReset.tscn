@@ -1,13 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://ui8v0ftsty1i"]
+[gd_scene load_steps=4 format=3 uid="uid://dsxgolcybukr6"]
 
-[ext_resource type="PackedScene" path="res://scenes/Menus/OptionsMenu/MiniOptionsMenu.tscn" id="1_b1ig6"]
-[ext_resource type="Script" path="res://scenes/Menus/OptionsMenu/MiniOptionsMenuWithReset.gd" id="2_peu51"]
-[ext_resource type="PackedScene" path="res://scenes/Menus/OptionsMenu/Game/ResetGameControl/ResetGameControl.tscn" id="3_7056s"]
+[ext_resource type="PackedScene" path="res://scenes/Menus/OptionsMenu/MiniOptionsMenu.tscn" id="1_aef3i"]
+[ext_resource type="Script" path="res://scenes/Menus/OptionsMenu/MiniOptionsMenuWithReset.gd" id="2_bqvef"]
+[ext_resource type="PackedScene" path="res://scenes/Menus/OptionsMenu/Game/ResetGameControl/ResetGameControl.tscn" id="3_165fe"]
 
-[node name="MiniOptionsMenu" instance=ExtResource("1_b1ig6")]
-script = ExtResource("2_peu51")
+[node name="MiniOptionsMenu" instance=ExtResource("1_aef3i")]
+script = ExtResource("2_bqvef")
 
-[node name="ResetGameControl" parent="." index="3" instance=ExtResource("3_7056s")]
+[node name="ResetGameControl" parent="." index="3" instance=ExtResource("3_165fe")]
 layout_mode = 2
 
 [connection signal="reset_confirmed" from="ResetGameControl" to="." method="_on_reset_game_control_reset_confirmed"]

@@ -112,9 +112,6 @@ func _set(property : StringName, value : Variant) -> bool:
 	if property == "value":
 		set_value(value)
 		return true
-	elif property == "editable":
-		set_editable(value)
-		return true
 	return false
 
 func _get_property_list():
