@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://bvjcqnfyiq0ms"]
+[gd_scene load_steps=2 format=3 uid="uid://4ionx33eq4yo"]
 
-[ext_resource type="Script" path="res://scenes/GameScene/Levels/Level.gd" id="1_sbt7j"]
+[ext_resource type="Script" path="res://scenes/GameScene/Levels/Level.gd" id="1_fijnx"]
 
 [node name="Level2" type="HBoxContainer"]
 anchors_preset = 15
@@ -8,7 +8,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_sbt7j")
+script = ExtResource("1_fijnx")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2

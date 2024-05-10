@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cyiqybuiodeoe"]
+[gd_scene load_steps=3 format=3 uid="uid://dg0ug0wyhh6k"]
 
-[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/Video/VideoOptionsMenu.tscn" id="1_cfwfm"]
-[ext_resource type="Script" path="res://scenes/Menus/OptionsMenu/Video/VideoOptionsMenu.gd" id="2_ujqkm"]
+[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/Video/VideoOptionsMenu.tscn" id="1_1jyvr"]
+[ext_resource type="Script" path="res://scenes/Menus/OptionsMenu/Video/VideoOptionsMenu.gd" id="2_ema65"]
 
-[node name="Video" instance=ExtResource("1_cfwfm")]
-script = ExtResource("2_ujqkm")
+[node name="Video" instance=ExtResource("1_1jyvr")]
+script = ExtResource("2_ema65")

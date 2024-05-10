@@ -1,24 +1,24 @@
-[gd_scene load_steps=6 format=3 uid="uid://3c06v8c27uj4"]
+[gd_scene load_steps=6 format=3 uid="uid://cagfbg7m2undu"]
 
-[ext_resource type="PackedScene" path="res://scenes/Menus/OptionsMenu/MasterOptionsMenu.tscn" id="1_kdfr2"]
-[ext_resource type="PackedScene" path="res://scenes/Menus/OptionsMenu/Input/InputOptionsMenuWithMouseSensitivity.tscn" id="2_hlt20"]
-[ext_resource type="PackedScene" path="res://scenes/Menus/OptionsMenu/Audio/AudioOptionsMenu.tscn" id="3_u8kcl"]
-[ext_resource type="PackedScene" path="res://scenes/Menus/OptionsMenu/Video/VideoOptionsMenuWithExtras.tscn" id="4_houik"]
-[ext_resource type="PackedScene" path="res://scenes/Menus/OptionsMenu/Game/GameOptionsMenu.tscn" id="5_tydgh"]
+[ext_resource type="PackedScene" path="res://scenes/Menus/OptionsMenu/MasterOptionsMenu.tscn" id="1_poeal"]
+[ext_resource type="PackedScene" path="res://scenes/Menus/OptionsMenu/Input/InputOptionsMenuWithMouseSensitivity.tscn" id="2_qmmtm"]
+[ext_resource type="PackedScene" path="res://scenes/Menus/OptionsMenu/Audio/AudioOptionsMenu.tscn" id="3_g1i0l"]
+[ext_resource type="PackedScene" path="res://scenes/Menus/OptionsMenu/Video/VideoOptionsMenuWithExtras.tscn" id="4_8mj1w"]
+[ext_resource type="PackedScene" path="res://scenes/Menus/OptionsMenu/Game/GameOptionsMenu.tscn" id="5_277lf"]
 
-[node name="MasterOptionsMenu" instance=ExtResource("1_kdfr2")]
+[node name="MasterOptionsMenu" instance=ExtResource("1_poeal")]
 
-[node name="Controls" parent="TabContainer" index="1" instance=ExtResource("2_hlt20")]
+[node name="Controls" parent="TabContainer" index="1" instance=ExtResource("2_qmmtm")]
 layout_mode = 2
 
-[node name="Audio" parent="TabContainer" index="2" instance=ExtResource("3_u8kcl")]
+[node name="Audio" parent="TabContainer" index="2" instance=ExtResource("3_g1i0l")]
 visible = false
 layout_mode = 2
 
-[node name="Video" parent="TabContainer" index="3" instance=ExtResource("4_houik")]
+[node name="Video" parent="TabContainer" index="3" instance=ExtResource("4_8mj1w")]
 visible = false
 layout_mode = 2
 
-[node name="Game" parent="TabContainer" index="4" instance=ExtResource("5_tydgh")]
+[node name="Game" parent="TabContainer" index="4" instance=ExtResource("5_277lf")]
 visible = false
 layout_mode = 2

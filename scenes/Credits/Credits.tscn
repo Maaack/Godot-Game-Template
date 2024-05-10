@@ -1,10 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://b543ybbkej3xl"]
+[gd_scene load_steps=3 format=3 uid="uid://clabvuaem7bsx"]
 
-[ext_resource type="PackedScene" uid="uid://t2dui8ppm3a4" path="res://addons/maaacks_game_template/base/scenes/Credits/Credits.tscn" id="1_obqxd"]
-[ext_resource type="Script" path="res://scenes/Credits/Credits.gd" id="2_555il"]
+[ext_resource type="PackedScene" uid="uid://t2dui8ppm3a4" path="res://addons/maaacks_game_template/base/scenes/Credits/Credits.tscn" id="1_enrln"]
+[ext_resource type="Script" path="res://scenes/Credits/Credits.gd" id="2_v7yp7"]
 
-[node name="Credits" instance=ExtResource("1_obqxd")]
-script = ExtResource("2_555il")
+[node name="Credits" instance=ExtResource("1_enrln")]
+script = ExtResource("2_v7yp7")
 attribution_file_path = "res://ATTRIBUTION.md"
 scroll_active = true
 

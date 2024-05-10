@@ -1,10 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://yfbq0yl2lb3m"]
+[gd_scene load_steps=4 format=3 uid="uid://cd86c2axyabh3"]
 
-[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/extras/scenes/PauseMenu/PauseMenu.tscn" id="1_jlosk"]
-[ext_resource type="Script" path="res://scenes/Menus/PauseMenu/PauseMenu.gd" id="2_drbbs"]
-[ext_resource type="PackedScene" path="res://scenes/Menus/OptionsMenu/MiniOptionsMenuWithReset.tscn" id="3_frrt5"]
+[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/extras/scenes/PauseMenu/PauseMenu.tscn" id="1_rcp1c"]
+[ext_resource type="Script" path="res://scenes/Menus/PauseMenu/PauseMenu.gd" id="2_qgi5e"]
+[ext_resource type="PackedScene" path="res://scenes/Menus/OptionsMenu/MiniOptionsMenuWithReset.tscn" id="3_nqfgs"]
 
-[node name="PauseMenu" instance=ExtResource("1_jlosk")]
-script = ExtResource("2_drbbs")
-options_packed_scene = ExtResource("3_frrt5")
+[node name="PauseMenu" instance=ExtResource("1_rcp1c")]
+script = ExtResource("2_qgi5e")
+options_packed_scene = ExtResource("3_nqfgs")
 main_menu_scene = "res://scenes/Menus/MainMenu/MainMenuWithAnimations.tscn"
