@@ -23,7 +23,7 @@ func get_level_file(level_id : int = get_current_level_id()):
 	if files.is_empty():
 		push_error("files is empty")
 		return
-	if level_id >= files.size():
+	if level_id > files.size():
 		push_error("level_id is greater than files size")
 		return
 	return files[level_id]
