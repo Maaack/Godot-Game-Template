@@ -99,9 +99,12 @@ func _blend_in_stream_player( stream_player : AudioStreamPlayer ):
 	_reparent_music_player(stream_player)
 	_play_and_fade_in()
 
+func _node_matches_checks( node : Node ) -> bool:
+	return node is AudioStreamPlayer and node.autoplay and node.bus == audio_bus
+
 func check_for_music_player( node: Node ) -> void:
 	if node == music_stream_player : return
-	if not (node is AudioStreamPlayer and node.autoplay) : return
+	if not (_node_matches_checks(node)) : return
 	if _is_matching_stream(node):
 		blend_to(node.volume_db, blend_volume_duration)
 		node.stop()
