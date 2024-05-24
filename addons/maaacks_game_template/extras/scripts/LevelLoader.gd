@@ -21,11 +21,11 @@ func get_current_level_id() -> int:
 
 func get_level_file(level_id : int = get_current_level_id()):
 	if files.is_empty():
-		push_error("files is empty")
+		push_error("levels list is empty")
 		return
 	if level_id >= files.size():
-		push_error("level_id is greater than files size")
-		return
+		push_error("level_id is out of bounds of the levels list")
+		level_id = files.size() - 1
 	return files[level_id]
 
 func advance_level() -> bool:
@@ -63,5 +63,6 @@ func advance_and_load_level():
 		load_level()
 
 func _ready():
+	_refresh_files()
 	if auto_load:
 		load_level()
