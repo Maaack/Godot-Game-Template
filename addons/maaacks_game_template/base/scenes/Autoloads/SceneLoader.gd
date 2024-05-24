@@ -76,6 +76,8 @@ func load_scene(scene_path : String, in_background : bool = false) -> void:
 		return
 	if ResourceLoader.has_cached(scene_path):
 		call_deferred("emit_signal", "scene_loaded")
+		if not _background_loading:
+			change_scene_to_resource()
 		return
 	_scene_path = scene_path
 	_background_loading = in_background
