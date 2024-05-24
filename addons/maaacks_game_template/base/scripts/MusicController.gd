@@ -116,7 +116,7 @@ func check_for_music_player( node: Node ) -> void:
 			return
 		_blend_in_stream_player(node)
 
-func _ready() -> void:
+func _enter_tree() -> void:
 	var tree_node = get_tree()
 	if not tree_node.node_added.is_connected(check_for_music_player):
 		tree_node.node_added.connect(check_for_music_player)
