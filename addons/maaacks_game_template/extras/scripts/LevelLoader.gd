@@ -63,6 +63,9 @@ func advance_and_load_level():
 		load_level()
 
 func _ready():
-	_refresh_files()
+	if Engine.is_editor_hint():
+		# Do not attempt to refresh files after export.
+		# Text files get a `.remap` extension added on export.
+		_refresh_files()
 	if auto_load:
 		load_level()
