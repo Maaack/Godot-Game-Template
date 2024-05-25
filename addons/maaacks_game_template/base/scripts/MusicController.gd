@@ -97,6 +97,30 @@ func _reparent_music_player( stream_player : AudioStreamPlayer ):
 	await(stream_player.tree_entered)
 	stream_player.play(playback_position)
 
+func _blend_and_remove_stream_player( stream_player : AudioStreamPlayer ):
+	if not music_stream_player.playing:
+			play()
+	blend_to(stream_player.volume_db, blend_volume_duration)
+	stream_player.stop()
+	stream_player.queue_free()
+
+func _blend_and_connect_stream_player( stream_player : AudioStreamPlayer ):
+	stream_player.bus = audio_bus
+	if not stream_player.tree_exiting.is_connected(_on_removed_music_player.bind(stream_player)):
+		stream_player.tree_exiting.connect(_on_removed_music_player.bind(stream_player))
+	_fade_out_and_free()
+	music_stream_player = stream_player
+	_play_and_fade_in()
+
+func play_stream_player( stream_player : AudioStreamPlayer ):
+	if stream_player == music_stream_player : return
+	if stream_player.stream == null and not empty_streams_stop_player:
+			return
+	if _is_matching_stream(stream_player) : 
+		_blend_and_remove_stream_player(stream_player)
+	else:
+		_blend_and_connect_stream_player(stream_player)
+
 func play_stream( audio_stream : AudioStream ):
 	var stream_player := AudioStreamPlayer.new()
 	stream_player.stream = audio_stream
@@ -105,42 +129,26 @@ func play_stream( audio_stream : AudioStream ):
 	stream_player.play.call_deferred()
 	play_stream_player( stream_player )
 
-func play_stream_player( stream_player : AudioStreamPlayer ):
-	stream_player.bus = audio_bus
-	_fade_out_and_free()
-	music_stream_player = stream_player
-	_play_and_fade_in()
-
 func _node_matches_checks( node : Node ) -> bool:
 	return node is AudioStreamPlayer and node.autoplay and node.bus == audio_bus
 
-func check_for_removed_music_player( node: Node ) -> void:
-	if not (_node_matches_checks(node)) : return
+func _on_removed_music_player( node: Node ) -> void:
 	if music_stream_player == node:
 		_reparent_music_player(node)
+		if node.tree_exiting.is_connected(_on_removed_music_player.bind(node)):
+			node.tree_exiting.disconnect(_on_removed_music_player.bind(node))
 
-func check_for_added_music_player( node: Node ) -> void:
+func _on_added_music_player( node: Node ) -> void:
 	if node == music_stream_player : return
 	if not (_node_matches_checks(node)) : return
-	if not node.tree_exiting.is_connected(check_for_removed_music_player.bind(node)):
-		node.tree_exiting.connect(check_for_removed_music_player.bind(node))
-	if _is_matching_stream(node):
-		blend_to(node.volume_db, blend_volume_duration)
-		node.stop()
-		node.queue_free()
-		if not music_stream_player.playing:
-			play()
-	else:
-		if node.stream == null and not empty_streams_stop_player:
-			return
-		play_stream_player(node)
+	play_stream_player(node)
 
 func _enter_tree() -> void:
 	var tree_node = get_tree()
-	if not tree_node.node_added.is_connected(check_for_added_music_player):
-		tree_node.node_added.connect(check_for_added_music_player)
+	if not tree_node.node_added.is_connected(_on_added_music_player):
+		tree_node.node_added.connect(_on_added_music_player)
 
 func _exit_tree():
 	var tree_node = get_tree()
-	if tree_node.node_added.is_connected(check_for_added_music_player):
-		tree_node.node_added.disconnect(check_for_added_music_player)
+	if tree_node.node_added.is_connected(_on_added_music_player):
+		tree_node.node_added.disconnect(_on_added_music_player)
