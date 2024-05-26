@@ -39,7 +39,7 @@ var music_stream_player : AudioStreamPlayer
 
 func fade_out( duration : float = 0.0 ):
 	if not is_zero_approx(duration):
-		var tween = get_tree().create_tween()
+		var tween = create_tween()
 		tween.tween_property(music_stream_player, "volume_db", MINIMUM_VOLUME_DB, duration)
 		return tween
 
@@ -47,13 +47,13 @@ func fade_in( duration : float = 0.0 ):
 	if not is_zero_approx(duration):
 		var target_volume_db = music_stream_player.volume_db
 		music_stream_player.volume_db = MINIMUM_VOLUME_DB
-		var tween = get_tree().create_tween()
+		var tween = create_tween()
 		tween.tween_property(music_stream_player, "volume_db", target_volume_db, duration)
 		return tween
 
 func blend_to( target_volume_db : float, duration : float = 0.0 ):
 	if not is_zero_approx(duration):
-		var tween = get_tree().create_tween()
+		var tween = create_tween()
 		tween.tween_property(music_stream_player, "volume_db", target_volume_db, duration)
 		return tween
 	music_stream_player.volume_db = target_volume_db
