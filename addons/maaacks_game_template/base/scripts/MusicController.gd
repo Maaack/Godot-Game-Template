@@ -80,7 +80,8 @@ func _fade_out_and_free():
 func _play_and_fade_in():
 	if music_stream_player == null:
 		return
-	music_stream_player.play()
+	if not music_stream_player.playing:
+		music_stream_player.play()
 	fade_in( fade_in_duration )
 
 func _is_matching_stream( stream_player : AudioStreamPlayer ) -> bool:
@@ -90,16 +91,9 @@ func _is_matching_stream( stream_player : AudioStreamPlayer ) -> bool:
 		return false
 	return music_stream_player.stream == stream_player.stream
 
-func _reparent_music_player( stream_player : AudioStreamPlayer ):
-	var playback_position := stream_player.get_playback_position()
-	stream_player.owner = null
-	stream_player.reparent.call_deferred(self)
-	await(stream_player.tree_entered)
-	stream_player.play(playback_position)
-
 func _blend_and_remove_stream_player( stream_player : AudioStreamPlayer ):
 	if not music_stream_player.playing:
-			play()
+		play()
 	blend_to(stream_player.volume_db, blend_volume_duration)
 	stream_player.stop()
 	stream_player.queue_free()
@@ -121,20 +115,43 @@ func play_stream_player( stream_player : AudioStreamPlayer ):
 	else:
 		_blend_and_connect_stream_player(stream_player)
 
-func play_stream( audio_stream : AudioStream ):
+func get_stream_player( audio_stream : AudioStream ) -> AudioStreamPlayer:
 	var stream_player := AudioStreamPlayer.new()
 	stream_player.stream = audio_stream
 	stream_player.bus = audio_bus
 	add_child(stream_player)
+	return stream_player
+
+func play_stream( audio_stream : AudioStream ) -> AudioStreamPlayer:
+	var stream_player := get_stream_player(audio_stream)
 	stream_player.play.call_deferred()
 	play_stream_player( stream_player )
+	return stream_player
+
+func _clone_music_player( stream_player : AudioStreamPlayer ):
+	var playback_position := stream_player.get_playback_position()
+	var audio_stream := stream_player.stream
+	music_stream_player = get_stream_player(audio_stream)
+	music_stream_player.volume_db = stream_player.volume_db
+	music_stream_player.max_polyphony = stream_player.max_polyphony
+	music_stream_player.pitch_scale = stream_player.pitch_scale
+	music_stream_player.play.call_deferred(playback_position)
+
+func _reparent_music_player( stream_player : AudioStreamPlayer ):
+	var playback_position := stream_player.get_playback_position()
+	stream_player.owner = null
+	stream_player.reparent.call_deferred(self)
+	stream_player.play.call_deferred(playback_position)
 
 func _node_matches_checks( node : Node ) -> bool:
 	return node is AudioStreamPlayer and node.autoplay and node.bus == audio_bus
 
 func _on_removed_music_player( node: Node ) -> void:
 	if music_stream_player == node:
-		_reparent_music_player(node)
+		if node.owner == null:
+			_clone_music_player(node)
+		else:
+			_reparent_music_player(node)
 		if node.tree_exiting.is_connected(_on_removed_music_player.bind(node)):
 			node.tree_exiting.disconnect(_on_removed_music_player.bind(node))
 
