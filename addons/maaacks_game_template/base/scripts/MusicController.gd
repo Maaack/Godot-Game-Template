@@ -7,6 +7,8 @@ extends Node
 ## It then reparents the stream players to itself, and handles blending.
 ## The expected use-case is to attach this script to an autoloaded scene.
 
+const SYSTEM_BUS_PREFIX : String = "System"
+const BLEND_BUS_PREFIX : String = "Blend"
 const MAX_DEPTH = 16
 const MINIMUM_VOLUME_DB = -80
 
@@ -36,19 +38,25 @@ const MINIMUM_VOLUME_DB = -80
 @export var empty_streams_stop_player : bool = true
 
 var music_stream_player : AudioStreamPlayer
+var blend_audio_bus : StringName
+var blend_audio_bus_idx : int
 
 func fade_out( duration : float = 0.0 ):
 	if not is_zero_approx(duration):
+		music_stream_player.bus = audio_bus
 		var tween = create_tween()
 		tween.tween_property(music_stream_player, "volume_db", MINIMUM_VOLUME_DB, duration)
 		return tween
 
+func _set_sub_audio_volume_db(sub_volume_db : float):
+	AudioServer.set_bus_volume_db(blend_audio_bus_idx, sub_volume_db)
+
 func fade_in( duration : float = 0.0 ):
 	if not is_zero_approx(duration):
-		var target_volume_db = music_stream_player.volume_db
-		music_stream_player.volume_db = MINIMUM_VOLUME_DB
+		music_stream_player.bus = blend_audio_bus
+		AudioServer.set_bus_volume_db(blend_audio_bus_idx, MINIMUM_VOLUME_DB)
 		var tween = create_tween()
-		tween.tween_property(music_stream_player, "volume_db", target_volume_db, duration)
+		tween.tween_method(_set_sub_audio_volume_db, MINIMUM_VOLUME_DB, 0, duration)
 		return tween
 
 func blend_to( target_volume_db : float, duration : float = 0.0 ):
@@ -63,10 +71,10 @@ func stop():
 		return
 	music_stream_player.stop()
 
-func play():
+func play( playback_position : float = 0.0 ):
 	if music_stream_player == null:
 		return
-	music_stream_player.play()
+	music_stream_player.play(playback_position)
 
 func _fade_out_and_free():
 	if music_stream_player == null:
@@ -91,20 +99,27 @@ func _is_matching_stream( stream_player : AudioStreamPlayer ) -> bool:
 		return false
 	return music_stream_player.stream == stream_player.stream
 
-func _blend_and_remove_stream_player( stream_player : AudioStreamPlayer ):
-	if not music_stream_player.playing:
-		play()
-	blend_to(stream_player.volume_db, blend_volume_duration)
-	stream_player.stop()
-	stream_player.queue_free()
-
-func _blend_and_connect_stream_player( stream_player : AudioStreamPlayer ):
-	stream_player.bus = audio_bus
+func _connect_stream_on_tree_exiting( stream_player : AudioStreamPlayer ):
 	if not stream_player.tree_exiting.is_connected(_on_removed_music_player.bind(stream_player)):
 		stream_player.tree_exiting.connect(_on_removed_music_player.bind(stream_player))
+
+func _blend_and_remove_stream_player( stream_player : AudioStreamPlayer ):
+	var old_stream_player = music_stream_player
+	var playback_position := music_stream_player.get_playback_position()
+	music_stream_player = stream_player
+	music_stream_player.bus = blend_audio_bus
+	if not music_stream_player.playing:
+		play(playback_position)
+	old_stream_player.stop()
+	old_stream_player.queue_free()
+	_connect_stream_on_tree_exiting(music_stream_player)
+
+func _blend_and_connect_stream_player( stream_player : AudioStreamPlayer ):
+	stream_player.bus = blend_audio_bus
 	_fade_out_and_free()
 	music_stream_player = stream_player
 	_play_and_fade_in()
+	_connect_stream_on_tree_exiting(music_stream_player)
 
 func play_stream_player( stream_player : AudioStreamPlayer ):
 	if stream_player == music_stream_player : return
@@ -161,6 +176,11 @@ func _on_added_music_player( node: Node ) -> void:
 	play_stream_player(node)
 
 func _enter_tree() -> void:
+	AudioServer.add_bus()
+	blend_audio_bus_idx = AudioServer.bus_count - 1
+	blend_audio_bus = SYSTEM_BUS_PREFIX + BLEND_BUS_PREFIX + audio_bus
+	AudioServer.set_bus_send(blend_audio_bus_idx, audio_bus)
+	AudioServer.set_bus_name(blend_audio_bus_idx, blend_audio_bus)
 	var tree_node = get_tree()
 	if not tree_node.node_added.is_connected(_on_added_music_player):
 		tree_node.node_added.connect(_on_added_music_player)
