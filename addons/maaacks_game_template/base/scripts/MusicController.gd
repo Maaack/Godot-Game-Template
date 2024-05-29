@@ -74,7 +74,10 @@ func stop():
 func play( playback_position : float = 0.0 ):
 	if music_stream_player == null:
 		return
-	music_stream_player.play(playback_position)
+	if is_zero_approx(playback_position) and not music_stream_player.playing:
+		music_stream_player.play()
+	else:
+		music_stream_player.play(playback_position)
 
 func _fade_out_and_free():
 	if music_stream_player == null:
@@ -86,10 +89,7 @@ func _fade_out_and_free():
 	stream_player.queue_free()
 
 func _play_and_fade_in():
-	if music_stream_player == null:
-		return
-	if not music_stream_player.playing:
-		music_stream_player.play()
+	play()
 	fade_in( fade_in_duration )
 
 func _is_matching_stream( stream_player : AudioStreamPlayer ) -> bool:
@@ -104,8 +104,8 @@ func _connect_stream_on_tree_exiting( stream_player : AudioStreamPlayer ):
 		stream_player.tree_exiting.connect(_on_removed_music_player.bind(stream_player))
 
 func _blend_and_remove_stream_player( stream_player : AudioStreamPlayer ):
-	var old_stream_player = music_stream_player
 	var playback_position := music_stream_player.get_playback_position()
+	var old_stream_player = music_stream_player
 	music_stream_player = stream_player
 	music_stream_player.bus = blend_audio_bus
 	if not music_stream_player.playing:
