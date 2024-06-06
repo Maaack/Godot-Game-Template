@@ -95,16 +95,25 @@ func _process(_delta):
 		_scroll_container(current_speed)
 
 func _on_CreditsLabel_gui_input(event):
+	# Capture the mouse scroll wheel input event
 	if event is InputEventMouseButton:
 		scroll_paused = true
 		_start_scroll_timer()
 
+func _on_scroll_container_scroll_started():
+	# Capture the touch input event
+	scroll_paused = true
+	_start_scroll_timer()
+
 func _start_scroll_timer():
-	var timer = get_tree().create_timer(1.5)
-	await timer.timeout
-	set_header_and_footer()
-	scroll_paused = false
+	if $ScrollResetTimer.is_stopped():
+		$ScrollResetTimer.start()
 
 func _on_CreditsLabel_meta_clicked(meta:String):
 	if meta.begins_with("https://"):
 		var _err = OS.shell_open(meta)
+
+func _on_scroll_reset_timer_timeout():
+	set_header_and_footer()
+	scroll_paused = false
+
