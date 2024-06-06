@@ -10,7 +10,7 @@ signal end_reached
 @export var h3_font_size: int
 @export var h4_font_size: int
 @export var current_speed: float = 1.0
-@export var scroll_active : bool = true
+@export var enabled : bool = true
 
 var scroll_paused : bool = false
 
@@ -60,7 +60,6 @@ func set_header_and_footer():
 
 func reset():
 	$ScrollContainer.scroll_vertical = 0
-	scroll_active = true
 	set_header_and_footer()
 
 func _ready():
@@ -68,7 +67,7 @@ func _ready():
 	set_header_and_footer()
 
 func _end_reached():
-	scroll_active = false
+	scroll_paused = true
 	emit_signal("end_reached")
 
 func _check_end_reached(previous_scroll):
@@ -77,7 +76,7 @@ func _check_end_reached(previous_scroll):
 	_end_reached()
 
 func _scroll_container(amount : float) -> void:
-	if not scroll_active or scroll_paused or round(amount) == 0:
+	if not visible or not enabled or scroll_paused:
 		return
 	var previous_scroll = $ScrollContainer.scroll_vertical
 	$ScrollContainer.scroll_vertical += round(amount)
