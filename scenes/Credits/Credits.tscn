@@ -6,11 +6,9 @@
 [node name="Credits" instance=ExtResource("1_1d53e")]
 script = ExtResource("2_ujd0n")
 attribution_file_path = "res://ATTRIBUTION.md"
-scroll_active = true
 
 [node name="CreditsLabel" parent="ScrollContainer/VBoxContainer" index="1"]
-text = "[center]
-[font_size=48]Collaborators[/font_size]
+text = "[center][font_size=48]Collaborators[/font_size]
 
 [font_size=32]Godot Game Template[/font_size]
 Author: [url=https://github.com/Maaack/Godot-Game-Template/graphs/contributors]Marek Belski and contributors[/url]  
