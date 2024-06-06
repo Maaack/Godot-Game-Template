@@ -12,6 +12,7 @@ signal end_reached
 @export var current_speed: float = 1.0
 @export var enabled : bool = true
 
+var _current_scroll_position : float = 0.0
 var scroll_paused : bool = false
 
 func load_file(file_path) -> String:
@@ -54,6 +55,7 @@ func set_file_path(file_path:String):
 	_update_text_from_file()
 
 func set_header_and_footer():
+	_current_scroll_position = $ScrollContainer.scroll_vertical
 	%HeaderSpace.custom_minimum_size.y = size.y
 	%FooterSpace.custom_minimum_size.y = size.y
 	%CreditsLabel.custom_minimum_size.x = size.x
@@ -70,17 +72,18 @@ func _end_reached():
 	scroll_paused = true
 	emit_signal("end_reached")
 
-func _check_end_reached(previous_scroll):
-	if previous_scroll != $ScrollContainer.scroll_vertical:
+func _check_end_reached():
+	var _end_of_credits_vertical = %CreditsLabel.size.y + %HeaderSpace.size.y
+	if $ScrollContainer.scroll_vertical <= _end_of_credits_vertical:
 		return
 	_end_reached()
 
 func _scroll_container(amount : float) -> void:
 	if not visible or not enabled or scroll_paused:
 		return
-	var previous_scroll = $ScrollContainer.scroll_vertical
-	$ScrollContainer.scroll_vertical += round(amount)
-	_check_end_reached(previous_scroll)
+	_current_scroll_position += amount
+	$ScrollContainer.scroll_vertical = round(_current_scroll_position)
+	_check_end_reached()
 
 func _process(_delta):
 	if Engine.is_editor_hint():
