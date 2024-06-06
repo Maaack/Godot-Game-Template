@@ -107,8 +107,7 @@ func _on_scroll_container_scroll_started():
 	_start_scroll_timer()
 
 func _start_scroll_timer():
-	if $ScrollResetTimer.is_stopped():
-		$ScrollResetTimer.start()
+	$ScrollResetTimer.start()
 
 func _on_CreditsLabel_meta_clicked(meta:String):
 	if meta.begins_with("https://"):
