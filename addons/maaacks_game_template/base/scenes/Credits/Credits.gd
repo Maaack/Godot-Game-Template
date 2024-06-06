@@ -95,7 +95,7 @@ func _process(_delta):
 	else:
 		_scroll_container(current_speed)
 
-func _on_CreditsLabel_gui_input(event):
+func _on_scroll_container_gui_input(event):
 	# Capture the mouse scroll wheel input event
 	if event is InputEventMouseButton:
 		scroll_paused = true
@@ -117,4 +117,3 @@ func _on_CreditsLabel_meta_clicked(meta:String):
 func _on_scroll_reset_timer_timeout():
 	set_header_and_footer()
 	scroll_paused = false
-
