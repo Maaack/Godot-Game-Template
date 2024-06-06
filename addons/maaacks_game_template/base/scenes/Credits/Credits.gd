@@ -10,8 +10,9 @@ signal end_reached
 @export var h3_font_size: int
 @export var h4_font_size: int
 @export var current_speed: float = 1.0
-@export var scroll_active : bool = true
+@export var enabled : bool = true
 
+var _current_scroll_position : float = 0.0
 var scroll_paused : bool = false
 
 func load_file(file_path) -> String:
@@ -34,7 +35,7 @@ func regex_replace_titles(credits:String):
 	for heading_font_size in heading_font_sizes:
 		iter += 1
 		var regex = RegEx.new()
-		var match_string : String = "([^#])#{%d}\\s([^\n]*)" % iter
+		var match_string : String = "([^#]|^)#{%d}\\s([^\n]*)" % iter
 		var replace_string : String = "$1[font_size=%d]$2[/font_size]" % [heading_font_size]
 		regex.compile(match_string)
 		credits = regex.sub(credits, replace_string, true)
@@ -44,7 +45,8 @@ func _update_text_from_file():
 	var text : String = load_file(attribution_file_path)
 	if text == "":
 		return
-	text = text.right(-text.find("\n")) # Trims first line "ATTRIBUTION"
+	var _end_of_first_line = text.find("\n") + 1
+	text = text.right(-_end_of_first_line) # Trims first line "ATTRIBUTION"
 	text = regex_replace_urls(text)
 	text = regex_replace_titles(text)
 	%CreditsLabel.text = "[center]%s[/center]" % [text]
@@ -54,13 +56,13 @@ func set_file_path(file_path:String):
 	_update_text_from_file()
 
 func set_header_and_footer():
+	_current_scroll_position = $ScrollContainer.scroll_vertical
 	%HeaderSpace.custom_minimum_size.y = size.y
 	%FooterSpace.custom_minimum_size.y = size.y
 	%CreditsLabel.custom_minimum_size.x = size.x
 
 func reset():
 	$ScrollContainer.scroll_vertical = 0
-	scroll_active = true
 	set_header_and_footer()
 
 func _ready():
@@ -68,20 +70,21 @@ func _ready():
 	set_header_and_footer()
 
 func _end_reached():
-	scroll_active = false
+	scroll_paused = true
 	emit_signal("end_reached")
 
-func _check_end_reached(previous_scroll):
-	if previous_scroll != $ScrollContainer.scroll_vertical:
+func _check_end_reached():
+	var _end_of_credits_vertical = %CreditsLabel.size.y + %HeaderSpace.size.y
+	if $ScrollContainer.scroll_vertical <= _end_of_credits_vertical:
 		return
 	_end_reached()
 
 func _scroll_container(amount : float) -> void:
-	if not scroll_active or scroll_paused or round(amount) == 0:
+	if not visible or not enabled or scroll_paused:
 		return
-	var previous_scroll = $ScrollContainer.scroll_vertical
-	$ScrollContainer.scroll_vertical += round(amount)
-	_check_end_reached(previous_scroll)
+	_current_scroll_position += amount
+	$ScrollContainer.scroll_vertical = round(_current_scroll_position)
+	_check_end_reached()
 
 func _process(_delta):
 	if Engine.is_editor_hint():
@@ -92,17 +95,24 @@ func _process(_delta):
 	else:
 		_scroll_container(current_speed)
 
-func _on_CreditsLabel_gui_input(event):
+func _on_scroll_container_gui_input(event):
+	# Capture the mouse scroll wheel input event
 	if event is InputEventMouseButton:
 		scroll_paused = true
 		_start_scroll_timer()
 
+func _on_scroll_container_scroll_started():
+	# Capture the touch input event
+	scroll_paused = true
+	_start_scroll_timer()
+
 func _start_scroll_timer():
-	var timer = get_tree().create_timer(1.5)
-	await timer.timeout
-	set_header_and_footer()
-	scroll_paused = false
+	$ScrollResetTimer.start()
 
 func _on_CreditsLabel_meta_clicked(meta:String):
 	if meta.begins_with("https://"):
 		var _err = OS.shell_open(meta)
+
+func _on_scroll_reset_timer_timeout():
+	set_header_and_footer()
+	scroll_paused = false
