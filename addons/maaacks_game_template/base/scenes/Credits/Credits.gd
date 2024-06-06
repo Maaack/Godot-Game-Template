@@ -35,7 +35,7 @@ func regex_replace_titles(credits:String):
 	for heading_font_size in heading_font_sizes:
 		iter += 1
 		var regex = RegEx.new()
-		var match_string : String = "([^#])#{%d}\\s([^\n]*)" % iter
+		var match_string : String = "([^#]|^)#{%d}\\s([^\n]*)" % iter
 		var replace_string : String = "$1[font_size=%d]$2[/font_size]" % [heading_font_size]
 		regex.compile(match_string)
 		credits = regex.sub(credits, replace_string, true)
@@ -45,7 +45,8 @@ func _update_text_from_file():
 	var text : String = load_file(attribution_file_path)
 	if text == "":
 		return
-	text = text.right(-text.find("\n")) # Trims first line "ATTRIBUTION"
+	var _end_of_first_line = text.find("\n") + 1
+	text = text.right(-_end_of_first_line) # Trims first line "ATTRIBUTION"
 	text = regex_replace_urls(text)
 	text = regex_replace_titles(text)
 	%CreditsLabel.text = "[center]%s[/center]" % [text]
