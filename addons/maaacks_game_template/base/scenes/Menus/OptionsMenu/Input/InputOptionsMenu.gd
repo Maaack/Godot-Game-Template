@@ -11,6 +11,7 @@ const KEY_DELETION_TEXT : String = "Are you sure you want to remove %s from %s?"
 	"move_right" : "Right",
 	"interact" : "Interact"
 }
+@export var show_built_in_actions : bool = false
 @export var add_button_texture : Texture2D
 @export var remove_button_texture : Texture2D
 
@@ -52,7 +53,7 @@ func _get_action_keycode(action_event : InputEvent):
 		return action_event.get_physical_keycode_with_modifiers()
 
 func _update_action_name_map():
-	var action_names : Array[StringName] = AppSettings.get_action_names()
+	var action_names : Array[StringName] = AppSettings.get_action_names(show_built_in_actions)
 	for action_name in action_names:
 		var readable_name : String = action_name
 		if not readable_name in action_name_map:
@@ -90,7 +91,7 @@ func _get_action_readable_name(action_name : StringName) -> String:
 
 func _build_ui_tree():
 	_start_tree()
-	var action_names : Array[StringName] = AppSettings.get_action_names()
+	var action_names : Array[StringName] = AppSettings.get_action_names(show_built_in_actions)
 	for action_name in action_names:
 		var input_events = InputMap.action_get_events(action_name)
 		if input_events.size() < 1:
@@ -121,7 +122,7 @@ func _remove_input_event_from_action(input_event : InputEvent, action_name : Str
 
 func _build_assigned_input_events():
 	assigned_input_events.clear()
-	var action_names : Array[StringName] = AppSettings.get_action_names()
+	var action_names : Array[StringName] = AppSettings.get_action_names(show_built_in_actions)
 	for action_name in action_names:
 		var input_events = InputMap.action_get_events(action_name)
 		for input_event in input_events:
