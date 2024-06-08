@@ -71,14 +71,6 @@ func _popup_remove_action_event(item : TreeItem) -> void:
 	$KeyDeletionDialog.dialog_text = KEY_DELETION_TEXT % [item.get_text(0), readable_action_name]
 	$KeyDeletionDialog.popup_centered()
 
-func _get_action_keycode(action_event : InputEvent):
-	if action_event is InputEventMouse:
-		return 0
-	if action_event.keycode != 0:
-		return action_event.get_keycode_with_modifiers()
-	else:
-		return action_event.get_physical_keycode_with_modifiers()
-
 func _start_tree():
 	%Tree.clear()
 	%Tree.create_item()
