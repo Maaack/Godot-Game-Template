@@ -15,6 +15,7 @@ grow_vertical = 2
 theme_override_constants/margin_top = 24
 theme_override_constants/margin_bottom = 24
 script = ExtResource("1")
+show_all_actions = true
 add_button_texture = ExtResource("2_dw35t")
 remove_button_texture = ExtResource("3_lngdd")
 
