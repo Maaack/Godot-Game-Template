@@ -103,17 +103,14 @@ func _add_action_as_tree_item(readable_name : String, action_name : String, inpu
 
 func _get_all_action_names() -> Array[StringName]:
 	var action_names : Array[StringName] = []
-	for action_name in action_name_map:
+	var full_action_name_map = action_name_map.duplicate()
+	if show_built_in_actions:
+		full_action_name_map.merge(built_in_action_name_map)
+	for action_name in full_action_name_map:
 		if action_name is String:
 			action_name = StringName(action_name)
 		if action_name is StringName:
 			action_names.append(action_name)
-	if show_built_in_actions:
-		for action_name in built_in_action_name_map:
-			if action_name is String:
-				action_name = StringName(action_name)
-			if action_name is StringName:
-				action_names.append(action_name)
 	if show_all_actions:
 		var all_actions := AppSettings.get_action_names(show_built_in_actions)
 		for action_name in all_actions:
