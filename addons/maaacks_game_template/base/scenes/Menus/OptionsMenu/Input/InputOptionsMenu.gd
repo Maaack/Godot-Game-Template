@@ -4,6 +4,7 @@ const ALREADY_ASSIGNED_TEXT : String = "%s already assigned to %s."
 const ONE_INPUT_MINIMUM_TEXT : String = "%s must have at least one key or button assigned."
 const KEY_DELETION_TEXT : String = "Are you sure you want to remove %s from %s?"
 
+## Maps the names of input actions to readable names for users.
 @export var action_name_map : Dictionary = {
 	"move_up" : "Up",
 	"move_down" : "Down",
@@ -11,9 +12,35 @@ const KEY_DELETION_TEXT : String = "Are you sure you want to remove %s from %s?"
 	"move_right" : "Right",
 	"interact" : "Interact"
 }
-@export var show_built_in_actions : bool = false
+## Show action names that are not explicitely listed in an action name map.
+@export var show_all_actions : bool = false
+@export_group("Icons")
 @export var add_button_texture : Texture2D
 @export var remove_button_texture : Texture2D
+@export_group("Built-in Actions")
+## Shows action names starting with "ui_" that are typically Godot built-in.
+@export var show_built_in_actions : bool = false
+## Maps the names of built-in input actions to readable names for users.
+@export var built_in_action_name_map : Dictionary = {
+	"ui_accept" : "Accept",
+	"ui_select" : "Select",
+	"ui_cancel" : "Cancel",
+	"ui_focus_next" : "Focus Next",
+	"ui_focus_prev" : "Focus Prev",
+	"ui_left" : "Left (UI)",
+	"ui_right" : "Right (UI)",
+	"ui_up" : "Up (UI)",
+	"ui_down" : "Down (UI)",
+	"ui_page_up" : "Page Up",
+	"ui_page_down" : "Page Down",
+	"ui_home" : "Home",
+	"ui_end" : "End",
+	"ui_cut" : "Cut",
+	"ui_copy" : "Copy",
+	"ui_paste" : "Paste",
+	"ui_undo" : "Undo",
+	"ui_redo" : "Redo",
+}
 
 @onready var assignment_placeholder_text = $KeyAssignmentDialog.dialog_text
 var tree_item_add_map : Dictionary = {}
@@ -52,13 +79,6 @@ func _get_action_keycode(action_event : InputEvent):
 	else:
 		return action_event.get_physical_keycode_with_modifiers()
 
-func _update_action_name_map():
-	var action_names : Array[StringName] = AppSettings.get_action_names(show_built_in_actions)
-	for action_name in action_names:
-		var readable_name : String = action_name
-		if not readable_name in action_name_map:
-			action_name_map[readable_name] = readable_name
-
 func _start_tree():
 	%Tree.clear()
 	%Tree.create_item()
@@ -81,17 +101,33 @@ func _add_action_as_tree_item(readable_name : String, action_name : String, inpu
 	for input_event in input_events:
 		_add_input_event_as_tree_item(action_name, input_event, action_tree_item)
 
+func _get_all_action_names() -> Array[StringName]:
+	var all_actions := AppSettings.get_action_names(show_built_in_actions)
+	if show_all_actions:
+		return AppSettings.get_action_names(show_built_in_actions)
+	var action_names : Array[StringName] = []
+	for action_name in action_name_map:
+		if action_name is String:
+			action_names.append(StringName(action_name))
+	if show_built_in_actions:
+		for action_name in built_in_action_name_map:
+			if action_name is String:
+				action_names.append(StringName(action_name))
+	return action_names
+
 func _get_action_readable_name(action_name : StringName) -> String:
 	var readable_name : String = action_name
 	if readable_name in action_name_map:
 		readable_name = action_name_map[readable_name]
+	elif readable_name in built_in_action_name_map:
+		readable_name = built_in_action_name_map[readable_name]
 	else:
 		action_name_map[readable_name] = readable_name
 	return readable_name
 
 func _build_ui_tree():
 	_start_tree()
-	var action_names : Array[StringName] = AppSettings.get_action_names(show_built_in_actions)
+	var action_names : Array[StringName] = _get_all_action_names()
 	for action_name in action_names:
 		var input_events = InputMap.action_get_events(action_name)
 		if input_events.size() < 1:
@@ -122,7 +158,7 @@ func _remove_input_event_from_action(input_event : InputEvent, action_name : Str
 
 func _build_assigned_input_events():
 	assigned_input_events.clear()
-	var action_names : Array[StringName] = AppSettings.get_action_names(show_built_in_actions)
+	var action_names := _get_all_action_names()
 	for action_name in action_names:
 		var input_events = InputMap.action_get_events(action_name)
 		for input_event in input_events:
