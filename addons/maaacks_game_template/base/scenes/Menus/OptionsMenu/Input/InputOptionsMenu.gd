@@ -102,17 +102,23 @@ func _add_action_as_tree_item(readable_name : String, action_name : String, inpu
 		_add_input_event_as_tree_item(action_name, input_event, action_tree_item)
 
 func _get_all_action_names() -> Array[StringName]:
-	var all_actions := AppSettings.get_action_names(show_built_in_actions)
-	if show_all_actions:
-		return AppSettings.get_action_names(show_built_in_actions)
 	var action_names : Array[StringName] = []
 	for action_name in action_name_map:
 		if action_name is String:
-			action_names.append(StringName(action_name))
+			action_name = StringName(action_name)
+		if action_name is StringName:
+			action_names.append(action_name)
 	if show_built_in_actions:
 		for action_name in built_in_action_name_map:
 			if action_name is String:
-				action_names.append(StringName(action_name))
+				action_name = StringName(action_name)
+			if action_name is StringName:
+				action_names.append(action_name)
+	if show_all_actions:
+		var all_actions := AppSettings.get_action_names(show_built_in_actions)
+		for action_name in all_actions:
+			if not action_name in action_names:
+				action_names.append(action_name)
 	return action_names
 
 func _get_action_readable_name(action_name : StringName) -> String:
