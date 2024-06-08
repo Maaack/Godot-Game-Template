@@ -8,6 +8,7 @@ const NO_INPUT_TEXT : String = "None"
 var last_input_event : InputEvent
 var last_input_text : String
 var listening : bool = false
+var confirming : bool = false
 
 func _record_input_event(event : InputEvent):
 	last_input_text = InputEventHelper.get_text(event)
@@ -34,6 +35,7 @@ func _start_listening():
 func _stop_listening():
 	%InputTextEdit.placeholder_text = FOCUS_HERE_TEXT
 	listening = false
+	confirming = false
 
 func _on_text_edit_focus_entered():
 	_start_listening.call_deferred()
@@ -55,7 +57,7 @@ func _is_mouse_input(event : InputEvent) -> bool:
 	return event is InputEventMouse
 
 func _input_confirms_choice(event : InputEvent) -> bool:
-	return not _is_mouse_input(event) and _input_matches_last(event)
+	return confirming and not _is_mouse_input(event) and _input_matches_last(event)
 
 func _should_process_input_event(event : InputEvent) -> bool:
 	return listening and _is_recordable_input(event) and %DelayTimer.is_stopped()
@@ -67,10 +69,12 @@ func _process_input_event(event : InputEvent):
 	if not _should_process_input_event(event):
 		return
 	if _input_confirms_choice(event):
+		confirming = false
 		_focus_on_ok.call_deferred()
 		return
 	_record_input_event(event)
 	if _should_confirm_input_event(event):
+		confirming = true
 		%DelayTimer.start()
 		%InputTextEdit.placeholder_text = CONFIRM_INPUT_TEXT
 
