@@ -15,6 +15,7 @@ grow_vertical = 2
 theme_override_constants/margin_top = 24
 theme_override_constants/margin_bottom = 24
 script = ExtResource("1")
+show_all_actions = true
 add_button_texture = ExtResource("2_dw35t")
 remove_button_texture = ExtResource("3_lngdd")
 
@@ -51,9 +52,47 @@ text = "Reset"
 
 [node name="KeyAssignmentDialog" type="ConfirmationDialog" parent="."]
 title = "Assign Key"
-size = Vector2i(400, 100)
-dialog_text = "Press a key or button..."
+size = Vector2i(400, 158)
+dialog_text = "
+
+
+"
 script = ExtResource("3_wsh2h")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="KeyAssignmentDialog"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -49.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InputLabel" type="Label" parent="KeyAssignmentDialog/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "None"
+horizontal_alignment = 1
+
+[node name="InputTextEdit" type="TextEdit" parent="KeyAssignmentDialog/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+placeholder_text = "Focus here to assign inputs."
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+middle_mouse_paste_enabled = false
+caret_move_on_right_click = false
+
+[node name="DelayTimer" type="Timer" parent="KeyAssignmentDialog"]
+unique_name_in_owner = true
+wait_time = 0.2
+one_shot = true
 
 [node name="KeyDeletionDialog" type="ConfirmationDialog" parent="."]
 title = "Remove Key"
@@ -73,4 +112,9 @@ size = Vector2i(398, 100)
 [connection signal="pressed" from="VBoxContainer/InputMappingContainer/HBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]
 [connection signal="canceled" from="KeyAssignmentDialog" to="." method="_on_key_assignment_dialog_canceled"]
 [connection signal="confirmed" from="KeyAssignmentDialog" to="." method="_on_key_assignment_dialog_confirmed"]
+[connection signal="visibility_changed" from="KeyAssignmentDialog" to="KeyAssignmentDialog" method="_on_visibility_changed"]
+[connection signal="focus_entered" from="KeyAssignmentDialog/VBoxContainer/InputTextEdit" to="KeyAssignmentDialog" method="_on_text_edit_focus_entered"]
+[connection signal="focus_exited" from="KeyAssignmentDialog/VBoxContainer/InputTextEdit" to="KeyAssignmentDialog" method="_on_input_text_edit_focus_exited"]
+[connection signal="gui_input" from="KeyAssignmentDialog/VBoxContainer/InputTextEdit" to="KeyAssignmentDialog" method="_on_input_text_edit_gui_input"]
+[connection signal="timeout" from="KeyAssignmentDialog/DelayTimer" to="." method="_on_delay_timer_timeout"]
 [connection signal="confirmed" from="KeyDeletionDialog" to="." method="_on_key_deletion_dialog_confirmed"]

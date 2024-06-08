@@ -46,13 +46,19 @@ static func set_input_from_config(action_name : String):
 		if config_event not in action_events:
 			InputMap.action_add_event(action_name, config_event)
 
-static func get_filtered_action_names() -> Array[StringName]:
-	var return_list : Array[StringName] = []
-	var action_list : Array[StringName] = InputMap.get_actions()
-	for action_name in action_list:
-		if not action_name.begins_with("ui_"):
-			return_list.append(action_name)
-	return return_list
+static func _get_action_names() -> Array[StringName]:
+	return InputMap.get_actions()
+
+static func _get_custom_action_names() -> Array[StringName]:
+	var callable_filter := func(action_name): return not action_name.begins_with("ui_")
+	var action_list := _get_action_names()
+	return action_list.filter(callable_filter)
+
+static func get_action_names(built_in_actions : bool = false) -> Array[StringName]:
+	if built_in_actions:
+		return _get_action_names()
+	else:
+		return _get_custom_action_names()
 
 static func reset_to_default_inputs() -> void:
 	_clear_config_input_events()
@@ -63,12 +69,12 @@ static func reset_to_default_inputs() -> void:
 			InputMap.action_add_event(action_name, input_event)
 
 static func set_default_inputs() -> void:
-	var action_list : Array[StringName] = get_filtered_action_names()
+	var action_list : Array[StringName] = _get_action_names()
 	for action_name in action_list:
 		default_action_events[action_name] = InputMap.action_get_events(action_name)
 
 static func set_inputs_from_config() -> void:
-	var action_list : Array[StringName] = get_filtered_action_names()
+	var action_list : Array[StringName] = _get_action_names()
 	for action_name in action_list:
 		set_input_from_config(action_name)
 
