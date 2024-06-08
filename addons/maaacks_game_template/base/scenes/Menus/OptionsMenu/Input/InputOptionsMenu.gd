@@ -177,7 +177,7 @@ func _ready():
 
 func _add_action_event():
 	var last_input_event = $KeyAssignmentDialog.last_input_event
-	last_input_readable_name = $KeyAssignmentDialog.dialog_text
+	last_input_readable_name = $KeyAssignmentDialog.last_input_text
 	if last_input_event != null:
 		var assigned_action := _get_action_for_input_event(last_input_event)
 		if not assigned_action.is_empty():
