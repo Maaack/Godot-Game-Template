@@ -4,6 +4,7 @@ extends Node
 
 const JOYSTICK_LEFT_NAME = "Left Gamepad Joystick"
 const JOYSTICK_RIGHT_NAME = "Right Gamepad Joystick"
+const D_PAD_NAME = "Gamepad D-pad"
 
 const JOY_BUTTON_NAMES : Dictionary = {
 	JOY_BUTTON_A: "A Gamepad Button",
@@ -17,6 +18,11 @@ const JOY_BUTTON_NAMES : Dictionary = {
 	JOY_BUTTON_START : "Start Gamepad Button",
 	JOY_BUTTON_GUIDE : "Guide Gamepad Button",
 	JOY_BUTTON_BACK : "Back Gamepad Button",
+	JOY_BUTTON_DPAD_UP : D_PAD_NAME + " Up",
+	JOY_BUTTON_DPAD_DOWN : D_PAD_NAME + " Down",
+	JOY_BUTTON_DPAD_LEFT : D_PAD_NAME + " Left",
+	JOY_BUTTON_DPAD_RIGHT : D_PAD_NAME + " Right",
+	
 }
 
 const JOY_AXIS_NAMES : Dictionary = {

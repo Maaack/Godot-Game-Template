@@ -5,5 +5,3 @@
 
 [node name="Controls" instance=ExtResource("1_b6ygu")]
 script = ExtResource("2_gjulr")
-add_button_texture = null
-remove_button_texture = null

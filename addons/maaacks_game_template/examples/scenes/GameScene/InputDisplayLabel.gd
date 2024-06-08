@@ -1,6 +1,6 @@
 extends Label
 
-@onready var action_names = AppSettings.get_filtered_action_names()
+@onready var action_names = AppSettings.get_action_names()
 
 func _get_inputs_as_string():
 	var all_inputs : String = ""
