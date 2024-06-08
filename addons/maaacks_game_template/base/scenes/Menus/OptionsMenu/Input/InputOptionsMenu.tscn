@@ -52,7 +52,6 @@ text = "Reset"
 
 [node name="KeyAssignmentDialog" type="ConfirmationDialog" parent="."]
 title = "Assign Key"
-position = Vector2i(0, 36)
 size = Vector2i(400, 158)
 dialog_text = "
 
