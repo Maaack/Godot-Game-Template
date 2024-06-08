@@ -79,7 +79,7 @@ func _process_input_event(event : InputEvent):
 		%InputTextEdit.placeholder_text = CONFIRM_INPUT_TEXT
 
 func _on_input_text_edit_gui_input(event):
-	%InputTextEdit.text = ""
+	%InputTextEdit.set_deferred("text", "")
 	_process_input_event(event)
 
 func _on_visibility_changed():
