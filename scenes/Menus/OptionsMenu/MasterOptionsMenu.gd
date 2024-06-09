@@ -1,1 +1,1 @@
-extends "res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/MasterOptionsMenu.gd"
+extends MasterOptionsMenu
