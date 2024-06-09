@@ -116,5 +116,4 @@ size = Vector2i(398, 100)
 [connection signal="focus_entered" from="KeyAssignmentDialog/VBoxContainer/InputTextEdit" to="KeyAssignmentDialog" method="_on_text_edit_focus_entered"]
 [connection signal="focus_exited" from="KeyAssignmentDialog/VBoxContainer/InputTextEdit" to="KeyAssignmentDialog" method="_on_input_text_edit_focus_exited"]
 [connection signal="gui_input" from="KeyAssignmentDialog/VBoxContainer/InputTextEdit" to="KeyAssignmentDialog" method="_on_input_text_edit_gui_input"]
-[connection signal="timeout" from="KeyAssignmentDialog/DelayTimer" to="." method="_on_delay_timer_timeout"]
 [connection signal="confirmed" from="KeyDeletionDialog" to="." method="_on_key_deletion_dialog_confirmed"]
