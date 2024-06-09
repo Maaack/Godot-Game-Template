@@ -61,5 +61,6 @@ static func get_text(event : InputEvent) -> String:
 			keycode = event.get_physical_keycode_with_modifiers()
 		else:
 			keycode = event.get_keycode_with_modifiers()
+		keycode = DisplayServer.keyboard_get_keycode_from_physical(keycode)
 		return OS.get_keycode_string(keycode)
 	return event.as_text()
