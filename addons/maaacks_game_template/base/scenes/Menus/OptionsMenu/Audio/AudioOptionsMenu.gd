@@ -1,3 +1,4 @@
+class_name AudioOptionsMenu
 extends Control
 
 const SYSTEM_BUS_PREFIX : String = "System"

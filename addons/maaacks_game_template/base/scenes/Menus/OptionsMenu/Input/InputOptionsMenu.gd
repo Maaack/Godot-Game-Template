@@ -1,3 +1,4 @@
+class_name InputOptionsMenu
 extends Control
 
 const ALREADY_ASSIGNED_TEXT : String = "%s already assigned to %s."
