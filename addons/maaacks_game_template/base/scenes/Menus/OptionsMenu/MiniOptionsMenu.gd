@@ -1,3 +1,4 @@
+class_name MiniOptionsMenu
 extends Control
 
 @onready var mute_control = %MuteControl

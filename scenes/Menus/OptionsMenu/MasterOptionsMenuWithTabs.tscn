@@ -1,15 +1,16 @@
 [gd_scene load_steps=6 format=3 uid="uid://cagfbg7m2undu"]
 
-[ext_resource type="PackedScene" path="res://scenes/Menus/OptionsMenu/MasterOptionsMenu.tscn" id="1_poeal"]
-[ext_resource type="PackedScene" path="res://scenes/Menus/OptionsMenu/Input/InputOptionsMenuWithMouseSensitivity.tscn" id="2_qmmtm"]
-[ext_resource type="PackedScene" path="res://scenes/Menus/OptionsMenu/Audio/AudioOptionsMenu.tscn" id="3_g1i0l"]
-[ext_resource type="PackedScene" path="res://scenes/Menus/OptionsMenu/Video/VideoOptionsMenuWithExtras.tscn" id="4_8mj1w"]
-[ext_resource type="PackedScene" path="res://scenes/Menus/OptionsMenu/Game/GameOptionsMenu.tscn" id="5_277lf"]
+[ext_resource type="PackedScene" uid="uid://d4gb821uhcxfi" path="res://scenes/Menus/OptionsMenu/MasterOptionsMenu.tscn" id="1_poeal"]
+[ext_resource type="PackedScene" uid="uid://ckiogikpg1i3" path="res://scenes/Menus/OptionsMenu/Input/InputOptionsMenuWithMouseSensitivity.tscn" id="2_qmmtm"]
+[ext_resource type="PackedScene" uid="uid://c8cehdleoso6q" path="res://scenes/Menus/OptionsMenu/Audio/AudioOptionsMenu.tscn" id="3_g1i0l"]
+[ext_resource type="PackedScene" uid="uid://qn4a7owdi3mt" path="res://scenes/Menus/OptionsMenu/Video/VideoOptionsMenuWithExtras.tscn" id="4_8mj1w"]
+[ext_resource type="PackedScene" uid="uid://hcqhf6rxq1e5" path="res://scenes/Menus/OptionsMenu/Game/GameOptionsMenu.tscn" id="5_277lf"]
 
 [node name="MasterOptionsMenu" instance=ExtResource("1_poeal")]
 
 [node name="Controls" parent="TabContainer" index="1" instance=ExtResource("2_qmmtm")]
 layout_mode = 2
+show_all_actions = true
 
 [node name="Audio" parent="TabContainer" index="2" instance=ExtResource("3_g1i0l")]
 visible = false

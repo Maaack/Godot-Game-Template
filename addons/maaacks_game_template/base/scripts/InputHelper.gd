@@ -56,5 +56,11 @@ static func get_text(event : InputEvent) -> String:
 		full_string += " " + direction_string
 		return full_string
 	elif event is InputEventKey:
-		return OS.get_keycode_string(event.get_physical_keycode_with_modifiers())
+		var keycode : Key = event.get_physical_keycode()
+		if keycode:
+			keycode = event.get_physical_keycode_with_modifiers()
+		else:
+			keycode = event.get_keycode_with_modifiers()
+		keycode = DisplayServer.keyboard_get_keycode_from_physical(keycode)
+		return OS.get_keycode_string(keycode)
 	return event.as_text()
