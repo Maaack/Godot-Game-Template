@@ -7,7 +7,6 @@ extends Node
 ## It then reparents the stream players to itself, and handles blending.
 ## The expected use-case is to attach this script to an autoloaded scene.
 
-const SYSTEM_BUS_PREFIX : String = "System"
 const BLEND_BUS_PREFIX : String = "Blend"
 const MAX_DEPTH = 16
 const MINIMUM_VOLUME_DB = -80
@@ -178,7 +177,7 @@ func _on_added_music_player( node: Node ) -> void:
 func _enter_tree() -> void:
 	AudioServer.add_bus()
 	blend_audio_bus_idx = AudioServer.bus_count - 1
-	blend_audio_bus = SYSTEM_BUS_PREFIX + BLEND_BUS_PREFIX + audio_bus
+	blend_audio_bus = AppSettings.SYSTEM_BUS_NAME_PREFIX + BLEND_BUS_PREFIX + audio_bus
 	AudioServer.set_bus_send(blend_audio_bus_idx, audio_bus)
 	AudioServer.set_bus_name(blend_audio_bus_idx, blend_audio_bus)
 	var tree_node = get_tree()

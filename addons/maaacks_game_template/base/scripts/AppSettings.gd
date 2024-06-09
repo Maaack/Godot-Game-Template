@@ -13,6 +13,7 @@ const FULLSCREEN_ENABLED = &'FullscreenEnabled'
 const SCREEN_RESOLUTION = &'ScreenResolution'
 const MUTE_SETTING = &'Mute'
 const MASTER_BUS_INDEX = 0
+const SYSTEM_BUS_NAME_PREFIX = "_"
 
 # Input
 static var default_action_events : Dictionary
