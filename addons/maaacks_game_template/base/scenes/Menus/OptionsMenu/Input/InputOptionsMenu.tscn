@@ -15,7 +15,6 @@ grow_vertical = 2
 theme_override_constants/margin_top = 24
 theme_override_constants/margin_bottom = 24
 script = ExtResource("1")
-show_all_actions = true
 add_button_texture = ExtResource("2_dw35t")
 remove_button_texture = ExtResource("3_lngdd")
 
@@ -116,5 +115,4 @@ size = Vector2i(398, 100)
 [connection signal="focus_entered" from="KeyAssignmentDialog/VBoxContainer/InputTextEdit" to="KeyAssignmentDialog" method="_on_text_edit_focus_entered"]
 [connection signal="focus_exited" from="KeyAssignmentDialog/VBoxContainer/InputTextEdit" to="KeyAssignmentDialog" method="_on_input_text_edit_focus_exited"]
 [connection signal="gui_input" from="KeyAssignmentDialog/VBoxContainer/InputTextEdit" to="KeyAssignmentDialog" method="_on_input_text_edit_gui_input"]
-[connection signal="timeout" from="KeyAssignmentDialog/DelayTimer" to="." method="_on_delay_timer_timeout"]
 [connection signal="confirmed" from="KeyDeletionDialog" to="." method="_on_key_deletion_dialog_confirmed"]

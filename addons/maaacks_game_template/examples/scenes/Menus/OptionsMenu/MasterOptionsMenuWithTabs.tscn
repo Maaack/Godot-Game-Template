@@ -10,6 +10,7 @@
 
 [node name="Controls" parent="TabContainer" index="1" instance=ExtResource("2_p458j")]
 layout_mode = 2
+show_all_actions = true
 
 [node name="Audio" parent="TabContainer" index="2" instance=ExtResource("3_vs2ne")]
 visible = false

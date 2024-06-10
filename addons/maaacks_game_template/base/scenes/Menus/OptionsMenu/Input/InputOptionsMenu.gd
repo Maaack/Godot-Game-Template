@@ -1,3 +1,4 @@
+class_name InputOptionsMenu
 extends Control
 
 const ALREADY_ASSIGNED_TEXT : String = "%s already assigned to %s."
@@ -18,8 +19,10 @@ const KEY_DELETION_TEXT : String = "Are you sure you want to remove %s from %s?"
 @export var add_button_texture : Texture2D
 @export var remove_button_texture : Texture2D
 @export_group("Built-in Actions")
-## Shows action names starting with "ui_" that are typically Godot built-in.
+## Shows Godot's built-in actions (action names starting with "ui_") in the tree.
 @export var show_built_in_actions : bool = false
+## Prevents assigning inputs that are already assigned to Godot's built-in actions (action names starting with "ui_"). Not recommended.
+@export var catch_built_in_duplicate_inputs : bool = false
 ## Maps the names of built-in input actions to readable names for users.
 @export var built_in_action_name_map : Dictionary = {
 	"ui_accept" : "Accept",
@@ -93,10 +96,10 @@ func _add_action_as_tree_item(readable_name : String, action_name : String, inpu
 	for input_event in input_events:
 		_add_input_event_as_tree_item(action_name, input_event, action_tree_item)
 
-func _get_all_action_names() -> Array[StringName]:
+func _get_all_action_names(include_built_in : bool = false) -> Array[StringName]:
 	var action_names : Array[StringName] = []
 	var full_action_name_map = action_name_map.duplicate()
-	if show_built_in_actions:
+	if include_built_in:
 		full_action_name_map.merge(built_in_action_name_map)
 	for action_name in full_action_name_map:
 		if action_name is String:
@@ -104,7 +107,7 @@ func _get_all_action_names() -> Array[StringName]:
 		if action_name is StringName:
 			action_names.append(action_name)
 	if show_all_actions:
-		var all_actions := AppSettings.get_action_names(show_built_in_actions)
+		var all_actions := AppSettings.get_action_names(include_built_in)
 		for action_name in all_actions:
 			if not action_name in action_names:
 				action_names.append(action_name)
@@ -122,7 +125,7 @@ func _get_action_readable_name(action_name : StringName) -> String:
 
 func _build_ui_tree():
 	_start_tree()
-	var action_names : Array[StringName] = _get_all_action_names()
+	var action_names : Array[StringName] = _get_all_action_names(show_built_in_actions)
 	for action_name in action_names:
 		var input_events = InputMap.action_get_events(action_name)
 		if input_events.size() < 1:
@@ -153,7 +156,7 @@ func _remove_input_event_from_action(input_event : InputEvent, action_name : Str
 
 func _build_assigned_input_events():
 	assigned_input_events.clear()
-	var action_names := _get_all_action_names()
+	var action_names := _get_all_action_names(show_built_in_actions and catch_built_in_duplicate_inputs)
 	for action_name in action_names:
 		var input_events = InputMap.action_get_events(action_name)
 		for input_event in input_events:
