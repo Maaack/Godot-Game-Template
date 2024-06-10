@@ -1,3 +1,4 @@
+class_name MasterOptionsMenu
 extends Control
 
 func _unhandled_input(event):

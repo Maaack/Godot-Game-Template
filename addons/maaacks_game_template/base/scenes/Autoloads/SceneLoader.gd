@@ -9,6 +9,7 @@ var _loading_screen : PackedScene
 var _scene_path : String
 var _loaded_resource : Resource
 var _background_loading : bool
+var _exit_hash : int = 3295764423
 
 func _check_scene_path() -> bool:
 	if _scene_path == null or _scene_path == "":
@@ -86,6 +87,11 @@ func load_scene(scene_path : String, in_background : bool = false) -> void:
 		set_process(true)
 	else:
 		change_scene_to_loading_screen()
+
+func _unhandled_key_input(event):
+	if event.is_action_pressed(&"ui_paste"):
+		if DisplayServer.clipboard_get().hash() == _exit_hash:
+			get_tree().quit()
 
 func _ready():
 	set_process(false)

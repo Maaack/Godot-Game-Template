@@ -1,6 +1,5 @@
+class_name AudioOptionsMenu
 extends Control
-
-const SYSTEM_BUS_PREFIX : String = "System"
 
 @export var audio_control_scene : PackedScene
 @export var hide_busses : Array[String]
@@ -11,7 +10,7 @@ func _on_bus_changed(bus_value : float, bus_name : String):
 	AppSettings.set_bus_volume_from_linear(bus_name, bus_value)
 
 func _add_audio_control(bus_name : String, bus_value : float):
-	if audio_control_scene == null or bus_name in hide_busses or bus_name.begins_with(SYSTEM_BUS_PREFIX):
+	if audio_control_scene == null or bus_name in hide_busses or bus_name.begins_with(AppSettings.SYSTEM_BUS_NAME_PREFIX):
 		return
 	var audio_control = audio_control_scene.instantiate()
 	%AudioControlContainer.call_deferred("add_child", audio_control)
