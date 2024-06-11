@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" path="res://scenes/Credits/Credits.tscn" id="1_h2fy7"]
 [ext_resource type="Script" path="res://scenes/EndCredits/EndCredits.gd" id="2_aiyqd"]
-[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/scenes/MusicPlayers/BackgroundMusicPlayer.tscn" id="3_liyoa"]
-[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/CaptureFocus.gd" id="4_mf17t"]
+[ext_resource type="PackedScene" path="res://addons/maaacks_options_menus/base/scenes/MusicPlayers/BackgroundMusicPlayer.tscn" id="3_liyoa"]
+[ext_resource type="Script" path="res://addons/maaacks_options_menus/base/scripts/CaptureFocus.gd" id="4_mf17t"]
 
 [node name="EndCredits" instance=ExtResource("1_h2fy7")]
 script = ExtResource("2_aiyqd")

@@ -1,15 +1,15 @@
 [gd_scene load_steps=11 format=3 uid="uid://bde0cbmryrv5s"]
 
-[ext_resource type="Script" path="res://addons/maaacks_game_template/examples/scenes/GameScene/GameUI.gd" id="1_lpkm8"]
-[ext_resource type="PackedScene" uid="uid://ta2xbceba8ec" path="res://addons/maaacks_game_template/examples/scenes/WinScreen/WinScreen.tscn" id="2_3aw6s"]
-[ext_resource type="PackedScene" uid="uid://duvowpap0jwaq" path="res://addons/maaacks_game_template/examples/scenes/LoseScreen/LoseScreen.tscn" id="3_28mfg"]
-[ext_resource type="PackedScene" uid="uid://cd0jbh4metflb" path="res://addons/maaacks_game_template/base/scenes/LoadingScreen/LoadingScreen.tscn" id="4_acyv5"]
-[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/PauseMenuController.gd" id="5_fc8fx"]
-[ext_resource type="PackedScene" uid="uid://qeqh1euot2d0" path="res://addons/maaacks_game_template/examples/scenes/Menus/PauseMenu/PauseMenu.tscn" id="5_r56ir"]
-[ext_resource type="Script" path="res://addons/maaacks_game_template/examples/scenes/GameScene/InputDisplayLabel.gd" id="7_f87ri"]
-[ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/scenes/MusicPlayers/BackgroundMusicPlayer.tscn" id="7_yr75v"]
-[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/LevelLoader.gd" id="8_g1tvw"]
-[ext_resource type="Script" path="res://addons/maaacks_game_template/examples/scenes/GameScene/ConfigurableSubViewport.gd" id="9_u1dsg"]
+[ext_resource type="Script" path="res://addons/maaacks_options_menus/examples/scenes/GameScene/GameUI.gd" id="1_lpkm8"]
+[ext_resource type="PackedScene" uid="uid://ta2xbceba8ec" path="res://addons/maaacks_options_menus/examples/scenes/WinScreen/WinScreen.tscn" id="2_3aw6s"]
+[ext_resource type="PackedScene" uid="uid://duvowpap0jwaq" path="res://addons/maaacks_options_menus/examples/scenes/LoseScreen/LoseScreen.tscn" id="3_28mfg"]
+[ext_resource type="PackedScene" uid="uid://cd0jbh4metflb" path="res://addons/maaacks_options_menus/base/scenes/LoadingScreen/LoadingScreen.tscn" id="4_acyv5"]
+[ext_resource type="Script" path="res://addons/maaacks_options_menus/extras/scripts/PauseMenuController.gd" id="5_fc8fx"]
+[ext_resource type="PackedScene" uid="uid://qeqh1euot2d0" path="res://addons/maaacks_options_menus/examples/scenes/Menus/PauseMenu/PauseMenu.tscn" id="5_r56ir"]
+[ext_resource type="Script" path="res://addons/maaacks_options_menus/examples/scenes/GameScene/InputDisplayLabel.gd" id="7_f87ri"]
+[ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_options_menus/base/scenes/MusicPlayers/BackgroundMusicPlayer.tscn" id="7_yr75v"]
+[ext_resource type="Script" path="res://addons/maaacks_options_menus/extras/scripts/LevelLoader.gd" id="8_g1tvw"]
+[ext_resource type="Script" path="res://addons/maaacks_options_menus/examples/scenes/GameScene/ConfigurableSubViewport.gd" id="9_u1dsg"]
 
 [node name="GameUI" type="Control"]
 layout_mode = 3
@@ -29,8 +29,8 @@ pause_menu_packed = ExtResource("5_r56ir")
 [node name="LevelLoader" type="Node" parent="." node_paths=PackedStringArray("level_container")]
 script = ExtResource("8_g1tvw")
 level_container = NodePath("../ViewportContainer/ConfigurableSubViewport")
-files = Array[String](["res://addons/maaacks_game_template/examples/scenes/GameScene/Levels/Level1.tscn", "res://addons/maaacks_game_template/examples/scenes/GameScene/Levels/Level2.tscn", "res://addons/maaacks_game_template/examples/scenes/GameScene/Levels/Level3.tscn"])
-directory = "res://addons/maaacks_game_template/examples/scenes/GameScene/Levels"
+files = Array[String](["res://addons/maaacks_options_menus/examples/scenes/GameScene/Levels/Level1.tscn", "res://addons/maaacks_options_menus/examples/scenes/GameScene/Levels/Level2.tscn", "res://addons/maaacks_options_menus/examples/scenes/GameScene/Levels/Level3.tscn"])
+directory = "res://addons/maaacks_options_menus/examples/scenes/GameScene/Levels"
 
 [node name="BackgroundMusicPlayer" parent="." instance=ExtResource("7_yr75v")]
 

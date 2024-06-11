@@ -1,8 +1,8 @@
 @tool
 extends EditorPlugin
 
-const PLUGIN_NAME = "Maaack's Game Template"
-const PROJECT_SETTINGS_PATH = "maaacks_game_template/"
+const PLUGIN_NAME = "Maaack's Options Menus"
+const PROJECT_SETTINGS_PATH = "maaacks_options_menus/"
 
 const EXAMPLES_RELATIVE_PATH = "examples/"
 const MAIN_SCENE_RELATIVE_PATH = "scenes/Opening/OpeningWithLogo.tscn"

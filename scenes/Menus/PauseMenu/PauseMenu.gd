@@ -1,1 +1,1 @@
-extends "res://addons/maaacks_game_template/extras/scenes/PauseMenu/PauseMenu.gd"
+extends "res://addons/maaacks_options_menus/extras/scenes/PauseMenu/PauseMenu.gd"

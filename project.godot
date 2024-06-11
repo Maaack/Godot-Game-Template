@@ -10,17 +10,17 @@ config_version=5
 
 [application]
 
-config/name="Game Template"
+config/name="Options Menus"
 run/main_scene="res://scenes/Opening/OpeningWithLogo.tscn"
 config/features=PackedStringArray("4.2")
 config/icon="res://icon.png"
 
 [autoload]
 
-AppConfig="*res://addons/maaacks_game_template/base/scenes/Autoloads/AppConfig.tscn"
-SceneLoader="*res://addons/maaacks_game_template/base/scenes/Autoloads/SceneLoader.tscn"
-ProjectMusicController="*res://addons/maaacks_game_template/base/scenes/Autoloads/ProjectMusicController.tscn"
-ProjectUISoundController="*res://addons/maaacks_game_template/base/scenes/Autoloads/ProjectUISoundController.tscn"
+AppConfig="*res://addons/maaacks_options_menus/base/scenes/Autoloads/AppConfig.tscn"
+SceneLoader="*res://addons/maaacks_options_menus/base/scenes/Autoloads/SceneLoader.tscn"
+ProjectMusicController="*res://addons/maaacks_options_menus/base/scenes/Autoloads/ProjectMusicController.tscn"
+ProjectUISoundController="*res://addons/maaacks_options_menus/base/scenes/Autoloads/ProjectUISoundController.tscn"
 
 [display]
 
@@ -29,7 +29,7 @@ window/size/viewport_height=720
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/maaacks_game_template/plugin.cfg")
+enabled=PackedStringArray()
 
 [gui]
 
@@ -68,7 +68,7 @@ interact={
 ]
 }
 
-[maaacks_game_template]
+[maaacks_options_menus]
 
 disable_plugin_dialogues=true
 copy_path="res://"

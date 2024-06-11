@@ -1,15 +1,15 @@
-# Godot Game Template
+# Godot Options Menus
 For Godot 4.2
 
 This template has a main menu, options menus, pause menu, credits, scene loader, extra tools, and an example game scene.
 
 [Example on itch.io](https://maaack.itch.io/godot-game-template)
 
-![Main Menu](/addons/maaacks_game_template/media/Screenshot-3-1.png)  
-![Key Rebinding](/addons/maaacks_game_template/media/Screenshot-3-2.png)  
-![Audio Controls](/addons/maaacks_game_template/media/Screenshot-3-4.png)  
-![Pause Menu](/addons/maaacks_game_template/media/Screenshot-3-6.png)  
-[All screenshots](/addons/maaacks_game_template/docs/Screenshots.md)
+![Main Menu](/addons/maaacks_options_menus/media/Screenshot-3-1.png)  
+![Key Rebinding](/addons/maaacks_options_menus/media/Screenshot-3-2.png)  
+![Audio Controls](/addons/maaacks_options_menus/media/Screenshot-3-4.png)  
+![Pause Menu](/addons/maaacks_options_menus/media/Screenshot-3-6.png)  
+[All screenshots](/addons/maaacks_options_menus/docs/Screenshots.md)
 
 ## Use Case
 Setup menus and accessibility features in about 15 minutes.
@@ -76,22 +76,22 @@ The `examples/` folder contains an example project using inherited scenes from t
 ### Godot Asset Library
 This package is available as both a template and a plugin, meaning it can be used to start a new project, or added to an existing project. 
 
-![Package Icon](/addons/maaacks_game_template/media/Game-Icon-black-transparent-256x256.png)  
+![Package Icon](/addons/maaacks_options_menus/media/Game-Icon-black-transparent-256x256.png)  
 
 When starting a new project:
 
 1.  Go to the `Asset Library Projects` tab.
-2.  Search for "Maaack's Game Template".
+2.  Search for "Maaack's Options Menus".
 3.  Click on the result to open the template details.
 4.  Click to Download.
 5.  Give the project a new name and destination.
 6.  Click to Install & Edit.
-7.  Continue with the [New Project Instructions](/addons/maaacks_game_template/docs/NewProject.md)
+7.  Continue with the [New Project Instructions](/addons/maaacks_options_menus/docs/NewProject.md)
 
 When editing an existing project:
 
 1.  Go to the `AssetLib` tab.
-2.  Search for "Maaack's Game Template Plugin".
+2.  Search for "Maaack's Options Menus Plugin".
 3.  Click on the result to open the plugin details.
 4.  Click to Download.
 5.  Check that contents are getting installed to `addons/` and there are no conflicts.
@@ -101,7 +101,7 @@ When editing an existing project:
     If it's enabled for the first time,
     1.  A dialogue window will appear asking to copy the example scenes out of `addons/`.
     2.  Another dialogue window will ask to update the project's main scene.
-9.  Continue with the [Existing Project Instructions](/addons/maaacks_game_template/docs/ExistingProject.md)  
+9.  Continue with the [Existing Project Instructions](/addons/maaacks_options_menus/docs/ExistingProject.md)  
 
 
 ### GitHub
@@ -109,13 +109,13 @@ When editing an existing project:
 
 1.  Download the latest release version from [GitHub](https://github.com/Maaack/Godot-Game-Template/releases/latest).  
 2.  Extract the contents of the archive.
-3.  Move the `addons/maaacks_game_template` folder into your project's `addons/` folder.  
+3.  Move the `addons/maaacks_options_menus` folder into your project's `addons/` folder.  
 4.  Open/Reload the project.  
 5.  Enable the plugin from the Project Settings > Plugins tab.  
     If it's enabled for the first time,
     1.  A dialogue window will appear asking to copy the example scenes out of `addons/`.
     2.  Another dialogue window will ask to update the project's main scene.
-6.  Continue with the [Existing Project Instructions](/addons/maaacks_game_template/docs/ExistingProject.md) 
+6.  Continue with the [Existing Project Instructions](/addons/maaacks_options_menus/docs/ExistingProject.md) 
 
 #### Minimal
 
@@ -131,18 +131,18 @@ A copy of the `examples/` directory is made outside of `addons/` when the plugin
 These instructions assume starting with the entire contents of the project folder. This will be the case when cloning the repo, or starting from the *template* version in the Godot Asset Library.
   
 
-[New Project Instructions](/addons/maaacks_game_template/docs/NewProject.md)
+[New Project Instructions](/addons/maaacks_options_menus/docs/NewProject.md)
 
 ### Existing Project
 
 These instructions assume starting with just the contents of `addons/`. This will be the case when installing the *plugin* version in the Godot Asset Library.
 
-[Existing Project Instructions](/addons/maaacks_game_template/docs/ExistingProject.md)  
+[Existing Project Instructions](/addons/maaacks_options_menus/docs/ExistingProject.md)  
    
 
 
 ## Links
-[Attribution](/addons/maaacks_game_template/ATTRIBUTION.md)  
-[License](/addons/maaacks_game_template/LICENSE.txt)  
+[Attribution](/addons/maaacks_options_menus/ATTRIBUTION.md)  
+[License](/addons/maaacks_options_menus/LICENSE.txt)  
 [Godot Asset Library - Template](https://godotengine.org/asset-library/asset/2703)  
 [Godot Asset Library - Plugin](https://godotengine.org/asset-library/asset/2709)  

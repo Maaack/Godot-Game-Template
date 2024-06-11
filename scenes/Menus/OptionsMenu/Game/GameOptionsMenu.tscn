@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://hcqhf6rxq1e5"]
 
 [ext_resource type="Script" path="res://scenes/Menus/OptionsMenu/Game/GameOptionsMenu.gd" id="1_jk1rc"]
-[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/CaptureFocus.gd" id="2_egdm6"]
+[ext_resource type="Script" path="res://addons/maaacks_options_menus/base/scripts/CaptureFocus.gd" id="2_egdm6"]
 [ext_resource type="PackedScene" path="res://scenes/Menus/OptionsMenu/Game/ResetGameControl/ResetGameControl.tscn" id="3_txit3"]
 
 [node name="Game" type="MarginContainer"]

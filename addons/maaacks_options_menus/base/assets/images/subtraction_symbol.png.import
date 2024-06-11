@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bteq3ica74h30"
-path="res://.godot/imported/subtraction_symbol.png-283aab08ef2b3277034fb87a2ef75298.ctex"
+path="res://.godot/imported/subtraction_symbol.png-1caaa8628a1f3abfdb8bd4187268abf6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/maaacks_game_template/base/assets/images/subtraction_symbol.png"
-dest_files=["res://.godot/imported/subtraction_symbol.png-283aab08ef2b3277034fb87a2ef75298.ctex"]
+source_file="res://addons/maaacks_options_menus/base/assets/images/subtraction_symbol.png"
+dest_files=["res://.godot/imported/subtraction_symbol.png-1caaa8628a1f3abfdb8bd4187268abf6.ctex"]
 
 [params]
 
