@@ -29,7 +29,7 @@ window/size/viewport_height=720
 
 [editor_plugins]
 
-enabled=PackedStringArray()
+enabled=PackedStringArray("res://addons/maaacks_options_menus/plugin.cfg")
 
 [gui]
 
