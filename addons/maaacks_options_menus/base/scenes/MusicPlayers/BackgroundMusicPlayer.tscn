@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://bkcsjsk2ciff"]
-
-[node name="BackgroundMusicPlayer" type="AudioStreamPlayer"]
-process_mode = 3
-autoplay = true
-bus = &"Music"

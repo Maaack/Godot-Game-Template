@@ -11,16 +11,13 @@ config_version=5
 [application]
 
 config/name="Options Menus"
-run/main_scene="res://scenes/Opening/OpeningWithLogo.tscn"
+run/main_scene="res://scenes/Menus/OptionsMenu/MasterOptionsMenuWithTabs.tscn"
 config/features=PackedStringArray("4.2")
 config/icon="res://icon.png"
 
 [autoload]
 
 AppConfig="*res://addons/maaacks_options_menus/base/scenes/Autoloads/AppConfig.tscn"
-SceneLoader="*res://addons/maaacks_options_menus/base/scenes/Autoloads/SceneLoader.tscn"
-ProjectMusicController="*res://addons/maaacks_options_menus/base/scenes/Autoloads/ProjectMusicController.tscn"
-ProjectUISoundController="*res://addons/maaacks_options_menus/base/scenes/Autoloads/ProjectUISoundController.tscn"
 
 [display]
 

@@ -197,16 +197,10 @@ func _resave_if_recently_opened():
 
 func _enter_tree():
 	add_autoload_singleton("AppConfig", get_plugin_path() + "base/scenes/Autoloads/AppConfig.tscn")
-	add_autoload_singleton("SceneLoader", get_plugin_path() + "base/scenes/Autoloads/SceneLoader.tscn")
-	add_autoload_singleton("ProjectMusicController", get_plugin_path() + "base/scenes/Autoloads/ProjectMusicController.tscn")
-	add_autoload_singleton("ProjectUISoundController", get_plugin_path() + "base/scenes/Autoloads/ProjectUISoundController.tscn")
 	add_tool_menu_item("Copy " + _get_plugin_name() + " Examples...", _open_path_dialog)
 	_show_plugin_dialogues()
 	_resave_if_recently_opened()
 
 func _exit_tree():
 	remove_autoload_singleton("AppConfig")
-	remove_autoload_singleton("SceneLoader")
-	remove_autoload_singleton("ProjectMusicController")
-	remove_autoload_singleton("ProjectUISoundController")
 	remove_tool_menu_item("Copy " + _get_plugin_name() + " Examples...",)
