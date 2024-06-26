@@ -1,9 +1,9 @@
 class_name InputOptionsMenu
 extends Control
 
-const ALREADY_ASSIGNED_TEXT : String = "%s already assigned to %s."
+const ALREADY_ASSIGNED_TEXT : String = "{key} already assigned to {action}."
 const ONE_INPUT_MINIMUM_TEXT : String = "%s must have at least one key or button assigned."
-const KEY_DELETION_TEXT : String = "Are you sure you want to remove %s from %s?"
+const KEY_DELETION_TEXT : String = "Are you sure you want to remove {key} from {action}?"
 
 ## Maps the names of input actions to readable names for users.
 @export var action_name_map : Dictionary = {
@@ -59,7 +59,8 @@ func _popup_add_action_event(item : TreeItem) -> void:
 		return
 	editing_item = item
 	editing_action_name = tree_item_add_map[item]
-	$KeyAssignmentDialog.title = "Assign Key for %s" % _get_action_readable_name(editing_action_name)
+	var readable_action_name = tr(_get_action_readable_name(editing_action_name))
+	$KeyAssignmentDialog.title = tr("Assign Key for {action}").format({action = readable_action_name})
 	$KeyAssignmentDialog.dialog_text = assignment_placeholder_text
 	$KeyAssignmentDialog.get_ok_button().disabled = true
 	$KeyAssignmentDialog.popup_centered()
@@ -69,9 +70,9 @@ func _popup_remove_action_event(item : TreeItem) -> void:
 		return
 	editing_item = item
 	editing_action_name = tree_item_action_map[item]
-	var readable_action_name = _get_action_readable_name(editing_action_name)
-	$KeyDeletionDialog.title = "Remove Key for %s" % readable_action_name
-	$KeyDeletionDialog.dialog_text = KEY_DELETION_TEXT % [item.get_text(0), readable_action_name]
+	var readable_action_name = tr(_get_action_readable_name(editing_action_name))
+	$KeyDeletionDialog.title = tr("Remove Key for {action}").format({action = readable_action_name})
+	$KeyDeletionDialog.dialog_text = tr(KEY_DELETION_TEXT).format({key = item.get_text(0), action = readable_action_name})
 	$KeyDeletionDialog.popup_centered()
 
 func _start_tree():
@@ -184,8 +185,8 @@ func _add_action_event():
 	if last_input_event != null:
 		var assigned_action := _get_action_for_input_event(last_input_event)
 		if not assigned_action.is_empty():
-			var readable_action_name = _get_action_readable_name(assigned_action)
-			$AlreadyAssignedDialog.dialog_text = ALREADY_ASSIGNED_TEXT % [last_input_readable_name, readable_action_name]
+			var readable_action_name = tr(_get_action_readable_name(assigned_action))
+			$AlreadyAssignedDialog.dialog_text = tr(ALREADY_ASSIGNED_TEXT).format({key = last_input_readable_name, action = readable_action_name})
 			$AlreadyAssignedDialog.popup_centered()
 		else:
 			_assign_input_event_to_action(last_input_event, editing_action_name)
@@ -218,9 +219,7 @@ func _on_tree_button_clicked(item, _column, _id, _mouse_button_index):
 	_check_item_actions(item)
 
 func _on_reset_button_pressed():
-	AppSettings.reset_to_default_inputs()
-	_build_assigned_input_events()
-	_build_ui_tree()
+	$ConfirmationDialog.popup_centered()
 
 func _on_tree_item_activated():
 	var item = %Tree.get_selected()
@@ -232,3 +231,8 @@ func _on_key_deletion_dialog_confirmed():
 
 func _on_key_assignment_dialog_confirmed():
 	_add_action_event()
+
+func _on_confirmation_dialog_confirmed():
+	AppSettings.reset_to_default_inputs()
+	_build_assigned_input_events()
+	_build_ui_tree()
