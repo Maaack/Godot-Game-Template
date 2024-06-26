@@ -17,7 +17,7 @@ text = "Reset Game :"
 [node name="ResetButton" type="Button" parent="."]
 custom_minimum_size = Vector2(72, 32)
 layout_mode = 2
-text = "reset"
+text = "Reset"
 
 [node name="ConfirmResetDialog" type="ConfirmationDialog" parent="."]
 dialog_text = "Do you want to reset your game data?"
