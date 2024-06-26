@@ -8,6 +8,7 @@ const EXAMPLES_RELATIVE_PATH = "examples/"
 const MAIN_SCENE_RELATIVE_PATH = "scenes/Opening/OpeningWithLogo.tscn"
 const MAIN_SCENE_UPDATE_TEXT = "Current:\n%s\n\nNew:\n%s\n"
 const OVERRIDE_RELATIVE_PATH = "installer/override.cfg"
+const SCENE_LOADER_RELATIVE_PATH = "base/scenes/Autoloads/SceneLoader.tscn"
 const UID_PREG_MATCH = r'uid="uid:\/\/[0-9a-z]+" '
 const RESAVING_DELAY : float = 0.5
 const REIMPORT_FILE_DELAY : float = 0.2
@@ -141,6 +142,17 @@ func _copy_directory_path(dir_path : String, target_path : String, raw_copy_file
 	else:
 		push_error("plugin error - accessing path: %s" % dir_path)
 
+func _update_scene_loader_path(target_path : String):
+	var file_path : String = get_plugin_path() + SCENE_LOADER_RELATIVE_PATH
+	var file_text : String = FileAccess.get_file_as_string(file_path)
+	var prefix : String = "loading_screen_path = \""
+	var target_string =  prefix + get_plugin_path() + "base/"
+	var replacing_string = prefix + target_path
+	file_text = file_text.replace(target_string, replacing_string)
+	var file = FileAccess.open(file_path, FileAccess.WRITE)
+	file.store_string(file_text)
+	file.close()
+
 func _delayed_saving_and_check_main_scene(target_path : String):
 	var timer: Timer = Timer.new()
 	var callable := func():
@@ -158,6 +170,7 @@ func _copy_to_directory(target_path : String):
 	if not target_path.ends_with("/"):
 		target_path += "/"
 	_copy_directory_path(get_plugin_examples_path(), target_path, ["md"])
+	_update_scene_loader_path(target_path)
 	_copy_override_file()
 	_delayed_saving_and_check_main_scene(target_path)
 

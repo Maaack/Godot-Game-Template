@@ -106,6 +106,9 @@ size = Vector2i(398, 100)
 title = "Already Assigned"
 size = Vector2i(398, 100)
 
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+dialog_text = "Are you sure you want to reset controls back to the defaults?"
+
 [connection signal="button_clicked" from="VBoxContainer/InputMappingContainer/Tree" to="." method="_on_tree_button_clicked"]
 [connection signal="item_activated" from="VBoxContainer/InputMappingContainer/Tree" to="." method="_on_tree_item_activated"]
 [connection signal="pressed" from="VBoxContainer/InputMappingContainer/HBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]
@@ -116,3 +119,4 @@ size = Vector2i(398, 100)
 [connection signal="focus_exited" from="KeyAssignmentDialog/VBoxContainer/InputTextEdit" to="KeyAssignmentDialog" method="_on_input_text_edit_focus_exited"]
 [connection signal="gui_input" from="KeyAssignmentDialog/VBoxContainer/InputTextEdit" to="KeyAssignmentDialog" method="_on_input_text_edit_gui_input"]
 [connection signal="confirmed" from="KeyDeletionDialog" to="." method="_on_key_deletion_dialog_confirmed"]
+[connection signal="confirmed" from="ConfirmationDialog" to="." method="_on_confirmation_dialog_confirmed"]

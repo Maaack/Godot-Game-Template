@@ -1,0 +1,72 @@
+keys,en,fr
+
+___ MAIN MENU,,
+
+Title,Title,Titre
+Subtitle,Subtitle,Sous-titre
+Play,Play,Jouer
+Options,Options,Options
+Credits,Credits,Crédits
+Exit,Exit,Quitter
+
+___ LOADING SCREEN,,
+Loading...,Loading...,Chargement...
+
+___ DIALOGS IN GAME,,
+
+You lose.,You lose.,Vous avez perdu.
+You won!,You won!,Vous avez gagné !
+Thanks for playing!,Thanks for playing!,Merci d'avoir joué !
+
+Exit Game,Exit Game,Quitter le jeu
+Main Menu,Main Menu,Menu principal
+Restart,Restart,Recommencer
+Continue,Continue,Continuer
+Menu,Menu,Menu
+
+Please Confirm...,Please Confirm...,Veuillez confirmer...
+Go back to main menu?,Go back to main menu?,Retourner au menu principal ?
+Quit the game?,Quit the game?,Quitter le jeu ?
+Cancel,Cancel,Annuler
+OK,OK,OK
+
+___ OPTIONS MENU,,
+
+Controls,Controls,Contrôles
+Mouse Sensitivity :,Mouse Sensitivity :,Sensibilité souris :
+Actions & Inputs,Actions & Inputs,Actions et contrôles
+Add,Add,Ajouter
+Remove,Remove,Enlever
+Assign Key for {action},Assign Key for {action},Choisir le contrôle pour {action}
+Listening for input...,Listening for input...,Appuyez sur un bouton...
+Press again to confirm...,Press again to confirm...,Appuyez encore pour confirmer...
+Focus here to assign inputs.,Focus here to assign inputs.,Mettez le focus ici pour choisir le contrôle.
+Already Assigned,Already Assigned,Déjà utilisé
+{key} already assigned to {action}.,{key} already assigned to {action}.,{key} est déjà utilisé pour {action}.
+Remove Key for {action},Remove Key for {action},Supprimer le contrôle pour {action}
+Are you sure you want to remove {key} from {action}?,Are you sure you want to remove {key} from {action}?,Êtes-vous sûr de vouloir supprimer {key} pour {action} ?
+Reset,Reset,Réinitialiser
+
+Audio,Audio,Audio
+Master :,Master :,Principal :
+Music :,Music :,Musique :
+SFX :,SFX :,Effets :
+Mute :,Mute :,Silencieux :
+
+Video,Video,Vidéo
+Fullscreen :,Fullscreen :,Plein écran :
+Resolution :,Resolution :,Résolution :
+Anti-Aliasing :,Anti-Aliasing :,Anticrénelage :
+Disabled (Fastest),Disabled (Fastest),Désactivé (Plus rapide)
+8x (Slowest),8x (Slowest),8x (Plus lent)
+Camera Shake :,Camera Shake :,Secousse Caméra :
+Normal,Normal,Normale
+Reduced,Reduced,Réduite
+Minimal,Minimal,Minimum
+None,None,Aucune
+
+Game,Game,Jeu
+Reset Game :,Reset Game :,Réinitialiser le jeu :
+Do you want to reset your game data?,Do you want to reset your game data?,Voulez-vous réinitialiser votre partie ?
+
+Back,Back,Retour

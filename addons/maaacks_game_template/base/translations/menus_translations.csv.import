@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://i6ihop1vp2ei"
+
+[deps]
+
+files=["res://addons/maaacks_game_template/base/translations/menus_translations.en.translation", "res://addons/maaacks_game_template/base/translations/menus_translations.fr.translation"]
+
+source_file="res://addons/maaacks_game_template/base/translations/menus_translations.csv"
+dest_files=["res://addons/maaacks_game_template/base/translations/menus_translations.en.translation", "res://addons/maaacks_game_template/base/translations/menus_translations.fr.translation"]
+
+[params]
+
+compress=true
+delimiter=0
