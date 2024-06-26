@@ -62,6 +62,7 @@ func set_header_and_footer():
 	%CreditsLabel.custom_minimum_size.x = size.x
 
 func reset():
+	scroll_paused = false
 	$ScrollContainer.scroll_vertical = 0
 	set_header_and_footer()
 

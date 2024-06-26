@@ -218,9 +218,7 @@ func _on_tree_button_clicked(item, _column, _id, _mouse_button_index):
 	_check_item_actions(item)
 
 func _on_reset_button_pressed():
-	AppSettings.reset_to_default_inputs()
-	_build_assigned_input_events()
-	_build_ui_tree()
+	$ConfirmationDialog.popup_centered()
 
 func _on_tree_item_activated():
 	var item = %Tree.get_selected()
@@ -232,3 +230,8 @@ func _on_key_deletion_dialog_confirmed():
 
 func _on_key_assignment_dialog_confirmed():
 	_add_action_event()
+
+func _on_confirmation_dialog_confirmed():
+	AppSettings.reset_to_default_inputs()
+	_build_assigned_input_events()
+	_build_ui_tree()
