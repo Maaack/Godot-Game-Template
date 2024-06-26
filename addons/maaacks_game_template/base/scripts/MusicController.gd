@@ -107,8 +107,7 @@ func _blend_and_remove_stream_player( stream_player : AudioStreamPlayer ):
 	var old_stream_player = music_stream_player
 	music_stream_player = stream_player
 	music_stream_player.bus = blend_audio_bus
-	if not music_stream_player.playing:
-		play(playback_position)
+	play(playback_position)
 	old_stream_player.stop()
 	old_stream_player.queue_free()
 	_connect_stream_on_tree_exiting(music_stream_player)
