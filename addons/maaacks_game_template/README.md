@@ -7,7 +7,7 @@ This template has a main menu, options menus, pause menu, credits, scene loader,
 
 #### Video
 
-[![Watch the video](https://img.youtube.com/vi/U9CB3vKINVw/hqdefault.jpg)](https://www.youtube.com/embed/U9CB3vKINVw)  
+[![Watch the video](https://img.youtube.com/vi/U9CB3vKINVw/hqdefault.jpg)](https://youtu.be/U9CB3vKINVw)  
 
 #### Screenshots
 ![Main Menu](/addons/maaacks_game_template/media/Screenshot-3-1.png)  
