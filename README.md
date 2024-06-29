@@ -5,6 +5,11 @@ This template has a main menu, options menus, pause menu, credits, scene loader,
 
 [Example on itch.io](https://maaack.itch.io/godot-game-template)
 
+#### Video
+
+[![Watch the video](https://img.youtube.com/vi/U9CB3vKINVw/hqdefault.jpg)](https://www.youtube.com/embed/U9CB3vKINVw)  
+
+#### Screenshots
 ![Main Menu](/addons/maaacks_game_template/media/Screenshot-3-1.png)  
 ![Key Rebinding](/addons/maaacks_game_template/media/Screenshot-3-2.png)  
 ![Audio Controls](/addons/maaacks_game_template/media/Screenshot-3-4.png)  
