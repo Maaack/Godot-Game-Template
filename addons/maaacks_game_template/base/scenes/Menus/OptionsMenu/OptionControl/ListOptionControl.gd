@@ -2,18 +2,24 @@
 class_name ListOptionControl
 extends OptionControl
 
+## Locks Option Titles from auto-updating when editing Option Values.
+## Intentionally put first for initialization.
+@export var lock_titles : bool = false
+## Defines the list of possible values for the variable
+## this option stores in the config file.
 @export var option_values : Array :
 	set(value) :
 		option_values = value
 		_on_option_values_changed()
 
+## Defines the list of options displayed to the user.
+## Length should match with Option Values.
 @export var option_titles : Array[String] :
 	set(value):
 		option_titles = value
 		if is_inside_tree():
 			_set_option_list(option_titles)
 
-@export var lock_titles : bool = false
 var custom_option_values : Array
 
 func _on_option_values_changed():
@@ -67,6 +73,7 @@ func disable_option(option_index : int, disabled : bool = true):
 	%OptionButton.set_item_disabled(option_index, disabled)
 
 func _ready():
+	lock_titles = lock_titles
 	option_titles = option_titles
 	option_values = option_values
 	super._ready()
