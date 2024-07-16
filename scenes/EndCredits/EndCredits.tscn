@@ -1,15 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://dgdf7sv3ppi33"]
+[gd_scene load_steps=5 format=3 uid="uid://cwo6mvti5o0kc"]
 
-[ext_resource type="PackedScene" path="res://scenes/Credits/Credits.tscn" id="1_h2fy7"]
-[ext_resource type="Script" path="res://scenes/EndCredits/EndCredits.gd" id="2_aiyqd"]
-[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/scenes/MusicPlayers/BackgroundMusicPlayer.tscn" id="3_liyoa"]
-[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/CaptureFocus.gd" id="4_mf17t"]
+[ext_resource type="PackedScene" path="res://scenes/Credits/Credits.tscn" id="1_4gt7b"]
+[ext_resource type="Script" path="res://scenes/EndCredits/EndCredits.gd" id="2_ugktr"]
+[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/scenes/MusicPlayers/BackgroundMusicPlayer.tscn" id="3_mnrs5"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/CaptureFocus.gd" id="4_af4xi"]
 
-[node name="EndCredits" instance=ExtResource("1_h2fy7")]
-script = ExtResource("2_aiyqd")
+[node name="EndCredits" instance=ExtResource("1_4gt7b")]
+script = ExtResource("2_ugktr")
 main_menu_scene = "res://scenes/Menus/MainMenu/MainMenuWithAnimations.tscn"
 
-[node name="BackgroundMusicPlayer" parent="." index="0" instance=ExtResource("3_liyoa")]
+[node name="BackgroundMusicPlayer" parent="." index="0" instance=ExtResource("3_mnrs5")]
 
 [node name="BackgroundColor" type="ColorRect" parent="." index="1"]
 layout_mode = 1
@@ -69,7 +69,7 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 24
-script = ExtResource("4_mf17t")
+script = ExtResource("4_af4xi")
 
 [node name="ExitButton" type="Button" parent="CenterContainer/EndMessagePanel/VBoxContainer/CenterContainer/HBoxContainer" index="0"]
 unique_name_in_owner = true
