@@ -7,10 +7,10 @@ extends Control
 @export var audio_control_scene : PackedScene
 @export var hide_busses : Array[String]
 
-func _on_bus_changed(bus_value : float, bus_name : String):
-	AppSettings.set_bus_volume_from_linear(bus_name, bus_value)
+func _on_bus_changed(bus_value : float, bus_iter : int):
+	AppSettings.set_bus_volume(bus_iter, bus_value)
 
-func _add_audio_control(bus_name, bus_value):
+func _add_audio_control(bus_name : String, bus_value : float, bus_iter : int):
 	if audio_control_scene == null or bus_name in hide_busses or bus_name.begins_with(AppSettings.SYSTEM_BUS_NAME_PREFIX):
 		return
 	var audio_control = audio_control_scene.instantiate()
@@ -19,13 +19,13 @@ func _add_audio_control(bus_name, bus_value):
 		audio_control.option_section = OptionControl.OptionSections.AUDIO
 		audio_control.option_name = bus_name
 		audio_control.value = bus_value
-		audio_control.connect("setting_changed", _on_bus_changed.bind(bus_name))
+		audio_control.connect("setting_changed", _on_bus_changed.bind(bus_iter))
 
 func _add_audio_bus_controls():
 	for bus_iter in AudioServer.bus_count:
-		var bus_name : String = AudioServer.get_bus_name(bus_iter)
-		var linear : float = AppSettings.get_bus_volume_to_linear(bus_name)
-		_add_audio_control(bus_name, linear)
+		var bus_name : String = AppSettings.get_audio_bus_name(bus_iter)
+		var linear : float = AppSettings.get_bus_volume(bus_iter)
+		_add_audio_control(bus_name, linear, bus_iter)
 
 func _update_ui():
 	_add_audio_bus_controls()
