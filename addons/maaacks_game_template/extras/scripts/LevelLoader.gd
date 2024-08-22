@@ -14,11 +14,12 @@ signal levels_finished
 @export_group("Debugging")
 @export var force_level : String
 @export var current_level : Node
+@export var current_level_path : String
 
 var is_loading : bool = false
 
 func get_current_level_path() -> String:
-	return GameState.current.current_level if force_level.is_empty() else force_level
+	return current_level_path if force_level.is_empty() else force_level
 
 func _attach_level(level_resource : Resource):
 	assert(level_container != null, "level_container is null")
@@ -33,6 +34,7 @@ func load_level(level_path : String = get_current_level_path()):
 		await current_level.tree_exited
 		current_level = null
 	is_loading = true
+	current_level_path = level_path
 	SceneLoader.load_scene(level_path, true)
 	emit_signal("level_load_started")
 	await SceneLoader.scene_loaded
@@ -41,8 +43,5 @@ func load_level(level_path : String = get_current_level_path()):
 	emit_signal("level_loaded")
 
 func _ready():
-	if Engine.is_editor_hint():
-		# Text files get a `.remap` extension added on export.
-		_refresh_files()
 	if auto_load:
 		load_level()
