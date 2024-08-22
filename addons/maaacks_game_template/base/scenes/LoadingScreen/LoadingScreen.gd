@@ -67,7 +67,7 @@ func _show_loading_stalled_error_message():
 	if _scene_loading_progress == 0:
 		%ErrorMessage.dialog_text = "Loading Error: Stalled at start."
 		if OS.has_feature("web"):
-			%ErrorMessage.dialog_text += "\nTry refreshing the page."
+			%ErrorMessage.dialog_text += "\nTry clicking out and back into the window.\nOr try refreshing the page."
 	else:
 		%ErrorMessage.dialog_text = "Loading Error: Stalled at %d%%." % (_scene_loading_progress * 100.0)
 	%ErrorMessage.popup_centered()
