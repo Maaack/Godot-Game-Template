@@ -157,6 +157,7 @@ func _delayed_saving_and_check_main_scene(target_path : String):
 	var timer: Timer = Timer.new()
 	var callable := func():
 		timer.stop()
+		EditorInterface.get_resource_filesystem().scan()
 		EditorInterface.save_all_scenes()
 		_check_main_scene_needs_updating(target_path)
 		timer.queue_free()
