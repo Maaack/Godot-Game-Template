@@ -44,13 +44,11 @@ func _attach_level(level_resource : Resource):
 	level_container.call_deferred("add_child", instance)
 	return instance
 
-func _clear_current_level():
+func load_level(level_id : int = get_current_level_id()):
 	if is_instance_valid(current_level):
 		current_level.queue_free()
-	current_level = null
-
-func load_level(level_id : int = get_current_level_id()):
-	_clear_current_level()
+		await current_level.tree_exited
+		current_level = null
 	var level_file = get_level_file(level_id)
 	SceneLoader.load_scene(level_file, true)
 	emit_signal("level_load_started")
