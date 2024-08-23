@@ -1,13 +1,13 @@
 [gd_scene load_steps=11 format=3 uid="uid://dcq27p4gnw5w2"]
 
 [ext_resource type="Script" path="res://scenes/GameScene/GameUI.gd" id="1_gq3tb"]
-[ext_resource type="PackedScene" path="res://scenes/WinScreen/WinScreen.tscn" id="2_uqqdk"]
-[ext_resource type="PackedScene" path="res://scenes/LoseScreen/LoseScreen.tscn" id="3_dhm27"]
+[ext_resource type="PackedScene" uid="uid://dj7vsa822ma88" path="res://scenes/WinScreen/WinScreen.tscn" id="2_uqqdk"]
+[ext_resource type="PackedScene" uid="uid://boylhkph2uubh" path="res://scenes/LoseScreen/LoseScreen.tscn" id="3_dhm27"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/PauseMenuController.gd" id="4_ihlt6"]
-[ext_resource type="PackedScene" path="res://scenes/Menus/PauseMenu/PauseMenu.tscn" id="5_swupf"]
-[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/LevelLoader.gd" id="6_03a2h"]
-[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/scenes/MusicPlayers/BackgroundMusicPlayer.tscn" id="7_krcn1"]
-[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/scenes/LoadingScreen/LoadingScreen.tscn" id="8_3vwpb"]
+[ext_resource type="PackedScene" uid="uid://cpcji6oappu2d" path="res://scenes/Menus/PauseMenu/PauseMenu.tscn" id="5_swupf"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/LevelListLoader.gd" id="6_linqp"]
+[ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/scenes/MusicPlayers/BackgroundMusicPlayer.tscn" id="7_krcn1"]
+[ext_resource type="PackedScene" uid="uid://cd0jbh4metflb" path="res://addons/maaacks_game_template/base/scenes/LoadingScreen/LoadingScreen.tscn" id="8_3vwpb"]
 [ext_resource type="Script" path="res://scenes/GameScene/ConfigurableSubViewport.gd" id="9_5gfx6"]
 [ext_resource type="Script" path="res://scenes/GameScene/InputDisplayLabel.gd" id="10_vmpy7"]
 
@@ -27,7 +27,7 @@ script = ExtResource("4_ihlt6")
 pause_menu_packed = ExtResource("5_swupf")
 
 [node name="LevelLoader" type="Node" parent="." node_paths=PackedStringArray("level_container")]
-script = ExtResource("6_03a2h")
+script = ExtResource("6_linqp")
 level_container = NodePath("../ViewportContainer/ConfigurableSubViewport")
 files = Array[String](["res://scenes/GameScene/Levels/Level1.tscn", "res://scenes/GameScene/Levels/Level2.tscn", "res://scenes/GameScene/Levels/Level3.tscn"])
 directory = "res://scenes/GameScene/Levels"

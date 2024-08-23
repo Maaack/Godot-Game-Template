@@ -60,7 +60,6 @@ func _setup_version_name():
 		version_name = NO_VERSION_NAME
 	AppLog.version_opened(version_name)
 	%VersionNameLabel.text = version_prefix + version_name
-	%VersionNameLabel.visible = show_version
 
 func _setup_play():
 	if game_scene_path.is_empty():
