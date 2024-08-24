@@ -130,7 +130,7 @@ func _build_ui_tree():
 	for action_name in action_names:
 		var input_events = InputMap.action_get_events(action_name)
 		if input_events.size() < 1:
-			print("%s is empty" % action_name)
+			push_warning("%s action_name is empty" % action_name)
 			continue
 		var readable_name : String = _get_action_readable_name(action_name)
 		_add_action_as_tree_item(readable_name, action_name, input_events)

@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://vgdxevcnv0vx"]
+
+[node name="DeleteExamplesConfirmationDialog" type="ConfirmationDialog"]
+title = "Delete Source Examples"
+initial_position = 2
+size = Vector2i(400, 320)
+visible = true
+ok_button_text = "Yes"
+dialog_text = "If the copied scenes work as expected, you may delete the source examples folder. This avoids confusing both developers and the Godot editor.
+
+This will also remove the option to copy the examples again. However, one copy is enough for most use cases.
+
+Would you like to delete the source examples folder now?"
+dialog_autowrap = true
+cancel_button_text = "No"
