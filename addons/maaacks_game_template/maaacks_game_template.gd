@@ -41,6 +41,26 @@ func _open_main_scene_confirmation_dialog(current_main_scene : String, new_main_
 	main_confirmation_instance.confirmed.connect(_update_main_scene.bind(new_main_scene))
 	add_child(main_confirmation_instance)
 
+func _open_play_opening_confirmation_dialog(target_path : String):
+	var play_confirmation_scene : PackedScene = load(get_plugin_path() + "installer/PlayOpeningConfirmationDialog.tscn")
+	var play_confirmation_instance : ConfirmationDialog = play_confirmation_scene.instantiate()
+	play_confirmation_instance.confirmed.connect(_run_opening_scene.bind(target_path))
+	play_confirmation_instance.canceled.connect(_check_main_scene_needs_updating.bind(target_path))
+	add_child(play_confirmation_instance)
+
+func _run_opening_scene(target_path : String):
+	var opening_scene_path = target_path + MAIN_SCENE_RELATIVE_PATH
+	EditorInterface.play_custom_scene(opening_scene_path)
+	var timer: Timer = Timer.new()
+	var callable := func():
+		if EditorInterface.is_playing_scene(): return
+		timer.stop()
+		_check_main_scene_needs_updating(target_path)
+		timer.queue_free()
+	timer.timeout.connect(callable)
+	add_child(timer)
+	timer.start(RESAVING_DELAY)
+
 func _replace_file_contents(file_path : String, target_path : String):
 	var extension : String = file_path.get_extension()
 	if extension == "import":
@@ -159,7 +179,7 @@ func _delayed_saving_and_check_main_scene(target_path : String):
 		timer.stop()
 		EditorInterface.get_resource_filesystem().scan()
 		EditorInterface.save_all_scenes()
-		_check_main_scene_needs_updating(target_path)
+		_open_play_opening_confirmation_dialog(target_path)
 		timer.queue_free()
 	timer.timeout.connect(callable)
 	add_child(timer)
