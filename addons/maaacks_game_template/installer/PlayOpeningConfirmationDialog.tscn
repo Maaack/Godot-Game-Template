@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b8808yj7a0ghj"]
 
 [node name="PlayOpeningConfirmationDialog" type="ConfirmationDialog"]
-title = "Run and Test"
+title = "Run & Test"
 initial_position = 2
 size = Vector2i(400, 210)
 visible = true
