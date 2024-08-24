@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://b8808yj7a0ghj"]
+
+[node name="PlayOpeningConfirmationDialog" type="ConfirmationDialog"]
+title = "Run & Test"
+initial_position = 2
+size = Vector2i(400, 210)
+visible = true
+ok_button_text = "Yes"
+dialog_text = "It is recommended to run the opening scene of the plugin and test if any issues occurred during the copying process.
+
+Would you like to run and test the scenes now?"
+dialog_autowrap = true
+cancel_button_text = "No"
