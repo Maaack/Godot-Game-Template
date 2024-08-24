@@ -74,9 +74,12 @@ func _end_reached():
 	scroll_paused = true
 	emit_signal("end_reached")
 
-func _check_end_reached():
+func is_end_reached():
 	var _end_of_credits_vertical = %CreditsLabel.size.y + %HeaderSpace.size.y
-	if $ScrollContainer.scroll_vertical <= _end_of_credits_vertical:
+	return $ScrollContainer.scroll_vertical > _end_of_credits_vertical
+
+func _check_end_reached():
+	if not is_end_reached():
 		return
 	_end_reached()
 
@@ -101,6 +104,7 @@ func _on_scroll_container_gui_input(event):
 	if event is InputEventMouseButton:
 		scroll_paused = true
 		_start_scroll_timer()
+	_check_end_reached()
 
 func _on_scroll_container_scroll_started():
 	# Capture the touch input event

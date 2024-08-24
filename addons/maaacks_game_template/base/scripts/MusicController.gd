@@ -27,12 +27,6 @@ const MINIMUM_VOLUME_DB = -80
 		if fade_in_duration < 0:
 			fade_in_duration = 0
 
-@export var blend_volume_duration : float = 0.0 :
-	set(value):
-		blend_volume_duration = value
-		if blend_volume_duration < 0:
-			blend_volume_duration = 0
-
 ## Matched stream players with no stream set will stop current playback.
 @export var empty_streams_stop_player : bool = true
 
