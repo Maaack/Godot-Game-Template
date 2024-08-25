@@ -30,6 +30,9 @@ const JOY_AXIS_NAMES : Dictionary = {
 	JOY_AXIS_TRIGGER_RIGHT: "Right Trigger Gamepad Button",
 }
 
+static func _display_server_supports_keycode_from_physical():
+	return OS.has_feature("windows") or OS.has_feature("macos") or OS.has_feature("linux")
+
 static func get_text(event : InputEvent) -> String:
 	if event is InputEventJoypadButton:
 		if event.button_index in JOY_BUTTON_NAMES:
@@ -61,6 +64,7 @@ static func get_text(event : InputEvent) -> String:
 			keycode = event.get_physical_keycode_with_modifiers()
 		else:
 			keycode = event.get_keycode_with_modifiers()
-		keycode = DisplayServer.keyboard_get_keycode_from_physical(keycode)
+		if _display_server_supports_keycode_from_physical():
+			keycode = DisplayServer.keyboard_get_keycode_from_physical(keycode)
 		return OS.get_keycode_string(keycode)
 	return event.as_text()
