@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bgxktnwexubms"]
+
+[node name="FileSelectDialog" type="FileDialog"]
+title = "Open a Directory"
+initial_position = 2
+size = Vector2i(500, 400)
+visible = true
+ok_button_text = "Select Current Folder"
+file_mode = 2
