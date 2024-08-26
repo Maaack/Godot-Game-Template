@@ -34,14 +34,14 @@ func _snake_case_directory(dir_path : String, ignore_file_extensions : PackedStr
 			var start_path = dir_path + file_name
 			var end_path = dir_path + file_name.to_snake_case()
 			var _match = start_path == end_path
-			if _match or file_name.get_extension() in ignore_file_extensions:
+			if file_name.get_extension() in ignore_file_extensions:
 				file_name = dir.get_next()
 				continue
 			if dir.current_is_dir():
-				if not dir.dir_exists(end_path):
+				if not dir.dir_exists(end_path) and not _match:
 					error = dir.rename(start_path, end_path)
 				_snake_case_directory(end_path, ignore_file_extensions)
-			else:
+			elif not _match:
 				error = dir.rename(start_path, end_path)
 			file_name = dir.get_next()
 		if error:
