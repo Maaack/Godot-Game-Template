@@ -65,6 +65,17 @@ max_value = 1.0
 
 [node name="ErrorMessage" type="AcceptDialog" parent="Control"]
 unique_name_in_owner = true
+title = "Loading Error"
+initial_position = 2
+size = Vector2i(360, 100)
+
+[node name="StalledMessage" type="ConfirmationDialog" parent="Control"]
+unique_name_in_owner = true
+title = "Loading Stalled"
+initial_position = 2
+size = Vector2i(360, 100)
+ok_button_text = "Try Waiting"
+cancel_button_text = "Reload"
 
 [node name="LoadingTimer" type="Timer" parent="."]
 unique_name_in_owner = true
@@ -73,4 +84,6 @@ one_shot = true
 autostart = true
 
 [connection signal="confirmed" from="Control/ErrorMessage" to="." method="_on_error_message_confirmed"]
+[connection signal="canceled" from="Control/StalledMessage" to="." method="_on_confirmation_dialog_canceled"]
+[connection signal="confirmed" from="Control/StalledMessage" to="." method="_on_confirmation_dialog_confirmed"]
 [connection signal="timeout" from="LoadingTimer" to="." method="_on_loading_timer_timeout"]
