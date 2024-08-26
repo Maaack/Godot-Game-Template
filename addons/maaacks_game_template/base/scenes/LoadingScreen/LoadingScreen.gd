@@ -79,19 +79,20 @@ func _show_scene_switching_error_message():
 	%ErrorMessage.dialog_text = "Loading Error: Failed to switch scenes."
 	%ErrorMessage.popup()
 
+func _hide_popups():
+	%ErrorMessage.hide()
+	%StalledMessage.hide()
+
 func _update_in_progress_messaging():
 	match _stall_stage:
 		StallStage.STARTED:
-			%ErrorMessage.hide()
-			%StalledMessage.hide()
+			_hide_popups()
 			%Title.text = LOADING_TEXT
 		StallStage.WAITING:
-			%ErrorMessage.hide()
-			%StalledMessage.hide()
+			_hide_popups()
 			%Title.text = LOADING_TEXT_WAITING
 		StallStage.STILL_WAITING:
-			%ErrorMessage.hide()
-			%StalledMessage.hide()
+			_hide_popups()
 			%Title.text = LOADING_TEXT_STILL_WAITING % _get_seconds_waiting()
 		StallStage.GIVE_UP:
 			_show_loading_stalled_error_message()
@@ -100,16 +101,13 @@ func _update_in_progress_messaging():
 func _update_loaded_messaging():
 	match _stall_stage:
 		StallStage.STARTED:
-			%ErrorMessage.hide()
-			%StalledMessage.hide()
+			_hide_popups()
 			%Title.text = LOADING_COMPLETE_TEXT
 		StallStage.WAITING:
-			%ErrorMessage.hide()
-			%StalledMessage.hide()
+			_hide_popups()
 			%Title.text = LOADING_COMPLETE_TEXT_WAITING
 		StallStage.STILL_WAITING:
-			%ErrorMessage.hide()
-			%StalledMessage.hide()
+			_hide_popups()
 			%Title.text = LOADING_COMPLETE_TEXT_STILL_WAITING % _get_seconds_waiting()
 		StallStage.GIVE_UP:
 			_show_scene_switching_error_message()
@@ -130,8 +128,7 @@ func _process(_delta):
 			%ErrorMessage.popup()
 			set_process(false)
 		ResourceLoader.THREAD_LOAD_INVALID_RESOURCE:
-			%ErrorMessage.hide()
-			%StalledMessage.hide()
+			_hide_popups()
 			set_process(false)
 
 func _on_loading_timer_timeout():
@@ -166,12 +163,10 @@ func reset():
 	_reset_loading_stage()
 	_reset_scene_loading_progress()
 	_reset_loading_start_time()
-	%ErrorMessage.hide()
-	%StalledMessage.hide()
+	_hide_popups()
 	set_process(true)
 
 func close():
 	set_process(false)
-	%ErrorMessage.hide()
-	%StalledMessage.hide()
+	_hide_popups()
 	hide()
