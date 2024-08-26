@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://c6k5nnpbypshi"]
 
-[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scenes/Menus/MainMenu/MainMenu.gd" id="1"]
-[ext_resource type="PackedScene" uid="uid://hmx6o472ropw" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/MasterOptionsMenuWithTabs.tscn" id="2_qvrrd"]
-[ext_resource type="PackedScene" uid="uid://t2dui8ppm3a4" path="res://addons/maaacks_game_template/base/scenes/Credits/Credits.tscn" id="3_5dhvp"]
-[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/CaptureFocus.gd" id="4_l1ebe"]
-[ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/scenes/MusicPlayers/BackgroundMusicPlayer.tscn" id="4_w8sbm"]
-[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/UISoundController.gd" id="6_bs342"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scenes/menus/main_menu/main_menu.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://hmx6o472ropw" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/master_options_menu_with_tabs.tscn" id="2_qvrrd"]
+[ext_resource type="PackedScene" uid="uid://t2dui8ppm3a4" path="res://addons/maaacks_game_template/base/scenes/credits/credits.tscn" id="3_5dhvp"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/capture_focus.gd" id="4_l1ebe"]
+[ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/scenes/music_players/background_music_player.tscn" id="4_w8sbm"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/ui_sound_controller.gd" id="6_bs342"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3

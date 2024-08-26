@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cd0jbh4metflb"]
 
-[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scenes/LoadingScreen/LoadingScreen.gd" id="1_gbk34"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scenes/loading_screen/loading_screen.gd" id="1_gbk34"]
 
 [node name="LoadingScreen" type="CanvasLayer"]
 process_mode = 3

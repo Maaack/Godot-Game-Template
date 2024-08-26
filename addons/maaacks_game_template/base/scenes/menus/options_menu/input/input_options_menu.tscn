@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://dp3rgqaehb3xu"]
 
-[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/Input/InputOptionsMenu.gd" id="1"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/input/input_options_menu.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://c1eqf1cse1hch" path="res://addons/maaacks_game_template/base/assets/images/addition_symbol.png" id="2_dw35t"]
-[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/CaptureFocus.gd" id="2_wft4x"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/capture_focus.gd" id="2_wft4x"]
 [ext_resource type="Texture2D" uid="uid://bteq3ica74h30" path="res://addons/maaacks_game_template/base/assets/images/subtraction_symbol.png" id="3_lngdd"]
-[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/Input/KeyAssignmentDialog.gd" id="3_wsh2h"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/input/key_assignment_dialog.gd" id="3_wsh2h"]
 
 [node name="Controls" type="MarginContainer"]
 anchors_preset = 15

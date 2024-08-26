@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://dt5ses55itjy4"]
 
-[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scenes/WinScreen/WinScreen.gd" id="1_elvr7"]
-[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/UISoundController.gd" id="2_g47g8"]
-[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/CaptureFocus.gd" id="3_am347"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scenes/win_screen/win_screen.gd" id="1_elvr7"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/ui_sound_controller.gd" id="2_g47g8"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/capture_focus.gd" id="3_am347"]
 
 [node name="WinScreen" type="CanvasLayer"]
 process_mode = 3

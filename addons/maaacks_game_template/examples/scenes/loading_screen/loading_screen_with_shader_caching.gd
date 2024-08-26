@@ -1,6 +1,6 @@
 extends LoadingScreen
 
-const QUADMESH_PLACEHOLDER = preload("res://addons/maaacks_game_template/examples/scenes/LoadingScreen/QuadMeshPlaceholder.tscn")
+const QUADMESH_PLACEHOLDER = preload("res://addons/maaacks_game_template/examples/scenes/loading_screen/quad_mesh_placeholder.tscn")
 
 @export_dir var _spatial_shader_material_dir : String
 @export_file("*.tscn") var _cache_shaders_scene : String

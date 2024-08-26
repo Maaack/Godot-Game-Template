@@ -1,14 +1,14 @@
 [gd_scene load_steps=4 format=3 uid="uid://cp3p3kqcjh0me"]
 
-[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scenes/LoseScreen/LoseScreen.gd" id="1_vd50a"]
-[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/UISoundController.gd" id="2_haoyh"]
-[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/CaptureFocus.gd" id="3_mqffv"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scenes/lose_screen/lose_screen.gd" id="1_vd50a"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/ui_sound_controller.gd" id="2_haoyh"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/capture_focus.gd" id="3_mqffv"]
 
 [node name="LoseScreen" type="CanvasLayer"]
 process_mode = 3
 layer = 10
 script = ExtResource("1_vd50a")
-main_menu_scene = "res://addons/maaacks_game_template/base/scenes/Menus/MainMenu/MainMenu.tscn"
+main_menu_scene = "res://addons/maaacks_game_template/base/scenes/menus/main_menu/main_menu.tscn"
 
 [node name="UISoundController" type="Node" parent="."]
 script = ExtResource("2_haoyh")

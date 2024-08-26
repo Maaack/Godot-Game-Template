@@ -290,10 +290,10 @@ func _remove_copy_tool_if_examples_exists():
 		remove_tool_menu_item("Delete " + _get_plugin_name() + " Examples...")
 
 func _enter_tree():
-	add_autoload_singleton("AppConfig", get_plugin_path() + "base/scenes/Autoloads/AppConfig.tscn")
-	add_autoload_singleton("SceneLoader", get_plugin_path() + "base/scenes/Autoloads/SceneLoader.tscn")
-	add_autoload_singleton("ProjectMusicController", get_plugin_path() + "base/scenes/Autoloads/ProjectMusicController.tscn")
-	add_autoload_singleton("ProjectUISoundController", get_plugin_path() + "base/scenes/Autoloads/ProjectUISoundController.tscn")
+	add_autoload_singleton("AppConfig", get_plugin_path() + "base/scenes/autoloads/app_config.tscn")
+	add_autoload_singleton("SceneLoader", get_plugin_path() + "base/scenes/autoloads/scene_loader.tscn")
+	add_autoload_singleton("ProjectMusicController", get_plugin_path() + "base/scenes/autoloads/project_music_controller.tscn")
+	add_autoload_singleton("ProjectUISoundController", get_plugin_path() + "base/scenes/autoloads/project_ui_sound_controller.tscn")
 	_add_copy_tool_if_examples_exists()
 	_show_plugin_dialogues()
 	_resave_if_recently_opened()

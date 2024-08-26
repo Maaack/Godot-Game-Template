@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://sikc02ddepyt"]
 
-[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scenes/Opening/Opening.gd" id="1_fcjph"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scenes/opening/opening.gd" id="1_fcjph"]
 
 [sub_resource type="Animation" id="Animation_nsnod"]
 resource_name = "FadeInOut"

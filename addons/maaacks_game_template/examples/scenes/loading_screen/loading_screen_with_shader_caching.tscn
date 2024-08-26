@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dvp3b2tdsbtmo"]
 
-[ext_resource type="PackedScene" uid="uid://cd0jbh4metflb" path="res://addons/maaacks_game_template/base/scenes/LoadingScreen/LoadingScreen.tscn" id="1_4k0mc"]
-[ext_resource type="Script" path="res://addons/maaacks_game_template/examples/scenes/LoadingScreen/LoadingScreenWithShaderCaching.gd" id="2_3xu6h"]
+[ext_resource type="PackedScene" uid="uid://cd0jbh4metflb" path="res://addons/maaacks_game_template/base/scenes/loading_screen/loading_screen.tscn" id="1_4k0mc"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/examples/scenes/loading_screen/loading_screen_with_shader_caching.gd" id="2_3xu6h"]
 
 [node name="LoadingScreen" instance=ExtResource("1_4k0mc")]
 script = ExtResource("2_3xu6h")

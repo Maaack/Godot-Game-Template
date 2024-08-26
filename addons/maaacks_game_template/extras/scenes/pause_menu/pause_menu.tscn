@@ -1,16 +1,16 @@
 [gd_scene load_steps=5 format=3 uid="uid://cdwvtbtwmrqbn"]
 
-[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scenes/PauseMenu/PauseMenu.gd" id="2"]
-[ext_resource type="PackedScene" uid="uid://vh1ucj2rfbby" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/MiniOptionsMenu.tscn" id="2_na2xb"]
-[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/CaptureFocus.gd" id="3_43rgy"]
-[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/UISoundController.gd" id="3_hgthy"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scenes/pause_menu/pause_menu.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://vh1ucj2rfbby" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/mini_options_menu.tscn" id="2_na2xb"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/capture_focus.gd" id="3_43rgy"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/ui_sound_controller.gd" id="3_hgthy"]
 
 [node name="PauseMenu" type="CanvasLayer"]
 process_mode = 3
 layer = 100
 script = ExtResource("2")
 options_packed_scene = ExtResource("2_na2xb")
-main_menu_scene = "res://addons/maaacks_game_template/base/scenes/Menus/MainMenu/MainMenu.tscn"
+main_menu_scene = "res://addons/maaacks_game_template/base/scenes/menus/main_menu/main_menu.tscn"
 
 [node name="UISoundController" type="Node" parent="."]
 script = ExtResource("3_hgthy")
