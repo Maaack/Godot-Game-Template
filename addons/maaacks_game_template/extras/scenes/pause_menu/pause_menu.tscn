@@ -1,0 +1,142 @@
+[gd_scene load_steps=5 format=3 uid="uid://cdwvtbtwmrqbn"]
+
+[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scenes/pause_menu/pause_menu.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://vh1ucj2rfbby" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/mini_options_menu.tscn" id="2_na2xb"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/capture_focus.gd" id="3_43rgy"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/ui_sound_controller.gd" id="3_hgthy"]
+
+[node name="PauseMenu" type="CanvasLayer"]
+process_mode = 3
+layer = 100
+script = ExtResource("2")
+options_packed_scene = ExtResource("2_na2xb")
+main_menu_scene = "res://addons/maaacks_game_template/base/scenes/menus/main_menu/main_menu.tscn"
+
+[node name="UISoundController" type="Node" parent="."]
+script = ExtResource("3_hgthy")
+
+[node name="BackgroundColor" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="BackgroundTextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MenuContainer" type="MarginContainer" parent="."]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 16
+
+[node name="Title" type="Label" parent="MenuContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Pause"
+horizontal_alignment = 1
+
+[node name="MenuButtons" type="VBoxContainer" parent="MenuContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+alignment = 1
+script = ExtResource("3_43rgy")
+
+[node name="ResumeButton" type="Button" parent="MenuContainer/VBoxContainer/MenuButtons"]
+custom_minimum_size = Vector2(128, 40)
+layout_mode = 2
+text = "Resume"
+
+[node name="RestartButton" type="Button" parent="MenuContainer/VBoxContainer/MenuButtons"]
+custom_minimum_size = Vector2(128, 40)
+layout_mode = 2
+text = "Restart"
+
+[node name="OptionsButton" type="Button" parent="MenuContainer/VBoxContainer/MenuButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 40)
+layout_mode = 2
+text = "Options"
+
+[node name="MainMenuButton" type="Button" parent="MenuContainer/VBoxContainer/MenuButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 40)
+layout_mode = 2
+text = "Main Menu"
+
+[node name="ExitButton" type="Button" parent="MenuContainer/VBoxContainer/MenuButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 40)
+layout_mode = 2
+text = "Exit Game"
+
+[node name="SubMenuContainer" type="MarginContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(360, 360)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SubMenuContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="OptionsContainer" type="MarginContainer" parent="SubMenuContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SubMenuContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="BackButton" type="Button" parent="SubMenuContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(62, 40)
+layout_mode = 2
+text = "Back"
+
+[node name="ConfirmRestart" type="ConfirmationDialog" parent="."]
+unique_name_in_owner = true
+dialog_text = "Restart the game?"
+
+[node name="ConfirmMainMenu" type="ConfirmationDialog" parent="."]
+unique_name_in_owner = true
+dialog_text = "Go back to main menu?"
+
+[node name="ConfirmExit" type="ConfirmationDialog" parent="."]
+unique_name_in_owner = true
+dialog_text = "Quit the game?"
+
+[connection signal="pressed" from="MenuContainer/VBoxContainer/MenuButtons/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="MenuContainer/VBoxContainer/MenuButtons/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="MenuContainer/VBoxContainer/MenuButtons/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="MenuContainer/VBoxContainer/MenuButtons/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="MenuContainer/VBoxContainer/MenuButtons/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="SubMenuContainer/VBoxContainer/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="confirmed" from="ConfirmRestart" to="." method="_on_confirm_restart_confirmed"]
+[connection signal="confirmed" from="ConfirmMainMenu" to="." method="_on_confirm_main_menu_confirmed"]
+[connection signal="confirmed" from="ConfirmExit" to="." method="_on_confirm_exit_confirmed"]

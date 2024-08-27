@@ -1,0 +1,91 @@
+[gd_scene load_steps=5 format=3 uid="uid://b2tqk64gy4pht"]
+
+[ext_resource type="PackedScene" path="res://scenes/credits/credits.tscn" id="1_msnc6"]
+[ext_resource type="Script" path="res://scenes/end_credits/end_credits.gd" id="2_yxq8n"]
+[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/scenes/music_players/background_music_player.tscn" id="3_ec4p2"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/capture_focus.gd" id="4_o8c11"]
+
+[node name="EndCredits" instance=ExtResource("1_msnc6")]
+script = ExtResource("2_yxq8n")
+main_menu_scene = "res://scenes/menus/main_menu/main_menu_with_animations.tscn"
+
+[node name="BackgroundMusicPlayer" parent="." index="0" instance=ExtResource("3_ec4p2")]
+
+[node name="BackgroundColor" type="ColorRect" parent="." index="1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="BackgroundTextureRect" type="TextureRect" parent="." index="2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ScrollContainer" parent="." index="3"]
+scroll_vertical = 0
+
+[node name="CenterContainer" type="CenterContainer" parent="." index="4"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="EndMessagePanel" type="Panel" parent="CenterContainer" index="0"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(360, 120)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/EndMessagePanel" index="0"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ThankPlayer" type="Label" parent="CenterContainer/EndMessagePanel/VBoxContainer" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Thanks for playing!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/EndMessagePanel/VBoxContainer" index="1"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/EndMessagePanel/VBoxContainer/CenterContainer" index="0"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 24
+script = ExtResource("4_o8c11")
+
+[node name="ExitButton" type="Button" parent="CenterContainer/EndMessagePanel/VBoxContainer/CenterContainer/HBoxContainer" index="0"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Exit"
+
+[node name="MenuButton" type="Button" parent="CenterContainer/EndMessagePanel/VBoxContainer/CenterContainer/HBoxContainer" index="1"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Menu"
+
+[connection signal="pressed" from="CenterContainer/EndMessagePanel/VBoxContainer/CenterContainer/HBoxContainer/ExitButton" to="." method="_on_ExitButton_pressed"]
+[connection signal="pressed" from="CenterContainer/EndMessagePanel/VBoxContainer/CenterContainer/HBoxContainer/MenuButton" to="." method="_on_MenuButton_pressed"]

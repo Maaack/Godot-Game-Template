@@ -1,0 +1,9 @@
+[gd_scene load_steps=5 format=3 uid="uid://db785cetfqf42"]
+
+[ext_resource type="PackedScene" uid="uid://deu3fhqkb4m45" path="res://scenes/opening/opening.tscn" id="1_8xqte"]
+[ext_resource type="Texture2D" uid="uid://c7814yh7b6ili" path="res://assets/images/GWJ-Full-Logo-tag-Orange2.svg" id="2_ss4iy"]
+[ext_resource type="Texture2D" uid="uid://7aa8oop803bj" path="res://assets/images/ThemeBanner.png" id="3_n7vbo"]
+[ext_resource type="Texture2D" uid="uid://b6pu78sn80vch" path="res://assets/images/WildcardsBanner.png" id="4_gmx7a"]
+
+[node name="Opening" instance=ExtResource("1_8xqte")]
+images = Array[Texture2D]([ExtResource("2_ss4iy"), ExtResource("3_n7vbo"), ExtResource("4_gmx7a")])

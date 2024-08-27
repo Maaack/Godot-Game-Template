@@ -11,16 +11,16 @@ config_version=5
 [application]
 
 config/name="Game Template"
-run/main_scene="res://scenes/Opening/OpeningWithLogo.tscn"
+run/main_scene="res://scenes/opening/opening_with_logo.tscn"
 config/features=PackedStringArray("4.3")
 config/icon="res://icon.png"
 
 [autoload]
 
-AppConfig="*res://addons/maaacks_game_template/base/scenes/Autoloads/AppConfig.tscn"
-SceneLoader="*res://addons/maaacks_game_template/base/scenes/Autoloads/SceneLoader.tscn"
-ProjectMusicController="*res://addons/maaacks_game_template/base/scenes/Autoloads/ProjectMusicController.tscn"
-ProjectUISoundController="*res://addons/maaacks_game_template/base/scenes/Autoloads/ProjectUISoundController.tscn"
+AppConfig="*res://addons/maaacks_game_template/base/scenes/autoloads/app_config.tscn"
+SceneLoader="*res://addons/maaacks_game_template/base/scenes/autoloads/scene_loader.tscn"
+ProjectMusicController="*res://addons/maaacks_game_template/base/scenes/autoloads/project_music_controller.tscn"
+ProjectUISoundController="*res://addons/maaacks_game_template/base/scenes/autoloads/project_ui_sound_controller.tscn"
 
 [display]
 
@@ -83,5 +83,8 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
 environment/defaults/default_clear_color=Color(0.0784314, 0.133333, 0.25098, 1)
 environment/defaults/default_environment="res://default_env.tres"

@@ -1,0 +1,122 @@
+[gd_scene load_steps=6 format=3 uid="uid://dp3rgqaehb3xu"]
+
+[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/input/input_options_menu.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://c1eqf1cse1hch" path="res://addons/maaacks_game_template/base/assets/images/addition_symbol.png" id="2_dw35t"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/capture_focus.gd" id="2_wft4x"]
+[ext_resource type="Texture2D" uid="uid://bteq3ica74h30" path="res://addons/maaacks_game_template/base/assets/images/subtraction_symbol.png" id="3_lngdd"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/input/key_assignment_dialog.gd" id="3_wsh2h"]
+
+[node name="Controls" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_bottom = 24
+script = ExtResource("1")
+add_button_texture = ExtResource("2_dw35t")
+remove_button_texture = ExtResource("3_lngdd")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(400, 280)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 8
+script = ExtResource("2_wft4x")
+search_depth = 2
+
+[node name="InputMappingContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/InputMappingContainer"]
+layout_mode = 2
+text = "Actions & Inputs"
+horizontal_alignment = 1
+
+[node name="Tree" type="Tree" parent="VBoxContainer/InputMappingContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+hide_root = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/InputMappingContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ResetButton" type="Button" parent="VBoxContainer/InputMappingContainer/HBoxContainer"]
+layout_mode = 2
+text = "Reset"
+
+[node name="KeyAssignmentDialog" type="ConfirmationDialog" parent="."]
+title = "Assign Key"
+size = Vector2i(400, 158)
+dialog_text = "
+
+
+"
+script = ExtResource("3_wsh2h")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="KeyAssignmentDialog"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -49.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InputLabel" type="Label" parent="KeyAssignmentDialog/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "None"
+horizontal_alignment = 1
+
+[node name="InputTextEdit" type="TextEdit" parent="KeyAssignmentDialog/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+placeholder_text = "Focus here to assign inputs."
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+middle_mouse_paste_enabled = false
+caret_move_on_right_click = false
+
+[node name="DelayTimer" type="Timer" parent="KeyAssignmentDialog"]
+unique_name_in_owner = true
+wait_time = 0.2
+one_shot = true
+
+[node name="KeyDeletionDialog" type="ConfirmationDialog" parent="."]
+title = "Remove Key"
+size = Vector2i(419, 100)
+dialog_text = "Are you sure you want to remove KEY from ACTION?"
+
+[node name="OneInputMinimumDialog" type="AcceptDialog" parent="."]
+title = "Cannot Remove"
+size = Vector2i(398, 100)
+
+[node name="AlreadyAssignedDialog" type="AcceptDialog" parent="."]
+title = "Already Assigned"
+size = Vector2i(398, 100)
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+dialog_text = "Are you sure you want to reset controls back to the defaults?"
+
+[connection signal="button_clicked" from="VBoxContainer/InputMappingContainer/Tree" to="." method="_on_tree_button_clicked"]
+[connection signal="item_activated" from="VBoxContainer/InputMappingContainer/Tree" to="." method="_on_tree_item_activated"]
+[connection signal="pressed" from="VBoxContainer/InputMappingContainer/HBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]
+[connection signal="canceled" from="KeyAssignmentDialog" to="." method="_on_key_assignment_dialog_canceled"]
+[connection signal="confirmed" from="KeyAssignmentDialog" to="." method="_on_key_assignment_dialog_confirmed"]
+[connection signal="visibility_changed" from="KeyAssignmentDialog" to="KeyAssignmentDialog" method="_on_visibility_changed"]
+[connection signal="focus_entered" from="KeyAssignmentDialog/VBoxContainer/InputTextEdit" to="KeyAssignmentDialog" method="_on_text_edit_focus_entered"]
+[connection signal="focus_exited" from="KeyAssignmentDialog/VBoxContainer/InputTextEdit" to="KeyAssignmentDialog" method="_on_input_text_edit_focus_exited"]
+[connection signal="gui_input" from="KeyAssignmentDialog/VBoxContainer/InputTextEdit" to="KeyAssignmentDialog" method="_on_input_text_edit_gui_input"]
+[connection signal="confirmed" from="KeyDeletionDialog" to="." method="_on_key_deletion_dialog_confirmed"]
+[connection signal="confirmed" from="ConfirmationDialog" to="." method="_on_confirmation_dialog_confirmed"]
