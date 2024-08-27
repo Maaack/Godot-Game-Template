@@ -13,6 +13,7 @@ const UID_PREG_MATCH = r'uid="uid:\/\/[0-9a-z]+" '
 const RESAVING_DELAY : float = 0.5
 const REIMPORT_FILE_DELAY : float = 0.2
 const OPEN_EDITOR_DELAY : float = 0.1
+const MAX_PHYSICS_FRAMES_FROM_START : int = 20
 
 func _get_plugin_name():
 	return PLUGIN_NAME
@@ -264,7 +265,7 @@ func _show_plugin_dialogues():
 	ProjectSettings.save()
 
 func _resave_if_recently_opened():
-	if Engine.get_physics_frames() == 0:
+	if Engine.get_physics_frames() < MAX_PHYSICS_FRAMES_FROM_START:
 		var timer: Timer = Timer.new()
 		var callable := func():
 			if Engine.get_frames_per_second() >= 10:
