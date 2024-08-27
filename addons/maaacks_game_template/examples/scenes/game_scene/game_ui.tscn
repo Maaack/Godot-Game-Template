@@ -1,0 +1,74 @@
+[gd_scene load_steps=11 format=3 uid="uid://bde0cbmryrv5s"]
+
+[ext_resource type="Script" path="res://addons/maaacks_game_template/examples/scenes/game_scene/game_ui.gd" id="1_lpkm8"]
+[ext_resource type="PackedScene" uid="uid://ta2xbceba8ec" path="res://addons/maaacks_game_template/examples/scenes/win_screen/win_screen.tscn" id="2_3aw6s"]
+[ext_resource type="PackedScene" uid="uid://duvowpap0jwaq" path="res://addons/maaacks_game_template/examples/scenes/lose_screen/lose_screen.tscn" id="3_28mfg"]
+[ext_resource type="PackedScene" uid="uid://cd0jbh4metflb" path="res://addons/maaacks_game_template/base/scenes/loading_screen/loading_screen.tscn" id="4_acyv5"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/pause_menu_controller.gd" id="5_fc8fx"]
+[ext_resource type="PackedScene" uid="uid://qeqh1euot2d0" path="res://addons/maaacks_game_template/examples/scenes/menus/pause_menu/pause_menu.tscn" id="5_r56ir"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/level_list_loader.gd" id="6_wd8e4"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/examples/scenes/game_scene/input_display_label.gd" id="7_f87ri"]
+[ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/scenes/music_players/background_music_player.tscn" id="7_yr75v"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/examples/scenes/game_scene/configurable_sub_viewport.gd" id="9_u1dsg"]
+
+[node name="GameUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lpkm8")
+win_scene = ExtResource("2_3aw6s")
+lose_scene = ExtResource("3_28mfg")
+
+[node name="PauseMenuController" type="Node" parent="."]
+script = ExtResource("5_fc8fx")
+pause_menu_packed = ExtResource("5_r56ir")
+
+[node name="LevelLoader" type="Node" parent="." node_paths=PackedStringArray("level_container")]
+script = ExtResource("6_wd8e4")
+level_container = NodePath("../ViewportContainer/ConfigurableSubViewport")
+files = Array[String](["res://addons/maaacks_game_template/examples/scenes/game_scene/levels/level_1.tscn", "res://addons/maaacks_game_template/examples/scenes/game_scene/levels/level_2.tscn", "res://addons/maaacks_game_template/examples/scenes/game_scene/levels/level_3.tscn"])
+directory = "res://addons/maaacks_game_template/examples/scenes/game_scene/levels"
+
+[node name="BackgroundMusicPlayer" parent="." instance=ExtResource("7_yr75v")]
+
+[node name="LoadingScreen" parent="." instance=ExtResource("4_acyv5")]
+visible = false
+
+[node name="ViewportContainer" type="SubViewportContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="ConfigurableSubViewport" type="SubViewport" parent="ViewportContainer"]
+handle_input_locally = false
+audio_listener_enable_2d = true
+audio_listener_enable_3d = true
+size = Vector2i(1280, 720)
+render_target_update_mode = 4
+script = ExtResource("9_u1dsg")
+
+[node name="InputDisplayLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -44.0
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+horizontal_alignment = 1
+autowrap_mode = 2
+script = ExtResource("7_f87ri")
+
+[connection signal="level_load_started" from="LevelLoader" to="." method="_on_level_loader_level_load_started"]
+[connection signal="level_loaded" from="LevelLoader" to="." method="_on_level_loader_level_loaded"]
+[connection signal="levels_finished" from="LevelLoader" to="." method="_on_level_loader_levels_finished"]

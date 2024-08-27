@@ -1,7 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://dr4t3e5fmbhnx"]
-
-[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/scenes/LoadingScreen/LoadingScreen.tscn" id="1_22dgp"]
-[ext_resource type="Script" path="res://scenes/LoadingScreen/LoadingScreen.gd" id="2_oh16l"]
-
-[node name="LoadingScreen" instance=ExtResource("1_22dgp")]
-script = ExtResource("2_oh16l")
