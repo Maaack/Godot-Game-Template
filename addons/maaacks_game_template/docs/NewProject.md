@@ -110,7 +110,11 @@ These instructions assume starting with the entire contents of the project folde
     3.  Check the `CreditsLabel` has updated with the text.
     4.  Save the scene.
 
-7.  Keep, update, or remove `res://LICENSE.txt`.
 
-8.  Optionally, if using Git for version control, update `.gitignore` to include `addons/`.
-   
+7.  Keep, update, or remove `res://LICENSE.txt`.  
+
+
+8.  Optionally, if using Git for version control, update `.gitignore` to include `addons/`.  
+
+
+9.  Continue by [Setting Up a Game Scene](/addons/maaacks_game_template/docs/GameSceneSetup.md).  
