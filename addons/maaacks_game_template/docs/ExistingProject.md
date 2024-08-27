@@ -115,3 +115,6 @@ These instructions assume starting with just the contents of `addons/`. This wil
     2.  Open `credits.tscn`.
     3.  Check the `CreditsLabel` has updated with the text.
     4.  Save the scene.
+
+
+8.  Continue by [Setting Up a Game Scene](/addons/maaacks_game_template/docs/GameSceneSetup.md).  
