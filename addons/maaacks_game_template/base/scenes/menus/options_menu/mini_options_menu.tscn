@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://vh1ucj2rfbby"]
+
+[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/mini_options_menu.gd" id="1_32vm2"]
+[ext_resource type="PackedScene" uid="uid://cl416gdb1fgwr" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/option_control/slider_option_control.tscn" id="2_kpc65"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/capture_focus.gd" id="3_7qt1o"]
+[ext_resource type="PackedScene" uid="uid://bsxh6v7j0257h" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/option_control/toggle_option_control.tscn" id="4_b20fb"]
+
+[node name="MiniOptionsMenu" type="VBoxContainer"]
+custom_minimum_size = Vector2(400, 260)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -130.0
+offset_right = 200.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 8
+alignment = 1
+script = ExtResource("1_32vm2")
+audio_control_scene = ExtResource("2_kpc65")
+
+[node name="AudioControlContainer" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 8
+script = ExtResource("3_7qt1o")
+search_depth = 2
+
+[node name="MuteControl" parent="." instance=ExtResource("4_b20fb")]
+unique_name_in_owner = true
+layout_mode = 2
+option_name = "Mute"
+option_section = 2
+key = "Mute"
+section = "AudioSettings"
+
+[node name="FullscreenControl" parent="." instance=ExtResource("4_b20fb")]
+unique_name_in_owner = true
+layout_mode = 2
+option_name = "Fullscreen"
+option_section = 3
+key = "FullscreenEnabled"
+section = "VideoSettings"
+
+[connection signal="setting_changed" from="MuteControl" to="." method="_on_mute_control_setting_changed"]
+[connection signal="setting_changed" from="FullscreenControl" to="." method="_on_fullscreen_control_setting_changed"]
