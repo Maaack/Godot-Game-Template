@@ -77,7 +77,7 @@ These instructions assume starting with just the contents of `addons/`. This wil
 5.  Add readable names for input actions to the controls menu.
     
 
-    1.  Open `input_options_menu.tscn` (or `master_options_menu.tscn`, which contains an instance of the scene).
+    1.  Open `input_options_menu.tscn` (or `master_options_menu_with_tabs.tscn`, which contains an instance of the scene).
     2.  Select the `Controls` node.
     3.  Update the `Action Name Map` to show readable names for the project's input actions.  
         1.  The keys are the project's input action names, while the values are the names shown in the controls menu.  
