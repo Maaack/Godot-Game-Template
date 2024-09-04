@@ -8,18 +8,18 @@ const NO_VERSION_NAME = "0.0.0"
 static var current : AppStateData
 static var current_version : String
 
-static func log_opened():
+static func _log_opened():
 	if current is AppStateData:
 		current.open_count += 1
 
-static func log_version():
+static func _log_version():
 	if current is AppStateData:
 		current_version = ProjectSettings.get_setting("application/config/version", NO_VERSION_NAME)
 		if not current.first_version_opened:
 			current.first_version_opened = current_version
 		current.last_version_opened = current_version
 
-static func open():
+static func _open_state():
 	if not current is AppStateData:
 		if FileAccess.file_exists(SAVE_STATE_PATH):
 			current = ResourceLoader.load(SAVE_STATE_PATH)
@@ -27,8 +27,11 @@ static func open():
 			current = ResourceLoader.load(STARTING_GAME_STATE_PATH)
 		else:
 			current = AppStateData.new()
-	log_opened()
-	log_version()
+
+static func open():
+	_open_state()
+	_log_opened()
+	_log_version()
 
 static func save():
 	if current is AppStateData:
