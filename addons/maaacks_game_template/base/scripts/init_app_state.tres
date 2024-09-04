@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AppStateData" load_steps=2 format=3 uid="uid://dp340ulnks8fi"]
+
+[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/app_state_data.gd" id="1_wu6p1"]
+
+[resource]
+script = ExtResource("1_wu6p1")
+first_version_opened = ""
+last_version_opened = ""
+open_count = 0
+states = Array[Resource]([])
