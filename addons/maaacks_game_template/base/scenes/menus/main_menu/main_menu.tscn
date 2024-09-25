@@ -77,7 +77,7 @@ theme_override_constants/margin_top = 32
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Title" type="Label" parent="MenuContainer/TitleMargin/TitleContainer"]
+[node name="TitleLabel" type="Label" parent="MenuContainer/TitleMargin/TitleContainer"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -96,7 +96,7 @@ theme_override_constants/margin_top = 96
 layout_mode = 2
 mouse_filter = 2
 
-[node name="SubTitle" type="Label" parent="MenuContainer/SubTitleMargin/SubTitleContainer"]
+[node name="SubTitleLabel" type="Label" parent="MenuContainer/SubTitleMargin/SubTitleContainer"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
