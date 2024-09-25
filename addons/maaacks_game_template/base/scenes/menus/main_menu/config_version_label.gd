@@ -13,7 +13,7 @@ func update_version_label():
 	if version_string.is_empty():
 		version_string = NO_VERSION_STRING
 	AppLog.version_opened(version_string)
-	%VersionLabel.text = version_prefix + version_string
+	text = version_prefix + version_string
 
 func _ready():
 	update_version_label()
