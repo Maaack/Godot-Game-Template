@@ -71,7 +71,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("VersionNameLabel:modulate")
+tracks/5/path = NodePath("VersionMargin/VersionContainer/VersionLabel:modulate")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -159,7 +159,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("VersionNameLabel:modulate")
+tracks/6/path = NodePath("VersionMargin/VersionContainer/VersionLabel:modulate")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -286,7 +286,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("VersionNameLabel:modulate")
+tracks/6/path = NodePath("VersionMargin/VersionContainer/VersionLabel:modulate")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -360,7 +360,7 @@ tree_root = SubResource("AnimationNodeStateMachine_vikuh")
 anim_player = NodePath("../MenuAnimationPlayer")
 parameters/conditions/intro_done = false
 
-[node name="VersionNameLabel" parent="." index="5"]
+[node name="VersionLabel" parent="VersionMargin/VersionContainer" index="0"]
 modulate = Color(1, 1, 1, 0)
 
 [node name="Title" parent="MenuContainer/TitleMargin/TitleContainer" index="0"]
