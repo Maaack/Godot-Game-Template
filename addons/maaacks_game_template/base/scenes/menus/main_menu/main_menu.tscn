@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c6k5nnpbypshi"]
+[gd_scene load_steps=9 format=3 uid="uid://c6k5nnpbypshi"]
 
 [ext_resource type="Script" path="res://addons/maaacks_game_template/base/scenes/menus/main_menu/main_menu.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://hmx6o472ropw" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/master_options_menu_with_tabs.tscn" id="2_qvrrd"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/scenes/music_players/background_music_player.tscn" id="4_w8sbm"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/ui_sound_controller.gd" id="6_bs342"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/base/scenes/menus/main_menu/config_version_label.gd" id="6_pdiij"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scenes/menus/main_menu/config_title_label.gd" id="7_j7612"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -48,7 +49,6 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="VersionLabel" type="Label" parent="VersionMargin/VersionContainer"]
-unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -90,6 +90,7 @@ theme_override_font_sizes/font_size = 48
 text = "Title"
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("7_j7612")
 
 [node name="SubTitleMargin" type="MarginContainer" parent="MenuContainer"]
 layout_mode = 2
