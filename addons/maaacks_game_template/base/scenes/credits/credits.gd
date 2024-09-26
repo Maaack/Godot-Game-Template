@@ -121,3 +121,6 @@ func _on_CreditsLabel_meta_clicked(meta:String):
 func _on_scroll_reset_timer_timeout():
 	set_header_and_footer()
 	scroll_paused = false
+
+func _on_scroll_container_resized():
+	set_header_and_footer()

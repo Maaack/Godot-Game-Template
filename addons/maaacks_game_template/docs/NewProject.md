@@ -9,7 +9,7 @@ These instructions assume starting with the entire contents of the project folde
     1.  Go to `Project > Project Settings… > General > Application > Config`.
     2.  Update `Name` to `"Game Name"`.
     3.  Close the window.
-    4.  Open `main_menu.tscn`.
+    4.  Open `main_menu_with_animations.tscn`.
     5.  Select the `Title` node.
     6.  Update the `Text` to your project's title.
     7.  Select the `Subtitle` node.
@@ -20,7 +20,7 @@ These instructions assume starting with the entire contents of the project folde
 2.  Link the main menu to the game scene.
     
 
-    1.  Open `main_menu.tscn`.
+    1.  Open `main_menu_with_animations.tscn`.
     2.  Select the `MainMenu` node.
     3.  Update `Game Scene Path` to the path of the project's game scene.
     4.  Save the scene.
@@ -37,12 +37,12 @@ These instructions assume starting with the entire contents of the project folde
     2.  Add background music to the Main Menu.
 
         1.  Import the music asset into the project.
-        2.  Open `main_menu.tscn`.
+        2.  Open `main_menu_with_animations.tscn`.
         3.  Select the `BackgroundMusicPlayer` node.
         4.  Assign the music asset to the `stream` property.
         5.  Save the scene.  
         6.  Optionally, repeat steps 3-5 for background music nodes in:
-            1.  `opening.tscn`
+            1.  `opening_with_logo.tscn`
             2.  `game_ui.tscn`
             3.  `end_credits.tscn`
 
@@ -53,7 +53,7 @@ These instructions assume starting with the entire contents of the project folde
         1.  By scene.
 
 
-            1.  Open `main_menu.tscn` and `pause_menu.tscn`.
+            1.  Open `main_menu_with_animations.tscn` and `pause_menu.tscn`.
             2.  Select the `UISoundController` node.
             3.  Add audio streams to the various UI node events.
             4.  Save the scenes.  
@@ -71,7 +71,7 @@ These instructions assume starting with the entire contents of the project folde
 4.  Add readable names for input actions to the controls menu.
     
 
-    1.  Open `input_options_menu.tscn` (or `master_options_menu.tscn`, which contains an instance of the scene).
+    1.  Open `input_options_menu.tscn` (or `master_options_menu_with_tabs.tscn`, which contains an instance of the scene).
     2.  Select the `Controls` node.
     3.  Update the `Action Name Map` to show readable names for the project's input actions.  
         1.  The keys are the project's input action names, while the values are the names shown in the controls menu.  
