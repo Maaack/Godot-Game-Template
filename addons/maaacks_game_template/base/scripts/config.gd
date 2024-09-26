@@ -41,13 +41,17 @@ static func has_section(section: String):
 	load_config_file()
 	return config_file.has_section(section)
 
+static func has_section_key(section: String, key: String):
+	load_config_file()
+	return config_file.has_section_key(section, key)
+
 static func erase_section(section: String):
 	if has_section(section):
 		config_file.erase_section(section)
 		_save_config_file()
 
 static func erase_section_key(section: String, key: String):
-	if has_section(section):
+	if has_section_key(section, key):
 		config_file.erase_section_key(section, key)
 		_save_config_file()
 
