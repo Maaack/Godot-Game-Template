@@ -12,8 +12,9 @@ extends Container
 @export var search_depth : int = 1
 @export var lock : bool = false :
 	set(value):
+		var value_changed : bool = lock != value
 		lock = value
-		if not lock:
+		if value_changed and not lock:
 			update_focus()
 
 func _focus_first_search(control_node : Control, levels : int = 1):
