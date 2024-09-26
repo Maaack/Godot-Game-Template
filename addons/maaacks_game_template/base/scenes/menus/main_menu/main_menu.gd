@@ -41,7 +41,7 @@ func _event_skips_intro(event : InputEvent):
 
 func _input(event):
 	if event.is_action_released("ui_accept") and get_viewport().gui_get_focus_owner() == null:
-		%MenuButtonsContainer.focus_first()
+		%MenuButtonsBoxContainer.focus_first()
 
 func _setup_for_web():
 	if OS.has_feature("web"):
