@@ -9,11 +9,11 @@ const NO_VERSION_STRING : String = "0.0.0"
 @export var version_prefix : String = "v"
 
 func update_version_label():
-	var version_string : String = ProjectSettings.get_setting("application/config/version", NO_VERSION_STRING)
-	if version_string.is_empty():
-		version_string = NO_VERSION_STRING
-	AppLog.version_opened(version_string)
-	text = version_prefix + version_string
+	var config_version : String = ProjectSettings.get_setting("application/config/version", NO_VERSION_STRING)
+	if config_version.is_empty():
+		config_version = NO_VERSION_STRING
+	AppLog.version_opened(config_version)
+	text = version_prefix + config_version
 
 func _ready():
 	update_version_label()
