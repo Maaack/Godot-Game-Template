@@ -237,11 +237,8 @@ func _add_translations():
 	var dir := DirAccess.open("res://")
 	var translations : PackedStringArray = ProjectSettings.get_setting("internationalization/locale/translations", [])
 	for available_translation in AVAILABLE_TRANSLATIONS:
-		print(available_translation)
 		var translation_path = get_plugin_path() + ("base/translations/menus_translations.%s.translation" % available_translation)
-		print(translation_path, dir.dir_exists(translation_path), translation_path not in translations)
 		if dir.file_exists(translation_path) and translation_path not in translations:
-			print("added")
 			translations.append(translation_path)
 	ProjectSettings.set_setting("internationalization/locale/translations", translations)
 
