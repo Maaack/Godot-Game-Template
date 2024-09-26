@@ -117,7 +117,8 @@ vertical_alignment = 1
 [node name="MenuButtonsMargin" type="MarginContainer" parent="MenuContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/margin_top = 192
+theme_override_constants/margin_top = 136
+theme_override_constants/margin_bottom = 8
 
 [node name="MenuButtonsContainer" type="Control" parent="MenuContainer/MenuButtonsMargin"]
 layout_mode = 2
