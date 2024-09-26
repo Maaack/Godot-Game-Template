@@ -52,8 +52,8 @@ layout_mode = 2
 wait_time = 1.5
 one_shot = true
 
-[connection signal="resized" from="." to="." method="_on_resized"]
 [connection signal="gui_input" from="ScrollContainer" to="." method="_on_scroll_container_gui_input"]
+[connection signal="resized" from="ScrollContainer" to="." method="_on_scroll_container_resized"]
 [connection signal="scroll_started" from="ScrollContainer" to="." method="_on_scroll_container_scroll_started"]
 [connection signal="meta_clicked" from="ScrollContainer/VBoxContainer/CreditsLabel" to="." method="_on_CreditsLabel_meta_clicked"]
 [connection signal="timeout" from="ScrollResetTimer" to="." method="_on_scroll_reset_timer_timeout"]
