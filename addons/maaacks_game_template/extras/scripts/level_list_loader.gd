@@ -50,11 +50,14 @@ func load_level(level_id : int = get_current_level_id()):
 		await current_level.tree_exited
 		current_level = null
 	var level_file = get_level_file(level_id)
+	if level_file == null:
+		levels_finished.emit()
+		return
 	SceneLoader.load_scene(level_file, true)
-	emit_signal("level_load_started")
-	await(SceneLoader.scene_loaded)
+	level_load_started.emit()
+	await SceneLoader.scene_loaded
 	current_level = _attach_level(SceneLoader.get_resource())
-	emit_signal("level_loaded")
+	level_loaded.emit()
 
 func advance_and_load_level():
 	if advance_level():

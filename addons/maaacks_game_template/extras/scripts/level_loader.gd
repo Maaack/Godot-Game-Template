@@ -1,20 +1,19 @@
 @tool
 class_name LevelLoader
 extends Node
-## Extends [SceneLister] to manage level advancement through [GameLevelLog].
+## Loads scenes into a container.
 
 signal level_load_started
 signal level_loaded
-signal levels_finished
 
 ## Container where the level instance will be added.
 @export var level_container : Node
 ## Loads a level on start.
-@export var auto_load : bool = true
+@export var auto_load : bool = false
+@export var current_level_path : String
 @export_group("Debugging")
 @export var force_level : String
 @export var current_level : Node
-@export var current_level_path : String
 
 var is_loading : bool = false
 
@@ -36,11 +35,11 @@ func load_level(level_path : String = get_current_level_path()):
 	is_loading = true
 	current_level_path = level_path
 	SceneLoader.load_scene(level_path, true)
-	emit_signal("level_load_started")
+	level_load_started.emit()
 	await SceneLoader.scene_loaded
 	is_loading = false
 	current_level = _attach_level(SceneLoader.get_resource())
-	emit_signal("level_loaded")
+	level_loaded.emit()
 
 func _ready():
 	if auto_load:

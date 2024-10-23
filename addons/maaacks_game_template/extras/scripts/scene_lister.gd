@@ -13,7 +13,7 @@ class_name SceneLister
 		_refresh_files()
 
 func _refresh_files():
-	if not is_inside_tree(): return
+	if not is_inside_tree() or directory.is_empty(): return
 	var dir_access = DirAccess.open(directory)
 	if dir_access:
 		files.clear()
