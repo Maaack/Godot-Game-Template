@@ -79,7 +79,6 @@ cancel_button_text = "Reload"
 
 [node name="LoadingTimer" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 15.0
 one_shot = true
 autostart = true
 

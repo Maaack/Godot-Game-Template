@@ -5,6 +5,7 @@ const STALLED_ON_WEB = "\nIf running in a browser, try clicking out of the windo
 
 enum StallStage{STARTED, WAITING, STILL_WAITING, GIVE_UP}
 
+@export_range(5, 60, 0.5, "or_greater") var state_change_delay : float = 15.0
 @export_group("State Messages")
 @export_subgroup("In Progress")
 @export var _in_progress : String = "Loading..."
@@ -37,7 +38,7 @@ func update_total_loading_progress():
 
 func _reset_loading_stage():
 	_stall_stage = StallStage.STARTED
-	%LoadingTimer.start()
+	%LoadingTimer.start(state_change_delay)
 
 func _reset_loading_start_time():
 	_loading_start_time = Time.get_ticks_msec()
@@ -145,10 +146,10 @@ func _on_loading_timer_timeout():
 	match prev_stage:
 		StallStage.STARTED:
 			_stall_stage = StallStage.WAITING
-			%LoadingTimer.start()
+			%LoadingTimer.start(state_change_delay)
 		StallStage.WAITING:
 			_stall_stage = StallStage.STILL_WAITING
-			%LoadingTimer.start()
+			%LoadingTimer.start(state_change_delay)
 		StallStage.STILL_WAITING:
 			_stall_stage = StallStage.GIVE_UP
 
