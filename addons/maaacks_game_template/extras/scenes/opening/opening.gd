@@ -30,16 +30,19 @@ func _add_textures_to_container(textures : Array[Texture2D]):
 		texture_rect.modulate.a = 0.0
 		%ImagesContainer.call_deferred("add_child", texture_rect)
 
+func _event_skips_image(event : InputEvent):
+	return event.is_action_released(&"ui_accept") or event.is_action_released(&"ui_select")
+
 func _event_skips_intro(event : InputEvent):
-	return event.is_action_released("ui_accept") or \
-		event.is_action_released("ui_select") or \
-		event.is_action_released("ui_cancel")
+	return event.is_action_released(&"ui_cancel")
 
 func _event_is_mouse_button_released(event : InputEvent):
 	return event is InputEventMouseButton and not event.is_pressed()
 
 func _unhandled_input(event):
 	if _event_skips_intro(event):
+		_load_next_scene()
+	elif _event_skips_image(event):
 		_show_next_image(false)
 
 func _gui_input(event):
