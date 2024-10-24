@@ -193,6 +193,7 @@ func _horizontally_align_popup_labels():
 	$AlreadyAssignedDialog.get_label().horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 
 func _ready():
+	if Engine.is_editor_hint(): return
 	_build_assigned_input_events()
 	_build_ui_tree()
 	_horizontally_align_popup_labels()
