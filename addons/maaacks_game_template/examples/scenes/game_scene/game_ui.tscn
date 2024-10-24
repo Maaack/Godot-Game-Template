@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://bde0cbmryrv5s"]
+[gd_scene load_steps=12 format=3 uid="uid://bde0cbmryrv5s"]
 
 [ext_resource type="Script" path="res://addons/maaacks_game_template/examples/scenes/game_scene/game_ui.gd" id="1_lpkm8"]
 [ext_resource type="PackedScene" uid="uid://ta2xbceba8ec" path="res://addons/maaacks_game_template/examples/scenes/win_screen/win_screen.tscn" id="2_3aw6s"]
 [ext_resource type="PackedScene" uid="uid://duvowpap0jwaq" path="res://addons/maaacks_game_template/examples/scenes/lose_screen/lose_screen.tscn" id="3_28mfg"]
+[ext_resource type="PackedScene" uid="uid://ddxbl58500png" path="res://addons/maaacks_game_template/examples/scenes/level_complete_screen/level_complete_screen.tscn" id="4_gomcd"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/pause_menu_controller.gd" id="5_fc8fx"]
 [ext_resource type="PackedScene" uid="uid://qeqh1euot2d0" path="res://addons/maaacks_game_template/examples/scenes/menus/pause_menu/pause_menu.tscn" id="5_r56ir"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/level_list_loader.gd" id="6_wd8e4"]
@@ -21,6 +22,7 @@ grow_vertical = 2
 script = ExtResource("1_lpkm8")
 win_scene = ExtResource("2_3aw6s")
 lose_scene = ExtResource("3_28mfg")
+level_complete_scene = ExtResource("4_gomcd")
 
 [node name="PauseMenuController" type="Node" parent="."]
 script = ExtResource("5_fc8fx")
