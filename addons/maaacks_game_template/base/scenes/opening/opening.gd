@@ -71,7 +71,8 @@ func _hide_previous_image():
 	if tween and tween.is_running():
 		tween.stop()
 	var current_image = %ImagesContainer.get_child(next_image_index - 1)
-	current_image.modulate.a = 0.0
+	if current_image:
+		current_image.modulate.a = 0.0
 
 func _show_next_image(animated : bool = true):
 	_hide_previous_image()
