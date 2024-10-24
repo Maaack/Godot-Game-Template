@@ -4,7 +4,7 @@ signal level_won
 signal level_lost
 
 func _on_lose_button_pressed():
-	level_lost.emit()
+	emit_signal("level_lost")
 
 func _on_win_button_pressed():
-	level_won.emit()
+	emit_signal("level_won")
