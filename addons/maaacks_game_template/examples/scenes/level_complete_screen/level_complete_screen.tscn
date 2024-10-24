@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddxbl58500png"]
+
+[ext_resource type="PackedScene" uid="uid://cpa0hksdk0vjv" path="res://addons/maaacks_game_template/extras/scenes/level_complete_screen/level_complete_screen.tscn" id="1_67ooa"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/examples/scenes/level_complete_screen/level_complete_screen.gd" id="1_fgelo"]
+
+[node name="LevelCompleteScreen" instance=ExtResource("1_67ooa")]
+script = ExtResource("1_fgelo")
+main_menu_scene = ""
