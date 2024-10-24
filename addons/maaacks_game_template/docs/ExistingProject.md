@@ -7,15 +7,14 @@ These instructions assume starting with just the contents of `addons/`. This wil
     
 
     1.  Go to `Project > Project Settings… > General > Application > Run`.
-    2.  Update `Main Scene` to `main_menu.tscn` or `opening.tscn`.
-        1.  Alternatively, any scene the inherits from one of these. A few exist in the `examples/` folder.
+    2.  Update `Main Scene` to `opening_with_logo.tscn`, or skip openings and go straight to `main_menu_with_animations.tscn`. (These are the default scenes used, but other options are available.)
     3.  Close the window.
     
 
 2.  Update the project’s name in the main menu.
     
 
-    1.  Open `main_menu.tscn`.
+    1.  Open `main_menu_with_animations.tscn`.
     2.  Select the `Title` node.
     3.  Update the `Text` to your project's title.
     4.  Select the `Subtitle` node.
@@ -26,7 +25,7 @@ These instructions assume starting with just the contents of `addons/`. This wil
 3.  Link the main menu to the game scene.
     
 
-    1.  Open `main_menu.tscn`.
+    1.  Open `main_menu_with_animations.tscn`.
     2.  Select the `MainMenu` node.
     3.  Update `Game Scene Path` to the path of the project's game scene.
     4.  Save the scene.
@@ -44,12 +43,12 @@ These instructions assume starting with just the contents of `addons/`. This wil
     2.  Add background music to the Main Menu.
 
         1.  Import the music asset into the project.
-        2.  Open `main_menu.tscn`.
+        2.  Open `main_menu_with_animations.tscn`.
         3.  Select the `BackgroundMusicPlayer` node.
         4.  Assign the music asset to the `stream` property.
         5.  Save the scene.
         6.  Optionally, repeat steps 3-5 for background music nodes in:
-            1.  `opening.tscn`
+            1.  `opening_with_logo.tscn`
             2.  `game_ui.tscn`
             3.  `end_credits.tscn`
 
@@ -59,7 +58,7 @@ These instructions assume starting with just the contents of `addons/`. This wil
         1.  By scene.
 
 
-            1.  Open `main_menu.tscn` and `pause_menu.tscn`.
+            1.  Open `main_menu_with_animations.tscn` and `pause_menu.tscn`.
             2.  Select the `UISoundController` node.
             3.  Add audio streams to the various UI node events.
             4.  Save the scenes.  
@@ -77,7 +76,7 @@ These instructions assume starting with just the contents of `addons/`. This wil
 5.  Add readable names for input actions to the controls menu.
     
 
-    1.  Open `input_options_menu.tscn` (or `master_options_menu.tscn`, which contains an instance of the scene).
+    1.  Open `input_options_menu.tscn` (or `master_options_menu_with_tabs.tscn`, which contains an instance of the scene).
     2.  Select the `Controls` node.
     3.  Update the `Action Name Map` to show readable names for the project's input actions.  
         1.  The keys are the project's input action names, while the values are the names shown in the controls menu.  

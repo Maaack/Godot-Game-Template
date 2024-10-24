@@ -52,7 +52,7 @@ static func _get_action_names() -> Array[StringName]:
 	return InputMap.get_actions()
 
 static func _get_custom_action_names() -> Array[StringName]:
-	var callable_filter := func(action_name): return not action_name.begins_with("ui_")
+	var callable_filter := func(action_name): return not (action_name.begins_with("ui_") or action_name.begins_with("spatial_editor"))
 	var action_list := _get_action_names()
 	return action_list.filter(callable_filter)
 

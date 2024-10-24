@@ -146,7 +146,9 @@ These instructions assume starting with just the contents of `addons/`. This wil
 
 [Existing Project Instructions](/addons/maaacks_game_template/docs/ExistingProject.md)  
    
+### More Documentation
 
+[Game Scene Setup](/addons/maaacks_game_template/docs/GameSceneSetup.md)  
 
 ## Links
 [Attribution](/addons/maaacks_game_template/ATTRIBUTION.md)  

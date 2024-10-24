@@ -14,6 +14,7 @@ const RESAVING_DELAY : float = 0.5
 const REIMPORT_FILE_DELAY : float = 0.2
 const OPEN_EDITOR_DELAY : float = 0.1
 const MAX_PHYSICS_FRAMES_FROM_START : int = 20
+const AVAILABLE_TRANSLATIONS : Array = ["en", "fr"]
 
 func _get_plugin_name():
 	return PLUGIN_NAME
@@ -232,6 +233,15 @@ func _delayed_saving_and_check_main_scene(target_path : String):
 	add_child(timer)
 	timer.start(RESAVING_DELAY)
 
+func _add_translations():
+	var dir := DirAccess.open("res://")
+	var translations : PackedStringArray = ProjectSettings.get_setting("internationalization/locale/translations", [])
+	for available_translation in AVAILABLE_TRANSLATIONS:
+		var translation_path = get_plugin_path() + ("base/translations/menus_translations.%s.translation" % available_translation)
+		if dir.file_exists(translation_path) and translation_path not in translations:
+			translations.append(translation_path)
+	ProjectSettings.set_setting("internationalization/locale/translations", translations)
+
 func _copy_to_directory(target_path : String):
 	ProjectSettings.set_setting(PROJECT_SETTINGS_PATH + "copy_path", target_path)
 	ProjectSettings.save()
@@ -296,6 +306,7 @@ func _enter_tree():
 	add_autoload_singleton("ProjectMusicController", get_plugin_path() + "base/scenes/autoloads/project_music_controller.tscn")
 	add_autoload_singleton("ProjectUISoundController", get_plugin_path() + "base/scenes/autoloads/project_ui_sound_controller.tscn")
 	_add_copy_tool_if_examples_exists()
+	_add_translations()
 	_show_plugin_dialogues()
 	_resave_if_recently_opened()
 
