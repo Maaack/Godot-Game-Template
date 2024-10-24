@@ -51,7 +51,7 @@ offset_right = -30.0
 offset_bottom = 98.0
 theme_override_constants/separation = 50
 
-[node name="Title" type="Label" parent="Control/VBoxContainer"]
+[node name="ProgressLabel" type="Label" parent="Control/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Loading..."
