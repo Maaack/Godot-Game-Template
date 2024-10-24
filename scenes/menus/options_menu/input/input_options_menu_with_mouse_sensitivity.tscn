@@ -31,7 +31,7 @@ text = "Mouse Sensitivity :"
 [node name="HSlider" parent="VBoxContainer/MarginContainer/VBoxContainer/MouseSensitivityControl" index="1"]
 min_value = 0.25
 max_value = 2.0
-tick_count = 13
+tick_count = 8
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer" index="1"]
 layout_mode = 2
