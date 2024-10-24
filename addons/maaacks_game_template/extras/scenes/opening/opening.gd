@@ -40,11 +40,11 @@ func _event_is_mouse_button_released(event : InputEvent):
 
 func _unhandled_input(event):
 	if _event_skips_intro(event):
-		_load_next_scene()
+		_show_next_image(false)
 
 func _gui_input(event):
 	if _event_is_mouse_button_released(event):
-		_load_next_scene()
+		_show_next_image(false)
 
 func _transition_out():
 	await get_tree().create_timer(end_delay).timeout
@@ -64,14 +64,24 @@ func _wait_and_fade_out(texture_rect : TextureRect):
 	await tween.finished
 	_show_next_image.call_deferred()
 
-func _show_next_image():
+func _hide_previous_image():
+	if tween and tween.is_running():
+		tween.stop()
+	var current_image = %ImagesContainer.get_child(next_image_index - 1)
+	current_image.modulate.a = 0.0
+
+func _show_next_image(animated : bool = true):
+	_hide_previous_image()
 	if next_image_index >= %ImagesContainer.get_child_count():
 		_transition_out()
 		return
 	var texture_rect = %ImagesContainer.get_child(next_image_index)
-	tween = create_tween()
-	tween.tween_property(texture_rect, "modulate:a", 1.0, fade_in_time)
-	await tween.finished
+	if animated: 
+		tween = create_tween()
+		tween.tween_property(texture_rect, "modulate:a", 1.0, fade_in_time)
+		await tween.finished
+	else:
+		texture_rect.modulate.a = 1.0
 	next_image_index += 1
 	_wait_and_fade_out(texture_rect)
 
