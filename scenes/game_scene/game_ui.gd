@@ -21,10 +21,10 @@ func _on_level_loader_level_loaded():
 		current_level.level_won.connect(_on_level_won)
 	if current_level.has_signal("level_lost"):
 		current_level.level_lost.connect(_on_level_lost)
-	$LoadingScreen.close()
+	$LevelLoadingScreen.close()
 
 func _on_level_loader_levels_finished():
 	InGameMenuController.open_menu(win_scene, get_viewport())
 
 func _on_level_loader_level_load_started():
-	$LoadingScreen.reset()
+	$LevelLoadingScreen.reset()

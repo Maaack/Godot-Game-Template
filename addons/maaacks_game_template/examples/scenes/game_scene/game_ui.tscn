@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/level_list_loader.gd" id="6_wd8e4"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/examples/scenes/game_scene/input_display_label.gd" id="7_f87ri"]
 [ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/scenes/music_players/background_music_player.tscn" id="7_yr75v"]
-[ext_resource type="PackedScene" uid="uid://ddeagbc67f52m" path="res://addons/maaacks_game_template/examples/scenes/loading_screen/loading_screen.tscn" id="8_ibxx7"]
+[ext_resource type="PackedScene" uid="uid://dbuv0htkikcv4" path="res://addons/maaacks_game_template/examples/scenes/loading_screen/level_loading_screen.tscn" id="8_0nt60"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/examples/scenes/game_scene/configurable_sub_viewport.gd" id="9_u1dsg"]
 
 [node name="GameUI" type="Control"]
@@ -34,7 +34,7 @@ directory = "res://addons/maaacks_game_template/examples/scenes/game_scene/level
 
 [node name="BackgroundMusicPlayer" parent="." instance=ExtResource("7_yr75v")]
 
-[node name="LoadingScreen" parent="." instance=ExtResource("8_ibxx7")]
+[node name="LevelLoadingScreen" parent="." instance=ExtResource("8_0nt60")]
 visible = false
 
 [node name="ViewportContainer" type="SubViewportContainer" parent="."]
