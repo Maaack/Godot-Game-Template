@@ -1,2 +1,5 @@
 # Normalize line endings for all files that Git considers text files.
 * text=auto eol=lf
+
+# Exclude github directory
+/.github        export-ignore
