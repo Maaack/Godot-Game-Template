@@ -19,11 +19,11 @@ extends Node
 ## Optional reference to a loading screen in the scene.
 @export var level_loading_screen : LoadingScreen
 ## Optional win screen to be shown after the last level is won.
-@export var win_scene : PackedScene
+@export var win_screen_scene : PackedScene
 ## Optional lose screen to be shown after the level is lost.
-@export var lose_scene : PackedScene
+@export var lose_screen_scene : PackedScene
 ## Optional level compete screen to be shown after the level is won.
-@export var level_complete_scene : PackedScene
+@export var level_complete_screen_scene : PackedScene
 
 ## Reference to the current level node.
 var current_level
@@ -55,8 +55,8 @@ func _load_ending():
 		_load_main_menu()
 
 func _on_level_lost():
-	if lose_scene:
-		InGameMenuController.open_menu(lose_scene, get_viewport())
+	if lose_screen_scene:
+		InGameMenuController.open_menu(lose_screen_scene, get_viewport())
 		_try_connecting_signal_to_current_menu(&"restart_pressed", _reload_level)
 		_try_connecting_signal_to_current_menu(&"main_menu_pressed", _load_main_menu)
 	else:
@@ -77,8 +77,8 @@ func _reload_level():
 	level_list_loader.reload_level()
 
 func _load_win_screen_or_ending():
-	if win_scene:
-		InGameMenuController.open_menu(win_scene, get_viewport())
+	if win_screen_scene:
+		InGameMenuController.open_menu(win_screen_scene, get_viewport())
 		_try_connecting_signal_to_current_menu(&"continue_pressed", _load_ending)
 		_try_connecting_signal_to_current_menu(&"restart_pressed", _reload_level)
 		_try_connecting_signal_to_current_menu(&"main_menu_pressed", _load_main_menu)
@@ -86,8 +86,8 @@ func _load_win_screen_or_ending():
 		_load_ending()
 
 func _load_level_complete_screen_or_next_level():
-	if level_complete_scene:
-		InGameMenuController.open_menu(level_complete_scene, get_viewport())
+	if level_complete_screen_scene:
+		InGameMenuController.open_menu(level_complete_screen_scene, get_viewport())
 		_try_connecting_signal_to_current_menu(&"continue_pressed", _load_next_level)
 		_try_connecting_signal_to_current_menu(&"restart_pressed", _advance_and_reload)
 		_try_connecting_signal_to_current_menu(&"main_menu_pressed", _advance_and_load_main_menu)
