@@ -70,6 +70,8 @@ func _wait_and_fade_out(texture_rect : TextureRect):
 func _hide_previous_image():
 	if tween and tween.is_running():
 		tween.stop()
+	if %ImagesContainer.get_child_count() == 0:
+		return
 	var current_image = %ImagesContainer.get_child(next_image_index - 1)
 	if current_image:
 		current_image.modulate.a = 0.0
