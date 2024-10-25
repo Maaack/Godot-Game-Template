@@ -1,6 +1,5 @@
 [gd_scene load_steps=12 format=3 uid="uid://bde0cbmryrv5s"]
 
-[ext_resource type="Script" path="res://addons/maaacks_game_template/examples/scenes/game_scene/game_ui.gd" id="1_lpkm8"]
 [ext_resource type="PackedScene" uid="uid://ta2xbceba8ec" path="res://addons/maaacks_game_template/examples/scenes/win_screen/win_screen.tscn" id="2_3aw6s"]
 [ext_resource type="PackedScene" uid="uid://duvowpap0jwaq" path="res://addons/maaacks_game_template/examples/scenes/lose_screen/lose_screen.tscn" id="3_28mfg"]
 [ext_resource type="PackedScene" uid="uid://ddxbl58500png" path="res://addons/maaacks_game_template/examples/scenes/level_complete_screen/level_complete_screen.tscn" id="4_gomcd"]
@@ -11,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/scenes/music_players/background_music_player.tscn" id="7_yr75v"]
 [ext_resource type="PackedScene" uid="uid://dbuv0htkikcv4" path="res://addons/maaacks_game_template/examples/scenes/loading_screen/level_loading_screen.tscn" id="8_0nt60"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/examples/scenes/game_scene/configurable_sub_viewport.gd" id="9_u1dsg"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/examples/scenes/game_scene/level_manager.gd" id="12_ut0t4"]
 
 [node name="GameUI" type="Control"]
 layout_mode = 3
@@ -19,10 +19,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_lpkm8")
-win_scene = ExtResource("2_3aw6s")
-lose_scene = ExtResource("3_28mfg")
-level_complete_scene = ExtResource("4_gomcd")
 
 [node name="PauseMenuController" type="Node" parent="."]
 script = ExtResource("5_fc8fx")
@@ -70,6 +66,17 @@ theme_override_font_sizes/font_size = 64
 horizontal_alignment = 1
 autowrap_mode = 2
 script = ExtResource("7_f87ri")
+
+[node name="LevelListManager" type="Node" parent="." node_paths=PackedStringArray("level_list_loader", "level_loading_screen")]
+process_mode = 3
+script = ExtResource("12_ut0t4")
+level_list_loader = NodePath("../LevelLoader")
+level_loading_screen = NodePath("../LevelLoadingScreen")
+win_scene = ExtResource("2_3aw6s")
+lose_scene = ExtResource("3_28mfg")
+level_complete_scene = ExtResource("4_gomcd")
+main_menu_scene = "res://addons/maaacks_game_template/examples/scenes/menus/main_menu/main_menu_with_animations.tscn"
+end_credits_scene = "res://addons/maaacks_game_template/examples/scenes/end_credits/end_credits.tscn"
 
 [connection signal="level_load_started" from="LevelLoader" to="." method="_on_level_loader_level_load_started"]
 [connection signal="level_loaded" from="LevelLoader" to="." method="_on_level_loader_level_loaded"]
