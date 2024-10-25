@@ -8,7 +8,6 @@
 process_mode = 3
 layer = 10
 script = ExtResource("1_fgelo")
-main_menu_scene = "res://addons/maaacks_game_template/base/scenes/menus/main_menu/main_menu.tscn"
 
 [node name="UISoundController" type="Node" parent="."]
 script = ExtResource("2_p87ka")
