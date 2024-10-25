@@ -48,6 +48,7 @@ func _attach_level(level_resource : Resource):
 	return instance
 
 func load_level(level_id : int = get_current_level_id()):
+	GameLevelLog.set_current_level(level_id)
 	if is_instance_valid(current_level):
 		current_level.queue_free()
 		await current_level.tree_exited

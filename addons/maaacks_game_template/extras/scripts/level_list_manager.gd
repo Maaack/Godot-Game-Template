@@ -63,6 +63,7 @@ func _on_level_lost():
 		_reload_level()
 
 func _advance_and_reload():
+	InGameMenuController.close_menu()
 	var _current_level_id = level_list_loader.get_current_level_id()
 	level_list_loader.advance_level()
 	level_list_loader.load_level(_current_level_id)
