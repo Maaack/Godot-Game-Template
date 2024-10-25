@@ -1,3 +1,4 @@
+@tool
 class_name InputOptionsMenu
 extends Control
 
@@ -5,14 +6,28 @@ const ALREADY_ASSIGNED_TEXT : String = "{key} already assigned to {action}."
 const ONE_INPUT_MINIMUM_TEXT : String = "%s must have at least one key or button assigned."
 const KEY_DELETION_TEXT : String = "Are you sure you want to remove {key} from {action}?"
 
-## Maps the names of input actions to readable names for users.
-@export var action_name_map : Dictionary = {
-	"move_up" : "Up",
-	"move_down" : "Down",
-	"move_left" : "Left",
-	"move_right" : "Right",
-	"interact" : "Interact"
-}
+@export var input_action_names : Array[StringName] :
+	set(value):
+		var _value_changed = input_action_names != value
+		input_action_names = value
+		if _value_changed:
+			var _new_readable_action_names : Array[String]
+			for action in input_action_names:
+				_new_readable_action_names.append(action.capitalize())
+			readable_action_names = _new_readable_action_names
+
+@export var readable_action_names : Array[String] :
+	set(value):
+		var _value_changed = readable_action_names != value
+		readable_action_names = value
+		if _value_changed:
+			var _new_action_name_map : Dictionary
+			for iter in range(input_action_names.size()):
+				var _input_name : StringName = input_action_names[iter]
+				var _readable_name : String = readable_action_names[iter]
+				_new_action_name_map[_input_name] = _readable_name
+			action_name_map = _new_action_name_map
+
 ## Show action names that are not explicitely listed in an action name map.
 @export var show_all_actions : bool = false
 @export_group("Icons")
@@ -44,6 +59,9 @@ const KEY_DELETION_TEXT : String = "Are you sure you want to remove {key} from {
 	"ui_undo" : "Undo",
 	"ui_redo" : "Redo",
 }
+@export_group("Debug")
+## Maps the names of input actions to readable names for users.
+@export var action_name_map : Dictionary
 
 @onready var assignment_placeholder_text = $KeyAssignmentDialog.dialog_text
 var tree_item_add_map : Dictionary = {}
@@ -98,15 +116,14 @@ func _add_action_as_tree_item(readable_name : String, action_name : String, inpu
 		_add_input_event_as_tree_item(action_name, input_event, action_tree_item)
 
 func _get_all_action_names(include_built_in : bool = false) -> Array[StringName]:
-	var action_names : Array[StringName] = []
+	var action_names : Array[StringName] = input_action_names.duplicate()
 	var full_action_name_map = action_name_map.duplicate()
 	if include_built_in:
-		full_action_name_map.merge(built_in_action_name_map)
-	for action_name in full_action_name_map:
-		if action_name is String:
-			action_name = StringName(action_name)
-		if action_name is StringName:
-			action_names.append(action_name)
+		for action_name in built_in_action_name_map:
+			if action_name is String:
+				action_name = StringName(action_name)
+			if action_name is StringName:
+				action_names.append(action_name)
 	if show_all_actions:
 		var all_actions := AppSettings.get_action_names(include_built_in)
 		for action_name in all_actions:
@@ -114,14 +131,15 @@ func _get_all_action_names(include_built_in : bool = false) -> Array[StringName]
 				action_names.append(action_name)
 	return action_names
 
-func _get_action_readable_name(action_name : StringName) -> String:
-	var readable_name : String = action_name
-	if readable_name in action_name_map:
-		readable_name = action_name_map[readable_name]
-	elif readable_name in built_in_action_name_map:
-		readable_name = built_in_action_name_map[readable_name]
+func _get_action_readable_name(input_name : StringName) -> String:
+	var readable_name : String
+	if input_name in action_name_map:
+		readable_name = action_name_map[input_name]
+	elif input_name in built_in_action_name_map:
+		readable_name = built_in_action_name_map[input_name]
 	else:
-		action_name_map[readable_name] = readable_name
+		readable_name = input_name.capitalize()
+		action_name_map[input_name] = readable_name
 	return readable_name
 
 func _build_ui_tree():
@@ -175,6 +193,7 @@ func _horizontally_align_popup_labels():
 	$AlreadyAssignedDialog.get_label().horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 
 func _ready():
+	if Engine.is_editor_hint(): return
 	_build_assigned_input_events()
 	_build_ui_tree()
 	_horizontally_align_popup_labels()

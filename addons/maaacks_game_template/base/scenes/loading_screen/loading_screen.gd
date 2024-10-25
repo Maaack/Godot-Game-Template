@@ -1,22 +1,30 @@
 class_name LoadingScreen
 extends CanvasLayer
 
-const LOADING_COMPLETE_TEXT = "Loading Complete!"
-const LOADING_COMPLETE_TEXT_WAITING = "Any Moment Now..."
-const LOADING_COMPLETE_TEXT_STILL_WAITING = "Any Moment Now... (%d seconds)"
-const LOADING_TEXT = "Loading..."
-const LOADING_TEXT_WAITING = "Still Loading..."
-const LOADING_TEXT_STILL_WAITING = "Still Loading... (%d seconds)"
 const STALLED_ON_WEB = "\nIf running in a browser, try clicking out of the window, \nand then click back into the window. It might unstick.\nLasty, you may try refreshing the page.\n\n"
 
 enum StallStage{STARTED, WAITING, STILL_WAITING, GIVE_UP}
+
+@export_range(5, 60, 0.5, "or_greater") var state_change_delay : float = 15.0
+@export_group("State Messages")
+@export_subgroup("In Progress")
+@export var _in_progress : String = "Loading..."
+@export var _in_progress_waiting : String = "Still Loading..."
+@export var _in_progress_still_waiting : String = "Still Loading... (%d seconds)"
+@export_subgroup("Completed")
+@export var _complete : String = "Loading Complete!"
+@export var _complete_waiting : String = "Any Moment Now..."
+@export var _complete_still_waiting : String = "Any Moment Now... (%d seconds)"
+
 var _stall_stage : StallStage = StallStage.STARTED
 var _scene_loading_complete : bool = false
 var _scene_loading_progress : float = 0.0 :
 	set(value):
+		var _value_changed = _scene_loading_progress != value
 		_scene_loading_progress = value
-		update_total_loading_progress()
-		_reset_loading_stage()
+		if _value_changed:
+			update_total_loading_progress()
+			_reset_loading_stage()
 
 var _changing_to_next_scene : bool = false
 var _total_loading_progress : float = 0.0 :
@@ -30,7 +38,7 @@ func update_total_loading_progress():
 
 func _reset_loading_stage():
 	_stall_stage = StallStage.STARTED
-	%LoadingTimer.start()
+	%LoadingTimer.start(state_change_delay)
 
 func _reset_loading_start_time():
 	_loading_start_time = Time.get_ticks_msec()
@@ -83,35 +91,37 @@ func _hide_popups():
 	%ErrorMessage.hide()
 	%StalledMessage.hide()
 
-func _update_in_progress_messaging():
+func get_progress_message() -> String:
+	var _progress_message : String
 	match _stall_stage:
 		StallStage.STARTED:
-			_hide_popups()
-			%Title.text = LOADING_TEXT
+			if _scene_loading_complete:
+				_progress_message = _complete
+			else:
+				_progress_message = _in_progress
 		StallStage.WAITING:
-			_hide_popups()
-			%Title.text = LOADING_TEXT_WAITING
-		StallStage.STILL_WAITING:
-			_hide_popups()
-			%Title.text = LOADING_TEXT_STILL_WAITING % _get_seconds_waiting()
-		StallStage.GIVE_UP:
-			_show_loading_stalled_error_message()
-			%Title.text = LOADING_TEXT_STILL_WAITING % _get_seconds_waiting()
+			if _scene_loading_complete:
+				_progress_message = _complete_waiting
+			else:
+				_progress_message = _in_progress_waiting
+		StallStage.STILL_WAITING, StallStage.GIVE_UP:
+			if _scene_loading_complete:
+				_progress_message = _complete_still_waiting
+			else:
+				_progress_message = _in_progress_still_waiting
+	if _progress_message.contains("%d"):
+		_progress_message = _progress_message % _get_seconds_waiting()
+	return _progress_message
 
-func _update_loaded_messaging():
-	match _stall_stage:
-		StallStage.STARTED:
-			_hide_popups()
-			%Title.text = LOADING_COMPLETE_TEXT
-		StallStage.WAITING:
-			_hide_popups()
-			%Title.text = LOADING_COMPLETE_TEXT_WAITING
-		StallStage.STILL_WAITING:
-			_hide_popups()
-			%Title.text = LOADING_COMPLETE_TEXT_STILL_WAITING % _get_seconds_waiting()
-		StallStage.GIVE_UP:
+func _update_progress_messaging():
+	%ProgressLabel.text = get_progress_message()
+	if _stall_stage == StallStage.GIVE_UP:
+		if _scene_loading_complete:
 			_show_scene_switching_error_message()
-			%Title.text = LOADING_COMPLETE_TEXT_STILL_WAITING % _get_seconds_waiting()
+		else:
+			_show_loading_stalled_error_message()
+	else:
+		_hide_popups()
 
 func _process(_delta):
 	_try_loading_next_scene()
@@ -119,10 +129,10 @@ func _process(_delta):
 	match(status):
 		ResourceLoader.THREAD_LOAD_IN_PROGRESS:
 			_update_scene_loading_progress()
-			_update_in_progress_messaging()
+			_update_progress_messaging()
 		ResourceLoader.THREAD_LOAD_LOADED:
 			_set_scene_loading_complete()
-			_update_loaded_messaging()
+			_update_progress_messaging()
 		ResourceLoader.THREAD_LOAD_FAILED:
 			%ErrorMessage.dialog_text = "Loading Error: %d" % status
 			%ErrorMessage.popup()
@@ -136,10 +146,10 @@ func _on_loading_timer_timeout():
 	match prev_stage:
 		StallStage.STARTED:
 			_stall_stage = StallStage.WAITING
-			%LoadingTimer.start()
+			%LoadingTimer.start(state_change_delay)
 		StallStage.WAITING:
 			_stall_stage = StallStage.STILL_WAITING
-			%LoadingTimer.start()
+			%LoadingTimer.start(state_change_delay)
 		StallStage.STILL_WAITING:
 			_stall_stage = StallStage.GIVE_UP
 
