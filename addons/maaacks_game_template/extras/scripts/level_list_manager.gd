@@ -100,12 +100,15 @@ func _on_level_won():
 	else:
 		_load_level_complete_screen_or_next_level()
 
-func _on_level_loader_level_loaded():
-	current_level = level_list_loader.current_level
-	await current_level.ready
+func _connect_level_signals():
 	_try_connecting_signal_to_level(&"level_won", _on_level_won)
 	_try_connecting_signal_to_level(&"level_lost", _on_level_lost)
 	_try_connecting_signal_to_level(&"level_skipped", _load_next_level)
+
+func _on_level_loader_level_loaded():
+	current_level = level_list_loader.current_level
+	await current_level.ready
+	_connect_level_signals()
 	if level_loading_screen:
 		level_loading_screen.close()
 
