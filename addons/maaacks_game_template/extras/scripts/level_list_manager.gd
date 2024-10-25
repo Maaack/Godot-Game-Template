@@ -3,7 +3,7 @@ extends Node
 ## Manager of level progress and the result screens between them.
 ##
 ## A helper script to assign to a node in a scene.
-## It works with a level list manager and a loading screen
+## It works with a level list loader and a loading screen
 ## to advance levels and open menus when players win or lose. 
 ## The process mode on the node should be set to `Always`, as
 ## InGameMenuController will pause the game, while menus will
