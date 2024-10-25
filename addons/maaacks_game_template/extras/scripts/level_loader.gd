@@ -41,6 +41,9 @@ func load_level(level_path : String = get_current_level_path()):
 	current_level = _attach_level(SceneLoader.get_resource())
 	level_loaded.emit()
 
+func reload_level():
+	load_level()
+
 func _ready():
 	if auto_load:
 		load_level()
