@@ -33,13 +33,12 @@ func _close_sub_menu():
 func _event_is_mouse_button_released(event : InputEvent):
 	return event is InputEventMouseButton and not event.is_pressed()
 
-func _event_skips_intro(event : InputEvent):
-	return event.is_action_released("ui_accept") or \
-		event.is_action_released("ui_select") or \
-		event.is_action_released("ui_cancel") or \
-		_event_is_mouse_button_released(event)
-
 func _input(event):
+	if event.is_action_released("ui_cancel"):
+		if sub_menu:
+			_close_sub_menu()
+		else:
+			get_tree().quit()
 	if event.is_action_released("ui_accept") and get_viewport().gui_get_focus_owner() == null:
 		%MenuButtonsBoxContainer.focus_first()
 
