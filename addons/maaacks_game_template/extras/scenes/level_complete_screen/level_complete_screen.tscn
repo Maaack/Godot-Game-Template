@@ -1,16 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://dt5ses55itjy4"]
+[gd_scene load_steps=4 format=3 uid="uid://cpa0hksdk0vjv"]
 
-[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scenes/win_screen/win_screen.gd" id="1_elvr7"]
-[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/ui_sound_controller.gd" id="2_g47g8"]
-[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/capture_focus.gd" id="3_am347"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scenes/level_complete_screen/level_complete_screen.gd" id="1_fgelo"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/ui_sound_controller.gd" id="2_p87ka"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/capture_focus.gd" id="3_h5el0"]
 
-[node name="WinScreen" type="CanvasLayer"]
+[node name="LevelCompleteScreen" type="CanvasLayer"]
 process_mode = 3
 layer = 10
-script = ExtResource("1_elvr7")
+script = ExtResource("1_fgelo")
 
 [node name="UISoundController" type="Node" parent="."]
-script = ExtResource("2_g47g8")
+script = ExtResource("2_p87ka")
 
 [node name="BackgroundColor" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -54,11 +54,11 @@ theme_override_constants/margin_bottom = 16
 layout_mode = 2
 alignment = 1
 
-[node name="WinMessage" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="LevelCompleteMessage" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
-text = "You won!"
+text = "Level complete!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -66,21 +66,19 @@ vertical_alignment = 1
 layout_mode = 2
 theme_override_constants/separation = 16
 alignment = 1
-script = ExtResource("3_am347")
-
-[node name="ExitButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/ButtonsContainer"]
-unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(128, 40)
-layout_mode = 2
-text = "Exit"
+script = ExtResource("3_h5el0")
 
 [node name="MainMenuButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/ButtonsContainer"]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
 text = "Main Menu"
+
+[node name="RestartButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/ButtonsContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 40)
+layout_mode = 2
+text = "Restart"
 
 [node name="ContinueButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/ButtonsContainer"]
 unique_name_in_owner = true
@@ -92,12 +90,7 @@ text = "Continue"
 initial_position = 2
 dialog_text = "Go back to main menu?"
 
-[node name="ConfirmExit" type="ConfirmationDialog" parent="."]
-initial_position = 2
-dialog_text = "Quit the game?"
-
-[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/ButtonsContainer/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/ButtonsContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/ButtonsContainer/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/ButtonsContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="confirmed" from="ConfirmMainMenu" to="." method="_on_confirm_main_menu_confirmed"]
-[connection signal="confirmed" from="ConfirmExit" to="." method="_on_confirm_exit_confirmed"]
