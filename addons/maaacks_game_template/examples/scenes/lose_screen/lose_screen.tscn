@@ -5,4 +5,3 @@
 
 [node name="LoseScreen" instance=ExtResource("1_exl4x")]
 script = ExtResource("2_ay3xf")
-main_menu_scene = "res://addons/maaacks_game_template/examples/scenes/menus/main_menu/main_menu_with_animations.tscn"
