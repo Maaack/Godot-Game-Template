@@ -1,7 +1,6 @@
 class_name PauseMenu
 extends OverlaidMenu
 
-
 @export var options_packed_scene : PackedScene
 @export_file("*.tscn") var main_menu_scene : String
 
@@ -20,7 +19,7 @@ func _handle_cancel_input():
 	if popup_open != null:
 		close_popup()
 	else:
-		super.close()
+		super._handle_cancel_input()
 
 func _setup_options():
 	if options_packed_scene == null:
