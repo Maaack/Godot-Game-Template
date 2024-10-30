@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://bde0cbmryrv5s"]
 
 [ext_resource type="PackedScene" uid="uid://ta2xbceba8ec" path="res://addons/maaacks_game_template/examples/scenes/win_screen/win_screen.tscn" id="2_3aw6s"]
-[ext_resource type="PackedScene" uid="uid://b5cd6sa8qq4vc" path="res://addons/maaacks_game_template/base/scenes/overlaid_menu/menus/pause_menu.tscn" id="2_5toma"]
+[ext_resource type="PackedScene" uid="uid://cnmu4k37qncn8" path="res://addons/maaacks_game_template/examples/scenes/overlaid_menus/pause_menu.tscn" id="2_7mepj"]
 [ext_resource type="PackedScene" uid="uid://duvowpap0jwaq" path="res://addons/maaacks_game_template/examples/scenes/lose_screen/lose_screen.tscn" id="3_28mfg"]
 [ext_resource type="PackedScene" uid="uid://ddxbl58500png" path="res://addons/maaacks_game_template/examples/scenes/level_complete_screen/level_complete_screen.tscn" id="4_gomcd"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/pause_menu_controller.gd" id="5_fc8fx"]
@@ -22,7 +22,7 @@ grow_vertical = 2
 
 [node name="PauseMenuController" type="Node" parent="."]
 script = ExtResource("5_fc8fx")
-pause_menu_packed = ExtResource("2_5toma")
+pause_menu_packed = ExtResource("2_7mepj")
 
 [node name="LevelLoader" type="Node" parent="." node_paths=PackedStringArray("level_container")]
 script = ExtResource("6_wd8e4")
