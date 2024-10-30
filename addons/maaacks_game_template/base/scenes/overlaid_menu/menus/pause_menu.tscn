@@ -17,6 +17,10 @@ theme_override_constants/margin_right = 64
 [node name="TitleLabel" parent="MenuPanelContainer/MarginContainer/BoxContainer/TitleMargin" index="0"]
 text = "Paused"
 
+[node name="MenuButtonsMargin" parent="MenuPanelContainer/MarginContainer/BoxContainer" index="2"]
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_bottom = 16
+
 [node name="CloseButton" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="0"]
 text = "Resume"
 

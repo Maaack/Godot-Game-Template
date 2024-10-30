@@ -8,6 +8,10 @@
 [node name="TitleLabel" parent="MenuPanelContainer/MarginContainer/BoxContainer/TitleMargin" index="0"]
 text = "Options"
 
+[node name="MenuButtonsMargin" parent="MenuPanelContainer/MarginContainer/BoxContainer" index="2"]
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_bottom = 16
+
 [node name="MiniOptionsMenu" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="0" instance=ExtResource("2_ihtu5")]
 layout_mode = 2
 
