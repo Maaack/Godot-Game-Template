@@ -1,6 +1,8 @@
 # Plugin Suite
 
-Maaack's Game Template is a culmination of a suite of plugins, that can be downloaded individually, if desired.
+![Plugins Suite](../media/maaacks-plugin-suite-256x256.gif)
+
+Maaack's Game Template is a culmination of a suite of plugins, that can be downloaded individually, if desired.  
 
 ## GitHub
 
