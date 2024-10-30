@@ -1,5 +1,6 @@
 class_name Config
-extends Node
+extends Object
+
 ## Interface for a single configuration file through [ConfigFile].
 
 const CONFIG_FILE_LOCATION := "user://config.cfg"
