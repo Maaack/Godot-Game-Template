@@ -62,6 +62,15 @@ theme_override_font_sizes/font_size = 24
 text = "Menu"
 horizontal_alignment = 1
 
+[node name="DescriptionMargin" type="MarginContainer" parent="MenuPanelContainer/MarginContainer/BoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DescriptionLabel" type="RichTextLabel" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin"]
+layout_mode = 2
+bbcode_enabled = true
+
 [node name="MenuButtonsMargin" type="MarginContainer" parent="MenuPanelContainer/MarginContainer/BoxContainer"]
 layout_mode = 2
 
