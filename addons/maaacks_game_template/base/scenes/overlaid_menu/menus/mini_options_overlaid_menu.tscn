@@ -5,12 +5,12 @@
 
 [node name="MiniOptionsMenu" instance=ExtResource("1_kverk")]
 
-[node name="TitleLabel" parent="MenuPanelContainer/MarginContainer/VBoxContainer/TitleMargin" index="0"]
+[node name="TitleLabel" parent="MenuPanelContainer/MarginContainer/BoxContainer/TitleMargin" index="0"]
 text = "Options"
 
-[node name="MiniOptionsMenu" parent="MenuPanelContainer/MarginContainer/VBoxContainer/MenuButtonsMargin/MenuButtons" index="0" instance=ExtResource("2_ihtu5")]
+[node name="MiniOptionsMenu" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="0" instance=ExtResource("2_ihtu5")]
 layout_mode = 2
 
-[node name="CloseButton" parent="MenuPanelContainer/MarginContainer/VBoxContainer/MenuButtonsMargin/MenuButtons" index="1"]
+[node name="CloseButton" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="1"]
 size_flags_horizontal = 4
 text = "Back"

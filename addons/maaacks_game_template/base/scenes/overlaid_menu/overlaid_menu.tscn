@@ -49,34 +49,36 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MenuPanelContainer/MarginContainer"]
+[node name="BoxContainer" type="BoxContainer" parent="MenuPanelContainer/MarginContainer"]
+layout_mode = 2
+vertical = true
+
+[node name="TitleMargin" type="MarginContainer" parent="MenuPanelContainer/MarginContainer/BoxContainer"]
 layout_mode = 2
 
-[node name="TitleMargin" type="MarginContainer" parent="MenuPanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="TitleLabel" type="Label" parent="MenuPanelContainer/MarginContainer/VBoxContainer/TitleMargin"]
+[node name="TitleLabel" type="Label" parent="MenuPanelContainer/MarginContainer/BoxContainer/TitleMargin"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "Game Menu"
+text = "Menu"
 horizontal_alignment = 1
 
-[node name="MenuButtonsMargin" type="MarginContainer" parent="MenuPanelContainer/MarginContainer/VBoxContainer"]
+[node name="MenuButtonsMargin" type="MarginContainer" parent="MenuPanelContainer/MarginContainer/BoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="MenuButtons" type="VBoxContainer" parent="MenuPanelContainer/MarginContainer/VBoxContainer/MenuButtonsMargin"]
+[node name="MenuButtons" type="BoxContainer" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
 theme_override_constants/separation = 16
 alignment = 1
+vertical = true
 script = ExtResource("2_6ani0")
 
-[node name="CloseButton" type="Button" parent="MenuPanelContainer/MarginContainer/VBoxContainer/MenuButtonsMargin/MenuButtons"]
+[node name="CloseButton" type="Button" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons"]
 custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
 text = "Close"
 
-[connection signal="pressed" from="MenuPanelContainer/MarginContainer/VBoxContainer/MenuButtonsMargin/MenuButtons/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons/CloseButton" to="." method="_on_close_button_pressed"]

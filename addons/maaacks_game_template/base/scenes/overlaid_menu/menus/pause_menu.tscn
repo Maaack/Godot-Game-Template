@@ -14,30 +14,30 @@ main_menu_scene = "res://addons/maaacks_game_template/base/scenes/menus/main_men
 theme_override_constants/margin_left = 64
 theme_override_constants/margin_right = 64
 
-[node name="TitleLabel" parent="MenuPanelContainer/MarginContainer/VBoxContainer/TitleMargin" index="0"]
+[node name="TitleLabel" parent="MenuPanelContainer/MarginContainer/BoxContainer/TitleMargin" index="0"]
 text = "Paused"
 
-[node name="CloseButton" parent="MenuPanelContainer/MarginContainer/VBoxContainer/MenuButtonsMargin/MenuButtons" index="0"]
+[node name="CloseButton" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="0"]
 text = "Resume"
 
-[node name="RestartButton" type="Button" parent="MenuPanelContainer/MarginContainer/VBoxContainer/MenuButtonsMargin/MenuButtons" index="1"]
+[node name="RestartButton" type="Button" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="1"]
 custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
 text = "Restart"
 
-[node name="OptionsButton" type="Button" parent="MenuPanelContainer/MarginContainer/VBoxContainer/MenuButtonsMargin/MenuButtons" index="2"]
+[node name="OptionsButton" type="Button" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="2"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
 text = "Options"
 
-[node name="MainMenuButton" type="Button" parent="MenuPanelContainer/MarginContainer/VBoxContainer/MenuButtonsMargin/MenuButtons" index="3"]
+[node name="MainMenuButton" type="Button" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="3"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
 text = "Main Menu"
 
-[node name="ExitButton" type="Button" parent="MenuPanelContainer/MarginContainer/VBoxContainer/MenuButtonsMargin/MenuButtons" index="4"]
+[node name="ExitButton" type="Button" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="4"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
@@ -58,10 +58,10 @@ unique_name_in_owner = true
 auto_translate_mode = 1
 dialog_text = "Quit the game?"
 
-[connection signal="pressed" from="MenuPanelContainer/MarginContainer/VBoxContainer/MenuButtonsMargin/MenuButtons/RestartButton" to="." method="_on_restart_button_pressed"]
-[connection signal="pressed" from="MenuPanelContainer/MarginContainer/VBoxContainer/MenuButtonsMargin/MenuButtons/OptionsButton" to="." method="_on_options_button_pressed"]
-[connection signal="pressed" from="MenuPanelContainer/MarginContainer/VBoxContainer/MenuButtonsMargin/MenuButtons/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
-[connection signal="pressed" from="MenuPanelContainer/MarginContainer/VBoxContainer/MenuButtonsMargin/MenuButtons/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="confirmed" from="ConfirmRestart" to="." method="_on_confirm_restart_confirmed"]
 [connection signal="confirmed" from="ConfirmMainMenu" to="." method="_on_confirm_main_menu_confirmed"]
 [connection signal="confirmed" from="ConfirmExit" to="." method="_on_confirm_exit_confirmed"]
