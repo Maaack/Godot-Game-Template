@@ -1,0 +1,78 @@
+[gd_scene load_steps=3 format=3 uid="uid://wny2d8dvp3ok"]
+
+[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scenes/overlaid_menu/overlaid_menu.gd" id="1_euyj1"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/capture_focus.gd" id="2_6ani0"]
+
+[node name="OverlaidMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_euyj1")
+
+[node name="BackgroundColor" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.12549)
+
+[node name="MenuPanelContainer" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuPanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuPanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="TitleMargin" type="MarginContainer" parent="MenuPanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="MenuPanelContainer/MarginContainer/VBoxContainer/TitleMargin"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Game Menu"
+horizontal_alignment = 1
+
+[node name="MenuButtonsMargin" type="MarginContainer" parent="MenuPanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="MenuButtons" type="VBoxContainer" parent="MenuPanelContainer/MarginContainer/VBoxContainer/MenuButtonsMargin"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+alignment = 1
+script = ExtResource("2_6ani0")
+
+[node name="CloseButton" type="Button" parent="MenuPanelContainer/MarginContainer/VBoxContainer/MenuButtonsMargin/MenuButtons"]
+custom_minimum_size = Vector2(128, 40)
+layout_mode = 2
+text = "Close"
+
+[connection signal="pressed" from="MenuPanelContainer/MarginContainer/VBoxContainer/MenuButtonsMargin/MenuButtons/CloseButton" to="." method="_on_close_button_pressed"]
