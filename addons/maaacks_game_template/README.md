@@ -33,6 +33,7 @@ The `base/` folder holds the core components of the menus application.
 -   Options Menus
 -   Credits
 -   Loading Screen
+-   Opening Scene
 -   Persistent Settings
 -   Simple Config Interface
 -   Keyboard/Mouse Support
@@ -45,24 +46,27 @@ The `base/` folder holds the core components of the menus application.
 The `extras/` folder holds components that extend the core application.
 
 -   Pause Menu
--   Opening Scene
+-   In-game Menu Controller
 -   Win & Lose Scenes
+-   Level Loaders
+-   Level Progress Manager
 -   Logging Scripts
--   Additional Autoloaded Classes
--   Scripts for Testing & Releasing
+-   Script for Releasing on [itch.io](https://itch.io/) with [butler](https://itch.io/docs/butler/)
  
 ### Examples 
 
 The `examples/` folder contains an example project using inherited scenes from the `base/` and `extras/`.
 
 -   Example Game Scene
--   Level Advancement
+-   Base Level Class
+-   Example Levels
 -   End Credits
 -   Additional Inherited Scenes:
     -   Game Options Menu w/ Reset button
     -   Master Options Menu w/ Game Options tab 
     -   Main Menu w/ Animations
-    -   Pause Menu w/ Linked Scenes
+    -   Opening w/ Godot Logo
+    -   Level Loading Screen
     -   Loading Screen w/ Shader Pre-caching 
 
 ### How it Works
