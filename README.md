@@ -1,9 +1,9 @@
 # Godot Game Template
 For Godot 4.2+
 
-This template has a main menu, options menus, pause menu, credits, scene loader, extra tools, and an example game scene.
+This template has a main menu, options menus, pause menu, credits, scene loader, extra tools, and an example game scene.  
 
-[Example on itch.io](https://maaack.itch.io/godot-game-template)
+[Example on itch.io](https://maaack.itch.io/godot-game-template)  
 
 #### Videos
 
@@ -130,7 +130,7 @@ When editing an existing project:
 
 #### Minimal
 
-Users that want a minimal set of features can try [Maaack's Menus Template](https://github.com/Maaack/Godot-Menus-Template).  
+Users that want a minimal set of features can try [Maaack's Menus Template](https://github.com/Maaack/Godot-Menus-Template) or other options from the [plugin suite](/addons/maaacks_game_template/docs/PluginSuite.md).  
 
 ## Usage
 
