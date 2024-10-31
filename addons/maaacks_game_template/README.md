@@ -37,6 +37,7 @@ The `base/` folder holds the core components of the menus application.
 -   Opening Scene
 -   Persistent Settings
 -   Simple Config Interface
+-   Extensible Overlay Menus
 -   Keyboard/Mouse Support
 -   Gamepad Support
 -   UI Sound Controller
@@ -46,7 +47,7 @@ The `base/` folder holds the core components of the menus application.
 
 The `extras/` folder holds components that extend the core application.
 
--   Win & Lose Scenes
+-   Win & Lose Menus
 -   Level Loaders
 -   Level Progress Manager
 -   Logging Scripts
