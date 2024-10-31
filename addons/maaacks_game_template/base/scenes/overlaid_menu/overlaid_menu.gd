@@ -10,7 +10,8 @@ extends Control
 		else:
 			process_mode = PROCESS_MODE_INHERIT
 
-var _initial_pause_state : bool
+var _initial_pause_state : bool = false
+var _initial_focus_mode : FocusMode = FOCUS_ALL
 var _initial_mouse_mode : int
 var _initial_focus_control
 var _scene_tree : SceneTree 
@@ -19,6 +20,7 @@ func close():
 	_scene_tree.paused = _initial_pause_state
 	Input.set_mouse_mode(_initial_mouse_mode)
 	if is_instance_valid(_initial_focus_control) and _initial_focus_control.is_inside_tree():
+		_initial_focus_control.focus_mode = _initial_focus_mode
 		_initial_focus_control.grab_focus()
 	queue_free()
 
@@ -40,3 +42,5 @@ func _enter_tree():
 		_scene_tree.paused = pauses_game or _initial_pause_state
 	_initial_mouse_mode = Input.get_mouse_mode()
 	_initial_focus_control = get_viewport().gui_get_focus_owner()
+	if _initial_focus_control:
+		_initial_focus_mode = _initial_focus_control.focus_mode

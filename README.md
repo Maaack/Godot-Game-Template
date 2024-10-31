@@ -31,11 +31,13 @@ The `base/` folder holds the core components of the menus application.
 
 -   Main Menu    
 -   Options Menus
+-   Pause Menu
 -   Credits
 -   Loading Screen
 -   Opening Scene
 -   Persistent Settings
 -   Simple Config Interface
+-   Extensible Overlay Menus
 -   Keyboard/Mouse Support
 -   Gamepad Support
 -   UI Sound Controller
@@ -45,9 +47,7 @@ The `base/` folder holds the core components of the menus application.
 
 The `extras/` folder holds components that extend the core application.
 
--   Pause Menu
--   In-game Menu Controller
--   Win & Lose Scenes
+-   Win & Lose Menus
 -   Level Loaders
 -   Level Progress Manager
 -   Logging Scripts
@@ -78,9 +78,8 @@ The `examples/` folder contains an example project using inherited scenes from t
 - `credits.tscn` reads from `ATTRIBUTION.md` to automatically generate the content for it's scrolling text label.  
 - The `UISoundController` node automatically attaches sounds to buttons, tab bars, sliders, and line edits in the scene. `project_ui_sound_controller.tscn` is an autload used to apply UI sounds project-wide.
 - `project_music_controller.tscn` is an autoload that keeps music playing between scenes. It detects music stream players as they are added to the scene tree, reparents them to itself, and blends the tracks.  
-- `in_game_menu_controller.gd` controls opening and closing a menu and pausing the game in the background.
-- The `PauseMenuController` node loads the `pause_menu.tscn` (using `in_game_menu_controller.gd`) when triggering `ui-cancel`.
-- `game_ui.tscn` is a demo game scene that displays recognized action inputs, and features the `PauseMenuController` node, the `LevelLoader` node to advance through levels, and `in_game_menu_controller.gd` to show `win_screen.tscn` or `lose_screen.tscn`.
+- The `PauseMenuController` node loads the `pause_menu.tscn` when triggering `ui-cancel`.
+- `game_ui.tscn` is a demo game scene that displays recognized action inputs, and features the `PauseMenuController` node, the `LevelLoader` node to load levels from a directory, and `LevelListManager` to manage level progress and show menus in case of a win or loss.
   
 ## Installation
 

@@ -11,9 +11,22 @@ func close_popup():
 		popup_open.hide()
 		popup_open = null
 
+func _disable_focus():
+	for child in %MenuButtons.get_children():
+		if child is Control:
+			child.focus_mode = FOCUS_NONE
+
+func _enable_focus():
+	for child in %MenuButtons.get_children():
+		if child is Control:
+			child.focus_mode = FOCUS_ALL
+
 func open_options_menu():
 	var options_scene = options_packed_scene.instantiate()
-	call_deferred("add_child", options_scene)
+	add_child(options_scene)
+	_disable_focus.call_deferred()
+	await options_scene.tree_exiting
+	_enable_focus.call_deferred()
 
 func _handle_cancel_input():
 	if popup_open != null:
