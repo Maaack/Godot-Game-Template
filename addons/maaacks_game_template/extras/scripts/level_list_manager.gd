@@ -35,9 +35,6 @@ func _try_connecting_signal_to_node(node : Node, signal_name : String, callable 
 func _try_connecting_signal_to_level(signal_name : String, callable : Callable):
 	_try_connecting_signal_to_node(current_level, signal_name, callable)
 
-func _try_connecting_signal_to_current_menu(signal_name : String, callable : Callable):
-	_try_connecting_signal_to_node(InGameMenuController.current_menu, signal_name, callable)
-
 func _load_main_menu():
 	SceneLoader.load_scene(main_menu_scene)
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
