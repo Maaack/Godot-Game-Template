@@ -1,9 +1,9 @@
 class_name Config
-extends Node
+extends Object
+
 ## Interface for a single configuration file through [ConfigFile].
 
 const CONFIG_FILE_LOCATION := "user://config.cfg"
-const DEFAULT_CONFIG_FILE_LOCATION := "res://default_config.cfg"
 
 static var config_file : ConfigFile
 
@@ -13,7 +13,7 @@ static func _init():
 static func _save_config_file() -> void:
 	var save_error : int = config_file.save(CONFIG_FILE_LOCATION)
 	if save_error:
-		print("save config file failed with error %d" % save_error)
+		push_error("save config file failed with error %d" % save_error)
 
 static func load_config_file() -> void:
 	if config_file != null:
@@ -21,12 +21,9 @@ static func load_config_file() -> void:
 	config_file = ConfigFile.new()
 	var load_error : int = config_file.load(CONFIG_FILE_LOCATION)
 	if load_error:
-		var load_default_error : int = config_file.load(DEFAULT_CONFIG_FILE_LOCATION)
-		if load_default_error:
-			print("loading default config file failed with error %d" % load_default_error)
 		var save_error : int = config_file.save(CONFIG_FILE_LOCATION)
 		if save_error:
-			print("save config file failed with error %d" % save_error)
+			push_error("save config file failed with error %d" % save_error)
 
 static func set_config(section: String, key: String, value) -> void:
 	load_config_file()
