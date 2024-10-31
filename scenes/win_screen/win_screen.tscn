@@ -1,7 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://d1r2vpctegn45"]
-
-[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/extras/scenes/win_screen/win_screen.tscn" id="1_a22q4"]
-[ext_resource type="Script" path="res://scenes/win_screen/win_screen.gd" id="2_eiyje"]
-
-[node name="WinScreen" instance=ExtResource("1_a22q4")]
-script = ExtResource("2_eiyje")
