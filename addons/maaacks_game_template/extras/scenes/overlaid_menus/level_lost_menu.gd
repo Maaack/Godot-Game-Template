@@ -1,3 +1,4 @@
+class_name LevelLostMenu
 extends OverlaidMenu
 
 signal restart_pressed

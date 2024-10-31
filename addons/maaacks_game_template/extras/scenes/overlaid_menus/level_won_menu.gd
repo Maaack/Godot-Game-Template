@@ -1,3 +1,4 @@
+class_name LevelWonMenu
 extends OverlaidMenu
 
 signal continue_pressed

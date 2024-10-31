@@ -1,3 +1,4 @@
+class_name GameWonMenu
 extends OverlaidMenu
 
 signal continue_pressed
