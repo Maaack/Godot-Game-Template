@@ -69,7 +69,6 @@ func _on_confirm_restart_confirmed():
 
 func _on_confirm_main_menu_confirmed():
 	SceneLoader.load_scene(main_menu_scene)
-	close()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _on_confirm_exit_confirmed():
