@@ -68,7 +68,6 @@ autowrap_mode = 2
 script = ExtResource("7_4cavp")
 
 [node name="LevelListManager" type="Node" parent="." node_paths=PackedStringArray("level_list_loader", "level_loading_screen")]
-process_mode = 3
 script = ExtResource("8_gr0jr")
 level_list_loader = NodePath("../LevelLoader")
 main_menu_scene = "res://scenes/menus/main_menu/main_menu_with_animations.tscn"
