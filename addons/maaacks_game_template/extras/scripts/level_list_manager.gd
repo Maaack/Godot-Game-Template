@@ -19,11 +19,11 @@ extends Node
 ## Optional reference to a loading screen in the scene.
 @export var level_loading_screen : LoadingScreen
 ## Optional win screen to be shown after the last level is won.
-@export var win_screen_scene : PackedScene
+@export var game_won_scene : PackedScene
 ## Optional lose screen to be shown after the level is lost.
-@export var lose_screen_scene : PackedScene
+@export var level_lost_scene : PackedScene
 ## Optional level compete screen to be shown after the level is won.
-@export var level_complete_screen_scene : PackedScene
+@export var level_won_scene : PackedScene
 
 ## Reference to the current level node.
 var current_level
@@ -53,8 +53,8 @@ func _load_ending():
 		_load_main_menu()
 
 func _on_level_lost():
-	if lose_screen_scene:
-		var instance = lose_screen_scene.instantiate()
+	if level_lost_scene:
+		var instance = level_lost_scene.instantiate()
 		get_tree().current_scene.add_child(instance)
 		_try_connecting_signal_to_node(instance, &"restart_pressed", _reload_level)
 		_try_connecting_signal_to_node(instance, &"main_menu_pressed", _load_main_menu)
@@ -73,8 +73,8 @@ func _reload_level():
 	level_list_loader.reload_level()
 
 func _load_win_screen_or_ending():
-	if win_screen_scene:
-		var instance = win_screen_scene.instantiate()
+	if game_won_scene:
+		var instance = game_won_scene.instantiate()
 		get_tree().current_scene.add_child(instance)
 		_try_connecting_signal_to_node(instance, &"continue_pressed", _load_ending)
 		_try_connecting_signal_to_node(instance, &"restart_pressed", _reload_level)
@@ -83,8 +83,8 @@ func _load_win_screen_or_ending():
 		_load_ending()
 
 func _load_level_complete_screen_or_next_level():
-	if level_complete_screen_scene:
-		var instance = level_complete_screen_scene.instantiate()
+	if level_won_scene:
+		var instance = level_won_scene.instantiate()
 		get_tree().current_scene.add_child(instance)
 		_try_connecting_signal_to_node(instance, &"continue_pressed", _load_next_level)
 		_try_connecting_signal_to_node(instance, &"restart_pressed", _advance_and_reload)

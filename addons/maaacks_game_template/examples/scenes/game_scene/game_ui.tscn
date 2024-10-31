@@ -74,9 +74,9 @@ level_list_loader = NodePath("../LevelLoader")
 main_menu_scene = "res://addons/maaacks_game_template/examples/scenes/menus/main_menu/main_menu_with_animations.tscn"
 ending_scene = "res://addons/maaacks_game_template/examples/scenes/end_credits/end_credits.tscn"
 level_loading_screen = NodePath("../LevelLoadingScreen")
-win_screen_scene = ExtResource("9_suu1j")
-lose_screen_scene = ExtResource("10_lkew3")
-level_complete_screen_scene = ExtResource("11_p7huw")
+game_won_scene = ExtResource("9_suu1j")
+level_lost_scene = ExtResource("10_lkew3")
+level_won_scene = ExtResource("11_p7huw")
 
 [connection signal="level_load_started" from="LevelLoader" to="." method="_on_level_loader_level_load_started"]
 [connection signal="level_loaded" from="LevelLoader" to="." method="_on_level_loader_level_loaded"]
