@@ -36,11 +36,11 @@ func _on_close_button_pressed():
 	close()
 
 func _enter_tree():
+	_initial_focus_control = get_viewport().gui_get_focus_owner()
+	_initial_mouse_mode = Input.get_mouse_mode()
 	_scene_tree = get_tree()
 	_initial_pause_state = _scene_tree.paused
 	if not Engine.is_editor_hint():
 		_scene_tree.paused = pauses_game or _initial_pause_state
-	_initial_mouse_mode = Input.get_mouse_mode()
-	_initial_focus_control = get_viewport().gui_get_focus_owner()
 	if _initial_focus_control:
 		_initial_focus_mode = _initial_focus_control.focus_mode
