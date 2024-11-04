@@ -32,6 +32,7 @@ func _close_sub_menu():
 func _input(event):
 	if _is_in_intro() and _event_skips_intro(event):
 		intro_done()
+		return
 	super._input(event)
 
 func _ready():

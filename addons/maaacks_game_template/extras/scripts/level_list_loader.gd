@@ -28,6 +28,9 @@ func get_level_file(level_id : int = get_current_level_id()):
 		level_id = files.size() - 1
 	return files[level_id]
 
+func is_on_last_level():
+	return get_current_level_id() + 1 >= files.size()
+
 func advance_level() -> bool:
 	var level_id : int = get_current_level_id()
 	level_id += 1
@@ -45,6 +48,7 @@ func _attach_level(level_resource : Resource):
 	return instance
 
 func load_level(level_id : int = get_current_level_id()):
+	GameLevelLog.set_current_level(level_id)
 	if is_instance_valid(current_level):
 		current_level.queue_free()
 		await current_level.tree_exited
@@ -58,6 +62,9 @@ func load_level(level_id : int = get_current_level_id()):
 	await SceneLoader.scene_loaded
 	current_level = _attach_level(SceneLoader.get_resource())
 	level_loaded.emit()
+
+func reload_level():
+	load_level()
 
 func advance_and_load_level():
 	if advance_level():

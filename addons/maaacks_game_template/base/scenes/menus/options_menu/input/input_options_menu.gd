@@ -29,7 +29,7 @@ const KEY_DELETION_TEXT : String = "Are you sure you want to remove {key} from {
 			action_name_map = _new_action_name_map
 
 ## Show action names that are not explicitely listed in an action name map.
-@export var show_all_actions : bool = false
+@export var show_all_actions : bool = true
 @export_group("Icons")
 @export var add_button_texture : Texture2D
 @export var remove_button_texture : Texture2D
@@ -193,6 +193,7 @@ func _horizontally_align_popup_labels():
 	$AlreadyAssignedDialog.get_label().horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 
 func _ready():
+	if Engine.is_editor_hint(): return
 	_build_assigned_input_events()
 	_build_ui_tree()
 	_horizontally_align_popup_labels()

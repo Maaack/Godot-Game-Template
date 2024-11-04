@@ -1,15 +1,16 @@
-[gd_scene load_steps=11 format=3 uid="uid://dqdwmllvu2lv5"]
+[gd_scene load_steps=12 format=3 uid="uid://blsij73lxlbrl"]
 
-[ext_resource type="Script" path="res://scenes/game_scene/game_ui.gd" id="1_solt8"]
-[ext_resource type="PackedScene" path="res://scenes/win_screen/win_screen.tscn" id="2_nfgj1"]
-[ext_resource type="PackedScene" path="res://scenes/lose_screen/lose_screen.tscn" id="3_cwxig"]
-[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/pause_menu_controller.gd" id="4_6b6cy"]
-[ext_resource type="PackedScene" path="res://scenes/menus/pause_menu/pause_menu.tscn" id="5_lfufl"]
-[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/level_list_loader.gd" id="6_b43ns"]
-[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/scenes/music_players/background_music_player.tscn" id="7_np5mq"]
-[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/scenes/loading_screen/loading_screen.tscn" id="8_wjowe"]
-[ext_resource type="Script" path="res://scenes/game_scene/configurable_sub_viewport.gd" id="9_vodd8"]
-[ext_resource type="Script" path="res://scenes/game_scene/input_display_label.gd" id="10_lmnoo"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/pause_menu_controller.gd" id="1_mgq6w"]
+[ext_resource type="PackedScene" path="res://scenes/overlaid_menus/pause_menu.tscn" id="2_10mfm"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/level_list_loader.gd" id="3_b8jlh"]
+[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/scenes/music_players/background_music_player.tscn" id="4_elswi"]
+[ext_resource type="PackedScene" path="res://scenes/loading_screen/level_loading_screen.tscn" id="5_dowkw"]
+[ext_resource type="Script" path="res://scenes/game_scene/configurable_sub_viewport.gd" id="6_efpn6"]
+[ext_resource type="Script" path="res://scenes/game_scene/input_display_label.gd" id="7_xo7fy"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/level_list_manager.gd" id="8_d30cu"]
+[ext_resource type="PackedScene" path="res://scenes/overlaid_menus/game_won_menu.tscn" id="9_0pd2h"]
+[ext_resource type="PackedScene" path="res://scenes/overlaid_menus/level_lost_menu.tscn" id="10_37hvn"]
+[ext_resource type="PackedScene" path="res://scenes/overlaid_menus/level_won_menu.tscn" id="11_h5xmp"]
 
 [node name="GameUI" type="Control"]
 layout_mode = 3
@@ -18,23 +19,21 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_solt8")
-win_scene = ExtResource("2_nfgj1")
-lose_scene = ExtResource("3_cwxig")
 
-[node name="PauseMenuController" type="Node" parent="."]
-script = ExtResource("4_6b6cy")
-pause_menu_packed = ExtResource("5_lfufl")
+[node name="PauseMenuController" type="Node" parent="." node_paths=PackedStringArray("focused_viewport")]
+script = ExtResource("1_mgq6w")
+pause_menu_packed = ExtResource("2_10mfm")
+focused_viewport = NodePath("../ViewportContainer/ConfigurableSubViewport")
 
 [node name="LevelLoader" type="Node" parent="." node_paths=PackedStringArray("level_container")]
-script = ExtResource("6_b43ns")
+script = ExtResource("3_b8jlh")
 level_container = NodePath("../ViewportContainer/ConfigurableSubViewport")
 files = Array[String](["res://scenes/game_scene/levels/level_1.tscn", "res://scenes/game_scene/levels/level_2.tscn", "res://scenes/game_scene/levels/level_3.tscn"])
 directory = "res://scenes/game_scene/levels"
 
-[node name="BackgroundMusicPlayer" parent="." instance=ExtResource("7_np5mq")]
+[node name="BackgroundMusicPlayer" parent="." instance=ExtResource("4_elswi")]
 
-[node name="LoadingScreen" parent="." instance=ExtResource("8_wjowe")]
+[node name="LevelLoadingScreen" parent="." instance=ExtResource("5_dowkw")]
 visible = false
 
 [node name="ViewportContainer" type="SubViewportContainer" parent="."]
@@ -52,7 +51,7 @@ audio_listener_enable_2d = true
 audio_listener_enable_3d = true
 size = Vector2i(1280, 720)
 render_target_update_mode = 4
-script = ExtResource("9_vodd8")
+script = ExtResource("6_efpn6")
 
 [node name="InputDisplayLabel" type="Label" parent="."]
 layout_mode = 1
@@ -67,7 +66,17 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 64
 horizontal_alignment = 1
 autowrap_mode = 2
-script = ExtResource("10_lmnoo")
+script = ExtResource("7_xo7fy")
+
+[node name="LevelListManager" type="Node" parent="." node_paths=PackedStringArray("level_list_loader", "level_loading_screen")]
+script = ExtResource("8_d30cu")
+level_list_loader = NodePath("../LevelLoader")
+main_menu_scene = "res://scenes/menus/main_menu/main_menu_with_animations.tscn"
+ending_scene = "res://scenes/end_credits/end_credits.tscn"
+level_loading_screen = NodePath("../LevelLoadingScreen")
+game_won_scene = ExtResource("9_0pd2h")
+level_lost_scene = ExtResource("10_37hvn")
+level_won_scene = ExtResource("11_h5xmp")
 
 [connection signal="level_load_started" from="LevelLoader" to="." method="_on_level_loader_level_load_started"]
 [connection signal="level_loaded" from="LevelLoader" to="." method="_on_level_loader_level_loaded"]

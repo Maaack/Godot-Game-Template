@@ -5,6 +5,12 @@ extends Node
 signal scene_loaded
 
 @export_file("*.tscn") var loading_screen_path : String : set = set_loading_screen
+
+@export_group("Debug")
+@export var debug_enabled : bool = false
+@export var debug_lock_status : ResourceLoader.ThreadLoadStatus
+@export_range(0, 1) var debug_lock_progress : float = 0.0
+
 var _loading_screen : PackedScene
 var _scene_path : String
 var _loaded_resource : Resource
@@ -18,11 +24,15 @@ func _check_scene_path() -> bool:
 	return true
 
 func get_status() -> ResourceLoader.ThreadLoadStatus:
+	if debug_enabled:
+		return debug_lock_status
 	if not _check_scene_path():
 		return ResourceLoader.THREAD_LOAD_INVALID_RESOURCE
 	return ResourceLoader.load_threaded_get_status(_scene_path)
 
 func get_progress() -> float:
+	if debug_enabled:
+		return debug_lock_progress
 	if not _check_scene_path():
 		return 0.0
 	var progress_array : Array = []
@@ -38,6 +48,8 @@ func get_resource():
 	return _loaded_resource
 
 func change_scene_to_resource() -> void:
+	if debug_enabled:
+		return
 	var err = get_tree().change_scene_to_packed(get_resource())
 	if err:
 		push_error("failed to change scenes: %d" % err)
