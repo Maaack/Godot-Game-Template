@@ -25,6 +25,8 @@ var custom_option_values : Array
 func _on_option_values_changed():
 	if option_values.is_empty(): return
 	custom_option_values = option_values.duplicate()
+	var first_value = custom_option_values.front()
+	property_type = typeof(first_value)
 	_set_titles_from_values()
 
 func _on_setting_changed(value):
@@ -55,7 +57,7 @@ func set_value(value : Variant):
 		return super.set_value(-1)
 	custom_option_values = option_values.duplicate()
 	value = _match_value_to_other(value, custom_option_values.front())
-	if value not in custom_option_values:
+	if value not in custom_option_values and typeof(value) == property_type:
 		custom_option_values.append(value)
 		custom_option_values.sort()
 	_set_titles_from_values()
