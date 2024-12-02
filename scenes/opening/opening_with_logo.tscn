@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://db785cetfqf42"]
+[gd_scene load_steps=3 format=3 uid="uid://3tyxceqkp4rt"]
 
-[ext_resource type="PackedScene" path="res://scenes/opening/opening.tscn" id="1_8xqte"]
-[ext_resource type="Texture2D" path="res://assets/images/logo_vertical_color_dark.png" id="2_bcxhx"]
+[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/scenes/opening/opening.tscn" id="1_2t6oq"]
+[ext_resource type="Texture2D" path="res://assets/images/logo_vertical_color_dark.png" id="2_dq1bw"]
 
-[node name="Opening" instance=ExtResource("1_8xqte")]
-images = Array[Texture2D]([ExtResource("2_bcxhx")])
+[node name="Opening" instance=ExtResource("1_2t6oq")]
+next_scene = "res://scenes/menus/main_menu/main_menu_with_animations.tscn"
+images = Array[Texture2D]([ExtResource("2_dq1bw")])
