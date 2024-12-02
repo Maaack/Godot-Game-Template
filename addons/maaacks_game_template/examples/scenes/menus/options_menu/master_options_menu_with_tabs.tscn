@@ -1,12 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://bdvdf5v87mmrr"]
+[gd_scene load_steps=7 format=3 uid="uid://bdvdf5v87mmrr"]
 
 [ext_resource type="PackedScene" uid="uid://bvwl11s2p0hd" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/master_options_menu.tscn" id="1_u1u8e"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/examples/scenes/menus/options_menu/master_options_menu.gd" id="2_etesu"]
 [ext_resource type="PackedScene" uid="uid://b4r3gcnm31uo6" path="res://addons/maaacks_game_template/examples/scenes/menus/options_menu/input/input_options_menu_with_mouse_sensitivity.tscn" id="2_p458j"]
 [ext_resource type="PackedScene" uid="uid://dmgla7rq1g2cc" path="res://addons/maaacks_game_template/examples/scenes/menus/options_menu/audio/audio_options_menu.tscn" id="3_vs2ne"]
 [ext_resource type="PackedScene" uid="uid://bsbo8ot2p46dv" path="res://addons/maaacks_game_template/examples/scenes/menus/options_menu/game/game_options_menu.tscn" id="4_nfwp5"]
 [ext_resource type="PackedScene" uid="uid://cck3omvlkhpix" path="res://addons/maaacks_game_template/examples/scenes/menus/options_menu/video/video_options_menu_with_extras.tscn" id="4_v3ewd"]
 
 [node name="MasterOptionsMenu" instance=ExtResource("1_u1u8e")]
+script = ExtResource("2_etesu")
 
 [node name="TabContainer" parent="." index="0"]
 current_tab = 0
