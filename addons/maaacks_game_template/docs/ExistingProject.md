@@ -38,8 +38,9 @@ These instructions assume starting with just the contents of `addons/`. This wil
         2.  Open `main_menu_with_animations.tscn`.
         3.  Select the `BackgroundMusicPlayer` node.
         4.  Assign the music asset to the `stream` property.
-        5.  Save the scene.
-        6.  Optionally, repeat steps 3-5 for background music nodes in:
+        5.  Make sure that the `bus` property is set to `Music`.
+        6.  Save the scene.
+        7.  Optionally, repeat steps 3-5 for background music nodes in:
             1.  `opening_with_logo.tscn`
             2.  `game_ui.tscn`
             3.  `end_credits.tscn`
