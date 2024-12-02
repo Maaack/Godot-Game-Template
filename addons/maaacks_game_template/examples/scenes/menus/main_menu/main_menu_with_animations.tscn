@@ -1,7 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://c63y6b25bs4bk"]
+[gd_scene load_steps=18 format=3 uid="uid://c63y6b25bs4bk"]
 
-[ext_resource type="PackedScene" uid="uid://byvydukidk6i2" path="res://addons/maaacks_game_template/examples/scenes/menus/main_menu/main_menu.tscn" id="1_0i2sc"]
+[ext_resource type="PackedScene" uid="uid://c6k5nnpbypshi" path="res://addons/maaacks_game_template/base/scenes/menus/main_menu/main_menu.tscn" id="1_0i2sc"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/examples/scenes/menus/main_menu/main_menu_with_animations.gd" id="2_ncvk7"]
+[ext_resource type="PackedScene" uid="uid://bdvdf5v87mmrr" path="res://addons/maaacks_game_template/examples/scenes/menus/options_menu/master_options_menu_with_tabs.tscn" id="3_tuy3s"]
+[ext_resource type="PackedScene" uid="uid://c1g50h2avck3w" path="res://addons/maaacks_game_template/examples/scenes/credits/credits.tscn" id="4_lwsll"]
 
 [sub_resource type="Animation" id="1"]
 resource_name = "Intro"
@@ -349,6 +351,9 @@ graph_offset = Vector2(-180.277, 49)
 
 [node name="MainMenu" instance=ExtResource("1_0i2sc")]
 script = ExtResource("2_ncvk7")
+game_scene_path = "res://addons/maaacks_game_template/examples/scenes/game_scene/game_ui.tscn"
+options_packed_scene = ExtResource("3_tuy3s")
+credits_packed_scene = ExtResource("4_lwsll")
 
 [node name="MenuAnimationPlayer" type="AnimationPlayer" parent="." index="1"]
 libraries = {
