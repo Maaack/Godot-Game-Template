@@ -116,4 +116,7 @@ These instructions assume starting with the entire contents of the project folde
 8.  Optionally, if using Git for version control, update `.gitignore` to include `addons/`.  
 
 
-9.  Continue by [Setting Up a Game Scene](/addons/maaacks_game_template/docs/GameSceneSetup.md).  
+9.  Continue with:
+
+    1.  [Setting up the Main Menu](/addons/maaacks_game_template/docs/MainMenuSetup.md).  
+    2.  [Setting up a Game Scene](/addons/maaacks_game_template/docs/GameSceneSetup.md).  
