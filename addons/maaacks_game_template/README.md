@@ -153,6 +153,7 @@ These instructions assume starting with just the contents of `addons/`. This wil
    
 ### More Documentation
 
+[Main Menu Setup](/addons/maaacks_game_template/docs/MainMenuSetup.md)  
 [Game Scene Setup](/addons/maaacks_game_template/docs/GameSceneSetup.md)  
 
 ## Links
