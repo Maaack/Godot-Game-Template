@@ -20,6 +20,9 @@ static func get_current_level() -> int:
 static func set_current_level(level_number : int) -> void:
 	Config.set_config(GAME_LOG_SECTION, CURRENT_LEVEL, level_number)
 
+static func reset_current_level() -> void:
+	set_current_level(0)
+
 static func reset_game_data() -> void:
 	Config.set_config(GAME_LOG_SECTION, CURRENT_LEVEL, 0)
 	Config.set_config(GAME_LOG_SECTION, MAX_LEVEL_REACHED, 0)

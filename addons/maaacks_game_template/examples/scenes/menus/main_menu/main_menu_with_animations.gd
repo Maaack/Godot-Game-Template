@@ -6,6 +6,10 @@ func play_game():
 	GameLog.game_started()
 	super.play_game()
 
+func new_game():
+	GameLevelLog.reset_current_level()
+	play_game()
+
 func intro_done():
 	animation_state_machine.travel("OpenMainMenu")
 
@@ -38,3 +42,12 @@ func _input(event):
 func _ready():
 	super._ready()
 	animation_state_machine = $MenuAnimationTree.get("parameters/playback")
+
+func _setup_play():
+	super._setup_play()
+	if GameLevelLog.get_current_level() > 0:
+		%PlayButton.text = "Continue"
+		%NewGameButton.show()
+
+func _on_new_game_button_pressed():
+	new_game()
