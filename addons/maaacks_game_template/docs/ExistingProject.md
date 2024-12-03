@@ -107,7 +107,7 @@ These instructions assume starting with just the contents of `addons/`. This wil
     4.  Save the scene.
 
 
-7.  Continue by:
+7.  Continue with:
 
     1.  [Setting up the Main Menu.](/addons/maaacks_game_template/docs/MainMenuSetup.md)  
     2.  [Setting up a Game Scene.](/addons/maaacks_game_template/docs/GameSceneSetup.md)  
