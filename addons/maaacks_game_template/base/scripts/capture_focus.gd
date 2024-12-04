@@ -1,15 +1,20 @@
 class_name CaptureFocus
 extends Container
-## Node that captures UI focus for joypad users.
+## Node that captures UI focus for games with a hidden mouse or joypad enabled.
 ##
-## This script assists with capturing UI focus for joypad users when
+## This script assists with capturing UI focus when
 ## opening, closing, or switching between menus.
 ## When attached to a node, it will check if it was changed to visible
-## and a joypad is being used. If both are true, it will capture focus
+## and if it should grab focus. If both are true, it will capture focus
 ## on the first eligible node in its scene tree.
 
 ## Hierarchical depth to search in the scene tree.
 @export var search_depth : int = 1
+@export var enabled : bool = false
+@export var joypad_enabled : bool = true
+@export var mouse_hidden_enabled : bool = true
+
+## Locks focus
 @export var lock : bool = false :
 	set(value):
 		var value_changed : bool = lock != value
@@ -35,11 +40,16 @@ func focus_first():
 
 func update_focus():
 	if lock : return
-	if _is_visible_and_joypad():
+	if _is_visible_and_should_capture():
 		focus_first()
 
-func _is_visible_and_joypad():
-	return is_visible_in_tree() and Input.get_connected_joypads().size() > 0
+func _should_capture_focus():
+	return enabled or \
+	(Input.get_connected_joypads().size() > 0 and joypad_enabled) or \
+	(Input.mouse_mode not in [Input.MOUSE_MODE_VISIBLE, Input.MOUSE_MODE_CONFINED] and mouse_hidden_enabled)
+
+func _is_visible_and_should_capture():
+	return is_visible_in_tree() and _should_capture_focus()
 
 func _on_visibility_changed():
 	call_deferred("update_focus")
