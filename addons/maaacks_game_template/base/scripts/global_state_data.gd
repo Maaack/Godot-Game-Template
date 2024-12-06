@@ -12,8 +12,10 @@ func get_state(key_name : String, state_type_path : String):
 	if new_state_script is GDScript:
 		new_state = new_state_script.new()
 	if key_name in states:
-		var state_value : Resource = states[key_name]
-		if state_value.get_class() == new_state.get_class():
-			return state_value
+		var saved_state : Resource = states[key_name]
+		var saved_script = saved_state.get_script()
+		var new_script = new_state.get_script()
+		if saved_script and new_script and saved_script == new_script:
+			return saved_state
 	states[key_name] = new_state
 	return new_state
