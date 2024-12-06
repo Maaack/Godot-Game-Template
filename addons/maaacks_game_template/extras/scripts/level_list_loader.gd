@@ -1,7 +1,7 @@
 @tool
 class_name LevelListLoader
 extends SceneLister
-## Extends [SceneLister] to manage level advancement through [GameLevelLog].
+## Extends [SceneLister] to manage level advancement through [GameStateExample].
 
 signal level_load_started
 signal level_loaded
@@ -17,7 +17,7 @@ signal levels_finished
 var current_level : Node
 
 func get_current_level_id() -> int:
-	return GameLevelLog.get_current_level() if force_level == -1 else force_level
+	return GameStateExample.get_current_level() if force_level == -1 else force_level
 
 func get_level_file(level_id : int = get_current_level_id()):
 	if files.is_empty():
@@ -38,7 +38,7 @@ func advance_level() -> bool:
 		emit_signal("levels_finished")
 		level_id = files.size() - 1
 		return false
-	GameLevelLog.level_reached(level_id)
+	GameStateExample.level_reached(level_id)
 	return true
 
 func _attach_level(level_resource : Resource):
@@ -48,7 +48,7 @@ func _attach_level(level_resource : Resource):
 	return instance
 
 func load_level(level_id : int = get_current_level_id()):
-	GameLevelLog.set_current_level(level_id)
+	GameStateExample.set_current_level(level_id)
 	if is_instance_valid(current_level):
 		current_level.queue_free()
 		await current_level.tree_exited
