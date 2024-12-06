@@ -1,7 +1,7 @@
 class_name GameStateExample
 extends Resource
 
-const STATE_NAME : String = "GameState"
+const STATE_NAME : String = "GameStateExample"
 const FILE_PATH = "res://addons/maaacks_game_template/examples/scripts/game_state.gd"
 
 static var current_level : String
