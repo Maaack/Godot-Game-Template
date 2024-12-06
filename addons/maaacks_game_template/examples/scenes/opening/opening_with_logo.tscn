@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://cyqy6dvynho67"]
+[gd_scene load_steps=4 format=3 uid="uid://cyqy6dvynho67"]
 
 [ext_resource type="PackedScene" uid="uid://sikc02ddepyt" path="res://addons/maaacks_game_template/base/scenes/opening/opening.tscn" id="1_tjbcx"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/examples/scenes/opening/opening.gd" id="2_up6er"]

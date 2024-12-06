@@ -123,6 +123,7 @@ func _replace_file_contents(file_path : String, target_path : String):
 	var original_content = file.get_as_text()
 	var replaced_content = regex.sub(original_content, "", true)
 	replaced_content = replaced_content.replace(get_plugin_examples_path(), target_path)
+	replaced_content = replaced_content.replace("StateExample", "State")
 	file.close()
 	if replaced_content == original_content: return
 	file = FileAccess.open(file_path, FileAccess.WRITE)
