@@ -6,13 +6,13 @@ signal level_lost
 var level_state : LevelStateExample
 
 func _on_lose_button_pressed():
-	emit_signal("level_lost")
+	level_lost.emit()
 
 func _on_win_button_pressed():
-	emit_signal("level_won")
+	level_won.emit()
 
 func _ready():
-	GameStateExample.current_level = get_path()
+	GameStateExample.current_level = scene_file_path
 	level_state = GameStateExample.get_current_level_state()
 	%ColorPickerButton.color = level_state.color
 	%ColorPickerButton.color_changed.emit(level_state.color)

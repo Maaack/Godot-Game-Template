@@ -7,14 +7,13 @@ extends Resource
 @export var states : Dictionary
 
 func get_state(key_name : String, state_type_path : String):
+	var new_state : Resource
+	var new_state_script = load(state_type_path)
+	if new_state_script is GDScript:
+		new_state = new_state_script.new()
 	if key_name in states:
-		return states[key_name]
-	elif state_type_path:
-		var new_state_script = load(state_type_path)
-		var new_state : Resource
-		if new_state_script is GDScript:
-			new_state = new_state_script.new()
-			states[key_name] = new_state
-		return new_state
-	else:
-		return null
+		var state_value : Resource = states[key_name]
+		if state_value.get_class() == new_state.get_class():
+			return state_value
+	states[key_name] = new_state
+	return new_state
