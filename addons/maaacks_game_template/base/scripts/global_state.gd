@@ -14,6 +14,8 @@ static func _log_opened():
 static func _log_version():
 	if current is GlobalStateData:
 		current_version = ProjectSettings.get_setting("application/config/version", NO_VERSION_NAME)
+		if current_version.is_empty():
+			current_version = NO_VERSION_NAME
 		if not current.first_version_opened:
 			current.first_version_opened = current_version
 		current.last_version_opened = current_version
