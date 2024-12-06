@@ -4,13 +4,12 @@ extends Resource
 const STATE_NAME : String = "GameStateExample"
 const FILE_PATH = "res://addons/maaacks_game_template/examples/scripts/game_state.gd"
 
-static var level_state_key : String
 @export var level_states : Dictionary = {}
 @export var max_level_reached : int
 @export var current_level : int
 @export var total_games_started : int
 
-static func get_current_level_state() -> LevelStateExample:
+static func get_level_state(level_state_key : String) -> LevelStateExample:
 	var game_state = get_game_state()
 	if level_state_key.is_empty() : return
 	if level_state_key in game_state.level_states:
