@@ -7,7 +7,7 @@ const FILE_PATH = "res://addons/maaacks_game_template/examples/scripts/game_stat
 @export var level_states : Dictionary = {}
 @export var max_level_reached : int
 @export var current_level : int
-@export var total_games_started : int
+@export var times_played : int
 
 static func get_level_state(level_state_key : String) -> LevelStateExample:
 	var game_state = get_game_state()
@@ -47,5 +47,5 @@ static func start_game():
 	var game_state = get_game_state()
 	if not game_state: 
 		return
-	game_state.total_games_started += 1
+	game_state.times_played += 1
 	GlobalState.save()

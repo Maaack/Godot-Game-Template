@@ -2,9 +2,13 @@ extends MainMenu
 
 var animation_state_machine : AnimationNodeStateMachinePlayback
 
-func play_game():
+func load_game_scene():
 	GameStateExample.start_game()
-	super.play_game()
+	super.load_game_scene()
+
+func new_game():
+	GlobalState.reset()
+	load_game_scene()
 
 func intro_done():
 	animation_state_machine.travel("OpenMainMenu")
@@ -38,3 +42,11 @@ func _input(event):
 func _ready():
 	super._ready()
 	animation_state_machine = $MenuAnimationTree.get("parameters/playback")
+
+func _setup_game_buttons():
+	super._setup_game_buttons()
+	if GameStateExample.get_current_level() > 0:
+		%ContinueGameButton.show()
+
+func _on_continue_game_button_pressed():
+	load_game_scene()
