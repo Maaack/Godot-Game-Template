@@ -24,25 +24,28 @@ static func get_game_state() -> GameStateExample:
 
 static func get_current_level() -> int:
 	var game_state = get_game_state()
-	if game_state:
-		return game_state.current_level
-	return 0
+	if not game_state: 
+		return 0
+	return game_state.current_level
 
 static func level_reached(level_number):
 	var game_state = get_game_state()
-	if game_state:
-		game_state.max_level_reached = max(level_number, game_state.max_level_reached)
-		game_state.current_level = level_number
+	if not game_state: 
+		return
+	game_state.max_level_reached = max(level_number, game_state.max_level_reached)
+	game_state.current_level = level_number
 	GlobalState.save()
 
 static func set_current_level(level_number):
 	var game_state = get_game_state()
-	if game_state:
-		game_state.current_level = level_number
+	if not game_state: 
+		return
+	game_state.current_level = level_number
 	GlobalState.save()
 
 static func start_game():
 	var game_state = get_game_state()
-	if game_state:
-		game_state.total_games_started += 1
+	if not game_state: 
+		return
+	game_state.total_games_started += 1
 	GlobalState.save()
