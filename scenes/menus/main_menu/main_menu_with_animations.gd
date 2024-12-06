@@ -3,7 +3,7 @@ extends MainMenu
 var animation_state_machine : AnimationNodeStateMachinePlayback
 
 func play_game():
-	GameLog.game_started()
+	GameState.start_game()
 	super.play_game()
 
 func intro_done():
