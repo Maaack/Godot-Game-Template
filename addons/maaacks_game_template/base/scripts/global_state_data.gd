@@ -19,3 +19,6 @@ func get_state(key_name : String, state_type_path : String):
 			return saved_state
 	states[key_name] = new_state
 	return new_state
+
+func has_state(key_name : String):
+	return key_name in states

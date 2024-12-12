@@ -43,7 +43,6 @@ func _try_connecting_signal_to_level(signal_name : String, callable : Callable):
 
 func _load_main_menu():
 	SceneLoader.load_scene(main_menu_scene)
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _advance_level() -> bool:
 	if is_on_last_level(): return false
