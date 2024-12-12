@@ -45,7 +45,7 @@ func _ready():
 
 func _setup_game_buttons():
 	super._setup_game_buttons()
-	if GameState.get_current_level() > 0:
+	if GameState.has_game_state():
 		%ContinueGameButton.show()
 
 func _on_continue_game_button_pressed():
