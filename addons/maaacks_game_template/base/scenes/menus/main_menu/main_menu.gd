@@ -48,7 +48,7 @@ func _setup_for_web():
 
 func _setup_game_buttons():
 	if game_scene_path.is_empty():
-		%PlayButton.hide()
+		%NewGameButton.hide()
 
 func _setup_options():
 	if options_packed_scene == null:
