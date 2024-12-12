@@ -6,4 +6,5 @@
 [ext_resource type="Texture2D" uid="uid://b3ellm2ls2gj8" path="res://addons/maaacks_game_template/examples/assets/images/WildcardsBanner.png" id="4_b8jva"]
 
 [node name="Opening" instance=ExtResource("1_tjbcx")]
+next_scene = "res://addons/maaacks_game_template/examples/scenes/menus/main_menu/main_menu_with_animations.tscn"
 images = Array[Texture2D]([ExtResource("2_v2d2k"), ExtResource("3_k0wel"), ExtResource("4_b8jva")])
