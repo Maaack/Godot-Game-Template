@@ -19,6 +19,9 @@ static func get_level_state(level_state_key : String) -> LevelState:
 		game_state.level_states[level_state_key] = new_level_state
 		return new_level_state
 
+static func has_game_state() -> bool:
+	return GlobalState.has_state(STATE_NAME)
+
 static func get_game_state() -> GameState:
 	return GlobalState.get_state(STATE_NAME, FILE_PATH)
 
