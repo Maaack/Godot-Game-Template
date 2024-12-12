@@ -1,12 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://bu27h8eg72121"]
+[gd_scene load_steps=5 format=3 uid="uid://durvrj4nnt0ex"]
 
-[ext_resource type="PackedScene" uid="uid://c6k5nnpbypshi" path="res://addons/maaacks_game_template/base/scenes/menus/main_menu/main_menu.tscn" id="1_gqq7x"]
-[ext_resource type="PackedScene" uid="uid://dq7v5j0wv1mos" path="res://scenes/menus/options_menu/master_options_menu_with_tabs.tscn" id="2_b1gp6"]
-[ext_resource type="Script" path="res://scenes/menus/main_menu/main_menu.gd" id="2_vqlvs"]
-[ext_resource type="PackedScene" uid="uid://da7uj8u87g24i" path="res://scenes/credits/credits.tscn" id="3_lfrmn"]
+[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/scenes/menus/main_menu/main_menu.tscn" id="1_7yqli"]
+[ext_resource type="Script" path="res://scenes/menus/main_menu/main_menu.gd" id="2_qowch"]
+[ext_resource type="PackedScene" path="res://scenes/menus/options_menu/master_options_menu_with_tabs.tscn" id="3_bh880"]
+[ext_resource type="PackedScene" path="res://scenes/credits/credits.tscn" id="4_hb88b"]
 
-[node name="MainMenu" instance=ExtResource("1_gqq7x")]
-script = ExtResource("2_vqlvs")
+[node name="MainMenu" instance=ExtResource("1_7yqli")]
+script = ExtResource("2_qowch")
 game_scene_path = "res://scenes/game_scene/game_ui.tscn"
-options_packed_scene = ExtResource("2_b1gp6")
-credits_packed_scene = ExtResource("3_lfrmn")
+options_packed_scene = ExtResource("3_bh880")
+credits_packed_scene = ExtResource("4_hb88b")

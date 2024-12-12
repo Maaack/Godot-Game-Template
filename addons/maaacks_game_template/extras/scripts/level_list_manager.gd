@@ -12,6 +12,7 @@ extends Node
 @export_file("*.tscn") var main_menu_scene : String
 ## Optional path to an ending scene.
 @export_file("*.tscn") var ending_scene : String
+@export var auto_load : bool = true
 @export_group("Screens")
 ## Optional reference to a loading screen in the scene.
 @export var level_loading_screen : LoadingScreen
@@ -21,9 +22,17 @@ extends Node
 @export var level_lost_scene : PackedScene
 ## Optional level compete screen to be shown after the level is won.
 @export var level_won_scene : PackedScene
+## Loads a level on start.
+@export_group("Debugging")
+@export var force_level : int = -1
 
 ## Reference to the current level node.
 var current_level
+var current_level_id : int :
+	set = set_current_level_id
+
+func set_current_level_id(value):
+	current_level_id = value
 
 func _try_connecting_signal_to_node(node : Node, signal_name : String, callable : Callable):
 	if node.has_signal(signal_name) and not node.is_connected(signal_name, callable):
@@ -34,10 +43,14 @@ func _try_connecting_signal_to_level(signal_name : String, callable : Callable):
 
 func _load_main_menu():
 	SceneLoader.load_scene(main_menu_scene)
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+func _advance_level() -> bool:
+	if is_on_last_level(): return false
+	current_level_id += 1
+	return true
 
 func _advance_and_load_main_menu():
-	level_list_loader.advance_level()
+	_advance_level()
 	_load_main_menu()
 
 func _load_ending():
@@ -55,16 +68,24 @@ func _on_level_lost():
 	else:
 		_reload_level()
 
+func get_current_level_id() -> int:
+	return current_level_id if force_level == -1 else force_level
+
+func load_current_level():
+	level_list_loader.load_level(get_current_level_id())
+
 func _advance_and_reload():
-	var _current_level_id = level_list_loader.get_current_level_id()
-	level_list_loader.advance_level()
-	level_list_loader.load_level(_current_level_id)
+	var _prior_level_id = get_current_level_id()
+	_advance_level()
+	current_level_id = _prior_level_id
+	load_current_level()
 
 func _load_next_level():
-	level_list_loader.advance_and_load_level()
+	_advance_level()
+	load_current_level()
 
 func _reload_level():
-	level_list_loader.reload_level()
+	load_current_level()
 
 func _load_win_screen_or_ending():
 	if game_won_scene:
@@ -86,8 +107,11 @@ func _load_level_complete_screen_or_next_level():
 	else:
 		_load_next_level()
 
+func is_on_last_level():
+	return get_current_level_id() + 1 >= level_list_loader.files.size()
+
 func _on_level_won():
-	if level_list_loader.is_on_last_level():
+	if is_on_last_level():
 		_load_win_screen_or_ending()
 	else:
 		_load_level_complete_screen_or_next_level()
@@ -115,3 +139,5 @@ func _ready():
 	level_list_loader.level_loaded.connect(_on_level_loader_level_loaded)
 	level_list_loader.levels_finished.connect(_on_level_loader_levels_finished)
 	level_list_loader.level_load_started.connect(_on_level_loader_level_load_started)
+	if auto_load:
+		load_current_level()

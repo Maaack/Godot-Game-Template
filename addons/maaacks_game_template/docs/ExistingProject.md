@@ -3,15 +3,7 @@
 These instructions assume starting with just the contents of `addons/`. This will be the case when installing the *plugin* version in the Godot Asset Library.
 
 
-1.  Update the project’s main scene (if skipped during plugin install).
-    
-
-    1.  Go to `Project > Project Settings… > General > Application > Run`.
-    2.  Update `Main Scene` to `opening_with_logo.tscn`, or skip openings and go straight to `main_menu_with_animations.tscn`. (These are the default scenes used, but other options are available.)
-    3.  Close the window.
-    
-
-2.  Update the project’s name in the main menu.
+1.  Update the project’s name in the main menu.
     
 
     1.  Open `main_menu_with_animations.tscn`.
@@ -22,7 +14,7 @@ These instructions assume starting with just the contents of `addons/`. This wil
     6.  Save the scene.
     
 
-3.  Link the main menu to the game scene.
+2.  Link the main menu to the game scene.
     
 
     1.  Open `main_menu_with_animations.tscn`.
@@ -31,7 +23,7 @@ These instructions assume starting with just the contents of `addons/`. This wil
     4.  Save the scene.
     
 
-4.  Add background music and sound effects to the UI.
+3.  Add background music and sound effects to the UI.
 
     1.  Add `Music` and `SFX` to the project's default audio busses.
 
@@ -46,8 +38,9 @@ These instructions assume starting with just the contents of `addons/`. This wil
         2.  Open `main_menu_with_animations.tscn`.
         3.  Select the `BackgroundMusicPlayer` node.
         4.  Assign the music asset to the `stream` property.
-        5.  Save the scene.
-        6.  Optionally, repeat steps 3-5 for background music nodes in:
+        5.  Make sure that the `bus` property is set to `Music`.
+        6.  Save the scene.
+        7.  Optionally, repeat steps 3-5 for background music nodes in:
             1.  `opening_with_logo.tscn`
             2.  `game_ui.tscn`
             3.  `end_credits.tscn`
@@ -73,7 +66,7 @@ These instructions assume starting with just the contents of `addons/`. This wil
             4.  Save the scene.  
 
 
-5.  Add readable names for input actions to the controls menu.
+4.  Add readable names for input actions to the controls menu.
     
 
     1.  Open `input_options_menu.tscn` (or `master_options_menu_with_tabs.tscn`, which contains an instance of the scene).
@@ -82,7 +75,7 @@ These instructions assume starting with just the contents of `addons/`. This wil
     4.  Save the scene.  
 
 
-6.  Add / remove configurable settings to / from menus.
+5.  Add / remove configurable settings to / from menus.
     
 
     1.  Open `mini_options_menu.tscn` or `[audio|visual|input|game]_options_menu.tscn` scenes to edit their options.
@@ -105,7 +98,7 @@ These instructions assume starting with just the contents of `addons/`. This wil
         3.  `config.cfg` should be in the top directory of the project.
 
 
-7.  Update the game credits / attribution.
+6.  Update the game credits / attribution.
     
 
     1.  Update the example `ATTRIBUTION.md` with the project's credits.
@@ -114,4 +107,7 @@ These instructions assume starting with just the contents of `addons/`. This wil
     4.  Save the scene.
 
 
-8.  Continue by [Setting Up a Game Scene](/addons/maaacks_game_template/docs/GameSceneSetup.md).  
+7.  Continue with:
+
+    1.  [Setting up the Main Menu.](/addons/maaacks_game_template/docs/MainMenuSetup.md)  
+    2.  [Setting up a Game Scene.](/addons/maaacks_game_template/docs/GameSceneSetup.md)  

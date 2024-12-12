@@ -10,11 +10,11 @@ var options_scene
 var credits_scene
 var sub_menu
 
-func load_scene(scene_path : String):
-	SceneLoader.load_scene(scene_path)
-
-func play_game():
+func load_game_scene():
 	SceneLoader.load_scene(game_scene_path)
+
+func new_game():
+	load_game_scene()
 
 func _open_sub_menu(menu : Control):
 	sub_menu = menu
@@ -46,9 +46,9 @@ func _setup_for_web():
 	if OS.has_feature("web"):
 		%ExitButton.hide()
 
-func _setup_play():
+func _setup_game_buttons():
 	if game_scene_path.is_empty():
-		%PlayButton.hide()
+		%NewGameButton.hide()
 
 func _setup_options():
 	if options_packed_scene == null:
@@ -72,10 +72,10 @@ func _ready():
 	_setup_for_web()
 	_setup_options()
 	_setup_credits()
-	_setup_play()
+	_setup_game_buttons()
 
-func _on_play_button_pressed():
-	play_game()
+func _on_new_game_button_pressed():
+	new_game()
 
 func _on_options_button_pressed():
 	_open_sub_menu(options_scene)
