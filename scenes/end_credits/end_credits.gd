@@ -7,7 +7,6 @@ extends Credits
 func _end_reached():
 	%EndMessagePanel.show()
 	mouse_filter = Control.MOUSE_FILTER_STOP
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	super._end_reached()
 
 func _on_MenuButton_pressed():
