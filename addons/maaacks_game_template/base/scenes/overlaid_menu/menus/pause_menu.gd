@@ -23,7 +23,6 @@ func _enable_focus():
 
 func _load_scene(scene_path: String):
 	_scene_tree.paused = false
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	SceneLoader.load_scene(scene_path)
 
 func open_options_menu():
