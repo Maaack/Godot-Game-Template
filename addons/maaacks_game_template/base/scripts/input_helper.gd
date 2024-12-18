@@ -34,6 +34,8 @@ static func _display_server_supports_keycode_from_physical():
 	return OS.has_feature("windows") or OS.has_feature("macos") or OS.has_feature("linux")
 
 static func get_text(event : InputEvent) -> String:
+	if event == null:
+		return ""
 	if event is InputEventJoypadButton:
 		if event.button_index in JOY_BUTTON_NAMES:
 			return JOY_BUTTON_NAMES[event.button_index] 

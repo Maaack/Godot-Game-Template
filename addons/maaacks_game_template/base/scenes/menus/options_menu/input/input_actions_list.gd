@@ -1,0 +1,238 @@
+@tool
+class_name InputActionsList
+extends BoxContainer
+
+signal already_assigned(action_name : String, input_name : String)
+signal minimum_reached(action_name : String)
+signal input_group_button_clicked(action_name : String)
+
+@export_range(1, 5) var input_groups : int = 2
+@export var input_group_names : Array[String]
+@export var input_action_names : Array[StringName] :
+	set(value):
+		var _value_changed = input_action_names != value
+		input_action_names = value
+		if _value_changed:
+			var _new_readable_action_names : Array[String]
+			for action in input_action_names:
+				_new_readable_action_names.append(action.capitalize())
+			readable_action_names = _new_readable_action_names
+
+@export var readable_action_names : Array[String] :
+	set(value):
+		var _value_changed = readable_action_names != value
+		readable_action_names = value
+		if _value_changed:
+			var _new_action_name_map : Dictionary
+			for iter in range(input_action_names.size()):
+				var _input_name : StringName = input_action_names[iter]
+				var _readable_name : String = readable_action_names[iter]
+				_new_action_name_map[_input_name] = _readable_name
+			action_name_map = _new_action_name_map
+
+## Show action names that are not explicitely listed in an action name map.
+@export var show_all_actions : bool = true
+@export_group("Icons")
+@export var add_button_texture : Texture2D
+@export var remove_button_texture : Texture2D
+@export_group("Built-in Actions")
+## Shows Godot's built-in actions (action names starting with "ui_") in the tree.
+@export var show_built_in_actions : bool = false
+## Prevents assigning inputs that are already assigned to Godot's built-in actions (action names starting with "ui_"). Not recommended.
+@export var catch_built_in_duplicate_inputs : bool = false
+## Maps the names of built-in input actions to readable names for users.
+@export var built_in_action_name_map : Dictionary = {
+	"ui_accept" : "Accept",
+	"ui_select" : "Select",
+	"ui_cancel" : "Cancel",
+	"ui_focus_next" : "Focus Next",
+	"ui_focus_prev" : "Focus Prev",
+	"ui_left" : "Left (UI)",
+	"ui_right" : "Right (UI)",
+	"ui_up" : "Up (UI)",
+	"ui_down" : "Down (UI)",
+	"ui_page_up" : "Page Up",
+	"ui_page_down" : "Page Down",
+	"ui_home" : "Home",
+	"ui_end" : "End",
+	"ui_cut" : "Cut",
+	"ui_copy" : "Copy",
+	"ui_paste" : "Paste",
+	"ui_undo" : "Undo",
+	"ui_redo" : "Redo",
+}
+@export_group("Debug")
+## Maps the names of input actions to readable names for users.
+@export var action_name_map : Dictionary
+
+var tree_item_add_map : Dictionary = {}
+var tree_item_remove_map : Dictionary = {}
+var tree_item_action_map : Dictionary = {}
+var assigned_input_events : Dictionary = {}
+var editing_action_name : String = ""
+var editing_item
+var last_input_readable_name
+
+func _clear_list():
+	for child in get_children():
+		if child == %ActionBoxContainer:
+			continue
+		child.queue_free()
+
+func _on_button_pressed(action_name : String, input_group : int):
+	print(action_name, " ", input_group)
+	pass
+
+func _new_action_box():
+	var new_action_box = %ActionBoxContainer.duplicate()
+	new_action_box.visible = true
+	new_action_box.vertical = !(vertical)
+	return new_action_box
+
+func _add_header():
+	var new_action_box = _new_action_box()
+	for group_iter in range(input_groups):
+		var group_name := ""
+		if group_iter < input_group_names.size():
+			group_name = input_group_names[group_iter]
+		var new_label := Label.new()
+		new_label.size_flags_horizontal = SIZE_EXPAND_FILL
+		new_label.size_flags_vertical = SIZE_EXPAND_FILL
+		new_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		new_label.text = group_name
+		new_action_box.add_child(new_label)
+	add_child(new_action_box)
+
+func _add_action_options(action_name : String, readable_action_name : String, input_events : Array[InputEvent]):
+	var new_action_box = %ActionBoxContainer.duplicate()
+	new_action_box.visible = true
+	new_action_box.vertical = !(vertical)
+	new_action_box.get_child(0).text = readable_action_name
+	for group_iter in range(input_groups):
+		var input_event : InputEvent
+		if group_iter < input_events.size():
+			input_event = input_events[group_iter]
+		var text = InputEventHelper.get_text(input_event)
+		if text.is_empty(): text = " "
+		var new_button := Button.new()
+		new_button.clip_text = true
+		new_button.size_flags_horizontal = SIZE_EXPAND_FILL
+		new_button.size_flags_vertical = SIZE_EXPAND_FILL
+		new_button.text = text
+		new_button.pressed.connect(_on_button_pressed.bind(action_name, group_iter))
+		new_action_box.add_child(new_button)
+	add_child(new_action_box)
+
+func _get_all_action_names(include_built_in : bool = false) -> Array[StringName]:
+	var action_names : Array[StringName] = input_action_names.duplicate()
+	var full_action_name_map = action_name_map.duplicate()
+	if include_built_in:
+		for action_name in built_in_action_name_map:
+			if action_name is String:
+				action_name = StringName(action_name)
+			if action_name is StringName:
+				action_names.append(action_name)
+	if show_all_actions:
+		var all_actions := AppSettings.get_action_names(include_built_in)
+		for action_name in all_actions:
+			if not action_name in action_names:
+				action_names.append(action_name)
+	return action_names
+
+func _get_action_readable_name(input_name : StringName) -> String:
+	var readable_name : String
+	if input_name in action_name_map:
+		readable_name = action_name_map[input_name]
+	elif input_name in built_in_action_name_map:
+		readable_name = built_in_action_name_map[input_name]
+	else:
+		readable_name = input_name.capitalize()
+		action_name_map[input_name] = readable_name
+	return readable_name
+
+func _build_ui_list():
+	_clear_list()
+	_add_header()
+	var action_names : Array[StringName] = _get_all_action_names(show_built_in_actions)
+	for action_name in action_names:
+		var input_events = InputMap.action_get_events(action_name)
+		if input_events.size() < 1:
+			push_warning("%s action_name is empty" % action_name)
+			continue
+		var readable_name : String = _get_action_readable_name(action_name)
+		_add_action_options(action_name, readable_name, input_events)
+
+func _assign_input_event(input_event : InputEvent, action_name : String):
+	assigned_input_events[InputEventHelper.get_text(input_event)] = action_name
+		
+func _assign_input_event_to_action(input_event : InputEvent, action_name : String) -> void:
+	_assign_input_event(input_event, action_name)
+	InputMap.action_add_event(action_name, input_event)
+	var action_events = InputMap.action_get_events(action_name)
+	AppSettings.set_config_input_events(action_name, action_events)
+
+func _can_remove_input_event(action_name : String) -> bool:
+	return InputMap.action_get_events(action_name).size() > 1
+
+func _remove_input_event(input_event : InputEvent):
+	assigned_input_events.erase(InputEventHelper.get_text(input_event))
+
+func _remove_input_event_from_action(input_event : InputEvent, action_name : String) -> void:
+	_remove_input_event(input_event)
+	AppSettings.remove_action_input_event(action_name, input_event)
+
+func _build_assigned_input_events():
+	assigned_input_events.clear()
+	var action_names := _get_all_action_names(show_built_in_actions and catch_built_in_duplicate_inputs)
+	for action_name in action_names:
+		var input_events = InputMap.action_get_events(action_name)
+		for input_event in input_events:
+			_assign_input_event(input_event, action_name)
+
+func _get_action_for_input_event(input_event : InputEvent) -> String:
+	if InputEventHelper.get_text(input_event) in assigned_input_events:
+		return assigned_input_events[InputEventHelper.get_text(input_event)] 
+	return ""
+
+func add_action_event(last_input_text : String, last_input_event : InputEvent):
+	last_input_readable_name = last_input_text
+	if last_input_event != null:
+		var assigned_action := _get_action_for_input_event(last_input_event)
+		if not assigned_action.is_empty():
+			var readable_action_name = tr(_get_action_readable_name(assigned_action))
+			already_assigned.emit(readable_action_name, last_input_readable_name)
+		else:
+			_assign_input_event_to_action(last_input_event, editing_action_name)
+	editing_action_name = ""
+
+func cancel_editing():
+	editing_action_name = ""
+
+func remove_action_event(item : TreeItem):
+	if item not in tree_item_remove_map:
+		return
+	var action_name = tree_item_action_map[item]
+	var input_event = tree_item_remove_map[item]
+	if not _can_remove_input_event(action_name):
+		var readable_action_name = _get_action_readable_name(action_name)
+		minimum_reached.emit(readable_action_name)
+		return
+	_remove_input_event_from_action(input_event, action_name)
+	var parent_tree_item = item.get_parent()
+	parent_tree_item.remove_child(item)
+
+func reset():
+	AppSettings.reset_to_default_inputs()
+	_build_assigned_input_events()
+	_build_ui_list()
+
+func _replace_action():
+	input_group_button_clicked.emit()
+
+func _on_button_clicked():
+	_replace_action()
+
+func _ready():
+	if Engine.is_editor_hint(): return
+	_build_assigned_input_events()
+	_build_ui_list()
