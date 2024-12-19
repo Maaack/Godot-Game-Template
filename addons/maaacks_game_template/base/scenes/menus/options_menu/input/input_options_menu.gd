@@ -6,6 +6,17 @@ const ALREADY_ASSIGNED_TEXT : String = "{key} already assigned to {action}."
 const ONE_INPUT_MINIMUM_TEXT : String = "%s must have at least one key or button assigned."
 const KEY_DELETION_TEXT : String = "Are you sure you want to remove {key} from {action}?"
 
+@export_enum("List", "Tree") var remapping_mode : int = 0 :
+	set(value):
+		remapping_mode = value
+		match(remapping_mode):
+			0:
+				%InputActionsList.show()
+				%InputActionsTree.hide()
+			1:
+				%InputActionsList.hide()
+				%InputActionsTree.show()
+
 @onready var assignment_placeholder_text = $KeyAssignmentDialog.dialog_text
 
 var last_input_readable_name
@@ -56,10 +67,25 @@ func _on_input_actions_tree_remove_button_clicked(action_name, input_name):
 	$KeyDeletionDialog.dialog_text = tr(KEY_DELETION_TEXT).format({key = input_name, action = action_name})
 	$KeyDeletionDialog.popup_centered()
 
-func _on_input_actions_tree_already_assigned(action_name, input_name):
+func _popup_already_assigned(action_name, input_name):
 	$AlreadyAssignedDialog.dialog_text = tr(ALREADY_ASSIGNED_TEXT).format({key = input_name, action = action_name})
 	$AlreadyAssignedDialog.popup_centered()
 
-func _on_input_actions_tree_minimum_reached(action_name):
+func _popup_minimum_reached(action_name : String):
 	$OneInputMinimumDialog.dialog_text = ONE_INPUT_MINIMUM_TEXT % action_name
 	$OneInputMinimumDialog.popup_centered()
+
+func _on_input_actions_tree_already_assigned(action_name, input_name):
+	_popup_already_assigned(action_name, input_name)
+
+func _on_input_actions_tree_minimum_reached(action_name):
+	_popup_minimum_reached(action_name)
+
+func _on_input_actions_list_already_assigned(action_name, input_name):
+	_popup_already_assigned(action_name, input_name)
+
+func _on_input_actions_list_minimum_reached(action_name):
+	_popup_minimum_reached(action_name)
+
+func _on_input_actions_list_input_group_button_clicked(action_name):
+	pass

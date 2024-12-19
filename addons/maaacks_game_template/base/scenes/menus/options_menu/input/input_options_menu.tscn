@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dp3rgqaehb3xu"]
+[gd_scene load_steps=6 format=3 uid="uid://dp3rgqaehb3xu"]
 
 [ext_resource type="Script" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/input/input_options_menu.gd" id="1"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/capture_focus.gd" id="2_wft4x"]
 [ext_resource type="Script" uid="uid://hb168fuma7lq" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/input/key_assignment_dialog.gd" id="3_wsh2h"]
+[ext_resource type="PackedScene" uid="uid://bxp45814v6ydv" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/input/input_actions_list.tscn" id="4_lf2nw"]
 [ext_resource type="PackedScene" uid="uid://ci6wgl2ngd35n" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/input/input_actions_tree.tscn" id="5_b2whh"]
 
 [node name="Controls" type="MarginContainer"]
@@ -33,6 +34,11 @@ text = "Actions & Inputs"
 horizontal_alignment = 1
 
 [node name="InputActionsTree" parent="VBoxContainer/InputMappingContainer" instance=ExtResource("5_b2whh")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="InputActionsList" parent="VBoxContainer/InputMappingContainer" instance=ExtResource("4_lf2nw")]
 unique_name_in_owner = true
 layout_mode = 2
 
@@ -108,6 +114,9 @@ dialog_text = "Are you sure you want to reset controls back to the defaults?"
 [connection signal="already_assigned" from="VBoxContainer/InputMappingContainer/InputActionsTree" to="." method="_on_input_actions_tree_already_assigned"]
 [connection signal="minimum_reached" from="VBoxContainer/InputMappingContainer/InputActionsTree" to="." method="_on_input_actions_tree_minimum_reached"]
 [connection signal="remove_button_clicked" from="VBoxContainer/InputMappingContainer/InputActionsTree" to="." method="_on_input_actions_tree_remove_button_clicked"]
+[connection signal="already_assigned" from="VBoxContainer/InputMappingContainer/InputActionsList" to="." method="_on_input_actions_list_already_assigned"]
+[connection signal="input_group_button_clicked" from="VBoxContainer/InputMappingContainer/InputActionsList" to="." method="_on_input_actions_list_input_group_button_clicked"]
+[connection signal="minimum_reached" from="VBoxContainer/InputMappingContainer/InputActionsList" to="." method="_on_input_actions_list_minimum_reached"]
 [connection signal="pressed" from="VBoxContainer/InputMappingContainer/HBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]
 [connection signal="canceled" from="KeyAssignmentDialog" to="." method="_on_key_assignment_dialog_canceled"]
 [connection signal="confirmed" from="KeyAssignmentDialog" to="." method="_on_key_assignment_dialog_confirmed"]
