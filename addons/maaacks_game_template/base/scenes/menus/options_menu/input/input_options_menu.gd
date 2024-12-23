@@ -26,6 +26,7 @@ func _horizontally_align_popup_labels():
 	$KeyDeletionDialog.get_label().horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	$OneInputMinimumDialog.get_label().horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	$AlreadyAssignedDialog.get_label().horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	$ResetConfirmationDialog.get_label().horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 
 func _ready():
 	if Engine.is_editor_hint(): return
@@ -34,16 +35,24 @@ func _ready():
 func _add_action_event():
 	var last_input_event = $KeyAssignmentDialog.last_input_event
 	last_input_readable_name = $KeyAssignmentDialog.last_input_text
-	%InputActionsTree.add_action_event(last_input_readable_name, last_input_event)
+	match(remapping_mode):
+		0:
+			%InputActionsList.add_action_event(last_input_readable_name, last_input_event)
+		1:
+			%InputActionsTree.add_action_event(last_input_readable_name, last_input_event)
 
 func _on_key_assignment_dialog_canceled():
-	%InputActionsTree.cancel_editing()
+	match(remapping_mode):
+		0:
+			%InputActionsList.cancel_editing()
+		1:
+			%InputActionsTree.cancel_editing()
 
 func _remove_action_event(item : TreeItem):
 	%InputActionsTree.remove_action_event(item)
 
 func _on_reset_button_pressed():
-	$ConfirmationDialog.popup_centered()
+	$ResetConfirmationDialog.popup_centered()
 
 func _on_key_deletion_dialog_confirmed():
 	var editing_item = %InputActionsTree.editing_item
@@ -53,14 +62,14 @@ func _on_key_deletion_dialog_confirmed():
 func _on_key_assignment_dialog_confirmed():
 	_add_action_event()
 
-func _on_confirmation_dialog_confirmed():
-	%InputActionsTree.reset()
-
-func _on_input_actions_tree_add_button_clicked(action_name):
+func _open_key_assignment_dialog(action_name : String):
 	$KeyAssignmentDialog.title = tr("Assign Key for {action}").format({action = action_name})
 	$KeyAssignmentDialog.dialog_text = assignment_placeholder_text
 	$KeyAssignmentDialog.get_ok_button().disabled = true
 	$KeyAssignmentDialog.popup_centered()
+
+func _on_input_actions_tree_add_button_clicked(action_name):
+	_open_key_assignment_dialog(action_name)
 
 func _on_input_actions_tree_remove_button_clicked(action_name, input_name):
 	$KeyDeletionDialog.title = tr("Remove Key for {action}").format({action = action_name})
@@ -88,4 +97,11 @@ func _on_input_actions_list_minimum_reached(action_name):
 	_popup_minimum_reached(action_name)
 
 func _on_input_actions_list_input_group_button_clicked(action_name):
-	pass
+	_open_key_assignment_dialog(action_name)
+
+func _on_reset_confirmation_dialog_confirmed():
+	match(remapping_mode):
+		0:
+			%InputActionsList.reset()
+		1:
+			%InputActionsTree.reset()

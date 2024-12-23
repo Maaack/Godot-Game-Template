@@ -65,12 +65,9 @@ signal input_group_button_clicked(action_name : String)
 ## Maps the names of input actions to readable names for users.
 @export var action_name_map : Dictionary
 
-var tree_item_add_map : Dictionary = {}
-var tree_item_remove_map : Dictionary = {}
-var tree_item_action_map : Dictionary = {}
 var assigned_input_events : Dictionary = {}
 var editing_action_name : String = ""
-var editing_item
+var editing_input_group : int = 0
 var last_input_readable_name
 
 func _clear_list():
@@ -79,9 +76,14 @@ func _clear_list():
 			continue
 		child.queue_free()
 
+func _replace_action(action_name : String):
+	input_group_button_clicked.emit(action_name)
+
 func _on_button_pressed(action_name : String, input_group : int):
 	print(action_name, " ", input_group)
-	pass
+	editing_action_name = action_name
+	editing_input_group = input_group
+	_replace_action(action_name)
 
 func _new_action_box():
 	var new_action_box = %ActionBoxContainer.duplicate()
@@ -171,16 +173,6 @@ func _assign_input_event_to_action(input_event : InputEvent, action_name : Strin
 	var action_events = InputMap.action_get_events(action_name)
 	AppSettings.set_config_input_events(action_name, action_events)
 
-func _can_remove_input_event(action_name : String) -> bool:
-	return InputMap.action_get_events(action_name).size() > 1
-
-func _remove_input_event(input_event : InputEvent):
-	assigned_input_events.erase(InputEventHelper.get_text(input_event))
-
-func _remove_input_event_from_action(input_event : InputEvent, action_name : String) -> void:
-	_remove_input_event(input_event)
-	AppSettings.remove_action_input_event(action_name, input_event)
-
 func _build_assigned_input_events():
 	assigned_input_events.clear()
 	var action_names := _get_all_action_names(show_built_in_actions and catch_built_in_duplicate_inputs)
@@ -208,29 +200,10 @@ func add_action_event(last_input_text : String, last_input_event : InputEvent):
 func cancel_editing():
 	editing_action_name = ""
 
-func remove_action_event(item : TreeItem):
-	if item not in tree_item_remove_map:
-		return
-	var action_name = tree_item_action_map[item]
-	var input_event = tree_item_remove_map[item]
-	if not _can_remove_input_event(action_name):
-		var readable_action_name = _get_action_readable_name(action_name)
-		minimum_reached.emit(readable_action_name)
-		return
-	_remove_input_event_from_action(input_event, action_name)
-	var parent_tree_item = item.get_parent()
-	parent_tree_item.remove_child(item)
-
 func reset():
 	AppSettings.reset_to_default_inputs()
 	_build_assigned_input_events()
 	_build_ui_list()
-
-func _replace_action():
-	input_group_button_clicked.emit()
-
-func _on_button_clicked():
-	_replace_action()
 
 func _ready():
 	if Engine.is_editor_hint(): return
