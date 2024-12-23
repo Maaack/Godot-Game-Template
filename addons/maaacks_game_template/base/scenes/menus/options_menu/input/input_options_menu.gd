@@ -9,13 +9,14 @@ const KEY_DELETION_TEXT : String = "Are you sure you want to remove {key} from {
 @export_enum("List", "Tree") var remapping_mode : int = 0 :
 	set(value):
 		remapping_mode = value
-		match(remapping_mode):
-			0:
-				%InputActionsList.show()
-				%InputActionsTree.hide()
-			1:
-				%InputActionsList.hide()
-				%InputActionsTree.show()
+		if is_inside_tree():
+			match(remapping_mode):
+				0:
+					%InputActionsList.show()
+					%InputActionsTree.hide()
+				1:
+					%InputActionsList.hide()
+					%InputActionsTree.show()
 
 @onready var assignment_placeholder_text = $KeyAssignmentDialog.dialog_text
 

@@ -6,6 +6,8 @@ signal already_assigned(action_name : String, input_name : String)
 signal minimum_reached(action_name : String)
 signal input_group_button_clicked(action_name : String)
 
+const BUTTON_NAME_GROUP_STRING : String = "%s:%d"
+
 @export_range(1, 5) var input_groups : int = 2
 @export var input_group_names : Array[String]
 @export var input_action_names : Array[StringName] :
@@ -65,6 +67,7 @@ signal input_group_button_clicked(action_name : String)
 ## Maps the names of input actions to readable names for users.
 @export var action_name_map : Dictionary
 
+var button_action_map : Dictionary = {}
 var assigned_input_events : Dictionary = {}
 var editing_action_name : String = ""
 var editing_input_group : int = 0
@@ -80,7 +83,6 @@ func _replace_action(action_name : String):
 	input_group_button_clicked.emit(action_name)
 
 func _on_button_pressed(action_name : String, input_group : int):
-	print(action_name, " ", input_group)
 	editing_action_name = action_name
 	editing_input_group = input_group
 	_replace_action(action_name)
@@ -105,6 +107,19 @@ func _add_header():
 		new_action_box.add_child(new_label)
 	add_child(new_action_box)
 
+func _add_to_button_action_map(action_name : String, action_group : int, button_node : Button):
+	var key_string : String = BUTTON_NAME_GROUP_STRING % [action_name, action_group]
+	button_action_map[key_string] = button_node
+
+func _update_assigned_inputs_and_button(action_name : String, action_group : int, input_event : InputEvent):
+	var new_readable_action_nmae = InputEventHelper.get_text(input_event)
+	var key_string : String = BUTTON_NAME_GROUP_STRING % [action_name, action_group]
+	var button = button_action_map[key_string]
+	var old_readable_action_name = button.text
+	button.text = new_readable_action_nmae
+	assigned_input_events.erase(old_readable_action_name)
+	assigned_input_events[new_readable_action_nmae] = action_name
+
 func _add_action_options(action_name : String, readable_action_name : String, input_events : Array[InputEvent]):
 	var new_action_box = %ActionBoxContainer.duplicate()
 	new_action_box.visible = true
@@ -123,6 +138,7 @@ func _add_action_options(action_name : String, readable_action_name : String, in
 		new_button.text = text
 		new_button.pressed.connect(_on_button_pressed.bind(action_name, group_iter))
 		new_action_box.add_child(new_button)
+		_add_to_button_action_map(action_name, group_iter, new_button)
 	add_child(new_action_box)
 
 func _get_all_action_names(include_built_in : bool = false) -> Array[StringName]:
@@ -167,11 +183,15 @@ func _build_ui_list():
 func _assign_input_event(input_event : InputEvent, action_name : String):
 	assigned_input_events[InputEventHelper.get_text(input_event)] = action_name
 		
-func _assign_input_event_to_action(input_event : InputEvent, action_name : String) -> void:
+func _assign_input_event_to_action_group(input_event : InputEvent, action_name : String, action_group : int) -> void:
 	_assign_input_event(input_event, action_name)
-	InputMap.action_add_event(action_name, input_event)
-	var action_events = InputMap.action_get_events(action_name)
+	var action_events  := InputMap.action_get_events(action_name)
+	action_events[action_group] = input_event
+	InputMap.action_erase_events(action_name)
+	for input_action_event in action_events:
+		InputMap.action_add_event(action_name, input_action_event)
 	AppSettings.set_config_input_events(action_name, action_events)
+	_update_assigned_inputs_and_button(action_name, action_group, input_event)
 
 func _build_assigned_input_events():
 	assigned_input_events.clear()
@@ -194,7 +214,7 @@ func add_action_event(last_input_text : String, last_input_event : InputEvent):
 			var readable_action_name = tr(_get_action_readable_name(assigned_action))
 			already_assigned.emit(readable_action_name, last_input_readable_name)
 		else:
-			_assign_input_event_to_action(last_input_event, editing_action_name)
+			_assign_input_event_to_action_group(last_input_event, editing_action_name, editing_input_group)
 	editing_action_name = ""
 
 func cancel_editing():
