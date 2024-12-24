@@ -5,6 +5,8 @@ const FOCUS_HERE_TEXT : String = "Focus here to assign inputs."
 const CONFIRM_INPUT_TEXT : String = "Press again to confirm..."
 const NO_INPUT_TEXT : String = "None"
 
+@export var confirm_closes_window : bool = true
+
 var last_input_event : InputEvent
 var last_input_text : String
 var listening : bool = false
@@ -70,7 +72,11 @@ func _process_input_event(event : InputEvent):
 		return
 	if _input_confirms_choice(event):
 		confirming = false
-		_focus_on_ok.call_deferred()
+		if confirm_closes_window:
+			confirmed.emit()
+			hide()
+		else:
+			_focus_on_ok.call_deferred()
 		return
 	_record_input_event(event)
 	if _should_confirm_input_event(event):
