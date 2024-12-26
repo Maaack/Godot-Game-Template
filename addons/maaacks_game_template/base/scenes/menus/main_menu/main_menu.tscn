@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://c6k5nnpbypshi"]
+[gd_scene load_steps=10 format=3 uid="uid://c6k5nnpbypshi"]
 
 [ext_resource type="Script" path="res://addons/maaacks_game_template/base/scenes/menus/main_menu/main_menu.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://hmx6o472ropw" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/master_options_menu_with_tabs.tscn" id="2_qvrrd"]
 [ext_resource type="PackedScene" uid="uid://t2dui8ppm3a4" path="res://addons/maaacks_game_template/base/scenes/credits/credits.tscn" id="3_5dhvp"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/capture_focus.gd" id="4_l1ebe"]
+[ext_resource type="PackedScene" uid="uid://dtu0ffm1m5mr7" path="res://addons/maaacks_game_template/examples/scenes/menus/level_select_menu/master_level_select_menu.tscn" id="4_p8833"]
 [ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/scenes/music_players/background_music_player.tscn" id="4_w8sbm"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/ui_sound_controller.gd" id="6_bs342"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/base/scenes/menus/main_menu/config_version_label.gd" id="6_pdiij"]
@@ -19,6 +20,7 @@ grow_vertical = 2
 script = ExtResource("1")
 options_packed_scene = ExtResource("2_qvrrd")
 credits_packed_scene = ExtResource("3_5dhvp")
+level_select_packed_scene = ExtResource("4_p8833")
 
 [node name="UISoundController" type="Node" parent="."]
 script = ExtResource("6_bs342")
@@ -90,7 +92,7 @@ anchor_right = 1.0
 offset_bottom = 67.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 48
-text = "Title"
+text = "Game Template"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("7_j7612")
@@ -150,6 +152,12 @@ custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
 text = "New Game"
 
+[node name="LevelSelectButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 40)
+layout_mode = 2
+text = "Level Select"
+
 [node name="OptionsButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 40)
@@ -189,6 +197,16 @@ theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 32
 
+[node name="LevelSelectContainer" type="MarginContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
 [node name="FlowControlContainer" type="MarginContainer" parent="."]
 layout_mode = 0
 anchor_right = 1.0
@@ -217,6 +235,7 @@ grow_vertical = 0
 text = "Back"
 
 [connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/LevelSelectButton" to="." method="_on_level_select_button_pressed"]
 [connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
