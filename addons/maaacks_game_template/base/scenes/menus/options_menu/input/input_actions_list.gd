@@ -1,15 +1,17 @@
 @tool
 class_name InputActionsList
 extends BoxContainer
+# TODO: Disable buttons if previous group is not yet filled in.
+
 
 signal already_assigned(action_name : String, input_name : String)
 signal minimum_reached(action_name : String)
-signal input_group_button_clicked(action_name : String)
+signal button_clicked(action_name : String, readable_input_name : String)
 
 const BUTTON_NAME_GROUP_STRING : String = "%s:%d"
 
-@export_range(1, 5) var input_groups : int = 2
-@export var input_group_names : Array[String]
+@export_range(1, 5) var action_groups : int = 2
+@export var action_group_names : Array[String]
 @export var input_action_names : Array[StringName] :
 	set(value):
 		var _value_changed = input_action_names != value
@@ -68,9 +70,10 @@ const BUTTON_NAME_GROUP_STRING : String = "%s:%d"
 @export var action_name_map : Dictionary
 
 var button_action_map : Dictionary = {}
+var action_group_inputs : Dictionary = {}
 var assigned_input_events : Dictionary = {}
 var editing_action_name : String = ""
-var editing_input_group : int = 0
+var editing_action_group : int = 0
 var last_input_readable_name
 
 func _clear_list():
@@ -79,12 +82,12 @@ func _clear_list():
 			continue
 		child.queue_free()
 
-func _replace_action(action_name : String):
-	input_group_button_clicked.emit(action_name)
+func _replace_action(action_name : String, readable_input_name : String = ""):
+	button_clicked.emit(action_name, readable_input_name)
 
-func _on_button_pressed(action_name : String, input_group : int):
+func _on_button_pressed(action_name : String, action_group : int):
 	editing_action_name = action_name
-	editing_input_group = input_group
+	editing_action_group = action_group
 	_replace_action(action_name)
 
 func _new_action_box():
@@ -95,10 +98,10 @@ func _new_action_box():
 
 func _add_header():
 	var new_action_box = _new_action_box()
-	for group_iter in range(input_groups):
+	for group_iter in range(action_groups):
 		var group_name := ""
-		if group_iter < input_group_names.size():
-			group_name = input_group_names[group_iter]
+		if group_iter < action_group_names.size():
+			group_name = action_group_names[group_iter]
 		var new_label := Label.new()
 		new_label.size_flags_horizontal = SIZE_EXPAND_FILL
 		new_label.size_flags_vertical = SIZE_EXPAND_FILL
@@ -125,7 +128,7 @@ func _add_action_options(action_name : String, readable_action_name : String, in
 	new_action_box.visible = true
 	new_action_box.vertical = !(vertical)
 	new_action_box.get_child(0).text = readable_action_name
-	for group_iter in range(input_groups):
+	for group_iter in range(action_groups):
 		var input_event : InputEvent
 		if group_iter < input_events.size():
 			input_event = input_events[group_iter]
@@ -185,12 +188,17 @@ func _assign_input_event(input_event : InputEvent, action_name : String):
 		
 func _assign_input_event_to_action_group(input_event : InputEvent, action_name : String, action_group : int) -> void:
 	_assign_input_event(input_event, action_name)
-	var action_events  := InputMap.action_get_events(action_name)
+	var action_events := InputMap.action_get_events(action_name)
+	action_events.resize(action_group + 1)
 	action_events[action_group] = input_event
 	InputMap.action_erase_events(action_name)
+	var final_action_events : Array[InputEvent]
 	for input_action_event in action_events:
+		if input_action_event == null: continue
+		final_action_events.append(input_action_event)
 		InputMap.action_add_event(action_name, input_action_event)
-	AppSettings.set_config_input_events(action_name, action_events)
+	AppSettings.set_config_input_events(action_name, final_action_events)
+	action_group = min(action_group, final_action_events.size() - 1)
 	_update_assigned_inputs_and_button(action_name, action_group, input_event)
 
 func _build_assigned_input_events():
@@ -214,7 +222,7 @@ func add_action_event(last_input_text : String, last_input_event : InputEvent):
 			var readable_action_name = tr(_get_action_readable_name(assigned_action))
 			already_assigned.emit(readable_action_name, last_input_readable_name)
 		else:
-			_assign_input_event_to_action_group(last_input_event, editing_action_name, editing_input_group)
+			_assign_input_event_to_action_group(last_input_event, editing_action_name, editing_action_group)
 	editing_action_name = ""
 
 func cancel_editing():

@@ -63,9 +63,9 @@ func _on_key_deletion_dialog_confirmed():
 func _on_key_assignment_dialog_confirmed():
 	_add_action_event()
 
-func _open_key_assignment_dialog(action_name : String):
+func _open_key_assignment_dialog(action_name : String, readable_input_name : String = assignment_placeholder_text):
 	$KeyAssignmentDialog.title = tr("Assign Key for {action}").format({action = action_name})
-	$KeyAssignmentDialog.dialog_text = assignment_placeholder_text
+	$KeyAssignmentDialog.dialog_text = readable_input_name
 	$KeyAssignmentDialog.get_ok_button().disabled = true
 	$KeyAssignmentDialog.popup_centered()
 
@@ -79,11 +79,11 @@ func _on_input_actions_tree_remove_button_clicked(action_name, input_name):
 
 func _popup_already_assigned(action_name, input_name):
 	$AlreadyAssignedDialog.dialog_text = tr(ALREADY_ASSIGNED_TEXT).format({key = input_name, action = action_name})
-	$AlreadyAssignedDialog.popup_centered()
+	$AlreadyAssignedDialog.popup_centered.call_deferred()
 
 func _popup_minimum_reached(action_name : String):
 	$OneInputMinimumDialog.dialog_text = ONE_INPUT_MINIMUM_TEXT % action_name
-	$OneInputMinimumDialog.popup_centered()
+	$OneInputMinimumDialog.popup_centered.call_deferred()
 
 func _on_input_actions_tree_already_assigned(action_name, input_name):
 	_popup_already_assigned(action_name, input_name)
@@ -97,8 +97,8 @@ func _on_input_actions_list_already_assigned(action_name, input_name):
 func _on_input_actions_list_minimum_reached(action_name):
 	_popup_minimum_reached(action_name)
 
-func _on_input_actions_list_input_group_button_clicked(action_name):
-	_open_key_assignment_dialog(action_name)
+func _on_input_actions_list_button_clicked(action_name, readable_input_name):
+	_open_key_assignment_dialog(action_name, readable_input_name)
 
 func _on_reset_confirmation_dialog_confirmed():
 	match(remapping_mode):
