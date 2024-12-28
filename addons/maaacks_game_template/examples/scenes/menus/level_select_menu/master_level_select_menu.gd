@@ -16,10 +16,6 @@ signal level_selected
 func _ready() -> void:
 	add_levels_to_container()
 
-func _unhandled_input(event):
-	if not is_visible_in_tree():
-		return
-		
 ## A fresh level list is propgated into the ItemList, and the file names are cleaned
 func add_levels_to_container():
 	level_buttons_container.clear()
@@ -38,6 +34,6 @@ func add_levels_to_container():
 		
 
 func _on_level_buttons_container_item_activated(index: int) -> void:
-	GameState.set_current_level(index)
+	GameStateExample.set_current_level(index)
 	call_deferred("emit_signal","level_selected")
 	hide()
