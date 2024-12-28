@@ -183,7 +183,6 @@ func _build_ui_list():
 	for action_name in action_names:
 		var input_events = InputMap.action_get_events(action_name)
 		if input_events.size() < 1:
-			push_warning("%s action_name is empty" % action_name)
 			continue
 		var readable_name : String = _get_action_readable_name(action_name)
 		_add_action_options(action_name, readable_name, input_events)
