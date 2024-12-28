@@ -1,8 +1,6 @@
 @tool
 class_name InputActionsList
 extends BoxContainer
-# TODO: Disable buttons if previous group is not yet filled in.
-
 
 signal already_assigned(action_name : String, input_name : String)
 signal minimum_reached(action_name : String)
@@ -114,6 +112,12 @@ func _add_to_button_action_map(action_name : String, action_group : int, button_
 	var key_string : String = BUTTON_NAME_GROUP_STRING % [action_name, action_group]
 	button_action_map[key_string] = button_node
 
+func _update_next_button_disabled_state(action_name : String, action_group : int):
+	var key_string : String = BUTTON_NAME_GROUP_STRING % [action_name, action_group + 1]
+	if key_string in button_action_map:
+		var button = button_action_map[key_string]
+		button.disabled = false
+
 func _update_assigned_inputs_and_button(action_name : String, action_group : int, input_event : InputEvent):
 	var new_readable_action_nmae = InputEventHelper.get_text(input_event)
 	var key_string : String = BUTTON_NAME_GROUP_STRING % [action_name, action_group]
@@ -139,6 +143,7 @@ func _add_action_options(action_name : String, readable_action_name : String, in
 		new_button.size_flags_horizontal = SIZE_EXPAND_FILL
 		new_button.size_flags_vertical = SIZE_EXPAND_FILL
 		new_button.text = text
+		new_button.disabled = group_iter > input_events.size()
 		new_button.pressed.connect(_on_button_pressed.bind(action_name, group_iter))
 		new_action_box.add_child(new_button)
 		_add_to_button_action_map(action_name, group_iter, new_button)
@@ -200,6 +205,7 @@ func _assign_input_event_to_action_group(input_event : InputEvent, action_name :
 	AppSettings.set_config_input_events(action_name, final_action_events)
 	action_group = min(action_group, final_action_events.size() - 1)
 	_update_assigned_inputs_and_button(action_name, action_group, input_event)
+	_update_next_button_disabled_state(action_name, action_group)
 
 func _build_assigned_input_events():
 	assigned_input_events.clear()
