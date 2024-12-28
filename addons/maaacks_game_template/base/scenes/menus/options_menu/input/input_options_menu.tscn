@@ -33,13 +33,13 @@ layout_mode = 2
 text = "Actions & Inputs"
 horizontal_alignment = 1
 
+[node name="InputActionsList" parent="VBoxContainer/InputMappingContainer" instance=ExtResource("4_lf2nw")]
+unique_name_in_owner = true
+layout_mode = 2
+
 [node name="InputActionsTree" parent="VBoxContainer/InputMappingContainer" instance=ExtResource("5_b2whh")]
 unique_name_in_owner = true
 visible = false
-layout_mode = 2
-
-[node name="InputActionsList" parent="VBoxContainer/InputMappingContainer" instance=ExtResource("4_lf2nw")]
-unique_name_in_owner = true
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/InputMappingContainer"]
@@ -111,13 +111,13 @@ size = Vector2i(398, 100)
 size = Vector2i(486, 100)
 dialog_text = "Are you sure you want to reset controls back to the defaults?"
 
+[connection signal="already_assigned" from="VBoxContainer/InputMappingContainer/InputActionsList" to="." method="_on_input_actions_list_already_assigned"]
+[connection signal="button_clicked" from="VBoxContainer/InputMappingContainer/InputActionsList" to="." method="_on_input_actions_list_button_clicked"]
+[connection signal="minimum_reached" from="VBoxContainer/InputMappingContainer/InputActionsList" to="." method="_on_input_actions_list_minimum_reached"]
 [connection signal="add_button_clicked" from="VBoxContainer/InputMappingContainer/InputActionsTree" to="." method="_on_input_actions_tree_add_button_clicked"]
 [connection signal="already_assigned" from="VBoxContainer/InputMappingContainer/InputActionsTree" to="." method="_on_input_actions_tree_already_assigned"]
 [connection signal="minimum_reached" from="VBoxContainer/InputMappingContainer/InputActionsTree" to="." method="_on_input_actions_tree_minimum_reached"]
 [connection signal="remove_button_clicked" from="VBoxContainer/InputMappingContainer/InputActionsTree" to="." method="_on_input_actions_tree_remove_button_clicked"]
-[connection signal="already_assigned" from="VBoxContainer/InputMappingContainer/InputActionsList" to="." method="_on_input_actions_list_already_assigned"]
-[connection signal="button_clicked" from="VBoxContainer/InputMappingContainer/InputActionsList" to="." method="_on_input_actions_list_button_clicked"]
-[connection signal="minimum_reached" from="VBoxContainer/InputMappingContainer/InputActionsList" to="." method="_on_input_actions_list_minimum_reached"]
 [connection signal="pressed" from="VBoxContainer/InputMappingContainer/HBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]
 [connection signal="confirmed" from="KeyAssignmentDialog" to="." method="_on_key_assignment_dialog_confirmed"]
 [connection signal="visibility_changed" from="KeyAssignmentDialog" to="KeyAssignmentDialog" method="_on_visibility_changed"]
