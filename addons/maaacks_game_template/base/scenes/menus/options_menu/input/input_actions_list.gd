@@ -230,9 +230,6 @@ func add_action_event(last_input_text : String, last_input_event : InputEvent):
 			_assign_input_event_to_action_group(last_input_event, editing_action_name, editing_action_group)
 	editing_action_name = ""
 
-func cancel_editing():
-	editing_action_name = ""
-
 func reset():
 	AppSettings.reset_to_default_inputs()
 	_build_assigned_input_events()

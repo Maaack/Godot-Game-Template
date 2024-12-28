@@ -42,13 +42,6 @@ func _add_action_event():
 		1:
 			%InputActionsTree.add_action_event(last_input_readable_name, last_input_event)
 
-func _on_key_assignment_dialog_canceled():
-	match(remapping_mode):
-		0:
-			%InputActionsList.cancel_editing()
-		1:
-			%InputActionsTree.cancel_editing()
-
 func _remove_action_event(item : TreeItem):
 	%InputActionsTree.remove_action_event(item)
 

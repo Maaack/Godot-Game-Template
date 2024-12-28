@@ -119,7 +119,6 @@ dialog_text = "Are you sure you want to reset controls back to the defaults?"
 [connection signal="button_clicked" from="VBoxContainer/InputMappingContainer/InputActionsList" to="." method="_on_input_actions_list_button_clicked"]
 [connection signal="minimum_reached" from="VBoxContainer/InputMappingContainer/InputActionsList" to="." method="_on_input_actions_list_minimum_reached"]
 [connection signal="pressed" from="VBoxContainer/InputMappingContainer/HBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]
-[connection signal="canceled" from="KeyAssignmentDialog" to="." method="_on_key_assignment_dialog_canceled"]
 [connection signal="confirmed" from="KeyAssignmentDialog" to="." method="_on_key_assignment_dialog_confirmed"]
 [connection signal="visibility_changed" from="KeyAssignmentDialog" to="KeyAssignmentDialog" method="_on_visibility_changed"]
 [connection signal="focus_entered" from="KeyAssignmentDialog/VBoxContainer/InputTextEdit" to="KeyAssignmentDialog" method="_on_text_edit_focus_entered"]

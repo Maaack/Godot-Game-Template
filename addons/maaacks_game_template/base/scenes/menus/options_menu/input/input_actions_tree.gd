@@ -174,9 +174,6 @@ func add_action_event(last_input_text : String, last_input_event : InputEvent):
 			_assign_input_event_to_action(last_input_event, editing_action_name)
 	editing_action_name = ""
 
-func cancel_editing():
-	editing_action_name = ""
-
 func remove_action_event(item : TreeItem):
 	if item not in tree_item_remove_map:
 		return
