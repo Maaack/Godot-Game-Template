@@ -46,7 +46,6 @@ const BUTTON_NAME_GROUP_STRING : String = "%s:%d"
 @export var action_name_map : Dictionary
 
 var button_action_map : Dictionary = {}
-var action_group_inputs : Dictionary = {}
 var assigned_input_events : Dictionary = {}
 var editing_action_name : String = ""
 var editing_action_group : int = 0
