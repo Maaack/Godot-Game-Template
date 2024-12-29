@@ -30,10 +30,33 @@ const JOY_AXIS_NAMES : Dictionary = {
 	JOY_AXIS_TRIGGER_RIGHT: "Right Trigger Gamepad Button",
 }
 
+const BUILT_IN_ACTION_NAME_MAP : Dictionary = {
+	"ui_accept" : "Accept",
+	"ui_select" : "Select",
+	"ui_cancel" : "Cancel",
+	"ui_focus_next" : "Focus Next",
+	"ui_focus_prev" : "Focus Prev",
+	"ui_left" : "Left (UI)",
+	"ui_right" : "Right (UI)",
+	"ui_up" : "Up (UI)",
+	"ui_down" : "Down (UI)",
+	"ui_page_up" : "Page Up",
+	"ui_page_down" : "Page Down",
+	"ui_home" : "Home",
+	"ui_end" : "End",
+	"ui_cut" : "Cut",
+	"ui_copy" : "Copy",
+	"ui_paste" : "Paste",
+	"ui_undo" : "Undo",
+	"ui_redo" : "Redo",
+}
+
 static func _display_server_supports_keycode_from_physical():
 	return OS.has_feature("windows") or OS.has_feature("macos") or OS.has_feature("linux")
 
 static func get_text(event : InputEvent) -> String:
+	if event == null:
+		return ""
 	if event is InputEventJoypadButton:
 		if event.button_index in JOY_BUTTON_NAMES:
 			return JOY_BUTTON_NAMES[event.button_index] 
