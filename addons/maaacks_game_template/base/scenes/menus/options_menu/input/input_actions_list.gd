@@ -43,26 +43,7 @@ const BUTTON_NAME_GROUP_STRING : String = "%s:%d"
 ## Prevents assigning inputs that are already assigned to Godot's built-in actions (action names starting with "ui_"). Not recommended.
 @export var catch_built_in_duplicate_inputs : bool = false
 ## Maps the names of built-in input actions to readable names for users.
-@export var built_in_action_name_map : Dictionary = {
-	"ui_accept" : "Accept",
-	"ui_select" : "Select",
-	"ui_cancel" : "Cancel",
-	"ui_focus_next" : "Focus Next",
-	"ui_focus_prev" : "Focus Prev",
-	"ui_left" : "Left (UI)",
-	"ui_right" : "Right (UI)",
-	"ui_up" : "Up (UI)",
-	"ui_down" : "Down (UI)",
-	"ui_page_up" : "Page Up",
-	"ui_page_down" : "Page Down",
-	"ui_home" : "Home",
-	"ui_end" : "End",
-	"ui_cut" : "Cut",
-	"ui_copy" : "Copy",
-	"ui_paste" : "Paste",
-	"ui_undo" : "Undo",
-	"ui_redo" : "Redo",
-}
+@export var built_in_action_name_map := InputEventHelper.BUILT_IN_ACTION_NAME_MAP
 @export_group("Debug")
 ## Maps the names of input actions to readable names for users.
 @export var action_name_map : Dictionary
