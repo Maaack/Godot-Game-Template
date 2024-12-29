@@ -34,9 +34,6 @@ const BUTTON_NAME_GROUP_STRING : String = "%s:%d"
 
 ## Show action names that are not explicitely listed in an action name map.
 @export var show_all_actions : bool = true
-@export_group("Icons")
-@export var add_button_texture : Texture2D
-@export var remove_button_texture : Texture2D
 @export_group("Built-in Actions")
 ## Shows Godot's built-in actions (action names starting with "ui_") in the tree.
 @export var show_built_in_actions : bool = false
