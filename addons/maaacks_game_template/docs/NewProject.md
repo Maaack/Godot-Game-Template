@@ -72,10 +72,12 @@ These instructions assume starting with the entire contents of the project folde
 4.  Add readable names for input actions to the controls menu.
     
 
-    1.  Open `input_options_menu.tscn` (or `master_options_menu_with_tabs.tscn`, which contains an instance of the scene).
-    2.  Select the `Controls` node.
-    3.  Update the `Input Action Names` and corresponding `Readable Action Names` to show user-friendly names for the project's input actions.  
-    4.  Save the scene.  
+    1.  Open `input_options_menu.tscn`.
+    2.  In the scene tree, select the `Controls` node.  
+    3.  In the node inspector, select the desired input remapping mode (defaults to `List`).  
+    4.  In the scene tree, select `InputActionsList` or `InputActionsTree`, depending on the choice of input remapping. The other node should be hidden.  
+    5.  In the node inspector, update the `Input Action Names` and corresponding `Readable Action Names` to show user-friendly names for the project's input actions.  
+    6.  Save the scene.  
 
 
 5.  Add / remove configurable settings to / from menus.
@@ -86,7 +88,7 @@ These instructions assume starting with the entire contents of the project folde
     3.  If a new option is desired, it can be added without writing code.
         1.  Find the node that contains the existing list of options. Usually, it's a `VBoxContainer`.
         2.  Add an `option_control.tscn` node as a child to the container.
-            1.  `slider_option_control.tscn` or `toggle_option_control.tscn` can be used if those types match requirements. In that case, skip step 6.
+            1.  `slider_option_control.tscn` or `toggle_option_control.tscn` can be used if those types match requirements. In that case, skip step 3.6.
             2.  `list_option_control.tscn` and `vector_2_list_option_control.tscn` are also available, but more complicated. See the `ScreenResolution` example.
         3.  Select the `OptionControl` node just added, to edit it in the inspector.
         4.  Add an `Option Name`. This prefills the `Key` string.
