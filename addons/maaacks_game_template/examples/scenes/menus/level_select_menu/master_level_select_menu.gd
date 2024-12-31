@@ -7,15 +7,17 @@ class_name MasterLevelSelectMenu
 ## a load action from that signal.
 
 @onready var level_buttons_container: ItemList = %LevelButtonsContainer
-@onready var level_buttons_margin: MarginContainer = %LevelButtonsMargin
 @onready var scene_lister: SceneLister = $SceneLister
 
 signal level_selected
-
+func _unhandled_input(event: InputEvent) -> void:
+	if visible && !level_buttons_container.has_focus():
+		level_buttons_container.grab_focus()
+		select_first()
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	add_levels_to_container()
-
+	
 ## A fresh level list is propgated into the ItemList, and the file names are cleaned
 func add_levels_to_container():
 	level_buttons_container.clear()
@@ -32,8 +34,13 @@ func add_levels_to_container():
 		var button_name = str(file_name)
 		level_buttons_container.add_item(button_name)
 		
+		
+func select_first():
+	if level_buttons_container.item_count >=1:
+		level_buttons_container.select(0)
+		
 
 func _on_level_buttons_container_item_activated(index: int) -> void:
 	GameStateExample.set_current_level(index)
 	call_deferred("emit_signal","level_selected")
-	hide()
+	#hide()
