@@ -10,7 +10,6 @@ option_section = 2
 key = "InputDevice"
 section = "AudioSettings"
 property_type = 4
-default_value = "Default"
 
 [node name="OptionLabel" parent="." index="0"]
 text = "Input Device :"

@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxp45814v6ydv"]
+
+[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/input/input_actions_list.gd" id="1_cxorh"]
+
+[node name="InputActionsList" type="BoxContainer"]
+custom_minimum_size = Vector2(400, 40)
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+vertical = true
+script = ExtResource("1_cxorh")
+action_group_names = Array[String](["Primary", "Secondary", "Tertiary", "Quaternary", "Quinary"])
+input_action_names = Array[StringName]([&"move_forward", &"move_backward", &"move_up", &"move_down", &"move_left", &"move_right", &"interact"])
+readable_action_names = Array[String](["Move Forward", "Move Backward", "Move Up", "Move Down", "Move Left", "Move Right", "Interact"])
+action_name_map = {
+"interact": "Interact",
+"move_backward": "Move Backward",
+"move_down": "Move Down",
+"move_forward": "Move Forward",
+"move_left": "Move Left",
+"move_right": "Move Right",
+"move_up": "Move Up"
+}
+
+[node name="ActionBoxContainer" type="BoxContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ActionNameLabel" type="Label" parent="ActionBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2

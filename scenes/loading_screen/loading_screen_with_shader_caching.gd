@@ -1,9 +1,8 @@
 extends LoadingScreen
 
-const QUADMESH_PLACEHOLDER = preload("res://scenes/loading_screen/quad_mesh_placeholder.tscn")
-
 @export_dir var _spatial_shader_material_dir : String
 @export_file("*.tscn") var _cache_shaders_scene : String
+@export var _mesh : Mesh
 @export_group("Advanced")
 @export var _matching_extensions : Array[String] = [".tres", ".material", ".res"]
 @export var _ignore_subfolders : Array[String] = [".", ".."]
@@ -80,7 +79,8 @@ func _traverse_folders(dir_path:String) -> PackedStringArray:
 	return material_list
 
 func _load_material(path:String):
-	var material_shower = QUADMESH_PLACEHOLDER.instantiate()
+	var material_shower = MeshInstance3D.new()
+	material_shower.mesh = _mesh
 	var material := ResourceLoader.load(path) as Material
 	material_shower.set_surface_override_material(0, material)
 	%SpatialShaderTypeCaches.add_child(material_shower)

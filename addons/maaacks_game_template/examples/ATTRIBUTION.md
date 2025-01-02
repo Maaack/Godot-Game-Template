@@ -14,6 +14,10 @@ Author: [Name]()
 Source: [Domain : webpage.html]()  
 License: [License]()
 
+#### Godot Engine Logo
+Author: Andrea Calabró  
+Source: [godotengine.org : press](https://godotengine.org/press/)  
+License: [CC BY 4.0 International](https://github.com/godotengine/godot/blob/master/LOGO_LICENSE.txt) 
 
 ## Tools
 #### Godot
