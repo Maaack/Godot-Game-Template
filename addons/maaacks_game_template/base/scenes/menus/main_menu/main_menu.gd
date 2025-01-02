@@ -5,9 +5,11 @@ extends Control
 @export_file("*.tscn") var game_scene_path : String
 @export var options_packed_scene : PackedScene
 @export var credits_packed_scene : PackedScene
+@export var level_select_packed_scene: PackedScene
 
 var options_scene
 var credits_scene
+var level_select_scene
 var sub_menu
 
 func load_game_scene():
@@ -68,10 +70,24 @@ func _setup_credits():
 			credits_scene.connect("end_reached", _on_credits_end_reached)
 		%CreditsContainer.call_deferred("add_child", credits_scene)
 
+## If present, adds a level select screen button, and connects siganl triggers to update 
+## the current level, and load it (borrowing from "continue" button logic)
+func _setup_level_select(): 
+	if level_select_packed_scene == null:
+		%LevelSelectButton.hide()
+	else:
+		level_select_scene = level_select_packed_scene.instantiate()
+		level_select_scene.hide()
+		%LevelSelectContainer.call_deferred("add_child", level_select_scene)
+		if level_select_scene.has_signal("level_selected"):
+			level_select_scene.connect("level_selected", load_game_scene)
+
+
 func _ready():
 	_setup_for_web()
 	_setup_options()
 	_setup_credits()
+	_setup_level_select()
 	_setup_game_buttons()
 
 func _on_new_game_button_pressed():
@@ -93,3 +109,6 @@ func _on_credits_end_reached():
 
 func _on_back_button_pressed():
 	_close_sub_menu()
+
+func _on_level_select_button_pressed():
+	_open_sub_menu(level_select_scene)
