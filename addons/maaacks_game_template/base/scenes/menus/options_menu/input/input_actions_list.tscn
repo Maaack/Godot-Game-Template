@@ -30,5 +30,5 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="ActionNameLabel" type="Label" parent="ActionBoxContainer"]
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
