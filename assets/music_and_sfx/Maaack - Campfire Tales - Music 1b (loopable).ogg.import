@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://b88rjvkj3k85p"
+path="res://.godot/imported/Maaack - Campfire Tales - Music 1b (loopable).ogg-f1ded2c75b40b9645961d2e94f1e1903.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/music_and_sfx/Maaack - Campfire Tales - Music 1b (loopable).ogg"
+dest_files=["res://.godot/imported/Maaack - Campfire Tales - Music 1b (loopable).ogg-f1ded2c75b40b9645961d2e94f1e1903.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
