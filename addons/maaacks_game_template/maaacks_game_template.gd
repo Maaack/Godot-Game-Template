@@ -173,7 +173,6 @@ func _copy_override_file():
 
 func _copy_file_path(file_path : String, destination_path : String, target_path : String, raw_copy_file_extensions : PackedStringArray = []) -> Error:
 	if file_path.get_extension() in raw_copy_file_extensions:
-		# Markdown file format
 		return _raw_copy_file_path(file_path, destination_path)
 	var error = _save_resource(file_path, destination_path)
 	if error == ERR_FILE_UNRECOGNIZED:
@@ -248,7 +247,7 @@ func _copy_to_directory(target_path : String):
 	ProjectSettings.save()
 	if not target_path.ends_with("/"):
 		target_path += "/"
-	_copy_directory_path(get_plugin_examples_path(), target_path, ["md"])
+	_copy_directory_path(get_plugin_examples_path(), target_path, ["md", "txt", "uid"])
 	_update_scene_loader_path(target_path)
 	_copy_override_file()
 	_delayed_saving_and_check_main_scene(target_path)
