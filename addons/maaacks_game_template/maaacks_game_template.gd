@@ -10,8 +10,9 @@ const MAIN_SCENE_UPDATE_TEXT = "Current:\n%s\n\nNew:\n%s\n"
 const OVERRIDE_RELATIVE_PATH = "installer/override.cfg"
 const SCENE_LOADER_RELATIVE_PATH = "base/scenes/autoloads/scene_loader.tscn"
 const UID_PREG_MATCH = r'uid="uid:\/\/[0-9a-z]+" '
-const RESAVING_DELAY : float = 0.5
-const REIMPORT_FILE_DELAY : float = 0.2
+const WINDOW_CLOSE_DELAY : float = 1.5
+const RUNNING_CHECK_DELAY : float = 0.25
+const RESAVING_DELAY : float = 1.0
 const OPEN_EDITOR_DELAY : float = 0.1
 const MAX_PHYSICS_FRAMES_FROM_START : int = 20
 const AVAILABLE_TRANSLATIONS : Array = ["en", "fr"]
@@ -74,7 +75,7 @@ func _run_opening_scene(target_path : String):
 		timer.queue_free()
 	timer.timeout.connect(callable)
 	add_child(timer)
-	timer.start(RESAVING_DELAY)
+	timer.start(RUNNING_CHECK_DELAY)
 
 func _delete_directory_recursive(dir_path : String):
 	if not dir_path.ends_with("/"):
@@ -221,13 +222,34 @@ func _update_scene_loader_path(target_path : String):
 	file.store_string(file_text)
 	file.close()
 
-func _delayed_saving_and_check_main_scene(target_path : String):
+func _delayed_play_opening_confirmation_dialog(target_path : String):
 	var timer: Timer = Timer.new()
 	var callable := func():
 		timer.stop()
-		EditorInterface.get_resource_filesystem().scan()
-		EditorInterface.save_all_scenes()
 		_open_play_opening_confirmation_dialog(target_path)
+		timer.queue_free()
+	timer.timeout.connect(callable)
+	add_child(timer)
+	timer.start(WINDOW_CLOSE_DELAY)
+
+func _wait_for_scan_and_delay_next_prompt(target_path : String):
+	var timer: Timer = Timer.new()
+	var callable := func():
+		if EditorInterface.get_resource_filesystem().is_scanning(): return
+		timer.stop()
+		_delayed_play_opening_confirmation_dialog(target_path)
+		timer.queue_free()
+	timer.timeout.connect(callable)
+	add_child(timer)
+	timer.start(RUNNING_CHECK_DELAY)
+
+func _delayed_saving_and_next_prompt(target_path : String):
+	var timer: Timer = Timer.new()
+	var callable := func():
+		timer.stop()
+		EditorInterface.save_all_scenes()
+		EditorInterface.get_resource_filesystem().scan()
+		_wait_for_scan_and_delay_next_prompt(target_path)
 		timer.queue_free()
 	timer.timeout.connect(callable)
 	add_child(timer)
@@ -250,7 +272,7 @@ func _copy_to_directory(target_path : String):
 	_copy_directory_path(get_plugin_examples_path(), target_path, ["md", "txt", "uid"])
 	_update_scene_loader_path(target_path)
 	_copy_override_file()
-	_delayed_saving_and_check_main_scene(target_path)
+	_delayed_saving_and_next_prompt(target_path)
 
 func _open_path_dialog():
 	var destination_scene : PackedScene = load(get_plugin_path() + "installer/destination_dialog.tscn")
