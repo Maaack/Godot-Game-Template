@@ -10,7 +10,7 @@ const MAIN_SCENE_UPDATE_TEXT = "Current:\n%s\n\nNew:\n%s\n"
 const OVERRIDE_RELATIVE_PATH = "installer/override.cfg"
 const SCENE_LOADER_RELATIVE_PATH = "base/scenes/autoloads/scene_loader.tscn"
 const UID_PREG_MATCH = r'uid="uid:\/\/[0-9a-z]+" '
-const WINDOW_CLOSE_DELAY : float = 1.5
+const WINDOW_OPEN_DELAY : float = 1.5
 const RUNNING_CHECK_DELAY : float = 0.25
 const RESAVING_DELAY : float = 1.0
 const OPEN_EDITOR_DELAY : float = 0.1
@@ -216,7 +216,7 @@ func _delayed_play_opening_confirmation_dialog(target_path : String):
 		timer.queue_free()
 	timer.timeout.connect(callable)
 	add_child(timer)
-	timer.start(WINDOW_CLOSE_DELAY)
+	timer.start(WINDOW_OPEN_DELAY)
 
 func _wait_for_scan_and_delay_next_prompt(target_path : String):
 	var timer: Timer = Timer.new()
