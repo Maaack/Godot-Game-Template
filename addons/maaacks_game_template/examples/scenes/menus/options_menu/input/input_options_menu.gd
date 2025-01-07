@@ -1,1 +1,2 @@
+@tool
 extends InputOptionsMenu
