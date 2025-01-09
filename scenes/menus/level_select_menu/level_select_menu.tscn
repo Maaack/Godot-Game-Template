@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://crgwq4t7ljint"]
+
+[ext_resource type="Script" path="res://scenes/menus/level_select_menu/level_select_menu.gd" id="1_h6hut"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/capture_focus.gd" id="2_c723y"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/scene_lister.gd" id="3_odcm1"]
+
+[node name="LevelSelectMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_h6hut")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_c723y")
+
+[node name="LevelButtonsContainer" type="ItemList" parent="Control"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -17.5
+offset_right = 200.0
+offset_bottom = 17.5
+grow_horizontal = 2
+grow_vertical = 2
+auto_height = true
+item_count = 1
+item_0/text = "1 - ExampleLevel"
+
+[node name="SceneLister" type="Node" parent="."]
+script = ExtResource("3_odcm1")
+files = Array[String](["res://scenes/game_scene/levels/level_1.tscn", "res://scenes/game_scene/levels/level_2.tscn", "res://scenes/game_scene/levels/level_3.tscn"])
+directory = "res://scenes/game_scene/levels"
+
+[connection signal="item_activated" from="Control/LevelButtonsContainer" to="." method="_on_level_buttons_container_item_activated"]
