@@ -21,7 +21,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_c723y")
-enabled = true
 
 [node name="LevelButtonsContainer" type="ItemList" parent="Control"]
 unique_name_in_owner = true
