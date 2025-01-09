@@ -1,5 +1,5 @@
 class_name CaptureFocus
-extends Container
+extends Control
 ## Node that captures UI focus for games with a hidden mouse or joypad enabled.
 ##
 ## This script assists with capturing UI focus when
@@ -27,6 +27,8 @@ func _focus_first_search(control_node : Control, levels : int = 1):
 		return false
 	if control_node.focus_mode == FOCUS_ALL:
 		control_node.grab_focus()
+		if control_node is ItemList:
+			control_node.select(0)
 		return true
 	if levels < 1:
 		return false

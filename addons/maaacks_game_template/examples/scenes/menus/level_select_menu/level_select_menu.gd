@@ -9,10 +9,6 @@ extends Control
 @onready var scene_lister: SceneLister = $SceneLister
 
 signal level_selected
-func _unhandled_input(_event: InputEvent) -> void:
-	if visible and !level_buttons_container.has_focus():
-		level_buttons_container.grab_focus()
-		select_first()
 		
 func _ready() -> void:
 	add_levels_to_container()
@@ -33,10 +29,6 @@ func add_levels_to_container():
 		file_name = file_name.capitalize()  # Convert to proper case
 		var button_name = str(file_name)
 		level_buttons_container.add_item(button_name)
-
-func select_first():
-	if level_buttons_container.item_count >=1:
-		level_buttons_container.select(0)
 
 func _on_level_buttons_container_item_activated(index: int) -> void:
 	GameStateExample.set_current_level(index)
