@@ -1,5 +1,4 @@
 extends Control
-class_name LevelSelectMenu
 
 ## Loads a simple ItemList node within a margin container. SceneLister updates
 ## the available scenes in the directory provided. Activating a level will update
@@ -10,18 +9,17 @@ class_name LevelSelectMenu
 @onready var scene_lister: SceneLister = $SceneLister
 
 signal level_selected
-func _unhandled_input(event: InputEvent) -> void:
-	if visible && !level_buttons_container.has_focus():
+func _unhandled_input(_event: InputEvent) -> void:
+	if visible and !level_buttons_container.has_focus():
 		level_buttons_container.grab_focus()
 		select_first()
-# Called when the node enters the scene tree for the first time.
+		
 func _ready() -> void:
 	add_levels_to_container()
 	
 ## A fresh level list is propgated into the ItemList, and the file names are cleaned
 func add_levels_to_container():
 	level_buttons_container.clear()
-
 	var max_level_reached := GameStateExample.get_max_level_reached()
 	var level_iter := 0
 	for file_path in scene_lister.files:
@@ -29,22 +27,17 @@ func add_levels_to_container():
 		level_iter += 1
 		# Extract the file name from the path
 		var file_name = file_path.get_file()  # e.g., "level_1.tscn"
-
 		# Clean up the file name
 		file_name = file_name.trim_suffix(".tscn")  # Remove the ".tscn" extension
 		file_name = file_name.replace("_", " ")  # Replace underscores with spaces
 		file_name = file_name.capitalize()  # Convert to proper case
-
 		var button_name = str(file_name)
 		level_buttons_container.add_item(button_name)
-		
-		
+
 func select_first():
 	if level_buttons_container.item_count >=1:
 		level_buttons_container.select(0)
-		
 
 func _on_level_buttons_container_item_activated(index: int) -> void:
 	GameStateExample.set_current_level(index)
-	call_deferred("emit_signal","level_selected")
-	#hide()
+	level_selected.emit()
