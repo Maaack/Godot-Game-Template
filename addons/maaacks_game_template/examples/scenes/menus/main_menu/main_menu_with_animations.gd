@@ -1,5 +1,8 @@
 extends MainMenu
 
+@export var level_select_packed_scene: PackedScene
+
+var level_select_scene
 var animation_state_machine : AnimationNodeStateMachinePlayback
 
 func load_game_scene():
@@ -33,6 +36,17 @@ func _close_sub_menu():
 	super._close_sub_menu()
 	animation_state_machine.travel("OpenMainMenu")
 
+func _setup_level_select(): 
+	if level_select_packed_scene == null:
+		%LevelSelectButton.hide()
+	else:
+		%LevelSelectButton.show()
+		level_select_scene = level_select_packed_scene.instantiate()
+		level_select_scene.hide()
+		%LevelSelectContainer.call_deferred("add_child", level_select_scene)
+		if level_select_scene.has_signal("level_selected"):
+			level_select_scene.connect("level_selected", load_game_scene)
+
 func _input(event):
 	if _is_in_intro() and _event_skips_intro(event):
 		intro_done()
@@ -41,6 +55,7 @@ func _input(event):
 
 func _ready():
 	super._ready()
+	_setup_level_select()
 	animation_state_machine = $MenuAnimationTree.get("parameters/playback")
 
 func _setup_game_buttons():
@@ -50,3 +65,6 @@ func _setup_game_buttons():
 
 func _on_continue_game_button_pressed():
 	load_game_scene()
+
+func _on_level_select_button_pressed():
+	_open_sub_menu(level_select_scene)
