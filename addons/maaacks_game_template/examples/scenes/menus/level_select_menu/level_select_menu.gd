@@ -21,8 +21,12 @@ func _ready() -> void:
 ## A fresh level list is propgated into the ItemList, and the file names are cleaned
 func add_levels_to_container():
 	level_buttons_container.clear()
-	
+
+	var max_level_reached := GameStateExample.get_max_level_reached()
+	var level_iter := 0
 	for file_path in scene_lister.files:
+		if level_iter > max_level_reached : break
+		level_iter += 1
 		# Extract the file name from the path
 		var file_name = file_path.get_file()  # e.g., "level_1.tscn"
 
