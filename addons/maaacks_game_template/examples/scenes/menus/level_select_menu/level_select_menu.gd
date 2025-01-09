@@ -1,5 +1,5 @@
 extends Control
-class_name MasterLevelSelectMenu
+class_name LevelSelectMenu
 
 ## Loads a simple ItemList node within a margin container. SceneLister updates
 ## the available scenes in the directory provided. Activating a level will update
