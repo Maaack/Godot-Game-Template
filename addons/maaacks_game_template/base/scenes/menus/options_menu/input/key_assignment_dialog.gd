@@ -5,6 +5,13 @@ const FOCUS_HERE_TEXT : String = "Focus here to assign inputs."
 const CONFIRM_INPUT_TEXT : String = "Press again to confirm..."
 const NO_INPUT_TEXT : String = "None"
 
+enum InputConfirmation {
+	SINGLE,
+	DOUBLE,
+	OK_BUTTON
+}
+@export var input_confirmation : InputConfirmation = InputConfirmation.SINGLE
+
 var last_input_event : InputEvent
 var last_input_text : String
 var listening : bool = false
@@ -65,14 +72,23 @@ func _should_process_input_event(event : InputEvent) -> bool:
 func _should_confirm_input_event(event : InputEvent) -> bool:
 	return not _is_mouse_input(event)
 
+func _confirm_choice():
+	confirmed.emit()
+	hide()
+
 func _process_input_event(event : InputEvent):
 	if not _should_process_input_event(event):
 		return
 	if _input_confirms_choice(event):
 		confirming = false
-		_focus_on_ok.call_deferred()
+		if input_confirmation == InputConfirmation.DOUBLE:
+			_confirm_choice()
+		else:
+			_focus_on_ok.call_deferred()
 		return
 	_record_input_event(event)
+	if input_confirmation == InputConfirmation.SINGLE:
+		_confirm_choice()
 	if _should_confirm_input_event(event):
 		confirming = true
 		%DelayTimer.start()
