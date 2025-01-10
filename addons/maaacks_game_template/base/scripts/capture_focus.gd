@@ -1,5 +1,5 @@
 class_name CaptureFocus
-extends Container
+extends Control
 ## Node that captures UI focus for games with a hidden mouse or joypad enabled.
 ##
 ## This script assists with capturing UI focus when
@@ -11,6 +11,7 @@ extends Container
 ## Hierarchical depth to search in the scene tree.
 @export var search_depth : int = 1
 @export var enabled : bool = false
+@export var null_focus_enabled : bool = true
 @export var joypad_enabled : bool = true
 @export var mouse_hidden_enabled : bool = true
 
@@ -27,6 +28,8 @@ func _focus_first_search(control_node : Control, levels : int = 1):
 		return false
 	if control_node.focus_mode == FOCUS_ALL:
 		control_node.grab_focus()
+		if control_node is ItemList:
+			control_node.select(0)
 		return true
 	if levels < 1:
 		return false
@@ -45,6 +48,7 @@ func update_focus():
 
 func _should_capture_focus():
 	return enabled or \
+	(get_viewport().gui_get_focus_owner() == null and null_focus_enabled) or \
 	(Input.get_connected_joypads().size() > 0 and joypad_enabled) or \
 	(Input.mouse_mode not in [Input.MOUSE_MODE_VISIBLE, Input.MOUSE_MODE_CONFINED] and mouse_hidden_enabled)
 
