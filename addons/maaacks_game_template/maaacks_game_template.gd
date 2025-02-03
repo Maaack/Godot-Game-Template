@@ -16,7 +16,8 @@ const RESAVING_DELAY : float = 1.0
 const OPEN_EDITOR_DELAY : float = 0.1
 const MAX_PHYSICS_FRAMES_FROM_START : int = 20
 const AVAILABLE_TRANSLATIONS : Array = ["en", "fr"]
-const RAW_COPY_EXTENSIONS : Array = ["gd", "md", "txt", "uid"]
+const RAW_COPY_EXTENSIONS : Array = ["gd", "md", "txt"]
+const OMIT_COPY_EXTENSIONS : Array = ["uid"]
 const REPLACE_CONTENT_EXTENSIONS : Array = ["gd", "tscn", "tres"]
 
 func _get_plugin_name():
@@ -161,9 +162,11 @@ func _copy_override_file():
 	var override_path : String = get_plugin_path() + OVERRIDE_RELATIVE_PATH
 	_raw_copy_file_path(override_path, "res://"+override_path.get_file())
 
-func _copy_file_path(file_path : String, destination_path : String, target_path : String, raw_copy_file_extensions : PackedStringArray = []) -> Error:
+func _copy_file_path(file_path : String, destination_path : String, target_path : String) -> Error:
 	var error : Error
-	if file_path.get_extension() in raw_copy_file_extensions:
+	if file_path.get_extension() in OMIT_COPY_EXTENSIONS:
+		return error
+	if file_path.get_extension() in RAW_COPY_EXTENSIONS:
 		error = _raw_copy_file_path(file_path, destination_path)
 	else:
 		error = _save_resource(file_path, destination_path)
@@ -173,7 +176,7 @@ func _copy_file_path(file_path : String, destination_path : String, target_path 
 		_replace_file_contents(destination_path, target_path)
 	return error
 
-func _copy_directory_path(dir_path : String, target_path : String, raw_copy_file_extensions : PackedStringArray = []):
+func _copy_directory_path(dir_path : String, target_path : String):
 	if not dir_path.ends_with("/"):
 		dir_path += "/"
 	var dir = DirAccess.open(dir_path)
@@ -188,9 +191,9 @@ func _copy_directory_path(dir_path : String, target_path : String, raw_copy_file
 			if dir.current_is_dir():
 				if not dir.dir_exists(destination_path):
 					error = dir.make_dir(destination_path)
-				_copy_directory_path(full_file_path, target_path, raw_copy_file_extensions)
+				_copy_directory_path(full_file_path, target_path)
 			else:
-				error = _copy_file_path(full_file_path, destination_path, target_path, raw_copy_file_extensions)
+				error = _copy_file_path(full_file_path, destination_path, target_path)
 			file_name = dir.get_next()
 		if error:
 			push_error("plugin error - copying path: %s" % error)
@@ -255,7 +258,7 @@ func _copy_to_directory(target_path : String):
 	ProjectSettings.save()
 	if not target_path.ends_with("/"):
 		target_path += "/"
-	_copy_directory_path(get_plugin_examples_path(), target_path, RAW_COPY_EXTENSIONS)
+	_copy_directory_path(get_plugin_examples_path(), target_path)
 	_update_scene_loader_path(target_path)
 	_copy_override_file()
 	_delayed_saving_and_next_prompt(target_path)
