@@ -20,16 +20,14 @@ jobs:
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@github.com'
 
-      - name: Checkout main-plugin branch
-        run: git checkout main-plugin
-
-      - name: Merge main into main-plugin
-        # --no-ff: Always create a merge commit to maintain a clear history of merges.
-        # --no-edit: Don't prompt but use the default merge message.
-        run: git merge main --no-ff --no-edit
-
-      - name: Push changes
-        run: git push origin main-plugin
-        env:
-          # `GITHUB_TOKEN` is automatically available on Github
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          base: main-plugin      # Target branch
+          head: main             # Source branch
+          title: 'Automated PR: Merge main into main-plugin'
+          body: 'This pull request was automatically created to merge changes from main into main-plugin.'
+          commit-message: 'Auto-merge: Update from main'
+          branch: auto-merge-main-to-main-plugin  # Temporary PR branch
+          delete-branch: true
