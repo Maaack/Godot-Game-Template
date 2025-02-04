@@ -101,6 +101,7 @@ func set_value(value : Variant):
 			node.value = value as float
 		if node is LineEdit or node is TextEdit:
 			node.text = "%s" % value
+	_on_setting_changed(value)
 
 func set_editable(value : bool = true):
 	editable = value
