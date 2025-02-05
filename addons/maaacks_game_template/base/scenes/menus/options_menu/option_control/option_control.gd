@@ -63,6 +63,7 @@ var default_value
 var _connected_nodes : Array
 
 func _on_setting_changed(value):
+	if Engine.is_editor_hint(): return
 	Config.set_config(section, key, value)
 	setting_changed.emit(value)
 
