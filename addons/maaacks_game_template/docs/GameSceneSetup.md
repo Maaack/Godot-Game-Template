@@ -39,14 +39,17 @@ The game example has the levels loaded into a `SubViewport` node, contained with
 
 - Separates elements intended to appear inside the game world from those intended to appear on a layer above it. 
 - Allows setting a fixed resolution for the game, like pixel art games.
-- Allows setting rendering setting, like anti-aliasing.
+- Allows setting rendering settings, like anti-aliasing, on the `SubViewport`.
 - Supports easily adding visual effects with shaders on the `SubViewportContainer`.
 - Visual effects can be added to the game world without hurting the readability of the UI.
 
 It has some disadvantages, as well.
 
+- Locks the viewport resolution if any scaling is enabled, which is not ideal for 3D games.
 - Requires enabling Audio Listeners to hear audio from the game world.
 - Extra processing overhead for the viewport layer.
+
+If a subviewport does not work well for your game, you can add a basic `Node` and use it as the level container, instead.
 
 ## Read Inputs
 Generally, any game is going to require reading some inputs from the player. Where in the scene hierarchy the reading occurs is best answered with simplicity.  
