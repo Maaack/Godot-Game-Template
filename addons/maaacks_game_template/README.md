@@ -156,6 +156,11 @@ These instructions assume starting with just the contents of `addons/`. This wil
 [Main Menu Setup](/addons/maaacks_game_template/docs/MainMenuSetup.md)  
 [Game Scene Setup](/addons/maaacks_game_template/docs/GameSceneSetup.md)  
 
+## Community
+
+Join the [Discord server](https://discord.gg/AyZrJh5AMp ) and share your work with others. It's also a space for getting or giving feedback, and asking for help. 
+ 
+
 ## Links
 [Attribution](/addons/maaacks_game_template/ATTRIBUTION.md)  
 [License](/addons/maaacks_game_template/LICENSE.txt)  

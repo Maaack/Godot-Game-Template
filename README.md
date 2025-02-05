@@ -75,7 +75,7 @@ The `examples/` folder contains an example project using inherited scenes from t
 - `opening.tscn` is a simple scene for fading in/out a few images at the start of the game. It then loads the next scene (`main_menu.tscn`).  
 - `main_menu.tscn` is where a player can start the game, change settings, watch credits, or quit. It can link to the path of a game scene to play, and the packed scene of an options menu to use.  
 - `option_control.tscn` and its inherited scenes are used for most configurable options in the menus. They work with `config.gd` to keep settings persistent between runs.
-- `credits.tscn` reads from `ATTRIBUTION.md` to automatically generate the content for its scrolling text label.  
+- `credits.tscn` reads from `ATTRIBUTION.md` to automatically generate the content for it's scrolling text label.  
 - The `UISoundController` node automatically attaches sounds to buttons, tab bars, sliders, and line edits in the scene. `project_ui_sound_controller.tscn` is an autload used to apply UI sounds project-wide.
 - `project_music_controller.tscn` is an autoload that keeps music playing between scenes. It detects music stream players as they are added to the scene tree, reparents them to itself, and blends the tracks.  
 - The `PauseMenuController` node loads the `pause_menu.tscn` when triggering `ui-cancel`.
@@ -155,6 +155,11 @@ These instructions assume starting with just the contents of `addons/`. This wil
 
 [Main Menu Setup](/addons/maaacks_game_template/docs/MainMenuSetup.md)  
 [Game Scene Setup](/addons/maaacks_game_template/docs/GameSceneSetup.md)  
+
+## Community
+
+Join the [Discord server](https://discord.gg/AyZrJh5AMp ) and share your work with others. It's also a space for getting or giving feedback, and asking for help. 
+ 
 
 ## Links
 [Attribution](/addons/maaacks_game_template/ATTRIBUTION.md)  
