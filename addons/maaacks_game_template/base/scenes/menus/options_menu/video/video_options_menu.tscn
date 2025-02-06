@@ -39,6 +39,7 @@ option_name = "Resolution"
 option_section = 3
 key = "ScreenResolution"
 section = "VideoSettings"
+property_type = 6
 
 [connection signal="setting_changed" from="VBoxContainer/FullscreenControl" to="." method="_on_fullscreen_control_setting_changed"]
 [connection signal="setting_changed" from="VBoxContainer/ResolutionControl" to="." method="_on_resolution_control_setting_changed"]
