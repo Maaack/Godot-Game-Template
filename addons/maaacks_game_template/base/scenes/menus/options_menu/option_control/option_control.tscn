@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://d7te75il06t7"]
 
-[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/option_control/option_control.gd" id="1_jvl5q"]
+[ext_resource type="Script" uid="uid://cafqki2b08kwu" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/option_control/option_control.gd" id="1_jvl5q"]
 
 [node name="OptionControl" type="HBoxContainer"]
 custom_minimum_size = Vector2(0, 40)

@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://dtu0ffm1m5mr7"]
+
+[ext_resource type="Script" uid="uid://bxjfjnr4m1fm1" path="res://addons/maaacks_game_template/examples/scenes/menus/level_select_menu/level_select_menu.gd" id="1_dm7vg"]
+[ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/scripts/capture_focus.gd" id="2_88qak"]
+[ext_resource type="Script" uid="uid://wjq7li836lwj" path="res://addons/maaacks_game_template/extras/scripts/scene_lister.gd" id="2_g3cvb"]
+
+[node name="LevelSelectMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dm7vg")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_88qak")
+
+[node name="LevelButtonsContainer" type="ItemList" parent="Control"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -17.5
+offset_right = 200.0
+offset_bottom = 17.5
+grow_horizontal = 2
+grow_vertical = 2
+auto_height = true
+item_count = 1
+item_0/text = "1 - ExampleLevel"
+
+[node name="SceneLister" type="Node" parent="."]
+script = ExtResource("2_g3cvb")
+files = Array[String](["res://addons/maaacks_game_template/examples/scenes/game_scene/levels/level_1.tscn", "res://addons/maaacks_game_template/examples/scenes/game_scene/levels/level_2.tscn", "res://addons/maaacks_game_template/examples/scenes/game_scene/levels/level_3.tscn"])
+directory = "res://addons/maaacks_game_template/examples/scenes/game_scene/levels"
+
+[connection signal="item_activated" from="Control/LevelButtonsContainer" to="." method="_on_level_buttons_container_item_activated"]

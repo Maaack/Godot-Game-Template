@@ -63,6 +63,7 @@ var default_value
 var _connected_nodes : Array
 
 func _on_setting_changed(value):
+	if Engine.is_editor_hint(): return
 	Config.set_config(section, key, value)
 	setting_changed.emit(value)
 
@@ -101,6 +102,7 @@ func set_value(value : Variant):
 			node.value = value as float
 		if node is LineEdit or node is TextEdit:
 			node.text = "%s" % value
+	_on_setting_changed(value)
 
 func set_editable(value : bool = true):
 	editable = value

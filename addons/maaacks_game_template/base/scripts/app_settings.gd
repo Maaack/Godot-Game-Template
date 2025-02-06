@@ -135,8 +135,7 @@ static func is_fullscreen(window : Window) -> bool:
 
 static func get_resolution(window : Window) -> Vector2i:
 	var current_resolution : Vector2i = window.size
-	current_resolution = Config.get_config(VIDEO_SECTION, SCREEN_RESOLUTION, current_resolution)
-	return current_resolution
+	return Config.get_config(VIDEO_SECTION, SCREEN_RESOLUTION, current_resolution)
 
 static func set_video_from_config(window : Window) -> void:
 	var fullscreen_enabled : bool = is_fullscreen(window)

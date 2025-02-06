@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dkq3nhkmhu4je"]
 
 [ext_resource type="PackedScene" uid="uid://wny2d8dvp3ok" path="res://addons/maaacks_game_template/base/scenes/overlaid_menu/overlaid_menu.tscn" id="1_ok347"]
-[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scenes/overlaid_menus/level_lost_menu.gd" id="2_6r1n8"]
+[ext_resource type="Script" uid="uid://ckh3w3xa6qjk0" path="res://addons/maaacks_game_template/extras/scenes/overlaid_menus/level_lost_menu.gd" id="2_6r1n8"]
 
 [node name="LevelLostMenu" instance=ExtResource("1_ok347")]
 process_mode = 3

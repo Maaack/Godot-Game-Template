@@ -1,12 +1,18 @@
 @tool
 class_name InputActionsList
-extends BoxContainer
+extends Container
 
 signal already_assigned(action_name : String, input_name : String)
 signal minimum_reached(action_name : String)
 signal button_clicked(action_name : String, readable_input_name : String)
 
 const BUTTON_NAME_GROUP_STRING : String = "%s:%d"
+
+@export var vertical : bool = true :
+	set(value):
+		vertical = value
+		if is_inside_tree():
+			%ParentBoxContainer.vertical = vertical
 
 @export_range(1, 5) var action_groups : int = 2
 @export var action_group_names : Array[String]
@@ -52,7 +58,7 @@ var editing_action_group : int = 0
 var last_input_readable_name
 
 func _clear_list():
-	for child in get_children():
+	for child in %ParentBoxContainer.get_children():
 		if child == %ActionBoxContainer:
 			continue
 		child.queue_free()
@@ -72,6 +78,7 @@ func _new_action_box():
 	return new_action_box
 
 func _add_header():
+	if action_group_names.is_empty(): return
 	var new_action_box = _new_action_box()
 	for group_iter in range(action_groups):
 		var group_name := ""
@@ -81,9 +88,10 @@ func _add_header():
 		new_label.size_flags_horizontal = SIZE_EXPAND_FILL
 		new_label.size_flags_vertical = SIZE_EXPAND_FILL
 		new_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		new_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 		new_label.text = group_name
 		new_action_box.add_child(new_label)
-	add_child(new_action_box)
+	%ParentBoxContainer.add_child(new_action_box)
 
 func _add_to_button_action_map(action_name : String, action_group : int, button_node : Button):
 	var key_string : String = BUTTON_NAME_GROUP_STRING % [action_name, action_group]
@@ -124,7 +132,7 @@ func _add_action_options(action_name : String, readable_action_name : String, in
 		new_button.pressed.connect(_on_button_pressed.bind(action_name, group_iter))
 		new_action_box.add_child(new_button)
 		_add_to_button_action_map(action_name, group_iter, new_button)
-	add_child(new_action_box)
+	%ParentBoxContainer.add_child(new_action_box)
 
 func _get_all_action_names(include_built_in : bool = false) -> Array[StringName]:
 	var action_names : Array[StringName] = input_action_names.duplicate()
@@ -214,5 +222,6 @@ func reset():
 
 func _ready():
 	if Engine.is_editor_hint(): return
+	vertical = vertical
 	_build_assigned_input_events()
 	_build_ui_list()

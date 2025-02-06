@@ -55,21 +55,6 @@ size = Vector2i(1280, 720)
 render_target_update_mode = 4
 script = ExtResource("6_efpn6")
 
-[node name="InputDisplayLabel" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -44.0
-offset_bottom = 44.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 64
-horizontal_alignment = 1
-autowrap_mode = 2
-script = ExtResource("7_xo7fy")
-
 [node name="LevelListManager" type="Node" parent="." node_paths=PackedStringArray("level_list_loader", "level_loading_screen")]
 script = ExtResource("8_pv8tc")
 level_list_loader = NodePath("../LevelLoader")

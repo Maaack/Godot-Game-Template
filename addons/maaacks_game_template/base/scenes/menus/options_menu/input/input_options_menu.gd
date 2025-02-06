@@ -30,6 +30,7 @@ func _horizontally_align_popup_labels():
 	$ResetConfirmationDialog.get_label().horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 
 func _ready():
+	remapping_mode = remapping_mode
 	if Engine.is_editor_hint(): return
 	_horizontally_align_popup_labels()
 
