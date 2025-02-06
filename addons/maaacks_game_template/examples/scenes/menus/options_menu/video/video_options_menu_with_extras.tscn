@@ -7,9 +7,6 @@
 [node name="Video" instance=ExtResource("1_nrerc")]
 script = ExtResource("2_qtdes")
 
-[node name="ResolutionControl" parent="VBoxContainer" index="1"]
-property_type = 6
-
 [node name="AntiAliasingControl" parent="VBoxContainer" index="2" instance=ExtResource("2_tyiki")]
 layout_mode = 2
 lock_titles = true

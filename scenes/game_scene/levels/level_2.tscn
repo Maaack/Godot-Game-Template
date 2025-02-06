@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dkf0wuufp7otf"]
+[gd_scene load_steps=4 format=3 uid="uid://1xddtb4rwd5t"]
 
-[ext_resource type="Script" path="res://scenes/game_scene/levels/level.gd" id="1_bd4pj"]
-[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/capture_focus.gd" id="2_41ag7"]
+[ext_resource type="Script" path="res://scenes/game_scene/levels/level.gd" id="1_irplr"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/capture_focus.gd" id="2_3p566"]
+[ext_resource type="Script" path="res://scenes/game_scene/input_display_label.gd" id="3_rgywr"]
 
 [node name="Level1" type="Control"]
 layout_mode = 3
@@ -10,7 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_bd4pj")
+script = ExtResource("1_irplr")
 
 [node name="BackgroundColor" type="ColorRect" parent="."]
 unique_name_in_owner = true
@@ -42,7 +43,7 @@ theme_override_constants/separation = 16
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 32
-script = ExtResource("2_41ag7")
+script = ExtResource("2_3p566")
 
 [node name="LoseButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -70,6 +71,12 @@ text = "Change Level State: "
 unique_name_in_owner = true
 layout_mode = 2
 text = "Change Color"
+
+[node name="InputDisplayLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_alignment = 1
+script = ExtResource("3_rgywr")
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/LoseButton" to="." method="_on_lose_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/WinButton" to="." method="_on_win_button_pressed"]
