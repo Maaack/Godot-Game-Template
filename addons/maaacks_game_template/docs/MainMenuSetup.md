@@ -16,6 +16,10 @@ Some designs may require rearranging the nodes in the scene tree. This is easier
 ## 3D Background 
 When adding a 3D background to the menu, it is recommended to use a `SubViewportContainer` in place of or right above the `BackgroundTextureRect`. Then add a `SubViewport` to it, and finally the 3D world node to that. This structure gives fine-tune control of scaling, allows for layering 3D views when they have transparency, and makes it easy to add a texture shader to the whole background.
 
+## Level Select
+
+A basic level select scene is available to add to the menu. In `main_menu_with_animations.tscn`, click the root `MainMenu` mode and set `Level Select Packed Scene` to `level_select_menu.tscn`. The button will appear on the main menu when the player has reached the second level.  
+
 ## Theming
 It is recommended to create a theme resource file and set it as the custom theme in the project settings. Any changes made to the theme file will then apply automatically to the whole project.
 

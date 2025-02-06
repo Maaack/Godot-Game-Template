@@ -1,0 +1,33 @@
+name: Auto Merge main into main-plugin
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main branch
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Set up Git
+        # Set up bot account to commit automated changes
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          base: main-plugin      # Target branch
+          head: main             # Source branch
+          title: 'Automated PR: Merge main into main-plugin'
+          body: 'This pull request was automatically created to merge changes from main into main-plugin.'
+          commit-message: 'Auto-merge: Update from main'
+          branch: auto-merge-main-to-main-plugin  # Temporary PR branch
+          delete-branch: true
