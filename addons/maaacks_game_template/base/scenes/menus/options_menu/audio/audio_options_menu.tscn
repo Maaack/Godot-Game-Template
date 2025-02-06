@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://c8vnncjwqcpab"]
 
-[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/audio/audio_options_menu.gd" id="1"]
+[ext_resource type="Script" uid="uid://bwugqn2cjr41e" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/audio/audio_options_menu.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://cl416gdb1fgwr" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/option_control/slider_option_control.tscn" id="2_raehj"]
-[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/capture_focus.gd" id="3_dtraq"]
+[ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/scripts/capture_focus.gd" id="3_dtraq"]
 [ext_resource type="PackedScene" uid="uid://bsxh6v7j0257h" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/option_control/toggle_option_control.tscn" id="4_ojfec"]
 
 [node name="Audio" type="MarginContainer"]
