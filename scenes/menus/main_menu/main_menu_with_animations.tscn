@@ -1,7 +1,7 @@
 [gd_scene load_steps=19 format=3 uid="uid://8ymyrorpy02h"]
 
 [ext_resource type="PackedScene" uid="uid://c6k5nnpbypshi" path="res://addons/maaacks_game_template/base/scenes/menus/main_menu/main_menu.tscn" id="1_ol417"]
-[ext_resource type="Script" uid="uid://btthr1xpmn3li" path="res://scenes/menus/main_menu/main_menu_with_animations.gd" id="2_0jb1p"]
+[ext_resource type="Script" uid="uid://bryarst7qsas4" path="res://scenes/menus/main_menu/main_menu_with_animations.gd" id="2_0jb1p"]
 [ext_resource type="PackedScene" uid="uid://bb3dnen65tocv" path="res://scenes/menus/options_menu/master_options_menu_with_tabs.tscn" id="3_v43e6"]
 [ext_resource type="PackedScene" uid="uid://da7uj8u87g24i" path="res://scenes/credits/credits.tscn" id="4_58732"]
 [ext_resource type="AudioStream" uid="uid://cyakcui2s5g46" path="res://assets/music_and_sfx/Maaack - Campfire Tales - Music 2b (3 min).mp3" id="5_sr523"]
@@ -317,10 +317,6 @@ _data = {
 &"OpenMainMenu": SubResource("6"),
 &"OpenSubMenu": SubResource("4"),
 &"RESET": SubResource("2")
-&"Intro": SubResource("1"),
-&"OpenMainMenu": SubResource("6"),
-&"OpenSubMenu": SubResource("4"),
-&"RESET": SubResource("2")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="7"]
@@ -354,16 +350,15 @@ states/Start/position = Vector2(82, 123)
 transitions = ["Intro", "OpenMainMenu", SubResource("11"), "OpenMainMenu", "OpenSubMenu", SubResource("14"), "Start", "Intro", SubResource("AnimationNodeStateMachineTransition_j0orr"), "OpenSubMenu", "OpenMainMenu", SubResource("AnimationNodeStateMachineTransition_63dxc")]
 graph_offset = Vector2(-180.277, 49)
 
-[node name="MainMenu" instance=ExtResource("1_6btwc")]
-script = ExtResource("2_rr1rn")
+[node name="MainMenu" instance=ExtResource("1_ol417")]
+script = ExtResource("2_0jb1p")
 level_select_packed_scene = null
 game_scene_path = "res://scenes/game_scene/game_ui.tscn"
-options_packed_scene = ExtResource("3_sr523")
-credits_packed_scene = ExtResource("4_ixa71")
+options_packed_scene = ExtResource("3_v43e6")
+credits_packed_scene = ExtResource("4_58732")
 
 [node name="MenuAnimationPlayer" type="AnimationPlayer" parent="." index="1"]
 libraries = {
-&"": SubResource("AnimationLibrary_2kqig")
 &"": SubResource("AnimationLibrary_2kqig")
 }
 
