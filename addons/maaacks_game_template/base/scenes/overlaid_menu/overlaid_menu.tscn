@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://wny2d8dvp3ok"]
 
-[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scenes/overlaid_menu/overlaid_menu.gd" id="1_euyj1"]
-[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/capture_focus.gd" id="2_6ani0"]
+[ext_resource type="Script" uid="uid://xfugmpspqbcc" path="res://addons/maaacks_game_template/base/scenes/overlaid_menu/overlaid_menu.gd" id="1_euyj1"]
+[ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/scripts/capture_focus.gd" id="2_6ani0"]
 
 [node name="OverlaidMenu" type="Control"]
 layout_mode = 3
