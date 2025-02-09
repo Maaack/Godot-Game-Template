@@ -178,7 +178,7 @@ func _assign_input_event(input_event : InputEvent, action_name : String):
 func _assign_input_event_to_action_group(input_event : InputEvent, action_name : String, action_group : int) -> void:
 	_assign_input_event(input_event, action_name)
 	var action_events := InputMap.action_get_events(action_name)
-	action_events.resize(action_group + 1)
+	action_events.resize(action_events.size() + 1)
 	action_events[action_group] = input_event
 	InputMap.action_erase_events(action_name)
 	var final_action_events : Array[InputEvent]
