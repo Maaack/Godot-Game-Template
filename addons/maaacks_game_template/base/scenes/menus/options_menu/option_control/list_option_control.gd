@@ -30,7 +30,7 @@ func _on_option_values_changed():
 	_set_titles_from_values()
 
 func _on_setting_changed(value):
-	if value < custom_option_values.size():
+	if value < custom_option_values.size() and value >= 0:
 		super._on_setting_changed(custom_option_values[value])
 
 func _set_titles_from_values():

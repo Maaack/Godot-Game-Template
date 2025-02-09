@@ -104,13 +104,13 @@ func _update_next_button_disabled_state(action_name : String, action_group : int
 		button.disabled = false
 
 func _update_assigned_inputs_and_button(action_name : String, action_group : int, input_event : InputEvent):
-	var new_readable_action_nmae = InputEventHelper.get_text(input_event)
+	var new_readable_action_name = InputEventHelper.get_text(input_event)
 	var key_string : String = BUTTON_NAME_GROUP_STRING % [action_name, action_group]
 	var button = button_action_map[key_string]
 	var old_readable_action_name = button.text
-	button.text = new_readable_action_nmae
+	button.text = new_readable_action_name
 	assigned_input_events.erase(old_readable_action_name)
-	assigned_input_events[new_readable_action_nmae] = action_name
+	assigned_input_events[new_readable_action_name] = action_name
 
 func _add_action_options(action_name : String, readable_action_name : String, input_events : Array[InputEvent]):
 	var new_action_box = %ActionBoxContainer.duplicate()
@@ -178,7 +178,7 @@ func _assign_input_event(input_event : InputEvent, action_name : String):
 func _assign_input_event_to_action_group(input_event : InputEvent, action_name : String, action_group : int) -> void:
 	_assign_input_event(input_event, action_name)
 	var action_events := InputMap.action_get_events(action_name)
-	action_events.resize(action_group + 1)
+	action_events.resize(action_events.size() + 1)
 	action_events[action_group] = input_event
 	InputMap.action_erase_events(action_name)
 	var final_action_events : Array[InputEvent]
