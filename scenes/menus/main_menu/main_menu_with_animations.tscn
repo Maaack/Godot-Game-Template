@@ -1,7 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://8ymyrorpy02h"]
+[gd_scene load_steps=20 format=3 uid="uid://8ymyrorpy02h"]
 
 [ext_resource type="PackedScene" uid="uid://c6k5nnpbypshi" path="res://addons/maaacks_game_template/base/scenes/menus/main_menu/main_menu.tscn" id="1_ol417"]
 [ext_resource type="Script" uid="uid://bryarst7qsas4" path="res://scenes/menus/main_menu/main_menu_with_animations.gd" id="2_0jb1p"]
+[ext_resource type="PackedScene" uid="uid://crgwq4t7ljint" path="res://scenes/menus/level_select_menu/level_select_menu.tscn" id="3_ixa71"]
 [ext_resource type="PackedScene" uid="uid://bb3dnen65tocv" path="res://scenes/menus/options_menu/master_options_menu_with_tabs.tscn" id="3_v43e6"]
 [ext_resource type="PackedScene" uid="uid://da7uj8u87g24i" path="res://scenes/credits/credits.tscn" id="4_58732"]
 [ext_resource type="AudioStream" uid="uid://cyakcui2s5g46" path="res://assets/music_and_sfx/Maaack - Campfire Tales - Music 2b (3 min).mp3" id="5_sr523"]
@@ -351,8 +352,10 @@ transitions = ["Intro", "OpenMainMenu", SubResource("11"), "OpenMainMenu", "Open
 graph_offset = Vector2(-180.277, 49)
 
 [node name="MainMenu" instance=ExtResource("1_ol417")]
+offset_top = 1.0
+offset_bottom = 1.0
 script = ExtResource("2_0jb1p")
-level_select_packed_scene = null
+level_select_packed_scene = ExtResource("3_ixa71")
 game_scene_path = "res://scenes/game_scene/game_ui.tscn"
 options_packed_scene = ExtResource("3_v43e6")
 credits_packed_scene = ExtResource("4_58732")
@@ -374,7 +377,7 @@ stream = ExtResource("5_sr523")
 modulate = Color(1, 1, 1, 0)
 
 [node name="VersionLabel" parent="VersionMargin/VersionContainer" index="0"]
-text = "v0.15.0"
+text = "v0.16.1"
 
 [node name="TitleContainer" parent="MenuContainer/TitleMargin" index="0"]
 modulate = Color(1, 1, 1, 0)
