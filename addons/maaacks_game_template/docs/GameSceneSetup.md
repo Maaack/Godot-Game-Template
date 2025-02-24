@@ -56,6 +56,9 @@ If working with a pixel art game, often the goal is that the number of art pixel
 
 If a higher resolution is desired for the menus and UI than the game, then the project viewport size should be set to a multiple of the desired game window size. Then set the stretch shrink in `ViewportContainer` to the multiple of the resolution. For example, if the game is at `640x360`, then the project viewport size can be set to `1280x720`, and the stretch shrink set to `2` (`1280x720 / 2 = 640x360`). Finally, set the texture filter on the `ViewportContainer` to `Nearest`.
 
+### Mouse Interaction
+If trying to detect `mouse_enter` and `mouse_exit` events on areas inside the game world, enable physics object picking on the `ConfigurableSubViewport`.
+
 ## Read Inputs
 Generally, any game is going to require reading some inputs from the player. Where in the scene hierarchy the reading occurs is best answered with simplicity.  
 
