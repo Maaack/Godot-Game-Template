@@ -31,4 +31,4 @@ func _on_fullscreen_control_setting_changed(value):
 	_update_resolution_options_enabled(window)
 
 func _on_resolution_control_setting_changed(value):
-	AppSettings.set_resolution(value, get_window())
+	AppSettings.set_resolution(value, get_window(), false)
