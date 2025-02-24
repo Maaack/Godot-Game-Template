@@ -51,6 +51,14 @@ It has some disadvantages, as well.
 
 If a subviewport does not work well for your game, you can add a basic `Node` and use it as the level container, instead.
 
+### Pixel Art Games
+If working with a pixel art game, often the goal is that the number of art pixels on-screen is to remain the same regardless of screen resolution. As in, the art scales with the monitor, rather than bigger monitors showing more of a scene. This is done by setting the viewport size in the project settings, and setting the stretch mode to either `canvas_mode` or `viewport`.
+
+If a higher resolution is desired for the menus and UI than the game, then the project viewport size should be set to a multiple of the desired game window size. Then set the stretch shrink in `ViewportContainer` to the multiple of the resolution. For example, if the game is at `640x360`, then the project viewport size can be set to `1280x720`, and the stretch shrink set to `2` (`1280x720 / 2 = 640x360`). Finally, set the texture filter on the `ViewportContainer` to `Nearest`.
+
+### Mouse Interaction
+If trying to detect `mouse_enter` and `mouse_exit` events on areas inside the game world, enable physics object picking on the `ConfigurableSubViewport`.
+
 ## Read Inputs
 Generally, any game is going to require reading some inputs from the player. Where in the scene hierarchy the reading occurs is best answered with simplicity.  
 
