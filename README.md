@@ -156,6 +156,16 @@ These instructions assume starting with just the contents of `addons/`. This wil
 [Main Menu Setup](/addons/maaacks_game_template/docs/MainMenuSetup.md)  
 [Game Scene Setup](/addons/maaacks_game_template/docs/GameSceneSetup.md)  
 
+## Featured Games
+
+| Rent Seek Kill  | A Darkness Like Gravity  | Nanny Bot Overload |
+| :-------: | :----------: | :----------: |
+![Rent-Seek-Kill](/addons/maaacks_game_template/media/screenshot-game-rent-seek-kill.png)  |  ![A Darkness Like Gravity](/addons/maaacks_game_template/media/screenshot-game-a-darkness-like-gravity.png)  |  ![NannyBot Overload](/addons/maaacks_game_template/media/screenshot-game-nannybot-overload.png)  
+[Play on itch.io](https://xandruher.itch.io/rent-seek-kill)  |  [Play on itch.io](https://maaack.itch.io/a-darkness-like-gravity)  |  [Play on itch.io](https://justaguyjustaguy.itch.io/nannybot-overload)
+
+[All Shared Games](/addons/maaacks_game_template/docs/GamesMade.md)  
+
+
 ## Community
 
 Join the [Discord server](https://discord.gg/AyZrJh5AMp ) and share your work with others. It's also a space for getting or giving feedback, and asking for help. 
