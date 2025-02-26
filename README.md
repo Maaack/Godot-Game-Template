@@ -156,6 +156,8 @@ These instructions assume starting with just the contents of `addons/`. This wil
 [Main Menu Setup](/addons/maaacks_game_template/docs/MainMenuSetup.md)  
 [Game Scene Setup](/addons/maaacks_game_template/docs/GameSceneSetup.md)  
 
+---
+
 ## Featured Games
 
 | Rent Seek Kill  | A Darkness Like Gravity  | Nanny Bot Overload |
