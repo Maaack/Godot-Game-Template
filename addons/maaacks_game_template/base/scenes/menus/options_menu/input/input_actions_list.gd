@@ -112,6 +112,17 @@ func _update_assigned_inputs_and_button(action_name : String, action_group : int
 	assigned_input_events.erase(old_readable_action_name)
 	assigned_input_events[new_readable_action_name] = action_name
 
+func _add_new_button(text : String, action_name: String, group_iter: int, container: Control, disabled : bool = false):
+		var new_button := Button.new()
+		new_button.clip_text = true
+		new_button.size_flags_horizontal = SIZE_EXPAND_FILL
+		new_button.size_flags_vertical = SIZE_EXPAND_FILL
+		new_button.text = text
+		new_button.disabled = disabled
+		new_button.pressed.connect(_on_button_pressed.bind(action_name, group_iter))
+		container.add_child(new_button)
+		_add_to_button_action_map(action_name, group_iter, new_button)
+
 func _add_action_options(action_name : String, readable_action_name : String, input_events : Array[InputEvent]):
 	var new_action_box = %ActionBoxContainer.duplicate()
 	new_action_box.visible = true
@@ -123,15 +134,7 @@ func _add_action_options(action_name : String, readable_action_name : String, in
 			input_event = input_events[group_iter]
 		var text = InputEventHelper.get_text(input_event)
 		if text.is_empty(): text = " "
-		var new_button := Button.new()
-		new_button.clip_text = true
-		new_button.size_flags_horizontal = SIZE_EXPAND_FILL
-		new_button.size_flags_vertical = SIZE_EXPAND_FILL
-		new_button.text = text
-		new_button.disabled = group_iter > input_events.size()
-		new_button.pressed.connect(_on_button_pressed.bind(action_name, group_iter))
-		new_action_box.add_child(new_button)
-		_add_to_button_action_map(action_name, group_iter, new_button)
+		_add_new_button(text, action_name, group_iter, new_action_box, group_iter > input_events.size())
 	%ParentBoxContainer.add_child(new_action_box)
 
 func _get_all_action_names(include_built_in : bool = false) -> Array[StringName]:
