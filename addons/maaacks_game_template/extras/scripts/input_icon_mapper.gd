@@ -1,10 +1,13 @@
 @tool
+class_name InputIconMapper
 extends FileLister
 
 @export_tool_button("Match Icons to Inputs") var _match_icons_to_inputs_action = _match_icons_to_inputs
 
 const KEYBOARD_INPUT_NAMES : Array[String] = ["keyboard", "kb", "key"]
 const MOUSE_INPUT_NAMES : Array[String] = ["mouse", "mouse_button"]
+const PLAYSTATION_INPUT_NAMES : Array[String] = ["playstation"]
+const XBOX_INPUT_NAMES : Array[String] = ["xbox"]
 const FILTERED_STRINGS : Array[String] = KEYBOARD_INPUT_NAMES + MOUSE_INPUT_NAMES
 
 @export var matching_strings : Dictionary[String, String] = {}
