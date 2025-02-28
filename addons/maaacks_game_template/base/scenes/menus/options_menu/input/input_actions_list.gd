@@ -40,6 +40,8 @@ const BUTTON_NAME_GROUP_STRING : String = "%s:%d"
 
 ## Show action names that are not explicitely listed in an action name map.
 @export var show_all_actions : bool = true
+@export_group("Icons")
+@export var input_icon_matcher : InputIconMapper
 @export_group("Built-in Actions")
 ## Shows Godot's built-in actions (action names starting with "ui_") in the tree.
 @export var show_built_in_actions : bool = false
@@ -56,6 +58,7 @@ var assigned_input_events : Dictionary = {}
 var editing_action_name : String = ""
 var editing_action_group : int = 0
 var last_input_readable_name
+var last_joypad_device : String = InputEventHelper.DEVICE_GENERIC
 
 func _clear_list():
 	for child in %ParentBoxContainer.get_children():
@@ -93,7 +96,7 @@ func _add_header():
 		new_action_box.add_child(new_label)
 	%ParentBoxContainer.add_child(new_action_box)
 
-func _add_to_button_action_map(action_name : String, action_group : int, button_node : Button):
+func _add_to_button_action_map(action_name : String, action_group : int, button_node : BaseButton):
 	var key_string : String = BUTTON_NAME_GROUP_STRING % [action_name, action_group]
 	button_action_map[key_string] = button_node
 
@@ -111,6 +114,17 @@ func _update_assigned_inputs_and_button(action_name : String, action_group : int
 	button.text = new_readable_action_name
 	assigned_input_events.erase(old_readable_action_name)
 	assigned_input_events[new_readable_action_name] = action_name
+
+func _add_new_texture_button(texture : Texture, action_name: String, group_iter: int, container: Control, disabled : bool = false):
+		var new_button := TextureButton.new()
+		new_button.size_flags_horizontal = SIZE_EXPAND_FILL
+		new_button.size_flags_vertical = SIZE_EXPAND_FILL
+		new_button.stretch_mode = TextureButton.STRETCH_KEEP_ASPECT_CENTERED
+		new_button.texture_normal = texture
+		new_button.disabled = disabled
+		new_button.pressed.connect(_on_button_pressed.bind(action_name, group_iter))
+		container.add_child(new_button)
+		_add_to_button_action_map(action_name, group_iter, new_button)
 
 func _add_new_button(text : String, action_name: String, group_iter: int, container: Control, disabled : bool = false):
 		var new_button := Button.new()
@@ -133,8 +147,16 @@ func _add_action_options(action_name : String, readable_action_name : String, in
 		if group_iter < input_events.size():
 			input_event = input_events[group_iter]
 		var text = InputEventHelper.get_text(input_event)
+		var is_disabled = group_iter > input_events.size()
 		if text.is_empty(): text = " "
-		_add_new_button(text, action_name, group_iter, new_action_box, group_iter > input_events.size())
+		if input_event is InputEventJoypadButton or input_event is InputEventJoypadMotion:
+			text = "%s %s" % [last_joypad_device, text]
+		if input_icon_matcher:
+			var icon = input_icon_matcher.get_icon(text)
+			if icon:
+				_add_new_texture_button(icon, action_name, group_iter, new_action_box, is_disabled)
+				continue
+		_add_new_button(text, action_name, group_iter, new_action_box, is_disabled)
 	%ParentBoxContainer.add_child(new_action_box)
 
 func _get_all_action_names(include_built_in : bool = false) -> Array[StringName]:
@@ -228,3 +250,9 @@ func _ready():
 	vertical = vertical
 	_build_assigned_input_events()
 	_build_ui_list()
+
+func _input(event):
+	var device_name = InputEventHelper.get_device_name(event)
+	if !device_name.is_empty() and device_name != last_joypad_device:
+		last_joypad_device = device_name
+		_build_ui_list()
