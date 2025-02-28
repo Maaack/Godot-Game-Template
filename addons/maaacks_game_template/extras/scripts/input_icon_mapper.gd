@@ -6,22 +6,62 @@ extends FileLister
 
 const KEYBOARD_INPUT_NAMES : Array[String] = ["keyboard", "kb", "key"]
 const MOUSE_INPUT_NAMES : Array[String] = ["mouse", "mouse_button"]
-const PLAYSTATION_INPUT_NAMES : Array[String] = ["playstation"]
-const XBOX_INPUT_NAMES : Array[String] = ["xbox"]
 const FILTERED_STRINGS : Array[String] = KEYBOARD_INPUT_NAMES + MOUSE_INPUT_NAMES
 
-@export var matching_strings : Dictionary[String, String] = {}
+const REPLACE_PART_MAP :  Dictionary[String, String] = {
+	"LB": " Left Shoulder",
+	"RB": " Right Shoulder",
+	"Lb": " Left Shoulder",
+	"Rb": " Right Shoulder",
+	"LS": " Left Stick",
+	"RS": " Right Stick",
+	"Ls": " Left Stick",
+	"Rs": " Right Stick",
+	"L": " Left Stick",
+	"R": " Right Stick",
+	"Lt": " Left Stick",
+	"Rt": " Right Stick",
+}
+const REPLACE_NAMES_MAP : Dictionary[String, String] = {
+	"Stick L": "Left Joystick",
+	"Stick R": "Right Joystick",
+}
+
 @export var matching_icons : Dictionary[String, Texture] = {}
+@export_group("Debug")
+@export var all_icons : Dictionary[String, Texture] = {}
+
+func _get_standard_joy_name(joystick_name : String) -> String:
+	var standard_joystick_name : String = ""
+	for part in joystick_name.split(" "):
+		if part in REPLACE_PART_MAP:
+			standard_joystick_name += REPLACE_PART_MAP[part]
+		else:
+			standard_joystick_name += " %s" % part
+	for what in REPLACE_NAMES_MAP:
+		standard_joystick_name = standard_joystick_name.replace(what, REPLACE_NAMES_MAP[what])
+	standard_joystick_name = standard_joystick_name.strip_edges()
+	return standard_joystick_name
 
 func _match_icons_to_inputs():
-	matching_strings.clear()
 	matching_icons.clear()
 	for file in files:
 		var matching_string : String = file.get_file().get_basename()
-		matching_string = matching_string.strip_edges()
+		var icon : Texture = load(file)
+		if not icon:
+			continue
+		all_icons[matching_string] = icon
 		matching_string = matching_string.capitalize()
+		matching_string = _get_standard_joy_name(matching_string)
 		for filtered_string in FILTERED_STRINGS:
 			matching_string = matching_string.replacen(filtered_string, "")
-		var icon : Texture = load(file)
-		matching_strings[matching_string] = file
+		matching_string = matching_string.strip_edges()
+		if matching_string in matching_icons:
+			continue
 		matching_icons[matching_string] = icon
+
+func get_icon(input_string : String) -> Texture:
+	if input_string not in matching_icons:
+		print("why not %s" % input_string)
+		return null
+	return matching_icons[input_string]
