@@ -59,7 +59,7 @@ var assigned_input_events : Dictionary = {}
 var editing_action_name : String = ""
 var editing_action_group : int = 0
 var last_input_readable_name
-var last_joypad_device : String = InputEventHelper.DEVICE_GENERIC
+@export var last_joypad_device : String = InputEventHelper.DEVICE_GENERIC
 
 func _clear_list():
 	for child in %ParentBoxContainer.get_children():
