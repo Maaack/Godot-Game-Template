@@ -97,8 +97,7 @@ static func get_device_name(event: InputEvent) -> String:
 			for keyword in SDL_DEVICE_NAMES[device_key]:
 				if device_name.containsn(keyword):
 					return device_key
-		return DEVICE_GENERIC
-	return ""
+	return DEVICE_GENERIC
 
 static func _display_server_supports_keycode_from_physical():
 	return OS.has_feature("windows") or OS.has_feature("macos") or OS.has_feature("linux")
