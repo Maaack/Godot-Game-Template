@@ -91,7 +91,9 @@ static func has_joypad() -> bool:
 
 static func get_device_name(event: InputEvent) -> String:
 	if event is InputEventJoypadButton or event is InputEventJoypadMotion:
-		var device_id = event.device if event.device > -1 else 0
+		if event.device == -1:
+			return DEVICE_GENERIC
+		var device_id = event.device
 		var device_name = Input.get_joy_name(device_id)
 		for device_key in SDL_DEVICE_NAMES:
 			for keyword in SDL_DEVICE_NAMES[device_key]:
