@@ -53,7 +53,8 @@ const BUTTON_NAME_GROUP_STRING : String = "%s:%d"
 ## Maps the names of input actions to readable names for users.
 @export var action_name_map : Dictionary
 
-var button_action_map : Dictionary = {}
+var action_button_map : Dictionary = {}
+var button_readable_input_map : Dictionary = {}
 var assigned_input_events : Dictionary = {}
 var editing_action_name : String = ""
 var editing_action_group : int = 0
@@ -96,46 +97,52 @@ func _add_header():
 		new_action_box.add_child(new_label)
 	%ParentBoxContainer.add_child(new_action_box)
 
-func _add_to_button_action_map(action_name : String, action_group : int, button_node : BaseButton):
+func _add_to_action_button_map(action_name : String, action_group : int, button_node : BaseButton):
 	var key_string : String = BUTTON_NAME_GROUP_STRING % [action_name, action_group]
-	button_action_map[key_string] = button_node
+	action_button_map[key_string] = button_node
 
 func _update_next_button_disabled_state(action_name : String, action_group : int):
 	var key_string : String = BUTTON_NAME_GROUP_STRING % [action_name, action_group + 1]
-	if key_string in button_action_map:
-		var button = button_action_map[key_string]
+	if key_string in action_button_map:
+		var button = action_button_map[key_string]
 		button.disabled = false
 
 func _update_assigned_inputs_and_button(action_name : String, action_group : int, input_event : InputEvent):
-	var new_readable_action_name = InputEventHelper.get_text(input_event)
+	var new_readable_input_name = InputEventHelper.get_text(input_event)
 	var key_string : String = BUTTON_NAME_GROUP_STRING % [action_name, action_group]
-	var button = button_action_map[key_string]
-	var old_readable_action_name = button.text
-	button.text = new_readable_action_name
-	assigned_input_events.erase(old_readable_action_name)
-	assigned_input_events[new_readable_action_name] = action_name
+	var button = action_button_map[key_string]
+	if input_event is InputEventJoypadButton or input_event is InputEventJoypadMotion:
+		if input_icon_matcher:
+			var specific_text = InputEventHelper.get_joypad_specific_text(input_event)
+			var icon = input_icon_matcher.get_icon(specific_text, last_joypad_device)
+			if icon:
+				button.icon = icon
+	var old_readable_input_name = ""
+	if button in button_readable_input_map:
+		old_readable_input_name = button_readable_input_map[button]
+	if button.icon == null:
+		button.text = new_readable_input_name
+	assigned_input_events.erase(old_readable_input_name)
+	button_readable_input_map[button] = new_readable_input_name
+	assigned_input_events[new_readable_input_name] = action_name
 
-func _add_new_icon_button(icon : Texture, action_name: String, group_iter: int, container: Control, disabled : bool = false):
-		var new_button := Button.new()
-		new_button.size_flags_horizontal = SIZE_EXPAND_FILL
-		new_button.size_flags_vertical = SIZE_EXPAND_FILL
-		new_button.icon = icon
+func _add_new_button(content : Variant, container: Control, disabled : bool = false) -> Button:
+	var new_button := Button.new()
+	new_button.size_flags_horizontal = SIZE_EXPAND_FILL
+	new_button.size_flags_vertical = SIZE_EXPAND_FILL
+	if content is Texture:
+		new_button.icon = content
 		new_button.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		new_button.disabled = disabled
-		new_button.pressed.connect(_on_button_pressed.bind(action_name, group_iter))
-		container.add_child(new_button)
-		_add_to_button_action_map(action_name, group_iter, new_button)
+	elif content is String:
+		new_button.text = content
+	new_button.disabled = disabled
+	container.add_child(new_button)
+	return new_button
 
-func _add_new_button(text : String, action_name: String, group_iter: int, container: Control, disabled : bool = false):
-		var new_button := Button.new()
-		new_button.clip_text = true
-		new_button.size_flags_horizontal = SIZE_EXPAND_FILL
-		new_button.size_flags_vertical = SIZE_EXPAND_FILL
-		new_button.text = text
-		new_button.disabled = disabled
-		new_button.pressed.connect(_on_button_pressed.bind(action_name, group_iter))
-		container.add_child(new_button)
-		_add_to_button_action_map(action_name, group_iter, new_button)
+func _connect_button_and_add_to_maps(button : Button, input_name : String, action_name : String, group_iter : int):
+	button.pressed.connect(_on_button_pressed.bind(action_name, group_iter))
+	button_readable_input_map[button] = input_name
+	_add_to_action_button_map(action_name, group_iter, button)
 
 func _add_action_options(action_name : String, readable_action_name : String, input_events : Array[InputEvent]):
 	var new_action_box = %ActionBoxContainer.duplicate()
@@ -149,14 +156,13 @@ func _add_action_options(action_name : String, readable_action_name : String, in
 		var text = InputEventHelper.get_text(input_event)
 		var is_disabled = group_iter > input_events.size()
 		if text.is_empty(): text = " "
-		if input_event is InputEventJoypadButton or input_event is InputEventJoypadMotion:
-			text = "%s %s" % [last_joypad_device, text]
+		var icon : Texture
 		if input_icon_matcher:
-			var icon = input_icon_matcher.get_icon(text)
-			if icon:
-				_add_new_icon_button(icon, action_name, group_iter, new_action_box, is_disabled)
-				continue
-		_add_new_button(text, action_name, group_iter, new_action_box, is_disabled)
+			var specific_text = InputEventHelper.get_joypad_specific_text(input_event)
+			icon = input_icon_matcher.get_icon(specific_text, last_joypad_device)
+		var content = icon if icon else text
+		var button : Button = _add_new_button(content, new_action_box, is_disabled)
+		_connect_button_and_add_to_maps(button, text, action_name, group_iter)
 	%ParentBoxContainer.add_child(new_action_box)
 
 func _get_all_action_names(include_built_in : bool = false) -> Array[StringName]:

@@ -44,9 +44,9 @@ const JOY_BUTTON_NAMES : Dictionary = {
 	JOY_BUTTON_RIGHT_SHOULDER: "Right Shoulder",
 	JOY_BUTTON_LEFT_STICK: "Left Trigger",
 	JOY_BUTTON_RIGHT_STICK: "Right Trigger",
-	JOY_BUTTON_START : "Start",
-	JOY_BUTTON_GUIDE : "Guide",
-	JOY_BUTTON_BACK : "Back",
+	JOY_BUTTON_START : "Button Start",
+	JOY_BUTTON_GUIDE : "Button Guide",
+	JOY_BUTTON_BACK : "Button Back",
 	JOY_BUTTON_DPAD_UP : D_PAD_NAME + " Up",
 	JOY_BUTTON_DPAD_DOWN : D_PAD_NAME + " Down",
 	JOY_BUTTON_DPAD_LEFT : D_PAD_NAME + " Left",
@@ -107,12 +107,8 @@ static func get_text(event : InputEvent) -> String:
 	if event == null:
 		return ""
 	if event is InputEventJoypadButton:
-		var device_name = get_device_name(event)
-		print("device: %s %d " % [device_name, event.device])
-		if event.button_index in JOYPAD_DPAD_NAMES:
-			return JOYPAD_DPAD_NAMES[event.button_index]
-		if event.button_index < JOYPAD_BUTTON_NAME_MAP[device_name].size():
-			return JOYPAD_BUTTON_NAME_MAP[device_name][event.button_index]
+		if event.button_index in JOY_BUTTON_NAMES:
+			return JOY_BUTTON_NAMES[event.button_index]
 	elif event is InputEventJoypadMotion:
 		var full_string := ""
 		var direction_string := ""
@@ -144,3 +140,12 @@ static func get_text(event : InputEvent) -> String:
 			keycode = DisplayServer.keyboard_get_keycode_from_physical(keycode)
 		return OS.get_keycode_string(keycode)
 	return event.as_text()
+
+static func get_joypad_specific_text(event : InputEvent) -> String:
+	if event is InputEventJoypadButton:
+		var device_name = get_device_name(event)
+		if event.button_index in JOYPAD_DPAD_NAMES:
+			return JOYPAD_DPAD_NAMES[event.button_index]
+		if event.button_index < JOYPAD_BUTTON_NAME_MAP[device_name].size():
+			return JOYPAD_BUTTON_NAME_MAP[device_name][event.button_index]
+	return get_text(event)

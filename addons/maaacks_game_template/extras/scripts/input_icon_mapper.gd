@@ -74,8 +74,9 @@ func _match_icons_to_inputs():
 	for file in files:
 		_match_icon_to_file(file)
 
-func get_icon(input_string : String) -> Texture:
+func get_icon(input_string : String, device : String = "") -> Texture:
+	if not device.is_empty():
+		input_string = "%s %s" % [device, input_string]
 	if input_string not in matching_icons:
-		print("why not %s" % input_string)
 		return null
 	return matching_icons[input_string]
