@@ -101,16 +101,21 @@ func _add_to_action_button_map(action_name : String, action_group : int, button_
 	var key_string : String = BUTTON_NAME_GROUP_STRING % [action_name, action_group]
 	action_button_map[key_string] = button_node
 
-func _update_next_button_disabled_state(action_name : String, action_group : int):
-	var key_string : String = BUTTON_NAME_GROUP_STRING % [action_name, action_group + 1]
+func _get_button_by_action(action_name : String, action_group : int) -> Button:
+	var key_string : String = BUTTON_NAME_GROUP_STRING % [action_name, action_group]
 	if key_string in action_button_map:
-		var button = action_button_map[key_string]
+		return action_button_map[key_string]
+	return null
+
+func _update_next_button_disabled_state(action_name : String, action_group : int):
+	var button = _get_button_by_action(action_name, action_group)
+	if button:
 		button.disabled = false
 
 func _update_assigned_inputs_and_button(action_name : String, action_group : int, input_event : InputEvent):
 	var new_readable_input_name = InputEventHelper.get_text(input_event)
-	var key_string : String = BUTTON_NAME_GROUP_STRING % [action_name, action_group]
-	var button = action_button_map[key_string]
+	var button = _get_button_by_action(action_name, action_group)
+	if not button: return
 	if input_event is InputEventJoypadButton or input_event is InputEventJoypadMotion:
 		if input_icon_matcher:
 			var specific_text = InputEventHelper.get_joypad_specific_text(input_event)
@@ -122,6 +127,8 @@ func _update_assigned_inputs_and_button(action_name : String, action_group : int
 		old_readable_input_name = button_readable_input_map[button]
 	if button.icon == null:
 		button.text = new_readable_input_name
+	else:
+		button.text = ""
 	assigned_input_events.erase(old_readable_input_name)
 	button_readable_input_map[button] = new_readable_input_name
 	assigned_input_events[new_readable_input_name] = action_name
@@ -130,9 +137,9 @@ func _add_new_button(content : Variant, container: Control, disabled : bool = fa
 	var new_button := Button.new()
 	new_button.size_flags_horizontal = SIZE_EXPAND_FILL
 	new_button.size_flags_vertical = SIZE_EXPAND_FILL
+	new_button.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	if content is Texture:
 		new_button.icon = content
-		new_button.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	elif content is String:
 		new_button.text = content
 	new_button.disabled = disabled
@@ -257,8 +264,19 @@ func _ready():
 	_build_assigned_input_events()
 	_build_ui_list()
 
+func _refresh_ui_list_button_content():
+	var action_names : Array[StringName] = _get_all_action_names(show_built_in_actions)
+	for action_name in action_names:
+		var input_events := InputMap.action_get_events(action_name)
+		if input_events.size() < 1:
+			continue
+		var group_iter : int = 0
+		for input_event in input_events:
+			_update_assigned_inputs_and_button(action_name, group_iter, input_event)
+			group_iter += 1
+
 func _input(event):
 	var device_name = InputEventHelper.get_device_name(event)
 	if !device_name.is_empty() and device_name != last_joypad_device:
 		last_joypad_device = device_name
-		_build_ui_list()
+		_refresh_ui_list_button_content()
