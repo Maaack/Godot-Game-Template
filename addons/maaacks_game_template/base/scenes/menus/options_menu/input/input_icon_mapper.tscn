@@ -4,6 +4,8 @@
 
 [node name="InputIconMapper" type="Node"]
 script = ExtResource("1_msrpt")
+prioritized_strings = Array[String](["color", "colored", "colour", "coloured"])
+filtered_strings = Array[String](["color", "colored", "colour", "coloured"])
 directories = Array[String](["res://assets/kenney_input-prompts/Keyboard & Mouse/Default", "res://assets/kenney_input-prompts/Xbox Series/Default", "res://assets/kenney_input-prompts/PlayStation Series/Default", "res://assets/kenney_input-prompts/Generic/Default"])
 filter = "_outline"
 ends_with = ".png"

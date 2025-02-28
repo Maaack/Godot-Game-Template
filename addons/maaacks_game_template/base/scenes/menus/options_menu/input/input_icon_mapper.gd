@@ -21,8 +21,6 @@ const REPLACE_PART_MAP :  Dictionary[String, String] = {
 	"R": " Right Trigger",
 	"Lt": " Left Trigger",
 	"Rt": " Right Trigger",
-	"Color": "",
-	"Colored": "",
 }
 const REPLACE_NAMES_MAP : Dictionary[String, String] = {
 	"Generic Stick": "Generic Left Stick",
@@ -31,7 +29,8 @@ const REPLACE_NAMES_MAP : Dictionary[String, String] = {
 }
 
 ## Will use the button colored versions when available
-@export var use_color : bool = true
+@export var prioritized_strings : Array[String] = []
+@export var filtered_strings : Array[String] = []
 @export var matching_icons : Dictionary[String, Texture] = {}
 @export_group("Debug")
 @export var all_icons : Dictionary[String, Texture] = {}
@@ -43,6 +42,8 @@ func _get_standard_joy_name(joystick_name : String) -> String:
 			break
 	var combined_joystick_name : String = ""
 	for part in joystick_name.split(" "):
+		if part.to_lower() in filtered_strings:
+			continue
 		if part in REPLACE_PART_MAP:
 			part = REPLACE_PART_MAP[part]
 		if not part.is_empty():
@@ -67,9 +68,9 @@ func _match_icon_to_file(file : String):
 
 func _match_icons_to_inputs():
 	matching_icons.clear()
-	if use_color:
+	for prioritized_string in prioritized_strings:
 		for file in files:
-			if file.containsn("color") or file.containsn("colored"):
+			if file.containsn(prioritized_string):
 				_match_icon_to_file(file)
 	for file in files:
 		_match_icon_to_file(file)
