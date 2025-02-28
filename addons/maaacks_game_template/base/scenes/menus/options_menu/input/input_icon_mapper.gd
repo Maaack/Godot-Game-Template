@@ -66,12 +66,35 @@ func _match_icon_to_file(file : String):
 		return
 	matching_icons[matching_string] = icon
 
-func _match_icons_to_inputs():
-	matching_icons.clear()
+func _prioritized_files() -> Array[String]:
+	var priority_levels : Dictionary[String, int]
+	var priortized_files : Array[String]
 	for prioritized_string in prioritized_strings:
 		for file in files:
 			if file.containsn(prioritized_string):
-				_match_icon_to_file(file)
+				if file in priority_levels:
+					priority_levels[file] += 1
+				else:
+					priority_levels[file] = 1
+	var priority_file_map : Dictionary[int, Array]
+	var max_priority_level : int = 0
+	for file in priority_levels:
+		var priority_level = priority_levels[file]
+		max_priority_level = max(priority_level, max_priority_level)
+		if priority_level in priority_file_map:
+			priority_file_map[priority_level].append(file)
+		else:
+			priority_file_map[priority_level] = [file]
+	while max_priority_level > 0:
+		for priority_file in priority_file_map[max_priority_level]:
+			priortized_files.append(priority_file)
+		max_priority_level -= 1
+	return priortized_files
+
+func _match_icons_to_inputs():
+	matching_icons.clear()
+	for prioritized_file in _prioritized_files():
+		_match_icon_to_file(prioritized_file)
 	for file in files:
 		_match_icon_to_file(file)
 
