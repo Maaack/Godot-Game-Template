@@ -13,18 +13,18 @@ const REPLACE_PART_MAP :  Dictionary[String, String] = {
 	"RB": " Right Shoulder",
 	"Lb": " Left Shoulder",
 	"Rb": " Right Shoulder",
-	"LS": " Left Stick",
-	"RS": " Right Stick",
-	"Ls": " Left Stick",
-	"Rs": " Right Stick",
-	"L": " Left Stick",
-	"R": " Right Stick",
-	"Lt": " Left Stick",
-	"Rt": " Right Stick",
+	"LS": " Left Trigger",
+	"RS": " Right Trigger",
+	"Ls": " Left Trigger",
+	"Rs": " Right Trigger",
+	"L": " Left Trigger",
+	"R": " Right Trigger",
+	"Lt": " Left Trigger",
+	"Rt": " Right Trigger",
 }
 const REPLACE_NAMES_MAP : Dictionary[String, String] = {
-	"Stick L": "Left Joystick",
-	"Stick R": "Right Joystick",
+	"Stick L": "Left Stick",
+	"Stick R": "Right Stick",
 }
 
 @export var matching_icons : Dictionary[String, Texture] = {}
@@ -32,16 +32,18 @@ const REPLACE_NAMES_MAP : Dictionary[String, String] = {
 @export var all_icons : Dictionary[String, Texture] = {}
 
 func _get_standard_joy_name(joystick_name : String) -> String:
-	var standard_joystick_name : String = ""
+	for what in REPLACE_NAMES_MAP:
+		if joystick_name.contains(what):
+			joystick_name = joystick_name.replace(what, REPLACE_NAMES_MAP[what])
+			break
+	var combined_joystick_name : String = ""
 	for part in joystick_name.split(" "):
 		if part in REPLACE_PART_MAP:
-			standard_joystick_name += REPLACE_PART_MAP[part]
+			combined_joystick_name += REPLACE_PART_MAP[part]
 		else:
-			standard_joystick_name += " %s" % part
-	for what in REPLACE_NAMES_MAP:
-		standard_joystick_name = standard_joystick_name.replace(what, REPLACE_NAMES_MAP[what])
-	standard_joystick_name = standard_joystick_name.strip_edges()
-	return standard_joystick_name
+			combined_joystick_name += " %s" % part
+	joystick_name = combined_joystick_name.strip_edges()
+	return joystick_name
 
 func _match_icons_to_inputs():
 	matching_icons.clear()

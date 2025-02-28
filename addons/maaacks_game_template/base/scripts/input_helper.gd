@@ -2,27 +2,47 @@ class_name InputEventHelper
 extends Node
 ## Helper class for organizing constants related to [InputEvent].
 
-const JOYSTICK_LEFT_NAME = "Left Gamepad Joystick"
-const JOYSTICK_RIGHT_NAME = "Right Gamepad Joystick"
-const D_PAD_NAME = "Gamepad D-pad"
+const DEVICE_KEYBOARD = "Keyboard"
+const DEVICE_MOUSE = "Mouse"
+const DEVICE_XBOX_CONTROLLER = "Xbox"
+const DEVICE_SWITCH_CONTROLLER = "Switch"
+const DEVICE_SWITCH_JOYCON_LEFT_CONTROLLER = "Switch Left Joycon"
+const DEVICE_SWITCH_JOYCON_RIGHT_CONTROLLER = "Switch Right Joycon"
+const DEVICE_SWITCH_JOYCON_COMBINED_CONTROLLER = "Switch Combined Joycons"
+const DEVICE_PLAYSTATION_CONTROLLER = "Playstation"
+const DEVICE_STEAMDECK_CONTROLLER = "Steamdeck"
+const DEVICE_GENERIC = "Generic"
+
+const JOYSTICK_LEFT_NAME = "Left Stick"
+const JOYSTICK_RIGHT_NAME = "Right Stick"
+const D_PAD_NAME = "D-pad"
+
+const SDL_DEVICE_NAMES: Dictionary = {
+	DEVICE_XBOX_CONTROLLER: ["XInput", "XBox"],
+	DEVICE_PLAYSTATION_CONTROLLER: ["Sony", "PS5", "PS4", "Nacon"],
+	DEVICE_STEAMDECK_CONTROLLER: ["Steam"],
+	DEVICE_SWITCH_CONTROLLER: ["Switch"],
+	DEVICE_SWITCH_JOYCON_LEFT_CONTROLLER: ["Joy-Con (L)", "Left Joy-Con"],
+	DEVICE_SWITCH_JOYCON_RIGHT_CONTROLLER: ["Joy-Con (R)", "Right Joy-Con"],
+	DEVICE_SWITCH_JOYCON_COMBINED_CONTROLLER: ["Joy-Con (L/R)", "Combined Joy-Cons"],
+}
 
 const JOY_BUTTON_NAMES : Dictionary = {
-	JOY_BUTTON_A: "A Gamepad Button",
-	JOY_BUTTON_B: "B Gamepad Button",
-	JOY_BUTTON_X: "X Gamepad Button",
-	JOY_BUTTON_Y: "Y Gamepad Button",
-	JOY_BUTTON_LEFT_SHOULDER: "Left Shoulder Gamepad Button",
-	JOY_BUTTON_RIGHT_SHOULDER: "Right Shoulder Gamepad Button",
-	JOY_BUTTON_LEFT_STICK: "Left Stick Gamepad Button",
-	JOY_BUTTON_RIGHT_STICK: "Right Stick Gamepad Button",
-	JOY_BUTTON_START : "Start Gamepad Button",
-	JOY_BUTTON_GUIDE : "Guide Gamepad Button",
-	JOY_BUTTON_BACK : "Back Gamepad Button",
+	JOY_BUTTON_A: "Button A",
+	JOY_BUTTON_B: "Button B",
+	JOY_BUTTON_X: "Button X",
+	JOY_BUTTON_Y: "Button Y",
+	JOY_BUTTON_LEFT_SHOULDER: "Left Shoulder",
+	JOY_BUTTON_RIGHT_SHOULDER: "Right Shoulder",
+	JOY_BUTTON_LEFT_STICK: "Left Trigger",
+	JOY_BUTTON_RIGHT_STICK: "Right Trigger",
+	JOY_BUTTON_START : "Start",
+	JOY_BUTTON_GUIDE : "Guide",
+	JOY_BUTTON_BACK : "Back",
 	JOY_BUTTON_DPAD_UP : D_PAD_NAME + " Up",
 	JOY_BUTTON_DPAD_DOWN : D_PAD_NAME + " Down",
 	JOY_BUTTON_DPAD_LEFT : D_PAD_NAME + " Left",
 	JOY_BUTTON_DPAD_RIGHT : D_PAD_NAME + " Right",
-	
 }
 
 const JOY_AXIS_NAMES : Dictionary = {
@@ -50,6 +70,23 @@ const BUILT_IN_ACTION_NAME_MAP : Dictionary = {
 	"ui_undo" : "Undo",
 	"ui_redo" : "Redo",
 }
+
+
+static func has_joypad() -> bool:
+	return Input.get_connected_joypads().size() > 0
+
+static func get_generic_device_name(device_name: String) -> String:
+	for device_key in SDL_DEVICE_NAMES:
+		for keyword in SDL_DEVICE_NAMES[device_key]:
+			if device_name.containsn(keyword):
+				return device_key
+	return DEVICE_GENERIC
+
+static func get_non_generic_device_name(device_name: String) -> String:
+	var result_name = get_generic_device_name(device_name)
+	if result_name == DEVICE_GENERIC:
+		return DEVICE_XBOX_CONTROLLER
+	return DEVICE_GENERIC
 
 static func _display_server_supports_keycode_from_physical():
 	return OS.has_feature("windows") or OS.has_feature("macos") or OS.has_feature("linux")
