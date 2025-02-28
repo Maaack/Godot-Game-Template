@@ -115,12 +115,12 @@ func _update_assigned_inputs_and_button(action_name : String, action_group : int
 	assigned_input_events.erase(old_readable_action_name)
 	assigned_input_events[new_readable_action_name] = action_name
 
-func _add_new_texture_button(texture : Texture, action_name: String, group_iter: int, container: Control, disabled : bool = false):
-		var new_button := TextureButton.new()
+func _add_new_icon_button(icon : Texture, action_name: String, group_iter: int, container: Control, disabled : bool = false):
+		var new_button := Button.new()
 		new_button.size_flags_horizontal = SIZE_EXPAND_FILL
 		new_button.size_flags_vertical = SIZE_EXPAND_FILL
-		new_button.stretch_mode = TextureButton.STRETCH_KEEP_ASPECT_CENTERED
-		new_button.texture_normal = texture
+		new_button.icon = icon
+		new_button.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		new_button.disabled = disabled
 		new_button.pressed.connect(_on_button_pressed.bind(action_name, group_iter))
 		container.add_child(new_button)
@@ -154,7 +154,7 @@ func _add_action_options(action_name : String, readable_action_name : String, in
 		if input_icon_matcher:
 			var icon = input_icon_matcher.get_icon(text)
 			if icon:
-				_add_new_texture_button(icon, action_name, group_iter, new_action_box, is_disabled)
+				_add_new_icon_button(icon, action_name, group_iter, new_action_box, is_disabled)
 				continue
 		_add_new_button(text, action_name, group_iter, new_action_box, is_disabled)
 	%ParentBoxContainer.add_child(new_action_box)
