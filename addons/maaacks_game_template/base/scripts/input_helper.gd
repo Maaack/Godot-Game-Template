@@ -17,6 +17,14 @@ const JOYSTICK_LEFT_NAME = "Left Stick"
 const JOYSTICK_RIGHT_NAME = "Right Stick"
 const D_PAD_NAME = "D-pad"
 
+const JOYPAD_BUTTON_NAME_MAP : Dictionary[String, Array] = {
+	DEVICE_GENERIC : ["Button Trigger A", "Button Trigger B", "Button Trigger C", "", "", "", "", "Left Stick", "Right Stick", "Left Shoulder", "Right Shoulder", "Up", "Down", "Left", "Right"],
+	DEVICE_XBOX_CONTROLLER : ["Button A", "Button B", "Button X", "Button Y", "Button Back", "Button Home", "Button Menu", "Left Stick", "Right Stick", "Left Shoulder", "Right Shoulder", "Up", "Down", "Left", "Right", "Button Share"],
+	DEVICE_SWITCH_CONTROLLER : ["Button B", "Button A", "Button Y", "Button X", "Button Minus", "", "Button Plus", "Left Stick", "Right Stick", "Left Shoulder", "Right Shoulder", "Up", "Down", "Left", "Right", "Button Capture"],
+	DEVICE_PLAYSTATION_CONTROLLER : ["Button Cross", "Button Circle", "Button Square", "Button Triangle", "Button Select", "Button PS", "Button Options", "L3", "R3", "L1", "R1", "Up", "Down", "Left", "Right", "Button Microphone"],
+	DEVICE_STEAMDECK_CONTROLLER : ["Button A", "Button B", "Button X", "Button Y", "Button View", "", "Button Options", "Left Stick", "Right Stick", "Left Shoulder", "Right Shoulder", "Up", "Down", "Left", "Right"]
+} 
+
 const SDL_DEVICE_NAMES: Dictionary = {
 	DEVICE_XBOX_CONTROLLER: ["XInput", "XBox"],
 	DEVICE_PLAYSTATION_CONTROLLER: ["Sony", "PS5", "PS4", "Nacon"],
@@ -39,6 +47,13 @@ const JOY_BUTTON_NAMES : Dictionary = {
 	JOY_BUTTON_START : "Start",
 	JOY_BUTTON_GUIDE : "Guide",
 	JOY_BUTTON_BACK : "Back",
+	JOY_BUTTON_DPAD_UP : D_PAD_NAME + " Up",
+	JOY_BUTTON_DPAD_DOWN : D_PAD_NAME + " Down",
+	JOY_BUTTON_DPAD_LEFT : D_PAD_NAME + " Left",
+	JOY_BUTTON_DPAD_RIGHT : D_PAD_NAME + " Right",
+}
+
+const JOYPAD_DPAD_NAMES : Dictionary = {
 	JOY_BUTTON_DPAD_UP : D_PAD_NAME + " Up",
 	JOY_BUTTON_DPAD_DOWN : D_PAD_NAME + " Down",
 	JOY_BUTTON_DPAD_LEFT : D_PAD_NAME + " Left",
@@ -71,22 +86,19 @@ const BUILT_IN_ACTION_NAME_MAP : Dictionary = {
 	"ui_redo" : "Redo",
 }
 
-
 static func has_joypad() -> bool:
 	return Input.get_connected_joypads().size() > 0
 
-static func get_generic_device_name(device_name: String) -> String:
-	for device_key in SDL_DEVICE_NAMES:
-		for keyword in SDL_DEVICE_NAMES[device_key]:
-			if device_name.containsn(keyword):
-				return device_key
-	return DEVICE_GENERIC
-
-static func get_non_generic_device_name(device_name: String) -> String:
-	var result_name = get_generic_device_name(device_name)
-	if result_name == DEVICE_GENERIC:
-		return DEVICE_XBOX_CONTROLLER
-	return DEVICE_GENERIC
+static func get_device_name(event: InputEvent) -> String:
+	if event is InputEventJoypadButton or event is InputEventJoypadMotion:
+		var device_id = event.device if event.device > -1 else 0
+		var device_name = Input.get_joy_name(device_id)
+		for device_key in SDL_DEVICE_NAMES:
+			for keyword in SDL_DEVICE_NAMES[device_key]:
+				if device_name.containsn(keyword):
+					return device_key
+		return DEVICE_GENERIC
+	return ""
 
 static func _display_server_supports_keycode_from_physical():
 	return OS.has_feature("windows") or OS.has_feature("macos") or OS.has_feature("linux")
@@ -95,8 +107,12 @@ static func get_text(event : InputEvent) -> String:
 	if event == null:
 		return ""
 	if event is InputEventJoypadButton:
-		if event.button_index in JOY_BUTTON_NAMES:
-			return JOY_BUTTON_NAMES[event.button_index] 
+		var device_name = get_device_name(event)
+		print("device: %s %d " % [device_name, event.device])
+		if event.button_index in JOYPAD_DPAD_NAMES:
+			return JOYPAD_DPAD_NAMES[event.button_index]
+		if event.button_index < JOYPAD_BUTTON_NAME_MAP[device_name].size():
+			return JOYPAD_BUTTON_NAME_MAP[device_name][event.button_index]
 	elif event is InputEventJoypadMotion:
 		var full_string := ""
 		var direction_string := ""
