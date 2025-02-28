@@ -118,7 +118,7 @@ func _update_assigned_inputs_and_button(action_name : String, action_group : int
 	if not button: return
 	var icon : Texture
 	if input_icon_matcher:
-		var specific_text = InputEventHelper.get_joypad_specific_text(input_event)
+		var specific_text = InputEventHelper.get_joypad_specific_text(input_event, last_joypad_device)
 		icon = input_icon_matcher.get_icon(specific_text, last_joypad_device)
 	if icon:
 		button.icon = icon
@@ -167,7 +167,7 @@ func _add_action_options(action_name : String, readable_action_name : String, in
 		if text.is_empty(): text = " "
 		var icon : Texture
 		if input_icon_matcher:
-			var specific_text = InputEventHelper.get_joypad_specific_text(input_event)
+			var specific_text = InputEventHelper.get_joypad_specific_text(input_event, last_joypad_device)
 			icon = input_icon_matcher.get_icon(specific_text, last_joypad_device)
 		var content = icon if icon else text
 		var button : Button = _add_new_button(content, new_action_box, is_disabled)
@@ -271,14 +271,21 @@ func reset():
 	_build_assigned_input_events()
 	_refresh_ui_list_button_content()
 
+func _assign_joypad_0_to_last():
+	if last_joypad_device != InputEventHelper.DEVICE_GENERIC : return
+	var connected_joypads := Input.get_connected_joypads()
+	if connected_joypads.is_empty(): return
+	last_joypad_device = InputEventHelper.get_device_name_by_id(connected_joypads[0])
+
 func _ready():
 	if Engine.is_editor_hint(): return
 	vertical = vertical
 	_build_assigned_input_events()
+	_assign_joypad_0_to_last()
 	_build_ui_list()
 
 func _input(event):
 	var device_name = InputEventHelper.get_device_name(event)
-	if !device_name.is_empty() and device_name != last_joypad_device:
+	if device_name != InputEventHelper.DEVICE_GENERIC and device_name != last_joypad_device:
 		last_joypad_device = device_name
 		_refresh_ui_list_button_content()

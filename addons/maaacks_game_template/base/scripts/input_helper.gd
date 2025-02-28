@@ -89,16 +89,21 @@ const BUILT_IN_ACTION_NAME_MAP : Dictionary = {
 static func has_joypad() -> bool:
 	return Input.get_connected_joypads().size() > 0
 
-static func get_device_name(event: InputEvent) -> String:
-	if event is InputEventJoypadButton or event is InputEventJoypadMotion:
-		if event.device == -1:
-			return DEVICE_GENERIC
-		var device_id = event.device
+static func get_device_name_by_id(device_id : int) -> String:
+	if device_id >= 0:
 		var device_name = Input.get_joy_name(device_id)
 		for device_key in SDL_DEVICE_NAMES:
 			for keyword in SDL_DEVICE_NAMES[device_key]:
 				if device_name.containsn(keyword):
 					return device_key
+	return DEVICE_GENERIC
+
+static func get_device_name(event: InputEvent) -> String:
+	if event is InputEventJoypadButton or event is InputEventJoypadMotion:
+		if event.device == -1:
+			return DEVICE_GENERIC
+		var device_id = event.device
+		return get_device_name_by_id(device_id)
 	return DEVICE_GENERIC
 
 static func _display_server_supports_keycode_from_physical():
@@ -142,9 +147,10 @@ static func get_text(event : InputEvent) -> String:
 		return OS.get_keycode_string(keycode)
 	return event.as_text()
 
-static func get_joypad_specific_text(event : InputEvent) -> String:
+static func get_joypad_specific_text(event : InputEvent, device_name : String = "") -> String:
 	if event is InputEventJoypadButton:
-		var device_name = get_device_name(event)
+		if device_name.is_empty():
+			device_name = get_device_name(event)
 		if event.button_index in JOYPAD_DPAD_NAMES:
 			return JOYPAD_DPAD_NAMES[event.button_index]
 		if event.button_index < JOYPAD_BUTTON_NAME_MAP[device_name].size():
