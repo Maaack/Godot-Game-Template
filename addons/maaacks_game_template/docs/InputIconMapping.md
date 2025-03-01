@@ -25,7 +25,7 @@ Set `replace_strings` with the key pairs:
 * `"Trigger R 2": "Right Trigger"`  
 
 ### Filled Icons
-
+![Kenney Filled Icons](../media/screenshot-5-kenney-2.png)
 Under the `FileLister` properties of the `InputIconMapper`, expand the `Constraints` and `Advanced Search` tabs. Set `ends_with=".png"` and `not_ends_with="outline.png"`.
 
 Press `Refresh Files`.
@@ -42,7 +42,7 @@ Press `Match Icons to Inputs`.
 Validate the results by inspecting the `matching_icons` dictionary.
 
 ### Outlined Icons
-
+![Kenney Outlined Icons](../media/screenshot-5-kenney-4.png)
 Not all icons have outlined versions, so we will end up including the filled icons as fallback, and prioritizing outlined.
 
 Under the `FileLister` properties of  the `InputIconMapper`, expand the `Constraints` and `Advanced Search` export groups. Set `ends_with=".png"`. 
@@ -66,6 +66,8 @@ Validate the results by inspecting the `matching_icons` dictionary.
 Incompatible: File names not useable.
 
 ## Xelu 's Free Controller & Key Prompts
+
+![Xelu's Icons](../media/screenshot-5-xelu-2.png)
 Available from [thoseawesomeguys.com](https://thoseawesomeguys.com/prompts/).
 
 This pack is organized by `Device`. In the inspector of `InputIconMapper`, set the `directories` to include the subdirectories of the asset pack. Assumes using the `Dark` icon set with the keyboard and mouse.
@@ -101,6 +103,8 @@ Validate the results by inspecting the `matching_icons` dictionary.
 
 
 ## Free Icon Pack for Unity & Unreal – 1500+ Input Icons for Game UI
+
+![Julio Cacko's Icons](../media/screenshot-5-juliocacko-2.png)
 Available from [itch.io](https://juliocacko.itch.io/free-input-prompts).
 
 This pack is organized by `Device/IconType`. In the inspector of `InputIconMapper`, set the `directories` to include the subdirectories of the asset pack. Assumes using the `Dark` icon set with the keyboard and mouse, and `Default` for the others.
