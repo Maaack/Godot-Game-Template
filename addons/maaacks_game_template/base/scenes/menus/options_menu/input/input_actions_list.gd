@@ -112,14 +112,21 @@ func _update_next_button_disabled_state(action_name : String, action_group : int
 	if button:
 		button.disabled = false
 
+func _get_icon(input_event : InputEvent) -> Texture:
+	var icon : Texture
+	if input_icon_matcher:
+		var specific_text = InputEventHelper.get_joypad_specific_text(input_event, last_joypad_device)
+		var device := ""
+		if InputEventHelper.is_joypad_event(input_event):
+			device = last_joypad_device
+		icon = input_icon_matcher.get_icon(specific_text, device)
+	return icon
+
 func _update_assigned_inputs_and_button(action_name : String, action_group : int, input_event : InputEvent):
 	var new_readable_input_name = InputEventHelper.get_text(input_event)
 	var button = _get_button_by_action(action_name, action_group)
 	if not button: return
-	var icon : Texture
-	if input_icon_matcher:
-		var specific_text = InputEventHelper.get_joypad_specific_text(input_event, last_joypad_device)
-		icon = input_icon_matcher.get_icon(specific_text, last_joypad_device)
+	var icon : Texture = _get_icon(input_event)
 	if icon:
 		button.icon = icon
 	else:
@@ -165,10 +172,7 @@ func _add_action_options(action_name : String, readable_action_name : String, in
 		var text = InputEventHelper.get_text(input_event)
 		var is_disabled = group_iter > input_events.size()
 		if text.is_empty(): text = " "
-		var icon : Texture
-		if input_icon_matcher:
-			var specific_text = InputEventHelper.get_joypad_specific_text(input_event, last_joypad_device)
-			icon = input_icon_matcher.get_icon(specific_text, last_joypad_device)
+		var icon : Texture = _get_icon(input_event)
 		var content = icon if icon else text
 		var button : Button = _add_new_button(content, new_action_box, is_disabled)
 		_connect_button_and_add_to_maps(button, text, action_name, group_iter)

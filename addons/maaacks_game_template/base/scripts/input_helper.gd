@@ -89,6 +89,9 @@ const BUILT_IN_ACTION_NAME_MAP : Dictionary = {
 static func has_joypad() -> bool:
 	return Input.get_connected_joypads().size() > 0
 
+static func is_joypad_event(event: InputEvent) -> bool:
+	return event is InputEventJoypadButton or event is InputEventJoypadMotion
+
 static func get_device_name_by_id(device_id : int) -> String:
 	if device_id >= 0:
 		var device_name = Input.get_joy_name(device_id)

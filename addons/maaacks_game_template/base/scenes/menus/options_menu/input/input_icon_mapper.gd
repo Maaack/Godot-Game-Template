@@ -2,7 +2,6 @@
 class_name InputIconMapper
 extends FileLister
 
-@export_tool_button("Match Icons to Inputs") var _match_icons_to_inputs_action = _match_icons_to_inputs
 
 const KEYBOARD_INPUT_NAMES : Array[String] = ["keyboard", "kb", "key"]
 const MOUSE_INPUT_NAMES : Array[String] = ["mouse", "mouse_button"]
@@ -26,6 +25,8 @@ const REPLACE_PART_MAP :  Dictionary[String, String] = {
 @export var prioritized_strings : Array[String]
 @export var filtered_strings : Array[String]
 @export var replace_strings : Dictionary[String, String]
+@export var add_stick_directions : bool = false
+@export_tool_button("Match Icons to Inputs") var _match_icons_to_inputs_action = _match_icons_to_inputs
 @export var matching_icons : Dictionary[String, Texture]
 @export_group("Debug")
 @export var all_icons : Dictionary[String, Texture]
@@ -61,6 +62,11 @@ func _match_icon_to_file(file : String):
 	if matching_string in matching_icons:
 		return
 	matching_icons[matching_string] = icon
+	if add_stick_directions and matching_string.ends_with("Stick"):
+		matching_icons[matching_string + " Up"] = icon
+		matching_icons[matching_string + " Down"] = icon
+		matching_icons[matching_string + " Left"] = icon
+		matching_icons[matching_string + " Right"] = icon
 
 func _prioritized_files() -> Array[String]:
 	var priority_levels : Dictionary[String, int]
@@ -95,10 +101,8 @@ func _match_icons_to_inputs():
 		_match_icon_to_file(file)
 
 func get_icon(input_string : String, device : String = "") -> Texture:
-	if input_string in matching_icons:
-		return matching_icons[input_string]
 	if not device.is_empty():
 		input_string = "%s %s" % [device, input_string]
-		if input_string in matching_icons:
-			return matching_icons[input_string]
+	if input_string in matching_icons:
+		return matching_icons[input_string]
 	return null
