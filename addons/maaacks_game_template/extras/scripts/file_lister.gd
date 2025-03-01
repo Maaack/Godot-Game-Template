@@ -4,7 +4,11 @@ class_name FileLister
 ## Helper class for listing all the scenes in a directory.
 
 ## List of paths to scene files.
-@export_tool_button("Refresh Files") var _refresh_files_action = _refresh_files
+@export var _refresh_files_action : bool = false :
+	set(value):
+		_refresh_files()
+# For Godot 4.4
+# @export_tool_button("Refresh Files") var _refresh_files_action = _refresh_files
 ## Filled in the editor by selecting a directory.
 @export var files : Array[String]
 ## Fills files with those discovered in directories, and matching constraints.

@@ -19,13 +19,13 @@ const D_PAD_NAME = "Dpad"
 
 const MOUSE_BUTTONS : Array = ["None", "Left", "Right", "Middle", "Scroll Up", "Scroll Down", "Wheel Left", "Wheel Right"]
 
-const JOYPAD_BUTTON_NAME_MAP : Dictionary[String, Array] = {
+const JOYPAD_BUTTON_NAME_MAP : Dictionary = {
 	DEVICE_GENERIC : ["Trigger A", "Trigger B", "Trigger C", "", "", "", "", "Left Stick Press", "Right Stick Press", "Left Shoulder", "Right Shoulder", "Up", "Down", "Left", "Right"],
 	DEVICE_XBOX_CONTROLLER : ["A", "B", "X", "Y", "View", "Home", "Menu", "Left Stick Press", "Right Stick Press", "Left Shoulder", "Right Shoulder", "Up", "Down", "Left", "Right", "Share"],
 	DEVICE_SWITCH_CONTROLLER : ["B", "A", "Y", "X", "Minus", "", "Plus", "Left Stick Press", "Right Stick Press", "Left Shoulder", "Right Shoulder", "Up", "Down", "Left", "Right", "Capture"],
 	DEVICE_PLAYSTATION_CONTROLLER : ["Cross", "Circle", "Square", "Triangle", "Select", "PS", "Options", "Left Stick Press", "Right Stick Press", "Left Shoulder", "Right Shoulder", "Up", "Down", "Left", "Right", "Microphone"],
 	DEVICE_STEAMDECK_CONTROLLER : ["A", "B", "X", "Y", "View", "", "Options", "Left Stick Press", "Right Stick Press", "Left Shoulder", "Right Shoulder", "Up", "Down", "Left", "Right"]
-} 
+} # Dictionary[String, Array]
 
 const SDL_DEVICE_NAMES: Dictionary = {
 	DEVICE_XBOX_CONTROLLER: ["XInput", "XBox"],

@@ -4,4 +4,3 @@
 
 [node name="InputIconMapper" type="Node"]
 script = ExtResource("1_msrpt")
-ends_with = ".png"

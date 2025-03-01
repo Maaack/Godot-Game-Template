@@ -3,7 +3,7 @@ class_name InputIconMapper
 extends FileLister
 
 
-const COMMON_REPLACE_STRINGS: Dictionary[String, String] = {
+const COMMON_REPLACE_STRINGS: Dictionary = {
 	"L 1": "Left Shoulder",
 	"R 1": "Right Shoulder",
 	"L 2": "Left Trigger",
@@ -12,16 +12,23 @@ const COMMON_REPLACE_STRINGS: Dictionary[String, String] = {
 	"Rt": "Right Trigger",
 	"Lb": "Left Shoulder",
 	"Rb": "Right Shoulder",
-}
+} # Dictionary[String, String]
 ## Will use the button colored versions when available
 @export var prioritized_strings : Array[String]
 @export var filtered_strings : Array[String]
-@export var replace_strings : Dictionary[String, String]
+@export var replace_strings : Dictionary # Dictionary[String, String]
+
+## Attempt to match the icon names to the input names based on the string rules.
+@export var _match_icons_to_inputs_action : bool = false :
+	set(value):
+		_match_icons_to_inputs()
+# For Godot 4.4
+# @export_tool_button("Match Icons to Inputs") var _match_icons_to_inputs_action = _match_icons_to_inputs
 @export var add_stick_directions : bool = false
-@export_tool_button("Match Icons to Inputs") var _match_icons_to_inputs_action = _match_icons_to_inputs
-@export var matching_icons : Dictionary[String, Texture]
+
+@export var matching_icons : Dictionary # Dictionary[String, Texture]
 @export_group("Debug")
-@export var all_icons : Dictionary[String, Texture]
+@export var all_icons : Dictionary # Dictionary[String, Texture]
 
 func _is_end_of_word(full_string : String, what : String):
 	var string_end_position = full_string.find(what) + what.length()
@@ -69,7 +76,7 @@ func _match_icon_to_file(file : String):
 	matching_icons[matching_string] = icon
 
 func _prioritized_files() -> Array[String]:
-	var priority_levels : Dictionary[String, int]
+	var priority_levels : Dictionary # Dictionary[String, int]
 	var priortized_files : Array[String]
 	for prioritized_string in prioritized_strings:
 		for file in files:
@@ -78,7 +85,7 @@ func _prioritized_files() -> Array[String]:
 					priority_levels[file] += 1
 				else:
 					priority_levels[file] = 1
-	var priority_file_map : Dictionary[int, Array]
+	var priority_file_map : Dictionary # Dictionary[int, Array]
 	var max_priority_level : int = 0
 	for file in priority_levels:
 		var priority_level = priority_levels[file]
