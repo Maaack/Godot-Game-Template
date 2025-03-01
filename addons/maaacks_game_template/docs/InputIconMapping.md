@@ -52,6 +52,7 @@ Press `Refresh Files`.
 Set `filtered_strings` to:
 * `keyboard`
 * `color`
+* `button`
 * `outline`
 
 In `prioritized_strings` add `outline`. If you want to use colored icons, in `prioritized_strings` add `color`, too. Otherwise set `filter="color"`.  
