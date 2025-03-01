@@ -36,17 +36,17 @@ const SDL_DEVICE_NAMES: Dictionary = {
 }
 
 const JOY_BUTTON_NAMES : Dictionary = {
-	JOY_BUTTON_A: "A",
-	JOY_BUTTON_B: "B",
-	JOY_BUTTON_X: "X",
-	JOY_BUTTON_Y: "Y",
+	JOY_BUTTON_A: "Button A",
+	JOY_BUTTON_B: "Button B",
+	JOY_BUTTON_X: "Button X",
+	JOY_BUTTON_Y: "Button Y",
 	JOY_BUTTON_LEFT_SHOULDER: "Left Shoulder",
 	JOY_BUTTON_RIGHT_SHOULDER: "Right Shoulder",
 	JOY_BUTTON_LEFT_STICK: "Left Trigger",
 	JOY_BUTTON_RIGHT_STICK: "Right Trigger",
-	JOY_BUTTON_START : "Start",
-	JOY_BUTTON_GUIDE : "Guide",
-	JOY_BUTTON_BACK : "Back",
+	JOY_BUTTON_START : "Button Start",
+	JOY_BUTTON_GUIDE : "Button Guide",
+	JOY_BUTTON_BACK : "Button Back",
 	JOY_BUTTON_DPAD_UP : D_PAD_NAME + " Up",
 	JOY_BUTTON_DPAD_DOWN : D_PAD_NAME + " Down",
 	JOY_BUTTON_DPAD_LEFT : D_PAD_NAME + " Left",
@@ -61,8 +61,8 @@ const JOYPAD_DPAD_NAMES : Dictionary = {
 }
 
 const JOY_AXIS_NAMES : Dictionary = {
-	JOY_AXIS_TRIGGER_LEFT: "Left Trigger Gamepad Button",
-	JOY_AXIS_TRIGGER_RIGHT: "Right Trigger Gamepad Button",
+	JOY_AXIS_TRIGGER_LEFT: "Left Trigger",
+	JOY_AXIS_TRIGGER_RIGHT: "Right Trigger",
 }
 
 const BUILT_IN_ACTION_NAME_MAP : Dictionary = {

@@ -40,7 +40,9 @@ func _get_standard_joy_name(joy_name : String) -> String:
 	for part in joy_name.split(" "):
 		if part.to_lower() in filtered_strings:
 			continue
-		if part in REPLACE_PART_MAP:
+		if part.is_valid_int():
+			continue
+		if not combined_joystick_name.is_empty() and part in REPLACE_PART_MAP:
 			part = REPLACE_PART_MAP[part]
 		if not part.is_empty():
 			combined_joystick_name.append(part)
