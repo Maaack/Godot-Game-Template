@@ -115,10 +115,12 @@ func _update_next_button_disabled_state(action_name : String, action_group : int
 func _get_icon(input_event : InputEvent) -> Texture:
 	var icon : Texture
 	if input_icon_matcher:
-		var specific_text = InputEventHelper.get_joypad_specific_text(input_event, last_joypad_device)
+		var specific_text = InputEventHelper.get_device_specific_text(input_event, last_joypad_device)
 		var device := ""
 		if InputEventHelper.is_joypad_event(input_event):
 			device = last_joypad_device
+		elif InputEventHelper.is_mouse_event(input_event):
+			device = "Mouse"
 		icon = input_icon_matcher.get_icon(specific_text, device)
 	return icon
 

@@ -3,10 +3,6 @@ class_name InputIconMapper
 extends FileLister
 
 
-const KEYBOARD_INPUT_NAMES : Array[String] = ["keyboard", "kb", "key"]
-const MOUSE_INPUT_NAMES : Array[String] = ["mouse", "mouse_button"]
-const FILTERED_STRINGS : Array[String] = KEYBOARD_INPUT_NAMES + MOUSE_INPUT_NAMES
-
 const COMMON_REPLACE_STRINGS: Dictionary[String, String] = {
 	"L 1": "Left Shoulder",
 	"R 1": "Right Shoulder",
@@ -59,8 +55,6 @@ func _match_icon_to_file(file : String):
 	all_icons[matching_string] = icon
 	matching_string = matching_string.capitalize()
 	matching_string = _get_standard_joy_name(matching_string)
-	for filtered_string in FILTERED_STRINGS:
-		matching_string = matching_string.replacen(filtered_string, "")
 	matching_string = matching_string.strip_edges()
 	if add_stick_directions and matching_string.ends_with("Stick"):
 		matching_icons[matching_string + " Up"] = icon

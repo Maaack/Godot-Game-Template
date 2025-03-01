@@ -17,6 +17,8 @@ const JOYSTICK_LEFT_NAME = "Left Stick"
 const JOYSTICK_RIGHT_NAME = "Right Stick"
 const D_PAD_NAME = "Dpad"
 
+const MOUSE_BUTTONS : Array = ["None", "Left", "Right", "Middle", "Scroll Up", "Scroll Down", "Wheel Left", "Wheel Right"]
+
 const JOYPAD_BUTTON_NAME_MAP : Dictionary[String, Array] = {
 	DEVICE_GENERIC : ["Trigger A", "Trigger B", "Trigger C", "", "", "", "", "Left Stick Press", "Right Stick Press", "Left Shoulder", "Right Shoulder", "Up", "Down", "Left", "Right"],
 	DEVICE_XBOX_CONTROLLER : ["A", "B", "X", "Y", "View", "Home", "Menu", "Left Stick Press", "Right Stick Press", "Left Shoulder", "Right Shoulder", "Up", "Down", "Left", "Right", "Share"],
@@ -93,6 +95,9 @@ static func has_joypad() -> bool:
 static func is_joypad_event(event: InputEvent) -> bool:
 	return event is InputEventJoypadButton or event is InputEventJoypadMotion
 
+static func is_mouse_event(event: InputEvent) -> bool:
+	return event is InputEventMouseButton or event is InputEventMouseMotion
+
 static func get_device_name_by_id(device_id : int) -> String:
 	if device_id >= 0:
 		var device_name = Input.get_joy_name(device_id)
@@ -151,7 +156,7 @@ static func get_text(event : InputEvent) -> String:
 		return OS.get_keycode_string(keycode)
 	return event.as_text()
 
-static func get_joypad_specific_text(event : InputEvent, device_name : String = "") -> String:
+static func get_device_specific_text(event : InputEvent, device_name : String = "") -> String:
 	if device_name.is_empty():
 		device_name = get_device_name(event)
 	if event is InputEventJoypadButton:
@@ -159,4 +164,7 @@ static func get_joypad_specific_text(event : InputEvent, device_name : String = 
 			return JOYPAD_DPAD_NAMES[event.button_index]
 		if event.button_index < JOYPAD_BUTTON_NAME_MAP[device_name].size():
 			return JOYPAD_BUTTON_NAME_MAP[device_name][event.button_index]
+	if event is InputEventMouseButton:
+		if event.button_index < MOUSE_BUTTONS.size():
+			return MOUSE_BUTTONS[event.button_index]
 	return get_text(event)

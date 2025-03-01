@@ -31,6 +31,7 @@ Under the `FileLister` properties of the `InputIconMapper`, expand the `Constrai
 Press `Refresh Files`.
 
 Set `filtered_strings` to:
+* `keyboard`
 * `color`
 * `button`
 
@@ -49,6 +50,7 @@ Under the `FileLister` properties of  the `InputIconMapper`, expand the `Constra
 Press `Refresh Files`. 
 
 Set `filtered_strings` to:
+* `keyboard`
 * `color`
 * `outline`
 
