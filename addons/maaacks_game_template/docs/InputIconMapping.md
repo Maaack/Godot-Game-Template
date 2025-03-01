@@ -16,8 +16,13 @@ This pack is organized by `Device/IconType`. The `IconTypes` for each device are
 
 Set `replace_strings` with the key pairs:  
 * `"Generic Stick": "Generic Left Stick"`  
+* `"Guide": "Home"`  
 * `"Stick L": "Left Stick"`  
 * `"Stick R": "Right Stick"`  
+* `"Trigger L 1": "Left Shoulder"`  
+* `"Trigger L 2": "Left Trigger"`  
+* `"Trigger R 1": "Right Shoulder"`  
+* `"Trigger R 2": "Right Trigger"`  
 
 ### Filled Icons
 
@@ -27,6 +32,7 @@ Press `Refresh Files`.
 
 Set `filtered_strings` to:
 * `color`
+* `button`
 
 If you want to use colored icons, in `prioritized_strings` add `color`. Otherwise set `filter="color"`.  
 
