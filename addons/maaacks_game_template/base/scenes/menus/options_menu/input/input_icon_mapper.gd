@@ -9,18 +9,18 @@ const MOUSE_INPUT_NAMES : Array[String] = ["mouse", "mouse_button"]
 const FILTERED_STRINGS : Array[String] = KEYBOARD_INPUT_NAMES + MOUSE_INPUT_NAMES
 
 const REPLACE_PART_MAP :  Dictionary[String, String] = {
-	"LB": " Left Shoulder",
-	"RB": " Right Shoulder",
-	"Lb": " Left Shoulder",
-	"Rb": " Right Shoulder",
-	"LS": " Left Trigger",
-	"RS": " Right Trigger",
-	"Ls": " Left Trigger",
-	"Rs": " Right Trigger",
-	"L": " Left Trigger",
-	"R": " Right Trigger",
-	"Lt": " Left Trigger",
-	"Rt": " Right Trigger",
+	"LB": "Left Shoulder",
+	"RB": "Right Shoulder",
+	"Lb": "Left Shoulder",
+	"Rb": "Right Shoulder",
+	"LS": "Left Trigger",
+	"RS": "Right Trigger",
+	"Ls": "Left Trigger",
+	"Rs": "Right Trigger",
+	"L": "Left Trigger",
+	"R": "Right Trigger",
+	"Lt": "Left Trigger",
+	"Rt": "Right Trigger",
 }
 ## Will use the button colored versions when available
 @export var prioritized_strings : Array[String]
@@ -35,15 +35,16 @@ func _get_standard_joy_name(joy_name : String) -> String:
 		if joy_name.contains(what):
 			joy_name = joy_name.replace(what, replace_strings[what])
 			break
-	var combined_joystick_name : String = ""
+	var combined_joystick_name : Array[String] = []
 	for part in joy_name.split(" "):
 		if part.to_lower() in filtered_strings:
 			continue
 		if part in REPLACE_PART_MAP:
 			part = REPLACE_PART_MAP[part]
 		if not part.is_empty():
-			combined_joystick_name += " %s" % part
-	joy_name = combined_joystick_name.strip_edges()
+			combined_joystick_name.append(part)
+	joy_name = " ".join(combined_joystick_name)
+	joy_name = joy_name.strip_edges()
 	return joy_name
 
 func _match_icon_to_file(file : String):

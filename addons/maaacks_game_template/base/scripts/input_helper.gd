@@ -18,11 +18,11 @@ const JOYSTICK_RIGHT_NAME = "Right Stick"
 const D_PAD_NAME = "D-pad"
 
 const JOYPAD_BUTTON_NAME_MAP : Dictionary[String, Array] = {
-	DEVICE_GENERIC : ["Button Trigger A", "Button Trigger B", "Button Trigger C", "", "", "", "", "Left Stick", "Right Stick", "Left Shoulder", "Right Shoulder", "Up", "Down", "Left", "Right"],
-	DEVICE_XBOX_CONTROLLER : ["Button A", "Button B", "Button X", "Button Y", "Button Back", "Button Home", "Button Menu", "Left Stick", "Right Stick", "Left Shoulder", "Right Shoulder", "Up", "Down", "Left", "Right", "Button Share"],
-	DEVICE_SWITCH_CONTROLLER : ["Button B", "Button A", "Button Y", "Button X", "Button Minus", "", "Button Plus", "Left Stick", "Right Stick", "Left Shoulder", "Right Shoulder", "Up", "Down", "Left", "Right", "Button Capture"],
-	DEVICE_PLAYSTATION_CONTROLLER : ["Button Cross", "Button Circle", "Button Square", "Button Triangle", "Button Select", "Button PS", "Button Options", "L3", "R3", "L1", "R1", "Up", "Down", "Left", "Right", "Button Microphone"],
-	DEVICE_STEAMDECK_CONTROLLER : ["Button A", "Button B", "Button X", "Button Y", "Button View", "", "Button Options", "Left Stick", "Right Stick", "Left Shoulder", "Right Shoulder", "Up", "Down", "Left", "Right"]
+	DEVICE_GENERIC : ["Trigger A", "Trigger B", "Trigger C", "", "", "", "", "Left Stick", "Right Stick", "Left Shoulder", "Right Shoulder", "Up", "Down", "Left", "Right"],
+	DEVICE_XBOX_CONTROLLER : ["A", "B", "X", "Y", "Back", "Home", "Menu", "Left Stick", "Right Stick", "Left Shoulder", "Right Shoulder", "Up", "Down", "Left", "Right", "Share"],
+	DEVICE_SWITCH_CONTROLLER : ["B", "A", "Y", "X", "Minus", "", "Plus", "Left Stick", "Right Stick", "Left Shoulder", "Right Shoulder", "Up", "Down", "Left", "Right", "Capture"],
+	DEVICE_PLAYSTATION_CONTROLLER : ["Cross", "Circle", "Square", "Triangle", "Select", "PS", "Options", "L3", "R3", "L1", "R1", "Up", "Down", "Left", "Right", "Microphone"],
+	DEVICE_STEAMDECK_CONTROLLER : ["A", "B", "X", "Y", "View", "", "Options", "Left Stick", "Right Stick", "Left Shoulder", "Right Shoulder", "Up", "Down", "Left", "Right"]
 } 
 
 const SDL_DEVICE_NAMES: Dictionary = {
@@ -36,17 +36,17 @@ const SDL_DEVICE_NAMES: Dictionary = {
 }
 
 const JOY_BUTTON_NAMES : Dictionary = {
-	JOY_BUTTON_A: "Button A",
-	JOY_BUTTON_B: "Button B",
-	JOY_BUTTON_X: "Button X",
-	JOY_BUTTON_Y: "Button Y",
+	JOY_BUTTON_A: "A",
+	JOY_BUTTON_B: "B",
+	JOY_BUTTON_X: "X",
+	JOY_BUTTON_Y: "Y",
 	JOY_BUTTON_LEFT_SHOULDER: "Left Shoulder",
 	JOY_BUTTON_RIGHT_SHOULDER: "Right Shoulder",
 	JOY_BUTTON_LEFT_STICK: "Left Trigger",
 	JOY_BUTTON_RIGHT_STICK: "Right Trigger",
-	JOY_BUTTON_START : "Button Start",
-	JOY_BUTTON_GUIDE : "Button Guide",
-	JOY_BUTTON_BACK : "Button Back",
+	JOY_BUTTON_START : "Start",
+	JOY_BUTTON_GUIDE : "Guide",
+	JOY_BUTTON_BACK : "Back",
 	JOY_BUTTON_DPAD_UP : D_PAD_NAME + " Up",
 	JOY_BUTTON_DPAD_DOWN : D_PAD_NAME + " Down",
 	JOY_BUTTON_DPAD_LEFT : D_PAD_NAME + " Left",
