@@ -22,34 +22,29 @@ const REPLACE_PART_MAP :  Dictionary[String, String] = {
 	"Lt": " Left Trigger",
 	"Rt": " Right Trigger",
 }
-const REPLACE_NAMES_MAP : Dictionary[String, String] = {
-	"Generic Stick": "Generic Left Stick",
-	"Stick L": "Left Stick",
-	"Stick R": "Right Stick",
-}
-
 ## Will use the button colored versions when available
-@export var prioritized_strings : Array[String] = []
-@export var filtered_strings : Array[String] = []
-@export var matching_icons : Dictionary[String, Texture] = {}
+@export var prioritized_strings : Array[String]
+@export var filtered_strings : Array[String]
+@export var replace_strings : Dictionary[String, String]
+@export var matching_icons : Dictionary[String, Texture]
 @export_group("Debug")
-@export var all_icons : Dictionary[String, Texture] = {}
+@export var all_icons : Dictionary[String, Texture]
 
-func _get_standard_joy_name(joystick_name : String) -> String:
-	for what in REPLACE_NAMES_MAP:
-		if joystick_name.contains(what):
-			joystick_name = joystick_name.replace(what, REPLACE_NAMES_MAP[what])
+func _get_standard_joy_name(joy_name : String) -> String:
+	for what in replace_strings:
+		if joy_name.contains(what):
+			joy_name = joy_name.replace(what, replace_strings[what])
 			break
 	var combined_joystick_name : String = ""
-	for part in joystick_name.split(" "):
+	for part in joy_name.split(" "):
 		if part.to_lower() in filtered_strings:
 			continue
 		if part in REPLACE_PART_MAP:
 			part = REPLACE_PART_MAP[part]
 		if not part.is_empty():
 			combined_joystick_name += " %s" % part
-	joystick_name = combined_joystick_name.strip_edges()
-	return joystick_name
+	joy_name = combined_joystick_name.strip_edges()
+	return joy_name
 
 func _match_icon_to_file(file : String):
 	var matching_string : String = file.get_file().get_basename()
