@@ -81,7 +81,7 @@ Press `Refresh Files`.
 
 Set `filtered_strings` to:
 * `dark`
-* `key`.
+* `key`
 
 Set `replace_strings` with the key pairs:  
 * `"Ps 5": "Playstation"`  
@@ -94,6 +94,44 @@ Set `replace_strings` with the key pairs:
 * `"Click": "Press"`
 
 Set `add_stick_directions=true`.
+
+Press `Match Icons to Inputs`.
+
+Validate the results by inspecting the `matching_icons` dictionary.
+
+
+## Free Icon Pack for Unity & Unreal – 1500+ Input Icons for Game UI
+Available from [itch.io](https://juliocacko.itch.io/free-input-prompts).
+
+This pack is organized by `Device/IconType`. In the inspector of `InputIconMapper`, set the `directories` to include the subdirectories of the asset pack. Assumes using the `Dark` icon set with the keyboard and mouse, and `Default` for the others.
+* `.../Source/Keyboard_Mouse/Dark` 
+* `.../Source/P4Gamepad/Default`  
+* `.../Source/XGamepad/Default`  
+* `.../Source/SGamepad/Default`  
+
+Under the `FileLister` properties of the `InputIconMapper`, expand the `Constraints` and `Advanced Search` tabs. Set `ends_with=".png"`.
+
+Press `Refresh Files`. 
+
+In `prioritized_strings`, add either `color` or `white`, depending on what icons you prefer.
+
+Set `filtered_strings` to:
+* `dark`
+* `key`
+* `t`
+* `color`
+* `white`
+
+Set `replace_strings` with the key pairs:  
+* `"P 4": "Playstation"`  
+* `"X": "Xbox"`  
+* `"S": "Switch"`
+* `"L": "Left Stick"`
+* `"R": "Right Stick"`
+* `"Left Stick 1": "Left Shoulder"`
+* `"Right Stick 1": "Right Shoulder"`
+* `"Left Stick 2": "Left Trigger"`
+* `"Right Stick 2": "Right Trigger"`
 
 Press `Match Icons to Inputs`.
 
