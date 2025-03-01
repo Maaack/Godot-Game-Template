@@ -32,11 +32,13 @@ func _is_end_of_word(full_string : String, what : String):
 	return full_string.ends_with(what) or end_of_word
 
 func _get_standard_joy_name(joy_name : String) -> String:
-	var all_replace_strings = replace_strings.duplicate()
+	var all_replace_strings := replace_strings.duplicate()
 	all_replace_strings.merge(COMMON_REPLACE_STRINGS)
 	for what in all_replace_strings:
 		if joy_name.contains(what) and _is_end_of_word(joy_name, what):
-			joy_name = joy_name.replace(what, all_replace_strings[what])
+			var position = joy_name.find(what)
+			joy_name = joy_name.erase(position, what.length())
+			joy_name = joy_name.insert(position, all_replace_strings[what])
 	var combined_joystick_name : Array[String] = []
 	for part in joy_name.split(" "):
 		if part.to_lower() in filtered_strings:
