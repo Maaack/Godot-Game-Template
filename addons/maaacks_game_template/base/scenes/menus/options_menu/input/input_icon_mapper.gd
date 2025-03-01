@@ -35,7 +35,6 @@ func _get_standard_joy_name(joy_name : String) -> String:
 	for what in replace_strings:
 		if joy_name.contains(what):
 			joy_name = joy_name.replace(what, replace_strings[what])
-			break
 	var combined_joystick_name : Array[String] = []
 	for part in joy_name.split(" "):
 		if part.to_lower() in filtered_strings:

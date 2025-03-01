@@ -21,7 +21,7 @@ const JOYPAD_BUTTON_NAME_MAP : Dictionary[String, Array] = {
 	DEVICE_GENERIC : ["Trigger A", "Trigger B", "Trigger C", "", "", "", "", "Left Stick", "Right Stick", "Left Shoulder", "Right Shoulder", "Up", "Down", "Left", "Right"],
 	DEVICE_XBOX_CONTROLLER : ["A", "B", "X", "Y", "Back", "Home", "Menu", "Left Stick", "Right Stick", "Left Shoulder", "Right Shoulder", "Up", "Down", "Left", "Right", "Share"],
 	DEVICE_SWITCH_CONTROLLER : ["B", "A", "Y", "X", "Minus", "", "Plus", "Left Stick", "Right Stick", "Left Shoulder", "Right Shoulder", "Up", "Down", "Left", "Right", "Capture"],
-	DEVICE_PLAYSTATION_CONTROLLER : ["Cross", "Circle", "Square", "Triangle", "Select", "PS", "Options", "L3", "R3", "L1", "R1", "Up", "Down", "Left", "Right", "Microphone"],
+	DEVICE_PLAYSTATION_CONTROLLER : ["Cross", "Circle", "Square", "Triangle", "Select", "PS", "Options", "Left Stick", "Right Stick", "Left Shoulder", "Right Shoulder", "Up", "Down", "Left", "Right", "Microphone"],
 	DEVICE_STEAMDECK_CONTROLLER : ["A", "B", "X", "Y", "View", "", "Options", "Left Stick", "Right Stick", "Left Shoulder", "Right Shoulder", "Up", "Down", "Left", "Right"]
 } 
 
@@ -42,8 +42,8 @@ const JOY_BUTTON_NAMES : Dictionary = {
 	JOY_BUTTON_Y: "Button Y",
 	JOY_BUTTON_LEFT_SHOULDER: "Left Shoulder",
 	JOY_BUTTON_RIGHT_SHOULDER: "Right Shoulder",
-	JOY_BUTTON_LEFT_STICK: "Left Trigger",
-	JOY_BUTTON_RIGHT_STICK: "Right Trigger",
+	JOY_BUTTON_LEFT_STICK: "Left Stick",
+	JOY_BUTTON_RIGHT_STICK: "Right Stick",
 	JOY_BUTTON_START : "Button Start",
 	JOY_BUTTON_GUIDE : "Button Guide",
 	JOY_BUTTON_BACK : "Button Back",
@@ -151,9 +151,9 @@ static func get_text(event : InputEvent) -> String:
 	return event.as_text()
 
 static func get_joypad_specific_text(event : InputEvent, device_name : String = "") -> String:
+	if device_name.is_empty():
+		device_name = get_device_name(event)
 	if event is InputEventJoypadButton:
-		if device_name.is_empty():
-			device_name = get_device_name(event)
 		if event.button_index in JOYPAD_DPAD_NAMES:
 			return JOYPAD_DPAD_NAMES[event.button_index]
 		if event.button_index < JOYPAD_BUTTON_NAME_MAP[device_name].size():
