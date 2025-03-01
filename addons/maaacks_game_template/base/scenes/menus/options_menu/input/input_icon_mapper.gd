@@ -7,19 +7,15 @@ const KEYBOARD_INPUT_NAMES : Array[String] = ["keyboard", "kb", "key"]
 const MOUSE_INPUT_NAMES : Array[String] = ["mouse", "mouse_button"]
 const FILTERED_STRINGS : Array[String] = KEYBOARD_INPUT_NAMES + MOUSE_INPUT_NAMES
 
-const REPLACE_PART_MAP :  Dictionary[String, String] = {
-	"LB": "Left Shoulder",
-	"RB": "Right Shoulder",
-	"Lb": "Left Shoulder",
-	"Rb": "Right Shoulder",
-	"LS": "Left Trigger",
-	"RS": "Right Trigger",
-	"Ls": "Left Trigger",
-	"Rs": "Right Trigger",
-	"L": "Left Trigger",
-	"R": "Right Trigger",
+const COMMON_REPLACE_STRINGS: Dictionary[String, String] = {
+	"L 1": "Left Shoulder",
+	"R 1": "Right Shoulder",
+	"L 2": "Left Trigger",
+	"R 2": "Right Trigger",
 	"Lt": "Left Trigger",
 	"Rt": "Right Trigger",
+	"Lb": "Left Shoulder",
+	"Rb": "Right Shoulder",
 }
 ## Will use the button colored versions when available
 @export var prioritized_strings : Array[String]
@@ -31,18 +27,26 @@ const REPLACE_PART_MAP :  Dictionary[String, String] = {
 @export_group("Debug")
 @export var all_icons : Dictionary[String, Texture]
 
+func _is_end_of_word(full_string : String, what : String):
+	var string_end_position = full_string.find(what) + what.length()
+	var end_of_word : bool
+	if string_end_position + 1 < full_string.length():
+		var next_character = full_string.substr(string_end_position, 1)
+		end_of_word = next_character == " "
+	return full_string.ends_with(what) or end_of_word
+
 func _get_standard_joy_name(joy_name : String) -> String:
-	for what in replace_strings:
-		if joy_name.contains(what):
-			joy_name = joy_name.replace(what, replace_strings[what])
+	var all_replace_strings = replace_strings.duplicate()
+	all_replace_strings.merge(COMMON_REPLACE_STRINGS)
+	for what in all_replace_strings:
+		if joy_name.contains(what) and _is_end_of_word(joy_name, what):
+			joy_name = joy_name.replace(what, all_replace_strings[what])
 	var combined_joystick_name : Array[String] = []
 	for part in joy_name.split(" "):
 		if part.to_lower() in filtered_strings:
 			continue
 		if part.is_valid_int():
 			continue
-		if not combined_joystick_name.is_empty() and part in REPLACE_PART_MAP:
-			part = REPLACE_PART_MAP[part]
 		if not part.is_empty():
 			combined_joystick_name.append(part)
 	joy_name = " ".join(combined_joystick_name)

@@ -15,7 +15,7 @@ const DEVICE_GENERIC = "Generic"
 
 const JOYSTICK_LEFT_NAME = "Left Stick"
 const JOYSTICK_RIGHT_NAME = "Right Stick"
-const D_PAD_NAME = "D-pad"
+const D_PAD_NAME = "Dpad"
 
 const JOYPAD_BUTTON_NAME_MAP : Dictionary[String, Array] = {
 	DEVICE_GENERIC : ["Trigger A", "Trigger B", "Trigger C", "", "", "", "", "Left Stick Press", "Right Stick Press", "Left Shoulder", "Right Shoulder", "Up", "Down", "Left", "Right"],
