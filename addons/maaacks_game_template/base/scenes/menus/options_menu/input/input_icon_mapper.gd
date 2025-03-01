@@ -60,14 +60,15 @@ func _match_icon_to_file(file : String):
 	for filtered_string in FILTERED_STRINGS:
 		matching_string = matching_string.replacen(filtered_string, "")
 	matching_string = matching_string.strip_edges()
-	if matching_string in matching_icons:
-		return
-	matching_icons[matching_string] = icon
 	if add_stick_directions and matching_string.ends_with("Stick"):
 		matching_icons[matching_string + " Up"] = icon
 		matching_icons[matching_string + " Down"] = icon
 		matching_icons[matching_string + " Left"] = icon
 		matching_icons[matching_string + " Right"] = icon
+		return
+	if matching_string in matching_icons:
+		return
+	matching_icons[matching_string] = icon
 
 func _prioritized_files() -> Array[String]:
 	var priority_levels : Dictionary[String, int]
