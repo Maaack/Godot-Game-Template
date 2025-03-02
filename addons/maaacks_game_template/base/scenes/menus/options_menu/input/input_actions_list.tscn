@@ -8,6 +8,7 @@ offset_right = 400.0
 offset_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+follow_focus = true
 script = ExtResource("1_cxorh")
 action_group_names = Array[String](["Primary", "Secondary", "Tertiary", "Quaternary", "Quinary"])
 input_action_names = Array[StringName]([&"move_forward", &"move_backward", &"move_up", &"move_down", &"move_left", &"move_right", &"interact"])
