@@ -42,6 +42,7 @@ const BUTTON_NAME_GROUP_STRING : String = "%s:%d"
 @export var show_all_actions : bool = true
 @export_group("Icons")
 @export var input_icon_matcher : InputIconMapper
+@export var initial_joypad_device : String = InputEventHelper.DEVICE_GENERIC
 @export_group("Built-in Actions")
 ## Shows Godot's built-in actions (action names starting with "ui_") in the tree.
 @export var show_built_in_actions : bool = false
@@ -59,7 +60,7 @@ var assigned_input_events : Dictionary = {}
 var editing_action_name : String = ""
 var editing_action_group : int = 0
 var last_input_readable_name
-@export var last_joypad_device : String = InputEventHelper.DEVICE_GENERIC
+@onready var last_joypad_device : String = initial_joypad_device
 
 func _clear_list():
 	for child in %ParentBoxContainer.get_children():
