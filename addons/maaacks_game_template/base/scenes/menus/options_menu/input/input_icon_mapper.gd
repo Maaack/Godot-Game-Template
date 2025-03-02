@@ -19,6 +19,8 @@ const COMMON_REPLACE_STRINGS: Dictionary = {
 @export var replace_strings : Dictionary # Dictionary[String, String]
 ## Filters the icon names of the provided strings.
 @export var filtered_strings : Array[String]
+## Adds entries for "Up", "Down", "Left", "Right" to icon names ending with "Stick".
+@export var add_stick_directions : bool = false
 
 ## Attempt to match the icon names to the input names based on the string rules.
 @export var _match_icons_to_inputs_action : bool = false :
@@ -26,9 +28,6 @@ const COMMON_REPLACE_STRINGS: Dictionary = {
 		_match_icons_to_inputs()
 # For Godot 4.4
 # @export_tool_button("Match Icons to Inputs") var _match_icons_to_inputs_action = _match_icons_to_inputs
-## Adds entries for "Up", "Down", "Left", "Right" to icon names ending with "Stick".
-@export var add_stick_directions : bool = false
-
 @export var matching_icons : Dictionary # Dictionary[String, Texture]
 @export_group("Debug")
 @export var all_icons : Dictionary # Dictionary[String, Texture]
@@ -105,6 +104,7 @@ func _prioritized_files() -> Array[String]:
 
 func _match_icons_to_inputs():
 	matching_icons.clear()
+	all_icons.clear()
 	for prioritized_file in _prioritized_files():
 		_match_icon_to_file(prioritized_file)
 	for file in files:
