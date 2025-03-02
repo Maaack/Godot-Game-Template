@@ -121,7 +121,7 @@ func get_icon(input_event : InputEvent) -> Texture:
 	return null
 
 func _assign_joypad_0_to_last():
-	if last_joypad_device != InputEventHelper.DEVICE_GENERIC : return
+	if last_joypad_device != intial_joypad_device : return
 	var connected_joypads := Input.get_connected_joypads()
 	if connected_joypads.is_empty(): return
 	last_joypad_device = InputEventHelper.get_device_name_by_id(connected_joypads[0])

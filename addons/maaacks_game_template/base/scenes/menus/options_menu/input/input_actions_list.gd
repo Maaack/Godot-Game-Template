@@ -162,8 +162,8 @@ func _add_action_options(action_name : String, readable_action_name : String, in
 			input_event = input_events[group_iter]
 		var text = InputEventHelper.get_text(input_event)
 		var is_disabled = group_iter > input_events.size()
-		var icon : Texture
 		if text.is_empty(): text = " "
+		var icon : Texture
 		if input_icon_mapper:
 			icon = input_icon_mapper.get_icon(input_event)
 		var content = icon if icon else text

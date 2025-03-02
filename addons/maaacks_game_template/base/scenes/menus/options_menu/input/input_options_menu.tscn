@@ -41,10 +41,11 @@ unique_name_in_owner = true
 layout_mode = 2
 input_icon_mapper = NodePath("../../../InputIconMapper")
 
-[node name="InputActionsTree" parent="VBoxContainer/InputMappingContainer" instance=ExtResource("5_b2whh")]
+[node name="InputActionsTree" parent="VBoxContainer/InputMappingContainer" node_paths=PackedStringArray("input_icon_mapper") instance=ExtResource("5_b2whh")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
+input_icon_mapper = NodePath("../../../InputIconMapper")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/InputMappingContainer"]
 layout_mode = 2
