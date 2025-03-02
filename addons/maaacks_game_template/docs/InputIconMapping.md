@@ -101,6 +101,7 @@ Press `Match Icons to Inputs`.
 
 Validate the results by inspecting the `matching_icons` dictionary.
 
+Since `Generic` device icons are not available, set `initial_joypad_device` to either `Xbox`, `Playstation`, `Switch`, or `Steamdeck`.
 
 ## Free Icon Pack for Unity & Unreal – 1500+ Input Icons for Game UI
 
@@ -140,3 +141,5 @@ Set `replace_strings` with the key pairs:
 Press `Match Icons to Inputs`.
 
 Validate the results by inspecting the `matching_icons` dictionary.
+
+Since `Generic` device icons are not available, set `initial_joypad_device` to either `Xbox`, `Playstation`, or `Switch`.
