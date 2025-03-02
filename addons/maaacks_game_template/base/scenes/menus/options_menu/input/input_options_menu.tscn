@@ -36,10 +36,10 @@ layout_mode = 2
 text = "Actions & Inputs"
 horizontal_alignment = 1
 
-[node name="InputActionsList" parent="VBoxContainer/InputMappingContainer" node_paths=PackedStringArray("input_icon_matcher") instance=ExtResource("4_lf2nw")]
+[node name="InputActionsList" parent="VBoxContainer/InputMappingContainer" node_paths=PackedStringArray("input_icon_mapper") instance=ExtResource("4_lf2nw")]
 unique_name_in_owner = true
 layout_mode = 2
-input_icon_matcher = NodePath("../../../InputIconMapper")
+input_icon_mapper = NodePath("../../../InputIconMapper")
 
 [node name="InputActionsTree" parent="VBoxContainer/InputMappingContainer" instance=ExtResource("5_b2whh")]
 unique_name_in_owner = true

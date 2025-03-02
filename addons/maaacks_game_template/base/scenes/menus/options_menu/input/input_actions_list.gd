@@ -41,8 +41,7 @@ const BUTTON_NAME_GROUP_STRING : String = "%s:%d"
 ## Show action names that are not explicitely listed in an action name map.
 @export var show_all_actions : bool = true
 @export_group("Icons")
-@export var input_icon_matcher : InputIconMapper
-@export var initial_joypad_device : String = InputEventHelper.DEVICE_GENERIC
+@export var input_icon_mapper : InputIconMapper
 @export_group("Built-in Actions")
 ## Shows Godot's built-in actions (action names starting with "ui_") in the tree.
 @export var show_built_in_actions : bool = false
@@ -60,7 +59,6 @@ var assigned_input_events : Dictionary = {}
 var editing_action_name : String = ""
 var editing_action_group : int = 0
 var last_input_readable_name
-@onready var last_joypad_device : String = initial_joypad_device
 
 func _clear_list():
 	for child in %ParentBoxContainer.get_children():
@@ -113,23 +111,13 @@ func _update_next_button_disabled_state(action_name : String, action_group : int
 	if button:
 		button.disabled = false
 
-func _get_icon(input_event : InputEvent) -> Texture:
-	var icon : Texture
-	if input_icon_matcher:
-		var specific_text = InputEventHelper.get_device_specific_text(input_event, last_joypad_device)
-		var device := ""
-		if InputEventHelper.is_joypad_event(input_event):
-			device = last_joypad_device
-		elif InputEventHelper.is_mouse_event(input_event):
-			device = "Mouse"
-		icon = input_icon_matcher.get_icon(specific_text, device)
-	return icon
-
 func _update_assigned_inputs_and_button(action_name : String, action_group : int, input_event : InputEvent):
 	var new_readable_input_name = InputEventHelper.get_text(input_event)
 	var button = _get_button_by_action(action_name, action_group)
 	if not button: return
-	var icon : Texture = _get_icon(input_event)
+	var icon : Texture
+	if input_icon_mapper:
+		icon = input_icon_mapper.get_icon(input_event)
 	if icon:
 		button.icon = icon
 	else:
@@ -174,8 +162,10 @@ func _add_action_options(action_name : String, readable_action_name : String, in
 			input_event = input_events[group_iter]
 		var text = InputEventHelper.get_text(input_event)
 		var is_disabled = group_iter > input_events.size()
+		var icon : Texture
 		if text.is_empty(): text = " "
-		var icon : Texture = _get_icon(input_event)
+		if input_icon_mapper:
+			icon = input_icon_mapper.get_icon(input_event)
 		var content = icon if icon else text
 		var button : Button = _add_new_button(content, new_action_box, is_disabled)
 		_connect_button_and_add_to_maps(button, text, action_name, group_iter)
@@ -278,21 +268,10 @@ func reset():
 	_build_assigned_input_events()
 	_refresh_ui_list_button_content()
 
-func _assign_joypad_0_to_last():
-	if last_joypad_device != InputEventHelper.DEVICE_GENERIC : return
-	var connected_joypads := Input.get_connected_joypads()
-	if connected_joypads.is_empty(): return
-	last_joypad_device = InputEventHelper.get_device_name_by_id(connected_joypads[0])
-
 func _ready():
 	if Engine.is_editor_hint(): return
 	vertical = vertical
 	_build_assigned_input_events()
-	_assign_joypad_0_to_last()
 	_build_ui_list()
-
-func _input(event):
-	var device_name = InputEventHelper.get_device_name(event)
-	if device_name != InputEventHelper.DEVICE_GENERIC and device_name != last_joypad_device:
-		last_joypad_device = device_name
-		_refresh_ui_list_button_content()
+	if input_icon_mapper:
+		input_icon_mapper.joypad_device_changed.connect(_refresh_ui_list_button_content)

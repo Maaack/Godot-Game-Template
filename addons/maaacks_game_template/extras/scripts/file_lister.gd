@@ -6,7 +6,8 @@ class_name FileLister
 ## List of paths to scene files.
 @export var _refresh_files_action : bool = false :
 	set(value):
-		_refresh_files()
+		if value and Engine.is_editor_hint():
+			_refresh_files()
 # For Godot 4.4
 # @export_tool_button("Refresh Files") var _refresh_files_action = _refresh_files
 ## Filled in the editor by selecting a directory.

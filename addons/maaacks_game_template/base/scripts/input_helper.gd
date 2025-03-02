@@ -160,11 +160,16 @@ static func get_device_specific_text(event : InputEvent, device_name : String = 
 	if device_name.is_empty():
 		device_name = get_device_name(event)
 	if event is InputEventJoypadButton:
+		var joypad_button : String = ""
 		if event.button_index in JOYPAD_DPAD_NAMES:
-			return JOYPAD_DPAD_NAMES[event.button_index]
+			joypad_button = JOYPAD_DPAD_NAMES[event.button_index]
 		if event.button_index < JOYPAD_BUTTON_NAME_MAP[device_name].size():
-			return JOYPAD_BUTTON_NAME_MAP[device_name][event.button_index]
+			joypad_button = JOYPAD_BUTTON_NAME_MAP[device_name][event.button_index]
+		return "%s %s" % [device_name, joypad_button]
+	if event is InputEventJoypadMotion:
+		return "%s %s" % [device_name, get_text(event)]
 	if event is InputEventMouseButton:
 		if event.button_index < MOUSE_BUTTONS.size():
-			return MOUSE_BUTTONS[event.button_index]
+			var mouse_button : String = MOUSE_BUTTONS[event.button_index]
+			return "%s %s" % [DEVICE_MOUSE, mouse_button]
 	return get_text(event)
