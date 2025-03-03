@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://da7uj8u87g24i"]
 
 [ext_resource type="PackedScene" uid="uid://t2dui8ppm3a4" path="res://addons/maaacks_game_template/base/scenes/credits/credits.tscn" id="1_4iham"]
-[ext_resource type="Script" path="res://scenes/credits/credits.gd" id="2_1pc15"]
+[ext_resource type="Script" uid="uid://mpcbp54r5wqc" path="res://scenes/credits/credits.gd" id="2_1pc15"]
 
 [node name="Credits" instance=ExtResource("1_4iham")]
 script = ExtResource("2_1pc15")
