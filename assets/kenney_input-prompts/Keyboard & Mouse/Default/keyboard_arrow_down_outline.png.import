@@ -1,0 +1,34 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://ddqsj0f7r01lo"
+path="res://.godot/imported/keyboard_arrow_down_outline.png-6266560d28b0c31b1fc50d3a99359888.ctex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://assets/kenney_input-prompts/Keyboard & Mouse/Default/keyboard_arrow_down_outline.png"
+dest_files=["res://.godot/imported/keyboard_arrow_down_outline.png-6266560d28b0c31b1fc50d3a99359888.ctex"]
+
+[params]
+
+compress/mode=0
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=false
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=1
