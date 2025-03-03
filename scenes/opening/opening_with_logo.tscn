@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://dx68eofr4dw4d"]
 
-[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/scenes/opening/opening.tscn" id="1_2t6oq"]
-[ext_resource type="Script" path="res://scenes/opening/opening.gd" id="2_ff4py"]
-[ext_resource type="Texture2D" path="res://assets/godot_engine_logo/logo_vertical_color_dark.png" id="3_uwxb2"]
+[ext_resource type="PackedScene" uid="uid://sikc02ddepyt" path="res://addons/maaacks_game_template/base/scenes/opening/opening.tscn" id="1_2t6oq"]
+[ext_resource type="Script" uid="uid://pi6tot5a1g10" path="res://scenes/opening/opening.gd" id="2_ff4py"]
+[ext_resource type="Texture2D" uid="uid://bruskrw8y1ikj" path="res://assets/godot_engine_logo/logo_vertical_color_dark.png" id="3_uwxb2"]
 
 [node name="Opening" instance=ExtResource("1_2t6oq")]
 script = ExtResource("2_ff4py")

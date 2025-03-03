@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://durvrj4nnt0ex"]
 
-[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/scenes/menus/main_menu/main_menu.tscn" id="1_7yqli"]
-[ext_resource type="Script" path="res://scenes/menus/main_menu/main_menu.gd" id="2_qowch"]
-[ext_resource type="PackedScene" path="res://scenes/menus/options_menu/master_options_menu_with_tabs.tscn" id="3_bh880"]
-[ext_resource type="PackedScene" path="res://scenes/credits/credits.tscn" id="4_hb88b"]
+[ext_resource type="PackedScene" uid="uid://c6k5nnpbypshi" path="res://addons/maaacks_game_template/base/scenes/menus/main_menu/main_menu.tscn" id="1_7yqli"]
+[ext_resource type="Script" uid="uid://12vev2lbl7oa" path="res://scenes/menus/main_menu/main_menu.gd" id="2_qowch"]
+[ext_resource type="PackedScene" uid="uid://dfycb1h41yhrw" path="res://scenes/menus/options_menu/master_options_menu_with_tabs.tscn" id="3_bh880"]
+[ext_resource type="PackedScene" uid="uid://da7uj8u87g24i" path="res://scenes/credits/credits.tscn" id="4_hb88b"]
 
 [node name="MainMenu" instance=ExtResource("1_7yqli")]
 script = ExtResource("2_qowch")
