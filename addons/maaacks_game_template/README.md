@@ -23,7 +23,7 @@ This template has a main menu, options menus, pause menu, credits, scene loader,
 ## Use Case
 Setup menus and accessibility features in about 15 minutes.
 
-The core components can support a larger project, but the template was originally built to support smaller projects and game jams.
+The template can be the start of a new project, or plug into an existing one. It is game agnostic (2D or 3D) and can work with multiple target resolutions, up to 4k and down to 640x360.
 
 ## Features
 
