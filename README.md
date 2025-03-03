@@ -1,5 +1,5 @@
 # Godot Game Template
-For Godot 4.2+
+For Godot 4.4 (4.2+ compatible)
 
 This template has a main menu, options menus, pause menu, credits, scene loader, extra tools, and an example game scene.  
 
