@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://dhr7m2qmhwtpr"]
 
-[ext_resource type="Script" path="res://scenes/menus/options_menu/game/game_options_menu.gd" id="1_gtfby"]
-[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/capture_focus.gd" id="2_h34ht"]
-[ext_resource type="PackedScene" path="res://scenes/menus/options_menu/game/reset_game_control/reset_game_control.tscn" id="3_xeby2"]
+[ext_resource type="Script" uid="uid://64w7v43j4udq" path="res://scenes/menus/options_menu/game/game_options_menu.gd" id="1_gtfby"]
+[ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/scripts/capture_focus.gd" id="2_h34ht"]
+[ext_resource type="PackedScene" uid="uid://cmtlq3l85ydkb" path="res://scenes/menus/options_menu/game/reset_game_control/reset_game_control.tscn" id="3_xeby2"]
 
 [node name="Game" type="MarginContainer"]
 anchors_preset = 15

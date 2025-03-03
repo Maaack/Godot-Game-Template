@@ -1,33 +1,39 @@
-[gd_scene load_steps=7 format=3 uid="uid://bb3dnen65tocv"]
+[gd_scene load_steps=8 format=3 uid="uid://dfycb1h41yhrw"]
 
-[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/master_options_menu.tscn" id="1_ti852"]
-[ext_resource type="Script" path="res://scenes/menus/options_menu/master_options_menu.gd" id="2_0dsgd"]
-[ext_resource type="PackedScene" path="res://scenes/menus/options_menu/input/input_options_menu_with_mouse_sensitivity.tscn" id="3_yqfny"]
-[ext_resource type="PackedScene" path="res://scenes/menus/options_menu/audio/audio_options_menu.tscn" id="4_88b5d"]
-[ext_resource type="PackedScene" path="res://scenes/menus/options_menu/video/video_options_menu_with_extras.tscn" id="5_gkwl5"]
-[ext_resource type="PackedScene" path="res://scenes/menus/options_menu/game/game_options_menu.tscn" id="6_1jy7s"]
+[ext_resource type="PackedScene" uid="uid://bvwl11s2p0hd" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/master_options_menu.tscn" id="1_tlyel"]
+[ext_resource type="Script" uid="uid://xsmvd3hn4t1g" path="res://scenes/menus/options_menu/master_options_menu.gd" id="2_ska70"]
+[ext_resource type="PackedScene" uid="uid://dl6qlkd8wyl7" path="res://scenes/menus/options_menu/input/input_options_menu.tscn" id="3_gdu36"]
+[ext_resource type="PackedScene" uid="uid://wka6p5jtj1w3" path="res://scenes/menus/options_menu/input/input_extras_menu.tscn" id="4_830p6"]
+[ext_resource type="PackedScene" uid="uid://bmvajmd4tl4vu" path="res://scenes/menus/options_menu/audio/audio_options_menu.tscn" id="5_1l655"]
+[ext_resource type="PackedScene" uid="uid://rotxpw1imw0" path="res://scenes/menus/options_menu/video/video_options_menu_with_extras.tscn" id="6_w61sc"]
+[ext_resource type="PackedScene" uid="uid://dhr7m2qmhwtpr" path="res://scenes/menus/options_menu/game/game_options_menu.tscn" id="7_bomg0"]
 
-[node name="MasterOptionsMenu" instance=ExtResource("1_ti852")]
-script = ExtResource("2_0dsgd")
+[node name="MasterOptionsMenu" instance=ExtResource("1_tlyel")]
+script = ExtResource("2_ska70")
 
 [node name="TabContainer" parent="." index="0"]
 current_tab = 0
 
-[node name="Controls" parent="TabContainer" index="1" instance=ExtResource("3_yqfny")]
+[node name="Controls" parent="TabContainer" index="1" instance=ExtResource("3_gdu36")]
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="Audio" parent="TabContainer" index="2" instance=ExtResource("4_88b5d")]
+[node name="Inputs" parent="TabContainer" index="2" instance=ExtResource("4_830p6")]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="Video" parent="TabContainer" index="3" instance=ExtResource("5_gkwl5")]
+[node name="Audio" parent="TabContainer" index="3" instance=ExtResource("5_1l655")]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
-[node name="Game" parent="TabContainer" index="4" instance=ExtResource("6_1jy7s")]
+[node name="Video" parent="TabContainer" index="4" instance=ExtResource("6_w61sc")]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 3
+
+[node name="Game" parent="TabContainer" index="5" instance=ExtResource("7_bomg0")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 4

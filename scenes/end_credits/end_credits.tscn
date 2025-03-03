@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://b2tqk64gy4pht"]
 
-[ext_resource type="PackedScene" path="res://scenes/credits/credits.tscn" id="1_msnc6"]
-[ext_resource type="Script" path="res://scenes/end_credits/end_credits.gd" id="2_yxq8n"]
-[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/scenes/music_players/background_music_player.tscn" id="3_ec4p2"]
-[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/capture_focus.gd" id="4_o8c11"]
+[ext_resource type="PackedScene" uid="uid://da7uj8u87g24i" path="res://scenes/credits/credits.tscn" id="1_msnc6"]
+[ext_resource type="Script" uid="uid://b5oyngjiqb8mt" path="res://scenes/end_credits/end_credits.gd" id="2_yxq8n"]
+[ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/scenes/music_players/background_music_player.tscn" id="3_ec4p2"]
+[ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/scripts/capture_focus.gd" id="4_o8c11"]
 
 [node name="EndCredits" instance=ExtResource("1_msnc6")]
 script = ExtResource("2_yxq8n")
@@ -66,14 +66,14 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/EndMessagePanel/VBoxContainer/CenterContainer" index="0"]
+custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/separation = 24
+theme_override_constants/separation = 16
 script = ExtResource("4_o8c11")
 
 [node name="ExitButton" type="Button" parent="CenterContainer/EndMessagePanel/VBoxContainer/CenterContainer/HBoxContainer" index="0"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -81,7 +81,6 @@ text = "Exit"
 
 [node name="MenuButton" type="Button" parent="CenterContainer/EndMessagePanel/VBoxContainer/CenterContainer/HBoxContainer" index="1"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3

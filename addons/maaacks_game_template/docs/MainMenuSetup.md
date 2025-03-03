@@ -20,6 +20,8 @@ When adding a 3D background to the menu, it is recommended to use a `SubViewport
 
 A basic level select scene is available to add to the menu. In `main_menu_with_animations.tscn`, click the root `MainMenu` mode and set `Level Select Packed Scene` to `level_select_menu.tscn`. The button will appear on the main menu when the player has reached the second level.  
 
+Levels can be added to the menu by inspecting the `SceneLister` and either selecting a directory to automatically read scene files from, or populating the files array manually.
+
 ## Theming
 It is recommended to create a theme resource file and set it as the custom theme in the project settings. Any changes made to the theme file will then apply automatically to the whole project.
 

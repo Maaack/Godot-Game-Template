@@ -76,6 +76,7 @@ layout_mode = 2
 
 [node name="MenuButtons" type="BoxContainer" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
@@ -85,7 +86,6 @@ vertical = true
 script = ExtResource("2_6ani0")
 
 [node name="CloseButton" type="Button" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons"]
-custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
 text = "Close"
 
