@@ -372,9 +372,6 @@ modulate = Color(1, 1, 1, 0)
 [node name="TitleContainer" parent="MenuContainer/TitleMargin" index="0"]
 modulate = Color(1, 1, 1, 0)
 
-[node name="TitleLabel" parent="MenuContainer/TitleMargin/TitleContainer" index="0"]
-text = "Title"
-
 [node name="SubTitleContainer" parent="MenuContainer/SubTitleMargin" index="0"]
 modulate = Color(1, 1, 1, 0)
 
@@ -387,14 +384,12 @@ lock = true
 [node name="ContinueGameButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" index="1"]
 unique_name_in_owner = true
 visible = false
-custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
 text = "Continue"
 
 [node name="LevelSelectButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" index="2"]
 unique_name_in_owner = true
 visible = false
-custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
 text = "Level Select"
 
