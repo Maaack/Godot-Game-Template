@@ -33,6 +33,7 @@ signal remove_button_clicked(action_name : String, input_name : String)
 @export_group("Icons")
 @export var add_button_texture : Texture2D
 @export var remove_button_texture : Texture2D
+@export var input_icon_mapper : InputIconMapper
 @export_group("Built-in Actions")
 ## Shows Godot's built-in actions (action names starting with "ui_") in the tree.
 @export var show_built_in_actions : bool = false
@@ -58,7 +59,13 @@ func _start_tree():
 
 func _add_input_event_as_tree_item(action_name : String, input_event : InputEvent, parent_item : TreeItem):
 	var input_tree_item : TreeItem = create_item(parent_item)
-	input_tree_item.set_text(0, InputEventHelper.get_text(input_event))
+	var icon : Texture
+	if input_icon_mapper:
+		icon = input_icon_mapper.get_icon(input_event)
+	if icon:
+		input_tree_item.set_icon(0, icon)
+	else:
+		input_tree_item.set_text(0, InputEventHelper.get_text(input_event))
 	if remove_button_texture != null:
 		input_tree_item.add_button(0, remove_button_texture, -1, false, "Remove")
 	tree_item_remove_map[input_tree_item] = input_event
@@ -205,3 +212,5 @@ func _ready():
 	_build_ui_tree()
 	button_clicked.connect(_on_button_clicked)
 	item_activated.connect(_on_item_activated)
+	if input_icon_mapper:
+		input_icon_mapper.joypad_device_changed.connect(_build_ui_tree)

@@ -40,6 +40,8 @@ const BUTTON_NAME_GROUP_STRING : String = "%s:%d"
 
 ## Show action names that are not explicitely listed in an action name map.
 @export var show_all_actions : bool = true
+@export_group("Icons")
+@export var input_icon_mapper : InputIconMapper
 @export_group("Built-in Actions")
 ## Shows Godot's built-in actions (action names starting with "ui_") in the tree.
 @export var show_built_in_actions : bool = false
@@ -51,7 +53,8 @@ const BUTTON_NAME_GROUP_STRING : String = "%s:%d"
 ## Maps the names of input actions to readable names for users.
 @export var action_name_map : Dictionary
 
-var button_action_map : Dictionary = {}
+var action_button_map : Dictionary = {}
+var button_readable_input_map : Dictionary = {}
 var assigned_input_events : Dictionary = {}
 var editing_action_name : String = ""
 var editing_action_group : int = 0
@@ -64,7 +67,8 @@ func _clear_list():
 		child.queue_free()
 
 func _replace_action(action_name : String, readable_input_name : String = ""):
-	button_clicked.emit(action_name, readable_input_name)
+	var readable_action_name = tr(_get_action_readable_name(action_name))
+	button_clicked.emit(readable_action_name, readable_input_name)
 
 func _on_button_pressed(action_name : String, action_group : int):
 	editing_action_name = action_name
@@ -93,24 +97,60 @@ func _add_header():
 		new_action_box.add_child(new_label)
 	%ParentBoxContainer.add_child(new_action_box)
 
-func _add_to_button_action_map(action_name : String, action_group : int, button_node : Button):
+func _add_to_action_button_map(action_name : String, action_group : int, button_node : BaseButton):
 	var key_string : String = BUTTON_NAME_GROUP_STRING % [action_name, action_group]
-	button_action_map[key_string] = button_node
+	action_button_map[key_string] = button_node
+
+func _get_button_by_action(action_name : String, action_group : int) -> Button:
+	var key_string : String = BUTTON_NAME_GROUP_STRING % [action_name, action_group]
+	if key_string in action_button_map:
+		return action_button_map[key_string]
+	return null
 
 func _update_next_button_disabled_state(action_name : String, action_group : int):
-	var key_string : String = BUTTON_NAME_GROUP_STRING % [action_name, action_group + 1]
-	if key_string in button_action_map:
-		var button = button_action_map[key_string]
+	var button = _get_button_by_action(action_name, action_group)
+	if button:
 		button.disabled = false
 
 func _update_assigned_inputs_and_button(action_name : String, action_group : int, input_event : InputEvent):
-	var new_readable_action_name = InputEventHelper.get_text(input_event)
-	var key_string : String = BUTTON_NAME_GROUP_STRING % [action_name, action_group]
-	var button = button_action_map[key_string]
-	var old_readable_action_name = button.text
-	button.text = new_readable_action_name
-	assigned_input_events.erase(old_readable_action_name)
-	assigned_input_events[new_readable_action_name] = action_name
+	var new_readable_input_name = InputEventHelper.get_text(input_event)
+	var button = _get_button_by_action(action_name, action_group)
+	if not button: return
+	var icon : Texture
+	if input_icon_mapper:
+		icon = input_icon_mapper.get_icon(input_event)
+	if icon:
+		button.icon = icon
+	else:
+		button.icon = null
+	var old_readable_input_name = ""
+	if button in button_readable_input_map:
+		old_readable_input_name = button_readable_input_map[button]
+	if button.icon == null:
+		button.text = new_readable_input_name
+	else:
+		button.text = ""
+	assigned_input_events.erase(old_readable_input_name)
+	button_readable_input_map[button] = new_readable_input_name
+	assigned_input_events[new_readable_input_name] = action_name
+
+func _add_new_button(content : Variant, container: Control, disabled : bool = false) -> Button:
+	var new_button := Button.new()
+	new_button.size_flags_horizontal = SIZE_EXPAND_FILL
+	new_button.size_flags_vertical = SIZE_EXPAND_FILL
+	new_button.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	if content is Texture:
+		new_button.icon = content
+	elif content is String:
+		new_button.text = content
+	new_button.disabled = disabled
+	container.add_child(new_button)
+	return new_button
+
+func _connect_button_and_add_to_maps(button : Button, input_name : String, action_name : String, group_iter : int):
+	button.pressed.connect(_on_button_pressed.bind(action_name, group_iter))
+	button_readable_input_map[button] = input_name
+	_add_to_action_button_map(action_name, group_iter, button)
 
 func _add_action_options(action_name : String, readable_action_name : String, input_events : Array[InputEvent]):
 	var new_action_box = %ActionBoxContainer.duplicate()
@@ -122,16 +162,14 @@ func _add_action_options(action_name : String, readable_action_name : String, in
 		if group_iter < input_events.size():
 			input_event = input_events[group_iter]
 		var text = InputEventHelper.get_text(input_event)
+		var is_disabled = group_iter > input_events.size()
 		if text.is_empty(): text = " "
-		var new_button := Button.new()
-		new_button.clip_text = true
-		new_button.size_flags_horizontal = SIZE_EXPAND_FILL
-		new_button.size_flags_vertical = SIZE_EXPAND_FILL
-		new_button.text = text
-		new_button.disabled = group_iter > input_events.size()
-		new_button.pressed.connect(_on_button_pressed.bind(action_name, group_iter))
-		new_action_box.add_child(new_button)
-		_add_to_button_action_map(action_name, group_iter, new_button)
+		var icon : Texture
+		if input_icon_mapper:
+			icon = input_icon_mapper.get_icon(input_event)
+		var content = icon if icon else text
+		var button : Button = _add_new_button(content, new_action_box, is_disabled)
+		_connect_button_and_add_to_maps(button, text, action_name, group_iter)
 	%ParentBoxContainer.add_child(new_action_box)
 
 func _get_all_action_names(include_built_in : bool = false) -> Array[StringName]:
@@ -215,13 +253,26 @@ func add_action_event(last_input_text : String, last_input_event : InputEvent):
 			_assign_input_event_to_action_group(last_input_event, editing_action_name, editing_action_group)
 	editing_action_name = ""
 
+func _refresh_ui_list_button_content():
+	var action_names : Array[StringName] = _get_all_action_names(show_built_in_actions)
+	for action_name in action_names:
+		var input_events := InputMap.action_get_events(action_name)
+		if input_events.size() < 1:
+			continue
+		var group_iter : int = 0
+		for input_event in input_events:
+			_update_assigned_inputs_and_button(action_name, group_iter, input_event)
+			group_iter += 1
+
 func reset():
 	AppSettings.reset_to_default_inputs()
 	_build_assigned_input_events()
-	_build_ui_list()
+	_refresh_ui_list_button_content()
 
 func _ready():
 	if Engine.is_editor_hint(): return
 	vertical = vertical
 	_build_assigned_input_events()
 	_build_ui_list()
+	if input_icon_mapper:
+		input_icon_mapper.joypad_device_changed.connect(_refresh_ui_list_button_content)
