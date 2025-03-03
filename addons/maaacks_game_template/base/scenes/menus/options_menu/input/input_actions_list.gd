@@ -67,7 +67,8 @@ func _clear_list():
 		child.queue_free()
 
 func _replace_action(action_name : String, readable_input_name : String = ""):
-	button_clicked.emit(action_name, readable_input_name)
+	var readable_action_name = tr(_get_action_readable_name(action_name))
+	button_clicked.emit(readable_action_name, readable_input_name)
 
 func _on_button_pressed(action_name : String, action_group : int):
 	editing_action_name = action_name
