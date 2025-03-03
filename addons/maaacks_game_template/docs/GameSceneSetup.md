@@ -10,22 +10,11 @@ The `pause_menu_controller.gd` script may be attached to a node in the scene tre
 This should be enough to capture when the `ui-cancel` input action is pressed in-game. On keyboards, this is commonly the `Esc` key.
 
 ## Level Loading
-Some level loading scripts are provided with the examples. They load levels in order from a list, or dynamically by file paths. It is called from a `LevelListManager`.
-
-```
-func _load_next_level():
-	level_list_loader.advance_and_load_level()
-```
+Some level loading scripts are provided with the examples. They load levels in order from a list, or dynamically by file paths. Levels can be added to the `LevelLoader` by either selecting a directory to automatically read scene files from, or populating the files array manually.
 
 A `LevelLoader` must be provided with a `level_container` in the scene. Levels will get added to and removed from this node. The example uses the `SubViewport`, but any leaf node (ie. node without children) in the scene should work.
 
-An additional loading screen in the scene can show progress of loading levels, and is toggled by the `LevelListManager`.
-
-```
-func _on_level_loader_level_load_started():
-	if level_loading_screen:
-		level_loading_screen.reset()
-```
+The level loader is called from a `LevelListManager` with `advance_and_load_level()`. An additional loading screen in the scene can show progress of loading levels, and is toggled by the `LevelListManager` with `reset()`.
 
 Level Loading is not required if the entire game takes place in one scene.  
 
@@ -50,6 +39,14 @@ It has some disadvantages, as well.
 - Extra processing overhead for the viewport layer.
 
 If a subviewport does not work well for your game, you can add a basic `Node` and use it as the level container, instead.
+
+### Pixel Art Games
+If working with a pixel art game, often the goal is that the number of art pixels on-screen is to remain the same regardless of screen resolution. As in, the art scales with the monitor, rather than bigger monitors showing more of a scene. This is done by setting the viewport size in the project settings, and setting the stretch mode to either `canvas_mode` or `viewport`.
+
+If a higher resolution is desired for the menus and UI than the game, then the project viewport size should be set to a multiple of the desired game window size. Then set the stretch shrink in `ViewportContainer` to the multiple of the resolution. For example, if the game is at `640x360`, then the project viewport size can be set to `1280x720`, and the stretch shrink set to `2` (`1280x720 / 2 = 640x360`). Finally, set the texture filter on the `ViewportContainer` to `Nearest`.
+
+### Mouse Interaction
+If trying to detect `mouse_enter` and `mouse_exit` events on areas inside the game world, enable physics object picking on the `ConfigurableSubViewport`.
 
 ## Read Inputs
 Generally, any game is going to require reading some inputs from the player. Where in the scene hierarchy the reading occurs is best answered with simplicity.  

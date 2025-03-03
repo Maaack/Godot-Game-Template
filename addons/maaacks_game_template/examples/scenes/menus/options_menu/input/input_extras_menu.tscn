@@ -1,0 +1,65 @@
+[gd_scene load_steps=3 format=3 uid="uid://b24sg04dn21ke"]
+
+[ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/scripts/capture_focus.gd" id="1_g6yfe"]
+[ext_resource type="PackedScene" uid="uid://cl416gdb1fgwr" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/option_control/slider_option_control.tscn" id="2_mphg3"]
+
+[node name="Inputs" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 8
+script = ExtResource("1_g6yfe")
+search_depth = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="MouseSensitivityControl" parent="VBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_mphg3")]
+layout_mode = 2
+option_name = "Mouse Sensitivity"
+option_section = 1
+key = "MouseSensitivity"
+section = "InputSettings"
+
+[node name="OptionLabel" parent="VBoxContainer/MarginContainer/VBoxContainer/MouseSensitivityControl" index="0"]
+text = "Mouse Sensitivity :"
+
+[node name="HSlider" parent="VBoxContainer/MarginContainer/VBoxContainer/MouseSensitivityControl" index="1"]
+min_value = 0.25
+max_value = 2.0
+tick_count = 8
+
+[node name="JoypadSensitivityControl" parent="VBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_mphg3")]
+layout_mode = 2
+option_name = "Joypad Sensitivity"
+option_section = 1
+key = "JoypadSensitivity"
+section = "InputSettings"
+
+[node name="OptionLabel" parent="VBoxContainer/MarginContainer/VBoxContainer/JoypadSensitivityControl" index="0"]
+text = "Joypad Sensitivity :"
+
+[node name="HSlider" parent="VBoxContainer/MarginContainer/VBoxContainer/JoypadSensitivityControl" index="1"]
+min_value = 0.25
+max_value = 2.0
+tick_count = 8
+
+[editable path="VBoxContainer/MarginContainer/VBoxContainer/MouseSensitivityControl"]
+[editable path="VBoxContainer/MarginContainer/VBoxContainer/JoypadSensitivityControl"]

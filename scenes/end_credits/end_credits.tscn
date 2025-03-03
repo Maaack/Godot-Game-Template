@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://b2tqk64gy4pht"]
 
-[ext_resource type="PackedScene" uid="uid://da7uj8u87g24i" path="res://scenes/credits/credits.tscn" id="1_msnc6"]
-[ext_resource type="Script" uid="uid://c1udno8k22whh" path="res://scenes/end_credits/end_credits.gd" id="2_yxq8n"]
-[ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/scenes/music_players/background_music_player.tscn" id="3_ec4p2"]
+[ext_resource type="PackedScene" uid="uid://da7uj8u87g24i" uid="uid://da7uj8u87g24i" path="res://scenes/credits/credits.tscn" id="1_msnc6"]
+[ext_resource type="Script" uid="uid://b5oyngjiqb8mt" uid="uid://c1udno8k22whh" path="res://scenes/end_credits/end_credits.gd" id="2_yxq8n"]
+[ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/scenes/music_players/background_music_player.tscn" id="3_ec4p2"]
 [ext_resource type="AudioStream" uid="uid://cyakcui2s5g46" path="res://assets/music_and_sfx/Maaack - Campfire Tales - Music 2b (3 min).mp3" id="4_2v40y"]
-[ext_resource type="Script" uid="uid://btmopp1qpeu87" path="res://addons/maaacks_game_template/base/scripts/capture_focus.gd" id="4_o8c11"]
+[ext_resource type="Script" uid="uid://btmopp1qpeu87" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/scripts/capture_focus.gd" id="4_o8c11"]
 
 [node name="EndCredits" instance=ExtResource("1_msnc6")]
 script = ExtResource("2_yxq8n")

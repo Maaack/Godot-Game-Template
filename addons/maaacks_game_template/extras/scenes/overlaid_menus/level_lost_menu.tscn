@@ -9,7 +9,7 @@ script = ExtResource("2_6r1n8")
 pauses_game = true
 
 [node name="MenuPanelContainer" parent="." index="1"]
-custom_minimum_size = Vector2(410, 240)
+custom_minimum_size = Vector2(432, 240)
 
 [node name="TitleMargin" parent="MenuPanelContainer/MarginContainer/BoxContainer" index="0"]
 visible = false
@@ -24,21 +24,23 @@ text = "[center]You lost...[/center]"
 scroll_active = false
 
 [node name="MenuButtons" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin" index="0"]
+custom_minimum_size = Vector2(400, 0)
 vertical = false
 
 [node name="ExitButton" type="Button" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="0"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
+size_flags_horizontal = 3
 text = "Exit"
 
 [node name="MainMenuButton" type="Button" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="1"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
+size_flags_horizontal = 3
 text = "Main Menu"
 
 [node name="CloseButton" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="2"]
+size_flags_horizontal = 3
 text = "Restart"
 
 [node name="ConfirmMainMenu" type="ConfirmationDialog" parent="." index="2"]

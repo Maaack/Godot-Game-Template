@@ -26,25 +26,21 @@ theme_override_constants/margin_bottom = 16
 text = "Resume"
 
 [node name="RestartButton" type="Button" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="1"]
-custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
 text = "Restart"
 
 [node name="OptionsButton" type="Button" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="2"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
 text = "Options"
 
 [node name="MainMenuButton" type="Button" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="3"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
 text = "Main Menu"
 
 [node name="ExitButton" type="Button" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="4"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
 text = "Exit Game"
 
