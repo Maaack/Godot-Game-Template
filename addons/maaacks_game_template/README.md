@@ -125,10 +125,6 @@ When editing an existing project:
 
 ## Usage
 
-Changes can be made directly to scenes and scripts outside of `addons/`. 
-
-A copy of the `examples/` directory is made outside of `addons/` when the plugin is enabled for the first time. However, if this is skipped, it is recommended developers inherit from scenes they want to use, and save the inherited scene outside of `addons/`. This avoids changes getting lost either from the package updating, or because of a `.gitignore`.
-
 ### New Project
 These instructions assume starting with the entire contents of the project folder. This will be the case when cloning the repo, or starting from the *template* version in the Godot Asset Library.
   
