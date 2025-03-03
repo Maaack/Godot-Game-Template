@@ -77,7 +77,7 @@ grow_vertical = 2
 
 [node name="TitleMargin" type="MarginContainer" parent="MenuContainer"]
 layout_mode = 2
-theme_override_constants/margin_top = 32
+theme_override_constants/margin_top = 24
 
 [node name="TitleContainer" type="Control" parent="MenuContainer/TitleMargin"]
 layout_mode = 2
@@ -97,7 +97,7 @@ script = ExtResource("7_j7612")
 
 [node name="SubTitleMargin" type="MarginContainer" parent="MenuContainer"]
 layout_mode = 2
-theme_override_constants/margin_top = 96
+theme_override_constants/margin_top = 92
 
 [node name="SubTitleContainer" type="Control" parent="MenuContainer/SubTitleMargin"]
 layout_mode = 2
@@ -146,25 +146,21 @@ script = ExtResource("4_l1ebe")
 
 [node name="NewGameButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
 text = "New Game"
 
 [node name="OptionsButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
 text = "Options"
 
 [node name="CreditsButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
 text = "Credits"
 
 [node name="ExitButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
 text = "Exit"
 
@@ -206,13 +202,12 @@ mouse_filter = 2
 [node name="BackButton" type="Button" parent="FlowControlContainer/FlowControl"]
 unique_name_in_owner = true
 visible = false
-custom_minimum_size = Vector2(62, 40)
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -40.0
-offset_right = 62.0
+offset_top = -31.0
+offset_right = 45.0
 grow_vertical = 0
 text = "Back"
 
