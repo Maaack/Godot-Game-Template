@@ -28,4 +28,4 @@ However, for these to work in exported versions of the project, the inputs need 
 
 ## Web Builds
 
-The Godot (or the template) currently does not support automatic joypad device detection on the web. If icons are being used for input remapping, the joypad icons will not update to match a new detected controller.
+Godot (or the template) currently does not support joypad device detection on the web. If icons are being used for input remapping, the joypad icons will *not* update automatically to match a new detected controller.
