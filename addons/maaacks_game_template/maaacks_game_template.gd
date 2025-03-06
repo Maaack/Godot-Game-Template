@@ -9,6 +9,7 @@ const MAIN_SCENE_RELATIVE_PATH = "scenes/opening/opening_with_logo.tscn"
 const MAIN_SCENE_UPDATE_TEXT = "Current:\n%s\n\nNew:\n%s\n"
 const OVERRIDE_RELATIVE_PATH = "installer/override.cfg"
 const SCENE_LOADER_RELATIVE_PATH = "base/scenes/autoloads/scene_loader.tscn"
+const THEMES_DIRECTORY_RELATIVE_PATH = "res://resources/themes"
 const UID_PREG_MATCH = r'uid="uid:\/\/[0-9a-z]+" '
 const WINDOW_OPEN_DELAY : float = 1.5
 const RUNNING_CHECK_DELAY : float = 0.25
@@ -55,6 +56,9 @@ func _open_theme_selection_dialog():
 	theme_selection_instance.confirmed.connect(_update_gui_theme)
 	theme_selection_instance.theme_selected.connect(_on_theme_selected)
 	add_child(theme_selection_instance)
+	var theme_directores : Array[String]
+	theme_directores.append(THEMES_DIRECTORY_RELATIVE_PATH)
+	theme_selection_instance.theme_directories = theme_directores
 
 func _update_main_scene(target_path : String, main_scene_path : String):
 	ProjectSettings.set_setting("application/run/main_scene", main_scene_path)

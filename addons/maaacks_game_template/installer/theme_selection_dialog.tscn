@@ -16,8 +16,7 @@ script = ExtResource("1_5u0gx")
 [node name="FileLister" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2_luhgx")
-files = Array[String](["res://resources/themes/gravity.tres", "res://resources/themes/lab.tres", "res://resources/themes/lore.tres", "res://resources/themes/tower.tres"])
-directories = Array[String](["res://resources/themes"])
+ends_with = ".tres"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(560, 443)
@@ -49,11 +48,6 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-item_count = 4
-item_0/text = "Gravity"
-item_1/text = "Lab"
-item_2/text = "Lore"
-item_3/text = "Tower"
 
 [node name="VSeparator" type="VSeparator" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2

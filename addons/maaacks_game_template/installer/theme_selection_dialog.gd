@@ -3,6 +3,13 @@ extends ConfirmationDialog
 
 signal theme_selected(theme_file: String)
 
+@export_dir var theme_directories : Array[String] :
+	set(value):
+		theme_directories = value
+		if is_inside_tree():
+			%FileLister.directories = theme_directories
+			_fill_with_themes()
+
 func _fill_with_themes():
 	%ItemList.clear()
 	for file in %FileLister.files:
@@ -11,7 +18,6 @@ func _fill_with_themes():
 			%ItemList.add_item(readable_name)
 
 func _ready():
-	_fill_with_themes()
 	get_ok_button().disabled = true
 
 func _preview_theme(theme_file: String):
