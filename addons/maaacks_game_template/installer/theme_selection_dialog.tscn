@@ -6,7 +6,7 @@
 [node name="ThemeSelectionDialog" type="ConfirmationDialog"]
 title = "Use an Included Theme"
 initial_position = 2
-size = Vector2i(576, 500)
+size = Vector2i(1152, 640)
 visible = true
 ok_button_text = "Yes"
 dialog_autowrap = true
@@ -20,6 +20,7 @@ files = Array[String](["res://resources/themes/gravity.tres", "res://resources/t
 directories = Array[String](["res://resources/themes"])
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(560, 443)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -29,13 +30,14 @@ offset_right = -8.0
 offset_bottom = -49.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 16
 
 [node name="Label" type="Label" parent="VBoxContainer"]
-custom_minimum_size = Vector2(384, 101)
+custom_minimum_size = Vector2(384, 0)
 layout_mode = 2
 text = "A project theme was not detected. Would you like to use one of these included with the plugin?
 
-This requires restarting the editor to take affect."
+This requires restarting the editor to take effect."
 autowrap_mode = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
@@ -47,6 +49,14 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+item_count = 4
+item_0/text = "Gravity"
+item_1/text = "Lab"
+item_2/text = "Lore"
+item_3/text = "Tower"
+
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2

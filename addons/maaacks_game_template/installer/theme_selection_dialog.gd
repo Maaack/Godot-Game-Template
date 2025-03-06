@@ -4,6 +4,7 @@ extends ConfirmationDialog
 signal theme_selected(theme_file: String)
 
 func _fill_with_themes():
+	%ItemList.clear()
 	for file in %FileLister.files:
 		if file is String:
 			var readable_name = file.get_file().get_basename().capitalize()
