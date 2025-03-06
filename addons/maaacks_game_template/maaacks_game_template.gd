@@ -9,7 +9,7 @@ const MAIN_SCENE_RELATIVE_PATH = "scenes/opening/opening_with_logo.tscn"
 const MAIN_SCENE_UPDATE_TEXT = "Current:\n%s\n\nNew:\n%s\n"
 const OVERRIDE_RELATIVE_PATH = "installer/override.cfg"
 const SCENE_LOADER_RELATIVE_PATH = "base/scenes/autoloads/scene_loader.tscn"
-const THEMES_DIRECTORY_RELATIVE_PATH = "res://resources/themes"
+const THEMES_DIRECTORY_RELATIVE_PATH = "resources/themes"
 const UID_PREG_MATCH = r'uid="uid:\/\/[0-9a-z]+" '
 const WINDOW_OPEN_DELAY : float = 1.5
 const RUNNING_CHECK_DELAY : float = 0.25
@@ -47,9 +47,9 @@ func _check_theme_needs_updating(target_path : String):
 	var new_theme_resource_path = target_path + MAIN_SCENE_RELATIVE_PATH
 	if new_theme_resource_path == current_theme_resource_path:
 		return
-	_open_theme_selection_dialog()
+	_open_theme_selection_dialog(target_path)
 
-func _open_theme_selection_dialog():
+func _open_theme_selection_dialog(target_path : String):
 	selected_theme = ""
 	var theme_selection_scene : PackedScene = load(get_plugin_path() + "installer/theme_selection_dialog.tscn")
 	var theme_selection_instance = theme_selection_scene.instantiate()
@@ -57,7 +57,7 @@ func _open_theme_selection_dialog():
 	theme_selection_instance.theme_selected.connect(_on_theme_selected)
 	add_child(theme_selection_instance)
 	var theme_directores : Array[String]
-	theme_directores.append(THEMES_DIRECTORY_RELATIVE_PATH)
+	theme_directores.append(target_path + THEMES_DIRECTORY_RELATIVE_PATH)
 	theme_selection_instance.theme_directories = theme_directores
 
 func _update_main_scene(target_path : String, main_scene_path : String):
