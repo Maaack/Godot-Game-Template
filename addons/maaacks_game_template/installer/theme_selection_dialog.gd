@@ -1,3 +1,4 @@
+@tool
 extends ConfirmationDialog
 
 signal theme_selected(theme_file: String)
@@ -11,7 +12,13 @@ func _fill_with_themes():
 func _ready():
 	_fill_with_themes()
 
+func _preview_theme(theme_file: String):
+	var theme_resource : Theme = load(theme_file)
+	if theme_resource == null: return
+	%ThemePreviewContainer.theme = theme_resource
+
 func _on_item_list_item_selected(index):
 	if index < %FileLister.files.size():
 		var file = %FileLister.files[index]
+		_preview_theme(file)
 		theme_selected.emit(file)

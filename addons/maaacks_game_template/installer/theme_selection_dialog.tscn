@@ -5,7 +5,8 @@
 
 [node name="ThemeSelectionDialog" type="ConfirmationDialog"]
 title = "Use an Included Theme"
-size = Vector2i(400, 400)
+initial_position = 2
+size = Vector2i(576, 500)
 visible = true
 ok_button_text = "Yes"
 dialog_autowrap = true
@@ -37,9 +38,116 @@ text = "A project theme was not detected. Would you like to use one of these inc
 This requires restarting the editor to take affect."
 autowrap_mode = 3
 
-[node name="ItemList" type="ItemList" parent="VBoxContainer"]
-unique_name_in_owner = true
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[connection signal="item_selected" from="VBoxContainer/ItemList" to="." method="_on_item_list_item_selected"]
+[node name="ItemList" type="ItemList" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="ThemePreviewContainer" type="TabContainer" parent="VBoxContainer/HBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+current_tab = 0
+
+[node name="Theme" type="Control" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Theme"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Theme/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Theme/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Theme"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Theme/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Theme/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Button"
+
+[node name="Button2" type="Button" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Theme/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_pressed = true
+text = "Button"
+
+[node name="Button3" type="Button" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Theme/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+text = "Button"
+
+[node name="CheckButton" type="CheckButton" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Theme/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "CheckButton"
+
+[node name="CheckBox" type="CheckBox" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Theme/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "CheckBox"
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Theme/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HScrollBar" type="HScrollBar" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Theme/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Preview" type="Control" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Preview"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Preview/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Preview/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Preview"
+horizontal_alignment = 1
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Preview/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[connection signal="item_selected" from="VBoxContainer/HBoxContainer/ItemList" to="." method="_on_item_list_item_selected"]
