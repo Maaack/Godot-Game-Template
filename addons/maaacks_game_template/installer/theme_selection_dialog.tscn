@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://d25mdvmlbn35"]
+
+[ext_resource type="Script" uid="uid://c6p8xjvlrgsfk" path="res://addons/maaacks_game_template/installer/theme_selection_dialog.gd" id="1_5u0gx"]
+[ext_resource type="Script" uid="uid://bij7wsh8d44gv" path="res://addons/maaacks_game_template/base/scripts/file_lister.gd" id="2_luhgx"]
+
+[node name="ThemeSelectionDialog" type="ConfirmationDialog"]
+title = "Use an Included Theme"
+size = Vector2i(400, 400)
+visible = true
+ok_button_text = "Yes"
+dialog_autowrap = true
+cancel_button_text = "No"
+script = ExtResource("1_5u0gx")
+
+[node name="FileLister" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_luhgx")
+files = Array[String](["res://resources/themes/gravity.tres", "res://resources/themes/lab.tres", "res://resources/themes/lore.tres", "res://resources/themes/tower.tres"])
+directories = Array[String](["res://resources/themes"])
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -49.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+custom_minimum_size = Vector2(384, 101)
+layout_mode = 2
+text = "A project theme was not detected. Would you like to use one of these included with the plugin?
+
+This requires restarting the editor to take affect."
+autowrap_mode = 3
+
+[node name="ItemList" type="ItemList" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[connection signal="item_selected" from="VBoxContainer/ItemList" to="." method="_on_item_list_item_selected"]
