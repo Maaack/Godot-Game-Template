@@ -72,11 +72,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 current_tab = 0
 
-[node name="Theme" type="Control" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer"]
+[node name="Tab1" type="Control" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer"]
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Theme"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab1"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -88,55 +88,55 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Theme/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab1/MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Theme/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab1/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Theme"
+text = "Label"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Theme/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab1/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Theme/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab1/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Button"
 
-[node name="Button2" type="Button" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Theme/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Button2" type="Button" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab1/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 toggle_mode = true
 button_pressed = true
 text = "Button"
 
-[node name="Button3" type="Button" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Theme/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Button3" type="Button" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab1/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 disabled = true
 text = "Button"
 
-[node name="CheckButton" type="CheckButton" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Theme/MarginContainer/VBoxContainer"]
+[node name="CheckButton" type="CheckButton" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab1/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "CheckButton"
 
-[node name="CheckBox" type="CheckBox" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Theme/MarginContainer/VBoxContainer"]
+[node name="CheckBox" type="CheckBox" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab1/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "CheckBox"
 
-[node name="HSlider" type="HSlider" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Theme/MarginContainer/VBoxContainer"]
+[node name="HSlider" type="HSlider" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab1/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="HScrollBar" type="HScrollBar" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Theme/MarginContainer/VBoxContainer"]
+[node name="HScrollBar" type="HScrollBar" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab1/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Preview" type="Control" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer"]
+[node name="Tab2" type="Control" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer"]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Preview"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab2"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -148,16 +148,19 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Preview/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab2/MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Preview/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab2/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Preview"
 horizontal_alignment = 1
 
-[node name="TextEdit" type="TextEdit" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Preview/MarginContainer/VBoxContainer"]
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab2/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab2/MarginContainer/VBoxContainer"]
+layout_mode = 2
 
 [connection signal="item_selected" from="VBoxContainer/HBoxContainer/ItemList" to="." method="_on_item_list_item_selected"]

@@ -12,6 +12,7 @@ func _fill_with_themes():
 
 func _ready():
 	_fill_with_themes()
+	get_ok_button().disabled = true
 
 func _preview_theme(theme_file: String):
 	var theme_resource : Theme = load(theme_file)
@@ -19,6 +20,7 @@ func _preview_theme(theme_file: String):
 	%ThemePreviewContainer.theme = theme_resource
 
 func _on_item_list_item_selected(index):
+	get_ok_button().disabled = false
 	if index < %FileLister.files.size():
 		var file = %FileLister.files[index]
 		_preview_theme(file)
