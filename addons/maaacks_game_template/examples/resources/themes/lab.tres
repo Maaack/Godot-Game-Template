@@ -172,6 +172,7 @@ LeftStaminaBar/base_type = &"ProgressBar"
 LeftStaminaBar/styles/background = SubResource("StyleBoxFlat_ywrjj")
 LeftStaminaBar/styles/fill = SubResource("StyleBoxFlat_tyerd")
 Panel/styles/panel = SubResource("StyleBoxFlat_ulcur")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_ulcur")
 RightStaminaBar/base_type = &"ProgressBar"
 RightStaminaBar/styles/background = SubResource("StyleBoxFlat_aliwb")
 RightStaminaBar/styles/fill = SubResource("StyleBoxFlat_tnl2j")
