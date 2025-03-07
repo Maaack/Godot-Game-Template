@@ -34,9 +34,9 @@ theme_override_constants/separation = 16
 [node name="Label" type="Label" parent="VBoxContainer"]
 custom_minimum_size = Vector2(384, 0)
 layout_mode = 2
-text = "A project theme was not detected. Would you like to use one of these included with the plugin?
+text = "A custom theme was not detected for the project. Starter options are provided below. These can be customized as needed.
 
-This requires restarting the editor to take effect."
+Requires restarting the editor to take full effect."
 autowrap_mode = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
@@ -119,11 +119,18 @@ text = "CheckButton"
 layout_mode = 2
 text = "CheckBox"
 
-[node name="HSlider" type="HSlider" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab1/MarginContainer/VBoxContainer"]
+[node name="MenuButton" type="MenuButton" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab1/MarginContainer/VBoxContainer"]
 layout_mode = 2
+text = "MenuButton"
 
-[node name="HScrollBar" type="HScrollBar" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab1/MarginContainer/VBoxContainer"]
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab1/MarginContainer/VBoxContainer"]
 layout_mode = 2
+selected = 0
+item_count = 2
+popup/item_0/text = "OptionButton"
+popup/item_0/id = 0
+popup/item_1/text = "OptionButton2"
+popup/item_1/id = 1
 
 [node name="Tab2" type="Control" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer"]
 visible = false
@@ -147,14 +154,27 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab2/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Preview"
+text = "Another label"
 horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab2/MarginContainer/VBoxContainer"]
+layout_mode = 2
 
 [node name="TextEdit" type="TextEdit" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab2/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="LineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab2/MarginContainer/VBoxContainer"]
+[node name="HSlider" type="HSlider" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab2/MarginContainer/VBoxContainer"]
 layout_mode = 2
+
+[node name="HScrollBar" type="HScrollBar" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+value = 50.0
 
 [connection signal="item_selected" from="VBoxContainer/HBoxContainer/ItemList" to="." method="_on_item_list_item_selected"]
