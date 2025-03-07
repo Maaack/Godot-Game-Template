@@ -172,4 +172,4 @@ static func get_device_specific_text(event : InputEvent, device_name : String = 
 		if event.button_index < MOUSE_BUTTONS.size():
 			var mouse_button : String = MOUSE_BUTTONS[event.button_index]
 			return "%s %s" % [DEVICE_MOUSE, mouse_button]
-	return get_text(event)
+	return get_text(event).capitalize()
