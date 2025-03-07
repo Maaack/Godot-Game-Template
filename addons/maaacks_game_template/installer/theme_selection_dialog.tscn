@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bij7wsh8d44gv" path="res://addons/maaacks_game_template/base/scripts/file_lister.gd" id="2_luhgx"]
 
 [node name="ThemeSelectionDialog" type="ConfirmationDialog"]
-title = "Use an Included Theme"
+title = "Use a Starter Theme"
 initial_position = 2
 size = Vector2i(1024, 704)
 visible = true
