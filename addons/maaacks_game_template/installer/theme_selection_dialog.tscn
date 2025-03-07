@@ -6,7 +6,7 @@
 [node name="ThemeSelectionDialog" type="ConfirmationDialog"]
 title = "Use an Included Theme"
 initial_position = 2
-size = Vector2i(1152, 640)
+size = Vector2i(1024, 640)
 visible = true
 ok_button_text = "Yes"
 dialog_autowrap = true

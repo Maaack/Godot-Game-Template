@@ -3,7 +3,7 @@
 [node name="MainSceneConfirmationDialog" type="ConfirmationDialog"]
 title = "Update Main Scene"
 initial_position = 2
-size = Vector2i(420, 210)
+size = Vector2i(1024, 192)
 visible = true
 exclusive = false
 ok_button_text = "Yes"
