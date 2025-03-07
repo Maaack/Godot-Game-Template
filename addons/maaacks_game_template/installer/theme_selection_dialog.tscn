@@ -6,7 +6,7 @@
 [node name="ThemeSelectionDialog" type="ConfirmationDialog"]
 title = "Use an Included Theme"
 initial_position = 2
-size = Vector2i(1024, 640)
+size = Vector2i(1024, 704)
 visible = true
 ok_button_text = "Yes"
 dialog_autowrap = true
@@ -56,9 +56,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 16
 
 [node name="ThemePreviewContainer" type="TabContainer" parent="VBoxContainer/HBoxContainer/MarginContainer"]
 unique_name_in_owner = true
