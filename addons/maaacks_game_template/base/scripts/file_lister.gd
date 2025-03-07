@@ -30,7 +30,7 @@ class_name FileLister
 
 
 func _refresh_files():
-	if not is_inside_tree() or directories.is_empty(): return
+	if not is_inside_tree(): return
 	files.clear()
 	for directory in directories:
 		var dir_access = DirAccess.open(directory)

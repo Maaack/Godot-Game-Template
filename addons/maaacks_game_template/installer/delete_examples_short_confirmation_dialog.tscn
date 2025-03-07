@@ -3,7 +3,7 @@
 [node name="DeleteExamplesShortConfirmationDialog" type="ConfirmationDialog"]
 title = "Delete Source Examples"
 initial_position = 2
-size = Vector2i(400, 106)
+size = Vector2i(1024, 128)
 visible = true
 ok_button_text = "Yes"
 dialog_text = "Are you sure you would like to delete the source examples folder?"

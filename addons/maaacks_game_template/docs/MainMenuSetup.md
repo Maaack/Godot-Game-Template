@@ -23,7 +23,7 @@ A basic level select scene is available to add to the menu. In `main_menu_with_a
 Levels can be added to the menu by inspecting the `SceneLister` and either selecting a directory to automatically read scene files from, or populating the files array manually.
 
 ## Theming
-It is recommended to create a theme resource file and set it as the custom theme in the project settings. Any changes made to the theme file will then apply automatically to the whole project.
+It is recommended to have a custom theme for a project. Create a theme resource file or use one of the ones provided with the template and set it as the custom theme in the project settings. Any changes made to the theme file will then apply automatically to the whole project.
 
 The main UI elements that are used throughout the project that require theming for customization are:
 - Button
