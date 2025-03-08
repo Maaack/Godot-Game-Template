@@ -14,9 +14,18 @@ This pack is organized by `Device/IconType`. The `IconTypes` for each device are
 * `.../kenney_input-prompts/Nintendo Switch/Default`  
 * `.../kenney_input-prompts/Steam Deck/Default`  
 
+Set `filtered_strings` to:
+* `keyboard`
+* `color`
+* `button`
+* `arrow`
+
 Set `replace_strings` with the key pairs:  
+* `"Capslock": "Caps Lock"`  
 * `"Generic Stick": "Generic Left Stick"`  
 * `"Guide": "Home"`  
+* `"Slash Back": "Back Slash"`  
+* `"Slash Forward": "Slash"`  
 * `"Stick L": "Left Stick"`  
 * `"Stick R": "Right Stick"`  
 * `"Trigger L 1": "Left Shoulder"`  
@@ -29,11 +38,6 @@ Set `replace_strings` with the key pairs:
 Under the `FileLister` properties of the `InputIconMapper`, expand the `Constraints` and `Advanced Search` tabs. Set `ends_with=".png"` and `not_ends_with="outline.png"`.
 
 Press `Refresh Files`.
-
-Set `filtered_strings` to:
-* `keyboard`
-* `color`
-* `button`
 
 If you want to use colored icons, in `prioritized_strings` add `color`. Otherwise set `filter="color"`.  
 
@@ -49,10 +53,7 @@ Under the `FileLister` properties of  the `InputIconMapper`, expand the `Constra
 
 Press `Refresh Files`. 
 
-Set `filtered_strings` to:
-* `keyboard`
-* `color`
-* `button`
+Add to `filtered_strings`:
 * `outline`
 
 In `prioritized_strings` add `outline`. If you want to use colored icons, in `prioritized_strings` add `color`, too. Otherwise set `filter="color"`.  
