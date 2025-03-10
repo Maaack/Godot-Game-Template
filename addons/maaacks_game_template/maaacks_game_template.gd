@@ -9,6 +9,7 @@ const MAIN_SCENE_RELATIVE_PATH = "scenes/opening/opening_with_logo.tscn"
 const MAIN_SCENE_UPDATE_TEXT = "Current:\n%s\n\nNew:\n%s\n"
 const OVERRIDE_RELATIVE_PATH = "installer/override.cfg"
 const SCENE_LOADER_RELATIVE_PATH = "base/scenes/autoloads/scene_loader.tscn"
+const THEMES_DIRECTORY_RELATIVE_PATH = "resources/themes"
 const UID_PREG_MATCH = r'uid="uid:\/\/[0-9a-z]+" '
 const WINDOW_OPEN_DELAY : float = 1.5
 const RUNNING_CHECK_DELAY : float = 0.25
@@ -20,6 +21,8 @@ const RAW_COPY_EXTENSIONS : Array = ["gd", "md", "txt"]
 const OMIT_COPY_EXTENSIONS : Array = ["uid"]
 const REPLACE_CONTENT_EXTENSIONS : Array = ["gd", "tscn", "tres"]
 
+var selected_theme : String
+
 func _get_plugin_name():
 	return PLUGIN_NAME
 
@@ -29,22 +32,53 @@ func get_plugin_path() -> String:
 func get_plugin_examples_path() -> String:
 	return get_plugin_path() + EXAMPLES_RELATIVE_PATH
 
-func _update_main_scene(main_scene_path : String):
+func _on_theme_selected(theme_resource_path: String):
+	selected_theme = theme_resource_path
+
+func _update_gui_theme():
+	if selected_theme.is_empty(): return
+	ProjectSettings.set_setting("gui/theme/custom", selected_theme)
+	ProjectSettings.save()
+
+func _check_theme_needs_updating(target_path : String):
+	var current_theme_resource_path = ProjectSettings.get_setting("gui/theme/custom", "")
+	if current_theme_resource_path != "":
+		return
+	var new_theme_resource_path = target_path + MAIN_SCENE_RELATIVE_PATH
+	if new_theme_resource_path == current_theme_resource_path:
+		return
+	_open_theme_selection_dialog(target_path)
+
+func _open_theme_selection_dialog(target_path : String):
+	selected_theme = ""
+	var theme_selection_scene : PackedScene = load(get_plugin_path() + "installer/theme_selection_dialog.tscn")
+	var theme_selection_instance = theme_selection_scene.instantiate()
+	theme_selection_instance.confirmed.connect(_update_gui_theme)
+	theme_selection_instance.theme_selected.connect(_on_theme_selected)
+	add_child(theme_selection_instance)
+	var theme_directores : Array[String]
+	theme_directores.append(target_path + THEMES_DIRECTORY_RELATIVE_PATH)
+	theme_selection_instance.theme_directories = theme_directores
+
+func _update_main_scene(target_path : String, main_scene_path : String):
 	ProjectSettings.set_setting("application/run/main_scene", main_scene_path)
 	ProjectSettings.save()
+	_check_theme_needs_updating(target_path)
 
 func _check_main_scene_needs_updating(target_path : String):
 	var current_main_scene_path = ProjectSettings.get_setting("application/run/main_scene", "")
 	var new_main_scene_path = target_path + MAIN_SCENE_RELATIVE_PATH
-	if new_main_scene_path == current_main_scene_path:
+	if new_main_scene_path != current_main_scene_path:
+		_open_main_scene_confirmation_dialog(target_path, current_main_scene_path, new_main_scene_path)
 		return
-	_open_main_scene_confirmation_dialog(current_main_scene_path, new_main_scene_path)
+	_check_theme_needs_updating(target_path)
 
-func _open_main_scene_confirmation_dialog(current_main_scene : String, new_main_scene : String):
+func _open_main_scene_confirmation_dialog(target_path : String, current_main_scene : String, new_main_scene : String):
 	var main_confirmation_scene : PackedScene = load(get_plugin_path() + "installer/main_scene_confirmation_dialog.tscn")
 	var main_confirmation_instance : ConfirmationDialog = main_confirmation_scene.instantiate()
 	main_confirmation_instance.dialog_text += MAIN_SCENE_UPDATE_TEXT % [current_main_scene, new_main_scene]
-	main_confirmation_instance.confirmed.connect(_update_main_scene.bind(new_main_scene))
+	main_confirmation_instance.confirmed.connect(_update_main_scene.bind(target_path, new_main_scene))
+	main_confirmation_instance.canceled.connect(_check_theme_needs_updating.bind(target_path))
 	add_child(main_confirmation_instance)
 
 func _open_play_opening_confirmation_dialog(target_path : String):

@@ -44,6 +44,7 @@ const BUTTON_NAME_GROUP_STRING : String = "%s:%d"
 @export var show_all_actions : bool = true
 @export_group("Icons")
 @export var input_icon_mapper : InputIconMapper
+@export var expand_icon : bool = false
 @export_group("Built-in Actions")
 ## Shows Godot's built-in actions (action names starting with "ui_") in the tree.
 @export var show_built_in_actions : bool = false
@@ -152,6 +153,7 @@ func _add_new_button(content : Variant, container: Control, disabled : bool = fa
 	new_button.size_flags_horizontal = SIZE_EXPAND_FILL
 	new_button.size_flags_vertical = SIZE_EXPAND_FILL
 	new_button.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	new_button.expand_icon = expand_icon
 	if content is Texture:
 		new_button.icon = content
 	elif content is String:
