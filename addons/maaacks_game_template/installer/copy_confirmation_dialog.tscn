@@ -3,7 +3,7 @@
 [node name="CopyConfirmationDialog" type="ConfirmationDialog"]
 title = "Copy Examples"
 initial_position = 2
-size = Vector2i(400, 210)
+size = Vector2i(1024, 148)
 visible = true
 exclusive = false
 ok_button_text = "Yes"
