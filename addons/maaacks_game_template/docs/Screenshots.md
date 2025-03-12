@@ -1,7 +1,7 @@
 # Screenshots
 Screenshots organized by included themes with a variety of the features shown.
 
-Screenshots present the game in 640x360, but up to 4k resolutions are supported.
+The template is presented here in a 640x360 resolution, but up to 4k resolutions are supported.
 
 ## Default (No Theme)
 ![Main Menu - Default](/addons/maaacks_game_template/media/screenshot-6-main-menu-5.png)  
