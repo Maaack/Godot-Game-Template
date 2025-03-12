@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bteq3ica74h30" path="res://addons/maaacks_game_template/base/assets/remapping_input_icons/subtraction_symbol.png" id="3_hb3xh"]
 
 [node name="InputActionsTree" type="Tree"]
-custom_minimum_size = Vector2(400, 256)
+custom_minimum_size = Vector2(400, 240)
 size_flags_vertical = 3
 hide_root = true
 script = ExtResource("1_o33o4")
