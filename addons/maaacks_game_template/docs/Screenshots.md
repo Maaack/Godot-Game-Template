@@ -1,5 +1,7 @@
 # Screenshots
-Screenshots organized included themes applied with a variety of the features shown.
+Screenshots organized by included themes with a variety of the features shown.
+
+Screenshots present the game in 640x360, but up to 4k resolutions are supported.
 
 ## Default (No Theme)
 ![Main Menu - Default](/addons/maaacks_game_template/media/screenshot-6-main-menu-5.png)  
@@ -24,10 +26,6 @@ Screenshots organized included themes applied with a variety of the features sho
 ![Level Won - Gravity](/addons/maaacks_game_template/media/screenshot-6-level-won-1.png)  
 ![Level Lost - Gravity](/addons/maaacks_game_template/media/screenshot-6-level-lost-1.png)  
 
-## Lab
-![Audio Options - Lab](/addons/maaacks_game_template/media/screenshot-6-audio-options-2.png)  
-![Video Options - Lab](/addons/maaacks_game_template/media/screenshot-6-video-options-2.png)  
-
 ## Lore
 ![Main Menu - Lore](/addons/maaacks_game_template/media/screenshot-6-main-menu-2.png)  
 ![Input List - Lore](/addons/maaacks_game_template/media/screenshot-6-input-list-6.png)  
@@ -49,7 +47,6 @@ Screenshots organized included themes applied with a variety of the features sho
 ![Loading Screen - Steal This Theme](/addons/maaacks_game_template/media/screenshot-6-loading-screen-2.png)  
 ![Loading Screen - Steal This Theme](/addons/maaacks_game_template/media/screenshot-6-loading-screen-3.png)  
 ![Loading Screen - Steal This Theme](/addons/maaacks_game_template/media/screenshot-6-loading-screen-4.png)  
-
 
 ## Tower
 ![Main Menu - Tower](/addons/maaacks_game_template/media/screenshot-6-main-menu-3.png)  
