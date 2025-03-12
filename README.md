@@ -14,10 +14,10 @@ This template has a main menu, options menus, pause menu, credits, scene loader,
 [More Videos](/addons/maaacks_game_template/docs/Videos.md)
 
 #### Screenshots
-![Main Menu](/addons/maaacks_game_template/media/screenshot-3-1.png)  
-![Key Rebinding](/addons/maaacks_game_template/media/screenshot-3-2.png)  
-![Audio Controls](/addons/maaacks_game_template/media/screenshot-3-4.png)  
-![Pause Menu](/addons/maaacks_game_template/media/screenshot-3-6.png)  
+![Main Menu](/addons/maaacks_game_template/media/screenshot-6-main-menu-1.png)  
+![Key Rebinding](/addons/maaacks_game_template/media/screenshot-6-input-list-8.png)  
+![Audio Controls](/addons/maaacks_game_template/media/screenshot-6-audio-options-2.png)  
+![Pause Menu](/addons/maaacks_game_template/media/screenshot-6-pause-menu-3.png)  
 [More Screenshots](/addons/maaacks_game_template/docs/Screenshots.md)  
 
 ## Use Case
