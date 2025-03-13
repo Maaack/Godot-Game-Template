@@ -64,8 +64,7 @@ func _add_input_event_as_tree_item(action_name : String, input_event : InputEven
 		icon = input_icon_mapper.get_icon(input_event)
 	if icon:
 		input_tree_item.set_icon(0, icon)
-	else:
-		input_tree_item.set_text(0, InputEventHelper.get_text(input_event))
+	input_tree_item.set_text(0, InputEventHelper.get_text(input_event))
 	if remove_button_texture != null:
 		input_tree_item.add_button(0, remove_button_texture, -1, false, "Remove")
 	tree_item_remove_map[input_tree_item] = input_event

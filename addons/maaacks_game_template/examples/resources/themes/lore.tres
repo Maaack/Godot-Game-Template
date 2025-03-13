@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=16 format=3 uid="uid://d1hgaet22gba2"]
+[gd_resource type="Theme" load_steps=15 format=3 uid="uid://d1hgaet22gba2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8hxc2"]
 content_margin_left = 8.0
@@ -95,9 +95,6 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_67umr"]
-bg_color = Color(0.00392157, 0.0862745, 0.152941, 0.87451)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w2bse"]
 content_margin_left = 8.0
 content_margin_top = 8.0
@@ -183,7 +180,6 @@ ProgressBar/styles/fill = SubResource("StyleBoxFlat_t1x62")
 RichTextLabel/colors/default_color = Color(0.839216, 0.933333, 1, 1)
 RichTextLabel/colors/font_outline_color = Color(0.00392157, 0.0862745, 0.152941, 1)
 RichTextLabel/constants/outline_size = 8
-RichTextLabel/styles/normal = SubResource("StyleBoxFlat_67umr")
 TabContainer/styles/panel = SubResource("StyleBoxFlat_hvab5")
 TabContainer/styles/tab_hovered = SubResource("StyleBoxFlat_w2bse")
 TabContainer/styles/tab_selected = SubResource("StyleBoxFlat_7eahf")
