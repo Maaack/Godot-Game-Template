@@ -51,10 +51,10 @@ func _match_value_to_other(value : Variant, other : Variant) -> Variant:
 		return int(round(value))
 	return value
 
-func set_value(value : Variant):
+func _set_value(value : Variant) -> Variant:
 	if option_values.is_empty(): return
 	if value == null:
-		return super.set_value(-1)
+		return super._set_value(-1)
 	custom_option_values = option_values.duplicate()
 	value = _match_value_to_other(value, custom_option_values.front())
 	if value not in custom_option_values and typeof(value) == property_type:
@@ -64,7 +64,7 @@ func set_value(value : Variant):
 	if value not in option_values:
 		disable_option(custom_option_values.find(value))
 	value = custom_option_values.find(value)
-	super.set_value(value)
+	return super._set_value(value)
 
 func _set_option_list(option_titles_list : Array):
 	%OptionButton.clear()
