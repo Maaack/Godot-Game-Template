@@ -87,7 +87,7 @@ func _connect_option_inputs(node):
 		node.text_changed.connect(_on_setting_changed)
 		_connected_nodes.append(node)
 
-func set_value(value : Variant):
+func _set_value(value : Variant) -> Variant:
 	if value == null:
 		return
 	for node in get_children():
@@ -102,6 +102,10 @@ func set_value(value : Variant):
 			node.value = value as float
 		if node is LineEdit or node is TextEdit:
 			node.text = "%s" % value
+	return value
+
+func set_value(value : Variant):
+	value = _set_value(value)
 	_on_setting_changed(value)
 
 func set_editable(value : bool = true):
@@ -118,7 +122,7 @@ func _ready():
 	option_name = option_name
 	property_type = property_type
 	default_value = default_value
-	set_value(_get_setting(default_value))
+	_set_value(_get_setting(default_value))
 	for child in get_children():
 		_connect_option_inputs(child)
 	child_entered_tree.connect(_connect_option_inputs)
