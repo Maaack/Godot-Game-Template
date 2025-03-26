@@ -32,6 +32,9 @@ func get_plugin_path() -> String:
 func get_plugin_examples_path() -> String:
 	return get_plugin_path() + EXAMPLES_RELATIVE_PATH
 
+func get_copy_path() -> String:
+	return ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + "copy_path", get_plugin_examples_path())
+
 func _on_theme_selected(theme_resource_path: String):
 	selected_theme = theme_resource_path
 
@@ -301,14 +304,14 @@ func _open_path_dialog():
 	var destination_scene : PackedScene = load(get_plugin_path() + "installer/destination_dialog.tscn")
 	var destination_instance : FileDialog = destination_scene.instantiate()
 	destination_instance.dir_selected.connect(_copy_to_directory)
-	destination_instance.canceled.connect(_check_main_scene_needs_updating.bind(get_plugin_examples_path()))
+	destination_instance.canceled.connect(_check_main_scene_needs_updating.bind(get_copy_path()))
 	add_child(destination_instance)
 
 func _open_confirmation_dialog():
 	var confirmation_scene : PackedScene = load(get_plugin_path() + "installer/copy_confirmation_dialog.tscn")
 	var confirmation_instance : ConfirmationDialog = confirmation_scene.instantiate()
 	confirmation_instance.confirmed.connect(_open_path_dialog)
-	confirmation_instance.canceled.connect(_check_main_scene_needs_updating.bind(get_plugin_examples_path()))
+	confirmation_instance.canceled.connect(_check_main_scene_needs_updating.bind(get_copy_path()))
 	add_child(confirmation_instance)
 
 func _show_plugin_dialogues():
