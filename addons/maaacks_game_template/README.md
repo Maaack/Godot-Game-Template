@@ -20,10 +20,11 @@ This template has a main menu, options menus, pause menu, credits, scene loader,
 ![Pause Menu](/addons/maaacks_game_template/media/screenshot-6-pause-menu-3.png)  
 [More Screenshots](/addons/maaacks_game_template/docs/Screenshots.md)  
 
-## Use Case
+## Objective
+
 Setup menus and accessibility features in about 15 minutes.
 
-The template can be the start of a new project, or plug into an existing one. It is game agnostic (2D or 3D) and can work with multiple target resolutions, up to 4k and down to 640x360.
+The template can be the start of a new project, or plug into an existing one. It is game agnostic (2D or 3D) and can work with multiple target resolutions, up to 4k and down to 640x360. It's meant to cover the needs for a typical game jam, while remaining scalable and extensible enough to support commercial games.
 
 ## Features
 
