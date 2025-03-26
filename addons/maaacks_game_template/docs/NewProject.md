@@ -4,15 +4,17 @@ These instructions assume starting with the entire contents of the project folde
   
 
 1.  Finish setup and remove duplicate example files.
-    
+
+
     1.  Go to `Project > Tools > Copy Maaack's Game Template Examples`.
     2.  Click `Cancel` in the first window asking to copy the examples. It's already done.
     3.  Select a theme in the next window if desired.
     4.  Go to `Project > Tools > Delete Maaack's Game Template Examples`.
     5.  Click `Yes` in the first window.
 
+
 2.  Update the project’s name.
-    
+
 
     1.  Go to `Project > Project Settings… > General > Application > Config`.
     2.  Update `Name` to `"Game Name"`.
@@ -21,10 +23,10 @@ These instructions assume starting with the entire contents of the project folde
     5.  The `Title` node should automatically update with the project's title. Customize the `Text` property if desired.
     7.  Select the `Subtitle` node and customize the `Text` property if desired.
     9.  Save the scene.
-   
 
 
 3.  Add background music and sound effects to the UI.
+
 
     1.  Verify the `Music` and `SFX` audio busses.
 
@@ -68,7 +70,7 @@ These instructions assume starting with the entire contents of the project folde
 
 
 4.  Add readable names for input actions to the controls menu.
-    
+
 
     1.  Open `input_options_menu.tscn`.
     2.  In the scene tree, select the `Controls` node.  
@@ -79,7 +81,7 @@ These instructions assume starting with the entire contents of the project folde
 
 
 5.  Add / remove configurable settings to / from menus.
-    
+
 
     1.  Open `mini_options_menu.tscn` or `[audio|visual|input|game]_options_menu.tscn` scenes to edit their options.
     2.  If an option is not desired, it can always be hidden, or removed entirely (sometimes with some additional work).
@@ -102,7 +104,7 @@ These instructions assume starting with the entire contents of the project folde
 
 
 6.  Update the game credits / attribution.
-    
+
 
     1.  Update the example `ATTRIBUTION.md` with the project's credits.
     2.  Open `credits.tscn`.
