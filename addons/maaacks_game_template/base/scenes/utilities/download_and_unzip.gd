@@ -2,6 +2,7 @@
 class_name DownloadAndUnzip
 extends Node
 
+signal request_completed
 signal response_received(response_body)
 signal request_failed(error)
 
@@ -161,15 +162,19 @@ func _extract_next_zipped_file():
 			file_access.close()
 	extracted_file_paths.append(full_path)
 
+func _finish_extraction():
+	zip_reader.close()
+	_delete_zip_file()
+	stage = Stage.NONE
+	request_completed.emit()
+
 func _process(delta):
 	if stage == Stage.EXTRACT:
 		var frame_start_time : float = Time.get_unix_time_from_system()
 		var frame_time : float = 0.0
 		while (frame_time < delta * process_time_ratio):
-				if _zipped_files_remaining() == 0:
-					zip_reader.close()
-					_delete_zip_file()
-					stage = Stage.NONE
-					break
-				_extract_next_zipped_file()
-				frame_time = Time.get_unix_time_from_system() - frame_start_time
+			if _zipped_files_remaining() == 0:
+				_finish_extraction()
+				break
+			_extract_next_zipped_file()
+			frame_time = Time.get_unix_time_from_system() - frame_start_time
