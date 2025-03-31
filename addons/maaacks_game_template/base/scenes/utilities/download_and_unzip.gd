@@ -29,7 +29,7 @@ var stage : Stage = Stage.NONE
 var zip_reader : ZIPReader = ZIPReader.new()
 var zipped_file_paths : PackedStringArray = []
 var extracted_file_paths : Array[String] = []
-
+var downloaded_zip_file : bool = false
 
 func get_http_request():
 	return _http_request
@@ -63,12 +63,13 @@ func request(body : String = "", request_headers : Array = []):
 	stage = Stage.DOWNLOAD
 
 func _delete_zip_file():
-	if not delete_zip_file: return
+	if not delete_zip_file or not downloaded_zip_file: return
 	if stage == Stage.DELETE:
 		push_warning("Extract in progress")
 		return
 	stage = Stage.DELETE
 	DirAccess.remove_absolute(zip_file_path)
+	downloaded_zip_file = false
 
 func _save_zip_file(body : PackedByteArray):
 	var file = FileAccess.open(zip_file_path, FileAccess.WRITE)
@@ -77,6 +78,7 @@ func _save_zip_file(body : PackedByteArray):
 		return
 	file.store_buffer(body)
 	file.close()
+	downloaded_zip_file = true
 
 func _extract_path_exists() -> bool:
 	return DirAccess.dir_exists_absolute(extract_path)

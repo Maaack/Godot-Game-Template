@@ -15,7 +15,6 @@ extract_extension = "kenney_input-prompts"
 zip_url = "https://kenney.nl/media/pages/assets/input-prompts/90bcb795c6-1719408444/kenney_input-prompts.zip"
 extract_path = "kenney_input-prompts"
 zip_file_path = "res://kenney_input-prompts.zip"
-delete_zip_file = false
 metadata/_custom_type_script = "uid://bqu3bc0tttrfk"
 
 [node name="InstallingDialog" type="Popup" parent="."]
