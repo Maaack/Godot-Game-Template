@@ -32,7 +32,7 @@ text = "Would you like to install Kenney's Input Prompts?
 
 This adds icons for a majority of input keys and devices in the input remapping menu. 6.1 MB of icons will get extracted to the assets directory.
 
-Below are some customization options available. This can be changed later."
+Below are style options available with the pack. This can be changed later."
 autowrap_mode = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]

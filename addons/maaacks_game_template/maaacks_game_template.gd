@@ -5,7 +5,6 @@ const PLUGIN_NAME = "Maaack's Game Template"
 const PROJECT_SETTINGS_PATH = "maaacks_game_template/"
 
 const EXAMPLES_RELATIVE_PATH = "examples/"
-const ASSETS_RELATIVE_PATH = "assets/"
 const MAIN_SCENE_RELATIVE_PATH = "scenes/opening/opening_with_logo.tscn"
 const MAIN_SCENE_UPDATE_TEXT = "Current:\n%s\n\nNew:\n%s\n"
 const OVERRIDE_RELATIVE_PATH = "installer/override.cfg"
@@ -307,7 +306,7 @@ func _copy_to_directory(target_path : String):
 func _open_input_icons_dialog():
 	var input_icons_scene : PackedScene = load(get_plugin_path() + "installer/kenney_input_prompts_installer.tscn")
 	var input_icons_instance = input_icons_scene.instantiate()
-	input_icons_instance.asset_dir_path = get_copy_path() + ASSETS_RELATIVE_PATH
+	input_icons_instance.copy_dir_path = get_copy_path()
 	add_child(input_icons_instance)
 
 func _open_path_dialog():

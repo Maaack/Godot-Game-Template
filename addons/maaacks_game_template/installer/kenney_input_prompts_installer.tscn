@@ -6,8 +6,8 @@
 
 [node name="KenneyInputPromptsInstaller" type="Node"]
 script = ExtResource("1_ebstj")
-asset_dir_path = "res://assets"
-extract_extension = "kenney_input-prompts"
+copy_dir_path = "res://"
+extract_extension = "assets/kenney_input-prompts"
 
 [node name="KenneyInputPromptsDialog" parent="." instance=ExtResource("1_pslk0")]
 
@@ -50,3 +50,4 @@ step = 0.001
 [connection signal="canceled" from="KenneyInputPromptsDialog" to="." method="_on_kenney_input_prompts_dialog_canceled"]
 [connection signal="configuration_selected" from="KenneyInputPromptsDialog" to="." method="_on_kenney_input_prompts_dialog_configuration_selected"]
 [connection signal="confirmed" from="KenneyInputPromptsDialog" to="." method="_on_kenney_input_prompts_dialog_confirmed"]
+[connection signal="request_completed" from="DownloadAndUnzip" to="." method="_on_download_and_unzip_request_completed"]
