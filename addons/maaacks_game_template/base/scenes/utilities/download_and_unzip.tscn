@@ -4,7 +4,6 @@
 
 [node name="DownloadAndUnzip" type="Node"]
 script = ExtResource("1_1few7")
-delete_zip_file = false
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 

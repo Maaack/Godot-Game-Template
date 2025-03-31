@@ -1,0 +1,66 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3x8m40qtdrj"]
+
+[ext_resource type="Script" uid="uid://bduy6qihnm0qo" path="res://addons/maaacks_game_template/installer/kenney_input_prompts_dialog.gd" id="1_nf1bc"]
+
+[node name="KenneyInputPromptsDialog" type="ConfirmationDialog"]
+title = "Add Kenney Input Prompts Pack"
+initial_position = 2
+size = Vector2i(1024, 512)
+visible = true
+ok_button_text = "Yes"
+dialog_autowrap = true
+cancel_button_text = "No"
+script = ExtResource("1_nf1bc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(560, 443)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -49.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+custom_minimum_size = Vector2(384, 0)
+layout_mode = 2
+text = "Would you like to install Kenney's Input Prompts?
+
+This adds icons for a majority of input keys and devices in the input remapping menu.
+
+Below are some customization options available. The whole pack will be installed, allowing this customization to be changed later."
+autowrap_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ItemList" type="ItemList" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+item_count = 4
+item_0/text = "Filled and Colored"
+item_1/text = "Filled and White"
+item_2/text = "Outlined and Colored"
+item_3/text = "Outlined and White"
+
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_right = 16
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+stretch_mode = 3
+
+[connection signal="item_selected" from="VBoxContainer/HBoxContainer/ItemList" to="." method="_on_item_list_item_selected"]

@@ -1,3 +1,4 @@
+@tool
 class_name DownloadAndUnzip
 extends Node
 
@@ -26,8 +27,8 @@ enum Stage{
 var timed_out : bool = false
 var stage : Stage = Stage.NONE
 var zip_reader : ZIPReader = ZIPReader.new()
-var zipped_file_paths : PackedStringArray
-var extracted_file_paths : Array[String]
+var zipped_file_paths : PackedStringArray = []
+var extracted_file_paths : Array[String] = []
 
 
 func get_http_request():
@@ -104,7 +105,6 @@ func _on_request_completed(result, response_code, headers, body):
 	_timeout_timer.stop()
 	if _zip_exists(): _delete_zip_file()
 	if result == HTTPRequest.RESULT_SUCCESS:
-		print(typeof(body))
 		if body is PackedByteArray:
 			_save_zip_file(body)
 			_extract_files.call_deferred()
@@ -147,14 +147,16 @@ func _extract_next_zipped_file():
 	var extract_path_dir := extract_path
 	if not extract_path_dir.ends_with("/"):
 		extract_path_dir += "/"
-	var file_contents = zip_reader.read_file(zipped_file_path)
 	var full_path := extract_path_dir + zipped_file_path
 	if full_path.ends_with("/"):
-		DirAccess.make_dir_recursive_absolute(full_path)
+		if not DirAccess.dir_exists_absolute(full_path):
+			DirAccess.make_dir_recursive_absolute(full_path)
 	else:
-		var file_access := FileAccess.open(full_path, FileAccess.WRITE)
-		file_access.store_buffer(file_contents)
-		file_access.close()
+		if not FileAccess.file_exists(full_path):
+			var file_access := FileAccess.open(full_path, FileAccess.WRITE)
+			var file_contents = zip_reader.read_file(zipped_file_path)
+			file_access.store_buffer(file_contents)
+			file_access.close()
 	extracted_file_paths.append(full_path)
 
 func _process(delta):

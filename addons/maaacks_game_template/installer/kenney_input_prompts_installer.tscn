@@ -1,0 +1,53 @@
+[gd_scene load_steps=4 format=3 uid="uid://d27twrcwmfxrs"]
+
+[ext_resource type="Script" uid="uid://ca36dy2vkk46q" path="res://addons/maaacks_game_template/installer/kenney_input_prompts_installer.gd" id="1_ebstj"]
+[ext_resource type="PackedScene" uid="uid://d3x8m40qtdrj" path="res://addons/maaacks_game_template/installer/kenney_input_prompts_dialog.tscn" id="1_pslk0"]
+[ext_resource type="PackedScene" uid="uid://dlkmofxhavh10" path="res://addons/maaacks_game_template/base/scenes/utilities/download_and_unzip.tscn" id="3_ebstj"]
+
+[node name="KenneyInputPromptsInstaller" type="Node"]
+script = ExtResource("1_ebstj")
+asset_dir_path = "res://assets"
+extract_extension = "kenney_input-prompts"
+
+[node name="KenneyInputPromptsDialog" parent="." instance=ExtResource("1_pslk0")]
+
+[node name="DownloadAndUnzip" parent="." instance=ExtResource("3_ebstj")]
+zip_url = "https://kenney.nl/media/pages/assets/input-prompts/90bcb795c6-1719408444/kenney_input-prompts.zip"
+extract_path = "kenney_input-prompts"
+zip_file_path = "res://kenney_input-prompts.zip"
+delete_zip_file = false
+metadata/_custom_type_script = "uid://bqu3bc0tttrfk"
+
+[node name="InstallingDialog" type="Popup" parent="."]
+initial_position = 2
+size = Vector2i(400, 100)
+
+[node name="MarginContainer" type="MarginContainer" parent="InstallingDialog"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 396.0
+offset_bottom = 96.0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InstallingDialog/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="StageLabel" type="Label" parent="InstallingDialog/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="InstallingDialog/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+
+[connection signal="canceled" from="KenneyInputPromptsDialog" to="." method="_on_kenney_input_prompts_dialog_canceled"]
+[connection signal="configuration_selected" from="KenneyInputPromptsDialog" to="." method="_on_kenney_input_prompts_dialog_configuration_selected"]
+[connection signal="confirmed" from="KenneyInputPromptsDialog" to="." method="_on_kenney_input_prompts_dialog_confirmed"]
