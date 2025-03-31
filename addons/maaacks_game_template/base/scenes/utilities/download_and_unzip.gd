@@ -16,6 +16,8 @@ enum Stage{
 
 @export var zip_url : String
 @export_dir var extract_path : String
+## Forces a download and extraction even if the files already exist.
+@export var force : bool = false
 @export_group("Advanced Settings")
 @export var request_timeout : float = 10.0
 @export var zip_file_path : String = TEMPORARY_ZIP_PATH
@@ -48,14 +50,12 @@ func request(body : String = "", request_headers : Array = []):
 	if stage == Stage.DOWNLOAD:
 		push_warning("Download in progress")
 		return
-	if _zip_exists():
+	if _zip_exists() and not force:
 		_extract_files.call_deferred()
 		return
 	var local_http_request : HTTPRequest = get_http_request()
-
 	var url : String = get_zip_url()
 	var method : int = get_request_method()
-
 	var error = local_http_request.request(url, request_headers, method, body)
 	if error != OK:
 		emit_signal("request_failed", "An error occurred in the request.")
@@ -81,7 +81,7 @@ func _save_zip_file(body : PackedByteArray):
 	file.close()
 	downloaded_zip_file = true
 
-func _extract_path_exists() -> bool:
+func extract_path_exists() -> bool:
 	return DirAccess.dir_exists_absolute(extract_path)
 
 func _make_extract_path():
@@ -96,7 +96,7 @@ func _extract_files():
 	stage = Stage.EXTRACT
 	if not _zip_exists():
 		push_error("Zip file does not exist")
-	if not _extract_path_exists(): _make_extract_path()
+	if not extract_path_exists(): _make_extract_path()
 	var err = zip_reader.open(zip_file_path)
 	if err != OK:
 		return
@@ -128,8 +128,9 @@ func _on_timeout_timer_timeout():
 func get_progress():
 	if stage == Stage.DOWNLOAD:
 		return get_download_progress()
-	else:
+	elif stage == Stage.EXTRACT:
 		return get_extraction_progress()
+	return 0.0
 
 func get_extraction_progress() -> float:
 	if zipped_file_paths.size() == 0:
@@ -155,7 +156,7 @@ func _extract_next_zipped_file():
 		if not DirAccess.dir_exists_absolute(full_path):
 			DirAccess.make_dir_recursive_absolute(full_path)
 	else:
-		if not FileAccess.file_exists(full_path):
+		if not FileAccess.file_exists(full_path) or force:
 			var file_access := FileAccess.open(full_path, FileAccess.WRITE)
 			var file_contents = zip_reader.read_file(zipped_file_path)
 			file_access.store_buffer(file_contents)

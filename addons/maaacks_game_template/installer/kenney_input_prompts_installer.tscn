@@ -9,11 +9,22 @@ script = ExtResource("1_ebstj")
 copy_dir_path = "res://"
 extract_extension = "assets/kenney_input-prompts"
 
+[node name="ForceConfirmationDialog" type="ConfirmationDialog" parent="."]
+title = "Reinstall?"
+initial_position = 2
+size = Vector2i(682, 160)
+ok_button_text = "Skip"
+dialog_text = "The input prompts pack appears to already be installed.
+
+Do you want to force a reinstall of the pack, or skip to picking a style?"
+cancel_button_text = "Reinstall"
+
 [node name="KenneyInputPromptsDialog" parent="." instance=ExtResource("1_pslk0")]
+visible = false
 
 [node name="DownloadAndUnzip" parent="." instance=ExtResource("3_ebstj")]
 zip_url = "https://kenney.nl/media/pages/assets/input-prompts/90bcb795c6-1719408444/kenney_input-prompts.zip"
-extract_path = "kenney_input-prompts"
+extract_path = "res://assets/kenney_input-prompts"
 zip_file_path = "res://kenney_input-prompts.zip"
 metadata/_custom_type_script = "uid://bqu3bc0tttrfk"
 
@@ -47,6 +58,8 @@ layout_mode = 2
 max_value = 1.0
 step = 0.001
 
+[connection signal="canceled" from="ForceConfirmationDialog" to="." method="_on_force_confirmation_dialog_canceled"]
+[connection signal="confirmed" from="ForceConfirmationDialog" to="." method="_on_force_confirmation_dialog_confirmed"]
 [connection signal="canceled" from="KenneyInputPromptsDialog" to="." method="_on_kenney_input_prompts_dialog_canceled"]
 [connection signal="configuration_selected" from="KenneyInputPromptsDialog" to="." method="_on_kenney_input_prompts_dialog_configuration_selected"]
 [connection signal="confirmed" from="KenneyInputPromptsDialog" to="." method="_on_kenney_input_prompts_dialog_confirmed"]

@@ -1,11 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://d3x8m40qtdrj"]
+[gd_scene load_steps=6 format=3 uid="uid://d3x8m40qtdrj"]
 
 [ext_resource type="Script" uid="uid://bduy6qihnm0qo" path="res://addons/maaacks_game_template/installer/kenney_input_prompts_dialog.gd" id="1_nf1bc"]
+[ext_resource type="Texture2D" uid="uid://cmni5hv40bfaa" path="res://addons/maaacks_game_template/installer/assets/icons-filled-colored.png" id="2_0nqam"]
+[ext_resource type="Texture2D" uid="uid://deskx061vlcgx" path="res://addons/maaacks_game_template/installer/assets/icons-filled-white.png" id="3_ynuxh"]
+[ext_resource type="Texture2D" uid="uid://bohem6w6kcl3x" path="res://addons/maaacks_game_template/installer/assets/icons-outlined-colored.png" id="4_dqbfh"]
+[ext_resource type="Texture2D" uid="uid://bq211jkfnm7k7" path="res://addons/maaacks_game_template/installer/assets/icons-outlined-white.png" id="5_1tkva"]
 
 [node name="KenneyInputPromptsDialog" type="ConfirmationDialog"]
 title = "Add Kenney Input Prompts Pack"
 initial_position = 2
-size = Vector2i(1024, 512)
+size = Vector2i(1024, 640)
 visible = true
 ok_button_text = "Yes"
 dialog_autowrap = true
@@ -26,41 +30,30 @@ grow_vertical = 2
 theme_override_constants/separation = 16
 
 [node name="Label" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(384, 0)
 layout_mode = 2
 text = "Would you like to install Kenney's Input Prompts?
 
-This adds icons for a majority of input keys and devices in the input remapping menu. 6.1 MB of icons will get extracted to the assets directory.
+This adds icons for a majority of input keys and devices in the input remapping menu. They are Creative Commons Zero (CC0) licensed, about 6.1 MB in size, and get installed into the assets folder.
 
-Below are style options available with the pack. This can be changed later."
+Choose a style for icons in the input remapping menu. The style can be changed later."
 autowrap_mode = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="ItemList" type="ItemList" parent="VBoxContainer/HBoxContainer"]
+[node name="ItemList" type="ItemList" parent="VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 item_count = 4
+same_column_width = true
 item_0/text = "Filled and Colored"
+item_0/icon = ExtResource("2_0nqam")
 item_1/text = "Filled and White"
+item_1/icon = ExtResource("3_ynuxh")
 item_2/text = "Outlined and Colored"
+item_2/icon = ExtResource("4_dqbfh")
 item_3/text = "Outlined and White"
+item_3/icon = ExtResource("5_1tkva")
 
-[node name="VSeparator" type="VSeparator" parent="VBoxContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_right = 16
-
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/MarginContainer"]
-layout_mode = 2
-stretch_mode = 3
-
-[connection signal="item_selected" from="VBoxContainer/HBoxContainer/ItemList" to="." method="_on_item_list_item_selected"]
+[connection signal="item_selected" from="VBoxContainer/ItemList" to="." method="_on_item_list_item_selected"]

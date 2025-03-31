@@ -5,6 +5,8 @@ extends Node
 signal canceled
 signal completed
 
+const REIMPORT_CHECK_DELAY : float = 0.5
+const OPEN_SCENE_DELAY : float = 0.5
 const REGEX_PREFIX = """\\[node name="InputIconMapper" parent="." index="0"\\][\\s\\S]*"""
 
 const FILLED_WHITE_CONFIGURATION = """
@@ -96,6 +98,8 @@ ends_with = ".png"
 
 var _configuration_index : int = -1
 var installation_stage : int = 0
+var scanning : bool = false
+var reimporting : bool = false
 
 func _on_kenney_input_prompts_dialog_canceled():
 	canceled.emit()
@@ -104,14 +108,12 @@ func _on_kenney_input_prompts_dialog_canceled():
 func _on_kenney_input_prompts_dialog_configuration_selected(index: int):
 	_configuration_index = index
 
-func _on_kenney_input_prompts_dialog_confirmed():
-	var full_path = copy_dir_path
-	if not full_path.ends_with("/"):
-		full_path += "/"
-	full_path += extract_extension
+func _download_and_unzip():
 	$InstallingDialog.show()
-	$DownloadAndUnzip.extract_path = full_path
 	$DownloadAndUnzip.request.call_deferred()
+
+func _on_kenney_input_prompts_dialog_confirmed():
+	_download_and_unzip()
 
 func _process(_delta):
 	if $InstallingDialog.visible:
@@ -125,6 +127,17 @@ func _process(_delta):
 				%StageLabel.text = "Cleaning up..."
 			DownloadAndUnzip.Stage.NONE:
 				$InstallingDialog.hide()
+	elif scanning:
+		var file_system := EditorInterface.get_resource_filesystem()
+		if not file_system.is_scanning():
+			scanning = false
+			await get_tree().create_timer(REIMPORT_CHECK_DELAY).timeout
+			if reimporting:
+				await file_system.resources_reimported
+			reimporting = false
+			_configure_icons()
+			completed.emit()
+			queue_free()
 
 func _configure_icons():
 	var input_options_menu_path := copy_dir_path + "scenes/menus/options_menu/input/input_options_menu.tscn"
@@ -133,12 +146,9 @@ func _configure_icons():
 	regex.compile(REGEX_PREFIX + """\\[node""")
 	var result = regex.sub(input_options_menu, "[node")
 	if result == input_options_menu:
-		print("the same")
 		regex.clear()
 		regex.compile(REGEX_PREFIX)
 		result = regex.sub(input_options_menu, "")
-		if result == input_options_menu:
-			print("still the same")
 	input_options_menu = result
 	match(_configuration_index):
 		0:
@@ -156,9 +166,31 @@ func _configure_icons():
 		EditorInterface.reload_scene_from_path(input_options_menu_path)
 	else:
 		EditorInterface.open_scene_from_path(input_options_menu_path)
+	await get_tree().create_timer(OPEN_SCENE_DELAY).timeout
 	EditorInterface.save_scene()
 
 func _on_download_and_unzip_request_completed():
-	_configure_icons()
-	completed.emit()
-	queue_free()
+	var file_system := EditorInterface.get_resource_filesystem()
+	file_system.scan()
+	scanning = true
+	await file_system.resources_reimporting
+	reimporting = true
+
+func _ready():
+	var full_path = copy_dir_path
+	if not full_path.ends_with("/"):
+		full_path += "/"
+	full_path += extract_extension
+	$DownloadAndUnzip.extract_path = full_path
+	if $DownloadAndUnzip.extract_path_exists():
+		$ForceConfirmationDialog.show()
+	else:
+		$KenneyInputPromptsDialog.show()
+
+func _on_force_confirmation_dialog_canceled():
+	$DownloadAndUnzip.force = true
+	$KenneyInputPromptsDialog.show.call_deferred()
+
+func _on_force_confirmation_dialog_confirmed():
+	$KenneyInputPromptsDialog.set_short_description()
+	$KenneyInputPromptsDialog.show.call_deferred()
