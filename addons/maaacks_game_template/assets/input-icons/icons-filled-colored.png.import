@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cmni5hv40bfaa"
-path="res://.godot/imported/icons-filled-colored.png-ed1f37da6d5095678a4d8ffa3e143fbf.ctex"
+path="res://.godot/imported/icons-filled-colored.png-b51ce8c74ea37d4ce19368644717d850.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/maaacks_game_template/installer/assets/icons-filled-colored.png"
-dest_files=["res://.godot/imported/icons-filled-colored.png-ed1f37da6d5095678a4d8ffa3e143fbf.ctex"]
+source_file="res://addons/maaacks_game_template/assets/input-icons/icons-filled-colored.png"
+dest_files=["res://.godot/imported/icons-filled-colored.png-b51ce8c74ea37d4ce19368644717d850.ctex"]
 
 [params]
 
