@@ -100,6 +100,7 @@ var _configuration_index : int = -1
 var installation_stage : int = 0
 var scanning : bool = false
 var reimporting : bool = false
+var force : bool = false
 
 func _on_kenney_input_prompts_dialog_canceled():
 	canceled.emit()
@@ -113,6 +114,11 @@ func _download_and_unzip():
 	$DownloadAndUnzip.request.call_deferred()
 
 func _on_kenney_input_prompts_dialog_confirmed():
+	if $DownloadAndUnzip.extract_path_exists() and not force:
+		_configure_icons()
+		completed.emit()
+		queue_free()
+		return
 	_download_and_unzip()
 
 func _process(_delta):
@@ -192,6 +198,7 @@ func _ready():
 		$KenneyInputPromptsDialog.show()
 
 func _on_force_confirmation_dialog_canceled():
+	force = true
 	$DownloadAndUnzip.force = true
 	$KenneyInputPromptsDialog.show.call_deferred()
 
