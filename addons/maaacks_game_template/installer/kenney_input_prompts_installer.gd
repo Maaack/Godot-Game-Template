@@ -177,6 +177,10 @@ func _on_download_and_unzip_request_completed():
 	reimporting = true
 
 func _ready():
+	$ForceConfirmationDialog.hide()
+	$KenneyInputPromptsDialog.hide()
+	$InstallingDialog.hide()
+	$InstallingDialog.get_ok_button().hide()
 	var full_path = copy_dir_path
 	if not full_path.ends_with("/"):
 		full_path += "/"
