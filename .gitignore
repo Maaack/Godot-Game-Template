@@ -19,5 +19,6 @@ exports/
 Exports/
 
 # IDE and OS specific
+.vscode/
 .idea/
 .DS_Store
