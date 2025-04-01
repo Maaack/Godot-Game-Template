@@ -4,9 +4,23 @@ extends Node
 
 signal request_completed
 signal response_received(response_body)
-signal request_failed(error)
+signal request_failed(error : String)
 
 const TEMPORARY_ZIP_PATH = "res://temp.zip"
+const RESULT_CANT_CONNECT = "Failed to connect"
+const RESULT_CANT_RESOLVE = "Failed to resolve"
+const RESULT_CONNECTION_ERROR = "Connection error"
+const RESULT_TIMEOUT = "Connection timeout"
+const RESULT_SERVER_ERROR = "Server error"
+const REQUEST_FAILED = "Error in the request"
+const REQUEST_TIMEOUT = "Request timed out on the client side"
+const DOWNLOAD_IN_PROGRESS = "Download already in progress"
+const EXTRACT_IN_PROGRESS = "Extract already in progress"
+const DELETE_IN_PROGRESS = "Delete already in progress"
+const FAILED_TO_SAVE_ZIP_FILE = "Failed to save the zip file"
+const FAILED_TO_MAKE_EXTRACT_DIR = "Failed to make extract directory"
+const DOWNLOADED_ZIP_FILE_DOESNT_EXIST = "The downloaded ZIP file doesn't exist."
+
 enum Stage{
 	NONE,
 	DOWNLOAD,
@@ -48,7 +62,8 @@ func get_request_method() -> int:
 
 func request(body : String = "", request_headers : Array = []):
 	if stage == Stage.DOWNLOAD:
-		push_warning("Download in progress")
+		request_failed.emit(DOWNLOAD_IN_PROGRESS)
+		push_warning(DOWNLOAD_IN_PROGRESS)
 		return
 	if _zip_exists() and not force:
 		_extract_files.call_deferred()
@@ -56,17 +71,22 @@ func request(body : String = "", request_headers : Array = []):
 	var local_http_request : HTTPRequest = get_http_request()
 	var url : String = get_zip_url()
 	var method : int = get_request_method()
+	if request_timeout > 0.0:
+		local_http_request.timeout = request_timeout
 	var error = local_http_request.request(url, request_headers, method, body)
 	if error != OK:
-		emit_signal("request_failed", "An error occurred in the request.")
+		request_failed.emit(REQUEST_FAILED)
 		push_error("An error occurred in the HTTP request. %d" % error)
-	_timeout_timer.start(request_timeout)
+		return
+	if request_timeout > 0.0:
+		_timeout_timer.start(request_timeout + 1.0)
 	stage = Stage.DOWNLOAD
 
 func _delete_zip_file():
 	if not delete_zip_file or not downloaded_zip_file: return
 	if stage == Stage.DELETE:
-		push_warning("Extract in progress")
+		request_failed.emit(DELETE_IN_PROGRESS)
+		push_warning(DELETE_IN_PROGRESS)
 		return
 	stage = Stage.DELETE
 	DirAccess.remove_absolute(zip_file_path)
@@ -75,7 +95,8 @@ func _delete_zip_file():
 func _save_zip_file(body : PackedByteArray):
 	var file = FileAccess.open(zip_file_path, FileAccess.WRITE)
 	if not file:
-		push_error("Failed to open save file")
+		request_failed.emit(FAILED_TO_SAVE_ZIP_FILE)
+		push_error(FAILED_TO_SAVE_ZIP_FILE)
 		return
 	file.store_buffer(body)
 	file.close()
@@ -87,15 +108,19 @@ func extract_path_exists() -> bool:
 func _make_extract_path():
 	var err := DirAccess.make_dir_absolute(extract_path)
 	if err != OK:
-		push_error("Failed to make extract directory")
+		request_failed.emit(FAILED_TO_MAKE_EXTRACT_DIR)
+		push_error(FAILED_TO_MAKE_EXTRACT_DIR)
 
 func _extract_files():
 	if stage == Stage.EXTRACT:
-		push_warning("Extract in progress")
+		request_failed.emit(EXTRACT_IN_PROGRESS)
+		push_warning(EXTRACT_IN_PROGRESS)
 		return
 	stage = Stage.EXTRACT
 	if not _zip_exists():
-		push_error("Zip file does not exist")
+		request_failed.emit(DOWNLOADED_ZIP_FILE_DOESNT_EXIST)
+		push_error(DOWNLOADED_ZIP_FILE_DOESNT_EXIST)
+		return
 	if not extract_path_exists(): _make_extract_path()
 	var err = zip_reader.open(zip_file_path)
 	if err != OK:
@@ -113,17 +138,28 @@ func _on_request_completed(result, response_code, headers, body):
 			_extract_files.call_deferred()
 			emit_signal("response_received", body)
 	else:
-		if body is PackedByteArray:
-			emit_signal(&"request_failed", body.get_string_from_utf8())
-		push_error(result)
+		var error : String
+		match(result):
+			HTTPRequest.RESULT_CANT_CONNECT:
+				error = RESULT_CANT_CONNECT
+			HTTPRequest.RESULT_CANT_RESOLVE:
+				error = RESULT_CANT_RESOLVE
+			HTTPRequest.RESULT_CONNECTION_ERROR:
+				error = RESULT_CONNECTION_ERROR
+			HTTPRequest.RESULT_TIMEOUT:
+				error = RESULT_TIMEOUT
+			_:
+				error = RESULT_SERVER_ERROR
+		request_failed.emit(error)
+		push_error("result %d" % result)
 
 func _on_http_request_request_completed(result, response_code, headers, body):
 	_on_request_completed(result, response_code, headers, body)
 
 func _on_timeout_timer_timeout():
 	timed_out = true
-	emit_signal(&"request_failed", "Request timed out.")
-	push_warning("Request timed out on the client-side.")
+	request_failed.emit(REQUEST_TIMEOUT)
+	push_warning(REQUEST_TIMEOUT)
 
 func get_progress():
 	if stage == Stage.DOWNLOAD:

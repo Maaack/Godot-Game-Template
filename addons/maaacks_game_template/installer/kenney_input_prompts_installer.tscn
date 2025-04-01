@@ -59,9 +59,17 @@ layout_mode = 2
 max_value = 1.0
 step = 0.001
 
+[node name="ErrorDialog" type="AcceptDialog" parent="."]
+title = "Error!"
+initial_position = 2
+size = Vector2i(400, 128)
+
 [connection signal="request_completed" from="DownloadAndUnzip" to="." method="_on_download_and_unzip_request_completed"]
+[connection signal="request_failed" from="DownloadAndUnzip" to="." method="_on_download_and_unzip_request_failed"]
 [connection signal="canceled" from="ForceConfirmationDialog" to="." method="_on_force_confirmation_dialog_canceled"]
 [connection signal="confirmed" from="ForceConfirmationDialog" to="." method="_on_force_confirmation_dialog_confirmed"]
 [connection signal="canceled" from="KenneyInputPromptsDialog" to="." method="_on_kenney_input_prompts_dialog_canceled"]
 [connection signal="configuration_selected" from="KenneyInputPromptsDialog" to="." method="_on_kenney_input_prompts_dialog_configuration_selected"]
 [connection signal="confirmed" from="KenneyInputPromptsDialog" to="." method="_on_kenney_input_prompts_dialog_confirmed"]
+[connection signal="canceled" from="ErrorDialog" to="." method="_on_error_dialog_canceled"]
+[connection signal="confirmed" from="ErrorDialog" to="." method="_on_error_dialog_confirmed"]

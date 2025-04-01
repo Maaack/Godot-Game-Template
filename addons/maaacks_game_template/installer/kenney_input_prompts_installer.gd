@@ -187,6 +187,7 @@ func _ready():
 	$KenneyInputPromptsDialog.hide()
 	$InstallingDialog.hide()
 	$InstallingDialog.get_ok_button().hide()
+	$ErrorDialog.hide()
 	var full_path = copy_dir_path
 	if not full_path.ends_with("/"):
 		full_path += "/"
@@ -205,3 +206,14 @@ func _on_force_confirmation_dialog_canceled():
 func _on_force_confirmation_dialog_confirmed():
 	$KenneyInputPromptsDialog.set_short_description()
 	$KenneyInputPromptsDialog.show.call_deferred()
+
+func _on_download_and_unzip_request_failed(error):
+	$InstallingDialog.hide()
+	$ErrorDialog.show()
+	$ErrorDialog.dialog_text = "%s!" % error
+
+func _on_error_dialog_confirmed():
+	queue_free()
+
+func _on_error_dialog_canceled():
+	queue_free()
