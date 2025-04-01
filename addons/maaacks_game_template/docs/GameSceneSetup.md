@@ -21,7 +21,7 @@ Level Loading is not required if the entire game takes place in one scene.
 ## Background Music
 `BackgroundMusicPlayer`'s are `AudioStreamPlayer`'s with `autoplay` set to `true` and `audio_bus` set to "Music". These will automatically be recognized by the `ProjectMusicController` with the default settings, and allow for blending between tracks.
 
-A `BackgroundMusicPlayer` can be added to an overall game scene, but if using levels, the level scenes are typically a better place for them, as that allows for tracks to vary by level.
+A `BackgroundMusicPlayer` can be added to the main game scene, but if using levels, the level scenes are typically a better place for them, as that allows for tracks to vary by level.  
 
 ## SubViewports
 The game example has the levels loaded into a `SubViewport` node, contained within a `SubViewportContainer`. This has a couple of advantages.
