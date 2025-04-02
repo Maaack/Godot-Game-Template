@@ -1,9 +1,13 @@
 @tool
+## Utility node for downloading and unzipping a file from a URL to an extraction destination.
 class_name DownloadAndUnzip
 extends Node
 
+## Sent when the request has completed.
 signal request_completed
+## Sent when a response is received from the server.
 signal response_received(response_body)
+## Sent when the request has failed, or the response has an error.
 signal request_failed(error : String)
 
 const TEMPORARY_ZIP_PATH = "res://temp.zip"
@@ -28,20 +32,28 @@ enum Stage{
 	DELETE,
 }
 
+## Location of the zip file to be downloaded.
 @export var zip_url : String
+## Path where the zipped files are to be extracted.
 @export_dir var extract_path : String
 ## Forces a download and extraction even if the files already exist.
 @export var force : bool = false
 @export_group("Advanced Settings")
+## Duration to wait before the request times out.
 @export var request_timeout : float = 10.0
+## Path where the zip file will be stored.
 @export var zip_file_path : String = TEMPORARY_ZIP_PATH
+## Flag to delete a downloaded zip file after the contents are extracted.
 @export var delete_zip_file : bool = true
-@export var process_time_ratio : float = 0.75
+## Ratio of processing time that should be spent on extracting files.
+@export_range(0.0, 1.0) var process_time_ratio : float = 0.75
 
 @onready var _http_request : HTTPRequest = $HTTPRequest
 @onready var _timeout_timer : Timer= $TimeoutTimer
 
+## State flag for whether the connection has timed out on the client-side.
 var timed_out : bool = false
+## Current stage of the download and extract process.
 var stage : Stage = Stage.NONE
 var zip_reader : ZIPReader = ZIPReader.new()
 var zipped_file_paths : PackedStringArray = []
@@ -60,6 +72,7 @@ func _zip_exists() -> bool:
 func get_request_method() -> int:
 	return HTTPClient.METHOD_GET
 
+## Sends the request to download the target zip file.
 func request(body : String = "", request_headers : Array = []):
 	if stage == Stage.DOWNLOAD:
 		request_failed.emit(DOWNLOAD_IN_PROGRESS)

@@ -1,8 +1,10 @@
 @tool
-class_name InputIconsInstaller
+## Tool for installing icons and setting up the configuration of the input icon mapper.
 extends Node
 
+## Sent when the user selects to cancel the installation process.
 signal canceled
+## Sent when the installation process has completed.
 signal completed
 
 const REIMPORT_CHECK_DELAY : float = 0.5
@@ -93,13 +95,17 @@ directories = Array[String](["res://assets/kenney_input-prompts/Keyboard & Mouse
 ends_with = ".png"
 """
 
+## Path start where the project examples have been copied.
 @export_dir var copy_dir_path : String
+## Path end where the zipped files are to be extracted.
 @export var extract_extension : String
 
 var _configuration_index : int = -1
-var installation_stage : int = 0
+## State flag of whether the tool is waiting for the filesystem to finish scanning.
 var scanning : bool = false
+## State flag for whether the tool is waiting for the filesystem to finish reimporting.
 var reimporting : bool = false
+## Flag for whether the tool will force a download and extraction, even if the contents exist.
 var force : bool = false
 
 func _on_kenney_input_prompts_dialog_canceled():
