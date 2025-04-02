@@ -36,6 +36,9 @@ enum Stage{
 @export var zip_url : String
 ## Path where the zipped files are to be extracted.
 @export_dir var extract_path : String
+## Assuming zip file contains a single base directory, the flag copies all of the contents,
+## as if they were at the base of the zip file. It never makes the base directory locally. 
+@export var skip_base_zip_dir : bool = false
 ## Forces a download and extraction even if the files already exist.
 @export var force : bool = false
 @export_group("Advanced Settings")
@@ -59,6 +62,7 @@ var zip_reader : ZIPReader = ZIPReader.new()
 var zipped_file_paths : PackedStringArray = []
 var extracted_file_paths : Array[String] = []
 var downloaded_zip_file : bool = false
+var base_zip_path : String = ""
 
 func get_http_request():
 	return _http_request
@@ -139,6 +143,11 @@ func _extract_files():
 	if err != OK:
 		return
 	zipped_file_paths = zip_reader.get_files()
+	if skip_base_zip_dir:
+		base_zip_path = zipped_file_paths[0]
+		if not base_zip_path.ends_with("/"):
+			push_warning("Skipping extracting base path, but it is not a directory.")
+		zipped_file_paths.remove_at(0)
 
 func _on_request_completed(result, response_code, headers, body):
 	# If already timed out on client-side, then return.
@@ -200,7 +209,11 @@ func _extract_next_zipped_file():
 	var extract_path_dir := extract_path
 	if not extract_path_dir.ends_with("/"):
 		extract_path_dir += "/"
-	var full_path := extract_path_dir + zipped_file_path
+	var full_path := extract_path_dir 
+	if skip_base_zip_dir:
+		full_path += zipped_file_path.replace(base_zip_path, "")
+	else:
+		full_path += zipped_file_path
 	if full_path.ends_with("/"):
 		if not DirAccess.dir_exists_absolute(full_path):
 			DirAccess.make_dir_recursive_absolute(full_path)
