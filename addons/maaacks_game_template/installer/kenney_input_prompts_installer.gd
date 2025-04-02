@@ -100,6 +100,14 @@ ends_with = ".png"
 ## Path end where the zipped files are to be extracted.
 @export var extract_extension : String
 
+@onready var _download_and_extract_node : DownloadAndExtract = $DownloadAndExtract
+@onready var _force_confirmation_dialog : ConfirmationDialog = $ForceConfirmationDialog
+@onready var _kenney_input_prompts_dialog : ConfirmationDialog = $KenneyInputPromptsDialog
+@onready var _installing_dialog : AcceptDialog = $InstallingDialog
+@onready var _error_dialog : AcceptDialog = $ErrorDialog
+@onready var _stage_label : Label = %StageLabel
+@onready var _progress_bar : ProgressBar = %ProgressBar
+
 var _configuration_index : int = -1
 ## State flag of whether the tool is waiting for the filesystem to finish scanning.
 var scanning : bool = false
@@ -116,11 +124,11 @@ func _on_kenney_input_prompts_dialog_configuration_selected(index: int):
 	_configuration_index = index
 
 func _download_and_extract():
-	$InstallingDialog.show()
-	$DownloadAndExtract.run.call_deferred()
+	_installing_dialog.show()
+	_download_and_extract_node.run.call_deferred()
 
 func _on_kenney_input_prompts_dialog_confirmed():
-	if $DownloadAndExtract.extract_path_exists() and not force:
+	if _download_and_extract_node.extract_path_exists() and not force:
 		_configure_icons()
 		completed.emit()
 		queue_free()
@@ -128,17 +136,17 @@ func _on_kenney_input_prompts_dialog_confirmed():
 	_download_and_extract()
 
 func _process(_delta):
-	if $InstallingDialog.visible:
-		%ProgressBar.value = $DownloadAndExtract.get_progress()
-		match $DownloadAndExtract.stage:
+	if _installing_dialog.visible:
+		_progress_bar.value = _download_and_extract_node.get_progress()
+		match _download_and_extract_node.stage:
 			DownloadAndExtract.Stage.DOWNLOAD:
-				%StageLabel.text = "Downloading..."
+				_stage_label.text = "Downloading..."
 			DownloadAndExtract.Stage.EXTRACT:
-				%StageLabel.text = "Extracting..."
+				_stage_label.text = "Extracting..."
 			DownloadAndExtract.Stage.DELETE:
-				%StageLabel.text = "Cleaning up..."
+				_stage_label.text = "Cleaning up..."
 			DownloadAndExtract.Stage.NONE:
-				$InstallingDialog.hide()
+				_installing_dialog.hide()
 	elif scanning:
 		var file_system := EditorInterface.get_resource_filesystem()
 		if not file_system.is_scanning():
@@ -189,34 +197,34 @@ func _scan_filesystem_and_reimport():
 	reimporting = true
 
 func _ready():
-	$ForceConfirmationDialog.hide()
-	$KenneyInputPromptsDialog.hide()
-	$InstallingDialog.hide()
-	$InstallingDialog.get_ok_button().hide()
-	$ErrorDialog.hide()
+	_force_confirmation_dialog.hide()
+	_kenney_input_prompts_dialog.hide()
+	_installing_dialog.hide()
+	_installing_dialog.get_ok_button().hide()
+	_error_dialog.hide()
 	var full_path = copy_dir_path
 	if not full_path.ends_with("/"):
 		full_path += "/"
 	full_path += extract_extension
-	$DownloadAndExtract.extract_path = full_path
-	if $DownloadAndExtract.extract_path_exists():
-		$ForceConfirmationDialog.show()
+	_download_and_extract_node.extract_path = full_path
+	if _download_and_extract_node.extract_path_exists():
+		_force_confirmation_dialog.show()
 	else:
-		$KenneyInputPromptsDialog.show()
+		_kenney_input_prompts_dialog.show()
 
 func _on_force_confirmation_dialog_canceled():
 	force = true
-	$DownloadAndExtract.force = true
-	$KenneyInputPromptsDialog.show.call_deferred()
+	_download_and_extract_node.force = true
+	_kenney_input_prompts_dialog.show.call_deferred()
 
 func _on_force_confirmation_dialog_confirmed():
-	$KenneyInputPromptsDialog.set_short_description()
-	$KenneyInputPromptsDialog.show.call_deferred()
+	_kenney_input_prompts_dialog.set_short_description()
+	_kenney_input_prompts_dialog.show.call_deferred()
 
 func _show_error_dialog(error):
-	$InstallingDialog.hide()
-	$ErrorDialog.show()
-	$ErrorDialog.dialog_text = "%s!" % error
+	_installing_dialog.hide()
+	_error_dialog.show()
+	_error_dialog.dialog_text = "%s!" % error
 
 func _on_error_dialog_confirmed():
 	queue_free()

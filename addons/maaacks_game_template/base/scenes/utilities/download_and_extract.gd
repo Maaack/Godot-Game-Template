@@ -123,7 +123,7 @@ func extract_path_exists() -> bool:
 	return DirAccess.dir_exists_absolute(extract_path)
 
 func _make_extract_path():
-	var err := DirAccess.make_dir_absolute(extract_path)
+	var err := DirAccess.make_dir_recursive_absolute(extract_path)
 	if err != OK:
 		run_failed.emit(FAILED_TO_MAKE_EXTRACT_DIR)
 		push_error(FAILED_TO_MAKE_EXTRACT_DIR)
@@ -183,7 +183,7 @@ func _on_timeout_timer_timeout():
 	run_failed.emit(REQUEST_TIMEOUT)
 	push_warning(REQUEST_TIMEOUT)
 
-func get_progress():
+func get_progress() -> float:
 	if stage == Stage.DOWNLOAD:
 		return get_download_progress()
 	elif stage == Stage.EXTRACT:
@@ -198,7 +198,7 @@ func get_extraction_progress() -> float:
 func get_download_progress() -> float:
 	var body_size := _http_request.get_body_size()
 	if body_size < 1: return 0.0
-	return float($HTTPRequest.get_downloaded_bytes()) / float(body_size)
+	return float(_http_request.get_downloaded_bytes()) / float(body_size)
 
 func _zipped_files_remaining() -> int:
 	return zipped_file_paths.size() - extracted_file_paths.size()
