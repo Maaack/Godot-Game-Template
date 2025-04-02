@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dlkmofxhavh10"]
 
-[ext_resource type="Script" uid="uid://bqu3bc0tttrfk" path="res://addons/maaacks_game_template/base/scenes/utilities/download_and_unzip.gd" id="1_1few7"]
+[ext_resource type="Script" uid="uid://bqu3bc0tttrfk" path="res://addons/maaacks_game_template/base/scenes/utilities/download_and_extract.gd" id="1_1few7"]
 
 [node name="DownloadAndUnzip" type="Node"]
 script = ExtResource("1_1few7")

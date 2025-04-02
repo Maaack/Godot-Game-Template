@@ -117,10 +117,10 @@ func _on_kenney_input_prompts_dialog_configuration_selected(index: int):
 
 func _download_and_unzip():
 	$InstallingDialog.show()
-	$DownloadAndUnzip.request.call_deferred()
+	$DownloadAndExtract.request.call_deferred()
 
 func _on_kenney_input_prompts_dialog_confirmed():
-	if $DownloadAndUnzip.extract_path_exists() and not force:
+	if $DownloadAndExtract.extract_path_exists() and not force:
 		_configure_icons()
 		completed.emit()
 		queue_free()
@@ -129,15 +129,15 @@ func _on_kenney_input_prompts_dialog_confirmed():
 
 func _process(_delta):
 	if $InstallingDialog.visible:
-		%ProgressBar.value = $DownloadAndUnzip.get_progress()
-		match $DownloadAndUnzip.stage:
-			DownloadAndUnzip.Stage.DOWNLOAD:
+		%ProgressBar.value = $DownloadAndExtract.get_progress()
+		match $DownloadAndExtract.stage:
+			DownloadAndExtract.Stage.DOWNLOAD:
 				%StageLabel.text = "Downloading..."
-			DownloadAndUnzip.Stage.EXTRACT:
+			DownloadAndExtract.Stage.EXTRACT:
 				%StageLabel.text = "Extracting..."
-			DownloadAndUnzip.Stage.DELETE:
+			DownloadAndExtract.Stage.DELETE:
 				%StageLabel.text = "Cleaning up..."
-			DownloadAndUnzip.Stage.NONE:
+			DownloadAndExtract.Stage.NONE:
 				$InstallingDialog.hide()
 	elif scanning:
 		var file_system := EditorInterface.get_resource_filesystem()
@@ -198,15 +198,15 @@ func _ready():
 	if not full_path.ends_with("/"):
 		full_path += "/"
 	full_path += extract_extension
-	$DownloadAndUnzip.extract_path = full_path
-	if $DownloadAndUnzip.extract_path_exists():
+	$DownloadAndExtract.extract_path = full_path
+	if $DownloadAndExtract.extract_path_exists():
 		$ForceConfirmationDialog.show()
 	else:
 		$KenneyInputPromptsDialog.show()
 
 func _on_force_confirmation_dialog_canceled():
 	force = true
-	$DownloadAndUnzip.force = true
+	$DownloadAndExtract.force = true
 	$KenneyInputPromptsDialog.show.call_deferred()
 
 func _on_force_confirmation_dialog_confirmed():

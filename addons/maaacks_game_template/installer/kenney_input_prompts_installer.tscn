@@ -2,14 +2,14 @@
 
 [ext_resource type="Script" uid="uid://ca36dy2vkk46q" path="res://addons/maaacks_game_template/installer/kenney_input_prompts_installer.gd" id="1_ebstj"]
 [ext_resource type="PackedScene" uid="uid://d3x8m40qtdrj" path="res://addons/maaacks_game_template/installer/kenney_input_prompts_dialog.tscn" id="1_pslk0"]
-[ext_resource type="PackedScene" uid="uid://dlkmofxhavh10" path="res://addons/maaacks_game_template/base/scenes/utilities/download_and_unzip.tscn" id="3_ebstj"]
+[ext_resource type="PackedScene" uid="uid://dlkmofxhavh10" path="res://addons/maaacks_game_template/base/scenes/utilities/download_and_extract.tscn" id="3_ebstj"]
 
 [node name="KenneyInputPromptsInstaller" type="Node"]
 script = ExtResource("1_ebstj")
 copy_dir_path = "res://"
 extract_extension = "assets/kenney_input-prompts"
 
-[node name="DownloadAndUnzip" parent="." instance=ExtResource("3_ebstj")]
+[node name="DownloadAndExtract" parent="." instance=ExtResource("3_ebstj")]
 zip_url = "https://kenney.nl/media/pages/assets/input-prompts/90bcb795c6-1719408444/kenney_input-prompts.zip"
 extract_path = "res://assets/kenney_input-prompts"
 zip_file_path = "res://kenney_input-prompts.zip"
@@ -64,8 +64,8 @@ title = "Error!"
 initial_position = 2
 size = Vector2i(400, 128)
 
-[connection signal="request_completed" from="DownloadAndUnzip" to="." method="_on_download_and_unzip_request_completed"]
-[connection signal="request_failed" from="DownloadAndUnzip" to="." method="_on_download_and_unzip_request_failed"]
+[connection signal="request_completed" from="DownloadAndExtract" to="." method="_on_download_and_unzip_request_completed"]
+[connection signal="request_failed" from="DownloadAndExtract" to="." method="_on_download_and_unzip_request_failed"]
 [connection signal="canceled" from="ForceConfirmationDialog" to="." method="_on_force_confirmation_dialog_canceled"]
 [connection signal="confirmed" from="ForceConfirmationDialog" to="." method="_on_force_confirmation_dialog_confirmed"]
 [connection signal="canceled" from="KenneyInputPromptsDialog" to="." method="_on_kenney_input_prompts_dialog_canceled"]

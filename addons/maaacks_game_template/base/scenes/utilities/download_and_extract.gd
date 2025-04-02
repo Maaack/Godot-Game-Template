@@ -1,6 +1,6 @@
 @tool
 ## Utility node for downloading and unzipping a file from a URL to an extraction destination.
-class_name DownloadAndUnzip
+class_name DownloadAndExtract
 extends Node
 
 ## Sent when the request has completed.
