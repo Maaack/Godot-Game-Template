@@ -115,9 +115,9 @@ func _on_kenney_input_prompts_dialog_canceled():
 func _on_kenney_input_prompts_dialog_configuration_selected(index: int):
 	_configuration_index = index
 
-func _download_and_unzip():
+func _download_and_extract():
 	$InstallingDialog.show()
-	$DownloadAndExtract.request.call_deferred()
+	$DownloadAndExtract.run.call_deferred()
 
 func _on_kenney_input_prompts_dialog_confirmed():
 	if $DownloadAndExtract.extract_path_exists() and not force:
@@ -125,7 +125,7 @@ func _on_kenney_input_prompts_dialog_confirmed():
 		completed.emit()
 		queue_free()
 		return
-	_download_and_unzip()
+	_download_and_extract()
 
 func _process(_delta):
 	if $InstallingDialog.visible:
@@ -181,7 +181,7 @@ func _configure_icons():
 	await get_tree().create_timer(OPEN_SCENE_DELAY).timeout
 	EditorInterface.save_scene()
 
-func _on_download_and_unzip_request_completed():
+func _scan_filesystem_and_reimport():
 	var file_system := EditorInterface.get_resource_filesystem()
 	file_system.scan()
 	scanning = true
@@ -213,7 +213,7 @@ func _on_force_confirmation_dialog_confirmed():
 	$KenneyInputPromptsDialog.set_short_description()
 	$KenneyInputPromptsDialog.show.call_deferred()
 
-func _on_download_and_unzip_request_failed(error):
+func _show_error_dialog(error):
 	$InstallingDialog.hide()
 	$ErrorDialog.show()
 	$ErrorDialog.dialog_text = "%s!" % error
@@ -223,3 +223,9 @@ func _on_error_dialog_confirmed():
 
 func _on_error_dialog_canceled():
 	queue_free()
+
+func _on_download_and_extract_run_completed():
+	_scan_filesystem_and_reimport()
+
+func _on_download_and_extract_run_failed(error):
+	_show_error_dialog(error)

@@ -64,8 +64,8 @@ title = "Error!"
 initial_position = 2
 size = Vector2i(400, 128)
 
-[connection signal="request_completed" from="DownloadAndExtract" to="." method="_on_download_and_unzip_request_completed"]
-[connection signal="request_failed" from="DownloadAndExtract" to="." method="_on_download_and_unzip_request_failed"]
+[connection signal="run_completed" from="DownloadAndExtract" to="." method="_on_download_and_extract_run_completed"]
+[connection signal="run_failed" from="DownloadAndExtract" to="." method="_on_download_and_extract_run_failed"]
 [connection signal="canceled" from="ForceConfirmationDialog" to="." method="_on_force_confirmation_dialog_canceled"]
 [connection signal="confirmed" from="ForceConfirmationDialog" to="." method="_on_force_confirmation_dialog_confirmed"]
 [connection signal="canceled" from="KenneyInputPromptsDialog" to="." method="_on_kenney_input_prompts_dialog_canceled"]

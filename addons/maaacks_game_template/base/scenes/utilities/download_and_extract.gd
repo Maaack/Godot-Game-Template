@@ -3,12 +3,12 @@
 class_name DownloadAndExtract
 extends Node
 
-## Sent when the request has completed.
-signal request_completed
+## Sent when the run has completed.
+signal run_completed
 ## Sent when a response is received from the server.
 signal response_received(response_body)
-## Sent when the request has failed, or the response has an error.
-signal request_failed(error : String)
+## Sent when the run has failed or exited early for any reason.
+signal run_failed(error : String)
 
 const TEMPORARY_ZIP_PATH = "res://temp.zip"
 const RESULT_CANT_CONNECT = "Failed to connect"
@@ -72,10 +72,10 @@ func _zip_exists() -> bool:
 func get_request_method() -> int:
 	return HTTPClient.METHOD_GET
 
-## Sends the request to download the target zip file.
-func request(body : String = "", request_headers : Array = []):
+## Sends the request to download the target zip file, and then extracts the contents.
+func run(request_headers : Array = []):
 	if stage == Stage.DOWNLOAD:
-		request_failed.emit(DOWNLOAD_IN_PROGRESS)
+		run_failed.emit(DOWNLOAD_IN_PROGRESS)
 		push_warning(DOWNLOAD_IN_PROGRESS)
 		return
 	if _zip_exists() and not force:
@@ -86,9 +86,9 @@ func request(body : String = "", request_headers : Array = []):
 	var method : int = get_request_method()
 	if request_timeout > 0.0:
 		local_http_request.timeout = request_timeout
-	var error = local_http_request.request(url, request_headers, method, body)
+	var error = local_http_request.request(url, request_headers, method)
 	if error != OK:
-		request_failed.emit(REQUEST_FAILED)
+		run_failed.emit(REQUEST_FAILED)
 		push_error("An error occurred in the HTTP request. %d" % error)
 		return
 	if request_timeout > 0.0:
@@ -98,7 +98,7 @@ func request(body : String = "", request_headers : Array = []):
 func _delete_zip_file():
 	if not delete_zip_file or not downloaded_zip_file: return
 	if stage == Stage.DELETE:
-		request_failed.emit(DELETE_IN_PROGRESS)
+		run_failed.emit(DELETE_IN_PROGRESS)
 		push_warning(DELETE_IN_PROGRESS)
 		return
 	stage = Stage.DELETE
@@ -108,7 +108,7 @@ func _delete_zip_file():
 func _save_zip_file(body : PackedByteArray):
 	var file = FileAccess.open(zip_file_path, FileAccess.WRITE)
 	if not file:
-		request_failed.emit(FAILED_TO_SAVE_ZIP_FILE)
+		run_failed.emit(FAILED_TO_SAVE_ZIP_FILE)
 		push_error(FAILED_TO_SAVE_ZIP_FILE)
 		return
 	file.store_buffer(body)
@@ -121,17 +121,17 @@ func extract_path_exists() -> bool:
 func _make_extract_path():
 	var err := DirAccess.make_dir_absolute(extract_path)
 	if err != OK:
-		request_failed.emit(FAILED_TO_MAKE_EXTRACT_DIR)
+		run_failed.emit(FAILED_TO_MAKE_EXTRACT_DIR)
 		push_error(FAILED_TO_MAKE_EXTRACT_DIR)
 
 func _extract_files():
 	if stage == Stage.EXTRACT:
-		request_failed.emit(EXTRACT_IN_PROGRESS)
+		run_failed.emit(EXTRACT_IN_PROGRESS)
 		push_warning(EXTRACT_IN_PROGRESS)
 		return
 	stage = Stage.EXTRACT
 	if not _zip_exists():
-		request_failed.emit(DOWNLOADED_ZIP_FILE_DOESNT_EXIST)
+		run_failed.emit(DOWNLOADED_ZIP_FILE_DOESNT_EXIST)
 		push_error(DOWNLOADED_ZIP_FILE_DOESNT_EXIST)
 		return
 	if not extract_path_exists(): _make_extract_path()
@@ -163,7 +163,7 @@ func _on_request_completed(result, response_code, headers, body):
 				error = RESULT_TIMEOUT
 			_:
 				error = RESULT_SERVER_ERROR
-		request_failed.emit(error)
+		run_failed.emit(error)
 		push_error("result %d" % result)
 
 func _on_http_request_request_completed(result, response_code, headers, body):
@@ -171,7 +171,7 @@ func _on_http_request_request_completed(result, response_code, headers, body):
 
 func _on_timeout_timer_timeout():
 	timed_out = true
-	request_failed.emit(REQUEST_TIMEOUT)
+	run_failed.emit(REQUEST_TIMEOUT)
 	push_warning(REQUEST_TIMEOUT)
 
 func get_progress():
@@ -216,7 +216,7 @@ func _finish_extraction():
 	zip_reader.close()
 	_delete_zip_file()
 	stage = Stage.NONE
-	request_completed.emit()
+	run_completed.emit()
 
 func _process(delta):
 	if stage == Stage.EXTRACT:
