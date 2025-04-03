@@ -130,22 +130,9 @@ var reimporting : bool = false
 ## Flag for whether the tool will force a download and extraction, even if the contents exist.
 var force : bool = false
 
-func _on_kenney_input_prompts_dialog_canceled():
-	canceled.emit()
-	queue_free()
-
-func _on_kenney_input_prompts_dialog_configuration_selected(index: int):
-	_configuration_index = index
-
 func _download_and_extract():
 	_installing_dialog.show()
 	_download_and_extract_node.run.call_deferred()
-
-func _on_kenney_input_prompts_dialog_confirmed():
-	if _download_and_extract_node.extract_path_exists() and not force:
-		_configure_and_complete()
-		return
-	_download_and_extract()
 
 func _run_complete():
 	completed.emit()
@@ -311,6 +298,19 @@ func _ready():
 		_skip_installation_dialog.show()
 	else:
 		_kenney_input_prompts_dialog.show()
+
+func _on_kenney_input_prompts_dialog_canceled():
+	canceled.emit()
+	queue_free()
+
+func _on_kenney_input_prompts_dialog_configuration_selected(index: int):
+	_configuration_index = index
+
+func _on_kenney_input_prompts_dialog_confirmed():
+	if _download_and_extract_node.extract_path_exists() and not force:
+		_configure_and_complete()
+		return
+	_download_and_extract()
 
 func _on_skip_installation_dialog_canceled():
 	_enable_forced_install()
