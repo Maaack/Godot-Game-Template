@@ -97,11 +97,13 @@ ends_with = ".png"
 
 const PACKAGE_EXTRA_DIRECTORIES := [
 	"Flairs",
+	"Nintendo Gamecube",
 	"Nintendo Switch 2",
 	"Nintendo Wii",
 	"Nintendo WiiU",
 	"Playdate",
 	"Steam Controller",
+	"Touch",
 ]
 
 const PACKAGE_EXTRA_FILES := [

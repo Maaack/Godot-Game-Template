@@ -10,7 +10,7 @@ copy_dir_path = "res://"
 extract_extension = "assets/kenney_input-prompts"
 
 [node name="DownloadAndExtract" parent="." instance=ExtResource("3_ebstj")]
-zip_url = "https://github.com/Maaack/Kenney-Input-Prompts/archive/refs/tags/1.2a.zip"
+zip_url = "https://github.com/Maaack/Kenney-Input-Prompts/archive/refs/tags/1.3.zip"
 extract_path = "res://assets/kenney_input-prompts/"
 skip_base_zip_dir = true
 zip_file_path = "res://kenney_input-prompts.zip"
@@ -62,15 +62,16 @@ step = 0.001
 
 [node name="CleanUpDialog" type="ConfirmationDialog" parent="."]
 auto_translate_mode = 1
-title = "Clean Up Extras?"
+title = "Clean Up Extra Content?"
 initial_position = 2
-size = Vector2i(860, 210)
+size = Vector2i(1024, 210)
 ok_button_text = "Yes"
-dialog_text = "Kenney's Input Prompts contains extra icons and previews not currently used by the remapping menu.
+dialog_text = "Kenney's Input Prompts contains extra content not used by the input remapping menu.
 
-Removing the extras reduces the size of the extracted pack by about 40%.
+This includes icons for devices not currently detected and preview images. Removing the extras cuts the total size of extracted assets by almost 50%. The option to change input icon styles will remain available after the clean up, too.
 
-Would you like to have these extras removed?"
+Would you like to have the extra content removed?"
+dialog_autowrap = true
 cancel_button_text = "No"
 
 [node name="ErrorDialog" type="AcceptDialog" parent="."]
