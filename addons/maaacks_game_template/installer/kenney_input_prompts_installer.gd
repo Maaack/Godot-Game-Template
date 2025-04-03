@@ -114,7 +114,7 @@ const PACKAGE_EXTRA_FILES := [
 @export var extract_extension : String
 
 @onready var _download_and_extract_node : DownloadAndExtract = $DownloadAndExtract
-@onready var _force_confirmation_dialog : ConfirmationDialog = $ForceConfirmationDialog
+@onready var _skip_installation_dialog : ConfirmationDialog = $SkipInstallationDialog
 @onready var _kenney_input_prompts_dialog : ConfirmationDialog = $KenneyInputPromptsDialog
 @onready var _installing_dialog : AcceptDialog = $InstallingDialog
 @onready var _clean_up_dialog : ConfirmationDialog = $CleanUpDialog
@@ -278,25 +278,12 @@ func _scan_filesystem_and_reimport():
 	await file_system.resources_reimporting
 	reimporting = true
 
-func _ready():
-	_force_confirmation_dialog.hide()
-	_kenney_input_prompts_dialog.hide()
-	_installing_dialog.hide()
-	_installing_dialog.get_ok_button().hide()
-	_clean_up_dialog.hide()
-	_error_dialog.hide()
-	_download_and_extract_node.extract_path = get_full_path()
-	if _download_and_extract_node.extract_path_exists():
-		_force_confirmation_dialog.show()
-	else:
-		_kenney_input_prompts_dialog.show()
-
-func _on_force_confirmation_dialog_canceled():
+func _enable_forced_install():
 	force = true
 	_download_and_extract_node.force = true
 	_kenney_input_prompts_dialog.show.call_deferred()
 
-func _on_force_confirmation_dialog_confirmed():
+func _enable_skipped_install():
 	_kenney_input_prompts_dialog.set_short_description()
 	_kenney_input_prompts_dialog.show.call_deferred()
 
@@ -304,6 +291,25 @@ func _show_error_dialog(error):
 	_installing_dialog.hide()
 	_error_dialog.show()
 	_error_dialog.dialog_text = "%s!" % error
+
+func _ready():
+	_skip_installation_dialog.hide()
+	_kenney_input_prompts_dialog.hide()
+	_installing_dialog.hide()
+	_installing_dialog.get_ok_button().hide()
+	_clean_up_dialog.hide()
+	_error_dialog.hide()
+	_download_and_extract_node.extract_path = get_full_path()
+	if _download_and_extract_node.extract_path_exists():
+		_skip_installation_dialog.show()
+	else:
+		_kenney_input_prompts_dialog.show()
+
+func _on_skip_installation_dialog_canceled():
+	_enable_forced_install()
+
+func _on_skip_installation_dialog_confirmed():
+	_enable_skipped_install()
 
 func _on_error_dialog_confirmed():
 	queue_free()
