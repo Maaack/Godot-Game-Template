@@ -11,7 +11,7 @@ extract_extension = "assets/kenney_input-prompts"
 
 [node name="DownloadAndExtract" parent="." instance=ExtResource("3_ebstj")]
 zip_url = "https://github.com/Maaack/Kenney-Input-Prompts/archive/refs/tags/1.2a.zip"
-extract_path = "res://assets/kenney_input-prompts"
+extract_path = "res://assets/kenney_input-prompts/"
 skip_base_zip_dir = true
 zip_file_path = "res://kenney_input-prompts.zip"
 metadata/_custom_type_script = "uid://bqu3bc0tttrfk"
@@ -60,6 +60,19 @@ layout_mode = 2
 max_value = 1.0
 step = 0.001
 
+[node name="CleanUpDialog" type="ConfirmationDialog" parent="."]
+auto_translate_mode = 1
+title = "Clean Up Extras?"
+initial_position = 2
+size = Vector2i(860, 210)
+ok_button_text = "Yes"
+dialog_text = "Kenney's Input Prompts contains extra icons and previews not currently used by the remapping menu.
+
+Removing the extras reduces the size of the extracted pack by about 40%.
+
+Would you like to have these extras removed?"
+cancel_button_text = "No"
+
 [node name="ErrorDialog" type="AcceptDialog" parent="."]
 title = "Error!"
 initial_position = 2
@@ -72,5 +85,7 @@ size = Vector2i(400, 128)
 [connection signal="canceled" from="KenneyInputPromptsDialog" to="." method="_on_kenney_input_prompts_dialog_canceled"]
 [connection signal="configuration_selected" from="KenneyInputPromptsDialog" to="." method="_on_kenney_input_prompts_dialog_configuration_selected"]
 [connection signal="confirmed" from="KenneyInputPromptsDialog" to="." method="_on_kenney_input_prompts_dialog_confirmed"]
+[connection signal="canceled" from="CleanUpDialog" to="." method="_on_clean_up_dialog_canceled"]
+[connection signal="confirmed" from="CleanUpDialog" to="." method="_on_clean_up_dialog_confirmed"]
 [connection signal="canceled" from="ErrorDialog" to="." method="_on_error_dialog_canceled"]
 [connection signal="confirmed" from="ErrorDialog" to="." method="_on_error_dialog_confirmed"]

@@ -35,7 +35,7 @@ custom_minimum_size = Vector2(384, 0)
 layout_mode = 2
 text = "Would you like to install Kenney's Input Prompts?
 
-This adds icons for a majority of input keys and devices in the input remapping menu. They are Creative Commons Zero (CC0) licensed, about 6.1 MB in size, and get installed into the assets folder.
+This adds icons for a majority of input keys and devices in the input remapping menu. They are Creative Commons Zero (CC0) licensed, about 6.9 MB in size (with *.import files), and get installed into the assets folder.
 
 Choose a style for icons in the input remapping menu. The style can be changed later."
 autowrap_mode = 3
