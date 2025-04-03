@@ -4,6 +4,14 @@ The `InputIconMapper` in `input_options_menu.tscn` is a generalized tool meant t
 
 ## Kenney Input Prompts
 
+### Automatic
+
+With the project open, select `Project > Tools > Install Input Icons for Maaack's Game Template`.
+
+Select a style and then wait for the icons to download, extract, and setup.
+
+### Manual
+
 Available from [kenney.nl](https://kenney.nl/assets/input-prompts) and [itch.io](https://kenney-assets.itch.io/input-prompts).
 
 This pack is organized by `Device/IconType`. The `IconTypes` for each device are just `Default`, `Vector`, or `Double`. These instructions will assume using `Default`. In the inspector of `InputIconMapper`, set the `directories` to include the subdirectories of the asset pack.  
@@ -33,7 +41,7 @@ Set `replace_strings` with the key pairs:
 * `"Trigger R 1": "Right Shoulder"`  
 * `"Trigger R 2": "Right Trigger"`  
 
-### Filled Icons
+#### Filled Icons
 ![Kenney Filled Icons](../media/screenshot-5-kenney-2.png)
 Under the `FileLister` properties of the `InputIconMapper`, expand the `Constraints` and `Advanced Search` tabs. Set `ends_with=".png"` and `not_ends_with="outline.png"`.
 
@@ -45,7 +53,7 @@ Press `Match Icons to Inputs`.
 
 Validate the results by inspecting the `matching_icons` dictionary.
 
-### Outlined Icons
+#### Outlined Icons
 ![Kenney Outlined Icons](../media/screenshot-5-kenney-4.png)
 Not all icons have outlined versions, so we will end up including the filled icons as fallback, and prioritizing outlined.
 
