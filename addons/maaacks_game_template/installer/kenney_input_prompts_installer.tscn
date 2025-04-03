@@ -1,0 +1,92 @@
+[gd_scene load_steps=4 format=3 uid="uid://d27twrcwmfxrs"]
+
+[ext_resource type="Script" uid="uid://ca36dy2vkk46q" path="res://addons/maaacks_game_template/installer/kenney_input_prompts_installer.gd" id="1_ebstj"]
+[ext_resource type="PackedScene" uid="uid://d3x8m40qtdrj" path="res://addons/maaacks_game_template/installer/kenney_input_prompts_dialog.tscn" id="1_pslk0"]
+[ext_resource type="PackedScene" uid="uid://dlkmofxhavh10" path="res://addons/maaacks_game_template/base/scenes/utilities/download_and_extract.tscn" id="3_ebstj"]
+
+[node name="KenneyInputPromptsInstaller" type="Node"]
+script = ExtResource("1_ebstj")
+copy_dir_path = "res://"
+extract_extension = "assets/kenney_input-prompts"
+
+[node name="DownloadAndExtract" parent="." instance=ExtResource("3_ebstj")]
+zip_url = "https://github.com/Maaack/Kenney-Input-Prompts/archive/refs/tags/1.3.zip"
+extract_path = "res://assets/kenney_input-prompts/"
+skip_base_zip_dir = true
+zip_file_path = "res://kenney_input-prompts.zip"
+metadata/_custom_type_script = "uid://bqu3bc0tttrfk"
+
+[node name="SkipInstallationDialog" type="ConfirmationDialog" parent="."]
+title = "Skip Installation?"
+initial_position = 2
+size = Vector2i(682, 160)
+ok_button_text = "Skip"
+dialog_text = "The input prompts pack appears to already be installed.
+
+Do you want to force a reinstall of the pack, or skip to picking a style?"
+cancel_button_text = "Reinstall"
+
+[node name="KenneyInputPromptsDialog" parent="." instance=ExtResource("1_pslk0")]
+visible = false
+
+[node name="InstallingDialog" type="AcceptDialog" parent="."]
+title = "Installing..."
+initial_position = 2
+size = Vector2i(400, 100)
+
+[node name="MarginContainer" type="MarginContainer" parent="InstallingDialog"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 396.0
+offset_bottom = 96.0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InstallingDialog/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="StageLabel" type="Label" parent="InstallingDialog/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="InstallingDialog/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+
+[node name="CleanUpDialog" type="ConfirmationDialog" parent="."]
+auto_translate_mode = 1
+title = "Clean Up Extra Content?"
+initial_position = 2
+size = Vector2i(1024, 210)
+ok_button_text = "Yes"
+dialog_text = "Kenney's Input Prompts contains extra content not used by the input remapping menu.
+
+This includes icons for devices not currently detected and preview images. Removing the extras cuts the total size of extracted assets by almost 50%. The option to change input icon styles will remain available after the clean up, too.
+
+Would you like to have the extra content removed?"
+dialog_autowrap = true
+cancel_button_text = "No"
+
+[node name="ErrorDialog" type="AcceptDialog" parent="."]
+title = "Error!"
+initial_position = 2
+size = Vector2i(400, 128)
+
+[connection signal="run_completed" from="DownloadAndExtract" to="." method="_on_download_and_extract_run_completed"]
+[connection signal="run_failed" from="DownloadAndExtract" to="." method="_on_download_and_extract_run_failed"]
+[connection signal="canceled" from="SkipInstallationDialog" to="." method="_on_skip_installation_dialog_canceled"]
+[connection signal="confirmed" from="SkipInstallationDialog" to="." method="_on_skip_installation_dialog_confirmed"]
+[connection signal="canceled" from="KenneyInputPromptsDialog" to="." method="_on_kenney_input_prompts_dialog_canceled"]
+[connection signal="configuration_selected" from="KenneyInputPromptsDialog" to="." method="_on_kenney_input_prompts_dialog_configuration_selected"]
+[connection signal="confirmed" from="KenneyInputPromptsDialog" to="." method="_on_kenney_input_prompts_dialog_confirmed"]
+[connection signal="canceled" from="CleanUpDialog" to="." method="_on_clean_up_dialog_canceled"]
+[connection signal="confirmed" from="CleanUpDialog" to="." method="_on_clean_up_dialog_confirmed"]
+[connection signal="canceled" from="ErrorDialog" to="." method="_on_error_dialog_canceled"]
+[connection signal="confirmed" from="ErrorDialog" to="." method="_on_error_dialog_confirmed"]
