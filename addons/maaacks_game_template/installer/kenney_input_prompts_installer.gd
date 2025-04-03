@@ -244,7 +244,7 @@ func _configure_icons():
 		regex.compile(REGEX_PREFIX)
 		result = regex.sub(input_options_menu, "")
 	input_options_menu = result
-	match(_configuration_index):
+	match(_configuration_index % 4):
 		0:
 			input_options_menu += FILLED_COLOR_CONFIGURATION
 		1:
@@ -253,6 +253,13 @@ func _configure_icons():
 			input_options_menu += OUTLINED_COLOR_CONFIGURATION
 		3:
 			input_options_menu += OUTLINED_WHITE_CONFIGURATION
+	match(_configuration_index / 4):
+		0:
+			input_options_menu = input_options_menu.replace("Default", "Vector").replace(".png", ".svg")
+		1:
+			pass
+		2:
+			input_options_menu = input_options_menu.replace("Default", "Double")
 	var file_rewrite := FileAccess.open(input_options_menu_path, FileAccess.WRITE)
 	file_rewrite.store_string(input_options_menu)
 	file_rewrite.close()
