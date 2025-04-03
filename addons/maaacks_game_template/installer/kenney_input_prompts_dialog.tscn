@@ -1,0 +1,83 @@
+[gd_scene load_steps=14 format=3 uid="uid://d3x8m40qtdrj"]
+
+[ext_resource type="Script" uid="uid://bduy6qihnm0qo" path="res://addons/maaacks_game_template/installer/kenney_input_prompts_dialog.gd" id="1_nf1bc"]
+[ext_resource type="Texture2D" uid="uid://cmni5hv40bfaa" path="res://addons/maaacks_game_template/assets/input-icons/icons-filled-colored.png" id="2_0nqam"]
+[ext_resource type="Texture2D" uid="uid://deskx061vlcgx" path="res://addons/maaacks_game_template/assets/input-icons/icons-filled-white.png" id="3_ynuxh"]
+[ext_resource type="Texture2D" uid="uid://bohem6w6kcl3x" path="res://addons/maaacks_game_template/assets/input-icons/icons-outlined-colored.png" id="4_dqbfh"]
+[ext_resource type="Texture2D" uid="uid://bq211jkfnm7k7" path="res://addons/maaacks_game_template/assets/input-icons/icons-outlined-white.png" id="5_1tkva"]
+[ext_resource type="Texture2D" uid="uid://bt1yqttw3d5xn" path="res://addons/maaacks_game_template/assets/input-icons/icons-filled-colored-2x.png" id="6_r3yyh"]
+[ext_resource type="Texture2D" uid="uid://bit8o3p506th6" path="res://addons/maaacks_game_template/assets/input-icons/icons-filled-white-2x.png" id="7_xgp8o"]
+[ext_resource type="Texture2D" uid="uid://cqb86gp1gh3y8" path="res://addons/maaacks_game_template/assets/input-icons/icons-outlined-colored-2x.png" id="8_ag5dy"]
+[ext_resource type="Texture2D" uid="uid://d3bsc6o2ae88q" path="res://addons/maaacks_game_template/assets/input-icons/icons-outlined-white-2x.png" id="9_3b8mx"]
+[ext_resource type="Texture2D" uid="uid://ix1d2e62f233" path="res://addons/maaacks_game_template/assets/input-icons/icons-filled-colored-vector.svg" id="10_ag5dy"]
+[ext_resource type="Texture2D" uid="uid://c37gofthe2bh3" path="res://addons/maaacks_game_template/assets/input-icons/icons-filled-white-vector.svg" id="11_3b8mx"]
+[ext_resource type="Texture2D" uid="uid://bsgf78aysgdnd" path="res://addons/maaacks_game_template/assets/input-icons/icons-outlined-colored-vector.svg" id="12_rrkvx"]
+[ext_resource type="Texture2D" uid="uid://c1lpc33fpmd4p" path="res://addons/maaacks_game_template/assets/input-icons/icons-outlined-white-vector.svg" id="13_bkfjd"]
+
+[node name="KenneyInputPromptsDialog" type="ConfirmationDialog"]
+title = "Add Kenney Input Prompts Pack"
+initial_position = 2
+size = Vector2i(1024, 640)
+visible = true
+ok_button_text = "Yes"
+dialog_autowrap = true
+cancel_button_text = "No"
+script = ExtResource("1_nf1bc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(560, 443)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -49.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(384, 0)
+layout_mode = 2
+text = "Would you like to install Kenney's Input Prompts?
+
+This adds icons for a majority of input keys and devices in the input remapping menu. They are Creative Commons Zero (CC0) licensed, about 3.9 MB in size (7.6 MB with *.import files), and get installed into the assets folder.
+
+Choose a style for icons in the input remapping menu. The style can be changed later."
+autowrap_mode = 3
+
+[node name="ItemList" type="ItemList" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+item_count = 12
+same_column_width = true
+item_0/text = "Filled and Colored Vector"
+item_0/icon = ExtResource("10_ag5dy")
+item_1/text = "Filled and White Vector"
+item_1/icon = ExtResource("11_3b8mx")
+item_2/text = "Outlined and Colored Vector"
+item_2/icon = ExtResource("12_rrkvx")
+item_3/text = "Outlined and White Vector"
+item_3/icon = ExtResource("13_bkfjd")
+item_4/text = "Filled and Colored 64x64"
+item_4/icon = ExtResource("2_0nqam")
+item_5/text = "Filled and White 64x64"
+item_5/icon = ExtResource("3_ynuxh")
+item_6/text = "Outlined and Colored 64x64"
+item_6/icon = ExtResource("4_dqbfh")
+item_7/text = "Outlined and White 64x64"
+item_7/icon = ExtResource("5_1tkva")
+item_8/text = "Filled and Colored 128x128"
+item_8/icon = ExtResource("6_r3yyh")
+item_9/text = "Filled and White 128x128"
+item_9/icon = ExtResource("7_xgp8o")
+item_10/text = "Outlined and Colored 128x128"
+item_10/icon = ExtResource("8_ag5dy")
+item_11/text = "Outlined and White 128x128"
+item_11/icon = ExtResource("9_3b8mx")
+
+[connection signal="item_selected" from="VBoxContainer/ItemList" to="." method="_on_item_list_item_selected"]
