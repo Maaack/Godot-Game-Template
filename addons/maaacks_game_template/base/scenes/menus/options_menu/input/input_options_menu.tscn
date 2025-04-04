@@ -15,6 +15,10 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 8
 script = ExtResource("1")
 
 [node name="InputIconMapper" parent="." instance=ExtResource("2_627ul")]
@@ -23,7 +27,6 @@ script = ExtResource("1")
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_constants/separation = 8
 script = ExtResource("2_wft4x")
 search_depth = 5
 

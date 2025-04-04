@@ -134,3 +134,7 @@ func _input(event):
 
 func _ready():
 	_assign_joypad_0_to_last()
+	if files.size() == 0:
+		_refresh_files()
+	if matching_icons.size() == 0:
+		_match_icons_to_inputs()

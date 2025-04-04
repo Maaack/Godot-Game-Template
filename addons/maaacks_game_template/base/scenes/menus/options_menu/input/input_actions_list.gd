@@ -2,6 +2,8 @@
 class_name InputActionsList
 extends Container
 
+const EMPTY_INPUT_ACTION_STRING = " "
+
 signal already_assigned(action_name : String, input_name : String)
 signal minimum_reached(action_name : String)
 signal button_clicked(action_name : String, readable_input_name : String)
@@ -42,6 +44,7 @@ const BUTTON_NAME_GROUP_STRING : String = "%s:%d"
 @export var show_all_actions : bool = true
 @export_group("Icons")
 @export var input_icon_mapper : InputIconMapper
+@export var expand_icon : bool = false
 @export_group("Built-in Actions")
 ## Shows Godot's built-in actions (action names starting with "ui_") in the tree.
 @export var show_built_in_actions : bool = false
@@ -123,22 +126,34 @@ func _update_assigned_inputs_and_button(action_name : String, action_group : int
 		button.icon = icon
 	else:
 		button.icon = null
-	var old_readable_input_name = ""
-	if button in button_readable_input_map:
-		old_readable_input_name = button_readable_input_map[button]
 	if button.icon == null:
 		button.text = new_readable_input_name
 	else:
 		button.text = ""
-	assigned_input_events.erase(old_readable_input_name)
+	var old_readable_input_name : String
+	if button in button_readable_input_map:
+		old_readable_input_name = button_readable_input_map[button]
+		assigned_input_events.erase(old_readable_input_name)
 	button_readable_input_map[button] = new_readable_input_name
 	assigned_input_events[new_readable_input_name] = action_name
+
+func _clear_button(action_name : String, action_group : int):
+	var button = _get_button_by_action(action_name, action_group)
+	if not button: return
+	button.icon = null
+	button.text = EMPTY_INPUT_ACTION_STRING
+	var old_readable_input_name : String
+	if button in button_readable_input_map:
+		old_readable_input_name = button_readable_input_map[button]
+		assigned_input_events.erase(old_readable_input_name)
+	button_readable_input_map[button] = EMPTY_INPUT_ACTION_STRING
 
 func _add_new_button(content : Variant, container: Control, disabled : bool = false) -> Button:
 	var new_button := Button.new()
 	new_button.size_flags_horizontal = SIZE_EXPAND_FILL
 	new_button.size_flags_vertical = SIZE_EXPAND_FILL
 	new_button.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	new_button.expand_icon = expand_icon
 	if content is Texture:
 		new_button.icon = content
 	elif content is String:
@@ -163,7 +178,7 @@ func _add_action_options(action_name : String, readable_action_name : String, in
 			input_event = input_events[group_iter]
 		var text = InputEventHelper.get_text(input_event)
 		var is_disabled = group_iter > input_events.size()
-		if text.is_empty(): text = " "
+		if text.is_empty(): text = EMPTY_INPUT_ACTION_STRING
 		var icon : Texture
 		if input_icon_mapper:
 			icon = input_icon_mapper.get_icon(input_event)
@@ -262,6 +277,9 @@ func _refresh_ui_list_button_content():
 		var group_iter : int = 0
 		for input_event in input_events:
 			_update_assigned_inputs_and_button(action_name, group_iter, input_event)
+			group_iter += 1
+		while group_iter < action_groups:
+			_clear_button(action_name, group_iter)
 			group_iter += 1
 
 func reset():

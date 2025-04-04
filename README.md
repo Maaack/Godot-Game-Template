@@ -10,20 +10,21 @@ This template has a main menu, options menus, pause menu, credits, scene loader,
 #### Videos
 
 [![Quick Intro Video](https://img.youtube.com/vi/U9CB3vKINVw/hqdefault.jpg)](https://youtu.be/U9CB3vKINVw)  
-[![Installation Video](https://img.youtube.com/vi/-QWJnZ8bVdk/hqdefault.jpg)](https://youtu.be/-QWJnZ8bVdk)  
 [More Videos](/addons/maaacks_game_template/docs/Videos.md)
 
 #### Screenshots
-![Main Menu](/addons/maaacks_game_template/media/screenshot-3-1.png)  
-![Key Rebinding](/addons/maaacks_game_template/media/screenshot-3-2.png)  
-![Audio Controls](/addons/maaacks_game_template/media/screenshot-3-4.png)  
-![Pause Menu](/addons/maaacks_game_template/media/screenshot-3-6.png)  
+![Main Menu](/addons/maaacks_game_template/media/screenshot-6-main-menu-5.png)  
+![Key Rebinding](/addons/maaacks_game_template/media/screenshot-6-input-list-8.png)  
+![Audio Controls](/addons/maaacks_game_template/media/screenshot-6-audio-options-2.png)  
+![Video Controls](/addons/maaacks_game_template/media/screenshot-6-video-options-5.png)  
+![Pause Menu](/addons/maaacks_game_template/media/screenshot-6-pause-menu-3.png)  
 [More Screenshots](/addons/maaacks_game_template/docs/Screenshots.md)  
 
-## Use Case
+## Objective
+
 Setup menus and accessibility features in about 15 minutes.
 
-The template can be the start of a new project, or plug into an existing one. It is game agnostic (2D or 3D) and can work with multiple target resolutions, up to 4k and down to 640x360.
+The template can be the start of a new project, or plug into an existing one. It is game agnostic (2D or 3D) and can work with multiple target resolutions, up to 4k and down to 640x360. It's meant to cover the needs for a typical game jam, while remaining scalable and extensible enough to support commercial games.
 
 ## Features
 
@@ -142,16 +143,19 @@ These instructions assume starting with just the contents of `addons/`. This wil
 [Main Menu Setup](/addons/maaacks_game_template/docs/MainMenuSetup.md)  
 [Game Scene Setup](/addons/maaacks_game_template/docs/GameSceneSetup.md)  
 [Input Icon Mapping](/addons/maaacks_game_template/docs/InputIconMapping.md)  
+[Joypad Inputs](/addons/maaacks_game_template/docs/JoypadInputs.md)  
 [How Parts Work](/addons/maaacks_game_template/docs/HowPartsWork.md)  
+[Uploading to itch.io](/addons/maaacks_game_template/docs/UploadingToItchIo.md)
 
 ---
 
 ## Featured Games
 
-| Rent Seek Kill  | A Darkness Like Gravity  | Nanny Bot Overload |
-| :-------: | :----------: | :----------: |
-![Rent-Seek-Kill](/addons/maaacks_game_template/media/screenshot-game-rent-seek-kill.png)  |  ![A Darkness Like Gravity](/addons/maaacks_game_template/media/screenshot-game-a-darkness-like-gravity.png)  |  ![NannyBot Overload](/addons/maaacks_game_template/media/screenshot-game-nannybot-overload.png)  
-[Play on itch.io](https://xandruher.itch.io/rent-seek-kill)  |  [Play on itch.io](https://maaack.itch.io/a-darkness-like-gravity)  |  [Play on itch.io](https://justaguyjustaguy.itch.io/nannybot-overload)
+| Spud Customs | Rent Seek Kill  | A Darkness Like Gravity  |  
+| :-------:| :-------: | :-------: |
+![Spud Customs](/addons/maaacks_game_template/media/screenshot-game-spud-customs.png)  |  ![Rent-Seek-Kill](/addons/maaacks_game_template/media/screenshot-game-rent-seek-kill.png)  |  ![A Darkness Like Gravity](/addons/maaacks_game_template/media/screenshot-game-a-darkness-like-gravity.png)  |
+[Find on Steam](https://store.steampowered.com/app/3291880/Spud_Customs/) | [Play on itch.io](https://xandruher.itch.io/rent-seek-kill)  |  [Play on itch.io](https://maaack.itch.io/a-darkness-like-gravity)  |
+
 
 [All Shared Games](/addons/maaacks_game_template/docs/GamesMade.md)  
 
