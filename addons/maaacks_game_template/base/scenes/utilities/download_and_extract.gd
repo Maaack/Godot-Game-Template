@@ -23,7 +23,9 @@ const EXTRACT_IN_PROGRESS = "Extract already in progress"
 const DELETE_IN_PROGRESS = "Delete already in progress"
 const FAILED_TO_SAVE_ZIP_FILE = "Failed to save the zip file"
 const FAILED_TO_MAKE_EXTRACT_DIR = "Failed to make extract directory"
-const DOWNLOADED_ZIP_FILE_DOESNT_EXIST = "The downloaded ZIP file doesn't exist."
+const FAILED_TO_READ_ZIP_FILE = "Failed to read the zip file"
+const DOWNLOADED_ZIP_FILE_DOESNT_EXIST = "The downloaded ZIP file doesn't exist"
+const URL_NOT_SET = "URL parameter is not set"
 
 enum Stage{
 	NONE,
@@ -36,20 +38,27 @@ enum Stage{
 @export var zip_url : String
 ## Path where the zipped files are to be extracted.
 @export_dir var extract_path : String
+@export_group("Advanced")
 ## Assuming zip file contains a single base directory, the flag copies all of the contents,
 ## as if they were at the base of the zip file. It never makes the base directory locally. 
 @export var skip_base_zip_dir : bool = false
 ## Forces a download and extraction even if the files already exist.
 @export var force : bool = false
-@export_group("Advanced Settings")
 ## Duration to wait before the request times out.
-@export var request_timeout : float = 10.0
+@export var request_timeout : float = 0.0
 ## Path where the zip file will be stored.
 @export var zip_file_path : String = TEMPORARY_ZIP_PATH
 ## Flag to delete a downloaded zip file after the contents are extracted.
 @export var delete_zip_file : bool = true
 ## Ratio of processing time that should be spent on extracting files.
 @export_range(0.0, 1.0) var process_time_ratio : float = 0.75
+@export var _start_run_action : bool = false :
+	set(value):
+		if value and Engine.is_editor_hint():
+			run()
+# For Godot 4.4
+# @export_tool_button("Download & Extract") var _start_run_action = run
+
 
 @onready var _http_request : HTTPRequest = $HTTPRequest
 @onready var _timeout_timer : Timer= $TimeoutTimer
@@ -88,12 +97,16 @@ func run(request_headers : Array = []):
 	var local_http_request : HTTPRequest = get_http_request()
 	var url : String = get_zip_url()
 	var method : int = get_request_method()
+	if url.is_empty():
+		run_failed.emit(URL_NOT_SET)
+		push_error(URL_NOT_SET)
+		return
 	if request_timeout > 0.0:
 		local_http_request.timeout = request_timeout
 	var error = local_http_request.request(url, request_headers, method)
 	if error != OK:
 		run_failed.emit(REQUEST_FAILED)
-		push_error("An error occurred in the HTTP request. %d" % error)
+		push_error("HTTP Request error: %d" % error)
 		return
 	if request_timeout > 0.0:
 		_timeout_timer.start(request_timeout + 1.0)
@@ -139,8 +152,10 @@ func _extract_files():
 		push_error(DOWNLOADED_ZIP_FILE_DOESNT_EXIST)
 		return
 	if not extract_path_exists(): _make_extract_path()
-	var err = zip_reader.open(zip_file_path)
-	if err != OK:
+	var error = zip_reader.open(zip_file_path)
+	if error != OK:
+		run_failed.emit(FAILED_TO_READ_ZIP_FILE)
+		push_error("ZIP Reader error: %d" % error)
 		return
 	zipped_file_paths = zip_reader.get_files()
 	if skip_base_zip_dir:
@@ -158,22 +173,22 @@ func _on_request_completed(result, response_code, headers, body):
 		if body is PackedByteArray:
 			_save_zip_file(body)
 			_extract_files.call_deferred()
-			emit_signal("response_received", body)
+			response_received.emit(body)
 	else:
-		var error : String
+		var error_message : String
 		match(result):
 			HTTPRequest.RESULT_CANT_CONNECT:
-				error = RESULT_CANT_CONNECT
+				error_message = RESULT_CANT_CONNECT
 			HTTPRequest.RESULT_CANT_RESOLVE:
-				error = RESULT_CANT_RESOLVE
+				error_message = RESULT_CANT_RESOLVE
 			HTTPRequest.RESULT_CONNECTION_ERROR:
-				error = RESULT_CONNECTION_ERROR
+				error_message = RESULT_CONNECTION_ERROR
 			HTTPRequest.RESULT_TIMEOUT:
-				error = RESULT_TIMEOUT
+				error_message = RESULT_TIMEOUT
 			_:
-				error = RESULT_SERVER_ERROR
-		run_failed.emit(error)
-		push_error("result %d" % result)
+				error_message = RESULT_SERVER_ERROR
+		run_failed.emit(error_message)
+		push_error("HTTP Result error: %d" % result)
 
 func _on_http_request_request_completed(result, response_code, headers, body):
 	_on_request_completed(result, response_code, headers, body)
