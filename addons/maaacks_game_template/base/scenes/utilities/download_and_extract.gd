@@ -24,6 +24,7 @@ const DELETE_IN_PROGRESS = "Delete already in progress"
 const FAILED_TO_SAVE_ZIP_FILE = "Failed to save the zip file"
 const FAILED_TO_MAKE_EXTRACT_DIR = "Failed to make extract directory"
 const DOWNLOADED_ZIP_FILE_DOESNT_EXIST = "The downloaded ZIP file doesn't exist."
+const URL_NOT_SET = "URL parameter is not set."
 
 enum Stage{
 	NONE,
@@ -36,12 +37,12 @@ enum Stage{
 @export var zip_url : String
 ## Path where the zipped files are to be extracted.
 @export_dir var extract_path : String
+@export_group("Advanced")
 ## Assuming zip file contains a single base directory, the flag copies all of the contents,
 ## as if they were at the base of the zip file. It never makes the base directory locally. 
 @export var skip_base_zip_dir : bool = false
 ## Forces a download and extraction even if the files already exist.
 @export var force : bool = false
-@export_group("Advanced Settings")
 ## Duration to wait before the request times out.
 @export var request_timeout : float = 0.0
 ## Path where the zip file will be stored.
@@ -50,6 +51,13 @@ enum Stage{
 @export var delete_zip_file : bool = true
 ## Ratio of processing time that should be spent on extracting files.
 @export_range(0.0, 1.0) var process_time_ratio : float = 0.75
+@export var _start_run_action : bool = false :
+	set(value):
+		if value and Engine.is_editor_hint():
+			run()
+# For Godot 4.4
+# @export_tool_button("Download & Extract") var _start_run_action = run
+
 
 @onready var _http_request : HTTPRequest = $HTTPRequest
 @onready var _timeout_timer : Timer= $TimeoutTimer
@@ -88,6 +96,10 @@ func run(request_headers : Array = []):
 	var local_http_request : HTTPRequest = get_http_request()
 	var url : String = get_zip_url()
 	var method : int = get_request_method()
+	if url.is_empty():
+		run_failed.emit(URL_NOT_SET)
+		push_error(URL_NOT_SET)
+		return
 	if request_timeout > 0.0:
 		local_http_request.timeout = request_timeout
 	var error = local_http_request.request(url, request_headers, method)

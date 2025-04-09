@@ -12,21 +12,23 @@ const RESULT_TIMEOUT = "Connection timeout"
 const RESULT_SERVER_ERROR = "Server error"
 const REQUEST_FAILED = "Error in the request"
 const REQUEST_TIMEOUT = "Request timed out on the client side"
+const URL_NOT_SET = "URL parameter is not set."
 
 ## Location of the API endpoint.
 @export var api_url : String
 ## HTTP request method to use. Typically GET or POST.
 @export var request_method : HTTPClient.Method = HTTPClient.METHOD_POST
+@export_group("Advanced")
 ## Location of an API key file, if authorization is required by the endpoint.
 @export_file("*.txt") var api_key_file : String
 ## Time in seconds before the request fails due to timeout.
 @export var request_timeout : float = 0.0
-@export var _make_request : bool = false :
+@export var _send_request_action : bool = false :
 	set(value):
 		if value and Engine.is_editor_hint():
 			request()
 # For Godot 4.4
-# @export_tool_button("Make Request") var _make_request_action = request
+# @export_tool_button("Send Request") var _send_request_action = request
 
 
 @onready var _http_request : HTTPRequest = $HTTPRequest
@@ -69,6 +71,10 @@ func request(body : String = "", request_headers : Array = []):
 	var key : String = get_api_key()
 	var url : String = get_api_url()
 	var method : int = get_api_method()
+	if url.is_empty():
+		request_failed.emit(URL_NOT_SET)
+		push_error(URL_NOT_SET)
+		return
 	request_headers.append("Content-Type: application/json")
 	if key:
 		request_headers.append("x-api-key: %s" % key)
@@ -78,6 +84,7 @@ func request(body : String = "", request_headers : Array = []):
 	if error != OK:
 		request_failed.emit(REQUEST_FAILED)
 		push_error("An error occurred in the HTTP request. %d" % error)
+		return
 	if request_timeout > 0.0:
 		_timeout_timer.start(request_timeout + 1.0)
 
@@ -86,6 +93,10 @@ func request_raw(data : PackedByteArray = [], request_headers : Array = []):
 	var key : String = get_api_key()
 	var url : String = get_api_url()
 	var method : int = get_api_method()
+	if url.is_empty():
+		request_failed.emit(URL_NOT_SET)
+		push_error(URL_NOT_SET)
+		return
 	request_headers.append("Content-Type: application/json")
 	if key:
 		request_headers.append("x-api-key: %s" % key)
@@ -95,6 +106,7 @@ func request_raw(data : PackedByteArray = [], request_headers : Array = []):
 	if error != OK:
 		request_failed.emit(REQUEST_FAILED)
 		push_error("An error occurred in the HTTP request. %d" % error)
+		return
 	if request_timeout > 0.0:
 		_timeout_timer.start(request_timeout + 1.0)
 
