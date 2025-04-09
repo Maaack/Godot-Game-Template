@@ -158,7 +158,7 @@ func _on_request_completed(result, response_code, headers, body):
 		if body is PackedByteArray:
 			_save_zip_file(body)
 			_extract_files.call_deferred()
-			emit_signal("response_received", body)
+			response_received.emit(body)
 	else:
 		var error : String
 		match(result):
@@ -173,7 +173,7 @@ func _on_request_completed(result, response_code, headers, body):
 			_:
 				error = RESULT_SERVER_ERROR
 		run_failed.emit(error)
-		push_error("result %d" % result)
+		push_error("HTTP Result %d" % result)
 
 func _on_http_request_request_completed(result, response_code, headers, body):
 	_on_request_completed(result, response_code, headers, body)

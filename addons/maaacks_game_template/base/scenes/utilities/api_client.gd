@@ -10,16 +10,21 @@ const RESULT_CONNECTION_ERROR = "Connection error"
 const RESULT_TIMEOUT = "Connection timeout"
 const RESULT_SERVER_ERROR = "Server error"
 const REQUEST_FAILED = "Error in the request"
+const REQUEST_TIMEOUT = "Request timed out on the client side"
 
+## Location of the API endpoint.
 @export var api_url : String
+## HTTP request method to use. Typically GET or POST.
 @export var request_method : HTTPClient.Method = HTTPClient.METHOD_POST
+## Location of an API key file, if authorization is required by the endpoint.
 @export_file("*.txt") var api_key_file : String
 ## Time in seconds before the request fails due to timeout.
-@export var reqeuest_timeout : float = 30.0
+@export var request_timeout : float = 30.0
 
-@onready var _http_request = $HTTPRequest
-@onready var _timeout_timer = $TimeoutTimer
+@onready var _http_request : HTTPRequest = $HTTPRequest
+@onready var _timeout_timer : Timer= $TimeoutTimer
 
+## State flag for whether the connection has timed out on the client-side.
 var timed_out : bool = false
 
 func get_http_request():
@@ -53,35 +58,37 @@ func mock_request(body : String):
 
 func request(body : String, request_headers : Array = []):
 	var local_http_request : HTTPRequest = get_http_request()
-
 	var key : String = get_api_key()
 	var url : String = get_api_url()
 	var method : int = get_api_method()
-
 	request_headers.append("Content-Type: application/json")
 	if key:
 		request_headers.append("x-api-key: %s" % key)
+	if request_timeout > 0.0:
+		local_http_request.timeout = request_timeout
 	var error = local_http_request.request(url, request_headers, method, body)
 	if error != OK:
-		emit_signal("request_failed", "An error occurred in the request.")
+		request_failed.emit(REQUEST_FAILED)
 		push_error("An error occurred in the HTTP request. %d" % error)
-	_timeout_timer.start(reqeuest_timeout)
+	if request_timeout > 0.0:
+		_timeout_timer.start(request_timeout + 1.0)
 
 func request_raw(data : PackedByteArray, request_headers : Array = []):
 	var local_http_request : HTTPRequest = get_http_request()
-
 	var key : String = get_api_key()
 	var url : String = get_api_url()
 	var method : int = get_api_method()
-
 	request_headers.append("Content-Type: application/json")
 	if key:
 		request_headers.append("x-api-key: %s" % key)
+	if request_timeout > 0.0:
+		local_http_request.timeout = request_timeout
 	var error = local_http_request.request_raw(url, request_headers, method, data)
 	if error != OK:
-		emit_signal("request_failed", "An error occurred in the request.")
+		request_failed.emit(REQUEST_FAILED)
 		push_error("An error occurred in the HTTP request. %d" % error)
-	_timeout_timer.start(reqeuest_timeout)
+	if request_timeout > 0.0:
+		_timeout_timer.start(request_timeout + 1.0)
 
 func _on_request_completed(result, response_code, headers, body):
 	# If already timed out on client-side, then return.
@@ -98,13 +105,13 @@ func _on_request_completed(result, response_code, headers, body):
 			if error == OK:
 				response_body = json.data
 			if response["statusCode"] != 200:
-				emit_signal("request_failed", response_body)
+				request_failed.emit(response_body)
 				push_error(response_body)
 			else:
-				emit_signal("response_received", response_body)
+				response_received.emit(response_body)
 		elif body is String:
 			var body_dict = JSON.parse_string(body)
-			emit_signal("response_received", body_dict)
+			response_received.emit(body_dict)
 	else:
 		var error : String
 		match(result):
@@ -118,15 +125,13 @@ func _on_request_completed(result, response_code, headers, body):
 				error = RESULT_TIMEOUT
 			_:
 				error = RESULT_SERVER_ERROR
-		push_error("result %d" % result)
-		if body is PackedByteArray:
-			emit_signal(&"request_failed", body.get_string_from_utf8())
-		push_error(result)
+		request_failed.emit(error)
+		push_error("HTTP Result %d" % result)
 
 func _on_http_request_request_completed(result, response_code, headers, body):
 	_on_request_completed(result, response_code, headers, body)
 
 func _on_timeout_timer_timeout():
 	timed_out = true
-	emit_signal(&"request_failed", "Request timed out.")
-	push_warning("Request timed out on the client-side.")
+	request_failed.emit(REQUEST_TIMEOUT)
+	push_warning(REQUEST_TIMEOUT)
