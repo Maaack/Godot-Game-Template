@@ -130,19 +130,19 @@ func _on_request_completed(result, response_code, headers, body):
 		var parsed_data = json.data
 		response_received.emit(json.data)
 	else:
-		var error : String
+		var error_message : String
 		match(result):
 			HTTPRequest.RESULT_CANT_CONNECT:
-				error = RESULT_CANT_CONNECT
+				error_message = RESULT_CANT_CONNECT
 			HTTPRequest.RESULT_CANT_RESOLVE:
-				error = RESULT_CANT_RESOLVE
+				error_message = RESULT_CANT_RESOLVE
 			HTTPRequest.RESULT_CONNECTION_ERROR:
-				error = RESULT_CONNECTION_ERROR
+				error_message = RESULT_CONNECTION_ERROR
 			HTTPRequest.RESULT_TIMEOUT:
-				error = RESULT_TIMEOUT
+				error_message = RESULT_TIMEOUT
 			_:
-				error = RESULT_SERVER_ERROR
-		request_failed.emit(error)
+				error_message = RESULT_SERVER_ERROR
+		request_failed.emit(error_message)
 		push_error("HTTP Result error: %d" % result)
 
 func _on_http_request_request_completed(result, response_code, headers, body):

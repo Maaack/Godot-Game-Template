@@ -23,7 +23,8 @@ const EXTRACT_IN_PROGRESS = "Extract already in progress"
 const DELETE_IN_PROGRESS = "Delete already in progress"
 const FAILED_TO_SAVE_ZIP_FILE = "Failed to save the zip file"
 const FAILED_TO_MAKE_EXTRACT_DIR = "Failed to make extract directory"
-const DOWNLOADED_ZIP_FILE_DOESNT_EXIST = "The downloaded ZIP file doesn't exist."
+const FAILED_TO_READ_ZIP_FILE = "Failed to read the zip file"
+const DOWNLOADED_ZIP_FILE_DOESNT_EXIST = "The downloaded ZIP file doesn't exist"
 const URL_NOT_SET = "URL parameter is not set"
 
 enum Stage{
@@ -105,7 +106,7 @@ func run(request_headers : Array = []):
 	var error = local_http_request.request(url, request_headers, method)
 	if error != OK:
 		run_failed.emit(REQUEST_FAILED)
-		push_error("An error occurred in the HTTP request. %d" % error)
+		push_error("HTTP Request error: %d" % error)
 		return
 	if request_timeout > 0.0:
 		_timeout_timer.start(request_timeout + 1.0)
@@ -151,8 +152,10 @@ func _extract_files():
 		push_error(DOWNLOADED_ZIP_FILE_DOESNT_EXIST)
 		return
 	if not extract_path_exists(): _make_extract_path()
-	var err = zip_reader.open(zip_file_path)
-	if err != OK:
+	var error = zip_reader.open(zip_file_path)
+	if error != OK:
+		run_failed.emit(FAILED_TO_READ_ZIP_FILE)
+		push_error("ZIP Reader error: %d" % error)
 		return
 	zipped_file_paths = zip_reader.get_files()
 	if skip_base_zip_dir:
@@ -172,20 +175,20 @@ func _on_request_completed(result, response_code, headers, body):
 			_extract_files.call_deferred()
 			response_received.emit(body)
 	else:
-		var error : String
+		var error_message : String
 		match(result):
 			HTTPRequest.RESULT_CANT_CONNECT:
-				error = RESULT_CANT_CONNECT
+				error_message = RESULT_CANT_CONNECT
 			HTTPRequest.RESULT_CANT_RESOLVE:
-				error = RESULT_CANT_RESOLVE
+				error_message = RESULT_CANT_RESOLVE
 			HTTPRequest.RESULT_CONNECTION_ERROR:
-				error = RESULT_CONNECTION_ERROR
+				error_message = RESULT_CONNECTION_ERROR
 			HTTPRequest.RESULT_TIMEOUT:
-				error = RESULT_TIMEOUT
+				error_message = RESULT_TIMEOUT
 			_:
-				error = RESULT_SERVER_ERROR
-		run_failed.emit(error)
-		push_error("HTTP Result %d" % result)
+				error_message = RESULT_SERVER_ERROR
+		run_failed.emit(error_message)
+		push_error("HTTP Result error: %d" % result)
 
 func _on_http_request_request_completed(result, response_code, headers, body):
 	_on_request_completed(result, response_code, headers, body)
