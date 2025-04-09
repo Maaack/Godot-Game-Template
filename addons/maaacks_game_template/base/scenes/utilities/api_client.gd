@@ -20,7 +20,7 @@ const REQUEST_TIMEOUT = "Request timed out on the client side"
 ## Location of an API key file, if authorization is required by the endpoint.
 @export_file("*.txt") var api_key_file : String
 ## Time in seconds before the request fails due to timeout.
-@export var request_timeout : float = 30.0
+@export var request_timeout : float = 0.0
 @export var _make_request : bool = false :
 	set(value):
 		if value and Engine.is_editor_hint():

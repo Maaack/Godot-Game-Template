@@ -43,7 +43,7 @@ enum Stage{
 @export var force : bool = false
 @export_group("Advanced Settings")
 ## Duration to wait before the request times out.
-@export var request_timeout : float = 10.0
+@export var request_timeout : float = 0.0
 ## Path where the zip file will be stored.
 @export var zip_file_path : String = TEMPORARY_ZIP_PATH
 ## Flag to delete a downloaded zip file after the contents are extracted.
