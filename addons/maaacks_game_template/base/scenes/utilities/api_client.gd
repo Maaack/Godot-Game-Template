@@ -1,3 +1,4 @@
+@tool
 extends Node
 
 
@@ -20,6 +21,13 @@ const REQUEST_TIMEOUT = "Request timed out on the client side"
 @export_file("*.txt") var api_key_file : String
 ## Time in seconds before the request fails due to timeout.
 @export var request_timeout : float = 30.0
+@export var _make_request : bool = false :
+	set(value):
+		if value and Engine.is_editor_hint():
+			request()
+# For Godot 4.4
+# @export_tool_button("Make Request") var _make_request_action = request
+
 
 @onready var _http_request : HTTPRequest = $HTTPRequest
 @onready var _timeout_timer : Timer= $TimeoutTimer
@@ -56,7 +64,7 @@ func mock_request(body : String):
 	await(get_tree().create_timer(10.0).timeout)
 	_on_request_completed(HTTPRequest.RESULT_SUCCESS, "200", [], body)
 
-func request(body : String, request_headers : Array = []):
+func request(body : String = "", request_headers : Array = []):
 	var local_http_request : HTTPRequest = get_http_request()
 	var key : String = get_api_key()
 	var url : String = get_api_url()
@@ -73,7 +81,7 @@ func request(body : String, request_headers : Array = []):
 	if request_timeout > 0.0:
 		_timeout_timer.start(request_timeout + 1.0)
 
-func request_raw(data : PackedByteArray, request_headers : Array = []):
+func request_raw(data : PackedByteArray = [], request_headers : Array = []):
 	var local_http_request : HTTPRequest = get_http_request()
 	var key : String = get_api_key()
 	var url : String = get_api_url()

@@ -6,5 +6,10 @@
 script = ExtResource("1_c5ofg")
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
+timeout = 30.0
 
 [node name="TimeoutTimer" type="Timer" parent="."]
+wait_time = 31.0
+
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
+[connection signal="timeout" from="TimeoutTimer" to="." method="_on_timeout_timer_timeout"]
