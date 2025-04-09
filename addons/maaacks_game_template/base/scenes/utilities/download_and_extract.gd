@@ -24,7 +24,7 @@ const DELETE_IN_PROGRESS = "Delete already in progress"
 const FAILED_TO_SAVE_ZIP_FILE = "Failed to save the zip file"
 const FAILED_TO_MAKE_EXTRACT_DIR = "Failed to make extract directory"
 const DOWNLOADED_ZIP_FILE_DOESNT_EXIST = "The downloaded ZIP file doesn't exist."
-const URL_NOT_SET = "URL parameter is not set."
+const URL_NOT_SET = "URL parameter is not set"
 
 enum Stage{
 	NONE,

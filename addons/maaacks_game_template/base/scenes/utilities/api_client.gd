@@ -12,7 +12,8 @@ const RESULT_TIMEOUT = "Connection timeout"
 const RESULT_SERVER_ERROR = "Server error"
 const REQUEST_FAILED = "Error in the request"
 const REQUEST_TIMEOUT = "Request timed out on the client side"
-const URL_NOT_SET = "URL parameter is not set."
+const URL_NOT_SET = "URL parameter is not set"
+const PARSE_FAILED = "Parsing failed"
 
 ## Location of the API endpoint.
 @export var api_url : String
@@ -46,7 +47,7 @@ func get_api_key() -> String:
 	var file := FileAccess.open(api_key_file, FileAccess.READ)
 	var error := FileAccess.get_open_error()
 	if error != OK:
-		push_error("An error occurred in the API Key reading. %d" % error)
+		push_error("API Key reading error: %d" % error)
 		return ""
 	var content = file.get_as_text()
 	file.close()
@@ -83,7 +84,7 @@ func request(body : String = "", request_headers : Array = []):
 	var error = local_http_request.request(url, request_headers, method, body)
 	if error != OK:
 		request_failed.emit(REQUEST_FAILED)
-		push_error("An error occurred in the HTTP request. %d" % error)
+		push_error("HTTP Request error: %d" % error)
 		return
 	if request_timeout > 0.0:
 		_timeout_timer.start(request_timeout + 1.0)
@@ -105,7 +106,7 @@ func request_raw(data : PackedByteArray = [], request_headers : Array = []):
 	var error = local_http_request.request_raw(url, request_headers, method, data)
 	if error != OK:
 		request_failed.emit(REQUEST_FAILED)
-		push_error("An error occurred in the HTTP request. %d" % error)
+		push_error("HTTP Request error: %d" % error)
 		return
 	if request_timeout > 0.0:
 		_timeout_timer.start(request_timeout + 1.0)
@@ -115,23 +116,19 @@ func _on_request_completed(result, response_code, headers, body):
 	if timed_out: return
 	_timeout_timer.stop()
 	if result == HTTPRequest.RESULT_SUCCESS:
+		var body_string : String
 		if body is PackedByteArray:
-			var body_string = body.get_string_from_utf8()
-			var response = JSON.parse_string(body_string)
-			if not (response.has("statusCode") and response.has("body")): return
-			var response_body = response["body"]
-			var json = JSON.new()
-			var error = json.parse(response_body)
-			if error == OK:
-				response_body = json.data
-			if response["statusCode"] != 200:
-				request_failed.emit(response_body)
-				push_error(response_body)
-			else:
-				response_received.emit(response_body)
+			body_string = body.get_string_from_utf8()
 		elif body is String:
-			var body_dict = JSON.parse_string(body)
-			response_received.emit(body_dict)
+			body_string = body
+		var json := JSON.new()
+		var error = json.parse(body_string)
+		if error != OK:
+			request_failed.emit(PARSE_FAILED)
+			push_error("Parse error: %d" % error)
+			return
+		var parsed_data = json.data
+		response_received.emit(json.data)
 	else:
 		var error : String
 		match(result):
@@ -146,7 +143,7 @@ func _on_request_completed(result, response_code, headers, body):
 			_:
 				error = RESULT_SERVER_ERROR
 		request_failed.emit(error)
-		push_error("HTTP Result %d" % result)
+		push_error("HTTP Result error: %d" % result)
 
 func _on_http_request_request_completed(result, response_code, headers, body):
 	_on_request_completed(result, response_code, headers, body)
