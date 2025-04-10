@@ -42,13 +42,13 @@ enum Stage{
 ## Path where the zipped files are to be extracted.
 @export_dir var extract_path : String
 @export_group("Advanced")
+## If not empty, zipped file paths that do not contain a match to the string will be ignored.
+@export var path_match_string : String = ""
 ## Assuming zip file contains a single base directory, the flag copies all of the contents,
 ## as if they were at the base of the zip file. It never makes the base directory locally. 
 @export var skip_base_zip_dir : bool = false
 ## Forces a download and extraction even if the files already exist.
 @export var force : bool = false
-## Duration to wait before the request times out.
-@export var request_timeout : float = 0.0
 ## Path where the zip file will be stored.
 @export var zip_file_path : String = TEMPORARY_ZIP_PATH
 ## Flag to delete a downloaded zip file after the contents are extracted.
@@ -57,6 +57,8 @@ enum Stage{
 @export_range(0.0, 1.0) var process_time_ratio : float = 0.75
 ## Seconds of delay added between saving the zip file and extracting it.
 @export_range(0.0, 3.0) var extraction_delay : float = 0.25
+## Duration to wait before the request times out.
+@export var request_timeout : float = 0.0
 @export var _start_run_action : bool = false :
 	set(value):
 		if value and Engine.is_editor_hint():
@@ -75,6 +77,7 @@ var stage : Stage = Stage.NONE
 var zip_reader : ZIPReader = ZIPReader.new()
 var zipped_file_paths : PackedStringArray = []
 var extracted_file_paths : Array[String] = []
+var skipped_file_paths : Array[String] = []
 var downloaded_zip_file : bool = false
 var base_zip_path : String = ""
 
@@ -224,11 +227,14 @@ func get_download_progress() -> float:
 	return float(_http_request.get_downloaded_bytes()) / float(body_size)
 
 func _zipped_files_remaining() -> int:
-	return zipped_file_paths.size() - extracted_file_paths.size()
+	return zipped_file_paths.size() - (extracted_file_paths.size() + skipped_file_paths.size())
 
 func _extract_next_zipped_file():
-	var path_index = extracted_file_paths.size()
+	var path_index = extracted_file_paths.size() + skipped_file_paths.size()
 	var zipped_file_path := zipped_file_paths.get(path_index)
+	if path_match_string and not zipped_file_path.contains(path_match_string):
+		skipped_file_paths.append(zipped_file_path)
+		return
 	var extract_path_dir := extract_path
 	if not extract_path_dir.ends_with("/"):
 		extract_path_dir += "/"
@@ -243,6 +249,10 @@ func _extract_next_zipped_file():
 	else:
 		if not FileAccess.file_exists(full_path) or force:
 			var file_access := FileAccess.open(full_path, FileAccess.WRITE)
+			if file_access == null:
+				skipped_file_paths.append(zipped_file_path)
+				push_error("Failed to open file: %s" % full_path)
+				return
 			var file_contents = zip_reader.read_file(zipped_file_path)
 			file_access.store_buffer(file_contents)
 			file_access.close()

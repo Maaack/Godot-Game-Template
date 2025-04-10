@@ -14,6 +14,8 @@ api_url = "https://api.github.com/repos/Maaack/Godot-Game-Template/releases"
 request_method = 0
 
 [node name="DownloadAndExtract" parent="." instance=ExtResource("3_s6pdq")]
+extract_path = "res://"
+path_match_string = "addons/"
 skip_base_zip_dir = true
 force = true
 
