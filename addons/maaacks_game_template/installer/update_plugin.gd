@@ -82,6 +82,12 @@ func _on_api_client_response_received(response_body):
 	_update_confirmation_dialog.dialog_text = UPDATE_CONFIRMATION_MESSAGE % [plugin_directory, _newest_version]
 	_update_confirmation_dialog.show()
 
+func _on_download_and_extract_zip_saved():
+	OS.move_to_trash(PLUGIN_EXTRACT_PATH % plugin_directory)
+
+func _on_download_and_extract_run_failed(error):
+	_show_error_dialog(error)
+
 func _on_error_dialog_canceled():
 	queue_free()
 
@@ -93,9 +99,6 @@ func _on_update_confirmation_dialog_canceled():
 
 func _on_update_confirmation_dialog_confirmed():
 	_download_and_extract_node.run()
-
-func _on_download_and_extract_zip_saved():
-	OS.move_to_trash(PLUGIN_EXTRACT_PATH % plugin_directory)
 
 func get_newest_version():
 	_api_client.request()

@@ -37,6 +37,7 @@ size = Vector2i(400, 128)
 
 [connection signal="request_failed" from="APIClient" to="." method="_on_api_client_request_failed"]
 [connection signal="response_received" from="APIClient" to="." method="_on_api_client_response_received"]
+[connection signal="run_failed" from="DownloadAndExtract" to="." method="_on_download_and_extract_run_failed"]
 [connection signal="zip_saved" from="DownloadAndExtract" to="." method="_on_download_and_extract_zip_saved"]
 [connection signal="canceled" from="UpdateConfirmationDialog" to="." method="_on_update_confirmation_dialog_canceled"]
 [connection signal="confirmed" from="UpdateConfirmationDialog" to="." method="_on_update_confirmation_dialog_confirmed"]
