@@ -92,7 +92,10 @@ func _on_update_confirmation_dialog_canceled():
 	queue_free()
 
 func _on_update_confirmation_dialog_confirmed():
-	print("download %s" % _zipball_url)
+	_download_and_extract_node.run()
+
+func _on_download_and_extract_zip_saved():
+	OS.move_to_trash(PLUGIN_EXTRACT_PATH % plugin_directory)
 
 func get_newest_version():
 	_api_client.request()

@@ -9,6 +9,8 @@ signal run_completed
 signal response_received(response_body)
 ## Sent when the run has failed or exited early for any reason.
 signal run_failed(error : String)
+## Sent when the zip file has finished saving.
+signal zip_saved
 
 const TEMPORARY_ZIP_PATH = "res://temp.zip"
 const RESULT_CANT_CONNECT = "Failed to connect"
@@ -131,6 +133,7 @@ func _save_zip_file(body : PackedByteArray):
 	file.store_buffer(body)
 	file.close()
 	downloaded_zip_file = true
+	zip_saved.emit()
 
 func extract_path_exists() -> bool:
 	return DirAccess.dir_exists_absolute(extract_path)
@@ -171,9 +174,9 @@ func _on_request_completed(result, response_code, headers, body):
 	if _zip_exists(): _delete_zip_file()
 	if result == HTTPRequest.RESULT_SUCCESS:
 		if body is PackedByteArray:
+			response_received.emit(body)
 			_save_zip_file(body)
 			_extract_files.call_deferred()
-			response_received.emit(body)
 	else:
 		var error_message : String
 		match(result):
