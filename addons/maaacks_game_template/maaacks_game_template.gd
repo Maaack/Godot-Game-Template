@@ -338,7 +338,7 @@ func _open_update_plugin():
 	add_child(update_plugin_instance)
 
 func _add_update_plugin_tool_option(new_version : String):
-	update_plugin_tool_string = "Update %s to v%s" % [_get_plugin_name(), new_version]
+	update_plugin_tool_string = "Update %s to v%s..." % [_get_plugin_name(), new_version]
 	add_tool_menu_item(update_plugin_tool_string, _open_update_plugin)
 
 func _remove_update_plugin_tool_option():
@@ -372,7 +372,7 @@ func _add_tool_options():
 	if dir.dir_exists(examples_path):
 		add_tool_menu_item("Copy " + _get_plugin_name() + " Examples...", _open_path_dialog)
 		add_tool_menu_item("Delete " + _get_plugin_name() + " Examples...", _open_delete_examples_short_confirmation_dialog)
-	add_tool_menu_item("Install Input Icons for " + _get_plugin_name(), _open_input_icons_dialog)
+	add_tool_menu_item("Use Input Icons for " + _get_plugin_name() + "...", _open_input_icons_dialog)
 	_open_check_plugin_version()
 
 func _remove_tool_options():
@@ -381,7 +381,7 @@ func _remove_tool_options():
 	if dir.dir_exists(examples_path):
 		remove_tool_menu_item("Copy " + _get_plugin_name() + " Examples...")
 		remove_tool_menu_item("Delete " + _get_plugin_name() + " Examples...")
-	remove_tool_menu_item("Install Input Icons for " + _get_plugin_name())
+	remove_tool_menu_item("Use Input Icons for " + _get_plugin_name() + "...")
 	_remove_update_plugin_tool_option()
 
 func _enter_tree():
