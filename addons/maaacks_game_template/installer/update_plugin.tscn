@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://gynblau0ojia"]
+[gd_scene load_steps=4 format=3 uid="uid://gynblau0ojia"]
 
 [ext_resource type="Script" uid="uid://cwj8dpqveao6o" path="res://addons/maaacks_game_template/installer/update_plugin.gd" id="1_s6qpc"]
 [ext_resource type="PackedScene" uid="uid://drhhakm62vjsy" path="res://addons/maaacks_game_template/base/scenes/utilities/api_client.tscn" id="2_s6pdq"]
+[ext_resource type="PackedScene" uid="uid://dlkmofxhavh10" path="res://addons/maaacks_game_template/base/scenes/utilities/download_and_extract.tscn" id="3_s6pdq"]
 
 [node name="UpdatePlugin" type="Node"]
 script = ExtResource("1_s6qpc")
@@ -12,12 +13,17 @@ plugin_github_url = "https://github.com/Maaack/Godot-Game-Template"
 api_url = "https://api.github.com/repos/Maaack/Godot-Game-Template/releases"
 request_method = 0
 
+[node name="DownloadAndExtract" parent="." instance=ExtResource("3_s6pdq")]
+extract_path = "res://addons/maaacks_game_template"
+skip_base_zip_dir = true
+force = true
+
 [node name="UpdateConfirmationDialog" type="ConfirmationDialog" parent="."]
 auto_translate_mode = 1
 title = "Update Plugin?"
 initial_position = 2
 size = Vector2i(640, 240)
-dialog_text = "This will update the contents of the plugin folder (addons/%s/).
+dialog_text = "This will update the contents of the plugin folder (addons/plugin_directory/).
 Files outside of the plugin folder will not be affected.
 
 Update to v0.0.0?"

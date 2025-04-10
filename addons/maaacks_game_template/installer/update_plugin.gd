@@ -3,8 +3,13 @@ extends Node
 
 const API_RELEASES_URL := "https://api.github.com/repos/%s/%s/releases"
 const UPDATE_CONFIRMATION_MESSAGE := "This will update the contents of the plugin folder (addons/%s/).\nFiles outside of the plugin folder will not be affected.\n\nUpdate to v%s?"
+const PLUGIN_EXTRACT_PATH := "res://addons/%s"
+const PLUGIN_TEMP_ZIP_PATH := "res://%s_%s_update.zip"
 
-@export var plugin_directory : String
+@export var plugin_directory : String :
+	set(value):
+		plugin_directory = value
+		_update_paths()
 @export var plugin_github_url : String :
 	set(value):
 		plugin_github_url = value
@@ -16,13 +21,15 @@ const UPDATE_CONFIRMATION_MESSAGE := "This will update the contents of the plugi
 @export var _test_action : bool = false :
 	set(value):
 		if value and Engine.is_editor_hint():
-			print(get_plugin_version())
+			get_newest_version()
 
 @onready var _api_client : APIClient = $APIClient
+@onready var _download_and_extract_node : DownloadAndExtract = $DownloadAndExtract
 @onready var _update_confirmation_dialog : ConfirmationDialog = $UpdateConfirmationDialog
 @onready var _error_dialog : AcceptDialog = $ErrorDialog
 
 var _zipball_url : String
+var _newest_version : String
 
 func get_plugin_version():
 	if plugin_directory.is_empty(): return
@@ -33,6 +40,11 @@ func get_plugin_version():
 			if error != OK:
 				return
 			return config.get_value("plugin", "version", default_version)
+
+func _update_paths():
+	if plugin_directory.is_empty(): return
+	if _download_and_extract_node == null: return
+	_download_and_extract_node.extract_path = PLUGIN_EXTRACT_PATH % plugin_directory
 
 func _update_urls():
 	if plugin_github_url.is_empty(): return
@@ -56,15 +68,18 @@ func _on_api_client_response_received(response_body):
 		push_error("Response was not an array")
 		return
 	var latest_release : Dictionary = response_body.front()
-	var tag_name := default_version
+	_newest_version = default_version
 	if latest_release.has("tag_name"):
-		tag_name = latest_release["tag_name"]
+		var tag_name = latest_release["tag_name"]
+		if replace_tag_name:
+			tag_name = tag_name.replacen(replace_tag_name, "")
+		_newest_version = tag_name
 	if latest_release.has("zipball_url"):
 		_zipball_url = latest_release["zipball_url"]
-	if replace_tag_name:
-		tag_name = tag_name.replacen(replace_tag_name, "")
 	var current_tag_name = get_plugin_version()
-	_update_confirmation_dialog.dialog_text = UPDATE_CONFIRMATION_MESSAGE % [plugin_directory, tag_name]
+	_download_and_extract_node.zip_url = _zipball_url
+	_download_and_extract_node.zip_file_path = PLUGIN_TEMP_ZIP_PATH % [plugin_directory, _newest_version]
+	_update_confirmation_dialog.dialog_text = UPDATE_CONFIRMATION_MESSAGE % [plugin_directory, _newest_version]
 	_update_confirmation_dialog.show()
 
 func _on_error_dialog_canceled():
