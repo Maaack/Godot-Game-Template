@@ -6,10 +6,7 @@ const UPDATE_CONFIRMATION_MESSAGE := "This will update the contents of the plugi
 const PLUGIN_EXTRACT_PATH := "res://addons/%s"
 const PLUGIN_TEMP_ZIP_PATH := "res://%s_%s_update.zip"
 
-@export var plugin_directory : String :
-	set(value):
-		plugin_directory = value
-		_update_paths()
+@export var plugin_directory : String
 @export var plugin_github_url : String :
 	set(value):
 		plugin_github_url = value
@@ -40,11 +37,6 @@ func get_plugin_version():
 			if error != OK:
 				return
 			return config.get_value("plugin", "version", default_version)
-
-func _update_paths():
-	if plugin_directory.is_empty(): return
-	if _download_and_extract_node == null: return
-	_download_and_extract_node.extract_path = PLUGIN_EXTRACT_PATH % plugin_directory
 
 func _update_urls():
 	if plugin_github_url.is_empty(): return

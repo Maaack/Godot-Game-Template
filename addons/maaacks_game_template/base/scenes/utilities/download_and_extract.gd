@@ -32,6 +32,7 @@ const URL_NOT_SET = "URL parameter is not set"
 enum Stage{
 	NONE,
 	DOWNLOAD,
+	SAVE,
 	EXTRACT,
 	DELETE,
 }
@@ -54,6 +55,8 @@ enum Stage{
 @export var delete_zip_file : bool = true
 ## Ratio of processing time that should be spent on extracting files.
 @export_range(0.0, 1.0) var process_time_ratio : float = 0.75
+## Seconds of delay added between saving the zip file and extracting it.
+@export_range(0.0, 3.0) var extraction_delay : float = 0.25
 @export var _start_run_action : bool = false :
 	set(value):
 		if value and Engine.is_editor_hint():
@@ -125,6 +128,7 @@ func _delete_zip_file():
 	downloaded_zip_file = false
 
 func _save_zip_file(body : PackedByteArray):
+	stage = Stage.SAVE
 	var file = FileAccess.open(zip_file_path, FileAccess.WRITE)
 	if not file:
 		run_failed.emit(FAILED_TO_SAVE_ZIP_FILE)
@@ -176,6 +180,7 @@ func _on_request_completed(result, response_code, headers, body):
 		if body is PackedByteArray:
 			response_received.emit(body)
 			_save_zip_file(body)
+			await get_tree().create_timer(extraction_delay).timeout
 			_extract_files.call_deferred()
 	else:
 		var error_message : String
