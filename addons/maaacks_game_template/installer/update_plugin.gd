@@ -3,7 +3,7 @@ extends Node
 
 const API_RELEASES_URL := "https://api.github.com/repos/%s/%s/releases"
 const UPDATE_CONFIRMATION_MESSAGE := "This will update the contents of the plugin folder (addons/%s/).\nFiles outside of the plugin folder will not be affected.\n\nUpdate to v%s?"
-const PLUGIN_EXTRACT_PATH := "res://addons/%s"
+const PLUGIN_EXTRACT_PATH := "res://addons/%s/"
 const PLUGIN_TEMP_ZIP_PATH := "res://%s_%s_update.zip"
 
 @export var plugin_directory : String
@@ -75,7 +75,7 @@ func _on_api_client_response_received(response_body):
 	_update_confirmation_dialog.show()
 
 func _on_download_and_extract_zip_saved():
-	OS.move_to_trash(PLUGIN_EXTRACT_PATH % plugin_directory)
+	OS.move_to_trash(ProjectSettings.globalize_path(PLUGIN_EXTRACT_PATH % plugin_directory))
 
 func _on_download_and_extract_run_failed(error):
 	_show_error_dialog(error)
