@@ -80,6 +80,7 @@ var extracted_file_paths : Array[String] = []
 var skipped_file_paths : Array[String] = []
 var downloaded_zip_file : bool = false
 var base_zip_path : String = ""
+var _save_progress : float = 0.0
 
 func get_http_request():
 	return _http_request
@@ -183,7 +184,10 @@ func _on_request_completed(result, response_code, headers, body):
 		if body is PackedByteArray:
 			response_received.emit(body)
 			_save_zip_file(body)
-			await get_tree().create_timer(extraction_delay).timeout
+			_save_progress = 0.0
+			var tween = create_tween()
+			tween.tween_property(self, "_save_progress", 1.0, extraction_delay)
+			await tween.finished
 			_extract_files.call_deferred()
 	else:
 		var error_message : String
@@ -212,9 +216,14 @@ func _on_timeout_timer_timeout():
 func get_progress() -> float:
 	if stage == Stage.DOWNLOAD:
 		return get_download_progress()
+	elif stage == Stage.SAVE:
+		return get_save_progress()
 	elif stage == Stage.EXTRACT:
 		return get_extraction_progress()
 	return 0.0
+
+func get_save_progress() -> float:
+	return _save_progress
 
 func get_extraction_progress() -> float:
 	if zipped_file_paths.size() == 0:
