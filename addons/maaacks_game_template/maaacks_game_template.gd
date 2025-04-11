@@ -335,6 +335,7 @@ func _open_update_plugin():
 	var update_plugin_scene : PackedScene = load(get_plugin_path() + "installer/update_plugin.tscn")
 	var update_plugin_instance : Node = update_plugin_scene.instantiate()
 	update_plugin_instance.auto_start = true
+	update_plugin_instance.update_completed.connect(_remove_update_plugin_tool_option)
 	add_child(update_plugin_instance)
 
 func _add_update_plugin_tool_option(new_version : String):

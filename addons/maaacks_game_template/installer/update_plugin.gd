@@ -1,6 +1,8 @@
 @tool
 extends Node
 
+signal update_completed
+
 const API_RELEASES_URL := "https://api.github.com/repos/%s/%s/releases"
 const UPDATE_CONFIRMATION_MESSAGE := "This will update the contents of the plugin folder (addons/%s/).\nFiles outside of the plugin folder will not be affected.\n\nUpdate %s to v%s?"
 const PLUGIN_EXTRACT_PATH := "res://addons/%s/"
@@ -91,6 +93,7 @@ func _on_download_and_extract_run_failed(error):
 	_show_error_dialog(error)
 
 func _on_download_and_extract_run_completed():
+	update_completed.emit()
 	_show_success_dialog()
 
 func _on_error_dialog_canceled():
