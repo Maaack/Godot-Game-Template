@@ -152,6 +152,8 @@ func _process(_delta):
 		match _download_and_extract_node.stage:
 			DownloadAndExtract.Stage.DOWNLOAD:
 				_stage_label.text = "Downloading..."
+			DownloadAndExtract.Stage.SAVE:
+				_stage_label.text = "Saving..."
 			DownloadAndExtract.Stage.EXTRACT:
 				_stage_label.text = "Extracting..."
 			DownloadAndExtract.Stage.DELETE:

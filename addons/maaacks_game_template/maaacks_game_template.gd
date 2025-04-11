@@ -22,6 +22,7 @@ const OMIT_COPY_EXTENSIONS : Array = ["uid"]
 const REPLACE_CONTENT_EXTENSIONS : Array = ["gd", "tscn", "tres"]
 
 var selected_theme : String
+var update_plugin_tool_string : String
 
 func _get_plugin_name():
 	return PLUGIN_NAME
@@ -323,6 +324,29 @@ func _open_confirmation_dialog():
 	confirmation_instance.canceled.connect(_check_main_scene_needs_updating.bind(get_copy_path()))
 	add_child(confirmation_instance)
 
+func _open_check_plugin_version():
+	var check_version_scene : PackedScene = load(get_plugin_path() + "installer/check_plugin_version.tscn")
+	var check_version_instance : Node = check_version_scene.instantiate()
+	check_version_instance.auto_start = true
+	check_version_instance.new_version_detected.connect(_add_update_plugin_tool_option)
+	add_child(check_version_instance)
+
+func _open_update_plugin():
+	var update_plugin_scene : PackedScene = load(get_plugin_path() + "installer/update_plugin.tscn")
+	var update_plugin_instance : Node = update_plugin_scene.instantiate()
+	update_plugin_instance.auto_start = true
+	update_plugin_instance.update_completed.connect(_remove_update_plugin_tool_option)
+	add_child(update_plugin_instance)
+
+func _add_update_plugin_tool_option(new_version : String):
+	update_plugin_tool_string = "Update %s to v%s..." % [_get_plugin_name(), new_version]
+	add_tool_menu_item(update_plugin_tool_string, _open_update_plugin)
+
+func _remove_update_plugin_tool_option():
+	if update_plugin_tool_string.is_empty(): return
+	remove_tool_menu_item(update_plugin_tool_string)
+	update_plugin_tool_string = ""
+
 func _show_plugin_dialogues():
 	if ProjectSettings.has_setting(PROJECT_SETTINGS_PATH + "disable_plugin_dialogues") :
 		if ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + "disable_plugin_dialogues") :
@@ -343,28 +367,30 @@ func _resave_if_recently_opened():
 		add_child(timer)
 		timer.start(OPEN_EDITOR_DELAY)
 
-func _add_copy_tool_if_examples_exists():
+func _add_tool_options():
 	var examples_path = get_plugin_examples_path()
 	var dir := DirAccess.open("res://")
 	if dir.dir_exists(examples_path):
 		add_tool_menu_item("Copy " + _get_plugin_name() + " Examples...", _open_path_dialog)
 		add_tool_menu_item("Delete " + _get_plugin_name() + " Examples...", _open_delete_examples_short_confirmation_dialog)
-	add_tool_menu_item("Install Input Icons for " + _get_plugin_name(), _open_input_icons_dialog)
+	add_tool_menu_item("Use Input Icons for " + _get_plugin_name() + "...", _open_input_icons_dialog)
+	_open_check_plugin_version()
 
-func _remove_copy_tool_if_examples_exists():
+func _remove_tool_options():
 	var examples_path = get_plugin_examples_path()
 	var dir := DirAccess.open("res://")
 	if dir.dir_exists(examples_path):
 		remove_tool_menu_item("Copy " + _get_plugin_name() + " Examples...")
 		remove_tool_menu_item("Delete " + _get_plugin_name() + " Examples...")
-	remove_tool_menu_item("Install Input Icons for " + _get_plugin_name())
+	remove_tool_menu_item("Use Input Icons for " + _get_plugin_name() + "...")
+	_remove_update_plugin_tool_option()
 
 func _enter_tree():
 	add_autoload_singleton("AppConfig", get_plugin_path() + "base/scenes/autoloads/app_config.tscn")
 	add_autoload_singleton("SceneLoader", get_plugin_path() + "base/scenes/autoloads/scene_loader.tscn")
 	add_autoload_singleton("ProjectMusicController", get_plugin_path() + "base/scenes/autoloads/project_music_controller.tscn")
 	add_autoload_singleton("ProjectUISoundController", get_plugin_path() + "base/scenes/autoloads/project_ui_sound_controller.tscn")
-	_add_copy_tool_if_examples_exists()
+	_add_tool_options()
 	_add_translations()
 	_show_plugin_dialogues()
 	_resave_if_recently_opened()
@@ -374,4 +400,4 @@ func _exit_tree():
 	remove_autoload_singleton("SceneLoader")
 	remove_autoload_singleton("ProjectMusicController")
 	remove_autoload_singleton("ProjectUISoundController")
-	_remove_copy_tool_if_examples_exists()
+	_remove_tool_options()
