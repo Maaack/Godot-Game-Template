@@ -28,6 +28,10 @@ const PLUGIN_TEMP_ZIP_PATH := "res://%s_%s_update.zip"
 @onready var _installing_dialog : AcceptDialog = $InstallingDialog
 @onready var _error_dialog : AcceptDialog = $ErrorDialog
 @onready var _success_dialog : AcceptDialog = $SuccessDialog
+@onready var _release_label : RichTextLabel = %ReleaseLabel
+@onready var _update_label : Label = %UpdateLabel
+@onready var _release_notes_button : LinkButton = %ReleaseNotesButton
+@onready var _release_notes_panel : Panel = %ReleaseNotesPanel
 @onready var _stage_label : Label = %StageLabel
 @onready var _progress_bar : ProgressBar = %ProgressBar
 
@@ -83,7 +87,9 @@ func _on_api_client_response_received(response_body):
 		_zipball_url = latest_release["zipball_url"]
 	_download_and_extract_node.zip_url = _zipball_url
 	_download_and_extract_node.zip_file_path = PLUGIN_TEMP_ZIP_PATH % [plugin_directory, _newest_version]
-	_update_confirmation_dialog.dialog_text = UPDATE_CONFIRMATION_MESSAGE % [plugin_directory, _plugin_name, _newest_version]
+	_update_label.text = UPDATE_CONFIRMATION_MESSAGE % [plugin_directory, _plugin_name, _newest_version]
+	if latest_release.has("body"):
+		_release_label.text = latest_release["body"]
 	_update_confirmation_dialog.show()
 
 func _on_download_and_extract_zip_saved():
@@ -114,6 +120,10 @@ func _on_update_confirmation_dialog_canceled():
 func _on_update_confirmation_dialog_confirmed():
 	_download_and_extract_node.run()
 	_installing_dialog.show()
+
+func _on_release_notes_button_pressed():
+	_release_notes_panel.show()
+	_release_notes_button.hide()
 
 func get_newest_version():
 	_api_client.request()

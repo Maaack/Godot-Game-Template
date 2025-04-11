@@ -23,12 +23,51 @@ force = true
 auto_translate_mode = 1
 title = "Update Plugin?"
 initial_position = 2
-size = Vector2i(640, 240)
-dialog_text = "This will update the contents of the plugin folder (addons/plugin_directory/).
+size = Vector2i(640, 360)
+dialog_autowrap = true
+
+[node name="MarginContainer" type="MarginContainer" parent="UpdateConfirmationDialog"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 632.0
+offset_bottom = 311.0
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UpdateConfirmationDialog/MarginContainer"]
+layout_mode = 2
+
+[node name="UpdateLabel" type="Label" parent="UpdateConfirmationDialog/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "This will update the contents of the plugin folder (addons/plugin_directory/).
 Files outside of the plugin folder will not be affected.
 
 Update to v0.0.0?"
-dialog_autowrap = true
+
+[node name="HSeparator" type="HSeparator" parent="UpdateConfirmationDialog/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ReleaseNotesButton" type="LinkButton" parent="UpdateConfirmationDialog/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Show Release Notes"
+
+[node name="ReleaseNotesPanel" type="Panel" parent="UpdateConfirmationDialog/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 420)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ReleaseLabel" type="RichTextLabel" parent="UpdateConfirmationDialog/MarginContainer/VBoxContainer/ReleaseNotesPanel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
 
 [node name="InstallingDialog" type="AcceptDialog" parent="."]
 auto_translate_mode = 1
@@ -82,6 +121,7 @@ dialog_text = "%s updated to v%s."
 [connection signal="zip_saved" from="DownloadAndExtract" to="." method="_on_download_and_extract_zip_saved"]
 [connection signal="canceled" from="UpdateConfirmationDialog" to="." method="_on_update_confirmation_dialog_canceled"]
 [connection signal="confirmed" from="UpdateConfirmationDialog" to="." method="_on_update_confirmation_dialog_confirmed"]
+[connection signal="pressed" from="UpdateConfirmationDialog/MarginContainer/VBoxContainer/ReleaseNotesButton" to="." method="_on_release_notes_button_pressed"]
 [connection signal="canceled" from="ErrorDialog" to="." method="_on_error_dialog_canceled"]
 [connection signal="confirmed" from="ErrorDialog" to="." method="_on_error_dialog_confirmed"]
 [connection signal="canceled" from="SuccessDialog" to="." method="_on_success_dialog_canceled"]
