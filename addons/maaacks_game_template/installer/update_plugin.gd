@@ -2,7 +2,7 @@
 extends Node
 
 const API_RELEASES_URL := "https://api.github.com/repos/%s/%s/releases"
-const UPDATE_CONFIRMATION_MESSAGE := "This will update the contents of the plugin folder (addons/%s/).\nFiles outside of the plugin folder will not be affected.\n\nUpdate to v%s?"
+const UPDATE_CONFIRMATION_MESSAGE := "This will update the contents of the plugin folder (addons/%s/).\nFiles outside of the plugin folder will not be affected.\n\nUpdate %s to v%s?"
 const PLUGIN_EXTRACT_PATH := "res://addons/%s/"
 const PLUGIN_TEMP_ZIP_PATH := "res://%s_%s_update.zip"
 
@@ -23,12 +23,18 @@ const PLUGIN_TEMP_ZIP_PATH := "res://%s_%s_update.zip"
 @onready var _api_client : APIClient = $APIClient
 @onready var _download_and_extract_node : DownloadAndExtract = $DownloadAndExtract
 @onready var _update_confirmation_dialog : ConfirmationDialog = $UpdateConfirmationDialog
+@onready var _installing_dialog : AcceptDialog = $InstallingDialog
 @onready var _error_dialog : AcceptDialog = $ErrorDialog
+@onready var _success_dialog : AcceptDialog = $SuccessDialog
+@onready var _stage_label : Label = %StageLabel
+@onready var _progress_bar : ProgressBar = %ProgressBar
 
 var _zipball_url : String
 var _newest_version : String
+var _plugin_name : String
+var _current_plugin_version : String
 
-func get_plugin_version():
+func _load_plugin_details():
 	if plugin_directory.is_empty(): return
 	for enabled_plugin in ProjectSettings.get_setting("editor_plugins/enabled"):
 		if enabled_plugin.contains(plugin_directory):
@@ -36,7 +42,8 @@ func get_plugin_version():
 			var error = config.load(enabled_plugin)
 			if error != OK:
 				return
-			return config.get_value("plugin", "version", default_version)
+			_current_plugin_version = config.get_value("plugin", "version", default_version)
+			_plugin_name = config.get_value("plugin", "name", "Plugin")
 
 func _update_urls():
 	if plugin_github_url.is_empty(): return
@@ -51,6 +58,10 @@ func _update_urls():
 func _show_error_dialog(error):
 	_error_dialog.show()
 	_error_dialog.dialog_text = "%s!" % error
+
+func _show_success_dialog():
+	_success_dialog.show()
+	_success_dialog.dialog_text = "%s updated to v%s." % [_plugin_name, _newest_version]
 
 func _on_api_client_request_failed(error):
 	_show_error_dialog(error)
@@ -68,10 +79,9 @@ func _on_api_client_response_received(response_body):
 		_newest_version = tag_name
 	if latest_release.has("zipball_url"):
 		_zipball_url = latest_release["zipball_url"]
-	var current_tag_name = get_plugin_version()
 	_download_and_extract_node.zip_url = _zipball_url
 	_download_and_extract_node.zip_file_path = PLUGIN_TEMP_ZIP_PATH % [plugin_directory, _newest_version]
-	_update_confirmation_dialog.dialog_text = UPDATE_CONFIRMATION_MESSAGE % [plugin_directory, _newest_version]
+	_update_confirmation_dialog.dialog_text = UPDATE_CONFIRMATION_MESSAGE % [plugin_directory, _plugin_name, _newest_version]
 	_update_confirmation_dialog.show()
 
 func _on_download_and_extract_zip_saved():
@@ -80,10 +90,19 @@ func _on_download_and_extract_zip_saved():
 func _on_download_and_extract_run_failed(error):
 	_show_error_dialog(error)
 
+func _on_download_and_extract_run_completed():
+	_show_success_dialog()
+
 func _on_error_dialog_canceled():
 	queue_free()
 
 func _on_error_dialog_confirmed():
+	queue_free()
+
+func _on_success_dialog_canceled():
+	queue_free()
+
+func _on_success_dialog_confirmed():
 	queue_free()
 
 func _on_update_confirmation_dialog_canceled():
@@ -91,11 +110,31 @@ func _on_update_confirmation_dialog_canceled():
 
 func _on_update_confirmation_dialog_confirmed():
 	_download_and_extract_node.run()
+	_installing_dialog.show()
 
 func get_newest_version():
 	_api_client.request()
 
 func _ready():
+	_load_plugin_details()
 	_update_confirmation_dialog.hide()
+	_installing_dialog.hide()
+	_error_dialog.hide()
+	_success_dialog.hide()
 	if auto_start:
 		get_newest_version()
+
+func _process(_delta):
+	if _installing_dialog.visible:
+		_progress_bar.value = _download_and_extract_node.get_progress()
+		match _download_and_extract_node.stage:
+			DownloadAndExtract.Stage.DOWNLOAD:
+				_stage_label.text = "Downloading..."
+			DownloadAndExtract.Stage.SAVE:
+				_stage_label.text = "Saving..."
+			DownloadAndExtract.Stage.EXTRACT:
+				_stage_label.text = "Extracting..."
+			DownloadAndExtract.Stage.DELETE:
+				_stage_label.text = "Cleaning up..."
+			DownloadAndExtract.Stage.NONE:
+				_installing_dialog.hide()
