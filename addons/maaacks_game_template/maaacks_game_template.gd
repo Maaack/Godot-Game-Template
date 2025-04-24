@@ -325,6 +325,11 @@ func _open_confirmation_dialog():
 	add_child(confirmation_instance)
 
 func _open_check_plugin_version():
+	if ProjectSettings.has_setting(PROJECT_SETTINGS_PATH + "disable_update_check"):
+		if ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + "disable_update_check"):
+			return
+	else:
+		ProjectSettings.set_setting(PROJECT_SETTINGS_PATH + "disable_update_check", false)
 	var check_version_scene : PackedScene = load(get_plugin_path() + "installer/check_plugin_version.tscn")
 	var check_version_instance : Node = check_version_scene.instantiate()
 	check_version_instance.auto_start = true
