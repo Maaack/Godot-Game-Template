@@ -39,7 +39,7 @@ const PARSE_FAILED = "Parsing failed"
 ## State flag for whether the connection has timed out on the client-side.
 var timed_out : bool = false
 
-func get_http_request():
+func get_http_request() -> HTTPRequest:
 	return _http_request
 
 func get_api_key() -> String:
@@ -60,7 +60,7 @@ func get_api_url() -> String:
 func get_api_method() -> int:
 	return request_method
 
-func mock_empty_body():
+func mock_empty_body() -> String:
 	var form : Dictionary = {}
 	return JSON.stringify(form)
 
@@ -68,7 +68,7 @@ func mock_request(body : String):
 	await(get_tree().create_timer(10.0).timeout)
 	_on_request_completed(HTTPRequest.RESULT_SUCCESS, "200", [], body)
 
-func request(body : String = "", request_headers : Array = []):
+func request(body : String = "", request_headers : Array = []) -> void:
 	var local_http_request : HTTPRequest = get_http_request()
 	var key : String = get_api_key()
 	var url : String = get_api_url()
@@ -90,7 +90,7 @@ func request(body : String = "", request_headers : Array = []):
 	if request_timeout > 0.0:
 		_timeout_timer.start(request_timeout + 1.0)
 
-func request_raw(data : PackedByteArray = [], request_headers : Array = []):
+func request_raw(data : PackedByteArray = [], request_headers : Array = []) -> void:
 	var local_http_request : HTTPRequest = get_http_request()
 	var key : String = get_api_key()
 	var url : String = get_api_url()
@@ -112,7 +112,7 @@ func request_raw(data : PackedByteArray = [], request_headers : Array = []):
 	if request_timeout > 0.0:
 		_timeout_timer.start(request_timeout + 1.0)
 
-func _on_request_completed(result, response_code, headers, body):
+func _on_request_completed(result, response_code, headers, body) -> void:
 	# If already timed out on client-side, then return.
 	if timed_out: return
 	_timeout_timer.stop()
@@ -146,10 +146,10 @@ func _on_request_completed(result, response_code, headers, body):
 		request_failed.emit(error_message)
 		push_error("HTTP Result error: %d" % result)
 
-func _on_http_request_request_completed(result, response_code, headers, body):
+func _on_http_request_request_completed(result, response_code, headers, body) -> void:
 	_on_request_completed(result, response_code, headers, body)
 
-func _on_timeout_timer_timeout():
+func _on_timeout_timer_timeout() -> void:
 	timed_out = true
 	request_failed.emit(REQUEST_TIMEOUT)
 	push_warning(REQUEST_TIMEOUT)

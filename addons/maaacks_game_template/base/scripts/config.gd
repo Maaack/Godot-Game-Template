@@ -7,7 +7,7 @@ const CONFIG_FILE_LOCATION := "user://config.cfg"
 
 static var config_file : ConfigFile
 
-static func _init():
+static func _init() -> void:
 	load_config_file()
 
 static func _save_config_file() -> void:
@@ -34,25 +34,25 @@ static func get_config(section: String, key: String, default = null) -> Variant:
 	load_config_file()
 	return config_file.get_value(section, key, default)
 
-static func has_section(section: String):
+static func has_section(section: String) -> bool:
 	load_config_file()
 	return config_file.has_section(section)
 
-static func has_section_key(section: String, key: String):
+static func has_section_key(section: String, key: String) -> bool:
 	load_config_file()
 	return config_file.has_section_key(section, key)
 
-static func erase_section(section: String):
+static func erase_section(section: String) -> void:
 	if has_section(section):
 		config_file.erase_section(section)
 		_save_config_file()
 
-static func erase_section_key(section: String, key: String):
+static func erase_section_key(section: String, key: String) -> void:
 	if has_section_key(section, key):
 		config_file.erase_section_key(section, key)
 		_save_config_file()
 
-static func get_section_keys(section: String):
+static func get_section_keys(section: String) -> PackedStringArray:
 	load_config_file()
 	if config_file.has_section(section):
 		return config_file.get_section_keys(section)

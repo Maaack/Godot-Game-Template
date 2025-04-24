@@ -82,7 +82,7 @@ var downloaded_zip_file : bool = false
 var base_zip_path : String = ""
 var _save_progress : float = 0.0
 
-func get_http_request():
+func get_http_request() -> HTTPRequest:
 	return _http_request
 
 func get_zip_url() -> String:
@@ -95,7 +95,7 @@ func get_request_method() -> int:
 	return HTTPClient.METHOD_GET
 
 ## Sends the request to download the target zip file, and then extracts the contents.
-func run(request_headers : Array = []):
+func run(request_headers : Array = []) -> void:
 	if stage == Stage.DOWNLOAD:
 		run_failed.emit(DOWNLOAD_IN_PROGRESS)
 		push_warning(DOWNLOAD_IN_PROGRESS)
@@ -121,7 +121,7 @@ func run(request_headers : Array = []):
 		_timeout_timer.start(request_timeout + 1.0)
 	stage = Stage.DOWNLOAD
 
-func _delete_zip_file():
+func _delete_zip_file() -> void:
 	if not delete_zip_file or not downloaded_zip_file: return
 	if stage == Stage.DELETE:
 		run_failed.emit(DELETE_IN_PROGRESS)
@@ -131,7 +131,7 @@ func _delete_zip_file():
 	DirAccess.remove_absolute(zip_file_path)
 	downloaded_zip_file = false
 
-func _save_zip_file(body : PackedByteArray):
+func _save_zip_file(body : PackedByteArray) -> void:
 	stage = Stage.SAVE
 	var file = FileAccess.open(zip_file_path, FileAccess.WRITE)
 	if not file:
@@ -146,13 +146,13 @@ func _save_zip_file(body : PackedByteArray):
 func extract_path_exists() -> bool:
 	return DirAccess.dir_exists_absolute(extract_path)
 
-func _make_extract_path():
+func _make_extract_path() -> void:
 	var err := DirAccess.make_dir_recursive_absolute(extract_path)
 	if err != OK:
 		run_failed.emit(FAILED_TO_MAKE_EXTRACT_DIR)
 		push_error(FAILED_TO_MAKE_EXTRACT_DIR)
 
-func _extract_files():
+func _extract_files() -> void:
 	if stage == Stage.EXTRACT:
 		run_failed.emit(EXTRACT_IN_PROGRESS)
 		push_warning(EXTRACT_IN_PROGRESS)
@@ -175,7 +175,7 @@ func _extract_files():
 			push_warning("Skipping extracting base path, but it is not a directory.")
 		zipped_file_paths.remove_at(0)
 
-func _on_request_completed(result, response_code, headers, body):
+func _on_request_completed(result, response_code, headers, body) -> void:
 	# If already timed out on client-side, then return.
 	if timed_out: return
 	_timeout_timer.stop()
@@ -205,10 +205,10 @@ func _on_request_completed(result, response_code, headers, body):
 		run_failed.emit(error_message)
 		push_error("HTTP Result error: %d" % result)
 
-func _on_http_request_request_completed(result, response_code, headers, body):
+func _on_http_request_request_completed(result, response_code, headers, body) -> void:
 	_on_request_completed(result, response_code, headers, body)
 
-func _on_timeout_timer_timeout():
+func _on_timeout_timer_timeout() -> void:
 	timed_out = true
 	run_failed.emit(REQUEST_TIMEOUT)
 	push_warning(REQUEST_TIMEOUT)
@@ -238,7 +238,7 @@ func get_download_progress() -> float:
 func _zipped_files_remaining() -> int:
 	return zipped_file_paths.size() - (extracted_file_paths.size() + skipped_file_paths.size())
 
-func _extract_next_zipped_file():
+func _extract_next_zipped_file() -> void:
 	var path_index = extracted_file_paths.size() + skipped_file_paths.size()
 	var zipped_file_path := zipped_file_paths.get(path_index)
 	if path_match_string and not zipped_file_path.contains(path_match_string):
@@ -267,13 +267,13 @@ func _extract_next_zipped_file():
 			file_access.close()
 	extracted_file_paths.append(full_path)
 
-func _finish_extraction():
+func _finish_extraction() -> void:
 	zip_reader.close()
 	_delete_zip_file()
 	stage = Stage.NONE
 	run_completed.emit()
 
-func _process(delta):
+func _process(delta : float) -> void:
 	if stage == Stage.EXTRACT:
 		var frame_start_time : float = Time.get_unix_time_from_system()
 		var frame_time : float = 0.0

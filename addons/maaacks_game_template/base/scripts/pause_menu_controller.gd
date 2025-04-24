@@ -6,7 +6,7 @@ extends Node
 @export var pause_menu_packed : PackedScene
 @export var focused_viewport : Viewport
 
-func _unhandled_input(event):
+func _unhandled_input(event : InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		if not focused_viewport:
 			focused_viewport = get_viewport()

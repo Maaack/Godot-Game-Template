@@ -36,7 +36,7 @@ const COMMON_REPLACE_STRINGS: Dictionary = {
 
 @onready var last_joypad_device = intial_joypad_device
 
-func _is_end_of_word(full_string : String, what : String):
+func _is_end_of_word(full_string : String, what : String) -> bool:
 	var string_end_position = full_string.find(what) + what.length()
 	var end_of_word : bool
 	if string_end_position + 1 < full_string.length():
@@ -62,7 +62,7 @@ func _get_standard_joy_name(joy_name : String) -> String:
 	joy_name = joy_name.strip_edges()
 	return joy_name
 
-func _match_icon_to_file(file : String):
+func _match_icon_to_file(file : String) -> void:
 	var matching_string : String = file.get_file().get_basename()
 	var icon : Texture = load(file)
 	if not icon:
@@ -106,7 +106,7 @@ func _prioritized_files() -> Array[String]:
 		max_priority_level -= 1
 	return priortized_files
 
-func _match_icons_to_inputs():
+func _match_icons_to_inputs() -> void:
 	matching_icons.clear()
 	all_icons.clear()
 	for prioritized_file in _prioritized_files():
@@ -120,19 +120,19 @@ func get_icon(input_event : InputEvent) -> Texture:
 		return matching_icons[specific_text]
 	return null
 
-func _assign_joypad_0_to_last():
+func _assign_joypad_0_to_last() -> void:
 	if last_joypad_device != intial_joypad_device : return
 	var connected_joypads := Input.get_connected_joypads()
 	if connected_joypads.is_empty(): return
 	last_joypad_device = InputEventHelper.get_device_name_by_id(connected_joypads[0])
 
-func _input(event):
+func _input(event : InputEvent) -> void:
 	var device_name = InputEventHelper.get_device_name(event)
 	if device_name != InputEventHelper.DEVICE_GENERIC and device_name != last_joypad_device:
 		last_joypad_device = device_name
 		joypad_device_changed.emit()
 
-func _ready():
+func _ready() -> void:
 	_assign_joypad_0_to_last()
 	if files.size() == 0:
 		_refresh_files()

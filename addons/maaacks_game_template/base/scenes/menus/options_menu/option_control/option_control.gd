@@ -62,7 +62,7 @@ const OptionSectionNames : Dictionary = {
 var default_value
 var _connected_nodes : Array
 
-func _on_setting_changed(value):
+func _on_setting_changed(value) -> void:
 	if Engine.is_editor_hint(): return
 	Config.set_config(section, key, value)
 	setting_changed.emit(value)
@@ -70,7 +70,7 @@ func _on_setting_changed(value):
 func _get_setting(default : Variant = null) -> Variant:
 	return Config.get_config(section, key, default)
 
-func _connect_option_inputs(node):
+func _connect_option_inputs(node) -> void:
 	if node in _connected_nodes: return
 	if node is Button:
 		if node is OptionButton:
@@ -104,11 +104,11 @@ func _set_value(value : Variant) -> Variant:
 			node.text = "%s" % value
 	return value
 
-func set_value(value : Variant):
+func set_value(value : Variant) -> void:
 	value = _set_value(value)
 	_on_setting_changed(value)
 
-func set_editable(value : bool = true):
+func set_editable(value : bool = true) -> void:
 	editable = value
 	for node in get_children():
 		if node is Button:
@@ -116,7 +116,7 @@ func set_editable(value : bool = true):
 		if node is Slider or node is SpinBox or node is LineEdit or node is TextEdit:
 			node.editable = editable
 
-func _ready():
+func _ready() -> void:
 	lock_config_names = lock_config_names
 	option_section = option_section
 	option_name = option_name
@@ -133,7 +133,7 @@ func _set(property : StringName, value : Variant) -> bool:
 		return true
 	return false
 
-func _get_property_list():
+func _get_property_list() -> Array[Dictionary]:
 	return [
 		{ "name": "value", "type": property_type, "usage": PROPERTY_USAGE_NONE},
 		{ "name": "default_value", "type": property_type}

@@ -132,21 +132,21 @@ var reimporting : bool = false
 ## Flag for whether the tool will force a download and extraction, even if the contents exist.
 var force : bool = false
 
-func _download_and_extract():
+func _download_and_extract() -> void:
 	_installing_dialog.show()
 	_download_and_extract_node.run.call_deferred()
 
-func _run_complete():
+func _run_complete() -> void:
 	completed.emit()
 	queue_free()
 
-func _clean_up_or_complete():
+func _clean_up_or_complete() -> void:
 	if _has_extras():
 		_clean_up_dialog.show()
 	else:
 		_run_complete()
 
-func _process(_delta):
+func _process(_delta : float) -> void:
 	if _installing_dialog.visible:
 		_progress_bar.value = _download_and_extract_node.get_progress()
 		match _download_and_extract_node.stage:
@@ -170,7 +170,7 @@ func _process(_delta):
 			reimporting = false
 			_configure_and_complete()
 
-func _delete_recursive(path : String):
+func _delete_recursive(path : String) -> void:
 	if not path.ends_with("/"):
 		path += "/"
 	var dir_access := DirAccess.open(path)
@@ -207,7 +207,7 @@ func _has_extras() -> bool:
 				return true
 	return false
 
-func _delete_extras():
+func _delete_extras() -> void:
 	var full_path := get_full_path()
 	var directories := DirAccess.get_directories_at(full_path)
 	for directory in directories:
@@ -224,7 +224,7 @@ func _delete_extras():
 				continue
 	EditorInterface.get_resource_filesystem().scan()
 
-func _configure_icons():
+func _configure_icons() -> void:
 	var input_options_menu_path := copy_dir_path + "scenes/menus/options_menu/input/input_options_menu.tscn"
 	var input_options_menu := FileAccess.get_file_as_string(input_options_menu_path)
 	var regex := RegEx.new()
@@ -263,34 +263,34 @@ func _configure_icons():
 	await get_tree().create_timer(REIMPORT_CHECK_DELAY).timeout
 	_clean_up_or_complete()
 
-func _configure_and_complete():
+func _configure_and_complete() -> void:
 	if _configuration_index >= 0: 
 		_configure_icons()
 		return
 	_clean_up_or_complete()
 
-func _scan_filesystem_and_reimport():
+func _scan_filesystem_and_reimport() -> void:
 	var file_system := EditorInterface.get_resource_filesystem()
 	file_system.scan()
 	scanning = true
 	await file_system.resources_reimporting
 	reimporting = true
 
-func _enable_forced_install():
+func _enable_forced_install() -> void:
 	force = true
 	_download_and_extract_node.force = true
 	_kenney_input_prompts_dialog.show.call_deferred()
 
-func _enable_skipped_install():
+func _enable_skipped_install() -> void:
 	_kenney_input_prompts_dialog.set_short_description()
 	_kenney_input_prompts_dialog.show.call_deferred()
 
-func _show_error_dialog(error):
+func _show_error_dialog(error : String) -> void:
 	_installing_dialog.hide()
 	_error_dialog.show()
 	_error_dialog.dialog_text = "%s!" % error
 
-func _ready():
+func _ready() -> void:
 	_skip_installation_dialog.hide()
 	_kenney_input_prompts_dialog.hide()
 	_installing_dialog.hide()
@@ -303,40 +303,40 @@ func _ready():
 	else:
 		_kenney_input_prompts_dialog.show()
 
-func _on_kenney_input_prompts_dialog_canceled():
+func _on_kenney_input_prompts_dialog_canceled() -> void:
 	canceled.emit()
 	queue_free()
 
-func _on_kenney_input_prompts_dialog_configuration_selected(index: int):
+func _on_kenney_input_prompts_dialog_configuration_selected(index: int) -> void:
 	_configuration_index = index
 
-func _on_kenney_input_prompts_dialog_confirmed():
+func _on_kenney_input_prompts_dialog_confirmed() -> void:
 	if _download_and_extract_node.extract_path_exists() and not force:
 		_configure_and_complete()
 		return
 	_download_and_extract()
 
-func _on_skip_installation_dialog_canceled():
+func _on_skip_installation_dialog_canceled() -> void:
 	_enable_forced_install()
 
-func _on_skip_installation_dialog_confirmed():
+func _on_skip_installation_dialog_confirmed() -> void:
 	_enable_skipped_install()
 
-func _on_error_dialog_confirmed():
+func _on_error_dialog_confirmed() -> void:
 	queue_free()
 
-func _on_error_dialog_canceled():
+func _on_error_dialog_canceled() -> void:
 	queue_free()
 
-func _on_download_and_extract_run_completed():
+func _on_download_and_extract_run_completed() -> void:
 	_scan_filesystem_and_reimport()
 
-func _on_download_and_extract_run_failed(error):
+func _on_download_and_extract_run_failed(error : String) -> void:
 	_show_error_dialog(error)
 
-func _on_clean_up_dialog_confirmed():
+func _on_clean_up_dialog_confirmed() -> void:
 	_delete_extras()
 	_run_complete()
 
-func _on_clean_up_dialog_canceled():
+func _on_clean_up_dialog_canceled() -> void:
 	_run_complete()

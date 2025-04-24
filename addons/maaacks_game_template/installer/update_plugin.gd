@@ -40,7 +40,7 @@ var _newest_version : String
 var _plugin_name : String
 var _current_plugin_version : String
 
-func _load_plugin_details():
+func _load_plugin_details() -> void:
 	if plugin_directory.is_empty(): return
 	for enabled_plugin in ProjectSettings.get_setting("editor_plugins/enabled"):
 		if enabled_plugin.contains(plugin_directory):
@@ -51,7 +51,7 @@ func _load_plugin_details():
 			_current_plugin_version = config.get_value("plugin", "version", default_version)
 			_plugin_name = config.get_value("plugin", "name", "Plugin")
 
-func _update_urls():
+func _update_urls() -> void:
 	if plugin_github_url.is_empty(): return
 	if _api_client == null: return
 	var regex := RegEx.create_from_string("https:\\/\\/github\\.com\\/([\\w-]+)\\/([\\w-]+)\\/*")
@@ -61,18 +61,18 @@ func _update_urls():
 	var repository := regex_match.get_string(2)
 	_api_client.api_url = API_RELEASES_URL % [username, repository]
 
-func _show_error_dialog(error):
+func _show_error_dialog(error : String) -> void:
 	_error_dialog.show()
 	_error_dialog.dialog_text = "%s!" % error
 
-func _show_success_dialog():
+func _show_success_dialog() -> void:
 	_success_dialog.show()
 	_success_dialog.dialog_text = "%s updated to v%s." % [_plugin_name, _newest_version]
 
-func _on_api_client_request_failed(error):
+func _on_api_client_request_failed(error : String) -> void:
 	_show_error_dialog(error)
 
-func _on_api_client_response_received(response_body):
+func _on_api_client_response_received(response_body : Variant) -> void:
 	if response_body is not Array:
 		push_error("Response was not an array")
 		return
@@ -92,43 +92,43 @@ func _on_api_client_response_received(response_body):
 		_release_label.text = latest_release["body"]
 	_update_confirmation_dialog.show()
 
-func _on_download_and_extract_zip_saved():
+func _on_download_and_extract_zip_saved() -> void:
 	OS.move_to_trash(ProjectSettings.globalize_path(PLUGIN_EXTRACT_PATH % plugin_directory))
 
-func _on_download_and_extract_run_failed(error):
+func _on_download_and_extract_run_failed(error : String) -> void:
 	_show_error_dialog(error)
 
-func _on_download_and_extract_run_completed():
+func _on_download_and_extract_run_completed() -> void:
 	update_completed.emit()
 	_show_success_dialog()
 
-func _on_error_dialog_canceled():
+func _on_error_dialog_canceled() -> void:
 	queue_free()
 
-func _on_error_dialog_confirmed():
+func _on_error_dialog_confirmed() -> void:
 	queue_free()
 
-func _on_success_dialog_canceled():
+func _on_success_dialog_canceled() -> void:
 	queue_free()
 
-func _on_success_dialog_confirmed():
+func _on_success_dialog_confirmed() -> void:
 	queue_free()
 
-func _on_update_confirmation_dialog_canceled():
+func _on_update_confirmation_dialog_canceled() -> void:
 	queue_free()
 
-func _on_update_confirmation_dialog_confirmed():
+func _on_update_confirmation_dialog_confirmed() -> void:
 	_download_and_extract_node.run()
 	_installing_dialog.show()
 
-func _on_release_notes_button_pressed():
+func _on_release_notes_button_pressed() -> void:
 	_release_notes_panel.show()
 	_release_notes_button.hide()
 
-func get_newest_version():
+func get_newest_version() -> void:
 	_api_client.request()
 
-func _ready():
+func _ready() -> void:
 	_load_plugin_details()
 	_update_confirmation_dialog.hide()
 	_installing_dialog.hide()
@@ -137,7 +137,7 @@ func _ready():
 	if auto_start:
 		get_newest_version()
 
-func _process(_delta):
+func _process(_delta : float) -> void:
 	if _installing_dialog.visible:
 		_progress_bar.value = _download_and_extract_node.get_progress()
 		match _download_and_extract_node.stage:
