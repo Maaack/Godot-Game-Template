@@ -61,7 +61,3 @@ level_loading_screen = NodePath("../LevelLoadingScreen")
 game_won_scene = ExtResource("8_ukb12")
 level_lost_scene = ExtResource("9_i7m4m")
 level_won_scene = ExtResource("10_rkfhe")
-
-[connection signal="level_load_started" from="LevelLoader" to="." method="_on_level_loader_level_load_started"]
-[connection signal="level_loaded" from="LevelLoader" to="." method="_on_level_loader_level_loaded"]
-[connection signal="levels_finished" from="LevelLoader" to="." method="_on_level_loader_levels_finished"]
