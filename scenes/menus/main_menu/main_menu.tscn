@@ -1,12 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://bknfhmetnp6og"]
+[gd_scene load_steps=5 format=3 uid="uid://dboeh8i18e2sh"]
 
-[ext_resource type="PackedScene" uid="uid://c6k5nnpbypshi" path="res://addons/maaacks_game_template/base/scenes/menus/main_menu/main_menu.tscn" id="1_7yqli"]
-[ext_resource type="Script" uid="uid://bkjk34xbvkmfu" path="res://scenes/menus/main_menu/main_menu.gd" id="2_qowch"]
-[ext_resource type="PackedScene" uid="uid://dfycb1h41yhrw" path="res://scenes/menus/options_menu/master_options_menu_with_tabs.tscn" id="3_bh880"]
-[ext_resource type="PackedScene" uid="uid://da7uj8u87g24i" path="res://scenes/credits/credits.tscn" id="4_hb88b"]
+[ext_resource type="PackedScene" uid="uid://c6k5nnpbypshi" path="res://addons/maaacks_game_template/base/scenes/menus/main_menu/main_menu.tscn" id="1_peecx"]
+[ext_resource type="Script" uid="uid://w0trtg53nc1y" path="res://scenes/menus/main_menu/main_menu.gd" id="2_ub2bi"]
+[ext_resource type="PackedScene" uid="uid://boicxc6x4554n" path="res://scenes/menus/options_menu/master_options_menu_with_tabs.tscn" id="3_x31ro"]
+[ext_resource type="PackedScene" uid="uid://dlj8an1r0ynut" path="res://scenes/credits/credits.tscn" id="4_0jpat"]
 
-[node name="MainMenu" instance=ExtResource("1_7yqli")]
-script = ExtResource("2_qowch")
+[node name="MainMenu" instance=ExtResource("1_peecx")]
+script = ExtResource("2_ub2bi")
 game_scene_path = "res://scenes/game_scene/game_ui.tscn"
-options_packed_scene = ExtResource("3_bh880")
-credits_packed_scene = ExtResource("4_hb88b")
+options_packed_scene = ExtResource("3_x31ro")
+credits_packed_scene = ExtResource("4_0jpat")
