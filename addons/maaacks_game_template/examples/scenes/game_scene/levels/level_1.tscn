@@ -80,10 +80,11 @@ layout_mode = 2
 text = "Change Color"
 
 [node name="TutorialManager" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource("4_e3xq8")
 tutorial_scenes = Array[PackedScene]([ExtResource("5_xbaqx")])
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/LoseButton" to="." method="_on_lose_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/WinButton" to="." method="_on_win_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/TutorialButton" to="TutorialManager" method="open_tutorials"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/TutorialButton" to="." method="_on_tutorial_button_pressed"]
 [connection signal="color_changed" from="MarginContainer/VBoxContainer/HBoxContainer2/ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
