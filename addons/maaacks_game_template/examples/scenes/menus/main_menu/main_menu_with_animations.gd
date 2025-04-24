@@ -6,7 +6,7 @@ var level_select_scene : Node
 var animation_state_machine : AnimationNodeStateMachinePlayback
 
 func load_game_scene() -> void:
-	GameState.start_game()
+	GameStateExample.start_game()
 	super.load_game_scene()
 
 func new_game() -> void:
@@ -57,9 +57,9 @@ func _ready() -> void:
 
 func _setup_game_buttons() -> void:
 	super._setup_game_buttons()
-	if GameState.has_game_state():
+	if GameStateExample.has_game_state():
 		%ContinueGameButton.show()
-		if level_select_packed_scene != null and GameState.get_max_level_reached() > 0:
+		if level_select_packed_scene != null and GameStateExample.get_max_level_reached() > 0:
 			%LevelSelectButton.show()
 
 func _on_continue_game_button_pressed() -> void:
