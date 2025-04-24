@@ -42,15 +42,15 @@ func _input(event : InputEvent) -> void:
 	if event.is_action_released("ui_accept") and get_viewport().gui_get_focus_owner() == null:
 		%MenuButtonsBoxContainer.focus_first()
 
-func _setup_for_web() -> void:
+func _hide_exit_for_web() -> void:
 	if OS.has_feature("web"):
 		%ExitButton.hide()
 
-func _setup_game_buttons() -> void:
+func _hide_new_game_if_unset() -> void:
 	if game_scene_path.is_empty():
 		%NewGameButton.hide()
 
-func _setup_options() -> void:
+func _add_or_hide_options() -> void:
 	if options_packed_scene == null:
 		%OptionsButton.hide()
 	else:
@@ -58,7 +58,7 @@ func _setup_options() -> void:
 		options_scene.hide()
 		%OptionsContainer.call_deferred("add_child", options_scene)
 
-func _setup_credits() -> void:
+func _add_or_hide_credits() -> void:
 	if credits_packed_scene == null:
 		%CreditsButton.hide()
 	else:
@@ -69,10 +69,10 @@ func _setup_credits() -> void:
 		%CreditsContainer.call_deferred("add_child", credits_scene)
 
 func _ready() -> void:
-	_setup_for_web()
-	_setup_options()
-	_setup_credits()
-	_setup_game_buttons()
+	_hide_exit_for_web()
+	_add_or_hide_options()
+	_add_or_hide_credits()
+	_hide_new_game_if_unset()
 
 func _on_new_game_button_pressed() -> void:
 	new_game()
