@@ -1,8 +1,8 @@
 extends Label
 
-@onready var action_names = AppSettings.get_action_names()
+@onready var action_names := AppSettings.get_action_names()
 
-func _get_inputs_as_string():
+func _get_inputs_as_string() -> String:
 	var all_inputs : String = ""
 	var is_first : bool = true
 	for action_name in action_names:
@@ -14,7 +14,7 @@ func _get_inputs_as_string():
 					all_inputs += " + " + action_name
 	return all_inputs
 
-func _process(_delta):
+func _process(_delta : float) -> void:
 	if Input.is_anything_pressed():
 		text = _get_inputs_as_string()
 	else:

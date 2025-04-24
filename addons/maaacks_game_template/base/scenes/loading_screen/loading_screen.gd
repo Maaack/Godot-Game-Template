@@ -33,22 +33,22 @@ var _total_loading_progress : float = 0.0 :
 		%ProgressBar.value = _total_loading_progress
 var _loading_start_time : int
 
-func update_total_loading_progress():
+func update_total_loading_progress() -> void:
 	_total_loading_progress = _scene_loading_progress
 
-func _reset_loading_stage():
+func _reset_loading_stage() -> void:
 	_stall_stage = StallStage.STARTED
 	%LoadingTimer.start(state_change_delay)
 
-func _reset_loading_start_time():
+func _reset_loading_start_time() -> void:
 	_loading_start_time = Time.get_ticks_msec()
 
-func _try_loading_next_scene():
+func _try_loading_next_scene() -> void:
 	if not _scene_loading_complete:
 		return
 	_load_next_scene()
 
-func _load_next_scene():
+func _load_next_scene() -> void:
 	if _changing_to_next_scene:
 		return
 	_changing_to_next_scene = true
@@ -57,20 +57,20 @@ func _load_next_scene():
 func _get_seconds_waiting() -> int:
 	return int((Time.get_ticks_msec() - _loading_start_time) / 1000.0)
 
-func _update_scene_loading_progress():
+func _update_scene_loading_progress() -> void:
 	var new_progress = SceneLoader.get_progress()
 	if new_progress > _scene_loading_progress:
 		_scene_loading_progress = new_progress
 
-func _set_scene_loading_complete():
+func _set_scene_loading_complete() -> void:
 	_scene_loading_progress = 1.0
 	_scene_loading_complete = true
 
-func _reset_scene_loading_progress():
+func _reset_scene_loading_progress() -> void:
 	_scene_loading_progress = 0.0
 	_scene_loading_complete = false
 
-func _show_loading_stalled_error_message():
+func _show_loading_stalled_error_message() -> void:
 	if %StalledMessage.visible:
 		return
 	if _scene_loading_progress == 0:
@@ -81,13 +81,13 @@ func _show_loading_stalled_error_message():
 		%StalledMessage.dialog_text += STALLED_ON_WEB
 	%StalledMessage.popup()
 
-func _show_scene_switching_error_message():
+func _show_scene_switching_error_message() -> void:
 	if %ErrorMessage.visible:
 		return
 	%ErrorMessage.dialog_text = "Loading Error: Failed to switch scenes."
 	%ErrorMessage.popup()
 
-func _hide_popups():
+func _hide_popups() -> void:
 	%ErrorMessage.hide()
 	%StalledMessage.hide()
 
@@ -113,7 +113,7 @@ func get_progress_message() -> String:
 		_progress_message = _progress_message % _get_seconds_waiting()
 	return _progress_message
 
-func _update_progress_messaging():
+func _update_progress_messaging() -> void:
 	%ProgressLabel.text = get_progress_message()
 	if _stall_stage == StallStage.GIVE_UP:
 		if _scene_loading_complete:
@@ -123,7 +123,7 @@ func _update_progress_messaging():
 	else:
 		_hide_popups()
 
-func _process(_delta):
+func _process(_delta : float) -> void:
 	_try_loading_next_scene()
 	var status = SceneLoader.get_status()
 	match(status):
@@ -141,7 +141,7 @@ func _process(_delta):
 			_hide_popups()
 			set_process(false)
 
-func _on_loading_timer_timeout():
+func _on_loading_timer_timeout() -> void:
 	var prev_stage : StallStage = _stall_stage
 	match prev_stage:
 		StallStage.STARTED:
@@ -153,22 +153,22 @@ func _on_loading_timer_timeout():
 		StallStage.STILL_WAITING:
 			_stall_stage = StallStage.GIVE_UP
 
-func _reload_main_scene_or_quit():
+func _reload_main_scene_or_quit() -> void:
 	var err = get_tree().change_scene_to_file(ProjectSettings.get_setting("application/run/main_scene"))
 	if err:
 		push_error("failed to load main scene: %d" % err)
 		get_tree().quit()
 
-func _on_error_message_confirmed():
+func _on_error_message_confirmed() -> void:
 	_reload_main_scene_or_quit()
 
-func _on_confirmation_dialog_canceled():
+func _on_confirmation_dialog_canceled() -> void:
 	_reload_main_scene_or_quit()
 
-func _on_confirmation_dialog_confirmed():
+func _on_confirmation_dialog_confirmed() -> void:
 	_reset_loading_stage()
 
-func reset():
+func reset() -> void:
 	show()
 	_reset_loading_stage()
 	_reset_scene_loading_progress()
@@ -176,7 +176,7 @@ func reset():
 	_hide_popups()
 	set_process(true)
 
-func close():
+func close() -> void:
 	set_process(false)
 	_hide_popups()
 	hide()

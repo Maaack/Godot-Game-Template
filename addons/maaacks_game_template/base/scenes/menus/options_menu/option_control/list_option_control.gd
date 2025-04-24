@@ -22,18 +22,18 @@ extends OptionControl
 
 var custom_option_values : Array
 
-func _on_option_values_changed():
+func _on_option_values_changed() -> void:
 	if option_values.is_empty(): return
 	custom_option_values = option_values.duplicate()
 	var first_value = custom_option_values.front()
 	property_type = typeof(first_value)
 	_set_titles_from_values()
 
-func _on_setting_changed(value):
+func _on_setting_changed(value : Variant) -> void:
 	if value < custom_option_values.size() and value >= 0:
 		super._on_setting_changed(custom_option_values[value])
 
-func _set_titles_from_values():
+func _set_titles_from_values() -> void:
 	if lock_titles: return
 	var mapped_titles : Array[String] = []
 	for option_value in custom_option_values:
@@ -66,15 +66,15 @@ func _set_value(value : Variant) -> Variant:
 	value = custom_option_values.find(value)
 	return super._set_value(value)
 
-func _set_option_list(option_titles_list : Array):
+func _set_option_list(option_titles_list : Array) -> void:
 	%OptionButton.clear()
 	for option_title in option_titles_list:
 		%OptionButton.add_item(option_title)
 
-func disable_option(option_index : int, disabled : bool = true):
+func disable_option(option_index : int, disabled : bool = true) -> void:
 	%OptionButton.set_item_disabled(option_index, disabled)
 
-func _ready():
+func _ready() -> void:
 	lock_titles = lock_titles
 	option_titles = option_titles
 	option_values = option_values

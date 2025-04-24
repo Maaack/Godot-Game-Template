@@ -16,7 +16,7 @@ var _initial_mouse_mode : int
 var _initial_focus_control
 var _scene_tree : SceneTree 
 
-func close():
+func close() -> void:
 	_scene_tree.paused = _initial_pause_state
 	Input.set_mouse_mode(_initial_mouse_mode)
 	if is_instance_valid(_initial_focus_control) and _initial_focus_control.is_inside_tree():
@@ -24,18 +24,18 @@ func close():
 		_initial_focus_control.grab_focus()
 	queue_free()
 
-func _handle_cancel_input():
+func _handle_cancel_input() -> void:
 	close()
 
-func _unhandled_input(event):
+func _unhandled_input(event : InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		_handle_cancel_input()
 		get_viewport().set_input_as_handled()
 
-func _on_close_button_pressed():
+func _on_close_button_pressed() -> void:
 	close()
 
-func _enter_tree():
+func _enter_tree() -> void:
 	_initial_focus_control = get_viewport().gui_get_focus_owner()
 	_initial_mouse_mode = Input.get_mouse_mode()
 	_scene_tree = get_tree()
