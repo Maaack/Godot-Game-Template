@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cifpvma40k3d1"]
 
-[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/mini_options_menu.tscn" id="1_7wq3x"]
-[ext_resource type="Script" path="res://scenes/menus/options_menu/mini_options_menu.gd" id="2_ryhko"]
+[ext_resource type="PackedScene" uid="uid://vh1ucj2rfbby" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/mini_options_menu.tscn" id="1_7wq3x"]
+[ext_resource type="Script" uid="uid://cyu5ekru6j656" path="res://scenes/menus/options_menu/mini_options_menu.gd" id="2_ryhko"]
 
 [node name="MiniOptionsMenu" instance=ExtResource("1_7wq3x")]
 script = ExtResource("2_ryhko")
