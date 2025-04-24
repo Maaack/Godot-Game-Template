@@ -27,5 +27,5 @@ func _on_color_picker_button_color_changed(color : Color) -> void:
 	level_state.color = color
 	GlobalState.save()
 
-func _on_tutorial_button_pressed():
+func _on_tutorial_button_pressed() -> void:
 	open_tutorials()
