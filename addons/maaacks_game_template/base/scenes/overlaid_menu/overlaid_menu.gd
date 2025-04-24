@@ -9,10 +9,11 @@ extends Control
 			process_mode = PROCESS_MODE_ALWAYS
 		else:
 			process_mode = PROCESS_MODE_INHERIT
+@export var makes_mouse_visible : bool = true
 
 var _initial_pause_state : bool = false
 var _initial_focus_mode : FocusMode = FOCUS_ALL
-var _initial_mouse_mode : int
+var _initial_mouse_mode : Input.MouseMode
 var _initial_focus_control
 var _scene_tree : SceneTree 
 
@@ -36,11 +37,13 @@ func _on_close_button_pressed() -> void:
 	close()
 
 func _enter_tree() -> void:
-	_initial_focus_control = get_viewport().gui_get_focus_owner()
-	_initial_mouse_mode = Input.get_mouse_mode()
 	_scene_tree = get_tree()
 	_initial_pause_state = _scene_tree.paused
-	if not Engine.is_editor_hint():
-		_scene_tree.paused = pauses_game or _initial_pause_state
+	_initial_mouse_mode = Input.get_mouse_mode()
+	_initial_focus_control = get_viewport().gui_get_focus_owner()
 	if _initial_focus_control:
 		_initial_focus_mode = _initial_focus_control.focus_mode
+	if Engine.is_editor_hint(): return
+	_scene_tree.paused = pauses_game or _initial_pause_state
+	if makes_mouse_visible:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

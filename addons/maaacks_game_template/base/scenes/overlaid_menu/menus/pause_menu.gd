@@ -38,19 +38,22 @@ func _handle_cancel_input() -> void:
 	else:
 		super._handle_cancel_input()
 
-func _setup_options() -> void:
+func _hide_exit_for_web() -> void:
+	if OS.has_feature("web"):
+		%ExitButton.hide()
+
+func _hide_options_if_unset() -> void:
 	if options_packed_scene == null:
 		%OptionsButton.hide()
 
-func _setup_main_menu() -> void:
+func _hide_main_menu_if_unset() -> void:
 	if main_menu_scene.is_empty():
 		%MainMenuButton.hide()
 
 func _ready() -> void:
-	if OS.has_feature("web"):
-		%ExitButton.hide()
-	_setup_options()
-	_setup_main_menu()
+	_hide_exit_for_web()
+	_hide_options_if_unset()
+	_hide_main_menu_if_unset()
 
 func _on_restart_button_pressed() -> void:
 	%ConfirmRestart.popup_centered()

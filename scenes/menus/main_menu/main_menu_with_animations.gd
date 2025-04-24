@@ -36,31 +36,31 @@ func _close_sub_menu() -> void:
 	super._close_sub_menu()
 	animation_state_machine.travel("OpenMainMenu")
 
-func _setup_level_select() -> void: 
-	if level_select_packed_scene != null:
-		level_select_scene = level_select_packed_scene.instantiate()
-		level_select_scene.hide()
-		%LevelSelectContainer.call_deferred("add_child", level_select_scene)
-		if level_select_scene.has_signal("level_selected"):
-			level_select_scene.connect("level_selected", load_game_scene)
-
 func _input(event : InputEvent) -> void:
 	if _is_in_intro() and _event_skips_intro(event):
 		intro_done()
 		return
 	super._input(event)
 
-func _ready() -> void:
-	super._ready()
-	_setup_level_select()
-	animation_state_machine = $MenuAnimationTree.get("parameters/playback")
+func _add_level_select_if_set() -> void: 
+	if level_select_packed_scene == null: return
+	if GameState.get_max_level_reached() <= 0 : return
+	level_select_scene = level_select_packed_scene.instantiate()
+	level_select_scene.hide()
+	%LevelSelectContainer.call_deferred("add_child", level_select_scene)
+	if level_select_scene.has_signal("level_selected"):
+		level_select_scene.connect("level_selected", load_game_scene)
+	%LevelSelectButton.show()
 
-func _setup_game_buttons() -> void:
-	super._setup_game_buttons()
+func _show_continue_if_set() -> void:
 	if GameState.has_game_state():
 		%ContinueGameButton.show()
-		if level_select_packed_scene != null and GameState.get_max_level_reached() > 0:
-			%LevelSelectButton.show()
+
+func _ready() -> void:
+	super._ready()
+	_add_level_select_if_set()
+	_show_continue_if_set()
+	animation_state_machine = $MenuAnimationTree.get("parameters/playback")
 
 func _on_continue_game_button_pressed() -> void:
 	load_game_scene()
