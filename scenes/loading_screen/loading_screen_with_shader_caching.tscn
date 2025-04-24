@@ -1,15 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://c4sl1gx6vcd1v"]
+[gd_scene load_steps=4 format=3 uid="uid://x4fx8gc1hiy1"]
 
-[ext_resource type="PackedScene" uid="uid://cd0jbh4metflb" path="res://addons/maaacks_game_template/base/scenes/loading_screen/loading_screen.tscn" id="1_opm1o"]
-[ext_resource type="Script" uid="uid://banjw1jdxpwap" path="res://scenes/loading_screen/loading_screen_with_shader_caching.gd" id="2_rdigl"]
+[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/scenes/loading_screen/loading_screen.tscn" id="1_alqvd"]
+[ext_resource type="Script" path="res://scenes/loading_screen/loading_screen_with_shader_caching.gd" id="2_n5fdm"]
 
-[sub_resource type="QuadMesh" id="QuadMesh_q347b"]
+[sub_resource type="QuadMesh" id="QuadMesh_klnwy"]
 
-[node name="LoadingScreen" instance=ExtResource("1_opm1o")]
-script = ExtResource("2_rdigl")
+[node name="LoadingScreen" instance=ExtResource("1_alqvd")]
+script = ExtResource("2_n5fdm")
 _spatial_shader_material_dir = ""
 _cache_shaders_scene = "res://scenes/game_scene/game_ui.tscn"
-_mesh = SubResource("QuadMesh_q347b")
+_mesh = SubResource("QuadMesh_klnwy")
 _matching_extensions = Array[String]([".tres", ".material", ".res"])
 _ignore_subfolders = Array[String]([".", ".."])
 _shader_delay_timer = 0.1

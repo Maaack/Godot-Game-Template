@@ -1,13 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://b155rdbqjem01"]
+[gd_scene load_steps=4 format=3 uid="uid://bxo8rxu1kjj4a"]
 
-[ext_resource type="PackedScene" uid="uid://vh1ucj2rfbby" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/mini_options_menu.tscn" id="1_2hsax"]
-[ext_resource type="Script" uid="uid://r76x8w2gau2f" path="res://scenes/menus/options_menu/mini_options_menu_with_reset.gd" id="2_vryh8"]
-[ext_resource type="PackedScene" uid="uid://cmtlq3l85ydkb" path="res://scenes/menus/options_menu/game/reset_game_control/reset_game_control.tscn" id="3_803h7"]
+[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/mini_options_menu.tscn" id="1_2hsax"]
+[ext_resource type="Script" path="res://scenes/menus/options_menu/mini_options_menu_with_reset.gd" id="2_d8n2j"]
+[ext_resource type="PackedScene" path="res://scenes/menus/options_menu/game/reset_game_control/reset_game_control.tscn" id="3_xphcu"]
 
 [node name="MiniOptionsMenu" instance=ExtResource("1_2hsax")]
-script = ExtResource("2_vryh8")
+script = ExtResource("2_d8n2j")
 
-[node name="ResetGameControl" parent="." index="3" instance=ExtResource("3_803h7")]
+[node name="ResetGameControl" parent="." index="3" instance=ExtResource("3_xphcu")]
 layout_mode = 2
 
 [connection signal="reset_confirmed" from="ResetGameControl" to="." method="_on_reset_game_control_reset_confirmed"]
