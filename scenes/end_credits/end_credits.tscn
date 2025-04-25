@@ -1,15 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://b2tqk64gy4pht"]
+[gd_scene load_steps=5 format=3 uid="uid://dxrkui360ijkb"]
 
-[ext_resource type="PackedScene" uid="uid://da7uj8u87g24i" path="res://scenes/credits/credits.tscn" id="1_msnc6"]
-[ext_resource type="Script" uid="uid://b5oyngjiqb8mt" path="res://scenes/end_credits/end_credits.gd" id="2_yxq8n"]
-[ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/scenes/music_players/background_music_player.tscn" id="3_ec4p2"]
-[ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/scripts/capture_focus.gd" id="4_o8c11"]
+[ext_resource type="PackedScene" uid="uid://dlj8an1r0ynut" path="res://scenes/credits/credits.tscn" id="1_0sycx"]
+[ext_resource type="Script" uid="uid://bfdql7vusqsvw" path="res://scenes/end_credits/end_credits.gd" id="2_2v40y"]
+[ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/scenes/music_players/background_music_player.tscn" id="3_bfvdl"]
+[ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/scripts/capture_focus.gd" id="4_1kqi1"]
 
-[node name="EndCredits" instance=ExtResource("1_msnc6")]
-script = ExtResource("2_yxq8n")
+[node name="EndCredits" instance=ExtResource("1_0sycx")]
+script = ExtResource("2_2v40y")
 main_menu_scene = "res://scenes/menus/main_menu/main_menu_with_animations.tscn"
 
-[node name="BackgroundMusicPlayer" parent="." index="0" instance=ExtResource("3_ec4p2")]
+[node name="BackgroundMusicPlayer" parent="." index="0" instance=ExtResource("3_bfvdl")]
 
 [node name="BackgroundColor" type="ColorRect" parent="." index="1"]
 layout_mode = 1
@@ -70,7 +70,7 @@ custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 16
-script = ExtResource("4_o8c11")
+script = ExtResource("4_1kqi1")
 
 [node name="ExitButton" type="Button" parent="CenterContainer/EndMessagePanel/VBoxContainer/CenterContainer/HBoxContainer" index="0"]
 unique_name_in_owner = true

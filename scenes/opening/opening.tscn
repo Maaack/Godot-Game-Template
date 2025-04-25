@@ -1,8 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://deu3fhqkb4m45"]
+[gd_scene load_steps=3 format=3 uid="uid://dcj6543epcavf"]
 
-[ext_resource type="PackedScene" uid="uid://sikc02ddepyt" path="res://addons/maaacks_game_template/base/scenes/opening/opening.tscn" id="1_rl3gg"]
-[ext_resource type="Script" uid="uid://pi6tot5a1g10" path="res://scenes/opening/opening.gd" id="2_wpxiw"]
+[ext_resource type="PackedScene" uid="uid://sikc02ddepyt" path="res://addons/maaacks_game_template/base/scenes/opening/opening.tscn" id="1_ke3tw"]
+[ext_resource type="Script" uid="uid://74g5r0yo5j63" path="res://scenes/opening/opening.gd" id="2_yhkvs"]
 
-[node name="Opening" instance=ExtResource("1_rl3gg")]
-script = ExtResource("2_wpxiw")
+[node name="Opening" instance=ExtResource("1_ke3tw")]
+script = ExtResource("2_yhkvs")
 next_scene = "res://scenes/menus/main_menu/main_menu_with_animations.tscn"

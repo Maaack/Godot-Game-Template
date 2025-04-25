@@ -74,8 +74,9 @@ locale/translations=PackedStringArray("res://addons/maaacks_game_template/base/t
 
 [maaacks_game_template]
 
-disable_plugin_dialogues=true
 copy_path="res://"
+disable_update_check=false
+disable_install_wizard=true
 
 [physics]
 
