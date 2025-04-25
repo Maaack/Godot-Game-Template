@@ -1,17 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://1xddtb4rwd5t"]
+[gd_scene load_steps=6 format=3 uid="uid://bx7682g33l8kp"]
 
-[ext_resource type="Script" uid="uid://d1ycgq66hhqwm" path="res://scenes/game_scene/levels/level.gd" id="1_irplr"]
-[ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/scripts/capture_focus.gd" id="2_3p566"]
-[ext_resource type="Script" uid="uid://dm56welw406is" path="res://scenes/game_scene/input_display_label.gd" id="3_rgywr"]
+[ext_resource type="Script" uid="uid://cjbqlir3qtkwv" path="res://scenes/game_scene/levels/level.gd" id="1_rgywr"]
+[ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/scripts/capture_focus.gd" id="2_8s04l"]
+[ext_resource type="Script" uid="uid://dquaj8ki8of4n" path="res://scenes/game_scene/input_display_label.gd" id="3_kjg0a"]
+[ext_resource type="Script" uid="uid://ck7cdjnnkm4aq" path="res://scenes/game_scene/tutorial_manager.gd" id="4_w8c7f"]
+[ext_resource type="PackedScene" uid="uid://c3tkuge4hko41" path="res://scenes/game_scene/tutorials/tutorial_2.tscn" id="5_i1l6d"]
 
-[node name="Level1" type="Control"]
+[node name="Level2" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_irplr")
+script = ExtResource("1_rgywr")
 
 [node name="BackgroundColor" type="ColorRect" parent="."]
 unique_name_in_owner = true
@@ -43,7 +45,7 @@ theme_override_constants/separation = 16
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 32
-script = ExtResource("2_3p566")
+script = ExtResource("2_8s04l")
 
 [node name="LoseButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -63,6 +65,16 @@ text = "Lose"
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 
+[node name="TutorialButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Tutorial"
+
+[node name="InputDisplayLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_alignment = 1
+script = ExtResource("3_kjg0a")
+
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 text = "Change Level State: "
@@ -72,13 +84,13 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Change Color"
 
-[node name="InputDisplayLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-horizontal_alignment = 1
-script = ExtResource("3_rgywr")
+[node name="TutorialManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4_w8c7f")
+tutorial_scenes = Array[PackedScene]([ExtResource("5_i1l6d")])
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/LoseButton" to="." method="_on_lose_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/WinButton" to="." method="_on_win_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/LoseButton2" to="." method="_on_lose_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/TutorialButton" to="." method="_on_tutorial_button_pressed"]
 [connection signal="color_changed" from="MarginContainer/VBoxContainer/HBoxContainer2/ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]

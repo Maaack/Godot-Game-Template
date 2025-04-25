@@ -24,7 +24,7 @@ const REPLACE_CONTENT_EXTENSIONS : Array = ["gd", "tscn", "tres"]
 var selected_theme : String
 var update_plugin_tool_string : String
 
-func _get_plugin_name():
+func _get_plugin_name() -> String:
 	return PLUGIN_NAME
 
 func get_plugin_path() -> String:
@@ -39,15 +39,15 @@ func get_copy_path() -> String:
 		copy_path += "/"
 	return copy_path
 
-func _on_theme_selected(theme_resource_path: String):
+func _on_theme_selected(theme_resource_path: String) -> void:
 	selected_theme = theme_resource_path
 
-func _update_gui_theme():
+func _update_gui_theme() -> void:
 	if selected_theme.is_empty(): return
 	ProjectSettings.set_setting("gui/theme/custom", selected_theme)
 	ProjectSettings.save()
 
-func _check_theme_needs_updating(target_path : String):
+func _check_theme_needs_updating(target_path : String) -> void:
 	var current_theme_resource_path = ProjectSettings.get_setting("gui/theme/custom", "")
 	if current_theme_resource_path != "":
 		return
@@ -56,7 +56,7 @@ func _check_theme_needs_updating(target_path : String):
 		return
 	_open_theme_selection_dialog(target_path)
 
-func _open_theme_selection_dialog(target_path : String):
+func _open_theme_selection_dialog(target_path : String) -> void:
 	selected_theme = ""
 	var theme_selection_scene : PackedScene = load(get_plugin_path() + "installer/theme_selection_dialog.tscn")
 	var theme_selection_instance = theme_selection_scene.instantiate()
@@ -67,12 +67,12 @@ func _open_theme_selection_dialog(target_path : String):
 	theme_directores.append(target_path + THEMES_DIRECTORY_RELATIVE_PATH)
 	theme_selection_instance.theme_directories = theme_directores
 
-func _update_main_scene(target_path : String, main_scene_path : String):
+func _update_main_scene(target_path : String, main_scene_path : String) -> void:
 	ProjectSettings.set_setting("application/run/main_scene", main_scene_path)
 	ProjectSettings.save()
 	_check_theme_needs_updating(target_path)
 
-func _check_main_scene_needs_updating(target_path : String):
+func _check_main_scene_needs_updating(target_path : String) -> void:
 	var current_main_scene_path = ProjectSettings.get_setting("application/run/main_scene", "")
 	var new_main_scene_path = target_path + MAIN_SCENE_RELATIVE_PATH
 	if new_main_scene_path != current_main_scene_path:
@@ -80,7 +80,7 @@ func _check_main_scene_needs_updating(target_path : String):
 		return
 	_check_theme_needs_updating(target_path)
 
-func _open_main_scene_confirmation_dialog(target_path : String, current_main_scene : String, new_main_scene : String):
+func _open_main_scene_confirmation_dialog(target_path : String, current_main_scene : String, new_main_scene : String) -> void:
 	var main_confirmation_scene : PackedScene = load(get_plugin_path() + "installer/main_scene_confirmation_dialog.tscn")
 	var main_confirmation_instance : ConfirmationDialog = main_confirmation_scene.instantiate()
 	main_confirmation_instance.dialog_text += MAIN_SCENE_UPDATE_TEXT % [current_main_scene, new_main_scene]
@@ -88,31 +88,31 @@ func _open_main_scene_confirmation_dialog(target_path : String, current_main_sce
 	main_confirmation_instance.canceled.connect(_check_theme_needs_updating.bind(target_path))
 	add_child(main_confirmation_instance)
 
-func _open_play_opening_confirmation_dialog(target_path : String):
+func _open_play_opening_confirmation_dialog(target_path : String) -> void:
 	var play_confirmation_scene : PackedScene = load(get_plugin_path() + "installer/play_opening_confirmation_dialog.tscn")
 	var play_confirmation_instance : ConfirmationDialog = play_confirmation_scene.instantiate()
 	play_confirmation_instance.confirmed.connect(_run_opening_scene.bind(target_path))
 	play_confirmation_instance.canceled.connect(_check_main_scene_needs_updating.bind(target_path))
 	add_child(play_confirmation_instance)
 
-func _open_delete_examples_confirmation_dialog(target_path : String):
+func _open_delete_examples_confirmation_dialog(target_path : String) -> void:
 	var delete_confirmation_scene : PackedScene = load(get_plugin_path() + "installer/delete_examples_confirmation_dialog.tscn")
 	var delete_confirmation_instance : ConfirmationDialog = delete_confirmation_scene.instantiate()
 	delete_confirmation_instance.confirmed.connect(_delete_source_examples_directory.bind(target_path))
 	delete_confirmation_instance.canceled.connect(_check_main_scene_needs_updating.bind(target_path))
 	add_child(delete_confirmation_instance)
 
-func _open_delete_examples_short_confirmation_dialog():
+func _open_delete_examples_short_confirmation_dialog() -> void:
 	var delete_confirmation_scene : PackedScene = load(get_plugin_path() + "installer/delete_examples_short_confirmation_dialog.tscn")
 	var delete_confirmation_instance : ConfirmationDialog = delete_confirmation_scene.instantiate()
 	delete_confirmation_instance.confirmed.connect(_delete_source_examples_directory)
 	add_child(delete_confirmation_instance)
 
-func _run_opening_scene(target_path : String):
+func _run_opening_scene(target_path : String) -> void:
 	var opening_scene_path = target_path + MAIN_SCENE_RELATIVE_PATH
 	EditorInterface.play_custom_scene(opening_scene_path)
 	var timer: Timer = Timer.new()
-	var callable := func():
+	var callable := func() -> void:
 		if EditorInterface.is_playing_scene(): return
 		timer.stop()
 		_open_delete_examples_confirmation_dialog(target_path)
@@ -121,7 +121,7 @@ func _run_opening_scene(target_path : String):
 	add_child(timer)
 	timer.start(RUNNING_CHECK_DELAY)
 
-func _delete_directory_recursive(dir_path : String):
+func _delete_directory_recursive(dir_path : String) -> void:
 	if not dir_path.ends_with("/"):
 		dir_path += "/"
 	var dir = DirAccess.open(dir_path)
@@ -143,7 +143,7 @@ func _delete_directory_recursive(dir_path : String):
 		push_error("plugin error - accessing path: %s" % dir)
 	dir.remove(dir_path)
 
-func _delete_source_examples_directory(target_path : String = ""):
+func _delete_source_examples_directory(target_path : String = "") -> void:
 	var examples_path = get_plugin_examples_path()
 	var dir := DirAccess.open("res://")
 	if dir.dir_exists(examples_path):
@@ -154,10 +154,10 @@ func _delete_source_examples_directory(target_path : String = ""):
 	if not target_path.is_empty():
 		_check_main_scene_needs_updating(target_path)
 
-func _replace_file_contents(file_path : String, target_path : String):
+func _replace_file_contents(file_path : String, target_path : String) -> void:
 	var extension : String = file_path.get_extension()
 	if extension not in REPLACE_CONTENT_EXTENSIONS:
-		return OK
+		return
 	var file = FileAccess.open(file_path, FileAccess.READ)
 	var regex = RegEx.new()
 	regex.compile(UID_PREG_MATCH)
@@ -199,7 +199,7 @@ func _raw_copy_file_path(file_path : String, destination_path : String) -> Error
 	var error := dir.copy(file_path, destination_path)
 	return error
 
-func _copy_override_file():
+func _copy_override_file() -> void:
 	var override_path : String = get_plugin_path() + OVERRIDE_RELATIVE_PATH
 	_raw_copy_file_path(override_path, "res://"+override_path.get_file())
 
@@ -217,7 +217,7 @@ func _copy_file_path(file_path : String, destination_path : String, target_path 
 		_replace_file_contents(destination_path, target_path)
 	return error
 
-func _copy_directory_path(dir_path : String, target_path : String):
+func _copy_directory_path(dir_path : String, target_path : String) -> void:
 	if not dir_path.ends_with("/"):
 		dir_path += "/"
 	var dir = DirAccess.open(dir_path)
@@ -241,7 +241,7 @@ func _copy_directory_path(dir_path : String, target_path : String):
 	else:
 		push_error("plugin error - accessing path: %s" % dir_path)
 
-func _update_scene_loader_path(target_path : String):
+func _update_scene_loader_path(target_path : String) -> void:
 	var file_path : String = get_plugin_path() + SCENE_LOADER_RELATIVE_PATH
 	var file_text : String = FileAccess.get_file_as_string(file_path)
 	var prefix : String = "loading_screen_path = \""
@@ -252,7 +252,7 @@ func _update_scene_loader_path(target_path : String):
 	file.store_string(file_text)
 	file.close()
 
-func _delayed_play_opening_confirmation_dialog(target_path : String):
+func _delayed_play_opening_confirmation_dialog(target_path : String) -> void:
 	var timer: Timer = Timer.new()
 	var callable := func():
 		timer.stop()
@@ -262,7 +262,7 @@ func _delayed_play_opening_confirmation_dialog(target_path : String):
 	add_child(timer)
 	timer.start(WINDOW_OPEN_DELAY)
 
-func _wait_for_scan_and_delay_next_prompt(target_path : String):
+func _wait_for_scan_and_delay_next_prompt(target_path : String) -> void:
 	var timer: Timer = Timer.new()
 	var callable := func():
 		if EditorInterface.get_resource_filesystem().is_scanning(): return
@@ -273,7 +273,7 @@ func _wait_for_scan_and_delay_next_prompt(target_path : String):
 	add_child(timer)
 	timer.start(RUNNING_CHECK_DELAY)
 
-func _delayed_saving_and_next_prompt(target_path : String):
+func _delayed_saving_and_next_prompt(target_path : String) -> void:
 	var timer: Timer = Timer.new()
 	var callable := func():
 		timer.stop()
@@ -285,7 +285,7 @@ func _delayed_saving_and_next_prompt(target_path : String):
 	add_child(timer)
 	timer.start(RESAVING_DELAY)
 
-func _add_translations():
+func _add_translations() -> void:
 	var dir := DirAccess.open("res://")
 	var translations : PackedStringArray = ProjectSettings.get_setting("internationalization/locale/translations", [])
 	for available_translation in AVAILABLE_TRANSLATIONS:
@@ -294,7 +294,7 @@ func _add_translations():
 			translations.append(translation_path)
 	ProjectSettings.set_setting("internationalization/locale/translations", translations)
 
-func _copy_to_directory(target_path : String):
+func _copy_to_directory(target_path : String) -> void:
 	ProjectSettings.set_setting(PROJECT_SETTINGS_PATH + "copy_path", target_path)
 	ProjectSettings.save()
 	if not target_path.ends_with("/"):
@@ -304,58 +304,71 @@ func _copy_to_directory(target_path : String):
 	_copy_override_file()
 	_delayed_saving_and_next_prompt(target_path)
 
-func _open_input_icons_dialog():
+func _open_input_icons_dialog() -> void:
 	var input_icons_scene : PackedScene = load(get_plugin_path() + "installer/kenney_input_prompts_installer.tscn")
 	var input_icons_instance = input_icons_scene.instantiate()
 	input_icons_instance.copy_dir_path = get_copy_path()
 	add_child(input_icons_instance)
 
-func _open_path_dialog():
+func _open_path_dialog() -> void:
 	var destination_scene : PackedScene = load(get_plugin_path() + "installer/destination_dialog.tscn")
 	var destination_instance : FileDialog = destination_scene.instantiate()
 	destination_instance.dir_selected.connect(_copy_to_directory)
 	destination_instance.canceled.connect(_check_main_scene_needs_updating.bind(get_copy_path()))
 	add_child(destination_instance)
 
-func _open_confirmation_dialog():
+func _open_confirmation_dialog() -> void:
 	var confirmation_scene : PackedScene = load(get_plugin_path() + "installer/copy_confirmation_dialog.tscn")
 	var confirmation_instance : ConfirmationDialog = confirmation_scene.instantiate()
 	confirmation_instance.confirmed.connect(_open_path_dialog)
 	confirmation_instance.canceled.connect(_check_main_scene_needs_updating.bind(get_copy_path()))
 	add_child(confirmation_instance)
 
-func _open_check_plugin_version():
+func _open_check_plugin_version() -> void:
+	if ProjectSettings.has_setting(PROJECT_SETTINGS_PATH + "disable_update_check"):
+		if ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + "disable_update_check"):
+			return
+	else:
+		ProjectSettings.set_setting(PROJECT_SETTINGS_PATH + "disable_update_check", false)
+		ProjectSettings.save()
 	var check_version_scene : PackedScene = load(get_plugin_path() + "installer/check_plugin_version.tscn")
 	var check_version_instance : Node = check_version_scene.instantiate()
 	check_version_instance.auto_start = true
 	check_version_instance.new_version_detected.connect(_add_update_plugin_tool_option)
 	add_child(check_version_instance)
 
-func _open_update_plugin():
+func _open_update_plugin() -> void:
 	var update_plugin_scene : PackedScene = load(get_plugin_path() + "installer/update_plugin.tscn")
 	var update_plugin_instance : Node = update_plugin_scene.instantiate()
 	update_plugin_instance.auto_start = true
 	update_plugin_instance.update_completed.connect(_remove_update_plugin_tool_option)
 	add_child(update_plugin_instance)
 
-func _add_update_plugin_tool_option(new_version : String):
+func _add_update_plugin_tool_option(new_version : String) -> void:
 	update_plugin_tool_string = "Update %s to v%s..." % [_get_plugin_name(), new_version]
 	add_tool_menu_item(update_plugin_tool_string, _open_update_plugin)
 
-func _remove_update_plugin_tool_option():
+func _remove_update_plugin_tool_option() -> void:
 	if update_plugin_tool_string.is_empty(): return
 	remove_tool_menu_item(update_plugin_tool_string)
 	update_plugin_tool_string = ""
 
-func _show_plugin_dialogues():
-	if ProjectSettings.has_setting(PROJECT_SETTINGS_PATH + "disable_plugin_dialogues") :
-		if ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + "disable_plugin_dialogues") :
+func _deprecate_old_setting_name() -> void:
+	if not ProjectSettings.has_setting(PROJECT_SETTINGS_PATH + "disable_plugin_dialogues"): return
+	var prior_setting : bool = ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + "disable_plugin_dialogues", false)
+	ProjectSettings.set_setting(PROJECT_SETTINGS_PATH + "disable_install_wizard", prior_setting)
+	ProjectSettings.set_setting(PROJECT_SETTINGS_PATH + "disable_plugin_dialogues", null)
+
+func _show_plugin_dialogues() -> void:
+	_deprecate_old_setting_name()
+	if ProjectSettings.has_setting(PROJECT_SETTINGS_PATH + "disable_install_wizard") :
+		if ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + "disable_install_wizard") :
 			return
 	_open_confirmation_dialog()
-	ProjectSettings.set_setting(PROJECT_SETTINGS_PATH + "disable_plugin_dialogues", true)
+	ProjectSettings.set_setting(PROJECT_SETTINGS_PATH + "disable_install_wizard", true)
 	ProjectSettings.save()
 
-func _resave_if_recently_opened():
+func _resave_if_recently_opened() -> void:
 	if Engine.get_physics_frames() < MAX_PHYSICS_FRAMES_FROM_START:
 		var timer: Timer = Timer.new()
 		var callable := func():
@@ -367,7 +380,7 @@ func _resave_if_recently_opened():
 		add_child(timer)
 		timer.start(OPEN_EDITOR_DELAY)
 
-func _add_tool_options():
+func _add_tool_options() -> void:
 	var examples_path = get_plugin_examples_path()
 	var dir := DirAccess.open("res://")
 	if dir.dir_exists(examples_path):
@@ -376,7 +389,7 @@ func _add_tool_options():
 	add_tool_menu_item("Use Input Icons for " + _get_plugin_name() + "...", _open_input_icons_dialog)
 	_open_check_plugin_version()
 
-func _remove_tool_options():
+func _remove_tool_options() -> void:
 	var examples_path = get_plugin_examples_path()
 	var dir := DirAccess.open("res://")
 	if dir.dir_exists(examples_path):
@@ -385,7 +398,7 @@ func _remove_tool_options():
 	remove_tool_menu_item("Use Input Icons for " + _get_plugin_name() + "...")
 	_remove_update_plugin_tool_option()
 
-func _enter_tree():
+func _enter_tree() -> void:
 	add_autoload_singleton("AppConfig", get_plugin_path() + "base/scenes/autoloads/app_config.tscn")
 	add_autoload_singleton("SceneLoader", get_plugin_path() + "base/scenes/autoloads/scene_loader.tscn")
 	add_autoload_singleton("ProjectMusicController", get_plugin_path() + "base/scenes/autoloads/project_music_controller.tscn")
@@ -395,7 +408,7 @@ func _enter_tree():
 	_show_plugin_dialogues()
 	_resave_if_recently_opened()
 
-func _exit_tree():
+func _exit_tree() -> void:
 	remove_autoload_singleton("AppConfig")
 	remove_autoload_singleton("SceneLoader")
 	remove_autoload_singleton("ProjectMusicController")

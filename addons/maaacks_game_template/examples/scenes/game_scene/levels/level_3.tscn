@@ -1,10 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://ddneme7dcyian"]
+[gd_scene load_steps=6 format=3 uid="uid://ddneme7dcyian"]
 
 [ext_resource type="Script" uid="uid://3bd6350v3ux5" path="res://addons/maaacks_game_template/examples/scenes/game_scene/levels/level.gd" id="1_65ilt"]
 [ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/scripts/capture_focus.gd" id="2_2mss3"]
 [ext_resource type="Script" uid="uid://dvewqdtaf68y8" path="res://addons/maaacks_game_template/examples/scenes/game_scene/input_display_label.gd" id="3_f4j1i"]
+[ext_resource type="Script" uid="uid://1aoiji5yh0sy" path="res://addons/maaacks_game_template/examples/scenes/game_scene/tutorial_manager.gd" id="4_fh83m"]
+[ext_resource type="PackedScene" uid="uid://dvwhul2i007fs" path="res://addons/maaacks_game_template/examples/scenes/game_scene/tutorials/tutorial_3.tscn" id="5_fh83m"]
 
-[node name="Level1" type="Control"]
+[node name="Level3" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -68,6 +70,16 @@ text = "Lose"
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 
+[node name="TutorialButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Tutorial"
+
+[node name="InputDisplayLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_alignment = 1
+script = ExtResource("3_f4j1i")
+
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 text = "Change Level State: "
@@ -77,14 +89,14 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Change Color"
 
-[node name="InputDisplayLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-horizontal_alignment = 1
-script = ExtResource("3_f4j1i")
+[node name="TutorialManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4_fh83m")
+tutorial_scenes = Array[PackedScene]([ExtResource("5_fh83m")])
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/WinButton" to="." method="_on_win_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/LoseButton" to="." method="_on_lose_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/LoseButton2" to="." method="_on_lose_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/LoseButton3" to="." method="_on_lose_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/TutorialButton" to="." method="_on_tutorial_button_pressed"]
 [connection signal="color_changed" from="MarginContainer/VBoxContainer/HBoxContainer2/ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]

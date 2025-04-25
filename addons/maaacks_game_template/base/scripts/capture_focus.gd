@@ -23,7 +23,7 @@ extends Control
 		if value_changed and not lock:
 			update_focus()
 
-func _focus_first_search(control_node : Control, levels : int = 1):
+func _focus_first_search(control_node : Control, levels : int = 1) -> bool:
 	if control_node == null or !control_node.is_visible_in_tree():
 		return false
 	if control_node.focus_mode == FOCUS_ALL:
@@ -37,28 +37,29 @@ func _focus_first_search(control_node : Control, levels : int = 1):
 	for child in children:
 		if _focus_first_search(child, levels - 1):
 			return true
+	return false
 
-func focus_first():
+func focus_first() -> void:
 	_focus_first_search(self, search_depth)
 
-func update_focus():
+func update_focus() -> void:
 	if lock : return
 	if _is_visible_and_should_capture():
 		focus_first()
 
-func _should_capture_focus():
+func _should_capture_focus() -> bool:
 	return enabled or \
 	(get_viewport().gui_get_focus_owner() == null and null_focus_enabled) or \
 	(Input.get_connected_joypads().size() > 0 and joypad_enabled) or \
 	(Input.mouse_mode not in [Input.MOUSE_MODE_VISIBLE, Input.MOUSE_MODE_CONFINED] and mouse_hidden_enabled)
 
-func _is_visible_and_should_capture():
+func _is_visible_and_should_capture() -> bool:
 	return is_visible_in_tree() and _should_capture_focus()
 
-func _on_visibility_changed():
+func _on_visibility_changed() -> void:
 	call_deferred("update_focus")
 
-func _ready():
+func _ready() -> void:
 	if is_inside_tree():
 		update_focus()
 		connect("visibility_changed", _on_visibility_changed)

@@ -25,17 +25,18 @@ const API_RELEASES_URL := "https://api.github.com/repos/%s/%s/releases"
 
 var _zipball_url : String
 
-func get_plugin_version():
-	if plugin_directory.is_empty(): return
-	for enabled_plugin in ProjectSettings.get_setting("editor_plugins/enabled"):
-		if enabled_plugin.contains(plugin_directory):
-			var config := ConfigFile.new()
-			var error = config.load(enabled_plugin)
-			if error != OK:
-				return
-			return config.get_value("plugin", "version", default_version)
+func get_plugin_version() -> String :
+	if not plugin_directory.is_empty(): 
+		for enabled_plugin in ProjectSettings.get_setting("editor_plugins/enabled"):
+			if enabled_plugin.contains(plugin_directory):
+				var config := ConfigFile.new()
+				var error = config.load(enabled_plugin)
+				if error != OK:
+					return default_version
+				return config.get_value("plugin", "version", default_version)
+	return default_version
 
-func _update_urls():
+func _update_urls() -> void:
 	if plugin_github_url.is_empty(): return
 	if _api_client == null: return
 	var regex := RegEx.create_from_string("https:\\/\\/github\\.com\\/([\\w-]+)\\/([\\w-]+)\\/*")
@@ -45,11 +46,11 @@ func _update_urls():
 	var repository := regex_match.get_string(2)
 	_api_client.api_url = API_RELEASES_URL % [username, repository]
 
-func _on_api_client_request_failed(error):
+func _on_api_client_request_failed(error) -> void:
 	failed.emit()
 	queue_free()
 
-func _on_api_client_response_received(response_body):
+func _on_api_client_response_received(response_body) -> void:
 	if response_body is not Array:
 		failed.emit()
 		queue_free()
@@ -67,9 +68,9 @@ func _on_api_client_response_received(response_body):
 		versions_matched.emit()
 	queue_free()
 
-func compare_versions():
+func compare_versions() -> void:
 	_api_client.request()
 
-func _ready():
+func _ready() -> void:
 	if auto_start:
 		compare_versions()
