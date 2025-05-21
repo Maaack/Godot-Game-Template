@@ -17,6 +17,9 @@ https://schinken.itch.io/low-ink
 https://maaack.itch.io/furnace-in-the-archive  
 https://plexsoup.itch.io/factoriohno  
 https://maaack.itch.io/dungeon-fantasy-fashion-show  
+https://maaack.itch.io/absurd-herd  
+https://maaack.itch.io/indys-expedition-2  
+https://baconeggsrl.itch.io/sprouts-journey  
 
 ### 2024
 https://store.steampowered.com/app/3291880/Spud_Customs/ (Source: https://github.com/Lost-Rabbit-Digital/SpudCustoms)  
