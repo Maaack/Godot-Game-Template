@@ -5,6 +5,7 @@ extends Node
 
 signal level_load_started
 signal level_loaded
+signal level_ready
 
 ## Container where the level instance will be added.
 @export var level_container : Node
@@ -40,6 +41,8 @@ func load_level(level_path : String = get_current_level_path()):
 	is_loading = false
 	current_level = _attach_level(SceneLoader.get_resource())
 	level_loaded.emit()
+	await current_level.ready
+	level_ready.emit()
 
 func reload_level():
 	load_level()

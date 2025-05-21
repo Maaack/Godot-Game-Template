@@ -20,28 +20,20 @@ static func _log_version() -> void:
 			current.first_version_opened = current_version
 		current.last_version_opened = current_version
 
-static func _load_or_new(new_state : Resource = null) -> void:
-	if current is GlobalStateData: return
+static func _load_current_state() -> void:
 	if FileAccess.file_exists(SAVE_STATE_PATH):
 		current = ResourceLoader.load(SAVE_STATE_PATH)
-		if not current:
-			push_error("Failed to load save state from file")
-		else: 
-			return
-	if new_state:
-		current = new_state
-	else:
+	if not current:
 		current = GlobalStateData.new()
 
 static func open() -> void:
-	_load_or_new()
+	_load_current_state()
 	_log_opened()
 	_log_version()
 	save()
 
 static func save() -> void:
 	if current is GlobalStateData:
-		var what_is_state = current
 		ResourceSaver.save(current, SAVE_STATE_PATH)
 
 static func has_state(state_key : String) -> bool:
