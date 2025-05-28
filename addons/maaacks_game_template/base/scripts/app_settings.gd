@@ -108,13 +108,13 @@ static func get_audio_bus_name(bus_iter : int) -> String:
 
 static func set_audio_from_config() -> void:
 	for bus_iter in AudioServer.bus_count:
-		var bus_name : String = get_audio_bus_name(bus_iter)
+		var bus_key : String = get_audio_bus_name(bus_iter).to_pascal_case()
 		var bus_volume : float = get_bus_volume(bus_iter)
 		initial_bus_volumes.append(bus_volume)
-		bus_volume = Config.get_config(AUDIO_SECTION, bus_name, bus_volume)
+		bus_volume = Config.get_config(AUDIO_SECTION, bus_key, bus_volume)
 		if is_nan(bus_volume):
 			bus_volume = 1.0
-			Config.set_config(AUDIO_SECTION, bus_name, bus_volume)
+			Config.set_config(AUDIO_SECTION, bus_key, bus_volume)
 		set_bus_volume(bus_iter, bus_volume)
 	var mute_audio_flag : bool = is_muted()
 	mute_audio_flag = Config.get_config(AUDIO_SECTION, MUTE_SETTING, mute_audio_flag)
