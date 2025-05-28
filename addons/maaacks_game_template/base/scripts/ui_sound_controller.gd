@@ -69,11 +69,11 @@ var line_text_changed_player : AudioStreamPlayer
 var line_text_submitted_player : AudioStreamPlayer
 var line_text_change_rejected_player : AudioStreamPlayer
 
-var item_list_selected_player : AudioStreamPlayer
 var item_list_activated_player : AudioStreamPlayer
+var item_list_selected_player : AudioStreamPlayer
 
-var tree_item_selected_player : AudioStreamPlayer
 var tree_item_activated_player : AudioStreamPlayer
+var tree_item_selected_player : AudioStreamPlayer
 var tree_button_clicked_player : AudioStreamPlayer
 
 func _update_persistent_signals() -> void:
