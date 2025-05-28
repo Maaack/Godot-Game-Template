@@ -40,12 +40,12 @@ const MAX_DEPTH = 16
 @export var line_text_change_rejected : AudioStream
 
 @export_group("ItemList Sounds")
-@export var item_list_activated : AudioStream
 @export var item_list_selected : AudioStream
+@export var item_list_activated : AudioStream
 
 @export_group("Tree Sounds")
-@export var tree_item_activated : AudioStream
 @export var tree_item_selected : AudioStream
+@export var tree_item_activated : AudioStream
 @export var tree_button_clicked : AudioStream
 
 @onready var root_node : Node = get_node(root_path)
