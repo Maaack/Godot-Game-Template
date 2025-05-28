@@ -60,7 +60,7 @@ var line_text_changed_player : AudioStreamPlayer
 var line_text_submitted_player : AudioStreamPlayer
 var line_text_change_rejected_player : AudioStreamPlayer
 
-func _update_persistent_signals():
+func _update_persistent_signals() -> void:
 	if not is_inside_tree():
 		return
 	var tree_node = get_tree()
@@ -71,7 +71,7 @@ func _update_persistent_signals():
 		if tree_node.node_added.is_connected(connect_ui_sounds):
 			tree_node.node_added.disconnect(connect_ui_sounds)
 
-func _build_stream_player(stream : AudioStream, stream_name : String = ""):
+func _build_stream_player(stream : AudioStream, stream_name : String = "") -> AudioStreamPlayer:
 	var stream_player : AudioStreamPlayer
 	if stream != null:
 		stream_player = AudioStreamPlayer.new()
@@ -81,47 +81,47 @@ func _build_stream_player(stream : AudioStream, stream_name : String = ""):
 		add_child(stream_player)
 	return stream_player
 
-func _build_button_stream_players():
+func _build_button_stream_players() -> void:
 	button_hovered_player = _build_stream_player(button_hovered, "ButtonHovered")
 	button_focused_player = _build_stream_player(button_focused, "ButtonFocused")
 	button_pressed_player = _build_stream_player(button_pressed, "ButtonClicked")
 
-func _build_tab_stream_players():
+func _build_tab_stream_players() -> void:
 	tab_hovered_player = _build_stream_player(tab_hovered, "TabHovered")
 	tab_changed_player = _build_stream_player(tab_changed, "TabChanged")
 	tab_selected_player = _build_stream_player(tab_selected, "TabSelected")
 
-func _build_slider_stream_players():
+func _build_slider_stream_players() -> void:
 	slider_hovered_player = _build_stream_player(slider_hovered, "SliderHovered")
 	slider_focused_player = _build_stream_player(slider_focused, "SliderFocused")
 	slider_drag_started_player = _build_stream_player(slider_drag_started, "SliderDragStarted")
 	slider_drag_ended_player = _build_stream_player(slider_drag_ended, "SliderDragEnded")
 
-func _build_line_stream_players():
+func _build_line_stream_players() -> void:
 	line_hovered_player = _build_stream_player(line_hovered, "LineHovered")
 	line_focused_player = _build_stream_player(line_focused, "LineFocused")
 	line_text_changed_player = _build_stream_player(line_text_changed, "LineTextChanged")
 	line_text_submitted_player = _build_stream_player(line_text_submitted, "LineTextSubmitted")
 	line_text_change_rejected_player = _build_stream_player(line_text_change_rejected, "LineTextChangeRejected")
 
-func _build_all_stream_players():
+func _build_all_stream_players() -> void:
 	_build_button_stream_players()
 	_build_tab_stream_players()
 	_build_slider_stream_players()
 	_build_line_stream_players()
 
-func _play_stream(stream_player : AudioStreamPlayer):
+func _play_stream(stream_player : AudioStreamPlayer) -> void:
 	if not stream_player.is_inside_tree():
 		return
 	stream_player.play()
 
-func _tab_event_play_stream(_tab_idx : int, stream_player : AudioStreamPlayer):
+func _tab_event_play_stream(_tab_idx : int, stream_player : AudioStreamPlayer) -> void:
 	_play_stream(stream_player)
 
-func _slider_drag_ended_play_stream(_value_changed : bool, stream_player : AudioStreamPlayer):
+func _slider_drag_ended_play_stream(_value_changed : bool, stream_player : AudioStreamPlayer) -> void:
 	_play_stream(stream_player)
 
-func _line_event_play_stream(_new_text : String, stream_player : AudioStreamPlayer):
+func _line_event_play_stream(_new_text : String, stream_player : AudioStreamPlayer) -> void:
 	_play_stream(stream_player)
 
 func _connect_stream_player(node : Node, stream_player : AudioStreamPlayer, signal_name : StringName, callable : Callable) -> void:
@@ -161,7 +161,7 @@ func _ready() -> void:
 	_recursive_connect_ui_sounds(root_node)
 	persistent = persistent
 
-func _exit_tree():
+func _exit_tree() -> void:
 	var tree_node = get_tree()
 	if tree_node.node_added.is_connected(connect_ui_sounds):
 		tree_node.node_added.disconnect(connect_ui_sounds)

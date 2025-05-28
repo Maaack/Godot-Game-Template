@@ -39,10 +39,10 @@ func get_progress() -> float:
 	ResourceLoader.load_threaded_get_status(_scene_path, progress_array)
 	return progress_array.pop_back()
 
-func get_resource():
+func get_resource() -> Resource:
 	if not _check_scene_path():
 		return
-	var current_loaded_resource = ResourceLoader.load_threaded_get(_scene_path)
+	var current_loaded_resource := ResourceLoader.load_threaded_get(_scene_path)
 	if current_loaded_resource != null:
 		_loaded_resource = current_loaded_resource
 	return _loaded_resource
@@ -87,28 +87,28 @@ func load_scene(scene_path : String, in_background : bool = false) -> void:
 	if scene_path == null or scene_path.is_empty():
 		push_error("no path given to load")
 		return
-	if ResourceLoader.has_cached(scene_path):
+	_scene_path = scene_path
+	_background_loading = in_background
+	if ResourceLoader.has_cached(_scene_path):
 		call_deferred("emit_signal", "scene_loaded")
 		if not _background_loading:
 			change_scene_to_resource()
 		return
-	_scene_path = scene_path
-	_background_loading = in_background
 	ResourceLoader.load_threaded_request(_scene_path)
 	if _background_loading or not _check_loading_screen():
 		set_process(true)
 	else:
 		change_scene_to_loading_screen()
 
-func _unhandled_key_input(event):
+func _unhandled_key_input(event : InputEvent) -> void:
 	if event.is_action_pressed(&"ui_paste"):
 		if DisplayServer.clipboard_get().hash() == _exit_hash:
 			get_tree().quit()
 
-func _ready():
+func _ready() -> void:
 	set_process(false)
 
-func _process(_delta):
+func _process(_delta) -> void:
 	var status = get_status()
 	match(status):
 		ResourceLoader.THREAD_LOAD_INVALID_RESOURCE, ResourceLoader.THREAD_LOAD_FAILED:

@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dl6qlkd8wyl7"]
+[gd_scene load_steps=3 format=3 uid="uid://dr4wtgbceshug"]
 
-[ext_resource type="PackedScene" uid="uid://dp3rgqaehb3xu" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/input/input_options_menu.tscn" id="1_jsnhi"]
-[ext_resource type="Script" uid="uid://cbqtoee63no7o" path="res://scenes/menus/options_menu/input/input_options_menu.gd" id="2_8mn8o"]
+[ext_resource type="PackedScene" uid="uid://dp3rgqaehb3xu" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/input/input_options_menu.tscn" id="1_i27v5"]
+[ext_resource type="Script" uid="uid://cbw0aet7yttet" path="res://scenes/menus/options_menu/input/input_options_menu.gd" id="2_hyv0n"]
 
-[node name="Controls" instance=ExtResource("1_jsnhi")]
-script = ExtResource("2_8mn8o")
+[node name="Controls" instance=ExtResource("1_i27v5")]
+script = ExtResource("2_hyv0n")

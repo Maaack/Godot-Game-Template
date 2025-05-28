@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5m61gpvjy1ao"]
+
+[ext_resource type="Script" uid="uid://ye1geusqp1gd" path="res://addons/maaacks_game_template/installer/check_plugin_version.gd" id="1_aqelj"]
+[ext_resource type="PackedScene" uid="uid://drhhakm62vjsy" path="res://addons/maaacks_game_template/base/scenes/utilities/api_client.tscn" id="2_5myc0"]
+
+[node name="CheckPluginVersion" type="Node"]
+script = ExtResource("1_aqelj")
+plugin_directory = "maaacks_game_template"
+plugin_github_url = "https://github.com/Maaack/Godot-Game-Template"
+
+[node name="APIClient" parent="." instance=ExtResource("2_5myc0")]
+api_url = "https://api.github.com/repos/Maaack/Godot-Game-Template/releases"
+request_method = 0
+
+[connection signal="request_failed" from="APIClient" to="." method="_on_api_client_request_failed"]
+[connection signal="response_received" from="APIClient" to="." method="_on_api_client_response_received"]

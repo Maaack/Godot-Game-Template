@@ -6,7 +6,7 @@ extends Resource
 @export var last_unix_time_opened : int
 @export var states : Dictionary
 
-func get_state(key_name : String, state_type_path : String):
+func get_state(key_name : String, state_type_path : String) -> Resource:
 	var new_state : Resource
 	var new_state_script = load(state_type_path)
 	if new_state_script is GDScript:
@@ -20,5 +20,5 @@ func get_state(key_name : String, state_type_path : String):
 	states[key_name] = new_state
 	return new_state
 
-func has_state(key_name : String):
+func has_state(key_name : String) -> bool:
 	return key_name in states

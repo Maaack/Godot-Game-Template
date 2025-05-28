@@ -1,0 +1,128 @@
+[gd_scene load_steps=4 format=3 uid="uid://gynblau0ojia"]
+
+[ext_resource type="Script" uid="uid://cwj8dpqveao6o" path="res://addons/maaacks_game_template/installer/update_plugin.gd" id="1_s6qpc"]
+[ext_resource type="PackedScene" uid="uid://drhhakm62vjsy" path="res://addons/maaacks_game_template/base/scenes/utilities/api_client.tscn" id="2_s6pdq"]
+[ext_resource type="PackedScene" uid="uid://dlkmofxhavh10" path="res://addons/maaacks_game_template/base/scenes/utilities/download_and_extract.tscn" id="3_s6pdq"]
+
+[node name="UpdatePlugin" type="Node"]
+script = ExtResource("1_s6qpc")
+plugin_directory = "maaacks_game_template"
+plugin_github_url = "https://github.com/Maaack/Godot-Game-Template"
+
+[node name="APIClient" parent="." instance=ExtResource("2_s6pdq")]
+api_url = "https://api.github.com/repos/Maaack/Godot-Game-Template/releases"
+request_method = 0
+
+[node name="DownloadAndExtract" parent="." instance=ExtResource("3_s6pdq")]
+extract_path = "res://"
+path_match_string = "addons/"
+skip_base_zip_dir = true
+force = true
+
+[node name="UpdateConfirmationDialog" type="ConfirmationDialog" parent="."]
+auto_translate_mode = 1
+title = "Update Plugin?"
+initial_position = 2
+size = Vector2i(640, 360)
+dialog_autowrap = true
+
+[node name="MarginContainer" type="MarginContainer" parent="UpdateConfirmationDialog"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 632.0
+offset_bottom = 311.0
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UpdateConfirmationDialog/MarginContainer"]
+layout_mode = 2
+
+[node name="UpdateLabel" type="Label" parent="UpdateConfirmationDialog/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "This will update the contents of the plugin folder (addons/plugin_directory/).
+Files outside of the plugin folder will not be affected.
+
+Update to v0.0.0?"
+
+[node name="HSeparator" type="HSeparator" parent="UpdateConfirmationDialog/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ReleaseNotesButton" type="LinkButton" parent="UpdateConfirmationDialog/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Show Release Notes"
+
+[node name="ReleaseNotesPanel" type="Panel" parent="UpdateConfirmationDialog/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 420)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ReleaseLabel" type="RichTextLabel" parent="UpdateConfirmationDialog/MarginContainer/VBoxContainer/ReleaseNotesPanel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+
+[node name="InstallingDialog" type="AcceptDialog" parent="."]
+auto_translate_mode = 1
+title = "Installing..."
+initial_position = 2
+size = Vector2i(400, 111)
+
+[node name="MarginContainer" type="MarginContainer" parent="InstallingDialog"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 396.0
+offset_bottom = 96.0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InstallingDialog/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="StageLabel" type="Label" parent="InstallingDialog/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="InstallingDialog/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+
+[node name="ErrorDialog" type="AcceptDialog" parent="."]
+auto_translate_mode = 1
+title = "Error!"
+initial_position = 2
+size = Vector2i(400, 128)
+
+[node name="SuccessDialog" type="AcceptDialog" parent="."]
+auto_translate_mode = 1
+title = "Update Complete"
+initial_position = 2
+size = Vector2i(400, 128)
+dialog_text = "%s updated to v%s."
+
+[connection signal="request_failed" from="APIClient" to="." method="_on_api_client_request_failed"]
+[connection signal="response_received" from="APIClient" to="." method="_on_api_client_response_received"]
+[connection signal="run_completed" from="DownloadAndExtract" to="." method="_on_download_and_extract_run_completed"]
+[connection signal="run_failed" from="DownloadAndExtract" to="." method="_on_download_and_extract_run_failed"]
+[connection signal="zip_saved" from="DownloadAndExtract" to="." method="_on_download_and_extract_zip_saved"]
+[connection signal="canceled" from="UpdateConfirmationDialog" to="." method="_on_update_confirmation_dialog_canceled"]
+[connection signal="confirmed" from="UpdateConfirmationDialog" to="." method="_on_update_confirmation_dialog_confirmed"]
+[connection signal="pressed" from="UpdateConfirmationDialog/MarginContainer/VBoxContainer/ReleaseNotesButton" to="." method="_on_release_notes_button_pressed"]
+[connection signal="canceled" from="ErrorDialog" to="." method="_on_error_dialog_canceled"]
+[connection signal="confirmed" from="ErrorDialog" to="." method="_on_error_dialog_confirmed"]
+[connection signal="canceled" from="SuccessDialog" to="." method="_on_success_dialog_canceled"]
+[connection signal="confirmed" from="SuccessDialog" to="." method="_on_success_dialog_confirmed"]

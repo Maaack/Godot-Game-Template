@@ -17,7 +17,7 @@ var last_input_text : String
 var listening : bool = false
 var confirming : bool = false
 
-func _record_input_event(event : InputEvent):
+func _record_input_event(event : InputEvent) -> void:
 	last_input_text = InputEventHelper.get_text(event)
 	if last_input_text.is_empty():
 		return
@@ -25,7 +25,7 @@ func _record_input_event(event : InputEvent):
 	%InputLabel.text = last_input_text
 	get_ok_button().disabled = false
 
-func _is_recordable_input(event : InputEvent):
+func _is_recordable_input(event : InputEvent) -> bool:
 	return event != null and \
 		(event is InputEventKey or \
 		event is InputEventMouseButton or \
@@ -34,26 +34,26 @@ func _is_recordable_input(event : InputEvent):
 		abs(event.axis_value) > 0.5)) and \
 		event.is_pressed()
 
-func _start_listening():
+func _start_listening() -> void:
 	%InputTextEdit.placeholder_text = LISTENING_TEXT
 	listening = true
 	%DelayTimer.start()
 
-func _stop_listening():
+func _stop_listening() -> void:
 	%InputTextEdit.placeholder_text = FOCUS_HERE_TEXT
 	listening = false
 	confirming = false
 
-func _on_text_edit_focus_entered():
+func _on_text_edit_focus_entered() -> void:
 	_start_listening.call_deferred()
 
-func _on_input_text_edit_focus_exited():
+func _on_input_text_edit_focus_exited() -> void:
 	_stop_listening()
 
-func _focus_on_ok():
+func _focus_on_ok() -> void:
 	get_ok_button().grab_focus()
 
-func _ready():
+func _ready() -> void:
 	get_ok_button().focus_neighbor_top = ^"../../%InputTextEdit"
 	get_cancel_button().focus_neighbor_top = ^"../../%InputTextEdit"
 
@@ -72,11 +72,11 @@ func _should_process_input_event(event : InputEvent) -> bool:
 func _should_confirm_input_event(event : InputEvent) -> bool:
 	return not _is_mouse_input(event)
 
-func _confirm_choice():
+func _confirm_choice() -> void:
 	confirmed.emit()
 	hide()
 
-func _process_input_event(event : InputEvent):
+func _process_input_event(event : InputEvent) -> void:
 	if not _should_process_input_event(event):
 		return
 	if _input_confirms_choice(event):
@@ -94,11 +94,11 @@ func _process_input_event(event : InputEvent):
 		%DelayTimer.start()
 		%InputTextEdit.placeholder_text = CONFIRM_INPUT_TEXT
 
-func _on_input_text_edit_gui_input(event):
+func _on_input_text_edit_gui_input(event) -> void:
 	%InputTextEdit.set_deferred("text", "")
 	_process_input_event(event)
 
-func _on_visibility_changed():
+func _on_visibility_changed() -> void:
 	if visible:
 		%InputLabel.text = NO_INPUT_TEXT
 		%InputTextEdit.grab_focus()

@@ -1,10 +1,10 @@
 [gd_scene load_steps=20 format=3 uid="uid://8ymyrorpy02h"]
 
 [ext_resource type="PackedScene" uid="uid://c6k5nnpbypshi" path="res://addons/maaacks_game_template/base/scenes/menus/main_menu/main_menu.tscn" id="1_ol417"]
-[ext_resource type="Script" uid="uid://bryarst7qsas4" path="res://scenes/menus/main_menu/main_menu_with_animations.gd" id="2_0jb1p"]
-[ext_resource type="PackedScene" uid="uid://crgwq4t7ljint" path="res://scenes/menus/level_select_menu/level_select_menu.tscn" id="3_ixa71"]
-[ext_resource type="PackedScene" uid="uid://dfycb1h41yhrw" path="res://scenes/menus/options_menu/master_options_menu_with_tabs.tscn" id="3_v43e6"]
-[ext_resource type="PackedScene" uid="uid://da7uj8u87g24i" path="res://scenes/credits/credits.tscn" id="4_58732"]
+[ext_resource type="Script" uid="uid://dqwkxqvo2k8yo" path="res://scenes/menus/main_menu/main_menu_with_animations.gd" id="2_0jb1p"]
+[ext_resource type="PackedScene" uid="uid://ccppwwuglvave" path="res://scenes/menus/level_select_menu/level_select_menu.tscn" id="3_ixa71"]
+[ext_resource type="PackedScene" uid="uid://boicxc6x4554n" path="res://scenes/menus/options_menu/master_options_menu_with_tabs.tscn" id="3_v43e6"]
+[ext_resource type="PackedScene" uid="uid://dlj8an1r0ynut" path="res://scenes/credits/credits.tscn" id="4_58732"]
 [ext_resource type="AudioStream" uid="uid://cyakcui2s5g46" path="res://assets/music_and_sfx/Maaack - Campfire Tales - Music 2b (3 min).mp3" id="5_sr523"]
 
 [sub_resource type="Animation" id="1"]

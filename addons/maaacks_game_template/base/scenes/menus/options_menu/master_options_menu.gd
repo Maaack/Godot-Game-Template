@@ -1,7 +1,7 @@
 class_name MasterOptionsMenu
 extends Control
 
-func _unhandled_input(event):
+func _unhandled_input(event : InputEvent) -> void:
 	if not is_visible_in_tree():
 		return
 	if event.is_action_pressed("ui_page_down"):

@@ -1,13 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://cmtlq3l85ydkb"]
+[gd_scene load_steps=2 format=3 uid="uid://d25665kl0b64c"]
 
-[ext_resource type="Script" uid="uid://dh4ij423o3s58" path="res://scenes/menus/options_menu/game/reset_game_control/reset_game_control.gd" id="1_3pujq"]
+[ext_resource type="Script" uid="uid://cufxsojv3gqn1" path="res://scenes/menus/options_menu/game/reset_game_control/reset_game_control.gd" id="1_mkb8o"]
 
 [node name="ResetGameControl" type="HBoxContainer"]
 custom_minimum_size = Vector2(0, 32)
 offset_top = 210.0
 offset_right = 305.0
 offset_bottom = 242.0
-script = ExtResource("1_3pujq")
+script = ExtResource("1_mkb8o")
 
 [node name="ResetLabel" type="Label" parent="."]
 layout_mode = 2
