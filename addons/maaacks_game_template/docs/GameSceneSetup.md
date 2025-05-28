@@ -16,7 +16,15 @@ A `LevelLoader` must be provided with a `level_container` in the scene. Levels w
 
 The level loader is called from a `LevelListManager` with `advance_and_load_level()`. An additional loading screen in the scene can show progress of loading levels, and is toggled by the `LevelListManager` with `reset()`.
 
+### Games without levels
 Level Loading is not required if the entire game takes place in one scene.  
+
+In that case, the following nodes can be safely removed:
+* LevelLoader
+* LevelLoadingScreen
+* LevelListManager
+  
+The single level scene can then be added directly to the `SubViewport` or the root node.
 
 ## Background Music
 `BackgroundMusicPlayer`'s are `AudioStreamPlayer`'s with `autoplay` set to `true` and `audio_bus` set to "Music". These will automatically be recognized by the `ProjectMusicController` with the default settings, and allow for blending between tracks.
