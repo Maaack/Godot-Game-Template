@@ -353,14 +353,7 @@ func _remove_update_plugin_tool_option() -> void:
 	remove_tool_menu_item(update_plugin_tool_string)
 	update_plugin_tool_string = ""
 
-func _deprecate_old_setting_name() -> void:
-	if not ProjectSettings.has_setting(PROJECT_SETTINGS_PATH + "disable_plugin_dialogues"): return
-	var prior_setting : bool = ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + "disable_plugin_dialogues", false)
-	ProjectSettings.set_setting(PROJECT_SETTINGS_PATH + "disable_install_wizard", prior_setting)
-	ProjectSettings.set_setting(PROJECT_SETTINGS_PATH + "disable_plugin_dialogues", null)
-
 func _show_plugin_dialogues() -> void:
-	_deprecate_old_setting_name()
 	if ProjectSettings.has_setting(PROJECT_SETTINGS_PATH + "disable_install_wizard") :
 		if ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + "disable_install_wizard") :
 			return
