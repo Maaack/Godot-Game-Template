@@ -61,12 +61,12 @@ func blend_to(target_volume_db : float, duration : float = 0.0) -> Tween:
 	return
 
 func stop() -> void:
-	if music_stream_player == null:
+	if not is_instance_valid(music_stream_player):
 		return
 	music_stream_player.stop()
 
 func play(playback_position : float = 0.0) -> void:
-	if music_stream_player == null:
+	if not is_instance_valid(music_stream_player):
 		return
 	if is_zero_approx(playback_position) and not music_stream_player.playing:
 		music_stream_player.play()
@@ -74,7 +74,7 @@ func play(playback_position : float = 0.0) -> void:
 		music_stream_player.play(playback_position)
 
 func _fade_out_and_free() -> void:
-	if music_stream_player == null:
+	if not is_instance_valid(music_stream_player):
 		return
 	var stream_player = music_stream_player
 	var tween = fade_out(fade_out_duration)
@@ -89,7 +89,7 @@ func _play_and_fade_in() -> void:
 func _is_matching_stream(stream_player : AudioStreamPlayer) -> bool:
 	if stream_player.bus != audio_bus:
 		return false
-	if music_stream_player == null:
+	if not is_instance_valid(music_stream_player):
 		return false
 	return music_stream_player.stream == stream_player.stream
 
