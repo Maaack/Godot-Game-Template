@@ -5,12 +5,16 @@ extends Control
 signal end_reached
 
 @export_file("*.md") var attribution_file_path: String = "res://ATTRIBUTION.md"
+@export var current_speed: float = 1.0
+@export var enabled : bool = true
+@export_group("Font Sizes")
 @export var h1_font_size: int
 @export var h2_font_size: int
 @export var h3_font_size: int
 @export var h4_font_size: int
-@export var current_speed: float = 1.0
-@export var enabled : bool = true
+@export_group("Extra Options")
+## For platforms that don't permit linking to other domains or products.
+@export var disable_urls: bool
 
 var _current_scroll_position : float = 0.0
 var scroll_paused : bool = false
@@ -115,7 +119,7 @@ func _start_scroll_timer() -> void:
 	$ScrollResetTimer.start()
 
 func _on_CreditsLabel_meta_clicked(meta:String) -> void:
-	if meta.begins_with("https://"):
+	if meta.begins_with("https://") and not disable_urls:
 		var _err = OS.shell_open(meta)
 
 func _on_scroll_reset_timer_timeout() -> void:
