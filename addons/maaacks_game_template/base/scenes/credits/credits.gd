@@ -6,7 +6,7 @@ signal end_reached
 
 @export_file("*.md") var attribution_file_path: String = "res://ATTRIBUTION.md"
 @export var current_speed: float = 1.0
-@export var enabled : bool = true
+@export var auto_update : bool = true
 @export_group("Font Sizes")
 @export var h1_font_size: int
 @export var h2_font_size: int
@@ -71,6 +71,7 @@ func reset() -> void:
 	set_header_and_footer()
 
 func _ready() -> void:
+	if not auto_update: return
 	set_file_path(attribution_file_path)
 	set_header_and_footer()
 
@@ -88,7 +89,7 @@ func _check_end_reached() -> void:
 	_end_reached()
 
 func _scroll_container(amount : float) -> void:
-	if not visible or not enabled or scroll_paused:
+	if not visible or scroll_paused:
 		return
 	_current_scroll_position += amount
 	$ScrollContainer.scroll_vertical = round(_current_scroll_position)

@@ -28,7 +28,6 @@ func reset() -> void:
 	mouse_filter = init_mouse_filter
 
 func _unhandled_input(event : InputEvent) -> void:
-	if not enabled: return
 	if event.is_action_pressed("ui_cancel"):
 		if not %EndMessagePanel.visible:
 			_end_reached()
