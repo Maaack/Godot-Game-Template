@@ -42,6 +42,9 @@ func get_progress() -> float:
 func get_resource() -> Resource:
 	if not _check_scene_path():
 		return
+	if ResourceLoader.has_cached(_scene_path):
+		_loaded_resource = ResourceLoader.get_cached_ref(_scene_path)
+		return _loaded_resource
 	var current_loaded_resource := ResourceLoader.load_threaded_get(_scene_path)
 	if current_loaded_resource != null:
 		_loaded_resource = current_loaded_resource
