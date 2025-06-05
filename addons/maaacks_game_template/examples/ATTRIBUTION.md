@@ -34,3 +34,5 @@ License: [GNU General Public License version 2](https://opensource.org/licenses/
 Author: [Marek Belski and contributors](https://github.com/Maaack/Godot-Game-Template/graphs/contributors)  
 Source: [github: Godot-Game-Template](https://github.com/Maaack/Godot-Game-Template)  
 License: [MIT License](LICENSE.txt)  
+  
+![Icon](/addons/maaacks_game_template/assets/icon.png)  
