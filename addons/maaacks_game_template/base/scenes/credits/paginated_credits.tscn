@@ -41,6 +41,7 @@ alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+disabled = true
 text = "< Previous"
 
 [node name="Spacer" type="Control" parent="VBoxContainer/MarginContainer/PaginationControls"]
@@ -51,6 +52,7 @@ size_flags_horizontal = 3
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+disabled = true
 text = "Next >"
 
 [node name="CreditsLabel" type="RichTextLabel" parent="."]
@@ -64,3 +66,5 @@ h1_font_size = 64
 h2_font_size = 48
 h3_font_size = 32
 h4_font_size = 24
+max_image_width = 80
+max_image_height = 80
