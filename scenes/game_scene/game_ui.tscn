@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/scenes/music_players/background_music_player.tscn" id="4_7aihr"]
 [ext_resource type="PackedScene" uid="uid://dn02kotqcawyw" path="res://scenes/loading_screen/level_loading_screen.tscn" id="5_8qp3c"]
 [ext_resource type="Script" uid="uid://cl3opf2oe8og3" path="res://scenes/game_scene/configurable_sub_viewport.gd" id="6_bmy5n"]
-[ext_resource type="Script" uid="uid://ultbh4wcm8t5" path="res://scripts/level_list_state_manager.gd" id="7_7aihr"]
+[ext_resource type="Script" uid="uid://ultbh4wcm8t5" path="res://scripts/level_list_and_state_manager.gd" id="7_7aihr"]
 [ext_resource type="PackedScene" uid="uid://bifqmlemht8b2" path="res://scenes/overlaid_menus/game_won_menu.tscn" id="8_3re04"]
 [ext_resource type="PackedScene" uid="uid://cvr36eb0r2bje" path="res://scenes/overlaid_menus/level_lost_menu.tscn" id="9_ascoc"]
 [ext_resource type="PackedScene" uid="uid://fi7nwkte06g2" path="res://scenes/overlaid_menus/level_won_menu.tscn" id="10_wr4n6"]
