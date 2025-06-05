@@ -2,7 +2,7 @@
 class_name CreditsLabel
 extends RichTextLabel
 
-@export_file("*.md") var attribution_file_path: String = "res://ATTRIBUTION.md"
+@export_file("*.md") var attribution_file_path: String
 @export var auto_update : bool = true
 @export_group("Font Sizes")
 @export var h1_font_size: int
