@@ -55,13 +55,17 @@ func _update_pages() -> void:
 	for ratio in content_split:
 		var character_ratio : int = credits_text.length() * ratio
 		var split_credits_text := credits_text.substr(last_character_position, character_ratio)
-		var last_header_index := _get_last_header(split_credits_text)
-		split_credits_text = split_credits_text.substr(0, last_header_index)
-		last_character_position += last_header_index
+		if credits_text.length() > split_credits_text.length() + last_character_position:
+			var last_header_index := _get_last_header(split_credits_text)
+			split_credits_text = split_credits_text.substr(0, last_header_index)
+			last_character_position += last_header_index
+		else:
+			last_character_position += credits_text.length()
 		page_texts.append(split_credits_text)
 	for page_iter in range(visible_pages):
 		var rich_text_label := RichTextLabel.new()
 		rich_text_label.bbcode_enabled = true
+		if current_page + page_iter >= page_texts.size(): break
 		var split_credits_text = page_texts[current_page + page_iter]
 		rich_text_label.text = "[center]%s[/center]" % [split_credits_text]
 		rich_text_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
