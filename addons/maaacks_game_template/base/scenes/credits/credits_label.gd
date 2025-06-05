@@ -1,3 +1,4 @@
+@tool
 class_name CreditsLabel
 extends RichTextLabel
 
@@ -44,7 +45,7 @@ func _update_text_from_file() -> void:
 		return
 	var _end_of_first_line = file_text.find("\n") + 1
 	file_text = file_text.right(-_end_of_first_line) # Trims first line "ATTRIBUTION"
-	file_text = regex_replace_urls(text)
+	file_text = regex_replace_urls(file_text)
 	file_text = regex_replace_titles(file_text)
 	text = "[center]%s[/center]" % [file_text]
 
