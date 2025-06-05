@@ -5,7 +5,6 @@
 
 [node name="Credits" instance=ExtResource("1_n45le")]
 script = ExtResource("2_q7msw")
-attribution_file_path = "res://addons/maaacks_game_template/examples/ATTRIBUTION.md"
 
 [node name="CreditsLabel" parent="ScrollContainer/VBoxContainer" index="1"]
 text = "[center][font_size=48]Collaborators[/font_size]
@@ -44,3 +43,4 @@ Author: [url=https://github.com/Maaack/Godot-Game-Template/graphs/contributors]M
 Source: [url=https://github.com/Maaack/Godot-Game-Template]github: Godot-Game-Template[/url]  
 License: [url=LICENSE.txt]MIT License[/url]  
 [/center]"
+attribution_file_path = "res://addons/maaacks_game_template/examples/ATTRIBUTION.md"
