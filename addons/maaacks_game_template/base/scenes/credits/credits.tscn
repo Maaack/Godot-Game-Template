@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://t2dui8ppm3a4"]
+[gd_scene load_steps=3 format=3 uid="uid://t2dui8ppm3a4"]
 
+[ext_resource type="Script" uid="uid://gmrv6pgchkwc" path="res://addons/maaacks_game_template/base/scenes/credits/auto_scroll_container.gd" id="2_ak7hi"]
 [ext_resource type="Script" uid="uid://bnub0cq2y0deh" path="res://addons/maaacks_game_template/base/scenes/credits/credits.gd" id="4"]
 
 [node name="Credits" type="Control"]
@@ -23,6 +24,7 @@ anchor_bottom = 1.0
 scroll_vertical = 100
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
+script = ExtResource("2_ak7hi")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
 layout_mode = 2
@@ -52,8 +54,6 @@ layout_mode = 2
 wait_time = 1.5
 one_shot = true
 
-[connection signal="gui_input" from="ScrollContainer" to="." method="_on_scroll_container_gui_input"]
-[connection signal="resized" from="ScrollContainer" to="." method="_on_scroll_container_resized"]
-[connection signal="scroll_started" from="ScrollContainer" to="." method="_on_scroll_container_scroll_started"]
+[connection signal="end_reached" from="ScrollContainer" to="." method="_on_scroll_container_end_reached"]
 [connection signal="meta_clicked" from="ScrollContainer/VBoxContainer/CreditsLabel" to="." method="_on_CreditsLabel_meta_clicked"]
 [connection signal="timeout" from="ScrollResetTimer" to="." method="_on_scroll_reset_timer_timeout"]

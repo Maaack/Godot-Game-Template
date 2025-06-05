@@ -5,7 +5,6 @@ extends Control
 signal end_reached
 
 @export_file("*.md") var attribution_file_path: String = "res://ATTRIBUTION.md"
-@export var current_speed: float = 1.0
 @export var auto_update : bool = true
 @export_group("Font Sizes")
 @export var h1_font_size: int
@@ -15,9 +14,6 @@ signal end_reached
 @export_group("Extra Options")
 ## For platforms that don't permit linking to other domains or products.
 @export var disable_urls: bool
-
-var _current_scroll_position : float = 0.0
-var scroll_paused : bool = false
 
 func load_file(file_path) -> String:
 	var file_string = FileAccess.get_file_as_string(file_path)
@@ -59,73 +55,14 @@ func set_file_path(file_path:String) -> void:
 	attribution_file_path = file_path
 	_update_text_from_file()
 
-func set_header_and_footer() -> void:
-	_current_scroll_position = $ScrollContainer.scroll_vertical
-	%HeaderSpace.custom_minimum_size.y = size.y
-	%FooterSpace.custom_minimum_size.y = size.y
-	%CreditsLabel.custom_minimum_size.x = size.x
-
-func reset() -> void:
-	scroll_paused = false
-	$ScrollContainer.scroll_vertical = 0
-	set_header_and_footer()
-
 func _ready() -> void:
 	if not auto_update: return
 	set_file_path(attribution_file_path)
-	set_header_and_footer()
-
-func _end_reached() -> void:
-	scroll_paused = true
-	emit_signal("end_reached")
-
-func is_end_reached() -> bool:
-	var _end_of_credits_vertical = %CreditsLabel.size.y + %HeaderSpace.size.y
-	return $ScrollContainer.scroll_vertical > _end_of_credits_vertical
-
-func _check_end_reached() -> void:
-	if not is_end_reached():
-		return
-	_end_reached()
-
-func _scroll_container(amount : float) -> void:
-	if not visible or scroll_paused:
-		return
-	_current_scroll_position += amount
-	$ScrollContainer.scroll_vertical = round(_current_scroll_position)
-	_check_end_reached()
-
-func _process(_delta : float) -> void:
-	if Engine.is_editor_hint():
-		return
-	var input_axis = Input.get_axis("ui_up", "ui_down")
-	if input_axis != 0:
-		_scroll_container(10 * input_axis)
-	else:
-		_scroll_container(current_speed)
-
-func _on_scroll_container_gui_input(event : InputEvent) -> void:
-	# Capture the mouse scroll wheel input event
-	if event is InputEventMouseButton:
-		scroll_paused = true
-		_start_scroll_timer()
-	_check_end_reached()
-
-func _on_scroll_container_scroll_started() -> void:
-	# Capture the touch input event
-	scroll_paused = true
-	_start_scroll_timer()
-
-func _start_scroll_timer() -> void:
-	$ScrollResetTimer.start()
 
 func _on_CreditsLabel_meta_clicked(meta:String) -> void:
 	if meta.begins_with("https://") and not disable_urls:
 		var _err = OS.shell_open(meta)
 
-func _on_scroll_reset_timer_timeout() -> void:
-	set_header_and_footer()
-	scroll_paused = false
 
-func _on_scroll_container_resized() -> void:
-	set_header_and_footer()
+func _on_scroll_container_end_reached() -> void:
+	end_reached.emit()
