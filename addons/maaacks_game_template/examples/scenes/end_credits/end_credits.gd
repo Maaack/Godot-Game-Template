@@ -1,4 +1,4 @@
-extends Credits
+extends ScrollingCredits
 
 @export_file("*.tscn") var main_menu_scene : String
 @onready var init_mouse_filter : MouseFilter = mouse_filter

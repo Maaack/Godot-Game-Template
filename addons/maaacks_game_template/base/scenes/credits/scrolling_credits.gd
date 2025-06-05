@@ -1,7 +1,5 @@
-class_name Credits
-extends Control
-
-signal end_reached
+class_name ScrollingCredits
+extends Credits
 
 @onready var header_space : Control = %HeaderSpace
 @onready var footer_space : Control = %FooterSpace
