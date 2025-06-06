@@ -35,4 +35,4 @@ Author: [Marek Belski and contributors](https://github.com/Maaack/Godot-Game-Tem
 Source: [github: Godot-Game-Template](https://github.com/Maaack/Godot-Game-Template)  
 License: [MIT License](LICENSE.txt)  
   
-![Icon](/addons/maaacks_game_template/assets/icon.png)  
+![Icon](/addons/maaacks_game_template/examples/assets/icon.png)  
