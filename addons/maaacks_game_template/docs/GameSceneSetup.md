@@ -10,9 +10,9 @@ The `PauseMenuController` node can be added to the tree, or the `pause_menu_cont
 This should be enough to capture when the `ui-cancel` input action is pressed in-game. On keyboards, this is commonly the `Esc` key.
 
 ## Level Loading
-Some level loading scripts are provided with the examples. They load levels in order from a list, or dynamically by file paths. Levels can be added to the `LevelLoader` by either selecting a directory to automatically read scene files from, or populating the files array manually.
+Some level loading scripts are provided with the examples. They load levels in order from a list, or dynamically by file paths. Levels can be added to the `LevelListLoader` by either selecting a directory to automatically read scene files from, or populating the files array manually.
 
-A `LevelLoader` must be provided with a `level_container` in the scene. Levels will get added to and removed from this node. The example uses the `SubViewport`, but any leaf node (ie. node without children) in the scene should work.
+A `LevelListLoader` must be provided with a `level_container` in the scene. Levels will get added to and removed from this node. The example uses the `SubViewport`, but any leaf node (ie. node without children) in the scene should work.
 
 The level loader is called from a `LevelListManager` with `advance_and_load_level()`. An additional loading screen in the scene can show progress of loading levels, and is toggled by the `LevelListManager` with `reset()`.
 
@@ -20,7 +20,7 @@ The level loader is called from a `LevelListManager` with `advance_and_load_leve
 Level Loading is not required if the entire game takes place in one scene.  
 
 In that case, the following nodes can be safely removed:
-* LevelLoader
+* LevelListLoader
 * LevelLoadingScreen
 * LevelListManager
   
