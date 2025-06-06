@@ -98,9 +98,8 @@ func load_scene(scene_path : String, in_background : bool = false) -> void:
 			change_scene_to_resource()
 		return
 	ResourceLoader.load_threaded_request(_scene_path)
-	if _background_loading or not _check_loading_screen():
-		set_process(true)
-	else:
+	set_process(true)
+	if _check_loading_screen() and not _background_loading:
 		change_scene_to_loading_screen()
 
 func _unhandled_key_input(event : InputEvent) -> void:
