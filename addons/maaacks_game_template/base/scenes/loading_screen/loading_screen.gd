@@ -124,7 +124,7 @@ func _update_progress_messaging() -> void:
 		_hide_popups()
 
 func _process(_delta : float) -> void:
-	_try_loading_next_scene()
+	# _try_loading_next_scene()
 	var status = SceneLoader.get_status()
 	match(status):
 		ResourceLoader.THREAD_LOAD_IN_PROGRESS:
