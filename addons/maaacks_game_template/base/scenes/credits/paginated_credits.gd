@@ -4,6 +4,8 @@ extends Credits
 
 const CENTER_OPEN_TAG := "[center]"
 const CENTER_CLOSE_TAG := "[/center]"
+const NOT_FOUND := -1
+const FONT_SIZE_OPEN_TAG := "[font_size=%d]"
 
 @onready var page_container : BoxContainer = %PageContainer
 @onready var credits_label : CreditsLabel = %CreditsLabel
@@ -40,7 +42,29 @@ func _remove_centering(centered_text: String) -> String:
 	return centered_text
 
 func _get_last_header(credits_text: String) -> int:
-	return credits_text.rfind("[font_size=")
+	var header_sizes: Array[int] = [
+		credits_label.h1_font_size,
+		credits_label.h2_font_size,
+		credits_label.h3_font_size,
+		credits_label.h4_font_size,
+	]
+	var last_header := NOT_FOUND
+	var first_header := NOT_FOUND
+	var last_header_iter := NOT_FOUND
+	for font_size in header_sizes:
+		last_header_iter += 1
+		if credits_text.count(FONT_SIZE_OPEN_TAG % font_size) > 1:
+			last_header = credits_text.rfind(FONT_SIZE_OPEN_TAG % font_size)
+			first_header = credits_text.find(FONT_SIZE_OPEN_TAG % font_size)
+			break
+	if last_header_iter > 0:
+		for iter in range(last_header_iter):
+			var font_size := header_sizes[iter]
+			var _rfind_result := credits_text.rfind(FONT_SIZE_OPEN_TAG % font_size)
+			if _rfind_result > first_header and _rfind_result < last_header:
+				last_header = _rfind_result
+				break
+	return last_header
 
 func _update_buttons() -> void:
 	previous_button.disabled = !(current_page > 0)
