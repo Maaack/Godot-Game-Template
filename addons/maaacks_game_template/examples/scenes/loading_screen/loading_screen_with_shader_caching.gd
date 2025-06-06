@@ -30,13 +30,13 @@ func update_total_loading_progress() -> void:
 		partial_total /= 2
 	_total_loading_progress = partial_total
 
-func _try_loading_next_scene() -> void:
+func _set_scene_loading_complete() -> void:
+	super._set_scene_loading_complete()
 	if can_load_shader_cache() and not _loading_shader_cache:
 		_loading_shader_cache = true
 		_show_all_draw_passes_once()
 	if can_load_shader_cache() and _caching_progress < 1.0:
 		return
-	super._try_loading_next_scene()
 
 func _show_all_draw_passes_once() -> void:
 	var all_materials := _traverse_folders(_spatial_shader_material_dir)
