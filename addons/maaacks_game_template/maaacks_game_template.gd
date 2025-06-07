@@ -54,7 +54,7 @@ func _check_theme_needs_updating(target_path : String) -> void:
 	var new_theme_resource_path = target_path + MAIN_SCENE_RELATIVE_PATH
 	if new_theme_resource_path == current_theme_resource_path:
 		return
-	_open_theme_selection_dialog(target_path)
+	_delayed_open_theme_selection_dialog(target_path)
 
 func _open_theme_selection_dialog(target_path : String) -> void:
 	selected_theme = ""
@@ -66,6 +66,16 @@ func _open_theme_selection_dialog(target_path : String) -> void:
 	var theme_directores : Array[String]
 	theme_directores.append(target_path + THEMES_DIRECTORY_RELATIVE_PATH)
 	theme_selection_instance.theme_directories = theme_directores
+
+func _delayed_open_theme_selection_dialog(target_path : String) -> void:
+	var timer: Timer = Timer.new()
+	var callable := func():
+		timer.stop()
+		_open_theme_selection_dialog(target_path)
+		timer.queue_free()
+	timer.timeout.connect(callable)
+	add_child(timer)
+	timer.start(WINDOW_OPEN_DELAY)
 
 func _update_main_scene(target_path : String, main_scene_path : String) -> void:
 	ProjectSettings.set_setting("application/run/main_scene", main_scene_path)
