@@ -37,6 +37,8 @@ func _set_scene_loading_complete() -> void:
 		_show_all_draw_passes_once()
 	if can_load_shader_cache() and _caching_progress < 1.0:
 		return
+	SceneLoader._background_loading = false
+	SceneLoader.set_process(true)
 
 func _show_all_draw_passes_once() -> void:
 	var all_materials := _traverse_folders(_spatial_shader_material_dir)
@@ -84,3 +86,6 @@ func _load_material(path:String) -> void:
 	var material := ResourceLoader.load(path) as Material
 	material_shower.set_surface_override_material(0, material)
 	%SpatialShaderTypeCaches.add_child(material_shower)
+
+func _ready() -> void:
+	SceneLoader._background_loading = true
