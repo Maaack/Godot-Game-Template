@@ -13,8 +13,10 @@ extends RichTextLabel
 @export var max_image_width: int
 @export var max_image_height : int
 @export_group("Extra Options")
+@export var disable_images : bool = false
+@export var disable_urls : bool = false
 ## For platforms that don't permit linking to other domains or products.
-@export var disable_urls: bool
+@export var disable_opening_links: bool = false
 
 func load_file(file_path) -> String:
 	var file_string = FileAccess.get_file_as_string(file_path)
@@ -25,23 +27,27 @@ func load_file(file_path) -> String:
 
 func regex_replace_imgs(credits:String) -> String:
 	var regex = RegEx.new()
-	var match_string : String = "!\\[([^\\]]*)\\]\\(([^\\)]*)\\)"
-	var replace_string : String = "res://$2[/img]"
-	if max_image_width:
-		if max_image_height:
-			replace_string = ("[img=%dx%d]" % [max_image_width, max_image_height]) + replace_string
+	var match_string := "!\\[([^\\]]*)\\]\\(([^\\)]*)\\)"
+	var replace_string := ""
+	if not disable_images:
+		replace_string = "res://$2[/img]"
+		if max_image_width:
+			if max_image_height:
+				replace_string = ("[img=%dx%d]" % [max_image_width, max_image_height]) + replace_string
+			else:
+				replace_string = ("[img=%d]" % [max_image_width]) + replace_string
 		else:
-			replace_string = ("[img=%d]" % [max_image_width]) + replace_string
-	else:
-		replace_string = "[img]" + replace_string
+			replace_string = "[img]" + replace_string
 	regex.compile(match_string)
 	regex.get_group_count()
 	return regex.sub(credits, replace_string, true)
 
 func regex_replace_urls(credits:String) -> String:
 	var regex = RegEx.new()
-	var match_string : String = "\\[([^\\]]*)\\]\\(([^\\)]*)\\)"
-	var replace_string : String = "[url=$2]$1[/url]"
+	var match_string := "\\[([^\\]]*)\\]\\(([^\\)]*)\\)"
+	var replace_string := "$1"
+	if not disable_urls:
+		replace_string = "[url=$2]$1[/url]"
 	regex.compile(match_string)
 	return regex.sub(credits, replace_string, true)
 
@@ -51,8 +57,8 @@ func regex_replace_titles(credits:String) -> String:
 	for heading_font_size in heading_font_sizes:
 		iter += 1
 		var regex = RegEx.new()
-		var match_string : String = "([^#]|^)#{%d}\\s([^\n]*)" % iter
-		var replace_string : String = "$1[font_size=%d]$2[/font_size]" % [heading_font_size]
+		var match_string := "([^#]|^)#{%d}\\s([^\n]*)" % iter
+		var replace_string := "$1[font_size=%d]$2[/font_size]" % [heading_font_size]
 		regex.compile(match_string)
 		credits = regex.sub(credits, replace_string, true)
 	return credits
@@ -73,7 +79,7 @@ func set_file_path(file_path:String) -> void:
 	_update_text_from_file()
 
 func _on_meta_clicked(meta: String) -> void:
-	if meta.begins_with("https://") and not disable_urls:
+	if meta.begins_with("https://") and not disable_opening_links:
 		var _err = OS.shell_open(meta)
 
 func _ready() -> void:
