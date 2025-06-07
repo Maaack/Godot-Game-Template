@@ -6,8 +6,7 @@ Person 1
 Person 2  
 [Person w/ Link]()  
 
-
-## Sourced / Unaffiliated
+## Sourced
 ### Asset Type
 #### Use Case
 Author: [Name]()  
