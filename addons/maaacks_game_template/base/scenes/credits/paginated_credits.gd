@@ -12,16 +12,20 @@ const FONT_SIZE_OPEN_TAG := "[font_size=%d]"
 @onready var previous_button : Button = %PreviousButton
 @onready var next_button : Button = %NextButton
 
-@export_range(1, 4, 1.0) var visible_pages : int = 1 :
-	set(value):
-		visible_pages = value
-		if is_inside_tree():
-			_update_pages()
+## A ratio per page of how much to split from the credits text.
 @export_range(0, 1, 0.001) var content_split : Array[float] = [1.0] :
 	set(values):
 		content_split = values
 		if is_inside_tree():
 			_update_pages()
+## The number of columns visible at once.
+@export_range(1, 4, 1.0) var visible_pages : int = 1 :
+	set(value):
+		visible_pages = value
+		if is_inside_tree():
+			_update_pages()
+## The number of pages that get turned per click of the buttons.
+@export_range(1, 4, 1.0) var pages_per_turn : int = 1
 @export_range(0, 10, 1, "or_greater") var current_page : int = 0 :
 	set(value):
 		current_page = value
@@ -100,12 +104,16 @@ func _update_pages() -> void:
 	_update_buttons()
 
 func previous_page():
-	if current_page <= 0 : return
-	current_page -= 1
+	if current_page - pages_per_turn <= 0 : 
+		current_page = 0
+		return
+	current_page -= pages_per_turn
 
 func next_page():
-	if current_page >= page_texts.size() - (visible_pages) : return
-	current_page += 1
+	if current_page + pages_per_turn >= page_texts.size() - (visible_pages) : 
+		current_page = page_texts.size() - (visible_pages)
+		return
+	current_page += pages_per_turn
 
 func _ready() -> void:
 	visible_pages = visible_pages

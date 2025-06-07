@@ -5,8 +5,9 @@
 
 [node name="PaginatedCredits" instance=ExtResource("1_cjje4")]
 script = ExtResource("2_wx5nk")
-visible_pages = 2
 content_split = Array[float]([0.3, 0.3, 0.3, 0.3, 1.0])
+visible_pages = 2
+pages_per_turn = 2
 
 [node name="NextButton" parent="VBoxContainer/PaginationControls" index="3"]
 disabled = false
