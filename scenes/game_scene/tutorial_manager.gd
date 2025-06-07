@@ -5,7 +5,7 @@ extends Node
 
 func open_tutorials() -> void:
 	if open_delay > 0.0:
-		await get_tree().create_timer(auto_open, false).timeout
+		await get_tree().create_timer(open_delay, false).timeout
 	for tutorial_scene in tutorial_scenes:
 		var tutorial_menu : OverlaidMenu = tutorial_scene.instantiate()
 		if tutorial_menu == null:

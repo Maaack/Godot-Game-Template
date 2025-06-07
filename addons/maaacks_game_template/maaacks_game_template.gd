@@ -11,7 +11,7 @@ const OVERRIDE_RELATIVE_PATH = "installer/override.cfg"
 const SCENE_LOADER_RELATIVE_PATH = "base/scenes/autoloads/scene_loader.tscn"
 const THEMES_DIRECTORY_RELATIVE_PATH = "resources/themes"
 const UID_PREG_MATCH = r'uid="uid:\/\/[0-9a-z]+" '
-const WINDOW_OPEN_DELAY : float = 1.5
+const WINDOW_OPEN_DELAY : float = 0.5
 const RUNNING_CHECK_DELAY : float = 0.25
 const RESAVING_DELAY : float = 1.0
 const OPEN_EDITOR_DELAY : float = 0.1
@@ -47,15 +47,6 @@ func _update_gui_theme() -> void:
 	ProjectSettings.set_setting("gui/theme/custom", selected_theme)
 	ProjectSettings.save()
 
-func _check_theme_needs_updating(target_path : String) -> void:
-	var current_theme_resource_path = ProjectSettings.get_setting("gui/theme/custom", "")
-	if current_theme_resource_path != "":
-		return
-	var new_theme_resource_path = target_path + MAIN_SCENE_RELATIVE_PATH
-	if new_theme_resource_path == current_theme_resource_path:
-		return
-	_open_theme_selection_dialog(target_path)
-
 func _open_theme_selection_dialog(target_path : String) -> void:
 	selected_theme = ""
 	var theme_selection_scene : PackedScene = load(get_plugin_path() + "installer/theme_selection_dialog.tscn")
@@ -66,6 +57,25 @@ func _open_theme_selection_dialog(target_path : String) -> void:
 	var theme_directores : Array[String]
 	theme_directores.append(target_path + THEMES_DIRECTORY_RELATIVE_PATH)
 	theme_selection_instance.theme_directories = theme_directores
+
+func _delayed_open_theme_selection_dialog(target_path : String) -> void:
+	var timer: Timer = Timer.new()
+	var callable := func():
+		timer.stop()
+		_open_theme_selection_dialog(target_path)
+		timer.queue_free()
+	timer.timeout.connect(callable)
+	add_child(timer)
+	timer.start(WINDOW_OPEN_DELAY)
+
+func _check_theme_needs_updating(target_path : String) -> void:
+	var current_theme_resource_path = ProjectSettings.get_setting("gui/theme/custom", "")
+	if current_theme_resource_path != "":
+		return
+	var new_theme_resource_path = target_path + MAIN_SCENE_RELATIVE_PATH
+	if new_theme_resource_path == current_theme_resource_path:
+		return
+	_delayed_open_theme_selection_dialog(target_path)
 
 func _update_main_scene(target_path : String, main_scene_path : String) -> void:
 	ProjectSettings.set_setting("application/run/main_scene", main_scene_path)
