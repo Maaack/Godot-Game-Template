@@ -25,8 +25,6 @@ var _scene_loading_progress : float = 0.0 :
 		if _value_changed:
 			update_total_loading_progress()
 			_reset_loading_stage()
-
-var _changing_to_next_scene : bool = false
 var _total_loading_progress : float = 0.0 :
 	set(value):
 		_total_loading_progress = value
@@ -42,17 +40,6 @@ func _reset_loading_stage() -> void:
 
 func _reset_loading_start_time() -> void:
 	_loading_start_time = Time.get_ticks_msec()
-
-func _try_loading_next_scene() -> void:
-	if not _scene_loading_complete:
-		return
-	_load_next_scene()
-
-func _load_next_scene() -> void:
-	if _changing_to_next_scene:
-		return
-	_changing_to_next_scene = true
-	SceneLoader.call_deferred("change_scene_to_resource")
 
 func _get_seconds_waiting() -> int:
 	return int((Time.get_ticks_msec() - _loading_start_time) / 1000.0)
@@ -124,7 +111,6 @@ func _update_progress_messaging() -> void:
 		_hide_popups()
 
 func _process(_delta : float) -> void:
-	_try_loading_next_scene()
 	var status = SceneLoader.get_status()
 	match(status):
 		ResourceLoader.THREAD_LOAD_IN_PROGRESS:
