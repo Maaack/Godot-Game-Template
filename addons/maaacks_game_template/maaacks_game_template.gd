@@ -47,15 +47,6 @@ func _update_gui_theme() -> void:
 	ProjectSettings.set_setting("gui/theme/custom", selected_theme)
 	ProjectSettings.save()
 
-func _check_theme_needs_updating(target_path : String) -> void:
-	var current_theme_resource_path = ProjectSettings.get_setting("gui/theme/custom", "")
-	if current_theme_resource_path != "":
-		return
-	var new_theme_resource_path = target_path + MAIN_SCENE_RELATIVE_PATH
-	if new_theme_resource_path == current_theme_resource_path:
-		return
-	_delayed_open_theme_selection_dialog(target_path)
-
 func _open_theme_selection_dialog(target_path : String) -> void:
 	selected_theme = ""
 	var theme_selection_scene : PackedScene = load(get_plugin_path() + "installer/theme_selection_dialog.tscn")
@@ -76,6 +67,15 @@ func _delayed_open_theme_selection_dialog(target_path : String) -> void:
 	timer.timeout.connect(callable)
 	add_child(timer)
 	timer.start(WINDOW_OPEN_DELAY)
+
+func _check_theme_needs_updating(target_path : String) -> void:
+	var current_theme_resource_path = ProjectSettings.get_setting("gui/theme/custom", "")
+	if current_theme_resource_path != "":
+		return
+	var new_theme_resource_path = target_path + MAIN_SCENE_RELATIVE_PATH
+	if new_theme_resource_path == current_theme_resource_path:
+		return
+	_delayed_open_theme_selection_dialog(target_path)
 
 func _update_main_scene(target_path : String, main_scene_path : String) -> void:
 	ProjectSettings.set_setting("application/run/main_scene", main_scene_path)
