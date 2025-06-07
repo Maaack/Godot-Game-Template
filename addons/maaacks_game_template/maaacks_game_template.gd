@@ -11,7 +11,7 @@ const OVERRIDE_RELATIVE_PATH = "installer/override.cfg"
 const SCENE_LOADER_RELATIVE_PATH = "base/scenes/autoloads/scene_loader.tscn"
 const THEMES_DIRECTORY_RELATIVE_PATH = "resources/themes"
 const UID_PREG_MATCH = r'uid="uid:\/\/[0-9a-z]+" '
-const WINDOW_OPEN_DELAY : float = 1.5
+const WINDOW_OPEN_DELAY : float = 0.5
 const RUNNING_CHECK_DELAY : float = 0.25
 const RESAVING_DELAY : float = 1.0
 const OPEN_EDITOR_DELAY : float = 0.1
