@@ -79,7 +79,9 @@ func _update_pages() -> void:
 	for ratio in content_split:
 		var character_ratio : int = credits_text.length() * ratio
 		var split_credits_text := credits_text.substr(last_character_position, character_ratio)
-		if credits_text.length() > split_credits_text.length() + last_character_position:
+		if split_credits_text.length() == 0:
+			break
+		elif credits_text.length() > split_credits_text.length() + last_character_position:
 			var last_header_index := _get_last_header(split_credits_text)
 			split_credits_text = split_credits_text.substr(0, last_header_index)
 			last_character_position += last_header_index
