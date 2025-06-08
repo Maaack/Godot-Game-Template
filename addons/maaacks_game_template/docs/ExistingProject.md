@@ -113,3 +113,4 @@ These instructions assume starting with just the contents of `addons/`. This wil
     1.  [Setting up the Main Menu.](/addons/maaacks_game_template/docs/MainMenuSetup.md)  
     2.  [Adding icons to the Input Options.](/addons/maaacks_game_template/docs/InputIconMapping.md)  
     3.  [Setting up a Game Scene.](/addons/maaacks_game_template/docs/GameSceneSetup.md)  
+    4.  [Utilizing Game Saving](/addons/maaacks_game_template/docs/GameSaving.md)  
