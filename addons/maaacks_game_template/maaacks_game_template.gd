@@ -19,7 +19,7 @@ const MAX_PHYSICS_FRAMES_FROM_START : int = 20
 const AVAILABLE_TRANSLATIONS : Array = ["en", "fr"]
 const RAW_COPY_EXTENSIONS : Array = ["gd", "md", "txt"]
 const OMIT_COPY_EXTENSIONS : Array = ["uid"]
-const REPLACE_CONTENT_EXTENSIONS : Array = ["gd", "tscn", "tres"]
+const REPLACE_CONTENT_EXTENSIONS : Array = ["gd", "tscn", "tres", "md"]
 
 var selected_theme : String
 var update_plugin_tool_string : String
@@ -176,7 +176,7 @@ func _replace_file_contents(file_path : String, target_path : String) -> void:
 		return
 	var original_content = file.get_as_text()
 	var replaced_content = regex.sub(original_content, "", true)
-	replaced_content = replaced_content.replace(get_plugin_examples_path(), target_path)
+	replaced_content = replaced_content.replace(get_plugin_examples_path().trim_prefix("res://"), target_path.trim_prefix("res://"))
 	# Replace game state example class names.
 	replaced_content = replaced_content.replace("StateExample", "State")
 	file.close()
