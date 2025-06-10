@@ -159,9 +159,6 @@ func _clear_button(action_name : String, action_group : int) -> void:
 
 func _add_new_button(content : Variant, container: Control, disabled : bool = false) -> Button:
 	var new_button := Button.new()
-	new_button.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	new_button.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
-	new_button.expand_icon = expand_icon
 	if button_minimum_size.x > 0:
 		new_button.custom_minimum_size.x = button_minimum_size.x
 		new_button.size_flags_horizontal = SIZE_SHRINK_CENTER
@@ -172,6 +169,9 @@ func _add_new_button(content : Variant, container: Control, disabled : bool = fa
 		new_button.size_flags_vertical = SIZE_SHRINK_CENTER
 	else:
 		new_button.size_flags_vertical = SIZE_EXPAND_FILL
+	new_button.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	new_button.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+	new_button.expand_icon = expand_icon
 	if content is Texture:
 		new_button.icon = content
 	elif content is String:
