@@ -1,33 +1,37 @@
 # Screenshots
-Screenshots organized by included themes with a variety of the features shown.
 
-The template is presented here in a 640x360 resolution, but up to 4k resolutions are supported.
+1280x720 and 640x360 resolutions are shown, and resolutions up to 4k are supported.
+
 ## 1280 X 720
-![Main Menu - Default](/addons/maaacks_game_template/media/screenshot-7-main-menu-1.png)  
-![Input List - Default](/addons/maaacks_game_template/media/screenshot-7-input-remapping-1.png)  
-![Input List - Icons Filled - Default](/addons/maaacks_game_template/media/screenshot-7-input-remapping-2.png)  
-![Input Tree - Icons Filled- Default](/addons/maaacks_game_template/media/screenshot-7-input-remapping-3.png)  
-![Input List - Icons Outlined - Default](/addons/maaacks_game_template/media/screenshot-7-input-remapping-4.png)  
-![Input Tree - Icons Outlined - Default](/addons/maaacks_game_template/media/screenshot-7-input-remapping-5.png)  
-![Audio Options - Default](/addons/maaacks_game_template/media/screenshot-7-audio-options-1.png)  
-![Video Options - Default](/addons/maaacks_game_template/media/screenshot-7-video-options-1.png)  
-![Credits - Default](/addons/maaacks_game_template/media/screenshot-7-credits-1.png)  
-![Credits - Default](/addons/maaacks_game_template/media/screenshot-7-credits-2.png)  
+
+![Main Menu](/addons/maaacks_game_template/media/screenshot-7-main-menu-1.png)  
+![Input List](/addons/maaacks_game_template/media/screenshot-7-input-remapping-1.png)  
+![Input List - Icons Filled](/addons/maaacks_game_template/media/screenshot-7-input-remapping-2.png)  
+![Input Tree - Icons Filled](/addons/maaacks_game_template/media/screenshot-7-input-remapping-3.png)  
+![Input List - Icons Outlined](/addons/maaacks_game_template/media/screenshot-7-input-remapping-4.png)  
+![Input Tree - Icons Outlined](/addons/maaacks_game_template/media/screenshot-7-input-remapping-5.png)  
+![Audio Options](/addons/maaacks_game_template/media/screenshot-7-audio-options-1.png)  
+![Video Options](/addons/maaacks_game_template/media/screenshot-7-video-options-1.png)  
+![Credits](/addons/maaacks_game_template/media/screenshot-7-credits-1.png)  
+![Credits](/addons/maaacks_game_template/media/screenshot-7-credits-2.png)  
 ![Level Tutorial](/addons/maaacks_game_template/media/screenshot-7-tutorial-1.png)  
-![Level - Default](/addons/maaacks_game_template/media/screenshot-7-level-1.png)  
-![Level - Default](/addons/maaacks_game_template/media/screenshot-7-level-2.png)  
-![Level Won - Default](/addons/maaacks_game_template/media/screenshot-7-level-won-1.png)  
-![Level Lost - Default](/addons/maaacks_game_template/media/screenshot-7-level-lost-1.png)  
-![Game Won - Default](/addons/maaacks_game_template/media/screenshot-7-game-won-1.png)  
-![End Credits - Default](/addons/maaacks_game_template/media/screenshot-7-end-credits-1.png)  
-![End Credits - Default](/addons/maaacks_game_template/media/screenshot-7-end-credits-3.png)  
-![End Credits - Default](/addons/maaacks_game_template/media/screenshot-7-end-credits-4.png)  
+![Level](/addons/maaacks_game_template/media/screenshot-7-level-1.png)  
+![Level](/addons/maaacks_game_template/media/screenshot-7-level-2.png)  
+![Level Won](/addons/maaacks_game_template/media/screenshot-7-level-won-1.png)  
+![Level Lost](/addons/maaacks_game_template/media/screenshot-7-level-lost-1.png)  
+![Game Won](/addons/maaacks_game_template/media/screenshot-7-game-won-1.png)  
+![End Credits](/addons/maaacks_game_template/media/screenshot-7-end-credits-1.png)  
+![End Credits](/addons/maaacks_game_template/media/screenshot-7-end-credits-3.png)  
+![End Credits](/addons/maaacks_game_template/media/screenshot-7-end-credits-4.png)  
 ![Loading Screen - Loading](/addons/maaacks_game_template/media/screenshot-7-loading-screen-1.png)  
 ![Loading Screen - Still Loading](/addons/maaacks_game_template/media/screenshot-7-loading-screen-3.png)  
 ![Loading Screen - Stalled](/addons/maaacks_game_template/media/screenshot-7-loading-screen-4.png)  
 ![Loading Screen - Complete](/addons/maaacks_game_template/media/screenshot-7-loading-screen-5.png)  
 
 ## 640 x 360
+
+Screenshots organized by included themes.
+
 ### Default (No Theme)
 ![Main Menu - Default](/addons/maaacks_game_template/media/screenshot-6-main-menu-5.png)  
 ![Input List - Default](/addons/maaacks_game_template/media/screenshot-6-input-list-3.png)  
