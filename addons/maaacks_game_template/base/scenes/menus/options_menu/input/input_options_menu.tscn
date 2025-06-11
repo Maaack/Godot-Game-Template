@@ -33,6 +33,7 @@ search_depth = 5
 [node name="InputMappingContainer" type="VBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+alignment = 1
 
 [node name="Label" type="Label" parent="VBoxContainer/InputMappingContainer"]
 layout_mode = 2
@@ -41,12 +42,14 @@ horizontal_alignment = 1
 
 [node name="InputActionsList" parent="VBoxContainer/InputMappingContainer" node_paths=PackedStringArray("input_icon_mapper") instance=ExtResource("4_lf2nw")]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(560, 480)
 layout_mode = 2
 input_icon_mapper = NodePath("../../../InputIconMapper")
 
 [node name="InputActionsTree" parent="VBoxContainer/InputMappingContainer" node_paths=PackedStringArray("input_icon_mapper") instance=ExtResource("5_b2whh")]
 unique_name_in_owner = true
 visible = false
+custom_minimum_size = Vector2(400, 480)
 layout_mode = 2
 input_icon_mapper = NodePath("../../../InputIconMapper")
 

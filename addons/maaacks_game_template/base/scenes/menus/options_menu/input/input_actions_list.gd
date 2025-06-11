@@ -42,6 +42,7 @@ const BUTTON_NAME_GROUP_STRING : String = "%s:%d"
 
 ## Show action names that are not explicitely listed in an action name map.
 @export var show_all_actions : bool = true
+@export var button_minimum_size : Vector2
 @export_group("Icons")
 @export var input_icon_mapper : InputIconMapper
 @export var expand_icon : bool = false
@@ -92,8 +93,16 @@ func _add_header() -> void:
 		if group_iter < action_group_names.size():
 			group_name = action_group_names[group_iter]
 		var new_label := Label.new()
-		new_label.size_flags_horizontal = SIZE_EXPAND_FILL
-		new_label.size_flags_vertical = SIZE_EXPAND_FILL
+		if button_minimum_size.x > 0:
+			new_label.custom_minimum_size.x = button_minimum_size.x
+			new_label.size_flags_horizontal = SIZE_SHRINK_CENTER
+		else:
+			new_label.size_flags_horizontal = SIZE_EXPAND_FILL
+		if button_minimum_size.y > 0:
+			new_label.custom_minimum_size.y = button_minimum_size.y
+			new_label.size_flags_vertical = SIZE_SHRINK_CENTER
+		else:
+			new_label.size_flags_vertical = SIZE_EXPAND_FILL
 		new_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		new_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 		new_label.text = group_name
@@ -150,9 +159,18 @@ func _clear_button(action_name : String, action_group : int) -> void:
 
 func _add_new_button(content : Variant, container: Control, disabled : bool = false) -> Button:
 	var new_button := Button.new()
-	new_button.size_flags_horizontal = SIZE_EXPAND_FILL
-	new_button.size_flags_vertical = SIZE_EXPAND_FILL
+	if button_minimum_size.x > 0:
+		new_button.custom_minimum_size.x = button_minimum_size.x
+		new_button.size_flags_horizontal = SIZE_SHRINK_CENTER
+	else:
+		new_button.size_flags_horizontal = SIZE_EXPAND_FILL
+	if button_minimum_size.y > 0:
+		new_button.custom_minimum_size.y = button_minimum_size.y
+		new_button.size_flags_vertical = SIZE_SHRINK_CENTER
+	else:
+		new_button.size_flags_vertical = SIZE_EXPAND_FILL
 	new_button.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	new_button.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 	new_button.expand_icon = expand_icon
 	if content is Texture:
 		new_button.icon = content
@@ -282,6 +300,16 @@ func _refresh_ui_list_button_content() -> void:
 			_clear_button(action_name, group_iter)
 			group_iter += 1
 
+func _set_action_box_container_size() -> void:
+	if button_minimum_size.x > 0:
+		%ActionBoxContainer.size_flags_horizontal = SIZE_SHRINK_CENTER
+	else:
+		%ActionBoxContainer.size_flags_horizontal = SIZE_EXPAND_FILL
+	if button_minimum_size.y > 0:
+		%ActionBoxContainer.size_flags_vertical = SIZE_SHRINK_CENTER
+	else:
+		%ActionBoxContainer.size_flags_vertical = SIZE_EXPAND_FILL
+
 func reset() -> void:
 	AppSettings.reset_to_default_inputs()
 	_build_assigned_input_events()
@@ -290,6 +318,7 @@ func reset() -> void:
 func _ready() -> void:
 	if Engine.is_editor_hint(): return
 	vertical = vertical
+	_set_action_box_container_size()
 	_build_assigned_input_events()
 	_build_ui_list()
 	if input_icon_mapper:

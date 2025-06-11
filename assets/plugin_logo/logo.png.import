@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://yp4a7vyufgq5"
-path="res://.godot/imported/icon.png-d187c35dce56dfad3f41d54074ec544e.ctex"
+uid="uid://djfaiy0ims7o5"
+path="res://.godot/imported/logo.png-31474a8ee58537d771c887e29197a8a3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/maaacks_game_template/examples/assets/icon.png"
-dest_files=["res://.godot/imported/icon.png-d187c35dce56dfad3f41d54074ec544e.ctex"]
+source_file="res://assets/plugin_logo/logo.png"
+dest_files=["res://.godot/imported/logo.png-31474a8ee58537d771c887e29197a8a3.ctex"]
 
 [params]
 

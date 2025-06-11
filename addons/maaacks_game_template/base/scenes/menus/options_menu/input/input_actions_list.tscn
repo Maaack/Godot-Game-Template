@@ -38,7 +38,6 @@ vertical = true
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-size_flags_vertical = 3
 
 [node name="ActionNameLabel" type="Label" parent="ParentBoxContainer/ActionBoxContainer"]
 custom_minimum_size = Vector2(150, 0)

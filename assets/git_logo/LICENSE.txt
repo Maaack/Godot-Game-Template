@@ -1,0 +1,6 @@
+Git Logo
+Copyright (c) Jason Long
+
+This work is licensed under the Creative Commons Attribution 3.0 Unported
+license (CC BY 3.0): https://creativecommons.org/licenses/by/3.0/
+

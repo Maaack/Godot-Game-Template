@@ -7,7 +7,8 @@ signal end_reached
 @onready var credits_label : Control = %CreditsLabel
 var timer : Timer = Timer.new()
 
-@export var current_speed: float = 1.0
+@export var auto_scroll_speed: float = 60.0
+@export var input_scroll_speed : float = 400.0
 @export var scroll_restart_delay : float = 1.5
 
 var _current_scroll_position : float = 0.0
@@ -69,11 +70,11 @@ func _ready() -> void:
 	timer.timeout.connect(_on_scroll_restart_timer_timeout)
 	add_child(timer)
 
-func _process(_delta : float) -> void:
+func _process(delta : float) -> void:
 	if Engine.is_editor_hint():
 		return
 	var input_axis = Input.get_axis("ui_up", "ui_down")
 	if input_axis != 0:
-		_scroll_container(10 * input_axis)
+		_scroll_container(input_axis * input_scroll_speed * delta)
 	else:
-		_scroll_container(current_speed)
+		_scroll_container(auto_scroll_speed * delta)
