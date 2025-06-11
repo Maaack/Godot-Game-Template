@@ -10,12 +10,12 @@ This template has a main menu, options menus, pause menu, credits, scene loader,
 
 [Featured Games](#featured-games)  
 
-#### Videos
+### Videos
 
 [![Quick Intro Video](https://img.youtube.com/vi/U9CB3vKINVw/hqdefault.jpg)](https://youtu.be/U9CB3vKINVw)  
 [More Videos](/addons/maaacks_game_template/docs/Videos.md)
 
-#### Screenshots
+### Screenshots
 ![Main Menu](/addons/maaacks_game_template/media/screenshot-6-main-menu-5.png)  
 ![Key Rebinding](/addons/maaacks_game_template/media/screenshot-6-input-list-8.png)  
 ![Audio Controls](/addons/maaacks_game_template/media/screenshot-6-audio-options-2.png)  

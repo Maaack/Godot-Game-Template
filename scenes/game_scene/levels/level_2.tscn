@@ -77,7 +77,7 @@ script = ExtResource("3_kjg0a")
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-text = "Change Level State: "
+text = "Change Level Color: "
 
 [node name="ColorPickerButton" type="ColorPickerButton" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true

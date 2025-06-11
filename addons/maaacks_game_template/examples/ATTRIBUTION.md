@@ -26,7 +26,7 @@ Source: [godotengine.org](https://godotengine.org/)
 License: [MIT License](https://github.com/godotengine/godot/blob/master/LICENSE.txt) 
 
 #### Godot Game Template
-![Maaack Plugin Icon](/addons/maaacks_game_template/examples/assets/icon.png)  
+![Maaack Plugin Icon](/addons/maaacks_game_template/examples/assets/plugin_logo/logo.png)  
 Author: [Marek Belski and contributors](https://github.com/Maaack/Godot-Game-Template/graphs/contributors)  
 Source: [github: Godot-Game-Template](https://github.com/Maaack/Godot-Game-Template)  
 License: [MIT License](LICENSE.txt)  
