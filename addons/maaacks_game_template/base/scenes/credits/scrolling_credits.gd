@@ -18,3 +18,4 @@ func _on_resized() -> void:
 
 func _ready() -> void:
 	resized.connect(_on_resized)
+	set_header_and_footer()

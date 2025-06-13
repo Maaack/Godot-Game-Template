@@ -25,6 +25,7 @@ func _ready() -> void:
 		%MenuButton.hide()
 	if OS.has_feature("web"):
 		%ExitButton.hide()
+	super._ready()
 
 func _unhandled_input(event : InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
