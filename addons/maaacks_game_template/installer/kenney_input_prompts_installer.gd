@@ -7,6 +7,7 @@ signal canceled
 ## Sent when the installation process has completed.
 signal completed
 
+const RELATIVE_PATH_TO_CONFIGURE_SCENE = "scenes/menus/options_menu/input/input_options_menu.tscn"
 const REIMPORT_CHECK_DELAY : float = 0.5
 const OPEN_SCENE_DELAY : float = 0.5
 const REGEX_PREFIX = """\\[node name="InputIconMapper" parent="." index="0"\\][\\s\\S]*"""
@@ -225,7 +226,7 @@ func _delete_extras() -> void:
 	EditorInterface.get_resource_filesystem().scan()
 
 func _configure_icons() -> void:
-	var input_options_menu_path := copy_dir_path + "scenes/menus/options_menu/input/input_options_menu.tscn"
+	var input_options_menu_path := copy_dir_path + RELATIVE_PATH_TO_CONFIGURE_SCENE
 	var input_options_menu := FileAccess.get_file_as_string(input_options_menu_path)
 	var regex := RegEx.new()
 	regex.compile(REGEX_PREFIX + """\\[node""")
