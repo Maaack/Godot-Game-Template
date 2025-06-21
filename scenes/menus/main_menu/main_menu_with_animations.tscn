@@ -407,6 +407,8 @@ theme_override_constants/margin_bottom = 32
 [node name="NewGameConfirmationDialog" type="ConfirmationDialog" parent="." index="11"]
 unique_name_in_owner = true
 auto_translate_mode = 1
+title = "New Game?"
+dialog_text = "A game is currently in progress. Are you sure you want to reset your game?"
 
 [connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/ContinueGameButton" to="." method="_on_continue_game_button_pressed"]
 [connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/LevelSelectButton" to="." method="_on_level_select_button_pressed"]
