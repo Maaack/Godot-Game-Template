@@ -8,6 +8,7 @@
 [node name="EndCredits" instance=ExtResource("1_0sycx")]
 script = ExtResource("2_2v40y")
 main_menu_scene = "res://scenes/menus/main_menu/main_menu_with_animations.tscn"
+force_mouse_mode_visible = false
 
 [node name="BackgroundMusicPlayer" parent="." index="0" instance=ExtResource("3_bfvdl")]
 
