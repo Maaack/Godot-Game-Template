@@ -59,6 +59,7 @@ func change_scene_to_resource() -> void:
 		get_tree().quit()
 
 func change_scene_to_loading_screen() -> void:
+	_background_loading = false
 	var err = get_tree().change_scene_to_packed(_loading_screen)
 	if err:
 		push_error("failed to change scenes to loading screen: %d" % err)
