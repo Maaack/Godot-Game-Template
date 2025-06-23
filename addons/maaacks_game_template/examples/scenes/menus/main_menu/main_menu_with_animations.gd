@@ -1,7 +1,7 @@
 extends MainMenu
 
 @export var level_select_packed_scene: PackedScene
-@export var confirm_new_game : bool = false
+@export var confirm_new_game : bool = true
 
 var level_select_scene : Node
 var animation_state_machine : AnimationNodeStateMachinePlayback
