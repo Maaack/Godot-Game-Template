@@ -1,11 +1,16 @@
 extends ScrollingCredits
 
 @export_file("*.tscn") var main_menu_scene : String
+## This option forces the mouse to be visible when the menu shows up.
+## Useful for games that capture the mouse, and don't automatically return it.
+@export var force_mouse_mode_visible : bool = false
 @onready var init_mouse_filter : MouseFilter = mouse_filter
 
 func _on_scroll_container_end_reached() -> void:
 	%EndMessagePanel.show()
 	mouse_filter = Control.MOUSE_FILTER_STOP
+	if force_mouse_mode_visible:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	super._on_scroll_container_end_reached()
 
 func _on_MenuButton_pressed() -> void:
