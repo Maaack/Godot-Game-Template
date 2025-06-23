@@ -14,9 +14,9 @@ func _on_visibility_changed() -> void:
 func _ready() -> void:
 	visibility_changed.connect(_on_visibility_changed)
 
-func _process(_delta : float) -> void:
+func _process(delta : float) -> void:
 	if Engine.is_editor_hint() or not visible:
 		return
 	var input_axis = Input.get_axis("ui_up", "ui_down")
 	if input_axis != 0:
-		credits_label.get_v_scroll_bar().value += input_axis * _delta * input_scroll_speed
+		credits_label.get_v_scroll_bar().value += input_axis * delta * input_scroll_speed

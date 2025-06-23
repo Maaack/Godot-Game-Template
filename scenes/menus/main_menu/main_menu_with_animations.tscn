@@ -352,6 +352,7 @@ graph_offset = Vector2(-180.277, 49)
 [node name="MainMenu" instance=ExtResource("1_rr1rn")]
 script = ExtResource("2_sr523")
 level_select_packed_scene = null
+confirm_new_game = true
 game_scene_path = "res://scenes/game_scene/game_ui.tscn"
 options_packed_scene = ExtResource("3_ixa71")
 credits_packed_scene = ExtResource("4_rr1rn")
@@ -404,5 +405,15 @@ theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 32
 
+[node name="NewGameConfirmationDialog" type="ConfirmationDialog" parent="." index="11"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+title = "Start a New Game?"
+size = Vector2i(480, 158)
+dialog_text = "Are you sure you want to start a new game?
+
+All progress in the current game will be lost."
+
 [connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/ContinueGameButton" to="." method="_on_continue_game_button_pressed"]
 [connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/LevelSelectButton" to="." method="_on_level_select_button_pressed"]
+[connection signal="confirmed" from="NewGameConfirmationDialog" to="." method="_on_new_game_confirmation_dialog_confirmed"]
