@@ -1,6 +1,7 @@
 extends MainMenu
 
 @export var level_select_packed_scene: PackedScene
+@export var confirm_new_game : bool = false
 
 var level_select_scene : Node
 var animation_state_machine : AnimationNodeStateMachinePlayback
@@ -10,7 +11,7 @@ func load_game_scene() -> void:
 	super.load_game_scene()
 
 func new_game() -> void:
-	if GameStateExample.has_game_state():
+	if confirm_new_game and GameStateExample.has_game_state():
 		%NewGameConfirmationDialog.popup_centered()
 	else:
 		GlobalState.reset()
