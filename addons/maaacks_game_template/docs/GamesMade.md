@@ -20,6 +20,8 @@ https://maaack.itch.io/dungeon-fantasy-fashion-show
 https://maaack.itch.io/absurd-herd  
 https://maaack.itch.io/indys-expedition-2  
 https://baconeggsrl.itch.io/sprouts-journey  
+https://parallaxrat.itch.io/no-mans-land  
+https://store.steampowered.com/app/3751730/Loan_Shark/  
 
 ### 2024
 https://store.steampowered.com/app/3291880/Spud_Customs/ (Source: https://github.com/Lost-Rabbit-Digital/SpudCustoms)  
