@@ -1,6 +1,7 @@
 extends MainMenu
 
 @export var level_select_packed_scene: PackedScene
+@export var confirm_new_game : bool = true
 
 var level_select_scene : Node
 var animation_state_machine : AnimationNodeStateMachinePlayback
@@ -10,8 +11,11 @@ func load_game_scene() -> void:
 	super.load_game_scene()
 
 func new_game() -> void:
-	GlobalState.reset()
-	load_game_scene()
+	if confirm_new_game and GameStateExample.has_game_state():
+		%NewGameConfirmationDialog.popup_centered()
+	else:
+		GlobalState.reset()
+		load_game_scene()
 
 func intro_done() -> void:
 	animation_state_machine.travel("OpenMainMenu")
@@ -44,7 +48,7 @@ func _input(event : InputEvent) -> void:
 
 func _add_level_select_if_set() -> void: 
 	if level_select_packed_scene == null: return
-	if GameState.get_max_level_reached() <= 0 : return
+	if GameStateExample.get_max_level_reached() <= 0 : return
 	level_select_scene = level_select_packed_scene.instantiate()
 	level_select_scene.hide()
 	%LevelSelectContainer.call_deferred("add_child", level_select_scene)
@@ -53,7 +57,7 @@ func _add_level_select_if_set() -> void:
 	%LevelSelectButton.show()
 
 func _show_continue_if_set() -> void:
-	if GameState.has_game_state():
+	if GameStateExample.has_game_state():
 		%ContinueGameButton.show()
 
 func _ready() -> void:
@@ -67,3 +71,7 @@ func _on_continue_game_button_pressed() -> void:
 
 func _on_level_select_button_pressed() -> void:
 	_open_sub_menu(level_select_scene)
+
+func _on_new_game_confirmation_dialog_confirmed():
+	GlobalState.reset()
+	load_game_scene()

@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://dqwkxqvo2k8yo" path="res://scenes/menus/main_menu/main_menu_with_animations.gd" id="2_0jb1p"]
 [ext_resource type="PackedScene" uid="uid://ccppwwuglvave" path="res://scenes/menus/level_select_menu/level_select_menu.tscn" id="3_ixa71"]
 [ext_resource type="PackedScene" uid="uid://boicxc6x4554n" path="res://scenes/menus/options_menu/master_options_menu_with_tabs.tscn" id="3_v43e6"]
-[ext_resource type="PackedScene" uid="uid://dlj8an1r0ynut" path="res://scenes/credits/credits.tscn" id="4_58732"]
+[ext_resource type="PackedScene" uid="uid://bg8qlntq37pp" path="res://scenes/credits/scrollable_credits.tscn" id="4_58732"]
 [ext_resource type="AudioStream" uid="uid://cyakcui2s5g46" path="res://assets/music_and_sfx/Maaack - Campfire Tales - Music 2b (3 min).mp3" id="5_sr523"]
 
 [sub_resource type="Animation" id="1"]
@@ -356,6 +356,7 @@ offset_top = 1.0
 offset_bottom = 1.0
 script = ExtResource("2_0jb1p")
 level_select_packed_scene = ExtResource("3_ixa71")
+confirm_new_game = true
 game_scene_path = "res://scenes/game_scene/game_ui.tscn"
 options_packed_scene = ExtResource("3_v43e6")
 credits_packed_scene = ExtResource("4_58732")
@@ -417,5 +418,15 @@ theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 32
 
+[node name="NewGameConfirmationDialog" type="ConfirmationDialog" parent="." index="11"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+title = "Start a New Game?"
+size = Vector2i(480, 158)
+dialog_text = "Are you sure you want to start a new game?
+
+All progress in the current game will be lost."
+
 [connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/ContinueGameButton" to="." method="_on_continue_game_button_pressed"]
 [connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/LevelSelectButton" to="." method="_on_level_select_button_pressed"]
+[connection signal="confirmed" from="NewGameConfirmationDialog" to="." method="_on_new_game_confirmation_dialog_confirmed"]

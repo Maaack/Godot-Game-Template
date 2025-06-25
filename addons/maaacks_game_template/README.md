@@ -7,12 +7,12 @@ This template has a main menu, options menus, pause menu, credits, scene loader,
 
 [Featured Games](#featured-games)  
 
-#### Videos
+### Videos
 
 [![Quick Intro Video](https://img.youtube.com/vi/U9CB3vKINVw/hqdefault.jpg)](https://youtu.be/U9CB3vKINVw)  
 [More Videos](/addons/maaacks_game_template/docs/Videos.md)
 
-#### Screenshots
+### Screenshots
 ![Main Menu](/addons/maaacks_game_template/media/screenshot-6-main-menu-5.png)  
 ![Key Rebinding](/addons/maaacks_game_template/media/screenshot-6-input-list-8.png)  
 ![Audio Controls](/addons/maaacks_game_template/media/screenshot-6-audio-options-2.png)  
@@ -144,6 +144,7 @@ These instructions assume starting with just the contents of `addons/`. This wil
 [Game Scene Setup](/addons/maaacks_game_template/docs/GameSceneSetup.md)  
 [Input Icon Mapping](/addons/maaacks_game_template/docs/InputIconMapping.md)  
 [Joypad Inputs](/addons/maaacks_game_template/docs/JoypadInputs.md)  
+[Game Saving](/addons/maaacks_game_template/docs/GameSaving.md)  
 [How Parts Work](/addons/maaacks_game_template/docs/HowPartsWork.md)  
 [Uploading to itch.io](/addons/maaacks_game_template/docs/UploadingToItchIo.md)
 
@@ -153,7 +154,7 @@ These instructions assume starting with just the contents of `addons/`. This wil
 
 | Spud Customs | Rent Seek Kill  | A Darkness Like Gravity  |  
 | :-------:| :-------: | :-------: |
-![Spud Customs](/addons/maaacks_game_template/media/screenshot-game-spud-customs.png)  |  ![Rent-Seek-Kill](/addons/maaacks_game_template/media/screenshot-game-rent-seek-kill.png)  |  ![A Darkness Like Gravity](/addons/maaacks_game_template/media/screenshot-game-a-darkness-like-gravity.png)  |
+![Spud Customs](/addons/maaacks_game_template/media/thumbnail-game-spud-customs.png)  |  ![Rent-Seek-Kill](/addons/maaacks_game_template/media/thumbnail-game-rent-seek-kill.png)  |  ![A Darkness Like Gravity](/addons/maaacks_game_template/media/thumbnail-game-a-darkness-like-gravity.png)  |
 [Find on Steam](https://store.steampowered.com/app/3291880/Spud_Customs/) | [Play on itch.io](https://xandruher.itch.io/rent-seek-kill)  |  [Play on itch.io](https://maaack.itch.io/a-darkness-like-gravity)  |
 
 

@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://osxulxw2oas3"]
+
+[ext_resource type="Script" uid="uid://c5wuso5r3dwpw" path="res://addons/maaacks_game_template/base/scenes/credits/scrollable_credits.gd" id="1_hny8b"]
+[ext_resource type="Script" uid="uid://cc2wtqasev7le" path="res://addons/maaacks_game_template/base/scenes/credits/credits_label.gd" id="2_g23vg"]
+
+[node name="ScrollableCredits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hny8b")
+
+[node name="CreditsLabel" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+bbcode_enabled = true
+script = ExtResource("2_g23vg")
+h1_font_size = 64
+h2_font_size = 48
+h3_font_size = 32
+h4_font_size = 24
+max_image_width = 80

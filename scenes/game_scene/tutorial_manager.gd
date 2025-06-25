@@ -5,7 +5,8 @@ extends Node
 
 func open_tutorials() -> void:
 	if open_delay > 0.0:
-		await get_tree().create_timer(auto_open, false).timeout
+		await get_tree().create_timer(open_delay, false).timeout
+	var _initial_focus_control : Control = get_viewport().gui_get_focus_owner()
 	for tutorial_scene in tutorial_scenes:
 		var tutorial_menu : OverlaidMenu = tutorial_scene.instantiate()
 		if tutorial_menu == null:
@@ -13,6 +14,8 @@ func open_tutorials() -> void:
 			return
 		get_tree().current_scene.call_deferred("add_child", tutorial_menu)
 		await tutorial_menu.tree_exited
+		if is_inside_tree() and _initial_focus_control:
+			_initial_focus_control.grab_focus()
 
 func _ready() -> void:
 	if auto_open:

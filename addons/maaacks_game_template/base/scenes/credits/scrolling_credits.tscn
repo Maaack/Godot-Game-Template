@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://t2dui8ppm3a4"]
+[gd_scene load_steps=4 format=3 uid="uid://t2dui8ppm3a4"]
 
-[ext_resource type="Script" uid="uid://bnub0cq2y0deh" path="res://addons/maaacks_game_template/base/scenes/credits/credits.gd" id="4"]
+[ext_resource type="Script" uid="uid://gmrv6pgchkwc" path="res://addons/maaacks_game_template/base/scenes/credits/auto_scroll_container.gd" id="2_ak7hi"]
+[ext_resource type="Script" uid="uid://cc2wtqasev7le" path="res://addons/maaacks_game_template/base/scenes/credits/credits_label.gd" id="3_kngql"]
+[ext_resource type="Script" uid="uid://bnub0cq2y0deh" path="res://addons/maaacks_game_template/base/scenes/credits/scrolling_credits.gd" id="4"]
 
-[node name="Credits" type="Control"]
+[node name="ScrollingCredits" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,11 +12,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("4")
-attribution_file_path = ""
-h1_font_size = 64
-h2_font_size = 48
-h3_font_size = 32
-h4_font_size = 24
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 0
@@ -23,6 +20,7 @@ anchor_bottom = 1.0
 scroll_vertical = 100
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
+script = ExtResource("2_ak7hi")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
 layout_mode = 2
@@ -42,18 +40,16 @@ size_flags_vertical = 5
 bbcode_enabled = true
 fit_content = true
 scroll_active = false
+script = ExtResource("3_kngql")
+h1_font_size = 64
+h2_font_size = 48
+h3_font_size = 32
+h4_font_size = 24
+max_image_width = 80
 
 [node name="FooterSpace" type="Control" parent="ScrollContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 720)
 layout_mode = 2
 
-[node name="ScrollResetTimer" type="Timer" parent="."]
-wait_time = 1.5
-one_shot = true
-
-[connection signal="gui_input" from="ScrollContainer" to="." method="_on_scroll_container_gui_input"]
-[connection signal="resized" from="ScrollContainer" to="." method="_on_scroll_container_resized"]
-[connection signal="scroll_started" from="ScrollContainer" to="." method="_on_scroll_container_scroll_started"]
-[connection signal="meta_clicked" from="ScrollContainer/VBoxContainer/CreditsLabel" to="." method="_on_CreditsLabel_meta_clicked"]
-[connection signal="timeout" from="ScrollResetTimer" to="." method="_on_scroll_reset_timer_timeout"]
+[connection signal="end_reached" from="ScrollContainer" to="." method="_on_scroll_container_end_reached"]

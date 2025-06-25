@@ -1,22 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://dlj8an1r0ynut"]
+[gd_scene load_steps=3 format=3 uid="uid://bg8qlntq37pp"]
 
-[ext_resource type="PackedScene" uid="uid://t2dui8ppm3a4" path="res://addons/maaacks_game_template/base/scenes/credits/credits.tscn" id="1_4iham"]
-[ext_resource type="Script" uid="uid://dkcmig1aciy7y" path="res://scenes/credits/credits.gd" id="2_1pc15"]
+[ext_resource type="PackedScene" uid="uid://osxulxw2oas3" path="res://addons/maaacks_game_template/base/scenes/credits/scrollable_credits.tscn" id="1_jnbjt"]
+[ext_resource type="Script" uid="uid://q2qdlnj2elxe" path="res://scenes/credits/scrollable_credits.gd" id="2_35kdw"]
 
-[node name="Credits" instance=ExtResource("1_4iham")]
-script = ExtResource("2_1pc15")
-attribution_file_path = "res://ATTRIBUTION.md"
+[node name="ScrollableCredits" instance=ExtResource("1_jnbjt")]
+script = ExtResource("2_35kdw")
 
-[node name="CreditsLabel" parent="ScrollContainer/VBoxContainer" index="1"]
+[node name="CreditsLabel" parent="." index="0"]
 text = "[center][font_size=48]Collaborators[/font_size]
 
 [font_size=32]Godot Game Template[/font_size]
+[img=80]res:///assets/plugin_logo/logo.png[/img]  
 Author: [url=https://github.com/Maaack/Godot-Game-Template/graphs/contributors]Marek Belski and contributors[/url]  
 Source: [url=https://github.com/Maaack/Godot-Game-Template]github: Godot-Game-Template[/url]  
 License: [url=LICENSE.txt]MIT License[/url]  
-
-[font_size=32]Music[/font_size]
-Author: [url=https://www.mikezimean.com/]Mike Zimean[/url]  
 
 [font_size=48]Sourced[/font_size]
 [font_size=24]Godot Engine Logo[/font_size]
@@ -24,11 +21,17 @@ Author: Andrea Calabró
 Source: [url=https://godotengine.org/press/]godotengine.org : press[/url]  
 License: [url=https://github.com/godotengine/godot/blob/master/LOGO_LICENSE.txt]CC BY 4.0 International[/url] 
 
+[font_size=24]Git Logo[/font_size]
+Author: [url=https://bsky.app/profile/jasonlong.me]Jason Long[/url]  
+Source: [url=https://git-scm.com/downloads/logos]git-scm.com : logos[/url]  
+License: [url=https://creativecommons.org/licenses/by/3.0/]CC BY 3.0[/url] 
+
 [font_size=48]Tools[/font_size]
 [font_size=24]Godot[/font_size]
+[img=80]res:///assets/godot_engine_logo/logo_vertical_color_dark.png[/img]  
 Author: [url=https://godotengine.org/contact]Juan Linietsky, Ariel Manzur, and contributors[/url]  
 Source: [url=https://godotengine.org/]godotengine.org[/url]  
-License: [url=https://github.com/godotengine/godot/blob/master/LICENSE.txt]MIT License[/url] 
+License: [url=https://github.com/godotengine/godot/blob/master/LICENSE.txt]MIT License[/url]  
 
 [font_size=24]Visual Studio Code[/font_size]
 Author: [url=https://opensource.microsoft.com/]Microsoft[/url]  
@@ -36,12 +39,10 @@ Source: [url=https://github.com/microsoft/vscode]github: vscode[/url]
 License: [url=https://github.com/microsoft/vscode/blob/main/LICENSE.txt]MIT License[/url]
 
 [font_size=24]Git[/font_size]
+[img=80]res:///assets/git_logo/Git-Logo-2Color.png[/img]  
 Author: [url=https://github.com/torvalds]Linus Torvalds[/url]  
 Source: [url=https://git-scm.com/downloads]git-scm.com[/url]  
 License: [url=https://opensource.org/licenses/GPL-2.0]GNU General Public License version 2[/url]
-
-[font_size=32]jsfxr[/font_size]
-Author: [url=https://mccormick.cx/]chr15m[/url]  
-Source: [url=https://chr15m.itch.io/jsfxr]itch.io : jsfxr[/url]  
-License: [url=https://github.com/chr15m/jsfxr/blob/master/UNLICENSE]Unlicense License[/url]  
+  
 [/center]"
+attribution_file_path = "res://ATTRIBUTION.md"

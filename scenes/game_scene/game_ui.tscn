@@ -7,7 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://b88rjvkj3k85p" path="res://assets/music_and_sfx/Maaack - Campfire Tales - Music 1b (loopable).ogg" id="5_bmy5n"]
 [ext_resource type="PackedScene" uid="uid://dn02kotqcawyw" path="res://scenes/loading_screen/level_loading_screen.tscn" id="5_dowkw"]
 [ext_resource type="Script" uid="uid://cl3opf2oe8og3" path="res://scenes/game_scene/configurable_sub_viewport.gd" id="6_efpn6"]
-[ext_resource type="Script" uid="uid://ultbh4wcm8t5" path="res://scripts/level_list_state_manager.gd" id="8_pv8tc"]
+[ext_resource type="Script" uid="uid://ultbh4wcm8t5" path="res://scripts/level_list_and_state_manager.gd" id="8_pv8tc"]
 [ext_resource type="PackedScene" uid="uid://bifqmlemht8b2" path="res://scenes/overlaid_menus/game_won_menu.tscn" id="9_0pd2h"]
 [ext_resource type="PackedScene" uid="uid://cvr36eb0r2bje" path="res://scenes/overlaid_menus/level_lost_menu.tscn" id="10_37hvn"]
 [ext_resource type="PackedScene" uid="uid://fi7nwkte06g2" path="res://scenes/overlaid_menus/level_won_menu.tscn" id="11_h5xmp"]
@@ -25,14 +25,24 @@ script = ExtResource("1_mgq6w")
 pause_menu_packed = ExtResource("2_10mfm")
 focused_viewport = NodePath("../ViewportContainer/ConfigurableSubViewport")
 
-[node name="LevelLoader" type="Node" parent="." node_paths=PackedStringArray("level_container")]
+[node name="BackgroundMusicPlayer" parent="." instance=ExtResource("4_elswi")]
+stream = ExtResource("5_bmy5n")
+
+[node name="LevelListLoader" type="Node" parent="." node_paths=PackedStringArray("level_container")]
 script = ExtResource("3_b8jlh")
 level_container = NodePath("../ViewportContainer/ConfigurableSubViewport")
 files = Array[String](["res://scenes/game_scene/levels/level_1.tscn", "res://scenes/game_scene/levels/level_2.tscn", "res://scenes/game_scene/levels/level_3.tscn"])
 directory = "res://scenes/game_scene/levels"
 
-[node name="BackgroundMusicPlayer" parent="." instance=ExtResource("4_elswi")]
-stream = ExtResource("5_bmy5n")
+[node name="LevelListManager" type="Node" parent="." node_paths=PackedStringArray("level_list_loader", "level_loading_screen")]
+script = ExtResource("8_pv8tc")
+level_list_loader = NodePath("../LevelListLoader")
+main_menu_scene = "res://scenes/menus/main_menu/main_menu_with_animations.tscn"
+ending_scene = "res://scenes/end_credits/end_credits.tscn"
+level_loading_screen = NodePath("../LevelLoadingScreen")
+game_won_scene = ExtResource("9_0pd2h")
+level_lost_scene = ExtResource("10_37hvn")
+level_won_scene = ExtResource("11_h5xmp")
 
 [node name="LevelLoadingScreen" parent="." instance=ExtResource("5_dowkw")]
 visible = false
@@ -53,16 +63,6 @@ audio_listener_enable_3d = true
 size = Vector2i(1280, 720)
 render_target_update_mode = 4
 script = ExtResource("6_efpn6")
-
-[node name="LevelListManager" type="Node" parent="." node_paths=PackedStringArray("level_list_loader", "level_loading_screen")]
-script = ExtResource("8_pv8tc")
-level_list_loader = NodePath("../LevelLoader")
-main_menu_scene = "res://scenes/menus/main_menu/main_menu_with_animations.tscn"
-ending_scene = "res://scenes/end_credits/end_credits.tscn"
-level_loading_screen = NodePath("../LevelLoadingScreen")
-game_won_scene = ExtResource("9_0pd2h")
-level_lost_scene = ExtResource("10_37hvn")
-level_won_scene = ExtResource("11_h5xmp")
 
 [connection signal="level_load_started" from="LevelLoader" to="." method="_on_level_loader_level_load_started"]
 [connection signal="level_loaded" from="LevelLoader" to="." method="_on_level_loader_level_loaded"]

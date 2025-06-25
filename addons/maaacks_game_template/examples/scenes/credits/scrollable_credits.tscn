@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://wjcsvhdqikyl"]
+
+[ext_resource type="PackedScene" uid="uid://osxulxw2oas3" path="res://addons/maaacks_game_template/base/scenes/credits/scrollable_credits.tscn" id="1_js0o2"]
+[ext_resource type="Script" uid="uid://bas1sbep76v6j" path="res://addons/maaacks_game_template/examples/scenes/credits/scrollable_credits.gd" id="2_tcxvu"]
+
+[node name="ScrollableCredits" instance=ExtResource("1_js0o2")]
+script = ExtResource("2_tcxvu")
+
+[node name="CreditsLabel" parent="." index="0"]
+text = "[center][font_size=48]Collaborators[/font_size]
+
+[font_size=32]Role[/font_size]
+Person 1  
+Person 2  
+[url=]Person w/ Link[/url]  
+
+[font_size=48]Sourced[/font_size]
+[font_size=32]Asset Type[/font_size]
+[font_size=24]Use Case[/font_size]
+Author: [url=]Name[/url]  
+Source: [url=]Domain : webpage.html[/url]  
+License: [url=]License[/url]
+
+[font_size=24]Godot Engine Logo[/font_size]
+Author: Andrea Calabró  
+Source: [url=https://godotengine.org/press/]godotengine.org : press[/url]  
+License: [url=https://github.com/godotengine/godot/blob/master/LOGO_LICENSE.txt]CC BY 4.0 International[/url] 
+
+[font_size=48]Tools[/font_size]
+[font_size=24]Godot[/font_size]
+[img=80]res:///addons/maaacks_game_template/examples/assets/godot_engine_logo/logo_vertical_color_dark.png[/img]  
+Author: [url=https://godotengine.org/contact]Juan Linietsky, Ariel Manzur, and contributors[/url]  
+Source: [url=https://godotengine.org/]godotengine.org[/url]  
+License: [url=https://github.com/godotengine/godot/blob/master/LICENSE.txt]MIT License[/url] 
+
+[font_size=24]Godot Game Template[/font_size]
+[img=80]res:///addons/maaacks_game_template/examples/assets/plugin_logo/logo.png[/img]  
+Author: [url=https://github.com/Maaack/Godot-Game-Template/graphs/contributors]Marek Belski and contributors[/url]  
+Source: [url=https://github.com/Maaack/Godot-Game-Template]github: Godot-Game-Template[/url]  
+License: [url=LICENSE.txt]MIT License[/url]  
+
+[font_size=24]Git[/font_size]
+[img=80]res:///addons/maaacks_game_template/examples/assets/git_logo/Git-Logo-2Color.png[/img]  
+Author: [url=https://github.com/torvalds]Linus Torvalds[/url]  
+Source: [url=https://git-scm.com/downloads]git-scm.com[/url]  
+License: [url=https://opensource.org/licenses/GPL-2.0]GNU General Public License version 2[/url]
+[/center]"
+attribution_file_path = "res://addons/maaacks_game_template/examples/ATTRIBUTION.md"
