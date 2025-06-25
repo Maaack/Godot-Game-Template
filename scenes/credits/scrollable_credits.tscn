@@ -15,6 +15,9 @@ Author: [url=https://github.com/Maaack/Godot-Game-Template/graphs/contributors]M
 Source: [url=https://github.com/Maaack/Godot-Game-Template]github: Godot-Game-Template[/url]  
 License: [url=LICENSE.txt]MIT License[/url]  
 
+[font_size=32]Music[/font_size]
+Author: [url=https://www.mikezimean.com/]Mike Zimean[/url]  
+
 [font_size=48]Sourced[/font_size]
 [font_size=24]Godot Engine Logo[/font_size]
 Author: Andrea Calabró  
@@ -43,6 +46,10 @@ License: [url=https://github.com/microsoft/vscode/blob/main/LICENSE.txt]MIT Lice
 Author: [url=https://github.com/torvalds]Linus Torvalds[/url]  
 Source: [url=https://git-scm.com/downloads]git-scm.com[/url]  
 License: [url=https://opensource.org/licenses/GPL-2.0]GNU General Public License version 2[/url]
-  
+
+[font_size=32]jsfxr[/font_size]
+Author: [url=https://mccormick.cx/]chr15m[/url]  
+Source: [url=https://chr15m.itch.io/jsfxr]itch.io : jsfxr[/url]  
+License: [url=https://github.com/chr15m/jsfxr/blob/master/UNLICENSE]Unlicense License[/url]  
 [/center]"
 attribution_file_path = "res://ATTRIBUTION.md"
