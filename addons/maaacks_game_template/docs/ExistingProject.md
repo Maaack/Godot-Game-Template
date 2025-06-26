@@ -115,4 +115,3 @@ Example files can be reinstalled from the Project > Tools menu, assuming they ha
     2.  [Adding icons to the Input Options.](/addons/maaacks_game_template/docs/InputIconMapping.md)  
     3.  [Setting up a Game Scene.](/addons/maaacks_game_template/docs/GameSceneSetup.md)  
     4.  [Utilizing Game Saving](/addons/maaacks_game_template/docs/GameSaving.md)  
-
