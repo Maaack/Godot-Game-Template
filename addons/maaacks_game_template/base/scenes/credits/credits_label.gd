@@ -57,7 +57,7 @@ func regex_replace_titles(credits:String) -> String:
 	for heading_font_size in heading_font_sizes:
 		iter += 1
 		var regex = RegEx.new()
-		var match_string := "([^#]|^)#{%d}\\s([^\n]*)" % iter
+		var match_string : String = "([^#]|^)#{%d}\\s([^\n]*)" % iter
 		var replace_string := "$1[font_size=%d]$2[/font_size]" % [heading_font_size]
 		regex.compile(match_string)
 		credits = regex.sub(credits, replace_string, true)
