@@ -116,8 +116,3 @@ Example files can be reinstalled from the Project > Tools menu, assuming they ha
     3.  [Setting up a Game Scene.](/addons/maaacks_game_template/docs/GameSceneSetup.md)  
     4.  [Utilizing Game Saving](/addons/maaacks_game_template/docs/GameSaving.md)  
 
-
-
-> [!NOTE]  
-> Example files can be reinstalled from the Project > Tools menu,  
-> assuming they have not been deleted during a previous install.
