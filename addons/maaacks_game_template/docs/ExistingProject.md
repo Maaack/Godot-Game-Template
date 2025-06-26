@@ -1,7 +1,8 @@
 # Existing Project
 
-These instructions assume starting with just the contents of `addons/`. This will be the case when installing the *plugin* version in the Godot Asset Library.
+These instructions assume starting with just the contents of `addons/` and going through the installer to copy the examples content into your project. This will be the case when installing the *plugin* version in the Godot Asset Library.
 
+Example files can be reinstalled from the Project > Tools menu, assuming they have not been deleted.
 
 1.  Update the project’s name in the main menu.
     
@@ -114,3 +115,9 @@ These instructions assume starting with just the contents of `addons/`. This wil
     2.  [Adding icons to the Input Options.](/addons/maaacks_game_template/docs/InputIconMapping.md)  
     3.  [Setting up a Game Scene.](/addons/maaacks_game_template/docs/GameSceneSetup.md)  
     4.  [Utilizing Game Saving](/addons/maaacks_game_template/docs/GameSaving.md)  
+
+
+
+> [!NOTE]  
+> Example files can be reinstalled from the Project > Tools menu,  
+> assuming they have not been deleted during a previous install.
