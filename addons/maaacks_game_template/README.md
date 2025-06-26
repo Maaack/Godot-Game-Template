@@ -146,7 +146,8 @@ These instructions assume starting with just the contents of `addons/`. This wil
 [Joypad Inputs](/addons/maaacks_game_template/docs/JoypadInputs.md)  
 [Game Saving](/addons/maaacks_game_template/docs/GameSaving.md)  
 [How Parts Work](/addons/maaacks_game_template/docs/HowPartsWork.md)  
-[Uploading to itch.io](/addons/maaacks_game_template/docs/UploadingToItchIo.md)
+[Uploading to itch.io](/addons/maaacks_game_template/docs/UploadingToItchIo.md)  
+[Automatic Updating](/addons/maaacks_game_template/docs/AutomaticUpdating.md)  
 
 ---
 
