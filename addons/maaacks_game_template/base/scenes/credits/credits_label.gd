@@ -9,6 +9,8 @@ extends RichTextLabel
 @export var h2_font_size: int
 @export var h3_font_size: int
 @export var h4_font_size: int
+@export var h5_font_size: int
+@export var h6_font_size: int
 @export_group("Image Sizes")
 @export var max_image_width: int
 @export var max_image_height : int
@@ -53,7 +55,13 @@ func regex_replace_urls(credits:String) -> String:
 
 func regex_replace_titles(credits:String) -> String:
 	var iter = 0
-	var heading_font_sizes : Array[int] = [h1_font_size, h2_font_size, h3_font_size, h4_font_size]
+	var heading_font_sizes : Array[int] = [
+		h1_font_size,
+		h2_font_size,
+		h3_font_size,
+		h4_font_size,
+		h5_font_size,
+		h6_font_size]
 	for heading_font_size in heading_font_sizes:
 		iter += 1
 		var regex = RegEx.new()
