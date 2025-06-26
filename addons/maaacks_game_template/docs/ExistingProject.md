@@ -2,7 +2,7 @@
 
 These instructions assume starting with just the contents of `addons/` and going through the installer to copy the examples content into your project. This will be the case when installing the *plugin* version in the Godot Asset Library.
 
-Example files can be reinstalled from the Project > Tools menu, assuming they have not been deleted.
+Example files can be reinstalled from the `Project > Tools` menu, assuming they have not been deleted.
 
 1.  Update the project’s name in the main menu.
     
