@@ -45,6 +45,8 @@ h1_font_size = 64
 h2_font_size = 48
 h3_font_size = 32
 h4_font_size = 24
+h5_font_size = 20
+h6_font_size = 16
 max_image_width = 80
 
 [node name="FooterSpace" type="Control" parent="ScrollContainer/VBoxContainer"]
