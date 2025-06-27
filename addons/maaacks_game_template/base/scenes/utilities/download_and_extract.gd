@@ -240,7 +240,7 @@ func _zipped_files_remaining() -> int:
 
 func _extract_next_zipped_file() -> void:
 	var path_index = extracted_file_paths.size() + skipped_file_paths.size()
-	var zipped_file_path := zipped_file_paths.get(path_index)
+	var zipped_file_path := zipped_file_paths[path_index]
 	if path_match_string and not zipped_file_path.contains(path_match_string):
 		skipped_file_paths.append(zipped_file_path)
 		return

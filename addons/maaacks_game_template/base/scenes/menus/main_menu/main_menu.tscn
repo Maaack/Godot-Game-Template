@@ -180,10 +180,10 @@ layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-theme_override_constants/margin_left = 16
+theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 32
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 64
 
 [node name="FlowControlContainer" type="MarginContainer" parent="."]
 layout_mode = 0

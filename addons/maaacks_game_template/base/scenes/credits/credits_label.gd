@@ -2,6 +2,9 @@
 class_name CreditsLabel
 extends RichTextLabel
 
+const HEADING_STRING_REPLACEMENT = "$1[font_size=%d]$2[/font_size]"
+const BOLD_HEADING_STRING_REPLACEMENT = "$1[b][font_size=%d]$2[/font_size][/b]"
+
 @export_file("*.md") var attribution_file_path: String
 @export var auto_update : bool = true
 @export_group("Font Sizes")
@@ -9,6 +12,9 @@ extends RichTextLabel
 @export var h2_font_size: int
 @export var h3_font_size: int
 @export var h4_font_size: int
+@export var h5_font_size: int
+@export var h6_font_size: int
+@export var bold_headings : bool
 @export_group("Image Sizes")
 @export var max_image_width: int
 @export var max_image_height : int
@@ -53,12 +59,20 @@ func regex_replace_urls(credits:String) -> String:
 
 func regex_replace_titles(credits:String) -> String:
 	var iter = 0
-	var heading_font_sizes : Array[int] = [h1_font_size, h2_font_size, h3_font_size, h4_font_size]
+	var heading_font_sizes : Array[int] = [
+		h1_font_size,
+		h2_font_size,
+		h3_font_size,
+		h4_font_size,
+		h5_font_size,
+		h6_font_size]
 	for heading_font_size in heading_font_sizes:
 		iter += 1
 		var regex = RegEx.new()
-		var match_string := "([^#]|^)#{%d}\\s([^\n]*)" % iter
-		var replace_string := "$1[font_size=%d]$2[/font_size]" % [heading_font_size]
+		var match_string : String = "([^#]|^)#{%d}\\s([^\n]*)" % iter
+		var replace_string := HEADING_STRING_REPLACEMENT % [heading_font_size]
+		if bold_headings:
+			replace_string = BOLD_HEADING_STRING_REPLACEMENT % [heading_font_size]
 		regex.compile(match_string)
 		credits = regex.sub(credits, replace_string, true)
 	return credits
