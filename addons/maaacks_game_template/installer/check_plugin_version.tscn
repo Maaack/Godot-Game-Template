@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b5m61gpvjy1ao"]
 
 [ext_resource type="Script" uid="uid://ye1geusqp1gd" path="res://addons/maaacks_game_template/installer/check_plugin_version.gd" id="1_aqelj"]
-[ext_resource type="PackedScene" uid="uid://drhhakm62vjsy" path="res://addons/maaacks_game_template/base/scenes/utilities/api_client.tscn" id="2_5myc0"]
+[ext_resource type="PackedScene" uid="uid://drhhakm62vjsy" path="res://addons/maaacks_game_template/utilities/api_client.tscn" id="2_5myc0"]
 
 [node name="CheckPluginVersion" type="Node"]
 script = ExtResource("1_aqelj")
