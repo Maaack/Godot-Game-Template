@@ -5,6 +5,8 @@ signal new_version_detected(version: String)
 signal versions_matched
 signal failed
 
+const APIClient = MaaacksGameTemplatePlugin.APIClient
+
 const API_RELEASES_URL := "https://api.github.com/repos/%s/%s/releases"
 
 @export var plugin_directory : String

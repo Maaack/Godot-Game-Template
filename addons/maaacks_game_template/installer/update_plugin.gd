@@ -3,6 +3,9 @@ extends Node
 
 signal update_completed
 
+const DownloadAndExtract = MaaacksGameTemplatePlugin.DownloadAndExtract
+const APIClient = MaaacksGameTemplatePlugin.APIClient
+
 const API_RELEASES_URL := "https://api.github.com/repos/%s/%s/releases"
 const UPDATE_CONFIRMATION_MESSAGE := "This will update the contents of the plugin folder (addons/%s/).\nFiles outside of the plugin folder will not be affected.\n\nUpdate %s to v%s?"
 const PLUGIN_EXTRACT_PATH := "res://addons/%s/"
