@@ -1,72 +1,137 @@
-keys,en,fr
+keys,en,fr,zh_CN,zh_TW
 
-___ MAIN MENU,,
+___ MAIN MENU,,,,
 
-Title,Title,Titre
-Subtitle,Subtitle,Sous-titre
-Play,Play,Jouer
-Options,Options,Options
-Credits,Credits,Crédits
-Exit,Exit,Quitter
+Title,Title,Titre,标题,標題
+Subtitle,Subtitle,Sous-titre,副标题,副標題
+New Game,New Game,Nouveau Jeu,新游戏,新遊戲
+Play,Play,Jouer,开始游戏,開始遊戲
+Options,Options,Options,选项,選項
+Credits,Credits,Crédits,致谢,致謝
+Exit,Exit,Quitter,退出,退出
 
-___ LOADING SCREEN,,
-Loading...,Loading...,Chargement...
+___ LOADING SCREEN,,,,
+Loading...,Loading...,Chargement...,加载中...,載入中...
 
-___ DIALOGS IN GAME,,
+___ DIALOGS IN GAME,,,,
 
-You lose.,You lose.,Vous avez perdu.
-You won!,You won!,Vous avez gagné !
-Thanks for playing!,Thanks for playing!,Merci d'avoir joué !
+Start a New Game?,Start a New Game?,Commencer un nouveau jeu ?,开始新游戏？,開始新遊戲？
+"Are you sure you want to start a new game?
 
-Exit Game,Exit Game,Quitter le jeu
-Main Menu,Main Menu,Menu principal
-Restart,Restart,Recommencer
-Continue,Continue,Continuer
-Menu,Menu,Menu
+All progress in the current game will be lost.","Are you sure you want to start a new game?
 
-Please Confirm...,Please Confirm...,Veuillez confirmer...
-Go back to main menu?,Go back to main menu?,Retourner au menu principal ?
-Quit the game?,Quit the game?,Quitter le jeu ?
-Cancel,Cancel,Annuler
-OK,OK,OK
+All progress in the current game will be lost.","Êtes-vous sûr de vouloir commencer un nouveau jeu ?
 
-___ OPTIONS MENU,,
+Toute progression dans la partie en cours sera perdue.","你确定要开始新游戏吗？
 
-Controls,Controls,Contrôles
-Mouse Sensitivity :,Mouse Sensitivity :,Sensibilité souris :
-Actions & Inputs,Actions & Inputs,Actions et contrôles
-Add,Add,Ajouter
-Remove,Remove,Enlever
-Assign Key for {action},Assign Key for {action},Choisir le contrôle pour {action}
-Listening for input...,Listening for input...,Appuyez sur un bouton...
-Press again to confirm...,Press again to confirm...,Appuyez encore pour confirmer...
-Focus here to assign inputs.,Focus here to assign inputs.,Mettez le focus ici pour choisir le contrôle.
-Already Assigned,Already Assigned,Déjà utilisé
-{key} already assigned to {action}.,{key} already assigned to {action}.,{key} est déjà utilisé pour {action}.
-Remove Key for {action},Remove Key for {action},Supprimer le contrôle pour {action}
-Are you sure you want to remove {key} from {action}?,Are you sure you want to remove {key} from {action}?,Êtes-vous sûr de vouloir supprimer {key} pour {action} ?
-Reset,Reset,Réinitialiser
+当前游戏中的所有进度都将丢失。","你確定要開始新遊戲嗎？
 
-Audio,Audio,Audio
-Master :,Master :,Principal :
-Music :,Music :,Musique :
-SFX :,SFX :,Effets :
-Mute :,Mute :,Silencieux :
+當前遊戲中的所有進度都將丟失。"
+"[center]Click the Win button to progress.
+Click the Lose button to try again.[/center]","[center]Click the Win button to progress.
+Click the Lose button to try again.[/center]","[center]Cliquez sur le bouton Win pour avancer.
+Cliquez sur le bouton Lose pour recommencer.[/center]","[center]点击 “赢” 按钮继续。
+点击 “输” 按钮重试。[/center]","[center]點擊 “贏” 按鈕繼續。
+點擊 “輸” 按鈕重試。[/center]"
+"[center]Progress is saved.
+Pressing Continue from the main menu will load the last level played.[/center]","[center]Progress is saved.
+Pressing Continue from the main menu will load the last level played.[/center]","[center]La progression est sauvegardée.
+En appuyant sur Continuer dans le menu principal, le dernier niveau joué sera chargé.[/center]","[center]进度已保存。
+从主菜单按 “继续” 将加载上次游玩的关卡。[/center]","[center]進度已保存。
+從主菜單按「繼續」將加載上次遊玩的關卡。[/center]"
+"[center]The color picker at the bottom-right updates the level state. This change persists until the game is reset.
 
-Video,Video,Vidéo
-Fullscreen :,Fullscreen :,Plein écran :
-Resolution :,Resolution :,Résolution :
-Anti-Aliasing :,Anti-Aliasing :,Anticrénelage :
-Disabled (Fastest),Disabled (Fastest),Désactivé (Plus rapide)
-8x (Slowest),8x (Slowest),8x (Plus lent)
-Camera Shake :,Camera Shake :,Secousse Caméra :
-Normal,Normal,Normale
-Reduced,Reduced,Réduite
-Minimal,Minimal,Minimum
-None,None,Aucune
+The label at the bottom-center displays the current input action detected, if any are setup for the project.[/center]","[center]The color picker at the bottom-right updates the level state. This change persists until the game is reset.
 
-Game,Game,Jeu
-Reset Game :,Reset Game :,Réinitialiser le jeu :
-Do you want to reset your game data?,Do you want to reset your game data?,Voulez-vous réinitialiser votre partie ?
+The label at the bottom-center displays the current input action detected, if any are setup for the project.[/center]","[center]Le sélecteur de couleur en bas à droite met à jour l'état du niveau. Ce changement persiste jusqu'à ce que le jeu soit réinitialisé.
 
-Back,Back,Retour
+Le label en bas au centre affiche l'action d'entrée actuelle détectée, s'il y en a des configurées pour le projet.[/center]","[center]右下角的颜色选择器会更新关卡状态。此更改将持续到游戏重置为止。
+
+如果为项目设置了任何输入操作，底部中央的标签将显示检测到的当前输入操作。[/center]","[center]右下角的顏色選擇器會更新關卡狀態。此更改將持續到遊戲重置為止。
+
+如果為項目設置了任何輸入操作，底部中央的標籤將顯示檢測到的當前輸入操作。[/center]"
+You lose.,You lose.,Vous avez perdu.,你输了。,你輸了。
+You won!,You won!,Vous avez gagné !,你赢了！,你贏了！
+Thanks for playing!,Thanks for playing!,Merci d'avoir joué !,感谢游玩！,感謝遊玩！
+"[center]You lost...[/center]","[center]You lost...[/center]","[center]Vous avez perdu...[/center]","[center]你输了...[/center]","[center]你輸了...[/center]"
+"[center]Level complete![/center]","[center]Level complete![/center]","[center]Niveau terminé ![/center]","[center]关卡完成！[/center]","[center]關卡完成！[/center]"
+Exit Game,Exit Game,Quitter le jeu,退出游戏,退出遊戲
+Main Menu,Main Menu,Menu principal,主菜单,主選單
+Restart,Restart,Recommencer,重新开始,重新開始
+Continue,Continue,Continuer,继续,繼續
+Menu,Menu,Menu,菜单,選單
+Tutorial,Tutorial,Tutoriel,教程,教程
+Win,Win,Gagner,赢,贏
+Lose,Lose,Perdre,输,輸
+Change Level Color: ,Change Level Color: ,Changer la couleur du niveau :,更改关卡颜色：,更改關卡顏色：
+
+Please Confirm...,Please Confirm...,Veuillez confirmer...,请确认...,請確認...
+Go back to main menu?,Go back to main menu?,Retourner au menu principal ?,返回主菜单？,返回主選單？
+Quit the game?,Quit the game?,Quitter le jeu ?,退出游戏？,退出遊戲？
+Cancel,Cancel,Annuler,取消,取消
+OK,OK,OK,确定,確定
+Close,Close,Fermer,关闭,關閉
+
+___ OPTIONS MENU,,,,
+
+Controls,Controls,Contrôles,控制,控制
+Move Up,Move Up,Monter,向上移动,向上移動
+Move Down,Move Down,Descendre,向下移动,向下移動
+Move Left,Move Left,Aller à gauche,向左移动,向左移動
+Move Right,Move Right,Aller à droite,向右移动,向右移動
+Interact,Interact,Interagir,互动,互動
+Mouse Sensitivity :,Mouse Sensitivity :,Sensibilité souris :,鼠标灵敏度：,滑鼠靈敏度：
+Joypad Sensitivity :,Joypad Sensitivity :,Sensibilité de la manette :,手柄灵敏度 :,手把靈敏度 :
+Actions & Inputs,Actions & Inputs,Actions et contrôles,动作与输入,動作與輸入
+Primary,Primary,Primaire,主要,主要
+Secondary,Secondary,Secondaire,次要,次要
+Tertiary,Tertiary,Tertiaire,第三,第三
+Add,Add,Ajouter,添加,添加
+Remove,Remove,Enlever,移除,移除
+Assign Key for {action},Assign Key for {action},Choisir le contrôle pour {action},为 {action} 分配按键,為 {action} 分配按鍵
+Listening for input...,Listening for input...,Appuyez sur un bouton...,正在监听输入...,正在監聽輸入...
+Press again to confirm...,Press again to confirm...,Appuyez encore pour confirmer...,再次按下以确认...,再次按下以確認...
+Focus here to assign inputs.,Focus here to assign inputs.,Mettez le focus ici pour choisir le contrôle.,聚焦此处以分配输入。,聚焦此處以分配輸入。
+Already Assigned,Already Assigned,Déjà utilisé,已分配,已分配
+{key} already assigned to {action}.,{key} already assigned to {action}.,{key} est déjà utilisé pour {action}.,{key} 已分配给 {action}。,{key} 已分配給 {action}。
+Remove Key for {action},Remove Key for {action},Supprimer le contrôle pour {action},移除 {action} 的按键,移除 {action} 的按鍵
+Are you sure you want to remove {key} from {action}?,Are you sure you want to remove {key} from {action}?,Êtes-vous sûr de vouloir supprimer {key} pour {action} ?,你确定要从 {action} 中移除 {key} 吗？,你確定要從 {action} 中移除 {key} 嗎？
+Reset,Reset,Réinitialiser,重置,重置
+
+Inputs,Inputs,Inputs,输入,輸入
+
+Audio,Audio,Audio,音频,音頻
+Master :,Master :,Principal :,主音量：,主音量：
+Music :,Music :,Musique :,音乐：,音樂：
+SFX :,SFX :,Effets :,音效：,音效：
+Mute :,Mute :,Silencieux :,静音：,靜音：
+
+Video,Video,Vidéo,视频,視頻
+Fullscreen :,Fullscreen :,Plein écran :,全屏：,全屏：
+Resolution :,Resolution :,Résolution :,分辨率：,解析度：
+V-Sync :,V-Sync :,Synchronisation verticale :,垂直同步：,垂直同步：
+Disabled,Disabled,Désactivé,禁用,禁用
+Enabled,Enabled,Activé,启用,啟用
+Adaptive,Adaptive,Adaptatif,自适应,自適應
+Mailbox,Mailbox,Bôite aux lettres,快速,快速
+Anti-Aliasing :,Anti-Aliasing :,Anticrénelage :,抗锯齿：,抗鋸齒：
+Disabled (Fastest),Disabled (Fastest),Désactivé (Plus rapide),已禁用（最快）,已禁用（最快）
+2x,2x,2x,2 倍,2 倍
+4x,4x,4x,4 倍,4 倍
+8x (Slowest),8x (Slowest),8x (Plus lent),8 倍（最慢）,8 倍（最慢）
+Camera Shake :,Camera Shake :,Secousse Caméra :,镜头抖动：,鏡頭抖動：
+Normal,Normal,Normale,正常,正常
+Reduced,Reduced,Réduite,减少,減少
+Minimal,Minimal,Minimum,最小,最小
+None,None,Aucune,无,無
+
+Game,Game,Jeu,游戏,遊戲
+Reset Game :,Reset Game :,Réinitialiser le jeu :,重置游戏：,重置遊戲：
+Do you want to reset your game data?,Do you want to reset your game data?,Voulez-vous réinitialiser votre partie ?,你想重置游戏数据吗？,你想重置遊戲數據嗎？
+Language :,Language :,Langue :,语言 :,語言 :
+English,English,Anglais,英语,英語
+French,French,Français,法語,法語
+Simplified Chinese,Simplified Chinese,Chinois simplifié,简体中文,簡體中文
+Traditional Chinese,Traditional Chinese,Chinois traditionnel,繁體中文,繁體中文
+
+Back,Back,Retour,返回,返回
