@@ -1,4 +1,3 @@
-class_name CaptureFocus
 extends Control
 ## Node that captures UI focus for games with a hidden mouse or joypad enabled.
 ##

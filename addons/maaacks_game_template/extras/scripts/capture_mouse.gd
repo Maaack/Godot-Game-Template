@@ -1,4 +1,3 @@
-class_name CaptureMouse
 extends Control
 ## Control node that captures the mouse for games that require it. 
 ##
