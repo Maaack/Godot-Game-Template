@@ -61,10 +61,13 @@ Restart,Restart,Recommencer,重新开始,重新開始
 Continue,Continue,Continuer,继续,繼續
 Menu,Menu,Menu,菜单,選單
 Tutorial,Tutorial,Tutoriel,教程,教程
+Paused,Paused,En pause,暂停,暫停
+Resume,Resume,Reprendre,继续,繼續
 Win,Win,Gagner,赢,贏
 Lose,Lose,Perdre,输,輸
 Change Level Color: ,Change Level Color: ,Changer la couleur du niveau :,更改关卡颜色：,更改關卡顏色：
 
+Restart the game?,Restart the game?,Redémarrer le jeu ?,重新开始游戏？,重新開始遊戲？
 Please Confirm...,Please Confirm...,Veuillez confirmer...,请确认...,請確認...
 Go back to main menu?,Go back to main menu?,Retourner au menu principal ?,返回主菜单？,返回主選單？
 Quit the game?,Quit the game?,Quitter le jeu ?,退出游戏？,退出遊戲？
