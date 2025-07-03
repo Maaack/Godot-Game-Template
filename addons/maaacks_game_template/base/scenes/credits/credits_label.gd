@@ -1,5 +1,4 @@
 @tool
-class_name CreditsLabel
 extends RichTextLabel
 
 const HEADING_STRING_REPLACEMENT = "$1[font_size=%d]$2[/font_size]"

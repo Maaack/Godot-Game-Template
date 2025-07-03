@@ -1,5 +1,9 @@
 @tool
+class_name MaaacksGameTemplatePlugin
 extends EditorPlugin
+
+const APIClient = preload("res://addons/maaacks_game_template/utilities/api_client.gd")
+const DownloadAndExtract = preload("res://addons/maaacks_game_template/utilities/download_and_extract.gd")
 
 const PLUGIN_NAME = "Maaack's Game Template"
 const PROJECT_SETTINGS_PATH = "maaacks_game_template/"
