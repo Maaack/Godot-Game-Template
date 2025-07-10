@@ -387,23 +387,6 @@ func _resave_if_recently_opened() -> void:
 		add_child(timer)
 		timer.start(OPEN_EDITOR_DELAY)
 
-func _add_tool_options() -> void:
-	var examples_path = get_plugin_examples_path()
-	var dir := DirAccess.open("res://")
-	if dir.dir_exists(examples_path):
-		add_tool_menu_item("Copy " + _get_plugin_name() + " Examples...", _open_path_dialog)
-		add_tool_menu_item("Delete " + _get_plugin_name() + " Examples...", _open_delete_examples_short_confirmation_dialog)
-	add_tool_menu_item("Use Input Icons for " + _get_plugin_name() + "...", _open_input_icons_dialog)
-	_open_check_plugin_version()
-
-func _remove_tool_options() -> void:
-	var examples_path = get_plugin_examples_path()
-	var dir := DirAccess.open("res://")
-	if dir.dir_exists(examples_path):
-		remove_tool_menu_item("Copy " + _get_plugin_name() + " Examples...")
-		remove_tool_menu_item("Delete " + _get_plugin_name() + " Examples...")
-	remove_tool_menu_item("Use Input Icons for " + _get_plugin_name() + "...")
-	_remove_update_plugin_tool_option()
 
 func _add_audio_bus(bus_name : String) -> void:
 	var has_bus_name := false
@@ -427,6 +410,24 @@ func _install_audio_busses() -> void:
 	_add_audio_bus("SFX")
 	ProjectSettings.set_setting(PROJECT_SETTINGS_PATH + "disable_install_audio_busses", true)
 	ProjectSettings.save()
+
+func _add_tool_options() -> void:
+	var examples_path = get_plugin_examples_path()
+	var dir := DirAccess.open("res://")
+	if dir.dir_exists(examples_path):
+		add_tool_menu_item("Copy " + _get_plugin_name() + " Examples...", _open_path_dialog)
+		add_tool_menu_item("Delete " + _get_plugin_name() + " Examples...", _open_delete_examples_short_confirmation_dialog)
+	add_tool_menu_item("Use Input Icons for " + _get_plugin_name() + "...", _open_input_icons_dialog)
+	_open_check_plugin_version()
+
+func _remove_tool_options() -> void:
+	var examples_path = get_plugin_examples_path()
+	var dir := DirAccess.open("res://")
+	if dir.dir_exists(examples_path):
+		remove_tool_menu_item("Copy " + _get_plugin_name() + " Examples...")
+		remove_tool_menu_item("Delete " + _get_plugin_name() + " Examples...")
+	remove_tool_menu_item("Use Input Icons for " + _get_plugin_name() + "...")
+	_remove_update_plugin_tool_option()
 
 func _enter_tree() -> void:
 	add_autoload_singleton("AppConfig", get_plugin_path() + "base/scenes/autoloads/app_config.tscn")
