@@ -405,11 +405,35 @@ func _remove_tool_options() -> void:
 	remove_tool_menu_item("Use Input Icons for " + _get_plugin_name() + "...")
 	_remove_update_plugin_tool_option()
 
+func _add_audio_bus(bus_name : String) -> void:
+	var has_bus_name := false
+	for bus_idx in range(AudioServer.bus_count):
+		var existing_bus_name := AudioServer.get_bus_name(bus_idx)
+		if existing_bus_name == bus_name:
+			has_bus_name = true
+			break
+	if not has_bus_name:
+		AudioServer.add_bus()
+		var new_bus_idx := AudioServer.bus_count - 1
+		AudioServer.set_bus_name(new_bus_idx, bus_name)
+		AudioServer.set_bus_send(new_bus_idx, &"Master")
+	ProjectSettings.save()
+
+func _install_audio_busses() -> void:
+	if ProjectSettings.has_setting(PROJECT_SETTINGS_PATH + "disable_install_audio_busses"):
+		if ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + "disable_install_audio_busses") :
+			return
+	_add_audio_bus("Music")
+	_add_audio_bus("SFX")
+	ProjectSettings.set_setting(PROJECT_SETTINGS_PATH + "disable_install_audio_busses", true)
+	ProjectSettings.save()
+
 func _enter_tree() -> void:
 	add_autoload_singleton("AppConfig", get_plugin_path() + "base/scenes/autoloads/app_config.tscn")
 	add_autoload_singleton("SceneLoader", get_plugin_path() + "base/scenes/autoloads/scene_loader.tscn")
 	add_autoload_singleton("ProjectMusicController", get_plugin_path() + "base/scenes/autoloads/project_music_controller.tscn")
 	add_autoload_singleton("ProjectUISoundController", get_plugin_path() + "base/scenes/autoloads/project_ui_sound_controller.tscn")
+	_install_audio_busses()
 	_add_tool_options()
 	_add_translations()
 	_show_plugin_dialogues()
