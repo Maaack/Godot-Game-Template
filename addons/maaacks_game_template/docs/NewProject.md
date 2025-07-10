@@ -31,8 +31,8 @@ These instructions assume starting with the entire contents of the project folde
     1.  Verify the `Music` and `SFX` audio busses.
 
         1.  Open the Audio bus editor.
-        2.  Make sure there is a bus for `Music` and another for `SFX`.
-        3.  Add the busses if they do not exist.
+        2.  Confirm that `Music` and `SFX` audio busses are available.
+        3.  If the audio bus doesn't exist, add it and save the project.
 
     2.  Add background music to the Main Menu.
 
