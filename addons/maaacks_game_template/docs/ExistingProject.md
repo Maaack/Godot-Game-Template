@@ -26,12 +26,12 @@ Example files can be reinstalled from the `Project > Tools` menu, assuming they 
 
 3.  Add background music and sound effects to the UI.
 
-    1.  Add `Music` and `SFX` to the project's default audio busses.
+    1.  Verify the `Music` and `SFX` audio busses.
 
         1.  Open the Audio bus editor.
-        2.  Click the button "Add Bus" twice (x2).
-        3.  Name the two new busses `Music` and `SFX`.
-        4.  Save the project.
+        2.  Confirm that `Music` and `SFX` audio busses are available.
+            1.  If the last bus is `New Bus`, try restarting the editor and checking again.
+        3.  If the audio bus doesn't exist, add it and save the project.
 
     2.  Add background music to the Main Menu.
 
