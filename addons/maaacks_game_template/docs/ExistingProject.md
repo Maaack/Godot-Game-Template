@@ -15,7 +15,7 @@ Example files can be reinstalled from the `Project > Tools` menu, assuming they 
     5.  Save the scene.
     
 
-2.  Link the main menu to the game scene.
+2.  Link the main menu to a custom game scene (skip if using the example game scene).
     
 
     1.  Open `main_menu_with_animations.tscn`.
