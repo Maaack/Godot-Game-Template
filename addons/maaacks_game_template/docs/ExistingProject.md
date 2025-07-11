@@ -8,11 +8,11 @@ Example files can be reinstalled from the `Project > Tools` menu, assuming they 
     
 
     1.  Open `main_menu_with_animations.tscn`.
-    2.  Select the `Title` node.
-    3.  Update the `Text` to your project's title.
-    4.  Select the `Subtitle` node.
-    5.  Update the `Text` to a desired subtitle or empty.
-    6.  Save the scene.
+    2.  Select the `TitleLabel` node.
+    3.  The `Text` should match the project's name (in the project's settings).
+        1. If `Text` is customized, set `Auto Update` to false.
+    4.  Select the `SubtitleLabelNode` node and customize the `Text` as desired.
+    5.  Save the scene.
     
 
 2.  Link the main menu to the game scene.

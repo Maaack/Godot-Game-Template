@@ -20,9 +20,11 @@ These instructions assume starting with the entire contents of the project folde
     2.  Update `Name` to `"Game Name"`.
     3.  Close the window.
     4.  Open `main_menu_with_animations.tscn`.
-    5.  The `Title` node should automatically update with the project's title. Customize the `Text` property if desired.
-    7.  Select the `Subtitle` node and customize the `Text` property if desired.
-    9.  Save the scene.
+    5.  Select the `TitleLabel` node.
+    6.  The `Text` should match the project's name.
+        1. If `Text` is customized, set `Auto Update` to false.  
+    7.  Select the `SubtitleLabelNode` node and customize the `Text` as desired.
+    8.  Save the scene.
 
 
 3.  Add background music and sound effects to the UI.
