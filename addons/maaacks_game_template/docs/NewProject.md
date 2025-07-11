@@ -87,7 +87,7 @@ These instructions assume starting with the entire contents of the project folde
 
     1.  Open `mini_options_menu.tscn` or `[audio|visual|input|game]_options_menu.tscn` scenes to edit their options.
     2.  If an option is not desired, it can always be hidden, or removed entirely (sometimes with some additional work).
-    3.  If a new option is desired, refer to [Add Custom Options.](/addons/maaacks_game_template/docs/AddingCustomOptions.md)
+    3.  If a new option is desired, refer to [Adding Custom Options.](/addons/maaacks_game_template/docs/AddingCustomOptions.md)
 
 
 6.  Update the game credits / attribution.
