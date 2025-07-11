@@ -19,7 +19,7 @@ const WINDOW_OPEN_DELAY : float = 0.5
 const RUNNING_CHECK_DELAY : float = 0.25
 const RESAVING_DELAY : float = 1.0
 const OPEN_EDITOR_DELAY : float = 0.1
-const MAX_PHYSICS_FRAMES_FROM_START : int = 20
+const MAX_PHYSICS_FRAMES_FROM_START : int = 60
 const AVAILABLE_TRANSLATIONS : Array = ["en", "fr"]
 const RAW_COPY_EXTENSIONS : Array = ["gd", "md", "txt"]
 const OMIT_COPY_EXTENSIONS : Array = ["uid"]
@@ -386,7 +386,6 @@ func _resave_if_recently_opened() -> void:
 		timer.timeout.connect(callable)
 		add_child(timer)
 		timer.start(OPEN_EDITOR_DELAY)
-
 
 func _add_audio_bus(bus_name : String) -> void:
 	var has_bus_name := false
