@@ -144,6 +144,7 @@ These instructions assume starting with just the contents of `addons/`. This wil
 [Game Scene Setup](/addons/maaacks_game_template/docs/GameSceneSetup.md)  
 [Input Icon Mapping](/addons/maaacks_game_template/docs/InputIconMapping.md)  
 [Joypad Inputs](/addons/maaacks_game_template/docs/JoypadInputs.md)  
+[Add Custom Options](/addons/maaacks_game_template/docs/AddingCustomOptions.md)  
 [Game Saving](/addons/maaacks_game_template/docs/GameSaving.md)  
 [How Parts Work](/addons/maaacks_game_template/docs/HowPartsWork.md)  
 [Uploading to itch.io](/addons/maaacks_game_template/docs/UploadingToItchIo.md)  
