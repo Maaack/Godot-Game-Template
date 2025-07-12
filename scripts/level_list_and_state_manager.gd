@@ -1,14 +1,18 @@
+@tool
 extends LevelListManager
 
 func set_current_level_id(value : int) -> void:
 	super.set_current_level_id(value)
-	GameState.level_reached(value)
+	if value < files.size():
+		GameState.set_current_level(files[value])
 
 func get_current_level_id() -> int:
-	current_level_id = GameState.get_current_level() if force_level == -1 else force_level
+	var found_level_id : int = max(files.find(GameState.get_current_level_path()), 0)
+	current_level_id = found_level_id if force_level == -1 else force_level
 	return current_level_id
 
 func _advance_level() -> bool:
 	var _advanced := super._advance_level()
-	GameState.set_current_level(current_level_id)
+	if _advanced:
+		GameState.level_reached(files[current_level_id])
 	return _advanced

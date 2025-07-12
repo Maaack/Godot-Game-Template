@@ -48,7 +48,7 @@ func _input(event : InputEvent) -> void:
 
 func _add_level_select_if_set() -> void: 
 	if level_select_packed_scene == null: return
-	if GameStateExample.get_max_level_reached() <= 0 : return
+	if GameStateExample.get_levels_reached() <= 0 : return
 	level_select_scene = level_select_packed_scene.instantiate()
 	level_select_scene.hide()
 	%LevelSelectContainer.call_deferred("add_child", level_select_scene)
@@ -67,6 +67,7 @@ func _ready() -> void:
 	animation_state_machine = $MenuAnimationTree.get("parameters/playback")
 
 func _on_continue_game_button_pressed() -> void:
+	GameStateExample.continue_game()
 	load_game_scene()
 
 func _on_level_select_button_pressed() -> void:

@@ -5,8 +5,8 @@ const STATE_NAME : String = "GameState"
 const FILE_PATH = "res://scripts/game_state.gd"
 
 @export var level_states : Dictionary = {}
-@export var max_level_reached : int
-@export var current_level : int
+@export var current_level_path : String
+@export var continue_level_path : String
 @export var times_played : int
 
 static func get_level_state(level_state_key : String) -> LevelState:
@@ -27,30 +27,36 @@ static func has_game_state() -> bool:
 static func get_or_create_state() -> GameState:
 	return GlobalState.get_or_create_state(STATE_NAME, FILE_PATH)
 
-static func get_current_level() -> int:
+static func get_current_level_path() -> String:
+	if not has_game_state(): 
+		return ""
+	var game_state := get_or_create_state()
+	return game_state.current_level_path
+
+static func get_levels_reached() -> int:
 	if not has_game_state(): 
 		return 0
 	var game_state := get_or_create_state()
-	return game_state.current_level
+	return game_state.level_states.size()
 
-static func get_max_level_reached() -> int:
-	if not has_game_state(): 
-		return 0
+static func level_reached(level_path : String) -> void:
 	var game_state := get_or_create_state()
-	return game_state.max_level_reached
-
-static func level_reached(level_number : int) -> void:
-	var game_state := get_or_create_state()
-	game_state.max_level_reached = max(level_number, game_state.max_level_reached)
-	game_state.current_level = level_number
+	game_state.current_level_path = level_path
+	game_state.continue_level_path = level_path
+	get_level_state(level_path)
 	GlobalState.save()
 
-static func set_current_level(level_number : int) -> void:
+static func set_current_level(level_path : String) -> void:
 	var game_state := get_or_create_state()
-	game_state.current_level = level_number
+	game_state.current_level_path = level_path
 	GlobalState.save()
 
 static func start_game() -> void:
 	var game_state := get_or_create_state()
 	game_state.times_played += 1
+	GlobalState.save()
+
+static func continue_game() -> void:
+	var game_state := get_or_create_state()
+	game_state.current_level_path = game_state.continue_level_path
 	GlobalState.save()

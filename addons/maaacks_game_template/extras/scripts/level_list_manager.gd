@@ -1,9 +1,10 @@
+@tool
 class_name LevelListManager
-extends Node
-## Manager of level progress and the result screens between them.
+extends SceneLister
+## Extends [SceneLister] to manage linear level advancement.
 ##
 ## A helper script to assign to a node in a scene.
-## It works with a level list loader and a loading screen
+## It works with a level loader and a loading screen
 ## to advance levels and open menus when players win or lose. 
 
 ## Required reference to a level list loader in the scene.
@@ -16,14 +17,14 @@ extends Node
 @export_group("Screens")
 ## Optional reference to a loading screen in the scene.
 @export var level_loading_screen : LoadingScreen
-## Optional win screen to be shown after the last level is won.
+## Optional screen to be shown after the game is won.
 @export var game_won_scene : PackedScene
-## Optional lose screen to be shown after the level is lost.
+## Optional screen to be shown after the level is lost.
 @export var level_lost_scene : PackedScene
-## Optional level compete screen to be shown after the level is won.
+## Optional screen to be shown after the level is won.
 @export var level_won_scene : PackedScene
-## Loads a level on start.
 @export_group("Debugging")
+## Loads a level on start.
 @export var force_level : int = -1
 
 ## Reference to the current level node.
