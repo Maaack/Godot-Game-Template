@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=3 uid="uid://bde0cbmryrv5s"]
 
 [ext_resource type="PackedScene" uid="uid://cnmu4k37qncn8" path="res://addons/maaacks_game_template/examples/scenes/overlaid_menus/pause_menu.tscn" id="2_7mepj"]
+[ext_resource type="Script" uid="uid://bbymrin0cm704" path="res://addons/maaacks_game_template/extras/scripts/level_loader.gd" id="5_a40ke"]
 [ext_resource type="Script" uid="uid://cyh0d64pfygbl" path="res://addons/maaacks_game_template/base/scripts/pause_menu_controller.gd" id="5_fc8fx"]
-[ext_resource type="Script" uid="uid://crbo2e4ndbyvk" path="res://addons/maaacks_game_template/extras/scripts/level_list_loader.gd" id="6_wd8e4"]
 [ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/scenes/music_players/background_music_player.tscn" id="7_yr75v"]
 [ext_resource type="PackedScene" uid="uid://dbuv0htkikcv4" path="res://addons/maaacks_game_template/examples/scenes/loading_screen/level_loading_screen.tscn" id="8_0nt60"]
 [ext_resource type="Script" uid="uid://1j7lshgi1fn6" path="res://addons/maaacks_game_template/examples/scripts/level_list_and_state_manager.gd" id="8_pmt5g"]
@@ -26,21 +26,21 @@ focused_viewport = NodePath("../ViewportContainer/ConfigurableSubViewport")
 
 [node name="BackgroundMusicPlayer" parent="." instance=ExtResource("7_yr75v")]
 
-[node name="LevelListLoader" type="Node" parent="." node_paths=PackedStringArray("level_container")]
-script = ExtResource("6_wd8e4")
+[node name="LevelLoader" type="Node" parent="." node_paths=PackedStringArray("level_container")]
+script = ExtResource("5_a40ke")
 level_container = NodePath("../ViewportContainer/ConfigurableSubViewport")
-files = Array[String](["res://addons/maaacks_game_template/examples/scenes/game_scene/levels/level_1.tscn", "res://addons/maaacks_game_template/examples/scenes/game_scene/levels/level_2.tscn", "res://addons/maaacks_game_template/examples/scenes/game_scene/levels/level_3.tscn"])
-directory = "res://addons/maaacks_game_template/examples/scenes/game_scene/levels"
 
-[node name="LevelListManager" type="Node" parent="." node_paths=PackedStringArray("level_list_loader", "level_loading_screen")]
+[node name="LevelListManager" type="Node" parent="." node_paths=PackedStringArray("level_loader", "level_loading_screen")]
 script = ExtResource("8_pmt5g")
-level_list_loader = NodePath("../LevelListLoader")
-main_menu_scene = "res://addons/maaacks_game_template/examples/scenes/menus/main_menu/main_menu_with_animations.tscn"
+level_loader = NodePath("../LevelLoader")
+main_menu_scene = "uid://c63y6b25bs4bk"
 ending_scene = "res://addons/maaacks_game_template/examples/scenes/end_credits/end_credits.tscn"
 level_loading_screen = NodePath("../LevelLoadingScreen")
 game_won_scene = ExtResource("9_suu1j")
 level_lost_scene = ExtResource("10_lkew3")
 level_won_scene = ExtResource("11_p7huw")
+files = Array[String](["res://addons/maaacks_game_template/examples/scenes/game_scene/levels/level_1.tscn", "res://addons/maaacks_game_template/examples/scenes/game_scene/levels/level_2.tscn", "res://addons/maaacks_game_template/examples/scenes/game_scene/levels/level_3.tscn"])
+directory = "res://addons/maaacks_game_template/examples/scenes/game_scene/levels"
 
 [node name="LevelLoadingScreen" parent="." instance=ExtResource("8_0nt60")]
 visible = false

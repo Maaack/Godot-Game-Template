@@ -8,7 +8,7 @@ extends SceneLister
 ## to advance levels and open menus when players win or lose. 
 
 ## Required reference to a level list loader in the scene.
-@export var level_list_loader : LevelListLoader
+@export var level_loader : LevelLoader
 ## Required path to a main menu scene.
 @export_file("*.tscn") var main_menu_scene : String
 ## Optional path to an ending scene.
@@ -73,7 +73,7 @@ func get_current_level_id() -> int:
 	return current_level_id if force_level == -1 else force_level
 
 func load_current_level() -> void:
-	level_list_loader.load_level(get_current_level_id())
+	level_loader.load_level(files[get_current_level_id()])
 
 func _advance_and_reload() -> void:
 	var _prior_level_id = get_current_level_id()
@@ -109,7 +109,7 @@ func _load_level_complete_screen_or_next_level() -> void:
 		_load_next_level()
 
 func is_on_last_level() -> bool:
-	return get_current_level_id() + 1 >= level_list_loader.files.size()
+	return get_current_level_id() + 1 >= files.size()
 
 func _on_level_won():
 	if is_on_last_level():
@@ -123,22 +123,22 @@ func _connect_level_signals() -> void:
 	_try_connecting_signal_to_level(&"level_skipped", _load_next_level)
 
 func _on_level_loader_level_loaded() -> void:
-	current_level = level_list_loader.current_level
+	current_level = level_loader.current_level
 	await current_level.ready
 	_connect_level_signals()
 	if level_loading_screen:
 		level_loading_screen.close()
 
-func _on_level_loader_levels_finished() -> void:
-	_load_win_screen_or_ending()
-
 func _on_level_loader_level_load_started() -> void:
 	if level_loading_screen:
 		level_loading_screen.reset()
 
+func _on_level_loader_level_ready() -> void:
+	pass
+
 func _ready() -> void:
-	level_list_loader.level_loaded.connect(_on_level_loader_level_loaded)
-	level_list_loader.levels_finished.connect(_on_level_loader_levels_finished)
-	level_list_loader.level_load_started.connect(_on_level_loader_level_load_started)
+	level_loader.level_loaded.connect(_on_level_loader_level_loaded)
+	level_loader.level_ready.connect(_on_level_loader_level_ready)
+	level_loader.level_load_started.connect(_on_level_loader_level_load_started)
 	if auto_load:
 		load_current_level()
