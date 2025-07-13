@@ -14,9 +14,7 @@ extends SceneLister
 ## Optional path to an ending scene.
 @export_file("*.tscn") var ending_scene : String
 @export var auto_load : bool = true
-@export_group("Screens")
-## Optional reference to a loading screen in the scene.
-@export var level_loading_screen : LoadingScreen
+@export_group("Scenes")
 ## Optional screen to be shown after the game is won.
 @export var game_won_scene : PackedScene
 ## Optional screen to be shown after the level is lost.
@@ -126,17 +124,15 @@ func _on_level_loader_level_loaded() -> void:
 	current_level = level_loader.current_level
 	await current_level.ready
 	_connect_level_signals()
-	if level_loading_screen:
-		level_loading_screen.close()
 
 func _on_level_loader_level_load_started() -> void:
-	if level_loading_screen:
-		level_loading_screen.reset()
+	pass
 
 func _on_level_loader_level_ready() -> void:
 	pass
 
 func _ready() -> void:
+	if Engine.is_editor_hint(): return
 	level_loader.level_loaded.connect(_on_level_loader_level_loaded)
 	level_loader.level_ready.connect(_on_level_loader_level_ready)
 	level_loader.level_load_started.connect(_on_level_loader_level_load_started)

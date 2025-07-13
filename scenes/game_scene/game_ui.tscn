@@ -26,16 +26,16 @@ focused_viewport = NodePath("../ViewportContainer/ConfigurableSubViewport")
 
 [node name="BackgroundMusicPlayer" parent="." instance=ExtResource("4_7aihr")]
 
-[node name="LevelLoader" type="Node" parent="." node_paths=PackedStringArray("level_container")]
+[node name="LevelLoader" type="Node" parent="." node_paths=PackedStringArray("level_container", "level_loading_screen")]
 script = ExtResource("4_onvsj")
 level_container = NodePath("../ViewportContainer/ConfigurableSubViewport")
+level_loading_screen = NodePath("../LevelLoadingScreen")
 
-[node name="LevelListManager" type="Node" parent="." node_paths=PackedStringArray("level_loader", "level_loading_screen")]
+[node name="LevelListManager" type="Node" parent="." node_paths=PackedStringArray("level_loader")]
 script = ExtResource("7_7aihr")
 level_loader = NodePath("../LevelLoader")
 main_menu_scene = "res://scenes/menus/main_menu/main_menu_with_animations.tscn"
 ending_scene = "res://scenes/end_credits/end_credits.tscn"
-level_loading_screen = NodePath("../LevelLoadingScreen")
 game_won_scene = ExtResource("8_3re04")
 level_lost_scene = ExtResource("9_ascoc")
 level_won_scene = ExtResource("10_wr4n6")

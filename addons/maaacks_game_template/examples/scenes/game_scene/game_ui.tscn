@@ -26,16 +26,16 @@ focused_viewport = NodePath("../ViewportContainer/ConfigurableSubViewport")
 
 [node name="BackgroundMusicPlayer" parent="." instance=ExtResource("7_yr75v")]
 
-[node name="LevelLoader" type="Node" parent="." node_paths=PackedStringArray("level_container")]
+[node name="LevelLoader" type="Node" parent="." node_paths=PackedStringArray("level_container", "level_loading_screen")]
 script = ExtResource("5_a40ke")
 level_container = NodePath("../ViewportContainer/ConfigurableSubViewport")
+level_loading_screen = NodePath("../LevelLoadingScreen")
 
-[node name="LevelListManager" type="Node" parent="." node_paths=PackedStringArray("level_loader", "level_loading_screen")]
+[node name="LevelListManager" type="Node" parent="." node_paths=PackedStringArray("level_loader")]
 script = ExtResource("8_pmt5g")
 level_loader = NodePath("../LevelLoader")
 main_menu_scene = "uid://c63y6b25bs4bk"
 ending_scene = "res://addons/maaacks_game_template/examples/scenes/end_credits/end_credits.tscn"
-level_loading_screen = NodePath("../LevelLoadingScreen")
 game_won_scene = ExtResource("9_suu1j")
 level_lost_scene = ExtResource("10_lkew3")
 level_won_scene = ExtResource("11_p7huw")

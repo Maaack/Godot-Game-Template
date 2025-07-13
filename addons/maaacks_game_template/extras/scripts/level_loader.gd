@@ -9,6 +9,8 @@ signal level_ready
 
 ## Container where the level instance will be added.
 @export var level_container : Node
+## Optional reference to a loading screen in the scene.
+@export var level_loading_screen : LoadingScreen
 @export_group("Debugging")
 @export var current_level : Node
 
@@ -28,10 +30,14 @@ func load_level(level_path : String):
 		current_level = null
 	is_loading = true
 	SceneLoader.load_scene(level_path, true)
+	if level_loading_screen:
+		level_loading_screen.reset()
 	level_load_started.emit()
 	await SceneLoader.scene_loaded
 	is_loading = false
 	current_level = _attach_level(SceneLoader.get_resource())
+	if level_loading_screen:
+		level_loading_screen.close()
 	level_loaded.emit()
 	await current_level.ready
 	level_ready.emit()
