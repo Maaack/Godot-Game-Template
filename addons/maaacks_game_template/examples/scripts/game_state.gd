@@ -19,6 +19,7 @@ static func get_level_state(level_state_key : String) -> LevelStateExample:
 	else:
 		var new_level_state := LevelStateExample.new()
 		game_state.level_states[level_state_key] = new_level_state
+		GlobalState.save()
 		return new_level_state
 
 static func has_game_state() -> bool:
