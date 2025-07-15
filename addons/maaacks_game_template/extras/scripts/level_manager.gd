@@ -57,10 +57,6 @@ func _try_connecting_signal_to_level(signal_name : String, callable : Callable) 
 func _load_main_menu() -> void:
 	SceneLoader.load_scene(main_menu_scene)
 
-func _is_in_scene_lister(level_path : String) -> bool:
-	if not scene_lister: return false
-	return level_path in scene_lister.files
-
 func _find_in_scene_lister(level_path : String) -> int:
 	if not scene_lister: return -1
 	return scene_lister.files.find(level_path)
