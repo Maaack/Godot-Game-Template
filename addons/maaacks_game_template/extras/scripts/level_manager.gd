@@ -155,7 +155,7 @@ func _on_level_won():
 
 func _on_level_won_and_changed(next_level : String):
 	next_level_path = next_level
-	_load_level_won_screen_or_next_level()
+	_on_level_won()
 
 func _on_level_changed(next_level : String):
 	next_level_path = next_level
