@@ -19,7 +19,7 @@ const WINDOW_OPEN_DELAY : float = 0.5
 const RUNNING_CHECK_DELAY : float = 0.25
 const RESAVING_DELAY : float = 1.0
 const OPEN_EDITOR_DELAY : float = 0.1
-const MAX_PHYSICS_FRAMES_FROM_START : int = 20
+const MAX_PHYSICS_FRAMES_FROM_START : int = 60
 const AVAILABLE_TRANSLATIONS : Array = ["en", "fr"]
 const RAW_COPY_EXTENSIONS : Array = ["gd", "md", "txt"]
 const OMIT_COPY_EXTENSIONS : Array = ["uid"]
@@ -387,6 +387,29 @@ func _resave_if_recently_opened() -> void:
 		add_child(timer)
 		timer.start(OPEN_EDITOR_DELAY)
 
+func _add_audio_bus(bus_name : String) -> void:
+	var has_bus_name := false
+	for bus_idx in range(AudioServer.bus_count):
+		var existing_bus_name := AudioServer.get_bus_name(bus_idx)
+		if existing_bus_name == bus_name:
+			has_bus_name = true
+			break
+	if not has_bus_name:
+		AudioServer.add_bus()
+		var new_bus_idx := AudioServer.bus_count - 1
+		AudioServer.set_bus_name(new_bus_idx, bus_name)
+		AudioServer.set_bus_send(new_bus_idx, &"Master")
+	ProjectSettings.save()
+
+func _install_audio_busses() -> void:
+	if ProjectSettings.has_setting(PROJECT_SETTINGS_PATH + "disable_install_audio_busses"):
+		if ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + "disable_install_audio_busses") :
+			return
+	_add_audio_bus("Music")
+	_add_audio_bus("SFX")
+	ProjectSettings.set_setting(PROJECT_SETTINGS_PATH + "disable_install_audio_busses", true)
+	ProjectSettings.save()
+
 func _add_tool_options() -> void:
 	var examples_path = get_plugin_examples_path()
 	var dir := DirAccess.open("res://")
@@ -410,6 +433,7 @@ func _enter_tree() -> void:
 	add_autoload_singleton("SceneLoader", get_plugin_path() + "base/scenes/autoloads/scene_loader.tscn")
 	add_autoload_singleton("ProjectMusicController", get_plugin_path() + "base/scenes/autoloads/project_music_controller.tscn")
 	add_autoload_singleton("ProjectUISoundController", get_plugin_path() + "base/scenes/autoloads/project_ui_sound_controller.tscn")
+	_install_audio_busses()
 	_add_tool_options()
 	_add_translations()
 	_show_plugin_dialogues()

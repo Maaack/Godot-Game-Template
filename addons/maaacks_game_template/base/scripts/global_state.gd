@@ -40,9 +40,9 @@ static func has_state(state_key : String) -> bool:
 	if current is not GlobalStateData: return false
 	return current.has_state(state_key)
 
-static func get_state(state_key : String, state_type_path : String) -> Resource:
+static func get_or_create_state(state_key : String, state_type_path : String) -> Resource:
 	if current is not GlobalStateData: return
-	return current.get_state(state_key, state_type_path)
+	return current.get_or_create_state(state_key, state_type_path)
 
 static func reset() -> void:
 	if current is not GlobalStateData: return
