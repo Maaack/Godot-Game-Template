@@ -109,7 +109,8 @@ These instructions assume starting with the entire contents of the project folde
 9.  Continue with:
 
     1.  [Setting up the Main Menu.](/addons/maaacks_game_template/docs/MainMenuSetup.md)  
-    2.  [Adding icons to the Input Options.](/addons/maaacks_game_template/docs/InputIconMapping.md)  
-    3.  [Setting up a Game Scene.](/addons/maaacks_game_template/docs/GameSceneSetup.md)  
-    4.  [Adding Custom Options.](/addons/maaacks_game_template/docs/AddingCustomOptions.md)
-    5.  [Utilizing Game Saving.](/addons/maaacks_game_template/docs/GameSaving.md)  
+    2.  [Setting up a Game Scene.](/addons/maaacks_game_template/docs/GameSceneSetup.md)  
+    3.  [Loading scenes asynchronously.](/addons/maaacks_game_template/docs/LoadingScenes.md)  
+    4.  [Adding icons to the Input Options.](/addons/maaacks_game_template/docs/InputIconMapping.md)  
+    5.  [Adding Custom Options.](/addons/maaacks_game_template/docs/AddingCustomOptions.md)
+    6.  [Utilizing Game Saving.](/addons/maaacks_game_template/docs/GameSaving.md)  
