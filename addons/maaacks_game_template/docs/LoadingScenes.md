@@ -1,13 +1,12 @@
 # Loading Scenes
 
-These are instructions for using the `SceneLoader` autoload to load resources asynchronously. The plugin comes with an example loading screen as well.
+These are instructions for using the `SceneLoader` autoload to load resources asynchronously. This is especially useful for large scenes, but can be used throughout a project. The plugin comes with an example loading screen as well.
 
 ## Foreground Loading
 
 By default, calling `SceneLoader.load_scene(path_to_scene)` will unload the current scene and replace it with a loading screen, until the next scene is fully loaded. At that point, the loading screen will be removed and replaced with the next scene.
 
 It is intended to replace calls to `get_tree().change_scene_to_file(path_to_scene)` that open large scenes and may cause a stutter. It can also replace calls to `get_tree().change_scene_to_packed(loaded_packed_scene)`, that may require large scenes to already be loaded into memory.
-
 
 ## Background Loading
 
@@ -23,6 +22,7 @@ An example of this is in `level_loader.gd` of [Maaack's Game Template](https://g
 
 
 Below is an example of reacting to `SceneLoader` signals to open the loaded scene in an optional `container` node, or switch to it entirely.  
+
 ```
 SceneLoader.load_scene(path_to_scene, true)
 await SceneLoader.scene_loaded
@@ -36,7 +36,6 @@ else:
     SceneLoader.change_scene_to_resource()
 ```
 
-
 ### On User Input or a Timed Event
 
 A scene could load the next scene based on a timer, or when the player indicates that they are ready.  
@@ -44,6 +43,7 @@ A scene could load the next scene based on a timer, or when the player indicates
 An example is in `opening.gd` of [Maaack's Game Template](https://github.com/Maaack/Godot-Game-Template/blob/main/addons/maaacks_game_template/base/scenes/opening/opening.gd), which starts loading the main menu immediately, and switches to it when its animations finish. Player's input can speed them up the animations, so by the end, if the next scene is not ready, a loading screen can be shown instead.  
 
 Below is an example of starting the load of the next scene.  
+
 ```
 func _ready() -> void:
     # Immediately starting to load the next scene in the background
@@ -51,6 +51,7 @@ func _ready() -> void:
 ```
 
 Below is an example of reacting to the player's input to either show the next scene or a loading screen.  
+
 ```
 func _unhandled_input(event : InputEvent) -> void:
     var status = SceneLoader.get_status()
