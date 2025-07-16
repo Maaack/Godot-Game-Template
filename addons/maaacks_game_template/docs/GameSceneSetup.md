@@ -10,21 +10,29 @@ The `PauseMenuController` node can be added to the tree, or the `pause_menu_cont
 This should be enough to capture when the `ui-cancel` input action is pressed in-game. On keyboards, this is commonly the `Esc` key.
 
 ## Level Loading
-Some level loading scripts are provided with the examples. They load levels in order from a list, or dynamically by file paths. Levels can be added to the `LevelListLoader` by either selecting a directory to automatically read scene files from, or populating the files array manually.
+Some level loading scripts are provided with the examples. They load levels in order from a list, or dynamically by file paths. 
 
-A `LevelListLoader` must be provided with a `level_container` in the scene. Levels will get added to and removed from this node. The example uses the `SubViewport`, but any leaf node (ie. node without children) in the scene should work.
+A `LevelLoader` must be provided with a `level_container` in the scene. Levels will get added to and removed from this node. The example uses the `SubViewport`, but any leaf node (ie. node without children) in the scene should work. An optional `level_loading_screen` in the scene can be attached to show progress of loading levels.
 
-The level loader is called from a `LevelListManager` with `advance_and_load_level()`. An additional loading screen in the scene can show progress of loading levels, and is toggled by the `LevelListManager` with `reset()`.
+The `LevelManager` manages the progress through levels. It works with a level loader and can open menus when players win or lose. It can either be assigned a starting level path (for open world progression) or a scene lister (for linear level progression).
+
+The specific `level_and_state_manager.gd` in the scene inherits from `LevelManager` in order to sync progress with the player's `GameState`, as well.
+
+### Linear Level Progress
+With linear progression, the path in the `starting_level_path` setting can be removed. Levels can be added to the `SceneLister` by either selecting a directory to automatically find scenes, or populating the files array manually.
+
+### Non-Linear Level Progress
+Alternatively, with open world progression, the reference in the `scene_lister` setting can be removed. Instead, the path to the next level is expected to be provided by the current level. The example levels demonstrate this with the `next_level_path` setting.
 
 ### Games without levels
 Level Loading is not required if the entire game takes place in one scene.  
 
 In that case, the following nodes can be safely removed:
-* LevelListLoader
+* LevelLoader
+* LevelManager
 * LevelLoadingScreen
-* LevelListManager
   
-The single level scene can then be added directly to the `SubViewport` or the root node.
+The single level scene can then be added directly to the `SubViewport`, another container, or the root node.
 
 ## Background Music
 `BackgroundMusicPlayer`'s are `AudioStreamPlayer`'s with `autoplay` set to `true` and `audio_bus` set to "Music". These will automatically be recognized by the `ProjectMusicController` with the default settings, and allow for blending between tracks.
@@ -64,7 +72,7 @@ If the game involves moving a player character, then the inputs for movements co
 If the game involves sending commands to multiple units, then those inputs probably should be read by a `game_ui.gd` script, that then propagates those calls further down the chain.  
 
 ## Win & Lose Screens
-The example includes win and lose screens. These are triggered by the `LevelListManager` when a level is won or lost.
+The example includes win and lose screens. These are triggered by the `LevelManager` when a level is won or lost.
 
 ```
 func _load_level_complete_screen_or_next_level():
@@ -79,9 +87,9 @@ Winning on the last level results in loading a win screen or ending for the game
 
 ```
 func _on_level_won():
-	if level_list_loader.is_on_last_level():
+	if is_on_last_level():
 		_load_win_screen_or_ending()
 	else:
-		_load_level_complete_screen_or_next_level()
+		_load_level_won_screen_or_next_level()
 ```
- The `LevelListManager` will need to be linked to direct back to the main menu and forward to `end_credits.tscn`.
+The `LevelManager` will need to be linked to direct back to the main menu and optionally forward to an end credits.

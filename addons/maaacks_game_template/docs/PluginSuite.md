@@ -25,3 +25,8 @@ Maaack's Game Template is a culmination of a suite of plugins, that can be downl
         - [Credits Scene](https://godotengine.org/asset-library/asset/2932)
         - [UI Sound Controller](https://godotengine.org/asset-library/asset/2897)
         - [Music Controller](https://godotengine.org/asset-library/asset/2898)
+
+## YouTube Video
+
+[![All Plugins Video](https://img.youtube.com/vi/3yzaUSaROhw/hqdefault.jpg)](https://youtu.be/3yzaUSaROhw)  
+

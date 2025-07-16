@@ -13,4 +13,4 @@ This page features snippets of extra documentation on key pieces of the plugin. 
 - The `PauseMenuController` can be set to load `pause_menu.tscn` when triggering `ui-cancel`.
 - `pause_menu.tscn` is a type of `OverlaidMenu` with the `pauses_game` flag set to true. It will store the previously focused UI element, and return focus to it when closed.
 - `capture_focus.gd` is attached to container nodes throughout the UI. It focuses onto UI elements when they are shown, allowing for easier navigation without a mouse.
-- `game_ui.tscn` is a demo game scene that displays recognized action inputs, and features the `PauseMenuController` node, the `LevelListLoader` node to load levels from a directory, and `LevelListManager` to manage level progress and show menus in case of a win or loss.
+- `game_ui.tscn` is a demo game scene that displays recognized action inputs, and features the `PauseMenuController` node, the `LevelLoader` node to load levels into a container, and `LevelManager` to manage level progress and show menus in case of a win or loss.
