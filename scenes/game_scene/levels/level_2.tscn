@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/scripts/capture_focus.gd" id="2_8s04l"]
 [ext_resource type="Script" uid="uid://dquaj8ki8of4n" path="res://scenes/game_scene/input_display_label.gd" id="3_kjg0a"]
 [ext_resource type="Script" uid="uid://ck7cdjnnkm4aq" path="res://scenes/game_scene/tutorial_manager.gd" id="4_w8c7f"]
-[ext_resource type="PackedScene" uid="uid://c3tkuge4hko41" path="res://scenes/game_scene/tutorials/tutorial_2.tscn" id="5_i1l6d"]
+[ext_resource type="PackedScene" uid="uid://c6875y0p3umaa" path="res://scenes/game_scene/tutorials/tutorial_2.tscn" id="5_i1l6d"]
 
 [node name="Level2" type="Control"]
 layout_mode = 3

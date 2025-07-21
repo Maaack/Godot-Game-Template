@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bh0wal0k35hnx" path="res://scenes/menus/options_menu/game/game_options_menu.gd" id="1_hvcyg"]
 [ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/scripts/capture_focus.gd" id="2_t8t6j"]
-[ext_resource type="PackedScene" uid="uid://d25665kl0b64c" path="res://scenes/menus/options_menu/game/reset_game_control/reset_game_control.tscn" id="3_pfgxr"]
+[ext_resource type="PackedScene" uid="uid://dgp6djunrvp5a" path="res://scenes/menus/options_menu/game/reset_game_control/reset_game_control.tscn" id="3_pfgxr"]
 
 [node name="Game" type="MarginContainer"]
 anchors_preset = 15
