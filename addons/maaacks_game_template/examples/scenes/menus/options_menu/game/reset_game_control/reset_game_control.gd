@@ -5,11 +5,6 @@ const CONFIRM_STRING := "Confirm Reset:"
 
 signal reset_confirmed
 
-func _on_ConfirmResetDialog_confirmed() -> void:
-	reset_confirmed.emit()
-	get_tree().paused = false
-	SceneLoader.reload_current_scene()
-
 func _on_cancel_button_pressed():
 	%CancelButton.hide()
 	%ConfirmButton.hide()
