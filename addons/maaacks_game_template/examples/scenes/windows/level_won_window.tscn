@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://baxyt7wgyexbv"]
+
+[ext_resource type="PackedScene" uid="uid://cns5v1sn14qht" path="res://addons/maaacks_game_template/extras/scenes/windows/level_won_window.tscn" id="1_c3wxw"]
+[ext_resource type="Script" uid="uid://cdhhv7hikpnxp" path="res://addons/maaacks_game_template/examples/scenes/windows/level_won_window.gd" id="2_2xute"]
+
+[node name="LevelWonWindow" instance=ExtResource("1_c3wxw")]
+script = ExtResource("2_2xute")

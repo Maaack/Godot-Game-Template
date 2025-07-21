@@ -24,10 +24,6 @@ var last_input_readable_name
 
 func _horizontally_align_popup_labels() -> void:
 	$KeyAssignmentDialog.get_label().horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	$KeyDeletionDialog.get_label().horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	$OneInputMinimumDialog.get_label().horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	$AlreadyAssignedDialog.get_label().horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	$ResetConfirmationDialog.get_label().horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 
 func _ready() -> void:
 	remapping_mode = remapping_mode
@@ -47,9 +43,9 @@ func _remove_action_event(item : TreeItem) -> void:
 	%InputActionsTree.remove_action_event(item)
 
 func _on_reset_button_pressed() -> void:
-	$ResetConfirmationDialog.popup_centered()
+	$ResetConfirmation.show()
 
-func _on_key_deletion_dialog_confirmed() -> void:
+func _on_key_deletion_confirmation_confirmed() -> void:
 	var editing_item = %InputActionsTree.editing_item
 	if is_instance_valid(editing_item):
 		_remove_action_event(editing_item)
@@ -67,17 +63,17 @@ func _on_input_actions_tree_add_button_clicked(action_name) -> void:
 	_open_key_assignment_dialog(action_name)
 
 func _on_input_actions_tree_remove_button_clicked(action_name, input_name) -> void:
-	$KeyDeletionDialog.title = tr("Remove Key for {action}").format({action = action_name})
-	$KeyDeletionDialog.dialog_text = tr(KEY_DELETION_TEXT).format({key = input_name, action = action_name})
-	$KeyDeletionDialog.popup_centered()
+	$KeyDeletionConfirmation.title = tr("Remove Key for {action}").format({action = action_name})
+	$KeyDeletionConfirmation.text = tr(KEY_DELETION_TEXT).format({key = input_name, action = action_name})
+	$KeyDeletionConfirmation.show()
 
 func _popup_already_assigned(action_name, input_name) -> void:
-	$AlreadyAssignedDialog.dialog_text = tr(ALREADY_ASSIGNED_TEXT).format({key = input_name, action = action_name})
-	$AlreadyAssignedDialog.popup_centered.call_deferred()
+	$AlreadyAssignedMessage.text = tr(ALREADY_ASSIGNED_TEXT).format({key = input_name, action = action_name})
+	$AlreadyAssignedMessage.show()
 
 func _popup_minimum_reached(action_name : String) -> void:
-	$OneInputMinimumDialog.dialog_text = ONE_INPUT_MINIMUM_TEXT % action_name
-	$OneInputMinimumDialog.popup_centered.call_deferred()
+	$OneInputMinimumMessage.text = ONE_INPUT_MINIMUM_TEXT % action_name
+	$OneInputMinimumMessage.show()
 
 func _on_input_actions_tree_already_assigned(action_name, input_name) -> void:
 	_popup_already_assigned(action_name, input_name)
@@ -94,7 +90,7 @@ func _on_input_actions_list_minimum_reached(action_name) -> void:
 func _on_input_actions_list_button_clicked(action_name, readable_input_name) -> void:
 	_open_key_assignment_dialog(action_name, readable_input_name)
 
-func _on_reset_confirmation_dialog_confirmed() -> void:
+func _on_reset_confirmation_confirmed() -> void:
 	match(remapping_mode):
 		0:
 			%InputActionsList.reset()

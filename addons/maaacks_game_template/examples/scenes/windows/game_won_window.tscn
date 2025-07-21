@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7d0fg8qyhfxq"]
+
+[ext_resource type="PackedScene" uid="uid://bve6co8x25of" path="res://addons/maaacks_game_template/extras/scenes/windows/game_won_window.tscn" id="1_5efab"]
+[ext_resource type="Script" uid="uid://dccdc1eouls23" path="res://addons/maaacks_game_template/examples/scenes/windows/game_won_window.gd" id="2_r4f66"]
+
+[node name="GameWonWindow" instance=ExtResource("1_5efab")]
+script = ExtResource("2_r4f66")

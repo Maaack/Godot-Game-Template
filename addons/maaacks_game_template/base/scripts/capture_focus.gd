@@ -47,10 +47,13 @@ func update_focus() -> void:
 		focus_first()
 
 func _should_capture_focus() -> bool:
+	var _focus_owner := get_viewport().gui_get_focus_owner()
+	var _connected_joypads := Input.get_connected_joypads().size()
+	var _mouse_mode := Input.mouse_mode
 	return enabled or \
-	(get_viewport().gui_get_focus_owner() == null and null_focus_enabled) or \
-	(Input.get_connected_joypads().size() > 0 and joypad_enabled) or \
-	(Input.mouse_mode not in [Input.MOUSE_MODE_VISIBLE, Input.MOUSE_MODE_CONFINED] and mouse_hidden_enabled)
+	(_focus_owner == null and null_focus_enabled) or \
+	(_connected_joypads > 0 and joypad_enabled) or \
+	(_mouse_mode not in [Input.MOUSE_MODE_VISIBLE, Input.MOUSE_MODE_CONFINED] and mouse_hidden_enabled)
 
 func _is_visible_and_should_capture() -> bool:
 	return is_visible_in_tree() and _should_capture_focus()

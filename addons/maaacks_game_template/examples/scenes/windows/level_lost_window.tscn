@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwetcmfl4tyck"]
+
+[ext_resource type="PackedScene" uid="uid://whpmo2tt4mwr" path="res://addons/maaacks_game_template/extras/scenes/windows/level_lost_window.tscn" id="1_2lfvd"]
+[ext_resource type="Script" uid="uid://bpc1mdgi7rjoj" path="res://addons/maaacks_game_template/examples/scenes/windows/level_lost_window.gd" id="2_epp3m"]
+
+[node name="LevelLostWindow" instance=ExtResource("1_2lfvd")]
+script = ExtResource("2_epp3m")

@@ -8,7 +8,7 @@ func open_tutorials() -> void:
 		await get_tree().create_timer(open_delay, false).timeout
 	var _initial_focus_control : Control = get_viewport().gui_get_focus_owner()
 	for tutorial_scene in tutorial_scenes:
-		var tutorial_menu : OverlaidMenu = tutorial_scene.instantiate()
+		var tutorial_menu : Control = tutorial_scene.instantiate()
 		if tutorial_menu == null:
 			push_warning("tutorial failed to open %s" % tutorial_scene)
 			return

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://xvu2k02xdqi6"]
+
+[ext_resource type="PackedScene" uid="uid://crndfbb22ri4s" path="res://addons/maaacks_game_template/base/scenes/windows/overlaid_window_scene_container.tscn" id="1_efreu"]
+[ext_resource type="PackedScene" uid="uid://vh1ucj2rfbby" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/mini_options_menu.tscn" id="2_5xk5c"]
+
+[node name="MiniOptionsOverlaidWindow" instance=ExtResource("1_efreu")]
+packed_scene = ExtResource("2_5xk5c")
+
+[node name="TitleLabel" parent="ContentContainer/BoxContainer/TitleMargin/BoxContainer" index="0"]
+text = "Options"

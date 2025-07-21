@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/scripts/capture_focus.gd" id="2_v57fp"]
 [ext_resource type="Script" uid="uid://dvewqdtaf68y8" path="res://addons/maaacks_game_template/examples/scenes/game_scene/input_display_label.gd" id="3_nsv34"]
 [ext_resource type="Script" uid="uid://1aoiji5yh0sy" path="res://addons/maaacks_game_template/examples/scenes/game_scene/tutorial_manager.gd" id="4_e3xq8"]
-[ext_resource type="PackedScene" uid="uid://crcpowss0envr" path="res://addons/maaacks_game_template/examples/scenes/game_scene/tutorials/tutorial_1.tscn" id="5_xbaqx"]
+[ext_resource type="PackedScene" uid="uid://bkxo1plhw0nmq" path="res://addons/maaacks_game_template/examples/scenes/game_scene/tutorials/tutorial_1.tscn" id="5_e3xq8"]
 
 [node name="Level1" type="Control"]
 layout_mode = 3
@@ -83,7 +83,7 @@ text = "Change Color"
 [node name="TutorialManager" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("4_e3xq8")
-tutorial_scenes = Array[PackedScene]([ExtResource("5_xbaqx")])
+tutorial_scenes = Array[PackedScene]([ExtResource("5_e3xq8")])
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/LoseButton" to="." method="_on_lose_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/WinButton" to="." method="_on_win_button_pressed"]
