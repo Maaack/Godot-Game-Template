@@ -15,7 +15,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 script = ExtResource("2_0ln3r")
 options_menu_scene = ExtResource("3_wiw3s")
-main_menu_scene = "uid://c6k5nnpbypshi"
+main_menu_scene = "res://addons/maaacks_game_template/base/scenes/menus/main_menu/main_menu.tscn"
 
 [node name="TitleLabel" parent="ContentContainer/BoxContainer/TitleMargin/BoxContainer" index="0"]
 text = "Paused"
