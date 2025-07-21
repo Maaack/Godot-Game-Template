@@ -1,9 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://c63y6b25bs4bk"]
+[gd_scene load_steps=19 format=3 uid="uid://c63y6b25bs4bk"]
 
 [ext_resource type="PackedScene" uid="uid://c6k5nnpbypshi" path="res://addons/maaacks_game_template/base/scenes/menus/main_menu/main_menu.tscn" id="1_0i2sc"]
 [ext_resource type="Script" uid="uid://b5qy5nr1wivs4" path="res://addons/maaacks_game_template/examples/scenes/menus/main_menu/main_menu_with_animations.gd" id="2_ncvk7"]
 [ext_resource type="PackedScene" uid="uid://bdvdf5v87mmrr" path="res://addons/maaacks_game_template/examples/scenes/menus/options_menu/master_options_menu_with_tabs.tscn" id="3_tuy3s"]
 [ext_resource type="PackedScene" uid="uid://wjcsvhdqikyl" path="res://addons/maaacks_game_template/examples/scenes/credits/scrollable_credits.tscn" id="4_4saoe"]
+[ext_resource type="PackedScene" uid="uid://cwt4p3bufkke5" path="res://addons/maaacks_game_template/base/scenes/windows/confirmation_overlaid_window.tscn" id="5_801fg"]
 
 [sub_resource type="Animation" id="1"]
 resource_name = "Intro"
@@ -405,14 +406,21 @@ theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 32
 
-[node name="NewGameConfirmationDialog" type="ConfirmationDialog" parent="." index="11"]
+[node name="NewGameConfirmation" parent="." index="11" instance=ExtResource("5_801fg")]
 unique_name_in_owner = true
-title = "Start a New Game?"
-size = Vector2i(480, 158)
-dialog_text = "Are you sure you want to start a new game?
+visible = false
+custom_minimum_size = Vector2(420, 200)
+layout_mode = 1
+offset_left = -210.0
+offset_top = -100.0
+offset_right = 210.0
+offset_bottom = 100.0
+update_content = true
+text = "Are you sure you want to start a new game?
 
 All progress in the current game will be lost."
+title = "New Game"
 
 [connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/ContinueGameButton" to="." method="_on_continue_game_button_pressed"]
 [connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/LevelSelectButton" to="." method="_on_level_select_button_pressed"]
-[connection signal="confirmed" from="NewGameConfirmationDialog" to="." method="_on_new_game_confirmation_dialog_confirmed"]
+[connection signal="confirmed" from="NewGameConfirmation" to="." method="_on_new_game_confirmation_confirmed"]
