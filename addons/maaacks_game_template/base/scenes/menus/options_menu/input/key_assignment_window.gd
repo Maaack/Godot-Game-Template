@@ -1,4 +1,5 @@
-extends ConfirmationDialog
+@tool
+extends ConfirmationOverlaidWindow
 
 const LISTENING_TEXT : String = "Listening for input..."
 const FOCUS_HERE_TEXT : String = "Focus here to assign inputs."
@@ -23,7 +24,7 @@ func _record_input_event(event : InputEvent) -> void:
 		return
 	last_input_event = event
 	%InputLabel.text = last_input_text
-	get_ok_button().disabled = false
+	confirm_button.disabled = false
 
 func _is_recordable_input(event : InputEvent) -> bool:
 	return event != null and \
@@ -44,18 +45,19 @@ func _stop_listening() -> void:
 	listening = false
 	confirming = false
 
-func _on_text_edit_focus_entered() -> void:
+func _on_input_text_edit_focus_entered() -> void:
 	_start_listening.call_deferred()
 
 func _on_input_text_edit_focus_exited() -> void:
 	_stop_listening()
 
 func _focus_on_ok() -> void:
-	get_ok_button().grab_focus()
+	confirm_button.grab_focus()
 
 func _ready() -> void:
-	get_ok_button().focus_neighbor_top = ^"../../%InputTextEdit"
-	get_cancel_button().focus_neighbor_top = ^"../../%InputTextEdit"
+	confirm_button.focus_neighbor_top = ^"../../../VBoxContainer/InputTextEdit"
+	close_button.focus_neighbor_top = ^"../../../VBoxContainer/InputTextEdit"
+	super._ready()
 
 func _input_matches_last(event : InputEvent) -> bool:
 	return last_input_text == InputEventHelper.get_text(event)
@@ -74,7 +76,7 @@ func _should_confirm_input_event(event : InputEvent) -> bool:
 
 func _confirm_choice() -> void:
 	confirmed.emit()
-	hide()
+	close()
 
 func _process_input_event(event : InputEvent) -> void:
 	if not _should_process_input_event(event):
@@ -99,6 +101,7 @@ func _on_input_text_edit_gui_input(event) -> void:
 	_process_input_event(event)
 
 func _on_visibility_changed() -> void:
+	super._on_visibility_changed()
 	if visible:
 		%InputLabel.text = NO_INPUT_TEXT
 		%InputTextEdit.grab_focus()
