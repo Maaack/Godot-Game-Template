@@ -5,3 +5,5 @@
 
 [node name="Controls" instance=ExtResource("1_i27v5")]
 script = ExtResource("2_hyv0n")
+
+[editable path="KeyAssignmentWindow"]
