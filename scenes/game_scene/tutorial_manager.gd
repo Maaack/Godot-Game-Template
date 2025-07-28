@@ -1,11 +1,9 @@
 extends Node
 @export var tutorial_scenes : Array[PackedScene]
-@export var open_delay : float = 0.25
 @export var auto_open : bool = false
+@export var auto_open_delay : float = 0.25
 
 func open_tutorials() -> void:
-	if open_delay > 0.0:
-		await get_tree().create_timer(open_delay, false).timeout
 	var _initial_focus_control : Control = get_viewport().gui_get_focus_owner()
 	for tutorial_scene in tutorial_scenes:
 		var tutorial_menu : OverlaidMenu = tutorial_scene.instantiate()
@@ -19,4 +17,6 @@ func open_tutorials() -> void:
 
 func _ready() -> void:
 	if auto_open:
+		if auto_open_delay > 0.0:
+			await get_tree().create_timer(auto_open_delay, false).timeout
 		open_tutorials()
