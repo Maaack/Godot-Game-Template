@@ -71,16 +71,16 @@ func _popup_minimum_reached(action_name : String) -> void:
 	$OneInputMinimumMessage.show()
 
 func _on_input_actions_tree_already_assigned(action_name, input_name) -> void:
-	_popup_already_assigned(action_name, input_name)
+	_popup_already_assigned.call_deferred(action_name, input_name)
 
 func _on_input_actions_tree_minimum_reached(action_name) -> void:
-	_popup_minimum_reached(action_name)
+	_popup_minimum_reached.call_deferred(action_name)
 
 func _on_input_actions_list_already_assigned(action_name, input_name) -> void:
-	_popup_already_assigned(action_name, input_name)
+	_popup_already_assigned.call_deferred(action_name, input_name)
 
 func _on_input_actions_list_minimum_reached(action_name) -> void:
-	_popup_minimum_reached(action_name)
+	_popup_minimum_reached.call_deferred(action_name)
 
 func _on_input_actions_list_button_clicked(action_name, readable_input_name) -> void:
 	_open_key_assignment_window(action_name, readable_input_name)
