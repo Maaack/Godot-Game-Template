@@ -45,7 +45,7 @@ func _input(event : InputEvent) -> void:
 
 func _add_level_select_if_set() -> void: 
 	if level_select_packed_scene == null: return
-	if GameStateExample.get_levels_reached() <= 0 : return
+	if GameStateExample.get_levels_reached() <= 1 : return
 	level_select_scene = level_select_packed_scene.instantiate()
 	level_select_scene.hide()
 	%LevelSelectContainer.call_deferred("add_child", level_select_scene)
