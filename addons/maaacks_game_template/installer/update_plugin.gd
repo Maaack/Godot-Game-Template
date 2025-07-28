@@ -33,6 +33,8 @@ const PLUGIN_TEMP_ZIP_PATH := "res://%s_%s_update.zip"
 @onready var _success_dialog : AcceptDialog = $SuccessDialog
 @onready var _release_label : RichTextLabel = %ReleaseLabel
 @onready var _update_label : Label = %UpdateLabel
+@onready var _warning_message_button : LinkButton = %WarningMessageButton
+@onready var _warning_message_label : Label = %WarningMessageLabel
 @onready var _release_notes_button : LinkButton = %ReleaseNotesButton
 @onready var _release_notes_panel : Panel = %ReleaseNotesPanel
 @onready var _stage_label : Label = %StageLabel
@@ -123,6 +125,10 @@ func _on_update_confirmation_dialog_canceled() -> void:
 func _on_update_confirmation_dialog_confirmed() -> void:
 	_download_and_extract_node.run()
 	_installing_dialog.show()
+
+func _on_warning_message_button_pressed():
+	_warning_message_label.show()
+	_warning_message_button.hide()
 
 func _on_release_notes_button_pressed() -> void:
 	_release_notes_panel.show()

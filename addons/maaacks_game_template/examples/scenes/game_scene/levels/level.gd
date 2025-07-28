@@ -20,6 +20,7 @@ func _on_win_button_pressed() -> void:
 func open_tutorials() -> void:
 	%TutorialManager.open_tutorials()
 	level_state.tutorial_read = true
+	GlobalState.save()
 
 func _ready() -> void:
 	level_state = GameStateExample.get_level_state(scene_file_path)
