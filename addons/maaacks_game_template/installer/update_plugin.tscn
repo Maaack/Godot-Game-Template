@@ -47,6 +47,23 @@ Update to v0.0.0?"
 [node name="HSeparator" type="HSeparator" parent="UpdateConfirmationDialog/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
+[node name="WarningMessageButton" type="LinkButton" parent="UpdateConfirmationDialog/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Warning About Updating"
+
+[node name="WarningMessageLabel" type="Label" parent="UpdateConfirmationDialog/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(624, 205)
+layout_mode = 2
+text = "Not all updates are backwards compatible!
+
+Updating can cause issues with previously copied examples. It is recommended to delete any copied example files before starting an update, if it is an option. Otherwise, pay attention to the Release Notes for an idea for how changes may impact your project.
+
+Lastly, save your work and proceed with caution."
+autowrap_mode = 3
+
 [node name="ReleaseNotesButton" type="LinkButton" parent="UpdateConfirmationDialog/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -121,6 +138,7 @@ dialog_text = "%s updated to v%s."
 [connection signal="zip_saved" from="DownloadAndExtract" to="." method="_on_download_and_extract_zip_saved"]
 [connection signal="canceled" from="UpdateConfirmationDialog" to="." method="_on_update_confirmation_dialog_canceled"]
 [connection signal="confirmed" from="UpdateConfirmationDialog" to="." method="_on_update_confirmation_dialog_confirmed"]
+[connection signal="pressed" from="UpdateConfirmationDialog/MarginContainer/VBoxContainer/WarningMessageButton" to="." method="_on_warning_message_button_pressed"]
 [connection signal="pressed" from="UpdateConfirmationDialog/MarginContainer/VBoxContainer/ReleaseNotesButton" to="." method="_on_release_notes_button_pressed"]
 [connection signal="canceled" from="ErrorDialog" to="." method="_on_error_dialog_canceled"]
 [connection signal="confirmed" from="ErrorDialog" to="." method="_on_error_dialog_confirmed"]
