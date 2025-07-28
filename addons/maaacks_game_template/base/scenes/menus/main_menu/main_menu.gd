@@ -1,34 +1,60 @@
 class_name MainMenu
 extends Control
 
+signal sub_menu_opened
+signal sub_menu_closed
+signal game_started
+signal game_exited
+
 ## Defines the path to the game scene. Hides the play button if empty.
 @export_file("*.tscn") var game_scene_path : String
 @export var options_packed_scene : PackedScene
 @export var credits_packed_scene : PackedScene
+@export_group("Extra Settings")
+@export var signal_game_start : bool = false
+@export var signal_game_exit : bool = false
 
 var options_scene
 var credits_scene
 var sub_menu
 
 func load_game_scene() -> void:
-	SceneLoader.load_scene(game_scene_path)
+	if signal_game_start:
+		SceneLoader.load_scene(game_scene_path, true)
+		game_started.emit()
+	else:
+		SceneLoader.load_scene(game_scene_path)
 
 func new_game() -> void:
 	load_game_scene()
 
+func exit_game() -> void:
+	if signal_game_exit:
+		game_exited.emit()
+	else:
+		get_tree().quit()
+
+func _hide_menu() -> void:
+	%BackButton.show()
+	%MenuContainer.hide()
+
+func _show_menu() -> void:
+	%BackButton.hide()
+	%MenuContainer.show()
+
 func _open_sub_menu(menu : Control) -> void:
 	sub_menu = menu
 	sub_menu.show()
-	%BackButton.show()
-	%MenuContainer.hide()
+	_hide_menu()
+	sub_menu_opened.emit()
 
 func _close_sub_menu() -> void:
 	if sub_menu == null:
 		return
 	sub_menu.hide()
 	sub_menu = null
-	%BackButton.hide()
-	%MenuContainer.show()
+	_show_menu()
+	sub_menu_closed.emit()
 
 func _event_is_mouse_button_released(event : InputEvent) -> bool:
 	return event is InputEventMouseButton and not event.is_pressed()
@@ -84,7 +110,7 @@ func _on_credits_button_pressed() -> void:
 	_open_sub_menu(credits_scene)
 
 func _on_exit_button_pressed() -> void:
-	get_tree().quit()
+	exit_game()
 
 func _on_credits_end_reached() -> void:
 	if sub_menu == credits_scene:
