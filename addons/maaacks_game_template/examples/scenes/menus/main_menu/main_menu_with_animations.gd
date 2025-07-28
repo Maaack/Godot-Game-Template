@@ -23,9 +23,6 @@ func intro_done() -> void:
 func _is_in_intro() -> bool:
 	return animation_state_machine.get_current_node() == "Intro"
 
-func _event_is_mouse_button_released(event : InputEvent) -> bool:
-	return event is InputEventMouseButton and not event.is_pressed()
-
 func _event_skips_intro(event : InputEvent) -> bool:
 	return event.is_action_released("ui_accept") or \
 		event.is_action_released("ui_select") or \
@@ -48,7 +45,7 @@ func _input(event : InputEvent) -> void:
 
 func _add_level_select_if_set() -> void: 
 	if level_select_packed_scene == null: return
-	if GameStateExample.get_levels_reached() <= 0 : return
+	if GameStateExample.get_levels_reached() <= 1 : return
 	level_select_scene = level_select_packed_scene.instantiate()
 	level_select_scene.hide()
 	%LevelSelectContainer.call_deferred("add_child", level_select_scene)
