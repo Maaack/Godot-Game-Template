@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ynluticqqywd"]
+[gd_scene load_steps=5 format=3 uid="uid://ynluticqqywd"]
 
 [ext_resource type="Script" uid="uid://bh0wal0k35hnx" path="res://scenes/menus/options_menu/game/game_options_menu.gd" id="1_hvcyg"]
 [ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/scripts/capture_focus.gd" id="2_t8t6j"]
 [ext_resource type="PackedScene" uid="uid://d25665kl0b64c" path="res://scenes/menus/options_menu/game/reset_game_control/reset_game_control.tscn" id="3_pfgxr"]
+[ext_resource type="PackedScene" uid="uid://b6bl3n5mp3m1e" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/option_control/list_option_control.tscn" id="6_fw0go"]
 
 [node name="Game" type="MarginContainer"]
 anchors_preset = 15
@@ -23,4 +24,18 @@ search_depth = 2
 [node name="ResetGameControl" parent="VBoxContainer" instance=ExtResource("3_pfgxr")]
 layout_mode = 2
 
+[node name="LanguageControl" parent="VBoxContainer" instance=ExtResource("6_fw0go")]
+unique_name_in_owner = true
+layout_mode = 2
+lock_titles = true
+option_values = ["en", "fr", "zh_CN", "zh-TW"]
+option_titles = Array[String](["English", "French", "Simplified Chinese", "Traditional Chinese"])
+lock_config_names = true
+option_name = "Language"
+option_section = 4
+key = "Language"
+section = "GameSettings"
+property_type = 4
+
 [connection signal="reset_confirmed" from="VBoxContainer/ResetGameControl" to="." method="_on_ResetGameControl_reset_confirmed"]
+[connection signal="setting_changed" from="VBoxContainer/LanguageControl" to="." method="_on_language_control_setting_changed"]
