@@ -24,8 +24,8 @@ https://parallaxrat.itch.io/no-mans-land
 https://store.steampowered.com/app/3751730/Loan_Shark/  
 https://dragonruler1000.itch.io/beep  
 https://zunarii.itch.io/loopinball  
-https://redspine.itch.io/gmtk-game-jam-2025
-https://acul4321.itch.io/bleep
+https://redspine.itch.io/gmtk-game-jam-2025  
+https://acul4321.itch.io/bleep  
 
 ### 2024
 https://store.steampowered.com/app/3291880/Spud_Customs/ (Source: https://github.com/Lost-Rabbit-Digital/SpudCustoms)  
