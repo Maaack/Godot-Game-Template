@@ -29,6 +29,8 @@ func new_game() -> void:
 	load_game_scene()
 
 func exit_game() -> void:
+	if OS.has_feature("web"):
+		return
 	if signal_game_exit:
 		game_exited.emit()
 	else:
@@ -64,7 +66,7 @@ func _input(event : InputEvent) -> void:
 		if sub_menu:
 			_close_sub_menu()
 		else:
-			get_tree().quit()
+			exit_game()
 	if event.is_action_released("ui_accept") and get_viewport().gui_get_focus_owner() == null:
 		%MenuButtonsBoxContainer.focus_first()
 
