@@ -164,12 +164,24 @@ static func get_vsync(window : Window = null) -> DisplayServer.VSyncMode:
 	var vsync_mode = DisplayServer.window_get_vsync_mode(window_id)
 	return vsync_mode
 
+# Game
+
+static func set_default_game() -> void:
+	var game_language := Config.get_config(GAME_SECTION, "Language", null)
+	if game_language == null:
+		game_language = OS.get_locale_language()
+		if game_language == "zh":
+			game_language = "zh_CN"
+		Config.set_config(GAME_SECTION, "Language", game_language)
+	TranslationServer.set_locale(game_language)
+
 # All
 
 static func set_from_config() -> void:
 	set_default_inputs()
 	set_inputs_from_config()
 	set_audio_from_config()
+	set_default_game()
 
 static func set_from_config_and_window(window : Window) -> void:
 	set_from_config()
