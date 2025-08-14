@@ -1,4 +1,4 @@
-class_name Config
+class_name PlayerConfig
 extends Object
 
 ## Interface for a single configuration file through [ConfigFile].
