@@ -28,7 +28,7 @@ const FAILED_TO_READ_ZIP_FILE = "Failed to read the zip file"
 const DOWNLOADED_ZIP_FILE_DOESNT_EXIST = "The downloaded ZIP file doesn't exist"
 const URL_NOT_SET = "URL parameter is not set"
 
-enum Stage{
+enum DownloadAndExtractStage{
 	NONE,
 	DOWNLOAD,
 	SAVE,
@@ -72,7 +72,7 @@ enum Stage{
 ## State flag for whether the connection has timed out on the client-side.
 var timed_out : bool = false
 ## Current stage of the download and extract process.
-var stage : Stage = Stage.NONE
+var stage : DownloadAndExtractStage = DownloadAndExtractStage.NONE
 var zip_reader : ZIPReader = ZIPReader.new()
 var zipped_file_paths : PackedStringArray = []
 var extracted_file_paths : Array[String] = []
@@ -95,7 +95,7 @@ func get_request_method() -> int:
 
 ## Sends the request to download the target zip file, and then extracts the contents.
 func run(request_headers : Array = []) -> void:
-	if stage == Stage.DOWNLOAD:
+	if stage == DownloadAndExtractStage.DOWNLOAD:
 		run_failed.emit(DOWNLOAD_IN_PROGRESS)
 		push_warning(DOWNLOAD_IN_PROGRESS)
 		return
@@ -118,20 +118,20 @@ func run(request_headers : Array = []) -> void:
 		return
 	if request_timeout > 0.0:
 		_timeout_timer.start(request_timeout + 1.0)
-	stage = Stage.DOWNLOAD
+	stage = DownloadAndExtractStage.DOWNLOAD
 
 func _delete_zip_file() -> void:
 	if not delete_zip_file or not downloaded_zip_file: return
-	if stage == Stage.DELETE:
+	if stage == DownloadAndExtractStage.DELETE:
 		run_failed.emit(DELETE_IN_PROGRESS)
 		push_warning(DELETE_IN_PROGRESS)
 		return
-	stage = Stage.DELETE
+	stage = DownloadAndExtractStage.DELETE
 	DirAccess.remove_absolute(zip_file_path)
 	downloaded_zip_file = false
 
 func _save_zip_file(body : PackedByteArray) -> void:
-	stage = Stage.SAVE
+	stage = DownloadAndExtractStage.SAVE
 	var file = FileAccess.open(zip_file_path, FileAccess.WRITE)
 	if not file:
 		run_failed.emit(FAILED_TO_SAVE_ZIP_FILE)
@@ -152,11 +152,11 @@ func _make_extract_path() -> void:
 		push_error(FAILED_TO_MAKE_EXTRACT_DIR)
 
 func _extract_files() -> void:
-	if stage == Stage.EXTRACT:
+	if stage == DownloadAndExtractStage.EXTRACT:
 		run_failed.emit(EXTRACT_IN_PROGRESS)
 		push_warning(EXTRACT_IN_PROGRESS)
 		return
-	stage = Stage.EXTRACT
+	stage = DownloadAndExtractStage.EXTRACT
 	if not _zip_exists():
 		run_failed.emit(DOWNLOADED_ZIP_FILE_DOESNT_EXIST)
 		push_error(DOWNLOADED_ZIP_FILE_DOESNT_EXIST)
@@ -213,11 +213,11 @@ func _on_timeout_timer_timeout() -> void:
 	push_warning(REQUEST_TIMEOUT)
 
 func get_progress() -> float:
-	if stage == Stage.DOWNLOAD:
+	if stage == DownloadAndExtractStage.DOWNLOAD:
 		return get_download_progress()
-	elif stage == Stage.SAVE:
+	elif stage == DownloadAndExtractStage.SAVE:
 		return get_save_progress()
-	elif stage == Stage.EXTRACT:
+	elif stage == DownloadAndExtractStage.EXTRACT:
 		return get_extraction_progress()
 	return 0.0
 
@@ -269,11 +269,11 @@ func _extract_next_zipped_file() -> void:
 func _finish_extraction() -> void:
 	zip_reader.close()
 	_delete_zip_file()
-	stage = Stage.NONE
+	stage = DownloadAndExtractStage.NONE
 	run_completed.emit()
 
 func _process(delta : float) -> void:
-	if stage == Stage.EXTRACT:
+	if stage == DownloadAndExtractStage.EXTRACT:
 		var frame_start_time : float = Time.get_unix_time_from_system()
 		var frame_time : float = 0.0
 		while (frame_time < delta * process_time_ratio):
