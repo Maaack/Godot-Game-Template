@@ -13,7 +13,7 @@ func new_game() -> void:
 	if confirm_new_game and GameState.has_game_state():
 		%NewGameConfirmationDialog.popup_centered()
 	else:
-		GlobalState.reset()
+		GameState.reset()
 		load_game_scene()
 
 func _add_level_select_if_set() -> void: 
@@ -43,5 +43,5 @@ func _on_level_select_button_pressed() -> void:
 	_open_sub_menu(level_select_scene)
 
 func _on_new_game_confirmation_dialog_confirmed() -> void:
-	GlobalState.reset()
+	GameState.reset()
 	load_game_scene()
