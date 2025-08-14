@@ -64,11 +64,11 @@ var _connected_nodes : Array
 
 func _on_setting_changed(value) -> void:
 	if Engine.is_editor_hint(): return
-	Config.set_config(section, key, value)
+	PlayerConfig.set_config(section, key, value)
 	setting_changed.emit(value)
 
 func _get_setting(default : Variant = null) -> Variant:
-	return Config.get_config(section, key, default)
+	return PlayerConfig.get_config(section, key, default)
 
 func _connect_option_inputs(node) -> void:
 	if node in _connected_nodes: return

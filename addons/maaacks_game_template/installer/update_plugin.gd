@@ -150,13 +150,13 @@ func _process(_delta : float) -> void:
 	if _installing_dialog.visible:
 		_progress_bar.value = _download_and_extract_node.get_progress()
 		match _download_and_extract_node.stage:
-			DownloadAndExtract.Stage.DOWNLOAD:
+			DownloadAndExtract.DownloadAndExtractStage.DOWNLOAD:
 				_stage_label.text = "Downloading..."
-			DownloadAndExtract.Stage.SAVE:
+			DownloadAndExtract.DownloadAndExtractStage.SAVE:
 				_stage_label.text = "Saving..."
-			DownloadAndExtract.Stage.EXTRACT:
+			DownloadAndExtract.DownloadAndExtractStage.EXTRACT:
 				_stage_label.text = "Extracting..."
-			DownloadAndExtract.Stage.DELETE:
+			DownloadAndExtract.DownloadAndExtractStage.DELETE:
 				_stage_label.text = "Cleaning up..."
-			DownloadAndExtract.Stage.NONE:
+			DownloadAndExtract.DownloadAndExtractStage.NONE:
 				_installing_dialog.hide()

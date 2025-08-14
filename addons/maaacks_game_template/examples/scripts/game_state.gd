@@ -61,3 +61,10 @@ static func continue_game() -> void:
 	var game_state := get_or_create_state()
 	game_state.current_level_path = game_state.continue_level_path
 	GlobalState.save()
+
+static func reset() -> void:
+	var game_state := get_or_create_state()
+	game_state.level_states = {}
+	game_state.current_level_path = ""
+	game_state.continue_level_path = ""
+	GlobalState.save()

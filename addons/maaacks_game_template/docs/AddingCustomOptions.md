@@ -15,22 +15,22 @@ Custom options can be added to a menu without any code.
 7.  Save the scene.
 
 ## To the Game
-For options to have any effect outside of the menus, they will need to be referenced by their `key` and `section` from the `Config` class.  
+For options to have any effect outside of the menus, they will need to be referenced by their `key` and `section` from the `PlayerConfig` class.  
 ```
-Config.get_config(key, section)
+PlayerConfig.get_config(key, section)
 ```  
 
 For example, here is how to get the player's desired input sensitivity for controlling a player camera.  
 ```
-var mouse_sensitivity : float = Config.get_config(AppSettings.INPUT_SECTION, "MouseSensitivity", 1.0)
-var joypad_sensitivity : float = Config.get_config(AppSettings.INPUT_SECTION, "JoypadSensitivity", 1.0)
+var mouse_sensitivity : float = PlayerConfig.get_config(AppSettings.INPUT_SECTION, "MouseSensitivity", 1.0)
+var joypad_sensitivity : float = PlayerConfig.get_config(AppSettings.INPUT_SECTION, "JoypadSensitivity", 1.0)
 ```
 
 ## Validation
- Validate the values being stored in your local `config.cfg` file.  
+ Validate the values being stored in your local `player_config.cfg` file.  
 1.  Refer to [Accessing Persistent User Data User](https://docs.godotengine.org/en/stable/tutorials/io/data_paths.html#accessing-persistent-user-data-user) to find Godot user data on your machine.
 2.  Find the directory that matches your project's name.  
-3.  Open `config.cfg` (should be in the top directory of the project).
+3.  Open `player_config.cfg` (should be in the top directory of the project).
 4.  Find the section by the section name in brackets, and the key name followed by an equals.
 
 For example, here is how the player's desired input sensitivity could appear in the config file.
