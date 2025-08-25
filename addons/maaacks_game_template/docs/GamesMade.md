@@ -13,19 +13,21 @@ If you have a game you'd like to share, join the [Discord server](https://discor
 
 ## All Shared
 ### 2025
-https://schinken.itch.io/low-ink  
-https://maaack.itch.io/furnace-in-the-archive  
-https://plexsoup.itch.io/factoriohno  
-https://maaack.itch.io/dungeon-fantasy-fashion-show  
-https://maaack.itch.io/absurd-herd  
-https://maaack.itch.io/indys-expedition-2  
-https://baconeggsrl.itch.io/sprouts-journey  
-https://parallaxrat.itch.io/no-mans-land  
-https://store.steampowered.com/app/3751730/Loan_Shark/  
-https://dragonruler1000.itch.io/beep  
-https://zunarii.itch.io/loopinball  
-https://redspine.itch.io/gmtk-game-jam-2025  
+https://keur-collectif.itch.io/heartfix-express-demo  
+https://spacecheese.itch.io/cia  
 https://acul4321.itch.io/bleep  
+https://redspine.itch.io/gmtk-game-jam-2025  
+https://zunarii.itch.io/loopinball  
+https://dragonruler1000.itch.io/beep  
+https://store.steampowered.com/app/3751730/Loan_Shark/  
+https://parallaxrat.itch.io/no-mans-land  
+https://baconeggsrl.itch.io/sprouts-journey  
+https://maaack.itch.io/indys-expedition-2  
+https://maaack.itch.io/absurd-herd  
+https://maaack.itch.io/dungeon-fantasy-fashion-show  
+https://plexsoup.itch.io/factoriohno  
+https://maaack.itch.io/furnace-in-the-archive  
+https://schinken.itch.io/low-ink  
 
 ### 2024
 https://store.steampowered.com/app/3291880/Spud_Customs/ (Source: https://github.com/Lost-Rabbit-Digital/SpudCustoms)  
