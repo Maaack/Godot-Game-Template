@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dp3rgqaehb3xu" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/input/input_options_menu.tscn" id="1_hyv0n"]
 [ext_resource type="Script" uid="uid://cbw0aet7yttet" path="res://scenes/menus/options_menu/input/input_options_menu.gd" id="2_2dtis"]
-[ext_resource type="PackedScene" path="res://scenes/menus/options_menu/input/input_icon_mapper.tscn" id="3_dtmns"]
+[ext_resource type="PackedScene" uid="uid://do040dg4l71ch" path="res://scenes/menus/options_menu/input/input_icon_mapper.tscn" id="3_dtmns"]
 
 [node name="Controls" instance=ExtResource("1_hyv0n")]
 script = ExtResource("2_2dtis")
