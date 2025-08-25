@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcp6f6yysejjk"]
+
+[ext_resource type="PackedScene" uid="uid://qoexj4ptqt8a" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/input/input_icon_mapper.tscn" id="1_cponm"]
+
+[node name="InputIconMapper" instance=ExtResource("1_cponm")]

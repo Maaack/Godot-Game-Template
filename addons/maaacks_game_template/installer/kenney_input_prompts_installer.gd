@@ -8,14 +8,12 @@ signal canceled
 signal completed
 
 const DownloadAndExtract = MaaacksGameTemplatePlugin.DownloadAndExtract
-
-const RELATIVE_PATH_TO_CONFIGURE_SCENE = "scenes/menus/options_menu/input/input_options_menu.tscn"
+const RELATIVE_PATH_TO_CONFIGURE_SCENE = "scenes/menus/options_menu/input/input_icon_mapper.tscn"
 const REIMPORT_CHECK_DELAY : float = 0.5
 const OPEN_SCENE_DELAY : float = 0.5
-const REGEX_PREFIX = """\\[node name="InputIconMapper" parent="." index="0"\\][\\s\\S]*"""
+const REGEX_PREFIX = """\\[node name="InputIconMapper" type="Node"\\][\\s\\S]*"""
 
 const FILLED_WHITE_CONFIGURATION = """
-[node name="InputIconMapper" parent="." index="0"]
 replace_strings = {
 "Capslock": "Caps Lock",
 "Generic Stick": "Generic Left Stick",
@@ -36,7 +34,6 @@ ends_with = ".png"
 not_ends_with = "outline.png"
 """
 const FILLED_COLOR_CONFIGURATION = """
-[node name="InputIconMapper" parent="." index="0"]
 prioritized_strings = Array[String](["color"])
 replace_strings = {
 "Capslock": "Caps Lock",
@@ -57,7 +54,6 @@ ends_with = ".png"
 not_ends_with = "outline.png"
 """
 const OUTLINED_WHITE_CONFIGURATION = """
-[node name="InputIconMapper" parent="." index="0"]
 prioritized_strings = Array[String](["outline"])
 replace_strings = {
 "Capslock": "Caps Lock",
@@ -78,7 +74,6 @@ filter = "color"
 ends_with = ".png"
 """
 const OUTLINED_COLOR_CONFIGURATION = """
-[node name="InputIconMapper" parent="." index="0"]
 prioritized_strings = Array[String](["outline", "color"])
 replace_strings = {
 "Capslock": "Caps Lock",
@@ -230,14 +225,6 @@ func _delete_extras() -> void:
 func _configure_icons() -> void:
 	var input_options_menu_path := copy_dir_path + RELATIVE_PATH_TO_CONFIGURE_SCENE
 	var input_options_menu := FileAccess.get_file_as_string(input_options_menu_path)
-	var regex := RegEx.new()
-	regex.compile(REGEX_PREFIX + """\\[node""")
-	var result = regex.sub(input_options_menu, "[node")
-	if result == input_options_menu:
-		regex.clear()
-		regex.compile(REGEX_PREFIX)
-		result = regex.sub(input_options_menu, "")
-	input_options_menu = result
 	match(_configuration_index % 4):
 		0:
 			input_options_menu += FILLED_COLOR_CONFIGURATION

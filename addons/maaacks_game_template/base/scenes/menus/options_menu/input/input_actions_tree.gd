@@ -208,7 +208,7 @@ func _on_item_activated() -> void:
 func _ready() -> void:
 	if Engine.is_editor_hint(): return
 	_build_assigned_input_events()
-	_build_ui_tree()
+	_build_ui_tree.call_deferred()
 	button_clicked.connect(_on_button_clicked)
 	item_activated.connect(_on_item_activated)
 	if input_icon_mapper:
