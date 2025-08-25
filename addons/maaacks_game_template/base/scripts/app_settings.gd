@@ -9,7 +9,7 @@ const GAME_SECTION = &'GameSettings'
 const APPLICATION_SECTION = &'ApplicationSettings'
 const CUSTOM_SECTION = &'CustomSettings'
 
-const FULLSCREEN_ENABLED = &'FullscreenEnabled'
+const FULLSCREEN = &'Fullscreen'
 const SCREEN_RESOLUTION = &'ScreenResolution'
 const V_SYNC = &'V-Sync'
 const MUTE_SETTING = &'Mute'
