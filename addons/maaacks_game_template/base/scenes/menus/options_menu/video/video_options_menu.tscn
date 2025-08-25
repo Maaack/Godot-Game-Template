@@ -27,7 +27,7 @@ unique_name_in_owner = true
 layout_mode = 2
 option_name = "Fullscreen"
 option_section = 3
-key = "FullscreenEnabled"
+key = "Fullscreen"
 section = "VideoSettings"
 
 [node name="ResolutionControl" parent="VBoxContainer" instance=ExtResource("4_gwtfq")]
@@ -50,7 +50,7 @@ option_values = [0, 1, 2, 3]
 option_titles = Array[String](["Disabled", "Enabled", "Adaptive", "Mailbox"])
 option_name = "V-Sync"
 option_section = 3
-key = "V-sync"
+key = "V-Sync"
 section = "VideoSettings"
 property_type = 2
 default_value = 0
