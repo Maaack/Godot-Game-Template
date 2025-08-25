@@ -320,6 +320,6 @@ func _ready() -> void:
 	vertical = vertical
 	_set_action_box_container_size()
 	_build_assigned_input_events()
-	_build_ui_list()
+	_build_ui_list.call_deferred()
 	if input_icon_mapper:
 		input_icon_mapper.joypad_device_changed.connect(_refresh_ui_list_button_content)
