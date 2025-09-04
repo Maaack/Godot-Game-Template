@@ -76,9 +76,6 @@ func _check_theme_needs_updating(target_path : String) -> void:
 	var current_theme_resource_path = ProjectSettings.get_setting("gui/theme/custom", "")
 	if current_theme_resource_path != "":
 		return
-	var new_theme_resource_path = target_path + MAIN_SCENE_RELATIVE_PATH
-	if new_theme_resource_path == current_theme_resource_path:
-		return
 	_delayed_open_theme_selection_dialog(target_path)
 
 func _update_main_scene(target_path : String, main_scene_path : String) -> void:
