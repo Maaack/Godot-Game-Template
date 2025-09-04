@@ -1,17 +1,19 @@
 # New Projects
 
-These instructions assume starting with the entire contents of the project folder. This will be the case when cloning the repo, or starting from the *template* version in the Godot Asset Library.
+These instructions assume starting with the entire contents of the project folder. This will be the case when cloning the repo, or starting from the *template* version in the Godot Asset Library accessible from the Project Manager window.
   
 
-1.  Finish setup and remove duplicate example files.
+1.  Finish setup.
 
+    1.  Delete duplicate example files.
+        1.  Go to `Project > Tools > Run Maaack's Game Template Setup...`.
+        2.  In the `Setup Wizard` window next to "Delete Example Files", click `Run`.
+        3.  In the next window, select `Yes` to continue with removing the example files.
 
-    1.  Go to `Project > Tools > Copy Maaack's Game Template Examples`.
-    2.  Click `Cancel` in the first window asking to copy the examples. It's already done.
-    3.  Select a theme in the next window if desired.
-    4.  Go to `Project > Tools > Delete Maaack's Game Template Examples`.
-    5.  Click `Yes` in the first window.
-
+    2.  Set a default theme.
+        1.  Go to `Project > Tools > Run Maaack's Game Template Setup...`.
+        2.  In the `Setup Wizard` window next to "Set the Default Theme", click `Run`.
+        3.  In the next window, select the desired theme from the preview and select `Yes` to set it as the project's default theme.
 
 2.  Update the project’s name.
 
