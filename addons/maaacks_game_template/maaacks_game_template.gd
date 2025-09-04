@@ -165,8 +165,6 @@ func _delete_source_examples_directory(target_path : String = "") -> void:
 	if dir.dir_exists(examples_path):
 		_delete_directory_recursive(examples_path)
 		EditorInterface.get_resource_filesystem().scan()
-		remove_tool_menu_item("Copy " + _get_plugin_name() + " Examples...")
-		remove_tool_menu_item("Delete " + _get_plugin_name() + " Examples...")
 	if not target_path.is_empty():
 		_check_main_scene_needs_updating(target_path)
 
@@ -246,6 +244,11 @@ func open_update_plugin() -> void:
 	update_plugin_instance.update_completed.connect(_remove_update_plugin_tool_option)
 	add_child(update_plugin_instance)
 
+func open_setup_wizard() -> void:
+	var setup_wizard_scene : PackedScene = load(get_plugin_path() + "installer/setup_wizard.tscn")
+	var setup_wizard_instance : Node = setup_wizard_scene.instantiate()
+	add_child(setup_wizard_instance)
+
 func _add_update_plugin_tool_option(new_version : String) -> void:
 	update_plugin_tool_string = "Update %s to v%s..." % [get_plugin_name(), new_version]
 	add_tool_menu_item(update_plugin_tool_string, open_update_plugin)
@@ -299,21 +302,11 @@ func _install_audio_busses() -> void:
 	ProjectSettings.save()
 
 func _add_tool_options() -> void:
-	var examples_path = get_plugin_examples_path()
-	var dir := DirAccess.open("res://")
-	if dir.dir_exists(examples_path):
-		add_tool_menu_item("Copy " + _get_plugin_name() + " Examples...", _open_copy_and_edit_dialog)
-		add_tool_menu_item("Delete " + _get_plugin_name() + " Examples...", _open_delete_examples_short_confirmation_dialog)
-	add_tool_menu_item("Use Input Icons for " + _get_plugin_name() + "...", _open_input_icons_dialog)
+	add_tool_menu_item("Run " + get_plugin_name() + " Setup...", open_setup_wizard)
 	_open_check_plugin_version()
 
 func _remove_tool_options() -> void:
-	var examples_path = get_plugin_examples_path()
-	var dir := DirAccess.open("res://")
-	if dir.dir_exists(examples_path):
-		remove_tool_menu_item("Copy " + _get_plugin_name() + " Examples...")
-		remove_tool_menu_item("Delete " + _get_plugin_name() + " Examples...")
-	remove_tool_menu_item("Use Input Icons for " + _get_plugin_name() + "...")
+	remove_tool_menu_item("Run " + get_plugin_name() + " Setup...")
 	_remove_update_plugin_tool_option()
 
 func _enter_tree() -> void:
