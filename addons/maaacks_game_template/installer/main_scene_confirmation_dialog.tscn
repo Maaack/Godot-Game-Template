@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://b8kr3y0cjxr8m"]
+[gd_scene load_steps=2 format=3 uid="uid://b8kr3y0cjxr8m"]
+
+[ext_resource type="Script" uid="uid://uyh03f60qvd2" path="res://addons/maaacks_game_template/installer/main_scene_confirmation_dialog.gd" id="1_1ydgd"]
 
 [node name="MainSceneConfirmationDialog" type="ConfirmationDialog"]
 title = "Update Main Scene"
@@ -12,3 +14,4 @@ dialog_text = "Would you like to update the project's main scene?
 "
 dialog_autowrap = true
 cancel_button_text = "No"
+script = ExtResource("1_1ydgd")

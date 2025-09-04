@@ -11,7 +11,6 @@ const PROJECT_SETTINGS_PATH = "maaacks_game_template/"
 
 const EXAMPLES_RELATIVE_PATH = "examples/"
 const MAIN_SCENE_RELATIVE_PATH = "scenes/opening/opening_with_logo.tscn"
-const MAIN_SCENE_UPDATE_TEXT = "Current:\n%s\n\nNew:\n%s\n"
 const OVERRIDE_RELATIVE_PATH = "installer/override.cfg"
 const SCENE_LOADER_RELATIVE_PATH = "base/scenes/autoloads/scene_loader.tscn"
 const THEMES_DIRECTORY_RELATIVE_PATH = "resources/themes"
@@ -82,19 +81,24 @@ func _update_main_scene(target_path : String, main_scene_path : String) -> void:
 	ProjectSettings.save()
 	_check_theme_needs_updating(target_path)
 
-func _check_main_scene_needs_updating(target_path : String) -> void:
+func is_main_scene_set(target_path : String = get_copy_path()) -> bool:
 	var current_main_scene_path = ProjectSettings.get_setting("application/run/main_scene", "")
 	var new_main_scene_path = target_path + MAIN_SCENE_RELATIVE_PATH
-	if new_main_scene_path != current_main_scene_path:
-		_open_main_scene_confirmation_dialog(target_path, current_main_scene_path, new_main_scene_path)
+	return current_main_scene_path == new_main_scene_path
+
+func _check_main_scene_needs_updating(target_path : String) -> void:
+	if not is_main_scene_set(target_path):
+		open_main_scene_confirmation_dialog(target_path)
 		return
 	_check_theme_needs_updating(target_path)
 
-func _open_main_scene_confirmation_dialog(target_path : String, current_main_scene : String, new_main_scene : String) -> void:
+func _open_main_scene_confirmation_dialog(target_path : String) -> void:
 	var main_confirmation_scene : PackedScene = load(get_plugin_path() + "installer/main_scene_confirmation_dialog.tscn")
 	var main_confirmation_instance : ConfirmationDialog = main_confirmation_scene.instantiate()
-	main_confirmation_instance.dialog_text += MAIN_SCENE_UPDATE_TEXT % [current_main_scene, new_main_scene]
-	main_confirmation_instance.confirmed.connect(_update_main_scene.bind(target_path, new_main_scene))
+	var new_main_scene_path = target_path + MAIN_SCENE_RELATIVE_PATH
+	if main_confirmation_instance.has_method(&"set_main_scene_text"):
+		main_confirmation_instance.set_main_scene_text(new_main_scene_path)
+	main_confirmation_instance.confirmed.connect(_update_main_scene.bind(target_path, new_main_scene_path))
 	main_confirmation_instance.canceled.connect(_check_theme_needs_updating.bind(target_path))
 	add_child(main_confirmation_instance)
 
