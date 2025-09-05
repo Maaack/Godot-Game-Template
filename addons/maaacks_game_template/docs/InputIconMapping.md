@@ -9,9 +9,13 @@ The `InputIconMapper` in `input_options_menu.tscn` is a generalized tool meant t
 > [!IMPORTANT]  
 > Save the state of the project, and close all open scenes and scripts.
 
-With the project open, select `Project > Tools > Use Input Icons for Maaack's Game Template`.
+With the project open, select `Project > Tools > Run Maaack's Game Template Setup...`.
 
-Select a style and then wait for the icons to download, extract, and setup.
+In the `Setup Wizard` window next to "Add Input Prompt Icons", click `Run`. 
+
+In the next window, select a style and then wait for the icons to download, extract, and setup.
+
+If the icons have already been installed before, you will be presented with the option to skip re-downloading.
 
 > [!WARNING]  
 > This may crash the editor.  

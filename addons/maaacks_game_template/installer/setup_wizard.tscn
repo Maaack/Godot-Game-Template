@@ -1,0 +1,152 @@
+[gd_scene load_steps=2 format=3 uid="uid://uojlvirhbysk"]
+
+[ext_resource type="Script" uid="uid://coq26stqrim51" path="res://addons/maaacks_game_template/installer/setup_wizard.gd" id="1_jck5m"]
+
+[node name="SetupWizardDialog" type="AcceptDialog"]
+title = "Setup Wizard"
+initial_position = 2
+size = Vector2i(576, 540)
+visible = true
+ok_button_text = "Done"
+dialog_autowrap = true
+script = ExtResource("1_jck5m")
+check_version_scene_path = "res://addons/maaacks_game_template/installer/check_plugin_version.tscn"
+input_prompts_directory_path = "res://assets/kenney_input-prompts/"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(560, 483)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -49.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="PluginLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(384, 0)
+layout_mode = 2
+autowrap_mode = 3
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="StepsContainer" type="GridContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 12
+columns = 3
+
+[node name="UpdateLabel" type="Label" parent="VBoxContainer/StepsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Update to Latest Version"
+
+[node name="UpdateCheckBox" type="CheckBox" parent="VBoxContainer/StepsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+
+[node name="UpdateButton" type="Button" parent="VBoxContainer/StepsContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+disabled = true
+text = "Run"
+
+[node name="CopyLabel" type="Label" parent="VBoxContainer/StepsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Copy Example Files"
+
+[node name="CopyCheckBox" type="CheckBox" parent="VBoxContainer/StepsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+
+[node name="CopyButton" type="Button" parent="VBoxContainer/StepsContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+disabled = true
+text = "Run"
+
+[node name="DeleteLabel" type="Label" parent="VBoxContainer/StepsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Delete Example Files"
+
+[node name="DeleteCheckBox" type="CheckBox" parent="VBoxContainer/StepsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+
+[node name="DeleteButton" type="Button" parent="VBoxContainer/StepsContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+disabled = true
+text = "Run"
+
+[node name="SetMainSceneLabel" type="Label" parent="VBoxContainer/StepsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Set the Main Scene"
+
+[node name="SetMainSceneCheckBox" type="CheckBox" parent="VBoxContainer/StepsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+
+[node name="SetMainSceneButton" type="Button" parent="VBoxContainer/StepsContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+disabled = true
+text = "Run"
+
+[node name="SetDefaultThemeLabel" type="Label" parent="VBoxContainer/StepsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Set the Default Theme"
+
+[node name="SetDefaultThemeCheckBox" type="CheckBox" parent="VBoxContainer/StepsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+
+[node name="SetDefaultThemeButton" type="Button" parent="VBoxContainer/StepsContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+disabled = true
+text = "Run"
+
+[node name="AddInputIconsLabel" type="Label" parent="VBoxContainer/StepsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Add Input Prompt Icons"
+
+[node name="AddInputIconsCheckBox" type="CheckBox" parent="VBoxContainer/StepsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+
+[node name="AddInputIconsButton" type="Button" parent="VBoxContainer/StepsContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+disabled = true
+text = "Run"
+
+[connection signal="pressed" from="VBoxContainer/StepsContainer/UpdateButton" to="." method="_on_update_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/StepsContainer/CopyButton" to="." method="_on_copy_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/StepsContainer/DeleteButton" to="." method="_on_delete_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/StepsContainer/SetMainSceneButton" to="." method="_on_set_main_scene_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/StepsContainer/SetDefaultThemeButton" to="." method="_on_set_default_theme_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/StepsContainer/AddInputIconsButton" to="." method="_on_add_input_icons_button_pressed"]
