@@ -90,7 +90,7 @@ anchor_right = 1.0
 offset_bottom = 67.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 48
-text = "Title"
+text = "Game Template"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("7_j7612")
@@ -166,6 +166,7 @@ text = "Exit"
 
 [node name="OptionsContainer" type="MarginContainer" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -176,6 +177,7 @@ mouse_filter = 2
 
 [node name="CreditsContainer" type="MarginContainer" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -186,6 +188,8 @@ theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 64
 
 [node name="FlowControlContainer" type="MarginContainer" parent="."]
+unique_name_in_owner = true
+visible = false
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
