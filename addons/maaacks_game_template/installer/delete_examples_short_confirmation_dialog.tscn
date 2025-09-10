@@ -3,9 +3,14 @@
 [node name="DeleteExamplesShortConfirmationDialog" type="ConfirmationDialog"]
 title = "Delete Source Examples"
 initial_position = 2
-size = Vector2i(1024, 128)
+size = Vector2i(1024, 300)
 visible = true
 ok_button_text = "Yes"
-dialog_text = "Are you sure you would like to delete the source examples folder?"
+dialog_text = "This will delete the original examples folder from the plugin (inside of addons/).
+
+Copies of the examples (outside of addons/) will not be affected.
+
+Are you sure you would like to delete the examples folder? 
+"
 dialog_autowrap = true
 cancel_button_text = "No"

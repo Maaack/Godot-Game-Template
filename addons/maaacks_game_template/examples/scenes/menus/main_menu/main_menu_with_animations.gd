@@ -6,6 +6,10 @@ extends MainMenu
 var level_select_scene : Node
 var animation_state_machine : AnimationNodeStateMachinePlayback
 
+@onready var continue_game_button = %ContinueGameButton
+@onready var level_select_button = %LevelSelectButton
+@onready var level_select_container = %LevelSelectContainer
+
 func load_game_scene() -> void:
 	GameStateExample.start_game()
 	super.load_game_scene()
@@ -48,14 +52,15 @@ func _add_level_select_if_set() -> void:
 	if GameStateExample.get_levels_reached() <= 1 : return
 	level_select_scene = level_select_packed_scene.instantiate()
 	level_select_scene.hide()
-	%LevelSelectContainer.call_deferred("add_child", level_select_scene)
+	level_select_container.show()
+	level_select_container.call_deferred("add_child", level_select_scene)
 	if level_select_scene.has_signal("level_selected"):
 		level_select_scene.connect("level_selected", load_game_scene)
-	%LevelSelectButton.show()
+	level_select_button.show()
 
 func _show_continue_if_set() -> void:
 	if GameStateExample.has_game_state():
-		%ContinueGameButton.show()
+		continue_game_button.show()
 
 func _ready() -> void:
 	super._ready()

@@ -10,7 +10,7 @@
 > A safer save system is planned.  
 
 
-The templates and plugin suite aim to keep most class definitions within the addon. These are not usually expected change. Unlike the other classes, the `GameState` and `LevelState` are defined for the developer to edit to their needs.
+The templates and plugin suite aim to keep most class definitions within the addon. These are not expected to be changed directly. Unlike the other classes, the `GameState` and `LevelState` are defined for the developer to edit to their needs.
 
 ## Usage
 
