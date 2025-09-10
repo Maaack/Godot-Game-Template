@@ -18,6 +18,17 @@ var options_scene
 var credits_scene
 var sub_menu
 
+@onready var menu_container = %MenuContainer
+@onready var menu_buttons_box_container = %MenuButtonsBoxContainer
+@onready var new_game_button = %NewGameButton
+@onready var options_button = %OptionsButton
+@onready var credits_button = %CreditsButton
+@onready var exit_button = %ExitButton
+@onready var options_container = %OptionsContainer
+@onready var credits_container = %CreditsContainer
+@onready var flow_control_container = %FlowControlContainer
+@onready var back_button = %BackButton
+
 func load_game_scene() -> void:
 	if signal_game_start:
 		SceneLoader.load_scene(game_scene_path, true)
@@ -37,12 +48,12 @@ func exit_game() -> void:
 		get_tree().quit()
 
 func _hide_menu() -> void:
-	%BackButton.show()
-	%MenuContainer.hide()
+	back_button.show()
+	menu_container.hide()
 
 func _show_menu() -> void:
-	%BackButton.hide()
-	%MenuContainer.show()
+	back_button.hide()
+	menu_container.show()
 
 func _open_sub_menu(menu : Control) -> void:
 	sub_menu = menu
@@ -68,35 +79,38 @@ func _input(event : InputEvent) -> void:
 		else:
 			exit_game()
 	if event.is_action_released("ui_accept") and get_viewport().gui_get_focus_owner() == null:
-		%MenuButtonsBoxContainer.focus_first()
+		menu_buttons_box_container.focus_first()
 
 func _hide_exit_for_web() -> void:
 	if OS.has_feature("web"):
-		%ExitButton.hide()
+		exit_button.hide()
 
 func _hide_new_game_if_unset() -> void:
 	if game_scene_path.is_empty():
-		%NewGameButton.hide()
+		new_game_button.hide()
 
 func _add_or_hide_options() -> void:
 	if options_packed_scene == null:
-		%OptionsButton.hide()
+		options_button.hide()
 	else:
 		options_scene = options_packed_scene.instantiate()
 		options_scene.hide()
-		%OptionsContainer.call_deferred("add_child", options_scene)
+		options_container.show()
+		options_container.call_deferred("add_child", options_scene)
 
 func _add_or_hide_credits() -> void:
 	if credits_packed_scene == null:
-		%CreditsButton.hide()
+		credits_button.hide()
 	else:
 		credits_scene = credits_packed_scene.instantiate()
 		credits_scene.hide()
 		if credits_scene.has_signal("end_reached"):
 			credits_scene.connect("end_reached", _on_credits_end_reached)
-		%CreditsContainer.call_deferred("add_child", credits_scene)
+		credits_container.show()
+		credits_container.call_deferred("add_child", credits_scene)
 
 func _ready() -> void:
+	flow_control_container.show()
 	_hide_exit_for_web()
 	_add_or_hide_options()
 	_add_or_hide_credits()
