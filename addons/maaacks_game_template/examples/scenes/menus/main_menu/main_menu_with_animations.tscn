@@ -396,6 +396,7 @@ text = "Level Select"
 
 [node name="LevelSelectContainer" type="MarginContainer" parent="." index="9"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
