@@ -145,12 +145,13 @@ These instructions assume starting with just the contents of `addons/`. This wil
 [Loading Scenes](/addons/maaacks_game_template/docs/LoadingScenes.md)  
 [Input Icon Mapping](/addons/maaacks_game_template/docs/InputIconMapping.md)  
 [Joypad Inputs](/addons/maaacks_game_template/docs/JoypadInputs.md)  
+[Blending Music](/addons/maaacks_game_template/docs/BlendingMusic.md)  
 [Add Custom Options](/addons/maaacks_game_template/docs/AddingCustomOptions.md)  
 [Game Saving](/addons/maaacks_game_template/docs/GameSaving.md)  
 [How Parts Work](/addons/maaacks_game_template/docs/HowPartsWork.md)  
 [Uploading to itch.io](/addons/maaacks_game_template/docs/UploadingToItchIo.md)  
 [Automatic Updating](/addons/maaacks_game_template/docs/AutomaticUpdating.md)  
-[Exhibiting your game](/addons/maaacks_game_template/docs/Exhibiting.md)
+[Exhibiting Your Game](/addons/maaacks_game_template/docs/Exhibiting.md)  
 
 ---
 
