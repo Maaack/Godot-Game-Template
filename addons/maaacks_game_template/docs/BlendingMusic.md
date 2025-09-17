@@ -34,3 +34,5 @@ This page covers the `ProjectMusicController`, which is used to blend music in b
 When a background music player is about to exit the scene tree, it gets reparented to the autoload node. This allows it to continue playing until the next scene is ready, and seek the next player to the same position if they share the same stream. If a fade out duration is set, then this player will blend into the next stream, by having its volume lowered to zero over the duration of the fade out. It then removes itself from the scene.
 
 The autload adds the "BlendMusic" audio bus is added at runtime. If a fade in duration is set, then the temporary bus is used to combine the increasing volume of the player with any other animations local to the scene.
+
+The autoload will work with any `AudioStreamPlayer` with `bus` set to `Music` and `autoplay` set to `true`. These are detected up as they enter the scene tree. To dynamically add an `AudioStreamPlayer` to the background music, call `ProjectMusicController.play_stream(audio_stream_player)` in a script.
