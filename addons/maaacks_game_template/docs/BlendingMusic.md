@@ -2,6 +2,8 @@
 
 This page covers the `ProjectMusicController`, which is used to blend music in between scenes, that would otherwise abruptly stop the music when they get unloaded.
 
+## Setup
+
 1.  Verify the `Music` audio bus.
 
     1.  Open the Audio bus editor.
@@ -31,8 +33,10 @@ This page covers the `ProjectMusicController`, which is used to blend music in b
     4.  Make sure that the `bus` property is set to `Music` and `autoplay` is `true`.
     5.  Save the scene.
 
-When a background music player is about to exit the scene tree, it gets reparented to the autoload node. This allows it to continue playing until the next scene is ready, and seek the next player to the same position if they share the same stream. If a fade out duration is set, then this player will blend into the next stream, by having its volume lowered to zero over the duration of the fade out. It then removes itself from the scene.
+## Internal Details 
+
+When a background music player is about to exit the scene tree, it gets reparented to the autoload node. This allows it to continue playing until the next scene is ready and a new background music player is detected. If the audio stream players share the same stream, then the controller will seek the next player to the same position on the stream, before removing the previous one. If a different stream is detected and a fade out duration is set, then the previous player will blend into the next one, by having its volume lowered to zero over the fade out duration.
 
 The autload adds the "BlendMusic" audio bus is added at runtime. If a fade in duration is set, then the temporary bus is used to combine the increasing volume of the player with any other animations local to the scene.
 
-The autoload will work with any `AudioStreamPlayer` with `bus` set to `Music` and `autoplay` set to `true`. These are detected up as they enter the scene tree. To dynamically add an `AudioStreamPlayer` to the background music, call `ProjectMusicController.play_stream(audio_stream_player)` in a script.
+The autoload will work with any `AudioStreamPlayer` with `bus` set to `Music` and `autoplay` set to `true`. These are detected up as they enter the scene tree. To dynamically add an `AudioStreamPlayer` to the background music, call `ProjectMusicController.play_stream(background_music_player)`.
