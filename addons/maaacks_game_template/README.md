@@ -150,6 +150,7 @@ These instructions assume starting with just the contents of `addons/`. This wil
 [How Parts Work](/addons/maaacks_game_template/docs/HowPartsWork.md)  
 [Uploading to itch.io](/addons/maaacks_game_template/docs/UploadingToItchIo.md)  
 [Automatic Updating](/addons/maaacks_game_template/docs/AutomaticUpdating.md)  
+[Exhibiting Your Game](/addons/maaacks_game_template/docs/Exhibiting.md)  
 
 ---
 
