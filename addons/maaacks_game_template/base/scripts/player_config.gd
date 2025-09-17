@@ -7,9 +7,6 @@ const CONFIG_FILE_LOCATION := "user://player_config.cfg"
 
 static var config_file : ConfigFile
 
-static func _init() -> void:
-	load_config_file()
-
 static func _save_config_file() -> void:
 	var save_error : int = config_file.save(CONFIG_FILE_LOCATION)
 	if save_error:
