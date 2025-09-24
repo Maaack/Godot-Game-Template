@@ -1,6 +1,8 @@
 extends Control
 
-@export_file("*.tscn") var next_scene : String
+## Defines the path to the next scene.
+## Will attempt to read from AppConfig if left empty.
+@export_file("*.tscn") var next_scene_path : String
 @export var images : Array[Texture2D]
 @export_group("Animation")
 @export var fade_in_time : float = 0.2
@@ -13,6 +15,11 @@ extends Control
 
 var tween : Tween
 var next_image_index : int = 0
+
+func get_next_scene_path() -> String:
+	if next_scene_path.is_empty():
+		return AppConfig.main_menu_scene_path
+	return next_scene_path
 
 func _load_next_scene() -> void:
 	var status = SceneLoader.get_status()
@@ -95,6 +102,6 @@ func _show_next_image(animated : bool = true) -> void:
 	_wait_and_fade_out(texture_rect)
 
 func _ready() -> void:
-	SceneLoader.load_scene(next_scene, true)
+	SceneLoader.load_scene(get_next_scene_path(), true)
 	_add_textures_to_container(images)
 	_transition_in()

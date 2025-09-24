@@ -7,6 +7,7 @@ signal game_started
 signal game_exited
 
 ## Defines the path to the game scene. Hides the play button if empty.
+## Will attempt to read from AppConfig if left empty.
 @export_file("*.tscn") var game_scene_path : String
 @export var options_packed_scene : PackedScene
 @export var credits_packed_scene : PackedScene
@@ -29,12 +30,17 @@ var sub_menu
 @onready var flow_control_container = %FlowControlContainer
 @onready var back_button = %BackButton
 
+func get_game_scene_path() -> String:
+	if game_scene_path.is_empty():
+		return AppConfig.game_scene_path
+	return game_scene_path
+
 func load_game_scene() -> void:
 	if signal_game_start:
-		SceneLoader.load_scene(game_scene_path, true)
+		SceneLoader.load_scene(get_game_scene_path(), true)
 		game_started.emit()
 	else:
-		SceneLoader.load_scene(game_scene_path)
+		SceneLoader.load_scene(get_game_scene_path())
 
 func new_game() -> void:
 	load_game_scene()
