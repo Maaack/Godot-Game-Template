@@ -92,7 +92,7 @@ func _hide_exit_for_web() -> void:
 		exit_button.hide()
 
 func _hide_new_game_if_unset() -> void:
-	if game_scene_path.is_empty():
+	if get_game_scene_path().is_empty():
 		new_game_button.hide()
 
 func _add_or_hide_options() -> void:
