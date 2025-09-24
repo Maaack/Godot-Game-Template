@@ -5,4 +5,3 @@
 
 [node name="Opening" instance=ExtResource("1_ke3tw")]
 script = ExtResource("2_yhkvs")
-next_scene = "res://scenes/menus/main_menu/main_menu_with_animations.tscn"
