@@ -15,9 +15,7 @@ signal game_exited
 @export var signal_game_start : bool = false
 @export var signal_game_exit : bool = false
 
-var options_scene
-var credits_scene
-var sub_menu
+var sub_menu : Control
 
 @onready var menu_container = %MenuContainer
 @onready var menu_buttons_box_container = %MenuButtonsBoxContainer
@@ -25,10 +23,6 @@ var sub_menu
 @onready var options_button = %OptionsButton
 @onready var credits_button = %CreditsButton
 @onready var exit_button = %ExitButton
-@onready var options_container = %OptionsContainer
-@onready var credits_container = %CreditsContainer
-@onready var flow_control_container = %FlowControlContainer
-@onready var back_button = %BackButton
 
 func get_game_scene_path() -> String:
 	if game_scene_path.is_empty():
@@ -53,26 +47,20 @@ func exit_game() -> void:
 	else:
 		get_tree().quit()
 
-func _hide_menu() -> void:
-	back_button.show()
+func _open_sub_menu(menu : PackedScene) -> Node:
+	sub_menu = menu.instantiate()
+	add_child(sub_menu)
 	menu_container.hide()
-
-func _show_menu() -> void:
-	back_button.hide()
-	menu_container.show()
-
-func _open_sub_menu(menu : Control) -> void:
-	sub_menu = menu
-	sub_menu.show()
-	_hide_menu()
+	sub_menu.hidden.connect(_close_sub_menu, CONNECT_ONE_SHOT)
 	sub_menu_opened.emit()
+	return sub_menu
 
 func _close_sub_menu() -> void:
 	if sub_menu == null:
 		return
-	sub_menu.hide()
+	sub_menu.queue_free()
 	sub_menu = null
-	_show_menu()
+	menu_container.show()
 	sub_menu_closed.emit()
 
 func _event_is_mouse_button_released(event : InputEvent) -> bool:
@@ -95,48 +83,28 @@ func _hide_new_game_if_unset() -> void:
 	if get_game_scene_path().is_empty():
 		new_game_button.hide()
 
-func _add_or_hide_options() -> void:
+func _hide_options_if_unset() -> void:
 	if options_packed_scene == null:
 		options_button.hide()
-	else:
-		options_scene = options_packed_scene.instantiate()
-		options_scene.hide()
-		options_container.show()
-		options_container.call_deferred("add_child", options_scene)
 
-func _add_or_hide_credits() -> void:
+func _hide_credits_if_unset() -> void:
 	if credits_packed_scene == null:
 		credits_button.hide()
-	else:
-		credits_scene = credits_packed_scene.instantiate()
-		credits_scene.hide()
-		if credits_scene.has_signal("end_reached"):
-			credits_scene.connect("end_reached", _on_credits_end_reached)
-		credits_container.show()
-		credits_container.call_deferred("add_child", credits_scene)
 
 func _ready() -> void:
-	flow_control_container.show()
 	_hide_exit_for_web()
-	_add_or_hide_options()
-	_add_or_hide_credits()
+	_hide_options_if_unset()
+	_hide_credits_if_unset()
 	_hide_new_game_if_unset()
 
 func _on_new_game_button_pressed() -> void:
 	new_game()
 
 func _on_options_button_pressed() -> void:
-	_open_sub_menu(options_scene)
+	_open_sub_menu(options_packed_scene)
 
 func _on_credits_button_pressed() -> void:
-	_open_sub_menu(credits_scene)
+	_open_sub_menu(credits_packed_scene)
 
 func _on_exit_button_pressed() -> void:
 	exit_game()
-
-func _on_credits_end_reached() -> void:
-	if sub_menu == credits_scene:
-		_close_sub_menu()
-
-func _on_back_button_pressed() -> void:
-	_close_sub_menu()
