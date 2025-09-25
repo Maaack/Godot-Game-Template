@@ -44,7 +44,6 @@ func regex_replace_imgs(credits:String) -> String:
 		else:
 			replace_string = "[img]" + replace_string
 	regex.compile(match_string)
-	regex.get_group_count()
 	return regex.sub(credits, replace_string, true)
 
 func regex_replace_urls(credits:String) -> String:
