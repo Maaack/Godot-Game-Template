@@ -353,7 +353,6 @@ graph_offset = Vector2(-180.277, 49)
 script = ExtResource("2_ncvk7")
 level_select_packed_scene = null
 confirm_new_game = true
-game_scene_path = "res://addons/maaacks_game_template/examples/scenes/game_scene/game_ui.tscn"
 options_packed_scene = ExtResource("3_tuy3s")
 credits_packed_scene = ExtResource("4_4saoe")
 

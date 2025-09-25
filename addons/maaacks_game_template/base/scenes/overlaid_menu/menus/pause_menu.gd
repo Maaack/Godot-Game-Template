@@ -2,9 +2,16 @@ class_name PauseMenu
 extends OverlaidMenu
 
 @export var options_packed_scene : PackedScene
-@export_file("*.tscn") var main_menu_scene : String
+## Defines the path to the main menu. Hides the Main Menu button if not set.
+## Will attempt to read from AppConfig if left empty.
+@export_file("*.tscn") var main_menu_scene_path : String
 
 var popup_open : Node
+
+func get_main_menu_scene_path() -> String:
+	if main_menu_scene_path.is_empty():
+		return AppConfig.main_menu_scene_path
+	return main_menu_scene_path
 
 func close_popup() -> void:
 	if popup_open != null:
@@ -47,7 +54,7 @@ func _hide_options_if_unset() -> void:
 		%OptionsButton.hide()
 
 func _hide_main_menu_if_unset() -> void:
-	if main_menu_scene.is_empty():
+	if get_main_menu_scene_path().is_empty():
 		%MainMenuButton.hide()
 
 func _ready() -> void:
@@ -75,7 +82,7 @@ func _on_confirm_restart_confirmed() -> void:
 	close()
 
 func _on_confirm_main_menu_confirmed() -> void:
-	_load_scene(main_menu_scene)
+	_load_scene(get_main_menu_scene_path())
 
 func _on_confirm_exit_confirmed() -> void:
 	get_tree().quit()

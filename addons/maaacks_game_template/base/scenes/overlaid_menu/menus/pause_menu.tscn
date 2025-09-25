@@ -8,7 +8,7 @@
 process_mode = 3
 script = ExtResource("2_0ln3r")
 options_packed_scene = ExtResource("3_kv70e")
-main_menu_scene = "res://addons/maaacks_game_template/base/scenes/menus/main_menu/main_menu.tscn"
+main_menu_scene_path = ""
 pauses_game = true
 
 [node name="MarginContainer" parent="MenuPanelContainer" index="0"]
