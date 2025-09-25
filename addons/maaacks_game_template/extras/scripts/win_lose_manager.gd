@@ -1,11 +1,9 @@
 extends Node
 
 ## Path to a main menu scene.
-## Will attempt to read from AppConfig if left empty.
-@export_file("*.tscn") var main_menu_scene_path : String
+@export_file("*.tscn") var main_menu_scene : String
 ## Optional path to an ending scene.
-## Will attempt to read from AppConfig if left empty.
-@export_file("*.tscn") var ending_scene_path : String
+@export_file("*.tscn") var ending_scene : String
 ## Optional screen to be shown after the game is won.
 @export var game_won_scene : PackedScene
 ## Optional screen to be shown after the game is lost.
@@ -15,22 +13,12 @@ func _try_connecting_signal_to_node(node : Node, signal_name : String, callable 
 	if node.has_signal(signal_name) and not node.is_connected(signal_name, callable):
 		node.connect(signal_name, callable)
 
-func get_main_menu_scene_path() -> String:
-	if main_menu_scene_path.is_empty():
-		return AppConfig.main_menu_scene_path
-	return main_menu_scene_path
-
 func _load_main_menu() -> void:
-	SceneLoader.load_scene(get_main_menu_scene_path())
-
-func get_ending_scene_path() -> String:
-	if ending_scene_path.is_empty():
-		return AppConfig.ending_scene_path
-	return ending_scene_path
+	SceneLoader.load_scene(main_menu_scene)
 
 func _load_ending() -> void:
-	if not get_ending_scene_path().is_empty():
-		SceneLoader.load_scene(get_ending_scene_path())
+	if ending_scene:
+		SceneLoader.load_scene(ending_scene)
 	else:
 		_load_main_menu()
 
