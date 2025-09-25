@@ -5,6 +5,7 @@ signal update_completed
 
 const DownloadAndExtract = MaaacksGameTemplatePlugin.DownloadAndExtract
 const APIClient = MaaacksGameTemplatePlugin.APIClient
+const ReleaseNotesLabel = preload("./release_notes_label.gd")
 
 const API_RELEASES_URL := "https://api.github.com/repos/%s/%s/releases"
 const UPDATE_CONFIRMATION_MESSAGE := "This will update the contents of the plugin folder (addons/%s/).\nFiles outside of the plugin folder will not be affected.\n\nUpdate %s to v%s?"
@@ -31,7 +32,7 @@ const PLUGIN_TEMP_ZIP_PATH := "res://%s_%s_update.zip"
 @onready var _installing_dialog : AcceptDialog = $InstallingDialog
 @onready var _error_dialog : AcceptDialog = $ErrorDialog
 @onready var _success_dialog : AcceptDialog = $SuccessDialog
-@onready var _release_label : RichTextLabel = %ReleaseLabel
+@onready var _release_notes_label : ReleaseNotesLabel = %ReleaseNotesLabel
 @onready var _update_label : Label = %UpdateLabel
 @onready var _warning_message_button : LinkButton = %WarningMessageButton
 @onready var _warning_message_label : Label = %WarningMessageLabel
@@ -94,7 +95,7 @@ func _on_api_client_response_received(response_body : Variant) -> void:
 	_download_and_extract_node.zip_file_path = PLUGIN_TEMP_ZIP_PATH % [plugin_directory, _newest_version]
 	_update_label.text = UPDATE_CONFIRMATION_MESSAGE % [plugin_directory, _plugin_name, _newest_version]
 	if latest_release.has("body"):
-		_release_label.text = latest_release["body"]
+		_release_notes_label.from_release_notes(latest_release["body"])
 	_update_confirmation_dialog.show()
 
 func _on_download_and_extract_zip_saved() -> void:
