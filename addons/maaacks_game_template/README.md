@@ -1,5 +1,5 @@
 # Godot Game Template
-For Godot 4.4 (4.3+ compatible)
+For Godot 4.5 (4.3+ compatible)
 
 A branch specific for the [Godot Wild Jam](https://godotwildjam.com/)!  
 ![GWJ Logo](/addons/maaacks_game_template/media/GWJ-Half-Logo-Orange.svg)  
