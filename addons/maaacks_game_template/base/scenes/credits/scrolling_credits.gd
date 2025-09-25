@@ -1,6 +1,8 @@
 class_name ScrollingCredits
 extends Credits
 
+signal end_reached
+
 @onready var header_space : Control = %HeaderSpace
 @onready var footer_space : Control = %FooterSpace
 @onready var credits_label : Control = %CreditsLabel
