@@ -1,11 +1,10 @@
 extends Node
 
-@export_group("Scenes")
 ## Path to a main menu scene.
 ## Will attempt to read from AppConfig if left empty.
 @export_file("*.tscn") var main_menu_scene_path : String
 ## Optional path to an ending scene.
-## Will attempt to read from AppConfig if left empty
+## Will attempt to read from AppConfig if left empty.
 @export_file("*.tscn") var ending_scene_path : String
 ## Optional screen to be shown after the game is won.
 @export var game_won_scene : PackedScene
