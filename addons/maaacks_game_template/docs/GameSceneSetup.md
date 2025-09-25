@@ -32,7 +32,9 @@ In that case, the following nodes can be safely removed:
 * LevelManager
 * LevelLoadingScreen
   
-The single level scene can then be added directly to the `SubViewport`, another container, or the root node.
+The single level scene can then be added directly to the `SubViewport`, another container, or the root node.  
+
+To manage the win and lose screens and transitioning to other scenes, add a `Node` and attach the `win_lose_manager.gd` script. Inspect the node to attach the win / lose screens. The `game_won()` or `game_lost()` will then need to be called when gameplay conditions are met.  
 
 ## Background Music
 `BackgroundMusicPlayer`'s are `AudioStreamPlayer`'s with `autoplay` set to `true` and `audio_bus` set to "Music". These will automatically be recognized by the `ProjectMusicController` with the default settings, and allow for blending between tracks.
