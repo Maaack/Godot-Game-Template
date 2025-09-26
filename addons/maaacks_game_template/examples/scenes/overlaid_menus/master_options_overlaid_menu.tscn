@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://q2s4ai5avg5n"]
+
+[ext_resource type="PackedScene" uid="uid://dy8sr0cd8nbiu" path="res://addons/maaacks_game_template/base/scenes/overlaid_menu/menus/master_options_overlaid_menu.tscn" id="1_e7b2a"]
+[ext_resource type="PackedScene" uid="uid://bdvdf5v87mmrr" path="res://addons/maaacks_game_template/examples/scenes/menus/options_menu/master_options_menu_with_tabs.tscn" id="2_vemvc"]
+
+[node name="MasterOptionsOverlaidMenu" instance=ExtResource("1_e7b2a")]
+menu_scene = ExtResource("2_vemvc")
