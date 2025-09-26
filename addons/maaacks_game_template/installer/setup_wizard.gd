@@ -12,6 +12,8 @@ extends AcceptDialog
 @onready var copy_button : Button = %CopyButton
 @onready var delete_check_box : CheckBox = %DeleteCheckBox
 @onready var delete_button : Button = %DeleteButton
+@onready var update_paths_check_box : CheckBox = %UpdatePathsCheckBox
+@onready var update_paths_button : Button = %UpdatePathsButton
 @onready var set_main_scene_check_box : CheckBox = %SetMainSceneCheckBox
 @onready var set_main_scene_button : Button = %SetMainSceneButton
 @onready var set_default_theme_check_box : CheckBox = %SetDefaultThemeCheckBox
@@ -65,6 +67,10 @@ func _refresh_copy_and_delete_examples() -> void:
 	else:
 		delete_check_box.button_pressed = true
 
+func _refresh_update_autoload_paths() -> void:
+	update_paths_check_box.button_pressed = MaaacksGameTemplatePlugin.instance.are_autoload_paths_updated()
+	update_paths_button.disabled = false
+
 func _refresh_main_scene() -> void:
 	if MaaacksGameTemplatePlugin.instance.is_main_scene_set():
 		set_main_scene_check_box.button_pressed = true
@@ -88,6 +94,7 @@ func _refresh_options():
 	_refresh_plugin_details()
 	_open_check_plugin_version()
 	_refresh_copy_and_delete_examples()
+	_refresh_update_autoload_paths()
 	_refresh_main_scene()
 	_refresh_default_theme()
 	_refresh_input_prompts()
@@ -111,6 +118,13 @@ func _on_copy_button_pressed():
 func _on_delete_button_pressed():
 	tree_exited.connect(func(): MaaacksGameTemplatePlugin.instance.open_delete_examples_short_confirmation_dialog())
 	queue_free()
+
+func _on_update_paths_button_pressed():
+	MaaacksGameTemplatePlugin.instance.update_autoload_paths(MaaacksGameTemplatePlugin.get_copy_path())
+	_refresh_update_autoload_paths()
+	update_paths_button.disabled = true
+	await get_tree().create_timer(1.0).timeout
+	update_paths_button.disabled = false
 
 func _on_set_main_scene_button_pressed():
 	tree_exited.connect(func(): MaaacksGameTemplatePlugin.instance.open_main_scene_confirmation_dialog(MaaacksGameTemplatePlugin.get_copy_path()))
