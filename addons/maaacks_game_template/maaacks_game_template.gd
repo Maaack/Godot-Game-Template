@@ -42,6 +42,9 @@ static func get_plugin_examples_path() -> String:
 static func get_app_config_path() -> String:
 	return get_plugin_path() + APP_CONFIG_RELATIVE_PATH
 
+static func get_scene_loader_path() -> String:
+	return get_plugin_path() + SCENE_LOADER_RELATIVE_PATH
+
 static func get_copy_path() -> String:
 	var copy_path = ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + "copy_path", get_plugin_examples_path())
 	if not copy_path.ends_with("/"):
@@ -192,7 +195,7 @@ func _update_app_config_paths(target_path : String) -> void:
 		]
 	for prefix in prefixes:
 		prefix += " = \""
-		var target_string =  prefix + get_plugin_examples_path()
+		var target_string = prefix + get_plugin_examples_path()
 		var replacing_string = prefix + target_path
 		file_text = file_text.replace(target_string, replacing_string)
 	var file = FileAccess.open(file_path, FileAccess.WRITE)
@@ -200,10 +203,10 @@ func _update_app_config_paths(target_path : String) -> void:
 	file.close()
 
 func _update_scene_loader_path(target_path : String) -> void:
-	var file_path : String = get_plugin_path() + SCENE_LOADER_RELATIVE_PATH
+	var file_path : String = get_scene_loader_path()
 	var file_text : String = FileAccess.get_file_as_string(file_path)
 	var prefix : String = "loading_screen_path = \""
-	var target_string =  prefix + get_plugin_path() + "base/"
+	var target_string = prefix + get_plugin_path() + "base/"
 	var replacing_string = prefix + target_path
 	file_text = file_text.replace(target_string, replacing_string)
 	var file = FileAccess.open(file_path, FileAccess.WRITE)
@@ -219,11 +222,29 @@ func _add_translations() -> void:
 			translations.append(translation_path)
 	ProjectSettings.set_setting("internationalization/locale/translations", translations)
 
+func _is_app_config_path_updated(target_path) -> bool:
+	var file_text : String = FileAccess.get_file_as_string(get_app_config_path())
+	var target_string = "main_menu_scene_path = \"" + get_plugin_examples_path()
+	return !file_text.contains(target_string)
+
+func _is_scene_loader_path_updated(target_path) -> bool:
+	var file_text : String = FileAccess.get_file_as_string(get_scene_loader_path())
+	var target_string = "loading_screen_path = \"" + get_plugin_path() + "base/"
+	return !file_text.contains(target_string)
+
+func are_autoload_paths_updated() -> bool:
+	var copy_path := get_copy_path()
+	if copy_path == get_plugin_examples_path(): return false
+	return _is_app_config_path_updated(copy_path) and _is_scene_loader_path_updated(copy_path)
+
+func update_autoload_paths(target_path : String) -> void:
+	_update_app_config_paths(target_path)
+	_update_scene_loader_path(target_path)
+
 func _on_completed_copy_to_directory(target_path : String) -> void:
 	ProjectSettings.set_setting(PROJECT_SETTINGS_PATH + "copy_path", target_path)
 	ProjectSettings.save()
-	_update_app_config_paths(target_path)
-	_update_scene_loader_path(target_path)
+	update_autoload_paths(target_path)
 	_copy_override_file()
 	_open_play_opening_confirmation_dialog(target_path)
 
