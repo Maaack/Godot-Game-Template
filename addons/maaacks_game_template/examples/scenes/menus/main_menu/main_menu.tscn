@@ -2,16 +2,15 @@
 
 [ext_resource type="PackedScene" uid="uid://c6k5nnpbypshi" path="res://addons/maaacks_game_template/base/scenes/menus/main_menu/main_menu.tscn" id="1_pss7b"]
 [ext_resource type="Script" uid="uid://bdet8115mn02d" path="res://addons/maaacks_game_template/examples/scenes/menus/main_menu/main_menu.gd" id="2_lk0wa"]
-[ext_resource type="PackedScene" uid="uid://bdvdf5v87mmrr" path="res://addons/maaacks_game_template/examples/scenes/menus/options_menu/master_options_menu_with_tabs.tscn" id="3_lqjmk"]
-[ext_resource type="PackedScene" uid="uid://wjcsvhdqikyl" path="res://addons/maaacks_game_template/examples/scenes/credits/scrollable_credits.tscn" id="4_cfr4i"]
+[ext_resource type="PackedScene" uid="uid://q2s4ai5avg5n" path="res://addons/maaacks_game_template/examples/scenes/overlaid_menus/master_options_overlaid_menu.tscn" id="3_cfr4i"]
+[ext_resource type="PackedScene" uid="uid://c87yhxhrkhje0" path="res://addons/maaacks_game_template/examples/scenes/overlaid_menus/credits_overlaid_menu.tscn" id="4_qhsni"]
 
 [node name="MainMenu" instance=ExtResource("1_pss7b")]
 script = ExtResource("2_lk0wa")
 level_select_packed_scene = null
 confirm_new_game = true
-game_scene_path = "res://addons/maaacks_game_template/examples/scenes/game_scene/game_ui.tscn"
-options_packed_scene = ExtResource("3_lqjmk")
-credits_packed_scene = ExtResource("4_cfr4i")
+options_packed_scene = ExtResource("3_cfr4i")
+credits_packed_scene = ExtResource("4_qhsni")
 
 [node name="ContinueGameButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" index="1"]
 unique_name_in_owner = true
@@ -25,24 +24,11 @@ visible = false
 layout_mode = 2
 text = "Level Select"
 
-[node name="LevelSelectContainer" type="MarginContainer" parent="." index="7"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 32
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 32
-
-[node name="NewGameConfirmationDialog" type="ConfirmationDialog" parent="." index="9"]
+[node name="NewGameConfirmationDialog" type="ConfirmationDialog" parent="." index="5"]
 unique_name_in_owner = true
 auto_translate_mode = 1
 title = "Start a New Game?"
+initial_position = 1
 size = Vector2i(480, 158)
 dialog_text = "Are you sure you want to start a new game?
 

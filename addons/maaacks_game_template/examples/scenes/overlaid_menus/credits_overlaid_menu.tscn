@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://c87yhxhrkhje0"]
+
+[ext_resource type="PackedScene" uid="uid://n111yfgskspp" path="res://addons/maaacks_game_template/base/scenes/overlaid_menu/menus/credits_overlaid_menu.tscn" id="1_ba4pu"]
+[ext_resource type="PackedScene" uid="uid://wjcsvhdqikyl" path="res://addons/maaacks_game_template/examples/scenes/credits/scrollable_credits.tscn" id="2_gbxb0"]
+
+[node name="CreditsOverlaidMenu" instance=ExtResource("1_ba4pu")]
+menu_scene = ExtResource("2_gbxb0")
