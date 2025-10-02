@@ -24,24 +24,11 @@ visible = false
 layout_mode = 2
 text = "Level Select"
 
-[node name="LevelSelectContainer" type="MarginContainer" parent="." index="7"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 32
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 32
-
-[node name="NewGameConfirmationDialog" type="ConfirmationDialog" parent="." index="9"]
+[node name="NewGameConfirmationDialog" type="ConfirmationDialog" parent="." index="5"]
 unique_name_in_owner = true
 auto_translate_mode = 1
 title = "Start a New Game?"
+initial_position = 1
 size = Vector2i(480, 158)
 dialog_text = "Are you sure you want to start a new game?
 
