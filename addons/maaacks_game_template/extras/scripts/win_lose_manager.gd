@@ -29,10 +29,10 @@ func get_ending_scene_path() -> String:
 	return ending_scene_path
 
 func _load_ending() -> void:
-	if not get_ending_scene_path().is_empty():
-		SceneLoader.load_scene(get_ending_scene_path())
-	else:
+	if get_ending_scene_path().is_empty():
 		_load_main_menu()
+	else:
+		SceneLoader.load_scene(get_ending_scene_path())
 
 func _load_lose_screen_or_reload() -> void:
 	if game_lost_scene:
