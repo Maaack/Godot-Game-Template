@@ -52,6 +52,7 @@ func _open_sub_menu(menu : PackedScene) -> Node:
 	add_child(sub_menu)
 	menu_container.hide()
 	sub_menu.hidden.connect(_close_sub_menu, CONNECT_ONE_SHOT)
+	sub_menu.tree_exiting.connect(_close_sub_menu, CONNECT_ONE_SHOT)
 	sub_menu_opened.emit()
 	return sub_menu
 

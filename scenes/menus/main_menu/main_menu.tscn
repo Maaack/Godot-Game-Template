@@ -1,16 +1,16 @@
 [gd_scene load_steps=5 format=3 uid="uid://dboeh8i18e2sh"]
 
 [ext_resource type="PackedScene" uid="uid://c6k5nnpbypshi" path="res://addons/maaacks_game_template/base/scenes/menus/main_menu/main_menu.tscn" id="1_peecx"]
-[ext_resource type="Script" uid="uid://w0trtg53nc1y" path="res://scenes/menus/main_menu/main_menu.gd" id="2_ub2bi"]
-[ext_resource type="PackedScene" uid="uid://boicxc6x4554n" path="res://scenes/menus/options_menu/master_options_menu_with_tabs.tscn" id="3_x31ro"]
-[ext_resource type="PackedScene" uid="uid://bg8qlntq37pp" path="res://scenes/credits/scrollable_credits.tscn" id="4_peecx"]
+[ext_resource type="Script" uid="uid://w0trtg53nc1y" path="res://scenes/menus/main_menu/main_menu.gd" id="2_peecx"]
+[ext_resource type="PackedScene" uid="uid://v3q2x6bbylw" path="res://scenes/overlaid_menus/master_options_overlaid_menu.tscn" id="3_ub2bi"]
+[ext_resource type="PackedScene" uid="uid://lwo04se8oqbv" path="res://scenes/overlaid_menus/credits_overlaid_menu.tscn" id="4_x31ro"]
 
 [node name="MainMenu" instance=ExtResource("1_peecx")]
-script = ExtResource("2_ub2bi")
+script = ExtResource("2_peecx")
 level_select_packed_scene = null
 confirm_new_game = true
-options_packed_scene = ExtResource("3_x31ro")
-credits_packed_scene = ExtResource("4_peecx")
+options_packed_scene = ExtResource("3_ub2bi")
+credits_packed_scene = ExtResource("4_x31ro")
 
 [node name="ContinueGameButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" index="1"]
 unique_name_in_owner = true
