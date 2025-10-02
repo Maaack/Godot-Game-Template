@@ -2,16 +2,18 @@
 class_name MaaacksGameTemplatePlugin
 extends EditorPlugin
 
-const APIClient = preload("res://addons/maaacks_game_template/utilities/api_client.gd")
-const DownloadAndExtract = preload("res://addons/maaacks_game_template/utilities/download_and_extract.gd")
-const CopyAndEdit = preload("res://addons/maaacks_game_template/installer/copy_and_edit_files.gd")
-
+const PLUGIN_PATH = "res://addons/maaacks_game_template/"
 const PLUGIN_NAME = "Maaack's Game Template"
 const PROJECT_SETTINGS_PATH = "maaacks_game_template/"
+
+const APIClient = preload(PLUGIN_PATH + "utilities/api_client.gd")
+const DownloadAndExtract = preload(PLUGIN_PATH + "utilities/download_and_extract.gd")
+const CopyAndEdit = preload(PLUGIN_PATH + "installer/copy_and_edit_files.gd")
 
 const EXAMPLES_RELATIVE_PATH = "examples/"
 const MAIN_SCENE_RELATIVE_PATH = "scenes/opening/opening_with_logo.tscn"
 const OVERRIDE_RELATIVE_PATH = "installer/override.cfg"
+const APP_CONFIG_RELATIVE_PATH = "base/scenes/autoloads/app_config.tscn"
 const SCENE_LOADER_RELATIVE_PATH = "base/scenes/autoloads/scene_loader.tscn"
 const THEMES_DIRECTORY_RELATIVE_PATH = "resources/themes"
 const WINDOW_OPEN_DELAY : float = 0.5
@@ -31,13 +33,16 @@ static func get_plugin_name() -> String:
 static func get_settings_path() -> String:
 	return PROJECT_SETTINGS_PATH
 
-func get_plugin_path() -> String:
-	return get_script().resource_path.get_base_dir() + "/"
+static func get_plugin_path() -> String:
+	return PLUGIN_PATH
 
-func get_plugin_examples_path() -> String:
+static func get_plugin_examples_path() -> String:
 	return get_plugin_path() + EXAMPLES_RELATIVE_PATH
 
-func get_copy_path() -> String:
+static func get_app_config_path() -> String:
+	return get_plugin_path() + APP_CONFIG_RELATIVE_PATH
+
+static func get_copy_path() -> String:
 	var copy_path = ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + "copy_path", get_plugin_examples_path())
 	if not copy_path.ends_with("/"):
 		copy_path += "/"
@@ -177,6 +182,23 @@ func _copy_override_file() -> void:
 	var override_path : String = get_plugin_path() + OVERRIDE_RELATIVE_PATH
 	_raw_copy_file_path(override_path, "res://"+override_path.get_file())
 
+func _update_app_config_paths(target_path : String) -> void:
+	var file_path : String = get_app_config_path()
+	var file_text : String = FileAccess.get_file_as_string(file_path)
+	var prefixes : Array[String] = [
+		"main_menu_scene_path",
+		"game_scene_path",
+		"ending_scene_path",
+		]
+	for prefix in prefixes:
+		prefix += " = \""
+		var target_string =  prefix + get_plugin_examples_path()
+		var replacing_string = prefix + target_path
+		file_text = file_text.replace(target_string, replacing_string)
+	var file = FileAccess.open(file_path, FileAccess.WRITE)
+	file.store_string(file_text)
+	file.close()
+
 func _update_scene_loader_path(target_path : String) -> void:
 	var file_path : String = get_plugin_path() + SCENE_LOADER_RELATIVE_PATH
 	var file_text : String = FileAccess.get_file_as_string(file_path)
@@ -200,6 +222,7 @@ func _add_translations() -> void:
 func _on_completed_copy_to_directory(target_path : String) -> void:
 	ProjectSettings.set_setting(PROJECT_SETTINGS_PATH + "copy_path", target_path)
 	ProjectSettings.save()
+	_update_app_config_paths(target_path)
 	_update_scene_loader_path(target_path)
 	_copy_override_file()
 	_open_play_opening_confirmation_dialog(target_path)

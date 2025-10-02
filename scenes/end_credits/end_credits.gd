@@ -1,6 +1,8 @@
 extends ScrollingCredits
 
-@export_file("*.tscn") var main_menu_scene : String
+## Defines the path to the main menu. Hides the Main Menu button if not set.
+## Will attempt to read from AppConfig if left empty.
+@export_file("*.tscn") var main_menu_scene_path : String
 ## This option forces the mouse to be visible when the menu shows up.
 ## Useful for games that capture the mouse, and don't automatically return it.
 @export var force_mouse_mode_visible : bool = false
@@ -10,6 +12,11 @@ extends ScrollingCredits
 @onready var menu_button = %MenuButton
 @onready var init_mouse_filter : MouseFilter = mouse_filter
 
+func get_main_menu_scene_path() -> String:
+	if main_menu_scene_path.is_empty():
+		return AppConfig.main_menu_scene_path
+	return main_menu_scene_path
+
 func _on_scroll_container_end_reached() -> void:
 	end_message_panel.show()
 	mouse_filter = Control.MOUSE_FILTER_STOP
@@ -18,7 +25,7 @@ func _on_scroll_container_end_reached() -> void:
 	super._on_scroll_container_end_reached()
 
 func load_main_menu() -> void:
-	SceneLoader.load_scene(main_menu_scene)
+	SceneLoader.load_scene(get_main_menu_scene_path())
 
 func exit_game() -> void:
 	if OS.has_feature("web"):
@@ -32,7 +39,7 @@ func _on_visibility_changed() -> void:
 
 func _ready() -> void:
 	visibility_changed.connect(_on_visibility_changed)
-	if main_menu_scene.is_empty():
+	if get_main_menu_scene_path().is_empty():
 		menu_button.hide()
 	if OS.has_feature("web"):
 		exit_button.hide()
