@@ -14,7 +14,7 @@ func load_game_scene() -> void:
 	super.load_game_scene()
 
 func new_game() -> void:
-	if confirm_new_game and GameState.has_game_state():
+	if confirm_new_game and GameState.get_levels_reached() > 0:
 		new_game_confirmation.show()
 	else:
 		GameState.reset()
@@ -52,7 +52,7 @@ func _show_level_select_if_set() -> void:
 	level_select_button.show()
 
 func _show_continue_if_set() -> void:
-	if not GameState.has_game_state(): return
+	if GameState.get_current_level_path().is_empty(): return
 	continue_game_button.show()
 
 func _ready() -> void:
