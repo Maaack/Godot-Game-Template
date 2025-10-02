@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bde0cbmryrv5s"]
+[gd_scene load_steps=13 format=3 uid="uid://bde0cbmryrv5s"]
 
 [ext_resource type="PackedScene" uid="uid://cnmu4k37qncn8" path="res://addons/maaacks_game_template/examples/scenes/overlaid_menus/pause_menu.tscn" id="2_7mepj"]
 [ext_resource type="Script" uid="uid://bbymrin0cm704" path="res://addons/maaacks_game_template/extras/scripts/level_loader.gd" id="5_a40ke"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://cmqngqwso0uve" path="res://addons/maaacks_game_template/examples/scripts/level_and_state_manager.gd" id="11_a40ke"]
 [ext_resource type="PackedScene" uid="uid://cyjcj8mo8x5tk" path="res://addons/maaacks_game_template/examples/scenes/overlaid_menus/level_won_menu.tscn" id="11_p7huw"]
 [ext_resource type="Script" uid="uid://wjq7li836lwj" path="res://addons/maaacks_game_template/extras/scripts/scene_lister.gd" id="12_sgprk"]
+[ext_resource type="Script" uid="uid://ca84daa8dggkl" path="res://addons/maaacks_game_template/examples/scenes/game_scene/game_timer.gd" id="12_up6yb"]
 
 [node name="GameUI" type="Control"]
 layout_mode = 3
@@ -37,8 +38,6 @@ script = ExtResource("11_a40ke")
 level_loader = NodePath("../LevelLoader")
 starting_level_path = "res://addons/maaacks_game_template/examples/scenes/game_scene/levels/level_1.tscn"
 scene_lister = NodePath("SceneLister")
-main_menu_scene = "res://addons/maaacks_game_template/examples/scenes/menus/main_menu/main_menu_with_animations.tscn"
-ending_scene = "res://addons/maaacks_game_template/examples/scenes/end_credits/end_credits.tscn"
 game_won_scene = ExtResource("9_suu1j")
 level_lost_scene = ExtResource("10_lkew3")
 level_won_scene = ExtResource("11_p7huw")
@@ -67,3 +66,6 @@ audio_listener_enable_3d = true
 size = Vector2i(1280, 720)
 render_target_update_mode = 4
 script = ExtResource("9_u1dsg")
+
+[node name="GameTimer" type="Node" parent="."]
+script = ExtResource("12_up6yb")

@@ -152,6 +152,7 @@ These instructions assume starting with just the contents of `addons/`. This wil
 [Add Custom Options](/addons/maaacks_game_template/docs/AddingCustomOptions.md)  
 [Game Saving](/addons/maaacks_game_template/docs/GameSaving.md)  
 [How Parts Work](/addons/maaacks_game_template/docs/HowPartsWork.md)  
+[Moving Files](/addons/maaacks_game_template/docs/MovingFiles.md)  
 [Uploading to itch.io](/addons/maaacks_game_template/docs/UploadingToItchIo.md)  
 [Automatic Updating](/addons/maaacks_game_template/docs/AutomaticUpdating.md)  
 [Exhibiting Your Game](/addons/maaacks_game_template/docs/Exhibiting.md)  
