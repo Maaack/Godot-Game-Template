@@ -1,19 +1,27 @@
 class_name LoadingScreen
 extends CanvasLayer
+## Scene for displaying the progress of a loading scene to the player.
 
 const STALLED_ON_WEB = "\nIf running in a browser, try clicking out of the window, \nand then click back into the window. It might unstick.\nLasty, you may try refreshing the page.\n\n"
 
 enum StallStage{STARTED, WAITING, STILL_WAITING, GIVE_UP}
 
+## Delay between updating the message in the window during stalled periods.
 @export_range(5, 60, 0.5, "or_greater") var state_change_delay : float = 15.0
 @export_group("State Messages")
 @export_subgroup("In Progress")
+## Default text to show when loading.
 @export var _in_progress : String = "Loading..."
+## Next text to show when loading has stalled.
 @export var _in_progress_waiting : String = "Still Loading..."
+## Last text to show when loading has stalled.
 @export var _in_progress_still_waiting : String = "Still Loading... (%d seconds)"
 @export_subgroup("Completed")
+## Default text to show when loading has completed.
 @export var _complete : String = "Loading Complete!"
+## Next text to show if opening the scene has stalled.
 @export var _complete_waiting : String = "Any Moment Now..."
+## Last text to show if opening the scene has stalled.
 @export var _complete_still_waiting : String = "Any Moment Now... (%d seconds)"
 
 var _stall_stage : StallStage = StallStage.STARTED

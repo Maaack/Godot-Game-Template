@@ -1,6 +1,11 @@
 extends Node
+## A script to add into a level or game scene to display tutorial windows.
+
+## A list of tutorial scenes to open, one after the other.
 @export var tutorial_scenes : Array[PackedScene]
+## Flag to open the tutorials when the scene becomes ready.
 @export var auto_open : bool = false
+## Delay before opening the tutorials when the scene becomes ready.
 @export var auto_open_delay : float = 0.25
 
 func open_tutorials() -> void:
@@ -19,4 +24,4 @@ func _ready() -> void:
 	if auto_open:
 		if auto_open_delay > 0.0:
 			await get_tree().create_timer(auto_open_delay, false).timeout
-		open_tutorials()
+		open_tutorials.call_deferred()
