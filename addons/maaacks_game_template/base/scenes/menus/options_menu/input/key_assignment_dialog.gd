@@ -1,4 +1,5 @@
 extends ConfirmationDialog
+## Scene to confirm a new input for an action name.
 
 const LISTENING_TEXT : String = "Listening for input..."
 const FOCUS_HERE_TEXT : String = "Focus here to assign inputs."
@@ -10,6 +11,7 @@ enum InputConfirmation {
 	DOUBLE,
 	OK_BUTTON
 }
+## Confirmations required before a new input is accepted for an aciton.
 @export var input_confirmation : InputConfirmation = InputConfirmation.SINGLE
 
 var last_input_event : InputEvent

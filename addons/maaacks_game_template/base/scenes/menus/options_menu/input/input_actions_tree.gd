@@ -1,11 +1,13 @@
 class_name InputActionsTree
 extends Tree
+## Scene to list the input actions out in a tree format.
 
 signal already_assigned(action_name : String, input_name : String)
 signal minimum_reached(action_name : String)
 signal add_button_clicked(action_name : String)
 signal remove_button_clicked(action_name : String, input_name : String)
 
+## The names of the action names that should be listed for editing.
 @export var input_action_names : Array[StringName] :
 	set(value):
 		var _value_changed = input_action_names != value
@@ -15,7 +17,7 @@ signal remove_button_clicked(action_name : String, input_name : String)
 			for action in input_action_names:
 				_new_readable_action_names.append(action.capitalize())
 			readable_action_names = _new_readable_action_names
-
+## The readable names of the action names that should be listed for editing.
 @export var readable_action_names : Array[String] :
 	set(value):
 		var _value_changed = readable_action_names != value
@@ -27,12 +29,14 @@ signal remove_button_clicked(action_name : String, input_name : String)
 				var _readable_name : String = readable_action_names[iter]
 				_new_action_name_map[_input_name] = _readable_name
 			action_name_map = _new_action_name_map
-
 ## Show action names that are not explicitely listed in an action name map.
 @export var show_all_actions : bool = true
 @export_group("Icons")
+## Icon for the button that adds a new input to an action name.
 @export var add_button_texture : Texture2D
+## Icon for the button that removes an input to an action name.
 @export var remove_button_texture : Texture2D
+## Optional link to an input icon mapper to replace the text with icons.
 @export var input_icon_mapper : InputIconMapper
 @export_group("Built-in Actions")
 ## Shows Godot's built-in actions (action names starting with "ui_") in the tree.

@@ -4,6 +4,7 @@ signal level_lost
 signal level_won
 signal level_won_and_changed(level_path : String)
 
+## Optional path to the next level if using an open world level system.
 @export_file("*.tscn") var next_level_path : String
 
 var level_state : LevelState

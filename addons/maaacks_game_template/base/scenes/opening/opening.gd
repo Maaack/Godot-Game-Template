@@ -1,16 +1,24 @@
 extends Control
+## Scene for displaying opening logos, placards, or other images before a game.
 
 ## Defines the path to the next scene.
 ## Will attempt to read from AppConfig if left empty.
 @export_file("*.tscn") var next_scene_path : String
+## The list of images to show in the opening sequence.
 @export var images : Array[Texture2D]
 @export_group("Animation")
+## The time to fade-in the next image.
 @export var fade_in_time : float = 0.2
+## The time to fade-out the previous image.
 @export var fade_out_time : float = 0.2
+## The time to keep an image visible after fade-in and before fade-out.
 @export var visible_time : float = 1.6
 @export_group("Transition")
+## The delay before starting the first fade-in animation once ready.
 @export var start_delay : float = 0.5
+## The delay after ending the last fade-in animation before loading the next scene.
 @export var end_delay : float = 0.5
+## If true, show a loading screen if the next scene is not yet ready.
 @export var show_loading_screen : bool = false
 
 var tween : Tween
