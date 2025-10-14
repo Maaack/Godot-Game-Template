@@ -3,7 +3,7 @@ extends ScrollingCredits
 ## Defines the path to the main menu. Hides the Main Menu button if not set.
 ## Will attempt to read from AppConfig if left empty.
 @export_file("*.tscn") var main_menu_scene_path : String
-## If true, forces the mouse to be visible when the menu shows up.
+## This option forces the mouse to be visible when the menu shows up.
 ## Useful for games that capture the mouse, and don't automatically return it.
 @export var force_mouse_mode_visible : bool = false
 
