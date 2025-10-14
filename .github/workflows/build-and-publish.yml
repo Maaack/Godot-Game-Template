@@ -21,7 +21,7 @@
 # SOFTWARE.
 
 # Original file: https://github.com/abarichello/godot-ci/blob/master/.github/workflows/godot-ci.yml
-# This edited version is triggered using a Github Release and uploads artifacts to the relase.
+# This edited version is triggered using a Github Release and uploads artifacts to the release.
 # Furthermore, a new job (upload to itch.io using butler) has been added.
 # Modified by: Nicolas Oulianov (github @oulianov)
 
