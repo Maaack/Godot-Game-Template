@@ -237,15 +237,17 @@ func _get_all_action_names(include_built_in : bool = false) -> Array[StringName]
 				action_names.append(action_name)
 	return action_names
 
-func _get_action_readable_name(input_name : StringName) -> String:
+func _get_action_readable_name(action_name : StringName) -> String:
 	var readable_name : String
-	if input_name in action_name_map:
-		readable_name = action_name_map[input_name]
-	elif input_name in built_in_action_name_map:
-		readable_name = built_in_action_name_map[input_name]
+	if action_name in action_name_map:
+		readable_name = action_name_map[action_name]
+	elif action_name in built_in_action_name_map:
+		readable_name = built_in_action_name_map[action_name]
 	else:
-		readable_name = input_name.capitalize()
-		action_name_map[input_name] = readable_name
+		readable_name = action_name
+		if capitalize_action_names:
+			readable_name = readable_name.capitalize()
+		action_name_map[action_name] = readable_name
 	return readable_name
 
 func _build_ui_list() -> void:
