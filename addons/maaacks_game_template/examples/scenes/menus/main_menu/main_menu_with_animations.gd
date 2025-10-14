@@ -1,6 +1,9 @@
 extends MainMenu
+## Main menu extension that adds options and animates the title and menu fading in.
 
+## Optional scene to open when the player clicks a 'Level Select' button.
 @export var level_select_packed_scene: PackedScene
+## Flag to have the player confirm before starting a new game if a game is in progress.
 @export var confirm_new_game : bool = true
 
 var animation_state_machine : AnimationNodeStateMachinePlayback
@@ -10,14 +13,14 @@ var animation_state_machine : AnimationNodeStateMachinePlayback
 @onready var new_game_confirmation = %NewGameConfirmationDialog
 
 func load_game_scene() -> void:
-	GameStateExample.start_game()
+	GameState.start_game()
 	super.load_game_scene()
 
 func new_game() -> void:
-	if confirm_new_game and GameStateExample.get_levels_reached() > 0:
+	if confirm_new_game and GameState.get_levels_reached() > 0:
 		new_game_confirmation.show()
 	else:
-		GameStateExample.reset()
+		GameState.reset()
 		load_game_scene()
 
 func intro_done() -> void:
@@ -48,11 +51,11 @@ func _input(event : InputEvent) -> void:
 
 func _show_level_select_if_set() -> void: 
 	if level_select_packed_scene == null: return
-	if GameStateExample.get_levels_reached() <= 1 : return
+	if GameState.get_levels_reached() <= 1 : return
 	level_select_button.show()
 
 func _show_continue_if_set() -> void:
-	if GameStateExample.get_current_level_path().is_empty(): return
+	if GameState.get_current_level_path().is_empty(): return
 	continue_game_button.show()
 
 func _ready() -> void:
@@ -62,7 +65,7 @@ func _ready() -> void:
 	animation_state_machine = $MenuAnimationTree.get("parameters/playback")
 
 func _on_continue_game_button_pressed() -> void:
-	GameStateExample.continue_game()
+	GameState.continue_game()
 	load_game_scene()
 
 func _on_level_select_button_pressed() -> void:
@@ -71,5 +74,5 @@ func _on_level_select_button_pressed() -> void:
 		level_select_scene.connect("level_selected", load_game_scene)
 
 func _on_new_game_confirmation_dialog_confirmed():
-	GameStateExample.reset()
+	GameState.reset()
 	load_game_scene()

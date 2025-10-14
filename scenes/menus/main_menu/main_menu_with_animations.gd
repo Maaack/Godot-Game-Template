@@ -1,6 +1,9 @@
 extends MainMenu
+## Main menu extension that adds options and animates the title and menu fading in.
 
+## Optional scene to open when the player clicks a 'Level Select' button.
 @export var level_select_packed_scene: PackedScene
+## Flag to have the player confirm before starting a new game if a game is in progress.
 @export var confirm_new_game : bool = true
 
 var animation_state_machine : AnimationNodeStateMachinePlayback

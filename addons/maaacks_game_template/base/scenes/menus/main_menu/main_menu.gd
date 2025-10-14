@@ -1,6 +1,6 @@
 class_name MainMenu
 extends Control
-## A dedicated menu scene that links to a game scene, an options menu, and credits.
+## Base menu scene that links to a game scene, an options menu, and credits.
 
 signal sub_menu_opened
 signal sub_menu_closed
