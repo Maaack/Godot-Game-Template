@@ -19,7 +19,7 @@ env:
   # NOTE: If your `project.godot` is at the repository root, set `PROJECT_PATH` to "."
   # If it's in a subdirectory, set it to the subdirectory name (e.g., "your-game")
   PROJECT_PATH: .
-  ITCH_USERNAME: your-username
+  ITCH_USERNAME: conquestudios
   ITCH_GAME: your-game
 
 jobs:
