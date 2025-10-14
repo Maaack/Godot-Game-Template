@@ -1,6 +1,7 @@
 @tool
 class_name InputActionsList
 extends Container
+## Scene to list the input actions out as buttons in a grid format.
 
 const EMPTY_INPUT_ACTION_STRING = " "
 
@@ -10,24 +11,24 @@ signal button_clicked(action_name : String, readable_input_name : String)
 
 const BUTTON_NAME_GROUP_STRING : String = "%s:%d"
 
+## If true, lists action names on the vertical axis.
 @export var vertical : bool = true :
 	set(value):
 		vertical = value
 		if is_inside_tree():
 			%ParentBoxContainer.vertical = vertical
-
+## The number of inputs to make editable per action name.
 @export_range(1, 5) var action_groups : int = 2
+## The header to each input action group.
 @export var action_group_names : Array[String]
+## The names of the action names that should be listed for editing.
 @export var input_action_names : Array[StringName] :
 	set(value):
 		var _value_changed = input_action_names != value
 		input_action_names = value
 		if _value_changed:
-			var _new_readable_action_names : Array[String]
-			for action in input_action_names:
-				_new_readable_action_names.append(action.capitalize())
-			readable_action_names = _new_readable_action_names
-
+			_refresh_readable_action_names()
+## The readable names of the action names that should be listed for editing.
 @export var readable_action_names : Array[String] :
 	set(value):
 		var _value_changed = readable_action_names != value
@@ -39,12 +40,19 @@ const BUTTON_NAME_GROUP_STRING : String = "%s:%d"
 				var _readable_name : String = readable_action_names[iter]
 				_new_action_name_map[_input_name] = _readable_name
 			action_name_map = _new_action_name_map
-
-## Show action names that are not explicitely listed in an action name map.
+## If true, capitalizes action names in order to make them readable.
+@export var capitalize_action_names : bool = true :
+	set(value):
+		capitalize_action_names = value
+		_refresh_readable_action_names()
+## If true, show action names that are not explicitely listed in an input action name map.
 @export var show_all_actions : bool = true
+## Optional minimum size to add to all edit buttons.
 @export var button_minimum_size : Vector2
 @export_group("Icons")
+## Optional link to an input icon mapper to replace the text with icons.
 @export var input_icon_mapper : InputIconMapper
+## If true, expand the icons to fill the buttons.
 @export var expand_icon : bool = false
 @export_group("Built-in Actions")
 ## Shows Godot's built-in actions (action names starting with "ui_") in the tree.
@@ -63,6 +71,14 @@ var assigned_input_events : Dictionary = {}
 var editing_action_name : String = ""
 var editing_action_group : int = 0
 var last_input_readable_name
+
+func _refresh_readable_action_names():
+		var _new_readable_action_names : Array[String]
+		for action_name in input_action_names:
+			if capitalize_action_names:
+				action_name = action_name.capitalize()
+			_new_readable_action_names.append(action_name)
+		readable_action_names = _new_readable_action_names
 
 func _clear_list() -> void:
 	for child in %ParentBoxContainer.get_children():
@@ -221,15 +237,17 @@ func _get_all_action_names(include_built_in : bool = false) -> Array[StringName]
 				action_names.append(action_name)
 	return action_names
 
-func _get_action_readable_name(input_name : StringName) -> String:
+func _get_action_readable_name(action_name : StringName) -> String:
 	var readable_name : String
-	if input_name in action_name_map:
-		readable_name = action_name_map[input_name]
-	elif input_name in built_in_action_name_map:
-		readable_name = built_in_action_name_map[input_name]
+	if action_name in action_name_map:
+		readable_name = action_name_map[action_name]
+	elif action_name in built_in_action_name_map:
+		readable_name = built_in_action_name_map[action_name]
 	else:
-		readable_name = input_name.capitalize()
-		action_name_map[input_name] = readable_name
+		readable_name = action_name
+		if capitalize_action_names:
+			readable_name = readable_name.capitalize()
+		action_name_map[action_name] = readable_name
 	return readable_name
 
 func _build_ui_list() -> void:

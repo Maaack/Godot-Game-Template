@@ -1,5 +1,6 @@
 class_name MainMenu
 extends Control
+## Base menu scene that links to a game scene, an options menu, and credits.
 
 signal sub_menu_opened
 signal sub_menu_closed
@@ -9,10 +10,14 @@ signal game_exited
 ## Defines the path to the game scene. Hides the play button if empty.
 ## Will attempt to read from AppConfig if left empty.
 @export_file("*.tscn") var game_scene_path : String
+## The scene to open when a player clicks the 'Options' button.
 @export var options_packed_scene : PackedScene
+## The scene to open when a player clicks the 'Credits' button.
 @export var credits_packed_scene : PackedScene
 @export_group("Extra Settings")
+## If true, signals that the game has started loading in the background, instead of directly loading it.
 @export var signal_game_start : bool = false
+## If true, signals that the player clicked the 'Exit' button, instead of immediately exiting.
 @export var signal_game_exit : bool = false
 
 var sub_menu : Control

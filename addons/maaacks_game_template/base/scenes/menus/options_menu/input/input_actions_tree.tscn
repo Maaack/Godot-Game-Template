@@ -20,11 +20,11 @@ readable_action_names = Array[String](["Move Forward", "Move Backward", "Move Up
 add_button_texture = ExtResource("2_ppi0j")
 remove_button_texture = ExtResource("3_hb3xh")
 action_name_map = {
-"interact": "Interact",
-"move_backward": "Move Backward",
-"move_down": "Move Down",
-"move_forward": "Move Forward",
-"move_left": "Move Left",
-"move_right": "Move Right",
-"move_up": "Move Up"
+&"interact": "Interact",
+&"move_backward": "Move Backward",
+&"move_down": "Move Down",
+&"move_forward": "Move Forward",
+&"move_left": "Move Left",
+&"move_right": "Move Right",
+&"move_up": "Move Up"
 }

@@ -4,7 +4,9 @@ extends Control
 @onready var mute_control = %MuteControl
 @onready var fullscreen_control = %FullscreenControl
 
+## Scene for adjusting the volume of the audio busses.
 @export var audio_control_scene : PackedScene
+## Optional names of audio busses that should be ignored.
 @export var hide_busses : Array[String]
 
 func _on_bus_changed(bus_value : float, bus_iter : int) -> void:

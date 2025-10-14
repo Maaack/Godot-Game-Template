@@ -17,15 +17,19 @@ class_name FileLister
 	set(value):
 		directories = value
 		_refresh_files()
-
 @export_group("Constraints")
+## Include any results that match the string.
 @export var search : String
+## Exclude any results that match the string.
 @export var filter : String
-
 @export_subgroup("Advanced Search")
+## Include any results that begin with the string.
 @export var begins_with : String
+## Include any results that end with the string.
 @export var ends_with : String
+## Exclude any results that begin with the string.
 @export var not_begins_with : String
+## Exclude any results that end with the string.
 @export var not_ends_with : String
 
 

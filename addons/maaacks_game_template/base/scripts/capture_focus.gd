@@ -1,5 +1,5 @@
 extends Control
-## Node that captures UI focus for games with a hidden mouse or joypad enabled.
+## Node that captures UI focus when switching menus.
 ##
 ## This script assists with capturing UI focus when
 ## opening, closing, or switching between menus.
@@ -7,11 +7,15 @@ extends Control
 ## and if it should grab focus. If both are true, it will capture focus
 ## on the first eligible node in its scene tree.
 
-## Hierarchical depth to search in the scene tree.
+## Hierarchical depth to search in the scene tree for a focusable control node.
 @export var search_depth : int = 1
+## If true, always capture focus when made visible.
 @export var enabled : bool = false
+## If true, capture focus if nothing currently is in focus.
 @export var null_focus_enabled : bool = true
+## If true, capture focus if there is a joypad detected.
 @export var joypad_enabled : bool = true
+## If true, capture focus if the mouse is hidden.
 @export var mouse_hidden_enabled : bool = true
 
 ## Locks focus
