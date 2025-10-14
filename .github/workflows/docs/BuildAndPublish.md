@@ -76,7 +76,7 @@ Then, go to your Github repository Settings > Secrets and Variables > Actions. T
 
 Create two variables: `ITCH_USERNAME` and `ITCH_GAME`. You should have something like this (with your real username and your real game name instead):
 
-![github variables](./github-variables.jpeg)
+![github variables](./github-variables.png)
 
 ### 3. Create a `BUTLER_API_KEY` Github secret
 
@@ -96,7 +96,7 @@ butler login
 
 This should open your browser. Login and allow butler to access your account.
 
-![Authorize butler](./authorize_butler.jpeg)
+![Authorize butler](./authorize_butler.png)
 
 In the terminal, the login flow will conclude with something like this:
 
@@ -114,25 +114,25 @@ cat "/Users/username/Library/Application Support/itch/butler_creds"
 
 5. [Create a new Github secret](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets) for your Github repository by going into Settings > Secrets and Variables > Actions and selecting the Secrets tab. Call the secret `BUTLER_API_KEY` and inside, paste the result of the previous step.
 
-![github secrets](./github-secrets.jpeg)
+![github secrets](./github-secrets.png)
 
 ### 4. Setup the HTML / Playable version of your game on itch
 
 By default, you won't see the HTML version of your game as playable, but just as a file.
 
-![no html](./itch_html_missing.jpeg)
+![no html](./itch_html_missing.png)
 
 What you need to do is edit your itch project to change the **Kind of project** to be **HTML** instead of **Downloadable**.
 
-![kind of project](./itch_kind_of_project.jpeg)
+![kind of project](./itch_kind_of_project.png)
 
 Then, edit the `html5` channel and toggle **This file will be played in the browser**.
 
-![html5 setting](./itch_html_setting.jpeg)
+![html5 setting](./itch_html_setting.png)
 
 Going back to your project page, you should now see the HTML version of your game playable in the browser on itch.io page.
 
-![Playable game](./itch_playable.jpeg)
+![Playable game](./itch_playable.png)
 
 ## Setup complete!
 
