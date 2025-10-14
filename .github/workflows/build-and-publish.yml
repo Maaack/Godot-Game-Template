@@ -224,20 +224,6 @@ jobs:
         with:
           path: builds
 
-      - name: Prepare artifacts for Butler
-        run: |
-          set -e
-          # If web artifact is a zip (downloaded to builds/web/*.zip), unzip it into the same folder so butler gets a directory
-          if ls builds/web/*.zip >/dev/null 2>&1; then
-            echo "Unzipping web artifact..."
-            unzip -o builds/web/*.zip -d builds/web
-          fi
-          # (For other platforms, download-artifact creates e.g. builds/windows/<file>.exe,
-          # which is fine for butler since it takes a path to a directory or file.)
-          echo "Contents of builds:"
-          find builds -maxdepth 2 -type f -print -o -type d -print
-        shell: bash
-
       - name: Install Butler
         run: |
           curl -L -o butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
@@ -258,8 +244,7 @@ jobs:
 
       - name: Upload to Itch.io - Web
         run: |
-          # butler expects a path to a directory for html5 builds
-          ./butler push builds/web ${{ env.ITCH_USERNAME }}/${{ env.ITCH_GAME }}:html5 --userversion "${{ steps.version.outputs.version }}"
+          ./butler push builds/web.zip ${{ env.ITCH_USERNAME }}/${{ env.ITCH_GAME }}:html5 --userversion "${{ steps.version.outputs.version }}"
 
       - name: Upload to Itch.io - Windows
         run: |

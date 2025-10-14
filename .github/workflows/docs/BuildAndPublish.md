@@ -127,3 +127,7 @@ Once your CI/CD pipeline is running smoothly, take it a step further:
 - **Pre-Release Testing:** add a test stage in your workflow to validate your project before publishing (for example, by running Godot unit tests or verifying builds).
 - **Multi-Platform Deployment:** add Android and iOS build.
 - **Other Distribution Platforms:** adapt your CI/CD pipeline to push releases to other platforms like Steam, Google Play, or Epic Games Store later on, using their respective APIs and upload tools.
+
+```
+
+```
