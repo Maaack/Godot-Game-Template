@@ -22,7 +22,7 @@ env:
   # You'll find your Butler API key this way:
   # https://itch.io/docs/butler/login.html#running-butler-from-ci-builds-travis-ci-gitlab-ci-etc
 
-jjobs:
+jobs:
   export-web:
     name: Web Export
     runs-on: ubuntu-24.04
