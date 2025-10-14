@@ -68,14 +68,15 @@ For that, you'll need first to create an Apple developer account (99USD/year). T
 
 Go to [itch.io], click on the top right and **Upload a New Project**. Fill in the game name and any information you want, but don't upload any file. **Save the project as a Draft**.
 
-### 2. Adapt the `build-and-publish.yml` file
+### 2. Create a `ITCH_USERNAME` and `ITCH_GAME` variable
 
-To find your itch.io username and the name of your game, look at the url of your project: `https://your-username.itch.io/your-game`. Then, edit the workflow `build-and-publish.yml`:
+To find your itch.io username and the name of your game, look at the url of your project: `https://your-username.itch.io/your-game`. The username is the first part of the URL, and the game name is in the
 
-```yml
-ITCH_USERNAME: your-username
-ITCH_GAME: your-game
-```
+Then, go to your Github repository Settings > Secrets and Variables > Actions. Then, select the **Variable** tab.
+
+Create two variables: `ITCH_USERNAME` and `ITCH_GAME`. You should have something like this (with your real username and your real game name instead):
+
+![github variables](./github-variables.png)
 
 ### 3. Create a `BUTLER_API_KEY` Github secret
 
@@ -109,9 +110,11 @@ Authenticated successfully! Saving key in /Users/username/Library/Application Su
 cat "/Users/username/Library/Application Support/itch/butler_creds"
 ```
 
-**Warning:** the butler API key is secret. Do not share it with anyone and **do not** commit it to your repository and **do not** add it directly to the workflow file.
+> **Warning:** your butler API key is sensitive and secret. Do not share it with anyone and **do not** commit it to your repository and **do not** add it directly to the workflow file.
 
-5. Create a new github secret for your repository [by following this guide](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets). Call the secret `BUTLER_API_KEY` and inside, paste the result of the previous step.
+5. [Create a new Github secret](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets) for your Github repository by going into Settings > Secrets and Variables > Actions and selecting the Secrets tab. Call the secret `BUTLER_API_KEY` and inside, paste the result of the previous step.
+
+![github secrets](./github-secrets.png)
 
 ## Setup complete!
 

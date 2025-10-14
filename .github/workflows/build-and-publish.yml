@@ -14,13 +14,11 @@ env:
   # You also need to change all images: barichello/godot-ci:4.5
   # Look at available versions here: https://hub.docker.com/r/barichello/godot-ci/tags
   GODOT_VERSION: 4.5
-  # Change this to your game name
+  # Change this to your game name (it will be the filename downloaded)
   EXPORT_NAME: your-game
   # NOTE: If your `project.godot` is at the repository root, set `PROJECT_PATH` to "."
   # If it's in a subdirectory, set it to the subdirectory name (e.g., "your-game")
   PROJECT_PATH: .
-  ITCH_USERNAME: conquestudios
-  ITCH_GAME: my-super-game
 
 jobs:
   export-web:
@@ -216,6 +214,10 @@ jobs:
     name: Deploy to Itch.io
     needs: [export-web, export-windows, export-linux, export-mac]
     runs-on: ubuntu-24.04
+    env:
+      BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }} # Create this SECRET on Github
+      ITCH_USERNAME: ${{ vars.ITCH_USERNAME }} # Create this VARIABLE on Github
+      ITCH_GAME: ${{ vars.ITCH_GAME }} # Create this VARIABLE on Github
     steps:
       - name: Download all artifacts
         uses: actions/download-artifact@v4
@@ -255,26 +257,18 @@ jobs:
           echo "Deploying version: $VERSION"
 
       - name: Upload to Itch.io - Web
-        env:
-          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
         run: |
           # butler expects a path to a directory for html5 builds
           ./butler push builds/web ${{ env.ITCH_USERNAME }}/${{ env.ITCH_GAME }}:html5 --userversion "${{ steps.version.outputs.version }}"
 
       - name: Upload to Itch.io - Windows
-        env:
-          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
         run: |
           ./butler push builds/windows ${{ env.ITCH_USERNAME }}/${{ env.ITCH_GAME }}:windows --userversion "${{ steps.version.outputs.version }}"
 
       - name: Upload to Itch.io - Linux
-        env:
-          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
         run: |
           ./butler push builds/linux ${{ env.ITCH_USERNAME }}/${{ env.ITCH_GAME }}:linux --userversion "${{ steps.version.outputs.version }}"
 
       - name: Upload to Itch.io - macOS
-        env:
-          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
         run: |
           ./butler push builds/mac ${{ env.ITCH_USERNAME }}/${{ env.ITCH_GAME }}:mac --userversion "${{ steps.version.outputs.version }}"
