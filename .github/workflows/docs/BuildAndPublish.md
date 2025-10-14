@@ -1,12 +1,12 @@
 ## How to Build and Publish my game using Github CICD?
 
-**GitHub** is a platform that hosts your project’s source code online, making it easy to collaborate, track changes, and share your game with others.
+**GitHub** is a platform that hosts your project’s source code online, making it easy to collaborate, track changes, and share your game with players, testers, or colleagues.
 
 **CI/CD** (Continuous Integration and Continuous Deployment) refers to automating the process of building, testing, and publishing your game whenever you make updates. The idea is to speed up your game's release process so you can push updates frequently, to fix bugs quicker or add more game content.
 
 Using GitHub Actions, you can set up **workflows that automatically compile your Godot project** and **upload it to platforms** like itch.io whenever you tag a new release. This saves time, reduces manual errors, and helps keep your build and release process smooth and repeatable.
 
-I recommend that for your first game release, you create it manually, and then only use this CICD workflow to speed things up.
+> Note: You can set up all of this and still keep your game as a _Draft_ on itch.io. This is great for playtesting!
 
 ## Prerequisites
 
@@ -115,6 +115,22 @@ cat "/Users/username/Library/Application Support/itch/butler_creds"
 5. [Create a new Github secret](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets) for your Github repository by going into Settings > Secrets and Variables > Actions and selecting the Secrets tab. Call the secret `BUTLER_API_KEY` and inside, paste the result of the previous step.
 
 ![github secrets](./github-secrets.png)
+
+### 4. Setup the HTML / Playable version of your game on itch
+
+By default, you won't see the HTML version of your game as playable, but just as a file.
+
+![no html](./itch_html_missing.png)
+
+What you need to do is edit your itch project to change the **Kind of project** to be **HTML** instead of **Downloadable**.
+
+![kind of project](./itch_kind_of_project.png)
+
+Then, edit the `html5` channel and toggle **This file will be played in the browser**.
+
+![html5 setting](./itch_html_setting.png)
+
+Going back to your project page, you should now see the HTML version of your game playable in the browser on Itch.io page.
 
 ## Setup complete!
 

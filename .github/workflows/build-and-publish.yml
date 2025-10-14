@@ -55,10 +55,10 @@ jobs:
             apt-get update && apt-get install -y zip
           fi
           rm -f build/web.zip
-          # zip the web folder (so release gets a single file)
-          cd build
-          zip -r web.zip web
-          ls -lh web.zip
+          # zip the contents of the web folder, not the folder itself
+          cd build/web
+          zip -r ../web.zip .
+          ls -lh ../web.zip
         shell: bash
 
       - name: Upload to GitHub Release (if this run is a release)
