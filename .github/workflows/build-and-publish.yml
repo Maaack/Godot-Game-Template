@@ -20,6 +20,9 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+# Original file: https://github.com/abarichello/godot-ci/blob/master/.github/workflows/godot-ci.yml
+# Modified by: Nicolas Oulianov (github @oulianov)
+
 name: "Build and Deploy to Itch.io"
 
 on:
