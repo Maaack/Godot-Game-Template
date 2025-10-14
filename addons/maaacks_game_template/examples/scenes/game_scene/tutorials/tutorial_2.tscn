@@ -20,6 +20,7 @@ text = "Tutorial"
 visible = true
 
 [node name="DescriptionLabel" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin" index="0"]
-text = "[center]Progress is saved.
-Pressing Continue from the main menu will load the last level played.[/center]"
+text = "Progress is saved.
+Pressing Continue from the main menu will load the last level played."
 fit_content = true
+horizontal_alignment = 1

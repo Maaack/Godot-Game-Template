@@ -20,8 +20,9 @@ theme_override_constants/margin_top = 64
 theme_override_constants/margin_bottom = 64
 
 [node name="DescriptionLabel" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin" index="0"]
-text = "[center]You lost...[/center]"
+text = "You lost..."
 scroll_active = false
+horizontal_alignment = 1
 
 [node name="MenuButtons" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin" index="0"]
 custom_minimum_size = Vector2(400, 0)
