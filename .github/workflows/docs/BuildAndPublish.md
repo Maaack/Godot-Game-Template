@@ -130,7 +130,9 @@ Then, edit the `html5` channel and toggle **This file will be played in the brow
 
 ![html5 setting](./itch_html_setting.png)
 
-Going back to your project page, you should now see the HTML version of your game playable in the browser on Itch.io page.
+Going back to your project page, you should now see the HTML version of your game playable in the browser on itch.io page.
+
+![Playable game](./itch_playable.png)
 
 ## Setup complete!
 
@@ -140,10 +142,6 @@ Congrats, you're ready to create a new Github Release and automatically publish 
 
 Once your CI/CD pipeline is running smoothly, take it a step further:
 
-- **Pre-Release Testing:** add a test stage in your workflow to validate your project before publishing (for example, by running Godot unit tests or verifying builds).
-- **Multi-Platform Deployment:** add Android and iOS build.
-- **Other Distribution Platforms:** adapt your CI/CD pipeline to push releases to other platforms like Steam, Google Play, or Epic Games Store later on, using their respective APIs and upload tools.
-
-```
-
-```
+- **Pre-Release Testing:** Add a test stage in your workflow to validate your project before publishing (for example, by running Godot unit tests or verifying builds).
+- **Multi-Platform Deployment:** Add Android and iOS build.
+- **Other Distribution Platforms:** Adapt the CI/CD pipeline to push releases to other platforms like Steam, Google Play, App Store, or Epic Games Store.
