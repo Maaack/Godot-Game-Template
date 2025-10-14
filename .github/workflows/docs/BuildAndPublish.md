@@ -76,7 +76,7 @@ Then, go to your Github repository Settings > Secrets and Variables > Actions. T
 
 Create two variables: `ITCH_USERNAME` and `ITCH_GAME`. You should have something like this (with your real username and your real game name instead):
 
-![github variables](./github-variables.png)
+![github variables](./img/github-variables.png)
 
 ### 3. Create a `BUTLER_API_KEY` Github secret
 
@@ -96,7 +96,7 @@ butler login
 
 This should open your browser. Login and allow butler to access your account.
 
-![Authorize butler](./authorize_butler.png)
+![Authorize butler](./img/authorize_butler.png)
 
 In the terminal, the login flow will conclude with something like this:
 
@@ -114,25 +114,25 @@ cat "/Users/username/Library/Application Support/itch/butler_creds"
 
 5. [Create a new Github secret](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets) for your Github repository by going into Settings > Secrets and Variables > Actions and selecting the Secrets tab. Call the secret `BUTLER_API_KEY` and inside, paste the result of the previous step.
 
-![github secrets](./github-secrets.png)
+![github secrets](./img/github-secrets.png)
 
 ### 4. Setup the HTML / Playable version of your game on itch
 
 By default, you won't see the HTML version of your game as playable, but just as a file.
 
-![no html](./itch_html_missing.png)
+![no html](./img/itch_html_missing.png)
 
 What you need to do is edit your itch project to change the **Kind of project** to be **HTML** instead of **Downloadable**.
 
-![kind of project](./itch_kind_of_project.png)
+![kind of project](./img/itch_kind_of_project.png)
 
 Then, edit the `html5` channel and toggle **This file will be played in the browser**.
 
-![html5 setting](./itch_html_setting.png)
+![html5 setting](./img/itch_html_setting.png)
 
 Going back to your project page, you should now see the HTML version of your game playable in the browser on itch.io page.
 
-![Playable game](./itch_playable.png)
+![Playable game](./img/itch_playable.png)
 
 ## Setup complete!
 
@@ -146,3 +146,28 @@ Once your CI/CD pipeline is running smoothly, take it a step further:
 - **Multi-Platform Deployment:** Add Android and iOS build, or remove the builds you don't use.
 - **Other Distribution Platforms:** Adapt the CI/CD pipeline to push releases to other platforms like Steam, Google Play, App Store, Epic Games Store...
 - **Add notarization for MacOS:** That's a best practice for a smoother experience.
+
+## Sources
+
+- **GitHub Documentation**
+
+  - [Creating a Release on GitHub](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository#creating-a-release)
+  - [Using GitHub Secrets in Workflows](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets)
+
+- **Semantic Versioning**
+
+  - [Semantic Versioning 2.0.0](https://semver.org/)
+
+- **Godot CI / Docker**
+
+  - [abarichello/godot-ci (GitHub)](https://github.com/abarichello/godot-ci?tab=readme-ov-file)
+  - [barichello/godot-ci Docker Hub Tags](https://hub.docker.com/r/barichello/godot-ci/tags)
+
+- **Godot Engine Documentation**
+
+  - [Exporting for macOS (with Apple Developer ID)](https://docs.godotengine.org/en/latest/tutorials/export/exporting_for_macos.html#if-you-have-an-apple-developer-id-certificate-and-exporting-from-linux-or-windows)
+
+- **itch.io Resources**
+
+  - [itch.io Main Website](https://itch.io/)
+  - [Butler CLI Installation Guide](https://itch.io/docs/butler/installing.html)
