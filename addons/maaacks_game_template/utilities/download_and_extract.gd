@@ -50,7 +50,7 @@ enum DownloadAndExtractStage{
 @export var force : bool = false
 ## Path where the zip file will be stored.
 @export var zip_file_path : String = TEMPORARY_ZIP_PATH
-## Flag to delete a downloaded zip file after the contents are extracted.
+## If true, delete a downloaded zip file after the contents are extracted.
 @export var delete_zip_file : bool = true
 ## Ratio of processing time that should be spent on extracting files.
 @export_range(0.0, 1.0) var process_time_ratio : float = 0.75

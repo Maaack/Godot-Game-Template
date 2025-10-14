@@ -1,5 +1,6 @@
 @tool
 extends Node
+## Script for automatically copying Godot scenes and scripts without UIDs.
 
 signal canceled
 signal completed(target_path : String)

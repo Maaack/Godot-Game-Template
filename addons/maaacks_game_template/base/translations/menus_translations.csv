@@ -4,17 +4,35 @@ ___ MAIN MENU,,
 
 Title,Title,Titre
 Subtitle,Subtitle,Sous-titre
+New Game,New Game,
+Continue,Continue,
 Play,Play,Jouer
+Level Select,Level Select,
 Options,Options,Options
 Credits,Credits,Crédits
 Exit,Exit,Quitter
+"Are you sure you want to start a new game?
+
+All progress in the current game will be lost.","Are you sure you want to start a new game?
+
+All progress in the current game will be lost.",
 
 ___ LOADING SCREEN,,
 Loading...,Loading...,Chargement...
+Still Loading...,Still Loading...,
+Loading Complete!,Loading Complete!,
+Any Moment Now...,Any Moment Now...,
 
 ___ DIALOGS IN GAME,,
 
-You lose.,You lose.,Vous avez perdu.
+Win,Win,
+Lose,Lose,
+Tutorial,Tutorial,
+Change Level Color: ,Change Level Color: ,
+Close,Close,
+
+Level complete!,Level complete!,
+You lost...,You lost...,Vous avez perdu...
 You won!,You won!,Vous avez gagné !
 Thanks for playing!,Thanks for playing!,Merci d'avoir joué !
 
@@ -29,6 +47,20 @@ Go back to main menu?,Go back to main menu?,Retourner au menu principal ?
 Quit the game?,Quit the game?,Quitter le jeu ?
 Cancel,Cancel,Annuler
 OK,OK,OK
+
+__ TUTORIALS,,
+
+"Click the Win button to progress.
+Click the Lose button to try again.","Click the Win button to progress.
+Click the Lose button to try again.",
+"Progress is saved.
+Pressing Continue from the main menu will load the last level played.","Progress is saved.
+Pressing Continue from the main menu will load the last level played.",
+"The color picker at the bottom-right updates the level state. This change persists until the game is reset.
+
+The label at the bottom-center displays the current input action detected, if any are setup for the project.","The color picker at the bottom-right updates the level state. This change persists until the game is reset.
+
+The label at the bottom-center displays the current input action detected, if any are setup for the project.",
 
 ___ OPTIONS MENU,,
 

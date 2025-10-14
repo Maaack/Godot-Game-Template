@@ -1,26 +1,40 @@
 @tool
 extends RichTextLabel
+## Script for parsing an attribution file in markdown format.
 
 const HEADING_STRING_REPLACEMENT = "$1[font_size=%d]$2[/font_size]"
 const BOLD_HEADING_STRING_REPLACEMENT = "$1[b][font_size=%d]$2[/font_size][/b]"
 
+## The path to the attribution file in markdown format.
 @export_file("*.md") var attribution_file_path: String
+## If true, update the content of the text label from the attribution file when ready.
 @export var auto_update : bool = true
 @export_group("Font Sizes")
+## The size to give text that was formatted as h1 header.
 @export var h1_font_size: int
+## The size to give text that was formatted as h2 header.
 @export var h2_font_size: int
+## The size to give text that was formatted as h3 header.
 @export var h3_font_size: int
+## The size to give text that was formatted as h4 header.
 @export var h4_font_size: int
+## The size to give text that was formatted as h5 header.
 @export var h5_font_size: int
+## The size to give text that was formatted as h6 header.
 @export var h6_font_size: int
+## If true, bold any headers (h1-h6).
 @export var bold_headings : bool
 @export_group("Image Sizes")
+## The maximum width in pixels of any images loaded from the attibution file.
 @export var max_image_width: int
+## The maximum height in pixels of any images loaded from the attibution file.
 @export var max_image_height : int
 @export_group("Extra Options")
+## If true, disable reading images from the attribution file.
 @export var disable_images : bool = false
+## If true, disable reading URLs from the attribution file.
 @export var disable_urls : bool = false
-## For platforms that don't permit linking to other domains or products.
+## If true, disable opening links. For platforms that don't permit linking to other domains.
 @export var disable_opening_links: bool = false
 
 func load_file(file_path) -> String:

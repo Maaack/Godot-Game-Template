@@ -20,7 +20,8 @@ text = "Tutorial"
 visible = true
 
 [node name="DescriptionLabel" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin" index="0"]
-text = "[center]The color picker at the bottom-right updates the level state. This change persists until the game is reset.
+text = "The color picker at the bottom-right updates the level state. This change persists until the game is reset.
 
-The label at the bottom-center displays the current input action detected, if any are setup for the project.[/center]"
+The label at the bottom-center displays the current input action detected, if any are setup for the project."
 fit_content = true
+horizontal_alignment = 1

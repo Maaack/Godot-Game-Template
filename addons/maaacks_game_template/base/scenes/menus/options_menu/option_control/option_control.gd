@@ -1,6 +1,7 @@
 @tool
 class_name OptionControl
 extends Control
+## Generic scene for editing a value of the [PlayerConfig].
 
 signal setting_changed(value)
 

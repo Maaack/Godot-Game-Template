@@ -1,5 +1,6 @@
 @tool
 extends Node
+## Script for updating the version of a plugin to the latest release on GitHub.
 
 signal update_completed
 
@@ -12,15 +13,22 @@ const UPDATE_CONFIRMATION_MESSAGE := "This will update the contents of the plugi
 const PLUGIN_EXTRACT_PATH := "res://addons/%s/"
 const PLUGIN_TEMP_ZIP_PATH := "res://%s_%s_update.zip"
 
+## The directory of the plugin to update. Typically in res://addons/.
 @export var plugin_directory : String
+## The URL of the GitHub repo to pull new releases.
 @export var plugin_github_url : String :
 	set(value):
 		plugin_github_url = value
 		_update_urls()
 @export_group("Advanced")
+## If true, automatically download the new version when ready.
 @export var auto_start : bool = false
-@export var default_version : String = "0.0.0"
+## Text to remove from the tag before showing to the user.
 @export var replace_tag_name : String = "v"
+## The default lowest version to display.
+@export var default_version : String = "0.0.0"
+## If true, test getting the new version.
+## Replace with @export_tool_button for Godot 4.4+
 @export var _test_action : bool = false :
 	set(value):
 		if value and Engine.is_editor_hint():
