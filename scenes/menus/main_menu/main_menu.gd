@@ -4,7 +4,7 @@ extends MainMenu
 
 ## Optional scene to open when the player clicks a 'Level Select' button.
 @export var level_select_packed_scene: PackedScene
-## Flag to have the player confirm before starting a new game if a game is in progress.
+## If true, have the player confirm before starting a new game if a game is in progress.
 @export var confirm_new_game : bool = true
 
 @onready var continue_game_button = %ContinueGameButton

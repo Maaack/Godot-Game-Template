@@ -9,13 +9,13 @@ extends Control
 
 ## Hierarchical depth to search in the scene tree.
 @export var search_depth : int = 1
-## Flag to always capture focus when made visible
+## If true, always capture focus when made visible
 @export var enabled : bool = false
-## Flag to capture focus if nothing currently is in focus.
+## If true, capture focus if nothing currently is in focus.
 @export var null_focus_enabled : bool = true
-## Flag to capture focus if there is a joypad detected.
+## If true, capture focus if there is a joypad detected.
 @export var joypad_enabled : bool = true
-## Flag to capture focus if the mouse is hidden.
+## If true, capture focus if the mouse is hidden.
 @export var mouse_hidden_enabled : bool = true
 
 ## Locks focus

@@ -24,7 +24,7 @@ const PARSE_FAILED = "Parsing failed"
 @export_file("*.txt") var api_key_file : String
 ## Time in seconds before the request fails due to timeout.
 @export var request_timeout : float = 0.0
-## Flag to test sending a request.
+## If true, test sending a request.
 ## Replace with @export_tool_button for Godot 4.4+
 @export var _send_request_action : bool = false :
 	set(value):

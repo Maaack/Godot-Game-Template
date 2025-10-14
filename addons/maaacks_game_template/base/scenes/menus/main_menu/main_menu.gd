@@ -15,9 +15,9 @@ signal game_exited
 ## The scene to open when a player clicks the 'Credits' button.
 @export var credits_packed_scene : PackedScene
 @export_group("Extra Settings")
-## Signals that the game has started loading in the background, instead of directly loading it.
+## If true, signals that the game has started loading in the background, instead of directly loading it.
 @export var signal_game_start : bool = false
-## Signals that the player clicked the 'Exit' button, instead of immediately exiting.
+## If true, signals that the player clicked the 'Exit' button, instead of immediately exiting.
 @export var signal_game_exit : bool = false
 
 var sub_menu : Control

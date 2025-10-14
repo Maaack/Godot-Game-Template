@@ -5,7 +5,7 @@ class_name ConfigNameLabel
 
 const NO_NAME_STRING : String = "Title"
 
-## Flag to update the title when ready.
+## If true, update the title when ready.
 @export var auto_update : bool = true
 
 func update_name_label():

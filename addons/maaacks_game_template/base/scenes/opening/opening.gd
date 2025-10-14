@@ -18,7 +18,7 @@ extends Control
 @export var start_delay : float = 0.5
 ## The delay after ending the last fade-in animation before loading the next scene.
 @export var end_delay : float = 0.5
-## Flag to show a loading screen if the next scene is not yet ready.
+## If true, show a loading screen if the next scene is not yet ready.
 @export var show_loading_screen : bool = false
 
 var tween : Tween

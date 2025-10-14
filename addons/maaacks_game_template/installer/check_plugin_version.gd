@@ -18,13 +18,13 @@ const API_RELEASES_URL := "https://api.github.com/repos/%s/%s/releases"
 		plugin_github_url = value
 		_update_urls()
 @export_group("Advanced")
-## Flag to automatically check for a new version when ready.
+## If true, automatically check for a new version when ready.
 @export var auto_start : bool = false
 ## Text to remove from the tag before comparing versions.
 @export var replace_tag_name : String = "v"
 ## The default lowest version to display.
 @export var default_version : String = "0.0.0"
-## Flag to test comparing versions.
+## If true, test comparing versions.
 ## Replace with @export_tool_button for Godot 4.4+
 @export var _test_action : bool = false :
 	set(value):

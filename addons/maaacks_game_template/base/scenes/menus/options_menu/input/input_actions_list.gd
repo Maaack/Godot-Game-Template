@@ -11,13 +11,12 @@ signal button_clicked(action_name : String, readable_input_name : String)
 
 const BUTTON_NAME_GROUP_STRING : String = "%s:%d"
 
-## Flag to control the axis along which action names are listed.
+## If true, lists action names on the vertical axis.
 @export var vertical : bool = true :
 	set(value):
 		vertical = value
 		if is_inside_tree():
 			%ParentBoxContainer.vertical = vertical
-
 ## The number of inputs to make editable per action name.
 @export_range(1, 5) var action_groups : int = 2
 ## The header to each input action group.
@@ -44,14 +43,14 @@ const BUTTON_NAME_GROUP_STRING : String = "%s:%d"
 				var _readable_name : String = readable_action_names[iter]
 				_new_action_name_map[_input_name] = _readable_name
 			action_name_map = _new_action_name_map
-## Flag to show action names that are not explicitely listed in an input action name map.
+## If true, show action names that are not explicitely listed in an input action name map.
 @export var show_all_actions : bool = true
 ## Optional minimum size to add to all edit buttons.
 @export var button_minimum_size : Vector2
 @export_group("Icons")
 ## Optional link to an input icon mapper to replace the text with icons.
 @export var input_icon_mapper : InputIconMapper
-## Flag to expand the icons to fill the buttons.
+## If true, expand the icons to fill the buttons.
 @export var expand_icon : bool = false
 @export_group("Built-in Actions")
 ## Shows Godot's built-in actions (action names starting with "ui_") in the tree.

@@ -8,7 +8,7 @@ signal scene_loaded
 @export_file("*.tscn") var loading_screen_path : String : set = set_loading_screen
 
 @export_group("Debug")
-## Flag to enable debug mode.
+## If true, enable debug mode.
 @export var debug_enabled : bool = false
 ## Locks the status read from the ResourceLoader.
 @export var debug_lock_status : ResourceLoader.ThreadLoadStatus

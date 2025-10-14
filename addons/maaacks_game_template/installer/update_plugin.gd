@@ -21,13 +21,13 @@ const PLUGIN_TEMP_ZIP_PATH := "res://%s_%s_update.zip"
 		plugin_github_url = value
 		_update_urls()
 @export_group("Advanced")
-## Flag to automatically download the new version when ready.
+## If true, automatically download the new version when ready.
 @export var auto_start : bool = false
 ## Text to remove from the tag before showing to the user.
 @export var replace_tag_name : String = "v"
 ## The default lowest version to display.
 @export var default_version : String = "0.0.0"
-## Flag to test getting the new version.
+## If true, test getting the new version.
 ## Replace with @export_tool_button for Godot 4.4+
 @export var _test_action : bool = false :
 	set(value):
