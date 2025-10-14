@@ -7,6 +7,7 @@ on:
 
 env:
   # Change this to the Godot version you're using (>=4)
+  # You also need to change all images: barichello/godot-ci:4.5
   # Look at available versions here: https://hub.docker.com/r/barichello/godot-ci/tags
   GODOT_VERSION: 4.5
   # Change this to your game name
@@ -14,7 +15,6 @@ env:
   # NOTE: If your `project.godot` is at the repository root, set `PROJECT_PATH` to "."
   # If it's in a subdirectory, set it to the subdirectory name (e.g., "my-game")
   PROJECT_PATH: .
-  # 
   ITCH_USERNAME: your-username
   ITCH_GAME: your-game
   # For itch upload, create a secret called BUTLER_API_KEY in your github repo the following way:
@@ -22,12 +22,12 @@ env:
   # You'll find your Butler API key this way:
   # https://itch.io/docs/butler/login.html#running-butler-from-ci-builds-travis-ci-gitlab-ci-etc
 
-jobs:
+jjobs:
   export-web:
     name: Web Export
     runs-on: ubuntu-24.04
     container:
-      image: barichello/godot-ci:${{ env.GODOT_VERSION }}
+      image: barichello/godot-ci:4.5
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -40,6 +40,8 @@ jobs:
           mkdir -v -p ~/.config/
           mv /root/.config/godot ~/.config/godot
           mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+        env:
+          GODOT_VERSION: ${{ env.GODOT_VERSION }}
 
       - name: Web Build
         run: |
@@ -58,7 +60,7 @@ jobs:
     name: Windows Export
     runs-on: ubuntu-24.04
     container:
-      image: barichello/godot-ci:${{ env.GODOT_VERSION }}
+      image: barichello/godot-ci:4.5
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -71,6 +73,8 @@ jobs:
           mkdir -v -p ~/.config/
           mv /root/.config/godot ~/.config/godot
           mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+        env:
+          GODOT_VERSION: ${{ env.GODOT_VERSION }}
 
       - name: Windows Build
         run: |
@@ -89,7 +93,7 @@ jobs:
     name: Linux Export
     runs-on: ubuntu-24.04
     container:
-      image: barichello/godot-ci:${{ env.GODOT_VERSION }}
+      image: barichello/godot-ci:4.5
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -102,6 +106,8 @@ jobs:
           mkdir -v -p ~/.config/
           mv /root/.config/godot ~/.config/godot
           mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+        env:
+          GODOT_VERSION: ${{ env.GODOT_VERSION }}
 
       - name: Linux Build
         run: |
@@ -120,7 +126,7 @@ jobs:
     name: macOS Export
     runs-on: ubuntu-24.04
     container:
-      image: barichello/godot-ci:${{ env.GODOT_VERSION }}
+      image: barichello/godot-ci:4.5
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -133,6 +139,8 @@ jobs:
           mkdir -v -p ~/.config/
           mv /root/.config/godot ~/.config/godot
           mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+        env:
+          GODOT_VERSION: ${{ env.GODOT_VERSION }}
 
       - name: Mac Build
         run: |
