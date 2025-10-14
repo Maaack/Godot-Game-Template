@@ -20,7 +20,7 @@ env:
   # If it's in a subdirectory, set it to the subdirectory name (e.g., "your-game")
   PROJECT_PATH: .
   ITCH_USERNAME: conquestudios
-  ITCH_GAME: your-game
+  ITCH_GAME: my-super-game
 
 jobs:
   export-web:

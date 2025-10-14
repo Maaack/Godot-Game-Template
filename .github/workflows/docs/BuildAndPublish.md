@@ -37,13 +37,11 @@ Now, before creating a new Release, let's setup your game build and itch.io conn
 
 **Edit your game's name:** Change the `EXPORT_NAME`, `ITCH_USERNAME` and `ITCH_GAME` to fit your own.
 
-```
+```yml
 EXPORT_NAME: your-game
 # NOTE: If your `project.godot` is at the repository root, set `PROJECT_PATH` to "."
 # If it's in a subdirectory, set it to the subdirectory name (e.g., "your-game")
 PROJECT_PATH: .
-ITCH_USERNAME: your-username
-ITCH_GAME: your-game
 ```
 
 **Edit Godot version:** By default, the workflow file is made for Godot 4.5. If you're using a different version, replace `GODOT_VERSION: 4.5` at the beginning of the file and all instances of `image: barichello/godot-ci:4.5` with your version. This workflow file uses [godot-ci](https://github.com/abarichello/godot-ci?tab=readme-ov-file) to build your game, so make sure the Godot version you're referring to is [available on Docker](https://hub.docker.com/r/barichello/godot-ci/tags)
@@ -66,14 +64,20 @@ For that, you'll need first to create an Apple developer account (99USD/year). T
 
 ## Setup Itch.io publication
 
-### 1. Adapt the `build-and-publish.yml` file
+### 1. Create a new project on itch.io
 
-```
+Go to [itch.io], click on the top right and **Upload a New Project**. Fill in the game name and any information you want, but don't upload any file. **Save the project as a Draft**.
+
+### 2. Adapt the `build-and-publish.yml` file
+
+To find your itch.io username and the name of your game, look at the url of your project: `https://your-username.itch.io/your-game`. Then, edit the workflow `build-and-publish.yml`:
+
+```yml
 ITCH_USERNAME: your-username
 ITCH_GAME: your-game
 ```
 
-### 2. Create a `BUTLER_API_KEY` Github secret
+### 3. Create a `BUTLER_API_KEY` Github secret
 
 1. Install [butler.](https://itch.io/docs/butler/installing.html) This is the official CLI tool for itch.io
 
@@ -89,11 +93,11 @@ chmod +x butler
 butler login
 ```
 
-Login in the browser and allow butler to access your account.
+This should open your browser. Login and allow butler to access your account.
 
 ![Authorize butler](./authorize_butler.png)
 
-The login flow will conclude with something like this:
+In the terminal, the login flow will conclude with something like this:
 
 ```
 Authenticated successfully! Saving key in /Users/username/Library/Application Support/itch/butler_creds...
