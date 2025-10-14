@@ -27,10 +27,7 @@ const BUTTON_NAME_GROUP_STRING : String = "%s:%d"
 		var _value_changed = input_action_names != value
 		input_action_names = value
 		if _value_changed:
-			var _new_readable_action_names : Array[String]
-			for action in input_action_names:
-				_new_readable_action_names.append(action.capitalize())
-			readable_action_names = _new_readable_action_names
+			_refresh_readable_action_names()
 ## The readable names of the action names that should be listed for editing.
 @export var readable_action_names : Array[String] :
 	set(value):
@@ -43,6 +40,11 @@ const BUTTON_NAME_GROUP_STRING : String = "%s:%d"
 				var _readable_name : String = readable_action_names[iter]
 				_new_action_name_map[_input_name] = _readable_name
 			action_name_map = _new_action_name_map
+## If true, capitalizes action names in order to make them readable.
+@export var capitalize_action_names : bool = true :
+	set(value):
+		capitalize_action_names = value
+		_refresh_readable_action_names()
 ## If true, show action names that are not explicitely listed in an input action name map.
 @export var show_all_actions : bool = true
 ## Optional minimum size to add to all edit buttons.
@@ -69,6 +71,14 @@ var assigned_input_events : Dictionary = {}
 var editing_action_name : String = ""
 var editing_action_group : int = 0
 var last_input_readable_name
+
+func _refresh_readable_action_names():
+		var _new_readable_action_names : Array[String]
+		for action_name in input_action_names:
+			if capitalize_action_names:
+				action_name = action_name.capitalize()
+			_new_readable_action_names.append(action_name)
+		readable_action_names = _new_readable_action_names
 
 func _clear_list() -> void:
 	for child in %ParentBoxContainer.get_children():
