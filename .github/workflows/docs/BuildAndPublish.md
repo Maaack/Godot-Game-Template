@@ -1,8 +1,26 @@
 ## How to Build and Publish my game using Github CICD?
 
+**GitHub** is a platform that hosts your project’s source code online, making it easy to collaborate, track changes, and share your game with others.
+
+**CI/CD** (Continuous Integration and Continuous Deployment) refers to automating the process of building, testing, and publishing your game whenever you make updates. The idea is to speed up your game's release process so you can push updates frequently, to fix bugs quicker or add more game content.
+
+Using GitHub Actions, you can set up **workflows that automatically compile your Godot project** and **upload it to platforms** like itch.io whenever you tag a new release. This saves time, reduces manual errors, and helps keep your build and release process smooth and repeatable.
+
+I recommend that for your first game release, you create it manually, and then only use this CICD workflow to speed things up.
+
+## Prerequisites
+
+Before following this guide, make sure you have the following in place:
+
+- **GitHub Account & Repository:** Your Godot project should be pushed to a GitHub repository. If you haven’t yet, create one and upload your project files.
+- **Itch.io Account:** You’ll need an itch.io account to publish your game. Create one at itch.io if you don’t have it yet.
+- **Godot Export Presets Configured:** Ensure your export_presets.cfg file is properly configured in Godot for each platform you want to build (Windows, macOS, Linux, Web). The `build-and-publish.yml` will **trigger** these build config by name.
+
 ## How to trigger the CICD?
 
-When you’re ready to publish a new version of your game, create a **GitHub release** tied to a version tag on the `main` branch. This helps track updates, distribute builds, and communicate changes to players or testers. This will trigger CICD, which will **build your game** in the cloud and **publish it** to itch.io (if setup).
+When you’re ready to publish a new version of your game, create a **GitHub release** tied to a version tag on the `main` branch. Using releases helps track updates, distribute builds, and communicate changes to players or testers.
+
+A new release will trigger the `build-and-publish.yml` workflow, which will **build your game** in the cloud and **publish it** to itch.io (if everything is setup).
 
 1. Ensure all desired changes are merged into the `main` branch. This is the version that'll get build and published.
 2. On Github, go to Release, then **draft a new release** ([here is a step by step guide](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository#creating-a-release)). Create a new tag on you `main` branch using [semantic versioning](https://semver.org/):
@@ -10,6 +28,8 @@ When you’re ready to publish a new version of your game, create a **GitHub rel
    - x.y.0 — Minor Update. New content or features that expand gameplay but remain backward-compatible. Example: v1.1.0 for new levels or mechanics.
    - x.y.z — Patch / Hotfix. Small updates, bug fixes, performance improvements, or balancing tweaks. Example: v1.1.3 for fixing a crash or visual glitch.
 3. Publish the release. This will trigger CICD. Monitor its execution in the Actions tab on Github.
+
+Now, before creating a new Release, let's setup your game build and itch.io connection.
 
 ## Setup your game build
 
@@ -89,4 +109,14 @@ cat "/Users/username/Library/Application Support/itch/butler_creds"
 
 5. Create a new github secret for your repository [by following this guide](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets). Call the secret `BUTLER_API_KEY` and inside, paste the result of the previous step.
 
-### 3. Create a new Github release.
+## Setup complete!
+
+Congrats, you're ready to create a new Github Release and automatically publish updates.
+
+## Next steps
+
+Once your CI/CD pipeline is running smoothly, take it a step further:
+
+- **Pre-Release Testing:** add a test stage in your workflow to validate your project before publishing (for example, by running Godot unit tests or verifying builds).
+- **Multi-Platform Deployment:** add Android and iOS build.
+- **Other Distribution Platforms:** adapt your CI/CD pipeline to push releases to other platforms like Steam, Google Play, or Epic Games Store later on, using their respective APIs and upload tools.
