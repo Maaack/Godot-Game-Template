@@ -4,15 +4,26 @@ ___ MAIN MENU,,
 
 Title,Title,Titre
 Subtitle,Subtitle,Sous-titre
+New Game,New Game,
+Continue,Continue,
 Play,Play,Jouer
+Level Select,Level Select,
 Options,Options,Options
 Credits,Credits,Crédits
 Exit,Exit,Quitter
 
 ___ LOADING SCREEN,,
 Loading...,Loading...,Chargement...
+Still Loading...,Still Loading...,
+Loading Complete!,Loading Complete!,
+Any Moment Now...,Any Moment Now...,
 
 ___ DIALOGS IN GAME,,
+
+Win,Win,
+Lose,Lose,
+Tutorial,Tutorial,
+Change Level Color,Change Level Color,
 
 You lose.,You lose.,Vous avez perdu.
 You won!,You won!,Vous avez gagné !
