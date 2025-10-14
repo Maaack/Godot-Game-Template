@@ -14,15 +14,20 @@ env:
   # NOTE: If your `project.godot` is at the repository root, set `PROJECT_PATH` to "."
   # If it's in a subdirectory, set it to the subdirectory name (e.g., "my-game")
   PROJECT_PATH: .
+  # 
   ITCH_USERNAME: your-username
   ITCH_GAME: your-game
+  # For itch upload, create a secret called BUTLER_API_KEY in your github repo the following way:
+  # https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets
+  # You'll find your Butler API key this way:
+  # https://itch.io/docs/butler/login.html#running-butler-from-ci-builds-travis-ci-gitlab-ci-etc
 
 jobs:
   export-web:
     name: Web Export
     runs-on: ubuntu-24.04
     container:
-      image: barichello/godot-ci:${{ GODOT_VERSION }}
+      image: barichello/godot-ci:${{ env.GODOT_VERSION }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -53,7 +58,7 @@ jobs:
     name: Windows Export
     runs-on: ubuntu-24.04
     container:
-      image: barichello/godot-ci:${{ GODOT_VERSION }}
+      image: barichello/godot-ci:${{ env.GODOT_VERSION }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -84,7 +89,7 @@ jobs:
     name: Linux Export
     runs-on: ubuntu-24.04
     container:
-      image: barichello/godot-ci:${{ GODOT_VERSION }}
+      image: barichello/godot-ci:${{ env.GODOT_VERSION }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -115,7 +120,7 @@ jobs:
     name: macOS Export
     runs-on: ubuntu-24.04
     container:
-      image: barichello/godot-ci:${{ GODOT_VERSION }}
+      image: barichello/godot-ci:${{ env.GODOT_VERSION }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
