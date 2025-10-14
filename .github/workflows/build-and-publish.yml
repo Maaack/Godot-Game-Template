@@ -1,0 +1,195 @@
+name: "Build and Deploy to Itch.io"
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+env:
+  # Change this to the Godot version you're using (>=4)
+  # Look at available versions here: https://hub.docker.com/r/barichello/godot-ci/tags
+  GODOT_VERSION: 4.5
+  # Change this to your game name
+  EXPORT_NAME: my-game
+  # NOTE: If your `project.godot` is at the repository root, set `PROJECT_PATH` to "."
+  # If it's in a subdirectory, set it to the subdirectory name (e.g., "my-game")
+  PROJECT_PATH: .
+  ITCH_USERNAME: your-username
+  ITCH_GAME: your-game
+
+jobs:
+  export-web:
+    name: Web Export
+    runs-on: ubuntu-24.04
+    container:
+      image: barichello/godot-ci:${{ GODOT_VERSION }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Setup
+        run: |
+          mkdir -v -p ~/.local/share/godot/export_templates/
+          mkdir -v -p ~/.config/
+          mv /root/.config/godot ~/.config/godot
+          mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+
+      - name: Web Build
+        run: |
+          mkdir -v -p build/web
+          EXPORT_DIR="$(readlink -f build)"
+          cd $PROJECT_PATH
+          godot --headless --verbose --export-release "Web" "$EXPORT_DIR/web/index.html"
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: web
+          path: build/web
+
+  export-windows:
+    name: Windows Export
+    runs-on: ubuntu-24.04
+    container:
+      image: barichello/godot-ci:${{ GODOT_VERSION }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Setup
+        run: |
+          mkdir -v -p ~/.local/share/godot/export_templates/
+          mkdir -v -p ~/.config/
+          mv /root/.config/godot ~/.config/godot
+          mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+
+      - name: Windows Build
+        run: |
+          mkdir -v -p build/windows
+          EXPORT_DIR="$(readlink -f build)"
+          cd $PROJECT_PATH
+          godot --headless --verbose --export-release "Windows Desktop" "$EXPORT_DIR/windows/$EXPORT_NAME.exe"
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows
+          path: build/windows
+
+  export-linux:
+    name: Linux Export
+    runs-on: ubuntu-24.04
+    container:
+      image: barichello/godot-ci:${{ GODOT_VERSION }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Setup
+        run: |
+          mkdir -v -p ~/.local/share/godot/export_templates/
+          mkdir -v -p ~/.config/
+          mv /root/.config/godot ~/.config/godot
+          mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+
+      - name: Linux Build
+        run: |
+          mkdir -v -p build/linux
+          EXPORT_DIR="$(readlink -f build)"
+          cd $PROJECT_PATH
+          godot --headless --verbose --export-release "Linux/X11" "$EXPORT_DIR/linux/$EXPORT_NAME.x86_64"
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux
+          path: build/linux
+
+  export-mac:
+    name: macOS Export
+    runs-on: ubuntu-24.04
+    container:
+      image: barichello/godot-ci:${{ GODOT_VERSION }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Setup
+        run: |
+          mkdir -v -p ~/.local/share/godot/export_templates/
+          mkdir -v -p ~/.config/
+          mv /root/.config/godot ~/.config/godot
+          mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+
+      - name: Mac Build
+        run: |
+          mkdir -v -p build/mac
+          EXPORT_DIR="$(readlink -f build)"
+          cd $PROJECT_PATH
+          godot --headless --verbose --export-release "macOS" "$EXPORT_DIR/mac/$EXPORT_NAME.zip"
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mac
+          path: build/mac
+
+  deploy-to-itch:
+    name: Deploy to Itch.io
+    needs: [export-web, export-windows, export-linux, export-mac]
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: builds
+
+      - name: Install Butler
+        run: |
+          curl -L -o butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
+          unzip butler.zip
+          chmod +x butler
+          ./butler -V
+
+      - name: Get version from tag or set default
+        id: version
+        run: |
+          if [ "${{ github.event_name }}" = "release" ]; then
+            VERSION="${{ github.event.release.tag_name }}"
+          else
+            VERSION="dev-${{ github.run_number }}"
+          fi
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "Deploying version: $VERSION"
+
+      - name: Upload to Itch.io - Web
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+        run: |
+          ./butler push builds/web ${{ env.ITCH_USERNAME }}/${{ env.ITCH_GAME }}:html5 --userversion "${{ steps.version.outputs.version }}"
+
+      - name: Upload to Itch.io - Windows
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+        run: |
+          ./butler push builds/windows ${{ env.ITCH_USERNAME }}/${{ env.ITCH_GAME }}:windows --userversion "${{ steps.version.outputs.version }}"
+
+      - name: Upload to Itch.io - Linux
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+        run: |
+          ./butler push builds/linux ${{ env.ITCH_USERNAME }}/${{ env.ITCH_GAME }}:linux --userversion "${{ steps.version.outputs.version }}"
+
+      - name: Upload to Itch.io - macOS
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+        run: |
+          ./butler push builds/mac ${{ env.ITCH_USERNAME }}/${{ env.ITCH_GAME }}:mac --userversion "${{ steps.version.outputs.version }}"
