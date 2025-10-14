@@ -23,11 +23,11 @@ When you’re ready to publish a new version of your game, create a **GitHub rel
 A new release will trigger the `build-and-publish.yml` workflow, which will **build your game** in the cloud and **publish it** to itch.io (if everything is setup).
 
 1. Ensure all desired changes are merged into the `main` branch. This is the version that'll get build and published.
-2. On Github, go to Release, then **draft a new release** ([here is a step by step guide](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository#creating-a-release)). Create a new tag on you `main` branch using [semantic versioning](https://semver.org/):
-   - x.0.0 — Major Release. Large updates or milestones (e.g., new game systems, overhauled visuals, major gameplay changes). Example: v1.0.0 for the full launch.
-   - x.y.0 — Minor Update. New content or features that expand gameplay but remain backward-compatible. Example: v1.1.0 for new levels or mechanics.
-   - x.y.z — Patch / Hotfix. Small updates, bug fixes, performance improvements, or balancing tweaks. Example: v1.1.3 for fixing a crash or visual glitch.
-3. Publish the release. This will trigger CICD. Monitor its execution in the Actions tab on Github.
+2. On Github, go to Release, then **draft a new release** ([here is a step by step guide](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository#creating-a-release)). Create a new tag on you `main` branch using [semantic versioning](https://semver.org/). As a best practice, also prefix it with `v` in Github.
+   - `x.0.0` — Major Release. Large updates or milestones (e.g., new game systems, overhauled visuals, major gameplay changes). Example: `v1.0.0` for the full launch.
+   - `x.y.0` — Minor Update. New content or features that expand gameplay but remain backward-compatible. Example: `v1.1.0` for new levels or mechanics.
+   - `x.y.z` — Patch / Hotfix. Small updates, bug fixes, performance improvements, or balancing tweaks. Example: `v1.1.3` for fixing a crash or visual glitch.
+3. Publish the release. This will trigger the CICD in Github Action. Monitor its execution in the Actions tab on Github.
 
 Now, before creating a new Release, let's setup your game build and itch.io connection.
 
@@ -35,7 +35,7 @@ Now, before creating a new Release, let's setup your game build and itch.io conn
 
 ### 1. Adapt the `build-and-publish.yml` file
 
-**Edit your game's name:** Change the `EXPORT_NAME`, `ITCH_USERNAME` and `ITCH_GAME` to fit your own.
+**Edit your game's name:** Change the `EXPORT_NAME` to fit the name of your game. This will be the name of the file your players download.
 
 ```yml
 EXPORT_NAME: your-game
