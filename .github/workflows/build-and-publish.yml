@@ -11,9 +11,9 @@ env:
   # Look at available versions here: https://hub.docker.com/r/barichello/godot-ci/tags
   GODOT_VERSION: 4.5
   # Change this to your game name
-  EXPORT_NAME: my-game
+  EXPORT_NAME: your-game
   # NOTE: If your `project.godot` is at the repository root, set `PROJECT_PATH` to "."
-  # If it's in a subdirectory, set it to the subdirectory name (e.g., "my-game")
+  # If it's in a subdirectory, set it to the subdirectory name (e.g., "your-game")
   PROJECT_PATH: .
   ITCH_USERNAME: your-username
   ITCH_GAME: your-game
