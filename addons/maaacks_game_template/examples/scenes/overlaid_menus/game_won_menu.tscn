@@ -5,7 +5,3 @@
 
 [node name="GameWonMenu" instance=ExtResource("1_w6qlf")]
 script = ExtResource("2_2jmwn")
-
-[node name="DescriptionLabel" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin" index="0"]
-text = "You won!"
-horizontal_alignment = 1
