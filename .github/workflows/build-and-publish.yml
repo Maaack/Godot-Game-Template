@@ -55,10 +55,11 @@ jobs:
             apt-get update && apt-get install -y zip
           fi
           rm -f build/web.zip
-          # zip the contents of the web folder, not the folder itself
+          # Change to the web directory and zip its contents directly
           cd build/web
           zip -r ../web.zip .
-          ls -lh ../web.zip
+          cd ..
+          ls -lh web.zip
         shell: bash
 
       - name: Upload to GitHub Release (if this run is a release)
@@ -244,7 +245,11 @@ jobs:
 
       - name: Upload to Itch.io - Web
         run: |
-          ./butler push builds/web ${{ env.ITCH_USERNAME }}/${{ env.ITCH_GAME }}:html5 --userversion "${{ steps.version.outputs.version }}"
+          # For web, we need to push the extracted contents since butler expects the files directly
+          mkdir -p builds/web-extracted
+          unzip -q builds/web/web.zip -d builds/web-extracted/
+          ls builds/web-extracted/
+          ./butler push builds/web-extracted ${{ env.ITCH_USERNAME }}/${{ env.ITCH_GAME }}:html5 --userversion "${{ steps.version.outputs.version }}"
 
       - name: Upload to Itch.io - Windows
         run: |
