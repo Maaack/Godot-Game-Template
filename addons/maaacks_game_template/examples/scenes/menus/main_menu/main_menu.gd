@@ -12,7 +12,7 @@ extends MainMenu
 @onready var new_game_confirmation = %NewGameConfirmationDialog
 
 func load_game_scene() -> void:
-	GameStateExampleExample.start_game()
+	GameStateExample.start_game()
 	super.load_game_scene()
 
 func new_game() -> void:
