@@ -244,7 +244,7 @@ jobs:
 
       - name: Upload to Itch.io - Web
         run: |
-          ./butler push builds/web.zip ${{ env.ITCH_USERNAME }}/${{ env.ITCH_GAME }}:html5 --userversion "${{ steps.version.outputs.version }}"
+          ./butler push builds/web ${{ env.ITCH_USERNAME }}/${{ env.ITCH_GAME }}:html5 --userversion "${{ steps.version.outputs.version }}"
 
       - name: Upload to Itch.io - Windows
         run: |
