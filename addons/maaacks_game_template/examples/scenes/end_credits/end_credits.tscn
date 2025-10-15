@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bagraegk311h0"]
 
-[ext_resource type="PackedScene" uid="uid://c1g50h2avck3w" path="res://addons/maaacks_game_template/examples/scenes/credits/scrolling_credits.tscn" id="1_885d8"]
+[ext_resource type="PackedScene" uid="uid://t2dui8ppm3a4" path="res://addons/maaacks_game_template/examples/scenes/credits/scrolling_credits.tscn" id="1_885d8"]
 [ext_resource type="Script" uid="uid://cn3sc0vsd5b1r" path="res://addons/maaacks_game_template/examples/scenes/end_credits/end_credits.gd" id="2_6pwj4"]
 [ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/scripts/capture_focus.gd" id="3_aoilo"]
 [ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/scenes/music_players/background_music_player.tscn" id="3_v7acr"]
@@ -9,6 +9,8 @@
 script = ExtResource("2_6pwj4")
 main_menu_scene_path = ""
 force_mouse_mode_visible = false
+signal_main_menu_load = false
+signal_game_exit = false
 
 [node name="BackgroundMusicPlayer" parent="." index="0" instance=ExtResource("3_v7acr")]
 
