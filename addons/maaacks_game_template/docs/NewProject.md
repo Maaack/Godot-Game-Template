@@ -100,10 +100,10 @@ These instructions assume starting with the entire contents of the project folde
 
 
     1.  Update the example `ATTRIBUTION.md` with the project's credits.
-    2.  Open `scrollable_credits.tscn` and  `scrolling_credits.tscn`.
+    2.  Open `credits_label.tscn`.
     3.  Check the `CreditsLabel` has updated with the text.
-    4.  Optionally, change settings or disable `Auto Update`.
-    5.  Save both scenes (even they show no changes).
+    4.  Optionally, disable `Auto Update` and customize the text.
+    5.  Save the scene (even if it shows no changes).
 
 
 7.  Keep, update, or remove `res://LICENSE.txt`.  
