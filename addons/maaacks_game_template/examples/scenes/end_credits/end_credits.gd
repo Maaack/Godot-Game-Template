@@ -1,18 +1,12 @@
 @tool
 extends "res://addons/maaacks_game_template/examples/scenes/credits/scrolling_credits.gd"
 
-signal game_exited
-signal main_menu_loaded
-
 ## Defines the path to the main menu. Hides the Main Menu button if not set.
 ## Will attempt to read from AppConfig if left empty.
 @export_file("*.tscn") var main_menu_scene_path : String
 ## This option forces the mouse to be visible when the menu shows up.
 ## Useful for games that capture the mouse, and don't automatically return it.
 @export var force_mouse_mode_visible : bool = false
-@export_group("Extra Settings")
-@export var signal_main_menu_load : bool = false
-@export var signal_game_exit : bool = false
 
 @onready var end_message_panel = %EndMessagePanel
 @onready var exit_button = %ExitButton
@@ -32,19 +26,12 @@ func _on_scroll_container_end_reached() -> void:
 	super._on_scroll_container_end_reached()
 
 func load_main_menu() -> void:
-	if signal_main_menu_load:
-		SceneLoader.load_scene(get_main_menu_scene_path(), true)
-		main_menu_loaded.emit()
-	else:
-		SceneLoader.load_scene(get_main_menu_scene_path())
+	SceneLoader.load_scene(get_main_menu_scene_path())
 
 func exit_game() -> void:
 	if OS.has_feature("web"):
 		load_main_menu()
-	if signal_game_exit:
-		game_exited.emit()
-	else:
-		get_tree().quit()
+	get_tree().quit()
 
 func _on_visibility_changed() -> void:
 	if visible:
