@@ -98,7 +98,7 @@ func _update_text_from_file() -> void:
 	file_text = regex_replace_imgs(file_text)
 	file_text = regex_replace_urls(file_text)
 	file_text = regex_replace_titles(file_text)
-	text = "[center]%s[/center]" % [file_text]
+	text = file_text
 
 func set_file_path(file_path:String) -> void:
 	attribution_file_path = file_path
