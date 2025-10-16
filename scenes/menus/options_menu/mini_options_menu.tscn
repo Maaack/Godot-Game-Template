@@ -1,7 +1,51 @@
-[gd_scene load_steps=3 format=3 uid="uid://cifpvma40k3d1"]
+[gd_scene load_steps=5 format=3 uid="uid://cifpvma40k3d1"]
 
-[ext_resource type="PackedScene" uid="uid://vh1ucj2rfbby" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/mini_options_menu.tscn" id="1_7wq3x"]
 [ext_resource type="Script" uid="uid://cyu5ekru6j656" path="res://scenes/menus/options_menu/mini_options_menu.gd" id="2_ryhko"]
+[ext_resource type="PackedScene" uid="uid://cl416gdb1fgwr" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/option_control/slider_option_control.tscn" id="2_w3x3l"]
+[ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/scripts/capture_focus.gd" id="3_7t2pa"]
+[ext_resource type="PackedScene" uid="uid://bsxh6v7j0257h" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/option_control/toggle_option_control.tscn" id="4_x0e25"]
 
-[node name="MiniOptionsMenu" instance=ExtResource("1_7wq3x")]
+[node name="MiniOptionsMenu" type="VBoxContainer"]
+custom_minimum_size = Vector2(400, 260)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -130.0
+offset_right = 200.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 8
+alignment = 1
 script = ExtResource("2_ryhko")
+audio_control_scene = ExtResource("2_w3x3l")
+
+[node name="AudioControlContainer" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 8
+script = ExtResource("3_7t2pa")
+search_depth = 2
+
+[node name="MuteControl" parent="." instance=ExtResource("4_x0e25")]
+unique_name_in_owner = true
+layout_mode = 2
+option_name = "Mute"
+option_section = 2
+key = "Mute"
+section = "AudioSettings"
+
+[node name="FullscreenControl" parent="." instance=ExtResource("4_x0e25")]
+unique_name_in_owner = true
+layout_mode = 2
+option_name = "Fullscreen"
+option_section = 3
+key = "FullscreenEnabled"
+section = "VideoSettings"
+
+[connection signal="setting_changed" from="MuteControl" to="." method="_on_mute_control_setting_changed"]
+[connection signal="setting_changed" from="FullscreenControl" to="." method="_on_fullscreen_control_setting_changed"]
