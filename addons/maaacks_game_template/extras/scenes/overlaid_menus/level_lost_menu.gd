@@ -4,14 +4,6 @@ extends OverlaidMenu
 signal restart_pressed
 signal main_menu_pressed
 
-func _handle_cancel_input():
-	if $ConfirmExit.visible:
-		$ConfirmExit.hide()
-	elif $ConfirmMainMenu.visible:
-		$ConfirmMainMenu.hide()
-	else:
-		super._handle_cancel_input()
-
 func _ready():
 	if OS.has_feature("web"):
 		%ExitButton.hide()
