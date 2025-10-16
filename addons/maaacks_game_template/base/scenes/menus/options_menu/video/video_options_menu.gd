@@ -1,4 +1,3 @@
-class_name VideoOptionsMenu
 extends Control
 
 func _preselect_resolution(window : Window) -> void:
