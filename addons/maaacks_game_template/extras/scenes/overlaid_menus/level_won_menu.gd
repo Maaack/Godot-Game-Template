@@ -5,12 +5,6 @@ signal continue_pressed
 signal restart_pressed
 signal main_menu_pressed
 
-func _input(event):
-	if event.is_action_pressed("ui_cancel"):
-		if $ConfirmMainMenu.visible:
-			$ConfirmMainMenu.hide()
-		get_viewport().set_input_as_handled()
-
 func _on_main_menu_button_pressed():
 	$ConfirmMainMenu.popup_centered()
 

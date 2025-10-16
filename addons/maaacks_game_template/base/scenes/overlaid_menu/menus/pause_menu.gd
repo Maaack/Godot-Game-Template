@@ -7,6 +7,7 @@ extends OverlaidMenu
 @export_file("*.tscn") var main_menu_scene_path : String
 
 var popup_open : Node
+var _ignore_first_cancel : bool = false
 
 func get_main_menu_scene_path() -> String:
 	if main_menu_scene_path.is_empty():
@@ -40,6 +41,9 @@ func open_options_menu() -> void:
 	_enable_focus.call_deferred()
 
 func _handle_cancel_input() -> void:
+	if _ignore_first_cancel:
+		_ignore_first_cancel = false
+		return
 	if popup_open != null:
 		close_popup()
 	else:
@@ -61,6 +65,8 @@ func _ready() -> void:
 	_hide_exit_for_web()
 	_hide_options_if_unset()
 	_hide_main_menu_if_unset()
+	if Input.is_action_pressed("ui_cancel"):
+		_ignore_first_cancel = true
 
 func _on_restart_button_pressed() -> void:
 	%ConfirmRestart.popup_centered()
