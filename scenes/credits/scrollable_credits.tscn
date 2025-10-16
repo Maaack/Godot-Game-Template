@@ -1,48 +1,19 @@
 [gd_scene load_steps=3 format=3 uid="uid://bg8qlntq37pp"]
 
-[ext_resource type="PackedScene" uid="uid://osxulxw2oas3" path="res://addons/maaacks_game_template/base/scenes/credits/scrollable_credits.tscn" id="1_jnbjt"]
-[ext_resource type="Script" uid="uid://q2qdlnj2elxe" path="res://scenes/credits/scrollable_credits.gd" id="2_35kdw"]
+[ext_resource type="Script" uid="uid://q2qdlnj2elxe" path="res://scenes/credits/scrollable_credits.gd" id="1_jnbjt"]
+[ext_resource type="PackedScene" uid="uid://dvp8hyvbseo5r" path="res://scenes/credits/credits_label.tscn" id="2_35kdw"]
 
-[node name="ScrollableCredits" instance=ExtResource("1_jnbjt")]
-script = ExtResource("2_35kdw")
+[node name="ScrollableCredits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jnbjt")
 
-[node name="CreditsLabel" parent="." index="0"]
-text = "[center][font_size=48]Collaborators[/font_size]
-
-[font_size=32]Godot Game Template[/font_size]
-[img=80]res:///assets/plugin_logo/logo.png[/img]  
-Author: [url=https://github.com/Maaack/Godot-Game-Template/graphs/contributors]Marek Belski and contributors[/url]  
-Source: [url=https://github.com/Maaack/Godot-Game-Template]github: Godot-Game-Template[/url]  
-License: [url=LICENSE.txt]MIT License[/url]  
-
-[font_size=48]Sourced[/font_size]
-[font_size=24]Godot Engine Logo[/font_size]
-Author: Andrea Calabró  
-Source: [url=https://godotengine.org/press/]godotengine.org : press[/url]  
-License: [url=https://github.com/godotengine/godot/blob/master/LOGO_LICENSE.txt]CC BY 4.0 International[/url] 
-
-[font_size=24]Git Logo[/font_size]
-Author: [url=https://bsky.app/profile/jasonlong.me]Jason Long[/url]  
-Source: [url=https://git-scm.com/downloads/logos]git-scm.com : logos[/url]  
-License: [url=https://creativecommons.org/licenses/by/3.0/]CC BY 3.0[/url] 
-
-[font_size=48]Tools[/font_size]
-[font_size=24]Godot[/font_size]
-[img=80]res:///assets/godot_engine_logo/logo_vertical_color_dark.png[/img]  
-Author: [url=https://godotengine.org/contact]Juan Linietsky, Ariel Manzur, and contributors[/url]  
-Source: [url=https://godotengine.org/]godotengine.org[/url]  
-License: [url=https://github.com/godotengine/godot/blob/master/LICENSE.txt]MIT License[/url]  
-
-[font_size=24]Visual Studio Code[/font_size]
-Author: [url=https://opensource.microsoft.com/]Microsoft[/url]  
-Source: [url=https://github.com/microsoft/vscode]github: vscode[/url]  
-License: [url=https://github.com/microsoft/vscode/blob/main/LICENSE.txt]MIT License[/url]
-
-[font_size=24]Git[/font_size]
-[img=80]res:///assets/git_logo/Git-Logo-2Color.png[/img]  
-Author: [url=https://github.com/torvalds]Linus Torvalds[/url]  
-Source: [url=https://git-scm.com/downloads]git-scm.com[/url]  
-License: [url=https://opensource.org/licenses/GPL-2.0]GNU General Public License version 2[/url]
-  
-[/center]"
-attribution_file_path = "res://ATTRIBUTION.md"
+[node name="CreditsLabel" parent="." instance=ExtResource("2_35kdw")]
+unique_name_in_owner = true
+layout_mode = 1
+fit_content = false
+scroll_active = true

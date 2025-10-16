@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvp8hyvbseo5r"]
+
+[ext_resource type="PackedScene" uid="uid://d1m542mbmtk32" path="res://addons/maaacks_game_template/base/scenes/credits/credits_label.tscn" id="1_yhcaj"]
+
+[node name="CreditsLabel" instance=ExtResource("1_yhcaj")]
+text = "[font_size=48]Collaborators[/font_size]
+
+[font_size=32]Godot Game Template[/font_size]
+[img=80]res:///assets/plugin_logo/logo.png[/img]  
+Author: [url=https://github.com/Maaack/Godot-Game-Template/graphs/contributors]Marek Belski and contributors[/url]  
+Source: [url=https://github.com/Maaack/Godot-Game-Template]github: Godot-Game-Template[/url]  
+License: [url=LICENSE.txt]MIT License[/url]  
+
+[font_size=48]Sourced[/font_size]
+[font_size=24]Godot Engine Logo[/font_size]
+Author: Andrea Calabró  
+Source: [url=https://godotengine.org/press/]godotengine.org : press[/url]  
+License: [url=https://github.com/godotengine/godot/blob/master/LOGO_LICENSE.txt]CC BY 4.0 International[/url] 
+
+[font_size=24]Git Logo[/font_size]
+Author: [url=https://bsky.app/profile/jasonlong.me]Jason Long[/url]  
+Source: [url=https://git-scm.com/downloads/logos]git-scm.com : logos[/url]  
+License: [url=https://creativecommons.org/licenses/by/3.0/]CC BY 3.0[/url] 
+
+[font_size=48]Tools[/font_size]
+[font_size=24]Godot[/font_size]
+[img=80]res:///assets/godot_engine_logo/logo_vertical_color_dark.png[/img]  
+Author: [url=https://godotengine.org/contact]Juan Linietsky, Ariel Manzur, and contributors[/url]  
+Source: [url=https://godotengine.org/]godotengine.org[/url]  
+License: [url=https://github.com/godotengine/godot/blob/master/LICENSE.txt]MIT License[/url]  
+
+[font_size=24]Visual Studio Code[/font_size]
+Author: [url=https://opensource.microsoft.com/]Microsoft[/url]  
+Source: [url=https://github.com/microsoft/vscode]github: vscode[/url]  
+License: [url=https://github.com/microsoft/vscode/blob/main/LICENSE.txt]MIT License[/url]
+
+[font_size=24]Git[/font_size]
+[img=80]res:///assets/git_logo/Git-Logo-2Color.png[/img]  
+Author: [url=https://github.com/torvalds]Linus Torvalds[/url]  
+Source: [url=https://git-scm.com/downloads]git-scm.com[/url]  
+License: [url=https://opensource.org/licenses/GPL-2.0]GNU General Public License version 2[/url]
+"
+attribution_file_path = "res://ATTRIBUTION.md"
