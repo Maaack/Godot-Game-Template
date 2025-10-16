@@ -29,7 +29,7 @@ func _handle_cancel_input() -> void:
 	close()
 
 func _unhandled_input(event : InputEvent) -> void:
-	if event.is_action_pressed("ui_cancel"):
+	if visible and event.is_action_released("ui_cancel"):
 		_handle_cancel_input()
 		get_viewport().set_input_as_handled()
 
