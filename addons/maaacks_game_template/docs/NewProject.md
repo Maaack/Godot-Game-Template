@@ -51,7 +51,7 @@ These instructions assume starting with the entire contents of the project folde
         5.  Make sure that the `bus` property is set to `Music`.
         6.  Save the scene.
         7.  Optionally, repeat steps 3-5 for background music nodes in:
-            1.  `opening_with_logo.tscn`
+            1.  `opening.tscn`
             2.  `game_ui.tscn`
             3.  `end_credits.tscn`
 
