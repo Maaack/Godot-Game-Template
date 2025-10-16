@@ -1,35 +1,42 @@
 [gd_scene load_steps=7 format=3 uid="uid://boicxc6x4554n"]
 
-[ext_resource type="PackedScene" uid="uid://hmx6o472ropw" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/master_options_menu_with_tabs.tscn" id="1_fqpxk"]
+[ext_resource type="Script" uid="uid://c3mignmhuvvq4" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/paginated_tab_container.gd" id="1_fqpxk"]
 [ext_resource type="PackedScene" uid="uid://dr4wtgbceshug" path="res://scenes/menus/options_menu/input/input_options_menu.tscn" id="2_w1dvr"]
 [ext_resource type="PackedScene" uid="uid://xiw2eon3cmvg" path="res://scenes/menus/options_menu/input/input_extras_menu.tscn" id="3_bn2s3"]
 [ext_resource type="PackedScene" uid="uid://y6d0iuhtk6r" path="res://scenes/menus/options_menu/audio/audio_options_menu.tscn" id="4_6wkjv"]
 [ext_resource type="PackedScene" uid="uid://drluav5hr2gt2" path="res://scenes/menus/options_menu/video/video_options_menu_with_extras.tscn" id="5_kr6xa"]
 [ext_resource type="PackedScene" uid="uid://ynluticqqywd" path="res://scenes/menus/options_menu/game/game_options_menu.tscn" id="6_n2uhm"]
 
-[node name="MasterOptionsMenu" instance=ExtResource("1_fqpxk")]
+[node name="MasterOptionsMenu" type="TabContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+tab_alignment = 1
 current_tab = 0
+script = ExtResource("1_fqpxk")
 
-[node name="Controls" parent="." index="1" instance=ExtResource("2_w1dvr")]
+[node name="Controls" parent="." instance=ExtResource("2_w1dvr")]
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="Inputs" parent="." index="2" instance=ExtResource("3_bn2s3")]
+[node name="Inputs" parent="." instance=ExtResource("3_bn2s3")]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="Audio" parent="." index="3" instance=ExtResource("4_6wkjv")]
+[node name="Audio" parent="." instance=ExtResource("4_6wkjv")]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
-[node name="Video" parent="." index="4" instance=ExtResource("5_kr6xa")]
+[node name="Video" parent="." instance=ExtResource("5_kr6xa")]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 3
 
-[node name="Game" parent="." index="5" instance=ExtResource("6_n2uhm")]
+[node name="Game" parent="." instance=ExtResource("6_n2uhm")]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 4
