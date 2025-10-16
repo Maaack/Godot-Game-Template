@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Game Template"
-run/main_scene="res://scenes/opening/opening_with_logo.tscn"
+run/main_scene="res://scenes/opening/opening.tscn"
 config/features=PackedStringArray("4.5")
 config/icon="res://icon.png"
 
