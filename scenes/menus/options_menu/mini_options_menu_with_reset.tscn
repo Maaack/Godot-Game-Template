@@ -1,13 +1,56 @@
-[gd_scene load_steps=4 format=3 uid="uid://bxo8rxu1kjj4a"]
+[gd_scene load_steps=6 format=3 uid="uid://bxo8rxu1kjj4a"]
 
-[ext_resource type="PackedScene" uid="uid://vh1ucj2rfbby" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/mini_options_menu.tscn" id="1_2hsax"]
-[ext_resource type="Script" uid="uid://cmvpxo564ijwt" path="res://scenes/menus/options_menu/mini_options_menu_with_reset.gd" id="2_d8n2j"]
-[ext_resource type="PackedScene" uid="uid://d25665kl0b64c" path="res://scenes/menus/options_menu/game/reset_game_control/reset_game_control.tscn" id="3_xphcu"]
+[ext_resource type="Script" uid="uid://cmvpxo564ijwt" path="res://scenes/menus/options_menu/mini_options_menu_with_reset.gd" id="1_kj0d4"]
+[ext_resource type="PackedScene" uid="uid://cl416gdb1fgwr" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/option_control/slider_option_control.tscn" id="2_kdjme"]
+[ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/scripts/capture_focus.gd" id="3_8p5p7"]
+[ext_resource type="PackedScene" uid="uid://bsxh6v7j0257h" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/option_control/toggle_option_control.tscn" id="4_iq5ao"]
+[ext_resource type="PackedScene" uid="uid://bjr38vv2fmnfl" path="res://scenes/menus/options_menu/game/reset_game_control/reset_game_control.tscn" id="5_bvuwx"]
 
-[node name="MiniOptionsMenu" instance=ExtResource("1_2hsax")]
-script = ExtResource("2_d8n2j")
+[node name="MiniOptionsMenu" type="VBoxContainer"]
+custom_minimum_size = Vector2(400, 260)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -130.0
+offset_right = 200.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 8
+alignment = 1
+script = ExtResource("1_kj0d4")
+audio_control_scene = ExtResource("2_kdjme")
 
-[node name="ResetGameControl" parent="." index="3" instance=ExtResource("3_xphcu")]
+[node name="AudioControlContainer" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 8
+script = ExtResource("3_8p5p7")
+search_depth = 2
+
+[node name="MuteControl" parent="." instance=ExtResource("4_iq5ao")]
+unique_name_in_owner = true
+layout_mode = 2
+option_name = "Mute"
+option_section = 2
+key = "Mute"
+section = "AudioSettings"
+
+[node name="FullscreenControl" parent="." instance=ExtResource("4_iq5ao")]
+unique_name_in_owner = true
+layout_mode = 2
+option_name = "Fullscreen"
+option_section = 3
+key = "FullscreenEnabled"
+section = "VideoSettings"
+
+[node name="ResetGameControl" parent="." instance=ExtResource("5_bvuwx")]
 layout_mode = 2
 
+[connection signal="setting_changed" from="MuteControl" to="." method="_on_mute_control_setting_changed"]
+[connection signal="setting_changed" from="FullscreenControl" to="." method="_on_fullscreen_control_setting_changed"]
 [connection signal="reset_confirmed" from="ResetGameControl" to="." method="_on_reset_game_control_reset_confirmed"]

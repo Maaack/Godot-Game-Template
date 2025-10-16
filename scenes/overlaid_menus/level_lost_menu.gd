@@ -1,3 +1,4 @@
+@tool
 extends OverlaidMenu
 
 signal restart_pressed

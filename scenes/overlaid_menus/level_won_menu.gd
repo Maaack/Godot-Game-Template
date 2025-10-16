@@ -1,3 +1,4 @@
+@tool
 extends OverlaidMenu
 
 signal continue_pressed
