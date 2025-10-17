@@ -1,4 +1,3 @@
-class_name AudioOptionsMenu
 extends Control
 
 ## Scene for adjusting the volume of the audio busses.
