@@ -22,7 +22,6 @@ The rest have their default paths stored in the `AppConfig` autoload. These do n
 
 Alternatively, the developer can specify paths in the scenes that reference the other scenes by path. These include:
 * `opening.tscn`  
-* `opening_with_logo.tscn`  
 * `main_menu.tscn`  
 * `main_menu_with_animations.tscn`  
 * `pause_menu.tscn`  

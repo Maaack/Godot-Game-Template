@@ -8,7 +8,7 @@ Source: [github: Godot-Game-Template](https://github.com/Maaack/Godot-Game-Templ
 License: [MIT License](LICENSE.txt)  
 
 ## Sourced
-### Godot Wild Jam Logos
+#### Godot Wild Jam Logos
 Author: [Dawk](https://coreyaroberts.com/)  
 Source: [godotwildjam.com](https://godotwildjam.com/branding/)  
 License: Copyrighted

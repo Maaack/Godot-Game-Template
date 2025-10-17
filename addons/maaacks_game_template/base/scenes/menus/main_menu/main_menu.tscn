@@ -1,8 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://c6k5nnpbypshi"]
+[gd_scene load_steps=7 format=3 uid="uid://c6k5nnpbypshi"]
 
 [ext_resource type="Script" uid="uid://bhgs1upaahk3y" path="res://addons/maaacks_game_template/base/scenes/menus/main_menu/main_menu.gd" id="1"]
-[ext_resource type="PackedScene" uid="uid://dy8sr0cd8nbiu" path="res://addons/maaacks_game_template/base/scenes/overlaid_menu/menus/master_options_overlaid_menu.tscn" id="2_73am8"]
-[ext_resource type="PackedScene" uid="uid://n111yfgskspp" path="res://addons/maaacks_game_template/base/scenes/overlaid_menu/menus/credits_overlaid_menu.tscn" id="3_g46cd"]
 [ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/scripts/capture_focus.gd" id="4_l1ebe"]
 [ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/scenes/music_players/background_music_player.tscn" id="4_w8sbm"]
 [ext_resource type="Script" uid="uid://b5oej1q4h7jvh" path="res://addons/maaacks_game_template/base/scripts/ui_sound_controller.gd" id="6_bs342"]
@@ -17,8 +15,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1")
-options_packed_scene = ExtResource("2_73am8")
-credits_packed_scene = ExtResource("3_g46cd")
 
 [node name="UISoundController" type="Node" parent="."]
 script = ExtResource("6_bs342")

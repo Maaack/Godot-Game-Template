@@ -1,3 +1,4 @@
+@tool
 extends ScrollContainer
 
 signal end_reached
@@ -71,10 +72,11 @@ func _ready() -> void:
 	add_child(timer)
 
 func _process(delta : float) -> void:
-	if Engine.is_editor_hint():
-		return
 	var input_axis = Input.get_axis("ui_up", "ui_down")
 	if input_axis != 0:
 		_scroll_container(input_axis * input_scroll_speed * delta)
 	else:
 		_scroll_container(auto_scroll_speed * delta)
+
+func _exit_tree() -> void:
+	_current_scroll_position = scroll_vertical

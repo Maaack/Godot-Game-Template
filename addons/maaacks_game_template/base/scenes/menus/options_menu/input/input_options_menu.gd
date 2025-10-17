@@ -1,5 +1,4 @@
 @tool
-class_name InputOptionsMenu
 extends Control
 
 const ALREADY_ASSIGNED_TEXT : String = "{key} already assigned to {action}."
