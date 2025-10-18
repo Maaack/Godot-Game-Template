@@ -13,8 +13,8 @@ const CopyAndEdit = preload(PLUGIN_PATH + "installer/copy_and_edit_files.gd")
 const EXAMPLES_RELATIVE_PATH = "examples/"
 const MAIN_SCENE_RELATIVE_PATH = "scenes/opening/opening.tscn"
 const OVERRIDE_RELATIVE_PATH = "installer/override.cfg"
-const APP_CONFIG_RELATIVE_PATH = "base/scenes/autoloads/app_config/app_config.tscn"
-const SCENE_LOADER_RELATIVE_PATH = "base/scenes/autoloads/scene_loader/scene_loader.tscn"
+const APP_CONFIG_RELATIVE_PATH = "base/nodes/autoloads/app_config/app_config.tscn"
+const SCENE_LOADER_RELATIVE_PATH = "base/nodes/autoloads/scene_loader/scene_loader.tscn"
 const THEMES_DIRECTORY_RELATIVE_PATH = "resources/themes"
 const WINDOW_OPEN_DELAY : float = 0.5
 const RUNNING_CHECK_DELAY : float = 0.25
@@ -356,8 +356,8 @@ func _remove_tool_options() -> void:
 func _enter_tree() -> void:
 	add_autoload_singleton("AppConfig", get_app_config_path())
 	add_autoload_singleton("SceneLoader", get_scene_loader_path())
-	add_autoload_singleton("ProjectMusicController", get_plugin_path() + "base/scenes/autoloads/music_controller/project_music_controller.tscn")
-	add_autoload_singleton("ProjectUISoundController", get_plugin_path() + "base/scenes/autoloads/ui_sound_controller/project_ui_sound_controller.tscn")
+	add_autoload_singleton("ProjectMusicController", get_plugin_path() + "base/nodes/autoloads/music_controller/project_music_controller.tscn")
+	add_autoload_singleton("ProjectUISoundController", get_plugin_path() + "base/nodes/autoloads/ui_sound_controller/project_ui_sound_controller.tscn")
 	_install_audio_busses()
 	_add_tool_options()
 	_add_translations()

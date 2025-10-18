@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://boicxc6x4554n"]
 
-[ext_resource type="Script" uid="uid://c3mignmhuvvq4" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/paginated_tab_container.gd" id="1_fqpxk"]
+[ext_resource type="Script" uid="uid://c3mignmhuvvq4" path="res://addons/maaacks_game_template/base/nodes/menus/options_menu/paginated_tab_container.gd" id="1_fqpxk"]
 [ext_resource type="PackedScene" uid="uid://dr4wtgbceshug" path="res://scenes/menus/options_menu/input/input_options_menu.tscn" id="2_w1dvr"]
 [ext_resource type="PackedScene" uid="uid://xiw2eon3cmvg" path="res://scenes/menus/options_menu/input/input_extras_menu.tscn" id="3_bn2s3"]
 [ext_resource type="PackedScene" uid="uid://y6d0iuhtk6r" path="res://scenes/menus/options_menu/audio/audio_options_menu.tscn" id="4_6wkjv"]
