@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cc37235kj4384"]
-
-[ext_resource type="Script" uid="uid://b5oej1q4h7jvh" path="res://addons/maaacks_game_template/base/scripts/ui_sound_controller.gd" id="1_dmagn"]
-
-[node name="ProjectUISoundController" type="Node"]
-script = ExtResource("1_dmagn")
