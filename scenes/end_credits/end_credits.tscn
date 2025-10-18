@@ -31,9 +31,6 @@ grow_vertical = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="ScrollContainer" parent="." index="3"]
-scroll_vertical = 0
-
 [node name="CenterContainer" type="CenterContainer" parent="." index="4"]
 layout_mode = 0
 anchor_right = 1.0

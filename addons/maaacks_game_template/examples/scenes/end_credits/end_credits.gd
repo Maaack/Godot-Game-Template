@@ -37,9 +37,9 @@ func _on_visibility_changed() -> void:
 	if visible:
 		end_message_panel.hide()
 		mouse_filter = init_mouse_filter
+	super._on_visibility_changed()
 
 func _ready() -> void:
-	visibility_changed.connect(_on_visibility_changed)
 	if get_main_menu_scene_path().is_empty():
 		menu_button.hide()
 	if OS.has_feature("web"):
