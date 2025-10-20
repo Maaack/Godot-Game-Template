@@ -109,5 +109,6 @@ func _on_meta_clicked(meta: String) -> void:
 		var _err = OS.shell_open(meta)
 
 func _ready() -> void:
+	meta_clicked.connect(_on_meta_clicked)
 	if not auto_update: return
 	set_file_path(attribution_file_path)
