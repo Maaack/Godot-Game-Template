@@ -206,7 +206,7 @@ func _update_scene_loader_path(target_path : String) -> void:
 	var file_path : String = get_scene_loader_path()
 	var file_text : String = FileAccess.get_file_as_string(file_path)
 	var prefix : String = "loading_screen_path = \""
-	var target_string = prefix + get_plugin_path() + "base/"
+	var target_string = prefix + get_plugin_examples_path()
 	var replacing_string = prefix + target_path
 	file_text = file_text.replace(target_string, replacing_string)
 	var file = FileAccess.open(file_path, FileAccess.WRITE)
@@ -229,7 +229,7 @@ func _is_app_config_path_updated(target_path) -> bool:
 
 func _is_scene_loader_path_updated(target_path) -> bool:
 	var file_text : String = FileAccess.get_file_as_string(get_scene_loader_path())
-	var target_string = "loading_screen_path = \"" + get_plugin_path() + "base/"
+	var target_string = "loading_screen_path = \"" + get_plugin_examples_path()
 	return !file_text.contains(target_string)
 
 func are_autoload_paths_updated() -> bool:
