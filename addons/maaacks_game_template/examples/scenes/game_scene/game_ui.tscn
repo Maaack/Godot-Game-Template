@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://b5cd6sa8qq4vc" path="res://addons/maaacks_game_template/examples/scenes/overlaid_menus/pause_menu.tscn" id="2_7mepj"]
 [ext_resource type="Script" uid="uid://bbymrin0cm704" path="res://addons/maaacks_game_template/extras/scripts/level_loader.gd" id="5_a40ke"]
-[ext_resource type="Script" uid="uid://cyh0d64pfygbl" path="res://addons/maaacks_game_template/base/scripts/pause_menu_controller.gd" id="5_fc8fx"]
-[ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/scenes/music_players/background_music_player.tscn" id="7_yr75v"]
+[ext_resource type="Script" uid="uid://cyh0d64pfygbl" path="res://addons/maaacks_game_template/base/nodes/utilities/pause_menu_controller.gd" id="5_fc8fx"]
+[ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/nodes/music_players/background_music_player.tscn" id="7_yr75v"]
 [ext_resource type="PackedScene" uid="uid://dbuv0htkikcv4" path="res://addons/maaacks_game_template/examples/scenes/loading_screen/level_loading_screen.tscn" id="8_0nt60"]
 [ext_resource type="PackedScene" uid="uid://cmefjno2ddk7e" path="res://addons/maaacks_game_template/examples/scenes/overlaid_menus/game_won_menu.tscn" id="9_suu1j"]
 [ext_resource type="Script" uid="uid://tooek7mdq54x" path="res://addons/maaacks_game_template/examples/scenes/game_scene/configurable_sub_viewport.gd" id="9_u1dsg"]

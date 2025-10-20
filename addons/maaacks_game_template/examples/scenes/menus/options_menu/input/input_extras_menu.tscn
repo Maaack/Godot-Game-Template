@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b24sg04dn21ke"]
 
-[ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/scripts/capture_focus.gd" id="1_g6yfe"]
-[ext_resource type="PackedScene" uid="uid://cl416gdb1fgwr" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/option_control/slider_option_control.tscn" id="2_mphg3"]
+[ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/nodes/utilities/capture_focus.gd" id="1_g6yfe"]
+[ext_resource type="PackedScene" uid="uid://cl416gdb1fgwr" path="res://addons/maaacks_game_template/base/nodes/menus/options_menu/option_control/slider_option_control.tscn" id="2_mphg3"]
 
 [node name="Inputs" type="MarginContainer"]
 anchors_preset = 15

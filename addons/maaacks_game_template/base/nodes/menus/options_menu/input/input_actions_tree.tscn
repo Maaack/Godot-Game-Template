@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://ci6wgl2ngd35n"]
+
+[ext_resource type="Script" uid="uid://bp7d2e5djo2tp" path="res://addons/maaacks_game_template/base/nodes/menus/options_menu/input/input_actions_tree.gd" id="1_o33o4"]
+[ext_resource type="Texture2D" uid="uid://c1eqf1cse1hch" path="res://addons/maaacks_game_template/base/assets/remapping_input_icons/addition_symbol.png" id="2_ppi0j"]
+[ext_resource type="Texture2D" uid="uid://bteq3ica74h30" path="res://addons/maaacks_game_template/base/assets/remapping_input_icons/subtraction_symbol.png" id="3_hb3xh"]
+
+[node name="InputActionsTree" type="Tree"]
+custom_minimum_size = Vector2(400, 240)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+hide_root = true
+script = ExtResource("1_o33o4")
+input_action_names = Array[StringName]([&"move_forward", &"move_backward", &"move_up", &"move_down", &"move_left", &"move_right", &"interact"])
+readable_action_names = Array[String](["Move Forward", "Move Backward", "Move Up", "Move Down", "Move Left", "Move Right", "Interact"])
+add_button_texture = ExtResource("2_ppi0j")
+remove_button_texture = ExtResource("3_hb3xh")
+action_name_map = {
+&"interact": "Interact",
+&"move_backward": "Move Backward",
+&"move_down": "Move Down",
+&"move_forward": "Move Forward",
+&"move_left": "Move Left",
+&"move_right": "Move Right",
+&"move_up": "Move Up"
+}

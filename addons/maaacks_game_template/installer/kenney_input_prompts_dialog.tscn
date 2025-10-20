@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://c1lpc33fpmd4p" path="res://addons/maaacks_game_template/assets/input-icons/icons-outlined-white-vector.svg" id="13_bkfjd"]
 
 [node name="KenneyInputPromptsDialog" type="ConfirmationDialog"]
+oversampling_override = 1.0
 title = "Add Kenney Input Prompts Pack"
 initial_position = 2
 size = Vector2i(1024, 640)

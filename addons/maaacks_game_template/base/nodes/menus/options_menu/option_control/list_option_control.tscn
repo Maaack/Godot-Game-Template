@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6bl3n5mp3m1e"]
+
+[ext_resource type="PackedScene" uid="uid://d7te75il06t7" path="res://addons/maaacks_game_template/base/nodes/menus/options_menu/option_control/option_control.tscn" id="1_blo3b"]
+[ext_resource type="Script" uid="uid://b8xqufg4re3c2" path="res://addons/maaacks_game_template/base/nodes/menus/options_menu/option_control/list_option_control.gd" id="2_kt4vl"]
+
+[node name="OptionControl" instance=ExtResource("1_blo3b")]
+script = ExtResource("2_kt4vl")
+lock_titles = false
+option_values = []
+option_titles = []
+
+[node name="OptionButton" type="OptionButton" parent="." index="1"]
+unique_name_in_owner = true
+layout_mode = 2
