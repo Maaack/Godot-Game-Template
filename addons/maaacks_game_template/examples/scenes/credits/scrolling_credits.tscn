@@ -1,6 +1,5 @@
-[gd_scene load_steps=4 format=3 uid="uid://t2dui8ppm3a4"]
+[gd_scene load_steps=3 format=3 uid="uid://t2dui8ppm3a4"]
 
-[ext_resource type="Script" uid="uid://gmrv6pgchkwc" path="res://addons/maaacks_game_template/base/scenes/credits/auto_scroll_container.gd" id="2_ak7hi"]
 [ext_resource type="PackedScene" uid="uid://bfvsqg5fi2ja0" path="res://addons/maaacks_game_template/examples/scenes/credits/credits_label.tscn" id="3_fbdex"]
 [ext_resource type="Script" uid="uid://bnub0cq2y0deh" path="res://addons/maaacks_game_template/examples/scenes/credits/scrolling_credits.gd" id="4"]
 
@@ -14,13 +13,13 @@ grow_vertical = 2
 script = ExtResource("4")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
+unique_name_in_owner = true
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 scroll_vertical = 0
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
-script = ExtResource("2_ak7hi")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
 layout_mode = 2
@@ -39,5 +38,3 @@ layout_mode = 2
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 720)
 layout_mode = 2
-
-[connection signal="end_reached" from="ScrollContainer" to="." method="_on_scroll_container_end_reached"]

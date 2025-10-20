@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://c8vnncjwqcpab"]
+
+[ext_resource type="Script" uid="uid://bwugqn2cjr41e" path="res://addons/maaacks_game_template/base/nodes/menus/options_menu/audio/audio_options_menu.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://cl416gdb1fgwr" path="res://addons/maaacks_game_template/base/nodes/menus/options_menu/option_control/slider_option_control.tscn" id="2_raehj"]
+[ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/nodes/utilities/capture_focus.gd" id="3_dtraq"]
+[ext_resource type="PackedScene" uid="uid://bsxh6v7j0257h" path="res://addons/maaacks_game_template/base/nodes/menus/options_menu/option_control/toggle_option_control.tscn" id="4_ojfec"]
+
+[node name="Audio" type="MarginContainer"]
+custom_minimum_size = Vector2(305, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_bottom = 24
+script = ExtResource("1")
+audio_control_scene = ExtResource("2_raehj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 8
+alignment = 1
+script = ExtResource("3_dtraq")
+search_depth = 3
+
+[node name="AudioControlContainer" type="VBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="MuteControl" parent="VBoxContainer" instance=ExtResource("4_ojfec")]
+unique_name_in_owner = true
+layout_mode = 2
+option_name = "Mute"
+option_section = 2
+key = "Mute"
+section = "AudioSettings"
+
+[connection signal="setting_changed" from="VBoxContainer/MuteControl" to="." method="_on_mute_control_setting_changed"]

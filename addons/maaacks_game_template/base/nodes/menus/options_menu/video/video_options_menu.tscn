@@ -1,0 +1,60 @@
+[gd_scene load_steps=6 format=3 uid="uid://b2numvphf2kau"]
+
+[ext_resource type="Script" uid="uid://cpe5r24151r5n" path="res://addons/maaacks_game_template/base/nodes/menus/options_menu/video/video_options_menu.gd" id="1"]
+[ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/nodes/utilities/capture_focus.gd" id="2_dgrai"]
+[ext_resource type="PackedScene" uid="uid://bsxh6v7j0257h" path="res://addons/maaacks_game_template/base/nodes/menus/options_menu/option_control/toggle_option_control.tscn" id="3_uded6"]
+[ext_resource type="PackedScene" uid="uid://c01ayjblhcg1t" path="res://addons/maaacks_game_template/base/nodes/menus/options_menu/option_control/vector_2_list_option_control.tscn" id="4_gwtfq"]
+[ext_resource type="PackedScene" uid="uid://b6bl3n5mp3m1e" path="res://addons/maaacks_game_template/base/nodes/menus/options_menu/option_control/list_option_control.tscn" id="5_881de"]
+
+[node name="Video" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_bottom = 24
+script = ExtResource("1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+script = ExtResource("2_dgrai")
+search_depth = 2
+
+[node name="FullscreenControl" parent="VBoxContainer" instance=ExtResource("3_uded6")]
+unique_name_in_owner = true
+layout_mode = 2
+option_name = "Fullscreen"
+option_section = 3
+key = "Fullscreen"
+section = "VideoSettings"
+
+[node name="ResolutionControl" parent="VBoxContainer" instance=ExtResource("4_gwtfq")]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Select a screen size"
+option_values = [Vector2i(640, 360), Vector2i(960, 540), Vector2i(1024, 576), Vector2i(1280, 720), Vector2i(1600, 900), Vector2i(1920, 1080), Vector2i(2048, 1152), Vector2i(2560, 1440), Vector2i(3200, 1800), Vector2i(3840, 2160)]
+option_titles = Array[String](["640 x 360", "960 x 540", "1024 x 576", "1280 x 720", "1600 x 900", "1920 x 1080", "2048 x 1152", "2560 x 1440", "3200 x 1800", "3840 x 2160"])
+option_name = "Resolution"
+option_section = 3
+key = "ScreenResolution"
+section = "VideoSettings"
+property_type = 6
+
+[node name="VSyncControl" parent="VBoxContainer" instance=ExtResource("5_881de")]
+unique_name_in_owner = true
+layout_mode = 2
+lock_titles = true
+option_values = [0, 1, 2, 3]
+option_titles = Array[String](["Disabled", "Enabled", "Adaptive", "Mailbox"])
+option_name = "V-Sync"
+option_section = 3
+key = "V-Sync"
+section = "VideoSettings"
+property_type = 2
+default_value = 0
+
+[connection signal="setting_changed" from="VBoxContainer/FullscreenControl" to="." method="_on_fullscreen_control_setting_changed"]
+[connection signal="setting_changed" from="VBoxContainer/ResolutionControl" to="." method="_on_resolution_control_setting_changed"]
+[connection signal="setting_changed" from="VBoxContainer/VSyncControl" to="." method="_on_v_sync_control_setting_changed"]

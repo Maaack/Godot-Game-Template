@@ -13,8 +13,8 @@ const CopyAndEdit = preload(PLUGIN_PATH + "installer/copy_and_edit_files.gd")
 const EXAMPLES_RELATIVE_PATH = "examples/"
 const MAIN_SCENE_RELATIVE_PATH = "scenes/opening/opening.tscn"
 const OVERRIDE_RELATIVE_PATH = "installer/override.cfg"
-const APP_CONFIG_RELATIVE_PATH = "base/scenes/autoloads/app_config.tscn"
-const SCENE_LOADER_RELATIVE_PATH = "base/scenes/autoloads/scene_loader.tscn"
+const APP_CONFIG_RELATIVE_PATH = "base/nodes/autoloads/app_config/app_config.tscn"
+const SCENE_LOADER_RELATIVE_PATH = "base/nodes/autoloads/scene_loader/scene_loader.tscn"
 const THEMES_DIRECTORY_RELATIVE_PATH = "resources/themes"
 const WINDOW_OPEN_DELAY : float = 0.5
 const RUNNING_CHECK_DELAY : float = 0.25
@@ -206,7 +206,7 @@ func _update_scene_loader_path(target_path : String) -> void:
 	var file_path : String = get_scene_loader_path()
 	var file_text : String = FileAccess.get_file_as_string(file_path)
 	var prefix : String = "loading_screen_path = \""
-	var target_string = prefix + get_plugin_path() + "base/"
+	var target_string = prefix + get_plugin_examples_path()
 	var replacing_string = prefix + target_path
 	file_text = file_text.replace(target_string, replacing_string)
 	var file = FileAccess.open(file_path, FileAccess.WRITE)
@@ -229,7 +229,7 @@ func _is_app_config_path_updated(target_path) -> bool:
 
 func _is_scene_loader_path_updated(target_path) -> bool:
 	var file_text : String = FileAccess.get_file_as_string(get_scene_loader_path())
-	var target_string = "loading_screen_path = \"" + get_plugin_path() + "base/"
+	var target_string = "loading_screen_path = \"" + get_plugin_examples_path()
 	return !file_text.contains(target_string)
 
 func are_autoload_paths_updated() -> bool:
@@ -354,10 +354,10 @@ func _remove_tool_options() -> void:
 	_remove_update_plugin_tool_option()
 
 func _enter_tree() -> void:
-	add_autoload_singleton("AppConfig", get_plugin_path() + "base/scenes/autoloads/app_config.tscn")
-	add_autoload_singleton("SceneLoader", get_plugin_path() + "base/scenes/autoloads/scene_loader.tscn")
-	add_autoload_singleton("ProjectMusicController", get_plugin_path() + "base/scenes/autoloads/project_music_controller.tscn")
-	add_autoload_singleton("ProjectUISoundController", get_plugin_path() + "base/scenes/autoloads/project_ui_sound_controller.tscn")
+	add_autoload_singleton("AppConfig", get_app_config_path())
+	add_autoload_singleton("SceneLoader", get_scene_loader_path())
+	add_autoload_singleton("ProjectMusicController", get_plugin_path() + "base/nodes/autoloads/music_controller/project_music_controller.tscn")
+	add_autoload_singleton("ProjectUISoundController", get_plugin_path() + "base/nodes/autoloads/ui_sound_controller/project_ui_sound_controller.tscn")
 	_install_audio_busses()
 	_add_tool_options()
 	_add_translations()
