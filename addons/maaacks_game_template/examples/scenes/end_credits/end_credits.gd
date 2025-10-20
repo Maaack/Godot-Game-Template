@@ -18,12 +18,12 @@ func get_main_menu_scene_path() -> String:
 		return AppConfig.main_menu_scene_path
 	return main_menu_scene_path
 
-func _on_scroll_container_end_reached() -> void:
+func _end_reached() -> void:
 	end_message_panel.show()
 	mouse_filter = Control.MOUSE_FILTER_STOP
 	if force_mouse_mode_visible:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	super._on_scroll_container_end_reached()
+	super._end_reached()
 
 func load_main_menu() -> void:
 	SceneLoader.load_scene(get_main_menu_scene_path())
@@ -37,9 +37,9 @@ func _on_visibility_changed() -> void:
 	if visible:
 		end_message_panel.hide()
 		mouse_filter = init_mouse_filter
+	super._on_visibility_changed()
 
 func _ready() -> void:
-	visibility_changed.connect(_on_visibility_changed)
 	if get_main_menu_scene_path().is_empty():
 		menu_button.hide()
 	if OS.has_feature("web"):
@@ -49,7 +49,7 @@ func _ready() -> void:
 func _unhandled_input(event : InputEvent) -> void:
 	if event.is_action_released("ui_cancel"):
 		if not end_message_panel.visible:
-			_on_scroll_container_end_reached()
+			_end_reached()
 		else:
 			exit_game()
 
