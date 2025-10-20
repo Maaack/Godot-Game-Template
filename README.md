@@ -50,27 +50,23 @@ The `base/` folder holds the core components of the menus application.
 
 The `extras/` folder holds components that extend the core application.
 
--   Win & Lose Menus
 -   Level Loaders
 -   Level Progress Manager
--   Logging Scripts
+-   Win / Lose Manager
 -   Script for Releasing on [itch.io](https://itch.io/) with [butler](https://itch.io/docs/butler/)
  
 ### Examples 
 
 The `examples/` folder contains an example project using inherited scenes from the `base/` and `extras/`.
 
--   Example Game Scene
--   Base Level Class
--   Example Levels
+-   Game Scene
+-   Level Class & 3 Levels
+-   Tutorial Windows & 3 Tutorial Messages
+-   Win & Lose Windows
+-   Master Options Menu
 -   End Credits
--   Additional Inherited Scenes:
-    -   Game Options Menu w/ Reset button
-    -   Master Options Menu w/ Game Options tab 
-    -   Main Menu w/ Animations
-    -   Opening w/ Godot Logo
-    -   Level Loading Screen
-    -   Loading Screen w/ Shader Pre-caching 
+-   Main Menu w/ Animations
+-   Opening w/ Godot Logo
 
 ### Minimal
 
