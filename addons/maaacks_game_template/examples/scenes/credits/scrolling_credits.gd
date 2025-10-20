@@ -21,16 +21,13 @@ func set_header_and_footer() -> void:
 	footer_space.custom_minimum_size.y = size.y
 	credits_label.custom_minimum_size.x = size.x
 
-func _on_scroll_container_end_reached() -> void:
-	end_reached.emit()
-
 func _on_resized() -> void:
 	set_header_and_footer()
 	_current_scroll_position = scroll_container.scroll_vertical
 
 func _end_reached() -> void:
 	scroll_paused = true
-	emit_signal("end_reached")
+	end_reached.emit()
 
 func is_end_reached() -> bool:
 	var _end_of_credits_vertical = credits_label.size.y + header_space.size.y

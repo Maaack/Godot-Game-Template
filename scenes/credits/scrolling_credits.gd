@@ -21,16 +21,13 @@ func set_header_and_footer() -> void:
 	footer_space.custom_minimum_size.y = size.y
 	credits_label.custom_minimum_size.x = size.x
 
-func _on_scroll_container_end_reached() -> void:
-	end_reached.emit()
-
 func _on_resized() -> void:
 	set_header_and_footer()
 	_current_scroll_position = scroll_container.scroll_vertical
 
 func _end_reached() -> void:
 	scroll_paused = true
-	_on_scroll_container_end_reached()
+	end_reached.emit()
 
 func is_end_reached() -> bool:
 	var _end_of_credits_vertical = credits_label.size.y + header_space.size.y
@@ -75,13 +72,13 @@ func _on_visibility_changed() -> void:
 
 func _ready() -> void:
 	scroll_container.scroll_started.connect(_on_scroll_started)
-	scroll_container.scroll_ended.connect(_on_scroll_container_end_reached)
 	gui_input.connect(_on_gui_input)
 	resized.connect(_on_resized)
 	visibility_changed.connect(_on_visibility_changed)
 	timer.timeout.connect(_on_scroll_restart_timer_timeout)
 	set_header_and_footer()
 	add_child(timer)
+
 
 func _process(delta : float) -> void:
 	var input_axis = Input.get_axis("ui_up", "ui_down")
