@@ -39,13 +39,13 @@ horizontal_alignment = 1
 
 [node name="InputActionsList" parent="VBoxContainer/InputMappingContainer" instance=ExtResource("4_lf2nw")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(560, 480)
+custom_minimum_size = Vector2(560, 440)
 layout_mode = 2
 
 [node name="InputActionsTree" parent="VBoxContainer/InputMappingContainer" instance=ExtResource("5_b2whh")]
 unique_name_in_owner = true
 visible = false
-custom_minimum_size = Vector2(400, 480)
+custom_minimum_size = Vector2(400, 440)
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/InputMappingContainer"]
