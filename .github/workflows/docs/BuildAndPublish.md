@@ -6,7 +6,7 @@
 
 Using GitHub Actions, you can set up **workflows that automatically compile your Godot project** and **upload it to platforms** like itch.io whenever you tag a new release. This saves time, reduces manual errors, and helps keep your build and release process smooth and repeatable.
 
-**How does it work?** Once everything is set up, to publish a new version of your game you'll create a new Github release tied to a version tag on the `main` branch. Using releases helps track updates, distribute builds, and communicate changes to players or testers. This will trigger the Github Action and publish your game to itch.io with this version tag.
+**How does it work?** Once everything is set up, publish a new version of your game by creating a new **Github Release**. Releases helps track updates, distribute builds, and communicate changes to players or testers. This Release will trigger the Github Action, that will build your game in the cloud and publish it to itch.io.
 
 > Note: You can set up all of this and still keep your game as a _Draft_ on itch.io. This is great for playtesting!
 
