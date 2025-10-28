@@ -210,7 +210,7 @@ You should have something like this (with your real username and your real game 
    cat "/Users/username/Library/Application Support/itch/butler_creds"
    ```
 
-   > **Warning:** your butler API key is sensitive and secret. Do not share it with anyone and **do not** commit it to your repository and **do not** add it directly to the workflow file.
+   > **Warning:** your butler API key is sensitive and secret. **Do not** share it with anyone, **do not** commit it to your repository, and **do not** add it directly to the workflow file.
 
 5. [Create a new Github secret](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets) for your Github repository. Go into Settings > Secrets and Variables > Actions and select the **Secrets** tab.
 
