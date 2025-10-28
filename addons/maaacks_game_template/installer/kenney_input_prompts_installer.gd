@@ -11,7 +11,7 @@ const DownloadAndExtract = MaaacksGameTemplatePlugin.DownloadAndExtract
 const RELATIVE_PATH_TO_CONFIGURE_SCENE = "scenes/menus/options_menu/input/input_icon_mapper.tscn"
 const REIMPORT_CHECK_DELAY : float = 0.5
 const OPEN_SCENE_DELAY : float = 0.5
-const REGEX_PREFIX = """\\[node name="InputIconMapper" type="Node"\\][\\s\\S]*"""
+const MATCH_REGEX = """(\\[node name="InputIconMapper" instance=ExtResource\\("[0-9a-z_]+"\\)\\])[\\s\\S]*"""
 
 const FILLED_WHITE_CONFIGURATION = """
 replace_strings = {
@@ -223,31 +223,35 @@ func _delete_extras() -> void:
 	EditorInterface.get_resource_filesystem().scan()
 
 func _configure_icons() -> void:
-	var input_options_menu_path := copy_dir_path + RELATIVE_PATH_TO_CONFIGURE_SCENE
-	var input_options_menu := FileAccess.get_file_as_string(input_options_menu_path)
+	var input_mapper_path := copy_dir_path + RELATIVE_PATH_TO_CONFIGURE_SCENE
+	var icon_mapper_string := FileAccess.get_file_as_string(input_mapper_path)
+	var replacing_string := "$1\n"
 	match(_configuration_index % 4):
 		0:
-			input_options_menu += FILLED_COLOR_CONFIGURATION
+			replacing_string += FILLED_COLOR_CONFIGURATION
 		1:
-			input_options_menu += FILLED_WHITE_CONFIGURATION
+			replacing_string += FILLED_WHITE_CONFIGURATION
 		2:
-			input_options_menu += OUTLINED_COLOR_CONFIGURATION
+			replacing_string += OUTLINED_COLOR_CONFIGURATION
 		3:
-			input_options_menu += OUTLINED_WHITE_CONFIGURATION
+			replacing_string += OUTLINED_WHITE_CONFIGURATION
 	match(_configuration_index / 4):
 		0:
-			input_options_menu = input_options_menu.replace("Default", "Vector").replace(".png", ".svg")
+			replacing_string = replacing_string.replace("Default", "Vector").replace(".png", ".svg")
 		1:
 			pass
 		2:
-			input_options_menu = input_options_menu.replace("Default", "Double")
-	var file_rewrite := FileAccess.open(input_options_menu_path, FileAccess.WRITE)
-	file_rewrite.store_string(input_options_menu)
+			replacing_string = replacing_string.replace("Default", "Double")
+	var regex = RegEx.new()
+	regex.compile(MATCH_REGEX)
+	icon_mapper_string = regex.sub(icon_mapper_string, replacing_string)
+	var file_rewrite := FileAccess.open(input_mapper_path, FileAccess.WRITE)
+	file_rewrite.store_string(icon_mapper_string)
 	file_rewrite.close()
-	if input_options_menu_path in EditorInterface.get_open_scenes():
-		EditorInterface.reload_scene_from_path(input_options_menu_path)
+	if input_mapper_path in EditorInterface.get_open_scenes():
+		EditorInterface.reload_scene_from_path(input_mapper_path)
 	else:
-		EditorInterface.open_scene_from_path(input_options_menu_path)
+		EditorInterface.open_scene_from_path(input_mapper_path)
 	await get_tree().create_timer(OPEN_SCENE_DELAY).timeout
 	EditorInterface.save_scene()
 	await get_tree().create_timer(REIMPORT_CHECK_DELAY).timeout

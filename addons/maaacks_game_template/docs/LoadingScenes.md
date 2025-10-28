@@ -40,7 +40,7 @@ else:
 
 A scene could load the next scene based on a timer, or when the player indicates that they are ready.  
 
-An example is in `opening.gd` of [Maaack's Game Template](https://github.com/Maaack/Godot-Game-Template/blob/main/addons/maaacks_game_template/base/scenes/opening/opening.gd), which starts loading the main menu immediately, and switches to it when its animations finish. Player's input can speed them up the animations, so by the end, if the next scene is not ready, a loading screen can be shown instead.  
+An example is in `opening.gd` of [Maaack's Game Template](https://github.com/Maaack/Godot-Game-Template/blob/main/addons/maaacks_game_template/base/nodes/opening/opening.gd), which starts loading the main menu immediately, and switches to it when its animations finish. Player's input can speed them up the animations, so by the end, if the next scene is not ready, a loading screen can be shown instead.  
 
 Below is an example of starting the load of the next scene.  
 
