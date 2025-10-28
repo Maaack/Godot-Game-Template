@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://osxulxw2oas3"]
 
 [ext_resource type="Script" uid="uid://c5wuso5r3dwpw" path="res://addons/maaacks_game_template/examples/scenes/credits/scrollable_credits.gd" id="1_hny8b"]
-[ext_resource type="PackedScene" uid="uid://bfvsqg5fi2ja0" path="res://addons/maaacks_game_template/examples/scenes/credits/credits_label.tscn" id="2_1ldew"]
+[ext_resource type="PackedScene" uid="uid://4gxmoaavyb8k" path="res://addons/maaacks_game_template/examples/scenes/credits/credits_label.tscn" id="2_1ldew"]
 
 [node name="ScrollableCredits" type="Control"]
 layout_mode = 3
