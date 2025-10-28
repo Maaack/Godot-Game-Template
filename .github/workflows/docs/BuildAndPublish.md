@@ -6,7 +6,7 @@
 
 Using GitHub Actions, you can set up **workflows that automatically compile your Godot project** and **upload it to platforms** like itch.io whenever you tag a new release. This saves time, reduces manual errors, and helps keep your build and release process smooth and repeatable.
 
-**How does it work?** Once everything is set up, publish a new version of your game by creating a new **Github Release**. Releases helps track updates, distribute builds, and communicate changes to players or testers. This Release will trigger the Github Action, that will build your game in the cloud and publish it to itch.io.
+**How does it work?** Once everything is set up, publish a new version of your game by creating a new **Github Release**. This will trigger the Github Action, that will build your game in the cloud and publish it to itch.io with a nice version tag.
 
 > Note: You can set up all of this and still keep your game as a _Draft_ on itch.io. This is great for playtesting!
 
@@ -228,7 +228,7 @@ When you’re ready to publish a new version of your game, create a **GitHub rel
 
 A new release will trigger the `build-and-publish.yml` workflow, which will **build your game** in the cloud and **publish it** to itch.io (if everything is setup).
 
-1. Ensure all desired changes are merged into the `main` branch. This is the version that'll get build and published.
+1. Ensure all desired changes are merged into the `main` branch. This is the version that'll get built and published.
 2. On Github, go to **Release**, then **draft a new release** ([here is a step by step guide](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository#creating-a-release)). Create a new tag on you `main` branch using [semantic versioning](https://semver.org/). As a best practice, also prefix it with `v` in Github.
    - `x.0.0` — Major Release. Large updates or milestones (e.g., new game systems, overhauled visuals, major gameplay changes). Example: `v1.0.0` for the full launch.
    - `x.y.0` — Minor Update. New content or features that expand gameplay but remain backward-compatible. Example: `v1.1.0` for new levels or mechanics.
