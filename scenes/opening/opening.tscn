@@ -5,3 +5,9 @@
 
 [node name="Opening" instance=ExtResource("1_ke3tw")]
 images = Array[Texture2D]([ExtResource("2_ke3tw")])
+
+[node name="ImagesContainer" parent="." index="1"]
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
