@@ -24,10 +24,10 @@ jobs:
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          base: main-plugin      # Target branch
-          head: main             # Source branch
-          title: 'Automated PR: Merge main into main-plugin'
-          body: 'This pull request was automatically created to merge changes from main into main-plugin.'
-          commit-message: 'Auto-merge: Update from main'
-          branch: auto-merge-main-to-main-plugin  # Temporary PR branch
+          base: main-plugin # Target branch
+          head: main # Source branch
+          title: "Automated PR: Merge main into main-plugin"
+          body: "This pull request was automatically created to merge changes from main into main-plugin."
+          commit-message: "Auto-merge: Update from main"
+          branch: auto-merge-main-to-main-plugin # Temporary PR branch
           delete-branch: true

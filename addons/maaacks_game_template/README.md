@@ -147,6 +147,7 @@ These instructions assume starting with just the contents of `addons/`. This wil
 [How Parts Work](/addons/maaacks_game_template/docs/HowPartsWork.md)  
 [Moving Files](/addons/maaacks_game_template/docs/MovingFiles.md)  
 [Uploading to itch.io](/addons/maaacks_game_template/docs/UploadingToItchIo.md)  
+[Build and Publish Your Game Using CICD](/addons/maaacks_game_template/docs/BuildAndPublish.md)  
 [Automatic Updating](/addons/maaacks_game_template/docs/AutomaticUpdating.md)  
 [Exhibiting Your Game](/addons/maaacks_game_template/docs/Exhibiting.md)  
 
