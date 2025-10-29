@@ -28,7 +28,7 @@ First, open your game in Godot. Go to Project > Export... and make sure to add t
 - `macOS`
 - `Windows Desktop`
 
-![Godot export](./img/godot_export.png)
+![Godot export](../media/build-and-publish/godot_export.png)
 
 Then, run the export for one platform manually **at least once.** This will create a `export_presets.cfg` file at the root of your project.
 
@@ -48,7 +48,13 @@ To avoid this, you need to notarize your game, i.e. tell Apple who you are and w
 
 For that, you'll need first to create an Apple developer account (99USD/year). Then, you'll need to adapt the Export configuration of MacOS [using this guide](https://docs.godotengine.org/en/latest/tutorials/export/exporting_for_macos.html#if-you-have-an-apple-developer-id-certificate-and-exporting-from-linux-or-windows) to add **rcodesign** notarization and your Apple tokens.
 
-### 2. Adapt the `build-and-publish.yml` file
+### 2. Copy and adapt the `build-and-publish.yml` file
+
+Copy the file `addons/maaacks_game_template/extras/scripts/build-and-publish.yml` into the `.github/workflows` folder at the root of your github repository.
+
+Then, push the file to github on your main branch. The workflow file will be detected by github as a Github Action.
+
+Let's see how you need to adapt it to suit your game and your publication settings.
 
 #### Required: Edit your game's name
 
@@ -174,7 +180,7 @@ Create two **Repository Variables**: `ITCH_USERNAME` and `ITCH_GAME`. Repository
 
 You should have something like this (with your real username and your real game name instead):
 
-![github variables](./img/github-variables.png)
+![github variables](../media/build-and-publish/github-variables.png)
 
 ### 3. Create a `BUTLER_API_KEY` Github secret
 
@@ -194,7 +200,7 @@ You should have something like this (with your real username and your real game 
 
    This should open your browser. Login and allow butler to access your account.
 
-   ![Authorize butler](./img/authorize_butler.png)
+   ![Authorize butler](../media/build-and-publish/authorize_butler.png)
 
    In the terminal, the login flow will conclude with something like this:
 
@@ -216,7 +222,7 @@ You should have something like this (with your real username and your real game 
 
    Create a new **Repository Secret** with name `BUTLER_API_KEY` (this secret will be available only in this repository). Inside, paste the 40 characters string of the previous step.
 
-   ![github secrets](./img/github-secrets.png)
+   ![github secrets](../media/build-and-publish/github-secrets.png)
 
    > It's important to use Github Secrets here because their values are encrypted and hidden from everyone, even repo admins. This ensures privacy and security.
 
@@ -239,19 +245,19 @@ A new release will trigger the `build-and-publish.yml` workflow, which will **bu
 
 It may happen that you don't see the HTML version of your game as playable, but just as a file.
 
-![no html](./img/itch_html_missing.png)
+![no html](../media/build-and-publish/itch_html_missing.png)
 
 What you need to do is edit your itch project to change the **Kind of project** to be **HTML** instead of **Downloadable**.
 
-![kind of project](./img/itch_kind_of_project.png)
+![kind of project](../media/build-and-publish/itch_kind_of_project.png)
 
 Then, edit the `html5` channel and toggle **This file will be played in the browser**.
 
-![html5 setting](./img/itch_html_setting.png)
+![html5 setting](../media/build-and-publish/itch_html_setting.png)
 
 Going back to your project page, you should now see the HTML version of your game playable in the browser on itch.io page.
 
-![Playable game](./img/itch_playable.png)
+![Playable game](../media/build-and-publish/itch_playable.png)
 
 ## Next steps
 

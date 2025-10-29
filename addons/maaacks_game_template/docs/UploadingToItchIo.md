@@ -37,4 +37,4 @@ You can re-run `./butler_manager.sh` right after an export from Godot to keep yo
 
 ## Automating export and publication
 
-You can use Github Actions to automate these steps. Look into the `.git/workflows` folder [and this guide](../../../.github/workflows/docs/BuildAndPublish.md).
+You can use Github Actions to automate these steps. Look into the `.git/workflows` folder [and this guide](./BuildAndPublish.md).
