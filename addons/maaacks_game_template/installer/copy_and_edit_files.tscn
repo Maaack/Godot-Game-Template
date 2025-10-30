@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcgr0b6wp5b5d"]
+
+[ext_resource type="Script" uid="uid://bgdxso8wdsm2l" path="res://addons/maaacks_game_template/installer/copy_and_edit_files.gd" id="1_oyky1"]
+[ext_resource type="PackedScene" uid="uid://ckx50am7thhd2" path="res://addons/maaacks_game_template/installer/destination_dialog.tscn" id="2_g35hh"]
+
+[node name="CopyAndEditFiles" type="Node"]
+script = ExtResource("1_oyky1")
+relative_path = "res://addons/maaacks_game_template/examples/"
+replace_strings_map = {
+"StateExample": "State"
+}
+
+[node name="DestinationDialog" parent="." instance=ExtResource("2_g35hh")]
+
+[connection signal="canceled" from="DestinationDialog" to="." method="_on_destination_dialog_canceled"]
+[connection signal="dir_selected" from="DestinationDialog" to="." method="_on_destination_dialog_dir_selected"]

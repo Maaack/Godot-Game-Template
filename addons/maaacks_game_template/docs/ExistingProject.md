@@ -2,7 +2,7 @@
 
 These instructions assume starting with just the contents of `addons/` and going through the installer to copy the examples content into your project. This will be the case when installing the *plugin* version in the Godot Asset Library.
 
-Example files can be reinstalled from the `Project > Tools` menu, assuming they have not been deleted.
+To revisit any part of the initial setup, find the `Setup Wizard` at `Project > Tools > Run Maaack's Game Template Setup...`. Example files can be re-copied from the `Setup Wizard`, assuming they have not been deleted.
 
 1.  Update the project’s name in the main menu.
     
@@ -42,7 +42,7 @@ Example files can be reinstalled from the `Project > Tools` menu, assuming they 
         5.  Make sure that the `bus` property is set to `Music`.
         6.  Save the scene.
         7.  Optionally, repeat steps 3-5 for background music nodes in:
-            1.  `opening_with_logo.tscn`
+            1.  `opening.tscn`
             2.  `game_ui.tscn`
             3.  `end_credits.tscn`
 
@@ -89,10 +89,10 @@ Example files can be reinstalled from the `Project > Tools` menu, assuming they 
     
 
     1.  Update the example `ATTRIBUTION.md` with the project's credits.
-    2.  Open `scrollable_credits.tscn` and  `scrolling_credits.tscn`.
+    2.  Open `credits_label.tscn`.
     3.  Check the `CreditsLabel` has updated with the text.
-    4.  Optionally, change settings or disable `Auto Update`.
-    5.  Save both scenes (even they show no changes).
+    4.  Optionally, disable `Auto Update` and customize the text.
+    5.  Save the scene (even if it shows no changes).
 
 
 7.  Continue with:

@@ -10,7 +10,7 @@
 > A safer save system is planned.  
 
 
-The templates and plugin suite aim to keep most class definitions within the addon. These are not usually expected change. Unlike the other classes, the `GameState` and `LevelState` are defined for the developer to edit to their needs.
+The templates and plugin suite aim to keep most class definitions within the addon. These are not expected to be changed directly. Unlike the other classes, the `GameState` and `LevelState` are defined for the developer to edit to their needs.
 
 ## Usage
 
@@ -30,3 +30,15 @@ The `LevelState` class represents the state of a single level in a playthrough o
 From within the `_ready()` method of a level scene, call `GameState.get_level_state(scene_file_path)` to get the last saved `LevelState`, or a new one, and then set the state of the level from that. When a state of the level changes that is intended to be preserved, save it into the level state, and call `GlobalState.save()`.
 
 Examples are provided allowing the player to save the level background color, and keeping the tutorial message from popping up more than once per playthrough.
+
+## Internal Details
+
+Many features provided in the example rely on the `GameStateExample` or `LevelStateExample` to work properly.
+
+The main menu will check the current state to see if a game is in progress and show a `Continue` button. It can also optionally show a `Level Select` button if the player is at least on the 2nd level.
+
+The `LevelManager` in the game UI scene (using `level_and_state_manager.gd`) checks the current state for the level it should load at each stage.
+
+Lastly, the optional level select menu checks the state to determine which levels to display as options to the player.
+
+Data is saved as a resource file in the player's local user directory.

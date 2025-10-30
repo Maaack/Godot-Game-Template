@@ -1,17 +1,23 @@
 # New Projects
 
-These instructions assume starting with the entire contents of the project folder. This will be the case when cloning the repo, or starting from the *template* version in the Godot Asset Library.
+These instructions assume starting with the entire contents of the project folder. This will be the case when cloning the repo, or starting from the *template* version in the Godot Asset Library accessible from the Project Manager window.
   
 
-1.  Finish setup and remove duplicate example files.
+1.  Finish setup.
 
+    1.  Delete duplicate example files.
+        1.  Go to `Project > Tools > Run Maaack's Game Template Setup...`.
+        2.  In the `Setup Wizard` window next to "Delete Example Files", click `Run`.
+        3.  In the next window, select `Yes` to continue with removing the example files.
 
-    1.  Go to `Project > Tools > Copy Maaack's Game Template Examples`.
-    2.  Click `Cancel` in the first window asking to copy the examples. It's already done.
-    3.  Select a theme in the next window if desired.
-    4.  Go to `Project > Tools > Delete Maaack's Game Template Examples`.
-    5.  Click `Yes` in the first window.
+    2.  Update autoload file paths.
+        1.  Go to `Project > Tools > Run Maaack's Game Template Setup...`.
+        2.  In the `Setup Wizard` window next to "Update Autoload Paths", click `Run`.
 
+    3.  Set a default theme.
+        1.  Go to `Project > Tools > Run Maaack's Game Template Setup...`.
+        2.  In the `Setup Wizard` window next to "Set the Default Theme", click `Run`.
+        3.  In the next window, select the desired theme from the preview and select `Yes` to set it as the project's default theme.
 
 2.  Update the project’s name.
 
@@ -45,7 +51,7 @@ These instructions assume starting with the entire contents of the project folde
         5.  Make sure that the `bus` property is set to `Music`.
         6.  Save the scene.
         7.  Optionally, repeat steps 3-5 for background music nodes in:
-            1.  `opening_with_logo.tscn`
+            1.  `opening.tscn`
             2.  `game_ui.tscn`
             3.  `end_credits.tscn`
 
@@ -94,10 +100,10 @@ These instructions assume starting with the entire contents of the project folde
 
 
     1.  Update the example `ATTRIBUTION.md` with the project's credits.
-    2.  Open `scrollable_credits.tscn` and  `scrolling_credits.tscn`.
+    2.  Open `credits_label.tscn`.
     3.  Check the `CreditsLabel` has updated with the text.
-    4.  Optionally, change settings or disable `Auto Update`.
-    5.  Save both scenes (even they show no changes).
+    4.  Optionally, disable `Auto Update` and customize the text.
+    5.  Save the scene (even if it shows no changes).
 
 
 7.  Keep, update, or remove `res://LICENSE.txt`.  

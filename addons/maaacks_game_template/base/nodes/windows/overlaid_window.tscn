@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://6gdbfi0172ji"]
+
+[ext_resource type="Script" uid="uid://xfugmpspqbcc" path="res://addons/maaacks_game_template/base/nodes/windows/overlaid_window.gd" id="1_euyj1"]
+[ext_resource type="PackedScene" uid="uid://b2s0kvrx8r2kq" path="res://addons/maaacks_game_template/base/nodes/windows/window_container.tscn" id="2_pmk27"]
+
+[node name="OverlaidWindow" instance=ExtResource("2_pmk27")]
+process_mode = 0
+script = ExtResource("1_euyj1")
+pauses_game = false
+makes_mouse_visible = true
+exclusive = true

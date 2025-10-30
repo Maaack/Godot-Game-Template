@@ -1,0 +1,44 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxp45814v6ydv"]
+
+[ext_resource type="Script" uid="uid://b3q5fgjev8gyo" path="res://addons/maaacks_game_template/base/nodes/menus/options_menu/input/input_actions_list.gd" id="1_cxorh"]
+
+[node name="InputActionsList" type="ScrollContainer"]
+custom_minimum_size = Vector2(560, 240)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+follow_focus = true
+script = ExtResource("1_cxorh")
+action_groups = 3
+action_group_names = Array[String](["Primary", "Secondary", "Tertiary", "Quaternary", "Quinary"])
+input_action_names = Array[StringName]([&"move_forward", &"move_backward", &"move_up", &"move_down", &"move_left", &"move_right", &"interact"])
+readable_action_names = Array[String](["Move Forward", "Move Backward", "Move Up", "Move Down", "Move Left", "Move Right", "Interact"])
+action_name_map = {
+&"interact": "Interact",
+&"move_backward": "Move Backward",
+&"move_down": "Move Down",
+&"move_forward": "Move Forward",
+&"move_left": "Move Left",
+&"move_right": "Move Right",
+&"move_up": "Move Up"
+}
+
+[node name="ParentBoxContainer" type="BoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+vertical = true
+
+[node name="ActionBoxContainer" type="BoxContainer" parent="ParentBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="ActionNameLabel" type="Label" parent="ParentBoxContainer/ActionBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2

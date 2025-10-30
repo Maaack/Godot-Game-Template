@@ -8,14 +8,12 @@ signal canceled
 signal completed
 
 const DownloadAndExtract = MaaacksGameTemplatePlugin.DownloadAndExtract
-
-const RELATIVE_PATH_TO_CONFIGURE_SCENE = "scenes/menus/options_menu/input/input_options_menu.tscn"
+const RELATIVE_PATH_TO_CONFIGURE_SCENE = "scenes/menus/options_menu/input/input_icon_mapper.tscn"
 const REIMPORT_CHECK_DELAY : float = 0.5
 const OPEN_SCENE_DELAY : float = 0.5
-const REGEX_PREFIX = """\\[node name="InputIconMapper" parent="." index="0"\\][\\s\\S]*"""
+const MATCH_REGEX = """(\\[node name="InputIconMapper" instance=ExtResource\\("[0-9a-z_]+"\\)\\])[\\s\\S]*"""
 
 const FILLED_WHITE_CONFIGURATION = """
-[node name="InputIconMapper" parent="." index="0"]
 replace_strings = {
 "Capslock": "Caps Lock",
 "Generic Stick": "Generic Left Stick",
@@ -36,7 +34,6 @@ ends_with = ".png"
 not_ends_with = "outline.png"
 """
 const FILLED_COLOR_CONFIGURATION = """
-[node name="InputIconMapper" parent="." index="0"]
 prioritized_strings = Array[String](["color"])
 replace_strings = {
 "Capslock": "Caps Lock",
@@ -57,7 +54,6 @@ ends_with = ".png"
 not_ends_with = "outline.png"
 """
 const OUTLINED_WHITE_CONFIGURATION = """
-[node name="InputIconMapper" parent="." index="0"]
 prioritized_strings = Array[String](["outline"])
 replace_strings = {
 "Capslock": "Caps Lock",
@@ -78,7 +74,6 @@ filter = "color"
 ends_with = ".png"
 """
 const OUTLINED_COLOR_CONFIGURATION = """
-[node name="InputIconMapper" parent="." index="0"]
 prioritized_strings = Array[String](["outline", "color"])
 replace_strings = {
 "Capslock": "Caps Lock",
@@ -153,15 +148,15 @@ func _process(_delta : float) -> void:
 	if _installing_dialog.visible:
 		_progress_bar.value = _download_and_extract_node.get_progress()
 		match _download_and_extract_node.stage:
-			DownloadAndExtract.Stage.DOWNLOAD:
+			DownloadAndExtract.DownloadAndExtractStage.DOWNLOAD:
 				_stage_label.text = "Downloading..."
-			DownloadAndExtract.Stage.SAVE:
+			DownloadAndExtract.DownloadAndExtractStage.SAVE:
 				_stage_label.text = "Saving..."
-			DownloadAndExtract.Stage.EXTRACT:
+			DownloadAndExtract.DownloadAndExtractStage.EXTRACT:
 				_stage_label.text = "Extracting..."
-			DownloadAndExtract.Stage.DELETE:
+			DownloadAndExtract.DownloadAndExtractStage.DELETE:
 				_stage_label.text = "Cleaning up..."
-			DownloadAndExtract.Stage.NONE:
+			DownloadAndExtract.DownloadAndExtractStage.NONE:
 				_installing_dialog.hide()
 	elif scanning:
 		var file_system := EditorInterface.get_resource_filesystem()
@@ -228,39 +223,35 @@ func _delete_extras() -> void:
 	EditorInterface.get_resource_filesystem().scan()
 
 func _configure_icons() -> void:
-	var input_options_menu_path := copy_dir_path + RELATIVE_PATH_TO_CONFIGURE_SCENE
-	var input_options_menu := FileAccess.get_file_as_string(input_options_menu_path)
-	var regex := RegEx.new()
-	regex.compile(REGEX_PREFIX + """\\[node""")
-	var result = regex.sub(input_options_menu, "[node")
-	if result == input_options_menu:
-		regex.clear()
-		regex.compile(REGEX_PREFIX)
-		result = regex.sub(input_options_menu, "")
-	input_options_menu = result
+	var input_mapper_path := copy_dir_path + RELATIVE_PATH_TO_CONFIGURE_SCENE
+	var icon_mapper_string := FileAccess.get_file_as_string(input_mapper_path)
+	var replacing_string := "$1\n"
 	match(_configuration_index % 4):
 		0:
-			input_options_menu += FILLED_COLOR_CONFIGURATION
+			replacing_string += FILLED_COLOR_CONFIGURATION
 		1:
-			input_options_menu += FILLED_WHITE_CONFIGURATION
+			replacing_string += FILLED_WHITE_CONFIGURATION
 		2:
-			input_options_menu += OUTLINED_COLOR_CONFIGURATION
+			replacing_string += OUTLINED_COLOR_CONFIGURATION
 		3:
-			input_options_menu += OUTLINED_WHITE_CONFIGURATION
+			replacing_string += OUTLINED_WHITE_CONFIGURATION
 	match(_configuration_index / 4):
 		0:
-			input_options_menu = input_options_menu.replace("Default", "Vector").replace(".png", ".svg")
+			replacing_string = replacing_string.replace("Default", "Vector").replace(".png", ".svg")
 		1:
 			pass
 		2:
-			input_options_menu = input_options_menu.replace("Default", "Double")
-	var file_rewrite := FileAccess.open(input_options_menu_path, FileAccess.WRITE)
-	file_rewrite.store_string(input_options_menu)
+			replacing_string = replacing_string.replace("Default", "Double")
+	var regex = RegEx.new()
+	regex.compile(MATCH_REGEX)
+	icon_mapper_string = regex.sub(icon_mapper_string, replacing_string)
+	var file_rewrite := FileAccess.open(input_mapper_path, FileAccess.WRITE)
+	file_rewrite.store_string(icon_mapper_string)
 	file_rewrite.close()
-	if input_options_menu_path in EditorInterface.get_open_scenes():
-		EditorInterface.reload_scene_from_path(input_options_menu_path)
+	if input_mapper_path in EditorInterface.get_open_scenes():
+		EditorInterface.reload_scene_from_path(input_mapper_path)
 	else:
-		EditorInterface.open_scene_from_path(input_options_menu_path)
+		EditorInterface.open_scene_from_path(input_mapper_path)
 	await get_tree().create_timer(OPEN_SCENE_DELAY).timeout
 	EditorInterface.save_scene()
 	await get_tree().create_timer(REIMPORT_CHECK_DELAY).timeout

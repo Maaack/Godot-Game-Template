@@ -1,9 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://d25mdvmlbn35"]
 
 [ext_resource type="Script" uid="uid://c6p8xjvlrgsfk" path="res://addons/maaacks_game_template/installer/theme_selection_dialog.gd" id="1_5u0gx"]
-[ext_resource type="Script" uid="uid://bij7wsh8d44gv" path="res://addons/maaacks_game_template/base/scripts/file_lister.gd" id="2_luhgx"]
+[ext_resource type="Script" uid="uid://bij7wsh8d44gv" path="res://addons/maaacks_game_template/base/nodes/utilities/file_lister.gd" id="2_luhgx"]
 
 [node name="ThemeSelectionDialog" type="ConfirmationDialog"]
+oversampling_override = 1.0
 title = "Use a Starter Theme"
 initial_position = 2
 size = Vector2i(1024, 704)
