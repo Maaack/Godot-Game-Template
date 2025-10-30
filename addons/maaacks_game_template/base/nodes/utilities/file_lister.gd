@@ -31,14 +31,12 @@ class_name FileLister
 @export var not_begins_with : String
 ## Exclude any results that end with the string.
 @export var not_ends_with : String
-@export var remove_duplicates : bool = true
+
 
 func _refresh_files():
 	if not is_inside_tree(): return
 	files.clear()
 	for directory in directories:
-		if not directory.ends_with("/"):
-			directory += "/"
 		var dir_access = DirAccess.open(directory)
 		if dir_access:
 			for file in dir_access.get_files():
@@ -54,6 +52,4 @@ func _refresh_files():
 					continue
 				if (not not_ends_with.is_empty()) and (file.ends_with(not_ends_with)):
 					continue
-				var full_path = directory + file
-				if full_path in files and remove_duplicates: continue
-				files.append(full_path)
+				files.append(directory + "/" + file)

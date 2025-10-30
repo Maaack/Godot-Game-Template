@@ -4,7 +4,6 @@ extends Node
 
 signal canceled
 signal completed(target_path : String)
-signal destination_selected(target_path : String)
 
 const UID_PREG_MATCH = r'uid="uid:\/\/[0-9a-z]+" '
 const RUNNING_CHECK_DELAY : float = 0.25
@@ -42,8 +41,8 @@ func _remove_uids(content : String) -> String:
 	regex.compile(UID_PREG_MATCH)
 	return regex.sub(content, "", true)
 
-func _replace_paths(content : String, target_path : String, replace_path : String) -> String:
-	return content.replace(target_path.trim_prefix("res://"), replace_path.trim_prefix("res://"))
+func _replace_paths(content : String, target_path : String) -> String:
+	return content.replace(relative_path.trim_prefix("res://"), target_path.trim_prefix("res://"))
 
 func _replace_strings(content : String) -> String:
 	for key in replace_strings_map:
@@ -54,7 +53,7 @@ func _replace_strings(content : String) -> String:
 func _replace_content(content : String, target_path : String) -> String:
 	var replaced_content : String
 	replaced_content = _remove_uids(content)
-	replaced_content = _replace_paths(replaced_content, relative_path, target_path)
+	replaced_content = _replace_paths(replaced_content, target_path)
 	replaced_content = _replace_strings(replaced_content)
 	return replaced_content
 
@@ -170,7 +169,6 @@ func _copy_to_directory(target_path : String) -> void:
 	_delayed_saving_and_next_prompt(target_path)
 
 func _on_destination_dialog_dir_selected(dir):
-	destination_selected.emit(dir)
 	_copy_to_directory(dir)
 
 func _on_destination_dialog_canceled():

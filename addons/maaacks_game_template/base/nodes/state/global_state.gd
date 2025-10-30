@@ -40,28 +40,11 @@ static func has_state(state_key : String) -> bool:
 	if current is not GlobalStateData: return false
 	return current.has_state(state_key)
 
-static func get_state(state_key : String) -> Resource:
-	if current is not GlobalStateData: return
-	return current.get_state(state_key)
-
 static func get_or_create_state(state_key : String, state_type_path : String) -> Resource:
 	if current is not GlobalStateData: return
 	return current.get_or_create_state(state_key, state_type_path)
-
-static func set_state(state_key : String, state_object : Resource) -> Resource:
-	if current is not GlobalStateData: return
-	return current.set_state(state_key, state_object)
 
 static func reset() -> void:
 	if current is not GlobalStateData: return
 	current.states.clear()
 	save()
-
-static func get_all_states() -> Dictionary:
-	if current is not GlobalStateData: return {}
-	return current.states
-
-static func set_all_states(new_states : Dictionary) -> void:
-	if current is not GlobalStateData: return
-	current.states = new_states
-	GlobalState.save()

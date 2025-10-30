@@ -54,9 +54,3 @@ static func get_section_keys(section: String) -> PackedStringArray:
 	if config_file.has_section(section):
 		return config_file.get_section_keys(section)
 	return PackedStringArray()
-
-static func overwrite_config(config_content : String):
-	load_config_file()
-	config_file.clear()
-	config_file.parse(config_content)
-	_save_config_file()

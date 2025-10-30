@@ -6,12 +6,6 @@ extends Resource
 @export var last_unix_time_opened : int
 @export var states : Dictionary
 
-func get_state(key_name : String) -> Resource:
-	if not key_name in states:
-		push_warning("state key did not exist: %s" % key_name)
-		return null
-	return states[key_name]
-
 func get_or_create_state(key_name : String, state_type_path : String) -> Resource:
 	var new_state : Resource
 	var new_state_script = load(state_type_path)
@@ -28,7 +22,3 @@ func get_or_create_state(key_name : String, state_type_path : String) -> Resourc
 
 func has_state(key_name : String) -> bool:
 	return key_name in states
-
-func set_state(key_name : String, state_object : Resource) -> Resource:
-	states[key_name] = state_object
-	return state_object

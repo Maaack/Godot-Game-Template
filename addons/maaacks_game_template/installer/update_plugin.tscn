@@ -9,7 +9,6 @@
 script = ExtResource("1_s6qpc")
 plugin_directory = "maaacks_game_template"
 plugin_github_url = "https://github.com/Maaack/Godot-Game-Template"
-preserve_directories = Array[String](["premium"])
 
 [node name="APIClient" parent="." instance=ExtResource("2_s6pdq")]
 api_url = "https://api.github.com/repos/Maaack/Godot-Game-Template/releases"

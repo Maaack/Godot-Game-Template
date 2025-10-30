@@ -76,11 +76,11 @@ func _update_urls() -> void:
 	_api_client.api_url = API_RELEASES_URL % [username, repository]
 
 func _show_error_dialog(error : String) -> void:
-	_error_dialog.show.call_deferred()
+	_error_dialog.show()
 	_error_dialog.dialog_text = "%s!" % error
 
 func _show_success_dialog() -> void:
-	_success_dialog.show.call_deferred()
+	_success_dialog.show()
 	_success_dialog.dialog_text = "%s updated to v%s." % [_plugin_name, _newest_version]
 
 func _on_api_client_request_failed(error : String) -> void:
@@ -133,15 +133,15 @@ func _on_update_confirmation_dialog_canceled() -> void:
 
 func _on_update_confirmation_dialog_confirmed() -> void:
 	_download_and_extract_node.run()
-	_installing_dialog.show.call_deferred()
+	_installing_dialog.show()
 
-func _on_warning_message_button_pressed() -> void:
-	_warning_message_button.hide()
+func _on_warning_message_button_pressed():
 	_warning_message_label.show()
+	_warning_message_button.hide()
 
 func _on_release_notes_button_pressed() -> void:
-	_release_notes_button.hide()
 	_release_notes_panel.show()
+	_release_notes_button.hide()
 
 func get_newest_version() -> void:
 	_api_client.request()
