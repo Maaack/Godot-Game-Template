@@ -1,11 +1,18 @@
 extends LoadingScreen
+## Loading Screen extension that pre-loads shaders before opening the next scene.
 
+## Path to directory with the material shaders that should be pre-loaded.
 @export_dir var _spatial_shader_material_dir : String
+## Path to the scene that should trigger a shader pre-loading.
 @export_file("*.tscn") var _cache_shaders_scene : String
+## Mesh object that the material shaders should be applied to.
 @export var _mesh : Mesh
 @export_group("Advanced")
+## Includes material scenes with extensions that match the strings.
 @export var _matching_extensions : Array[String] = [".tres", ".material", ".res"]
+## Excludes subfolders that match the strings.
 @export var _ignore_subfolders : Array[String] = [".", ".."]
+## Delay between loading each shader onto the mesh.
 @export var _shader_delay_timer : float = 0.1
 
 var _loading_shader_cache : bool = false

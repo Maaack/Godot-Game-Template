@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cjdhy7rpbaoam"]
+[gd_scene load_steps=3 format=3 uid="uid://bx7s80d8smic4"]
 
 [ext_resource type="PackedScene" uid="uid://whpmo2tt4mwr" path="res://addons/maaacks_game_template/extras/scenes/windows/level_lost_window.tscn" id="1_7bonu"]
-[ext_resource type="Script" uid="uid://7w0a0tdgp4sp" path="res://scenes/windows/level_lost_window.gd" id="2_jt3uh"]
+[ext_resource type="Script" uid="uid://c73mi15xc07d6" path="res://scenes/windows/level_lost_window.gd" id="2_jt3uh"]
 
 [node name="LevelLostWindow" instance=ExtResource("1_7bonu")]
 script = ExtResource("2_jt3uh")
