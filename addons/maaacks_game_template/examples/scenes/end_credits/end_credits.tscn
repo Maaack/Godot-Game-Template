@@ -9,8 +9,6 @@
 script = ExtResource("2_6pwj4")
 main_menu_scene_path = ""
 force_mouse_mode_visible = false
-signal_main_menu_load = false
-signal_game_exit = false
 
 [node name="BackgroundMusicPlayer" parent="." index="0" instance=ExtResource("3_v7acr")]
 
