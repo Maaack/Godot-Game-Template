@@ -2,8 +2,6 @@ extends MainMenu
 ## Main menu extension that adds options.
 ## The scene adds a 'Continue' button if a game is in progress.
 
-## Optional scene to open when the player clicks a 'Load Game' button.
-@export var load_game_packed_scene: PackedScene
 ## Optional scene to open when the player clicks a 'Level Select' button.
 @export var level_select_packed_scene: PackedScene
 ## If true, have the player confirm before starting a new game if a game is in progress.
@@ -12,16 +10,10 @@ extends MainMenu
 @onready var continue_game_button = %ContinueGameButton
 @onready var level_select_button = %LevelSelectButton
 @onready var new_game_confirmation = %NewGameConfirmation
-@onready var load_game_button = %LoadGameButton
 
 func load_game_scene() -> void:
 	GameState.start_game()
 	super.load_game_scene()
-
-func _add_load_game_if_set() -> void: 
-	if load_game_packed_scene == null: return
-	if GameState.get_levels_reached() <= 1 : return
-	load_game_button.show()
 
 func new_game() -> void:
 	if confirm_new_game and GameState.get_levels_reached() > 0:
@@ -41,23 +33,17 @@ func _show_continue_if_set() -> void:
 
 func _ready() -> void:
 	super._ready()
-	_add_load_game_if_set()
 	_add_level_select_if_set()
 	_show_continue_if_set()
-
-func _on_load_game_button_pressed():
-	var _load_game_scene := _open_sub_menu(load_game_packed_scene)
-	if _load_game_scene.has_signal(&"save_loaded"):
-		_load_game_scene.connect(&"save_loaded", load_game_scene)
 
 func _on_continue_game_button_pressed() -> void:
 	GameState.continue_game()
 	load_game_scene()
 
 func _on_level_select_button_pressed() -> void:
-	var _level_select_scene := _open_sub_menu(level_select_packed_scene)
-	if _level_select_scene.has_signal(&"level_selected"):
-		_level_select_scene.connect(&"level_selected", load_game_scene)
+	var level_select_scene := _open_sub_menu(level_select_packed_scene)
+	if level_select_scene.has_signal("level_selected"):
+		level_select_scene.connect("level_selected", load_game_scene)
 
 func _on_new_game_confirmation_confirmed() -> void:
 	GameState.reset()
