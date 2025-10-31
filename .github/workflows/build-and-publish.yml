@@ -105,7 +105,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: web
-          path: build/web.zip
+          path: build/web
 
   export-windows:
     name: Windows Export
@@ -150,7 +150,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: windows
-          path: build/windows/${{ env.EXPORT_NAME }}.exe
+          path: build/windows
 
   export-linux:
     name: Linux Export
@@ -195,7 +195,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: linux
-          path: build/linux/${{ env.EXPORT_NAME }}.x86_64
+          path: build/linux
 
   export-mac:
     name: macOS Export
@@ -240,7 +240,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: mac
-          path: build/mac/${{ env.EXPORT_NAME }}.zip
+          path: build/mac
 
   deploy-to-itch:
     name: Deploy to Itch.io
@@ -276,11 +276,7 @@ jobs:
 
       - name: Upload to Itch.io - Web
         run: |
-          # For web, we need to push the extracted contents since butler expects the files directly
-          mkdir -p builds/web-extracted
-          unzip -q builds/web/web.zip -d builds/web-extracted/
-          ls builds/web-extracted/
-          ./butler push builds/web-extracted ${{ env.ITCH_USERNAME }}/${{ env.ITCH_GAME }}:html5 --userversion "${{ steps.version.outputs.version }}"
+          ./butler push builds/web ${{ env.ITCH_USERNAME }}/${{ env.ITCH_GAME }}:html5 --userversion "${{ steps.version.outputs.version }}"
 
       - name: Upload to Itch.io - Windows
         run: |
