@@ -42,7 +42,7 @@ env:
   # Look at available versions here: https://hub.docker.com/r/barichello/godot-ci/tags
   GODOT_VERSION: 4.5
   # Change this to your game name (it will be the filename downloaded)
-  EXPORT_NAME: your-game
+  EXPORT_NAME: Godot Game Template
   # NOTE: If your `project.godot` is at the repository root, set `PROJECT_PATH` to "."
   # If it's in a subdirectory, set it to the subdirectory name (e.g., "your-game")
   PROJECT_PATH: .
@@ -54,9 +54,10 @@ jobs:
     container:
       image: barichello/godot-ci:4.5
     steps:
-      - name: Checkout
+      - name: Checkout Demo Version
         uses: actions/checkout@v4
         with:
+          ref: 'demo-version'
           lfs: true
 
       - name: Setup
@@ -112,9 +113,10 @@ jobs:
     container:
       image: barichello/godot-ci:4.5
     steps:
-      - name: Checkout
+      - name: Checkout Demo Version
         uses: actions/checkout@v4
         with:
+          ref: 'demo-version'
           lfs: true
 
       - name: Setup
@@ -156,9 +158,10 @@ jobs:
     container:
       image: barichello/godot-ci:4.5
     steps:
-      - name: Checkout
+      - name: Checkout Demo Version
         uses: actions/checkout@v4
         with:
+          ref: 'demo-version'
           lfs: true
 
       - name: Setup
@@ -200,9 +203,10 @@ jobs:
     container:
       image: barichello/godot-ci:4.5
     steps:
-      - name: Checkout
+      - name: Checkout Demo Version
         uses: actions/checkout@v4
         with:
+          ref: 'demo-version'
           lfs: true
 
       - name: Setup
