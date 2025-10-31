@@ -1,9 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://c63y6b25bs4bk"]
+[gd_scene load_steps=19 format=3 uid="uid://c63y6b25bs4bk"]
 
 [ext_resource type="PackedScene" uid="uid://c6k5nnpbypshi" path="res://addons/maaacks_game_template/base/nodes/menus/main_menu/main_menu.tscn" id="1_0i2sc"]
 [ext_resource type="Script" uid="uid://b5qy5nr1wivs4" path="res://addons/maaacks_game_template/examples/scenes/menus/main_menu/main_menu_with_animations.gd" id="2_ncvk7"]
-[ext_resource type="PackedScene" uid="uid://dy8sr0cd8nbiu" path="res://addons/maaacks_game_template/examples/scenes/overlaid_menus/main_menu_options_overlaid_menu.tscn" id="3_4saoe"]
-[ext_resource type="PackedScene" uid="uid://n111yfgskspp" path="res://addons/maaacks_game_template/examples/scenes/overlaid_menus/main_menu_credits_overlaid_menu.tscn" id="4_801fg"]
+[ext_resource type="PackedScene" uid="uid://dum2pujhh1w4g" path="res://addons/maaacks_game_template/examples/scenes/windows/main_menu_options_window.tscn" id="3_801fg"]
+[ext_resource type="PackedScene" uid="uid://c5pfkjxskjc60" path="res://addons/maaacks_game_template/examples/scenes/windows/main_menu_credits_window.tscn" id="4_801fg"]
+[ext_resource type="PackedScene" uid="uid://cwt4p3bufkke5" path="res://addons/maaacks_game_template/base/nodes/windows/confirmation_overlaid_window.tscn" id="5_801fg"]
 
 [sub_resource type="Animation" id="1"]
 resource_name = "Intro"
@@ -317,7 +318,7 @@ graph_offset = Vector2(-180.277, 49)
 script = ExtResource("2_ncvk7")
 level_select_packed_scene = null
 confirm_new_game = true
-options_packed_scene = ExtResource("3_4saoe")
+options_packed_scene = ExtResource("3_801fg")
 credits_packed_scene = ExtResource("4_801fg")
 
 [node name="MenuAnimationPlayer" type="AnimationPlayer" parent="." index="1"]
@@ -357,14 +358,20 @@ visible = false
 layout_mode = 2
 text = "Level Select"
 
-[node name="NewGameConfirmationDialog" type="ConfirmationDialog" parent="." index="7"]
+[node name="NewGameConfirmation" parent="." index="7" instance=ExtResource("5_801fg")]
 unique_name_in_owner = true
-title = "Start a New Game?"
-initial_position = 1
-size = Vector2i(480, 158)
-dialog_text = "Are you sure you want to start a new game?
+visible = false
+custom_minimum_size = Vector2(420, 200)
+layout_mode = 1
+offset_left = -210.0
+offset_top = -100.0
+offset_right = 210.0
+offset_bottom = 100.0
+update_content = true
+text = "Are you sure you want to start a new game?
 
 All progress in the current game will be lost."
+title = "New Game"
 
 [node name="MouseFilter" type="Control" parent="." index="8"]
 layout_mode = 1
@@ -378,4 +385,4 @@ metadata/_edit_lock_ = true
 
 [connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/ContinueGameButton" to="." method="_on_continue_game_button_pressed"]
 [connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/LevelSelectButton" to="." method="_on_level_select_button_pressed"]
-[connection signal="confirmed" from="NewGameConfirmationDialog" to="." method="_on_new_game_confirmation_dialog_confirmed"]
+[connection signal="confirmed" from="NewGameConfirmation" to="." method="_on_new_game_confirmation_confirmed"]

@@ -1,16 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://dboeh8i18e2sh"]
+[gd_scene load_steps=6 format=3 uid="uid://conoq2gmylqvr"]
 
-[ext_resource type="PackedScene" uid="uid://c6k5nnpbypshi" path="res://addons/maaacks_game_template/base/nodes/menus/main_menu/main_menu.tscn" id="1_peecx"]
-[ext_resource type="Script" uid="uid://w0trtg53nc1y" path="res://scenes/menus/main_menu/main_menu.gd" id="2_peecx"]
-[ext_resource type="PackedScene" uid="uid://v3q2x6bbylw" path="res://scenes/overlaid_menus/main_menu_options_overlaid_menu.tscn" id="3_ub2bi"]
-[ext_resource type="PackedScene" uid="uid://lwo04se8oqbv" path="res://scenes/overlaid_menus/main_menu_credits_overlaid_menu.tscn" id="4_x31ro"]
+[ext_resource type="PackedScene" uid="uid://c6k5nnpbypshi" path="res://addons/maaacks_game_template/base/nodes/menus/main_menu/main_menu.tscn" id="1_ub2bi"]
+[ext_resource type="Script" uid="uid://u3hoafvcejmm" path="res://scenes/menus/main_menu/main_menu.gd" id="2_x31ro"]
+[ext_resource type="PackedScene" uid="uid://mhk7ai1jtttm" path="res://scenes/windows/main_menu_options_window.tscn" id="3_0jpat"]
+[ext_resource type="PackedScene" uid="uid://dnaejbfe1nvn1" path="res://scenes/windows/main_menu_credits_window.tscn" id="4_m0ubd"]
+[ext_resource type="PackedScene" uid="uid://cwt4p3bufkke5" path="res://addons/maaacks_game_template/base/nodes/windows/confirmation_overlaid_window.tscn" id="5_627ab"]
 
-[node name="MainMenu" instance=ExtResource("1_peecx")]
-script = ExtResource("2_peecx")
+[node name="MainMenu" instance=ExtResource("1_ub2bi")]
+script = ExtResource("2_x31ro")
 level_select_packed_scene = null
 confirm_new_game = true
-options_packed_scene = ExtResource("3_ub2bi")
-credits_packed_scene = ExtResource("4_x31ro")
+options_packed_scene = ExtResource("3_0jpat")
+credits_packed_scene = ExtResource("4_m0ubd")
 
 [node name="ContinueGameButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" index="1"]
 unique_name_in_owner = true
@@ -24,16 +25,21 @@ visible = false
 layout_mode = 2
 text = "Level Select"
 
-[node name="NewGameConfirmationDialog" type="ConfirmationDialog" parent="." index="5"]
+[node name="NewGameConfirmation" parent="." index="5" instance=ExtResource("5_627ab")]
 unique_name_in_owner = true
-auto_translate_mode = 1
-title = "Start a New Game?"
-initial_position = 1
-size = Vector2i(480, 158)
-dialog_text = "Are you sure you want to start a new game?
+visible = false
+custom_minimum_size = Vector2(420, 200)
+layout_mode = 1
+offset_left = -210.0
+offset_top = -100.0
+offset_right = 210.0
+offset_bottom = 100.0
+update_content = true
+text = "Are you sure you want to start a new game?
 
 All progress in the current game will be lost."
+title = "New Game"
 
 [connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/ContinueGameButton" to="." method="_on_continue_game_button_pressed"]
 [connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/LevelSelectButton" to="." method="_on_level_select_button_pressed"]
-[connection signal="confirmed" from="NewGameConfirmationDialog" to="." method="_on_new_game_confirmation_dialog_confirmed"]
+[connection signal="confirmed" from="NewGameConfirmation" to="." method="_on_new_game_confirmation_confirmed"]
