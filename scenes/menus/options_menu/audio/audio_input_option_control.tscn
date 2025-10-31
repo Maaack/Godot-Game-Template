@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://doibu2bfnvpsv" path="res://scenes/menus/options_menu/audio/audio_input_option_control.gd" id="2_m6bxx"]
 
 [node name="AudioInputOptionControl" instance=ExtResource("1_lfo7w")]
-visible = false
 script = ExtResource("2_m6bxx")
 option_name = "Input Device"
 option_section = 2
