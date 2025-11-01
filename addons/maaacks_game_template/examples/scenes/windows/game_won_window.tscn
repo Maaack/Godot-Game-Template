@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bve6co8x25of"]
 
 [ext_resource type="PackedScene" uid="uid://6gdbfi0172ji" path="res://addons/maaacks_game_template/base/nodes/windows/overlaid_window.tscn" id="1_nebwc"]
-[ext_resource type="Script" uid="uid://dccdc1eouls23" path="res://addons/maaacks_game_template/examples/scenes/windows/game_won_window.gd" id="2_oprk0"]
+[ext_resource type="Script" uid="uid://r5mfcie1a8yq" path="res://addons/maaacks_game_template/examples/scenes/windows/game_won_window.gd" id="2_oprk0"]
 [ext_resource type="PackedScene" uid="uid://cwt4p3bufkke5" path="res://addons/maaacks_game_template/base/nodes/windows/confirmation_overlaid_window.tscn" id="3_8ctq7"]
 
 [node name="GameWonWindow" instance=ExtResource("1_nebwc")]
