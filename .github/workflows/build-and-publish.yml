@@ -98,7 +98,7 @@ jobs:
     name: Windows Export
     runs-on: ubuntu-24.04
     container:
-      image: barichello/godot-ci:4.5
+      image: barichello/godot-ci:${{ vars.GODOT_VERSION }}
     steps:
       - name: Checkout Demo Version
         uses: actions/checkout@v4
@@ -150,7 +150,7 @@ jobs:
     name: Linux Export
     runs-on: ubuntu-24.04
     container:
-      image: barichello/godot-ci:4.5
+      image: barichello/godot-ci:${{ vars.GODOT_VERSION }}
     steps:
       - name: Checkout Demo Version
         uses: actions/checkout@v4
@@ -202,7 +202,7 @@ jobs:
     name: macOS Export
     runs-on: ubuntu-24.04
     container:
-      image: barichello/godot-ci:4.5
+      image: barichello/godot-ci:${{ vars.GODOT_VERSION }}
     steps:
       - name: Checkout Demo Version
         uses: actions/checkout@v4
