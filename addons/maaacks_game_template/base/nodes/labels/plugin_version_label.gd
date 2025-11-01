@@ -25,4 +25,5 @@ func update_version_label() -> void:
 	text = version_prefix + plugin_version
 
 func _ready() -> void:
-	update_version_label()
+	if Engine.is_editor_hint():
+		update_version_label()
