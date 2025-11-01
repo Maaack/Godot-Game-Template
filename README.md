@@ -1,5 +1,5 @@
 # Godot Game Template
-For Godot 4.4 (4.3+ compatible)
+For Godot 4.5 (4.3+ compatible)
 
 This template has a main menu, options menus, pause menu, credits, scene loader, extra tools, and an example game scene.  
 
@@ -50,27 +50,23 @@ The `base/` folder holds the core components of the menus application.
 
 The `extras/` folder holds components that extend the core application.
 
--   Win & Lose Menus
 -   Level Loaders
 -   Level Progress Manager
--   Logging Scripts
+-   Win / Lose Manager
 -   Script for Releasing on [itch.io](https://itch.io/) with [butler](https://itch.io/docs/butler/)
  
 ### Examples 
 
 The `examples/` folder contains an example project using inherited scenes from the `base/` and `extras/`.
 
--   Example Game Scene
--   Base Level Class
--   Example Levels
+-   Game Scene
+-   Level Class & 3 Levels
+-   Tutorial Windows & 3 Tutorial Messages
+-   Win & Lose Windows
+-   Master Options Menu
 -   End Credits
--   Additional Inherited Scenes:
-    -   Game Options Menu w/ Reset button
-    -   Master Options Menu w/ Game Options tab 
-    -   Main Menu w/ Animations
-    -   Opening w/ Godot Logo
-    -   Level Loading Screen
-    -   Loading Screen w/ Shader Pre-caching 
+-   Main Menu w/ Animations
+-   Opening w/ Godot Logo
 
 ### Minimal
 
@@ -142,12 +138,17 @@ These instructions assume starting with just the contents of `addons/`. This wil
 
 [Main Menu Setup](/addons/maaacks_game_template/docs/MainMenuSetup.md)  
 [Game Scene Setup](/addons/maaacks_game_template/docs/GameSceneSetup.md)  
+[Loading Scenes](/addons/maaacks_game_template/docs/LoadingScenes.md)  
 [Input Icon Mapping](/addons/maaacks_game_template/docs/InputIconMapping.md)  
 [Joypad Inputs](/addons/maaacks_game_template/docs/JoypadInputs.md)  
+[Blending Music](/addons/maaacks_game_template/docs/BlendingMusic.md)  
+[Add Custom Options](/addons/maaacks_game_template/docs/AddingCustomOptions.md)  
 [Game Saving](/addons/maaacks_game_template/docs/GameSaving.md)  
 [How Parts Work](/addons/maaacks_game_template/docs/HowPartsWork.md)  
+[Moving Files](/addons/maaacks_game_template/docs/MovingFiles.md)  
 [Uploading to itch.io](/addons/maaacks_game_template/docs/UploadingToItchIo.md)  
 [Automatic Updating](/addons/maaacks_game_template/docs/AutomaticUpdating.md)  
+[Exhibiting Your Game](/addons/maaacks_game_template/docs/Exhibiting.md)  
 
 ---
 

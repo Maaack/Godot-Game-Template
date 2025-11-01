@@ -1,0 +1,60 @@
+[gd_scene load_steps=4 format=3 uid="uid://whpmo2tt4mwr"]
+
+[ext_resource type="PackedScene" uid="uid://6gdbfi0172ji" path="res://addons/maaacks_game_template/base/nodes/windows/overlaid_window.tscn" id="1_lib5d"]
+[ext_resource type="Script" uid="uid://8a1olklsvlpx" path="res://addons/maaacks_game_template/examples/scenes/windows/level_lost_window.gd" id="2_lib5d"]
+[ext_resource type="PackedScene" uid="uid://cwt4p3bufkke5" path="res://addons/maaacks_game_template/base/nodes/windows/confirmation_overlaid_window.tscn" id="3_503i8"]
+
+[node name="LevelLostWindow" instance=ExtResource("1_lib5d")]
+custom_minimum_size = Vector2(432, 240)
+script = ExtResource("2_lib5d")
+update_content = true
+text = "You lost..."
+close_button_text = "Restart"
+title_visible = false
+
+[node name="TitleMargin" parent="ContentContainer/BoxContainer" index="0"]
+visible = false
+
+[node name="DescriptionLabel" parent="ContentContainer/BoxContainer/DescriptionMargin" index="0"]
+text = "You lost..."
+
+[node name="MenuButtons" parent="ContentContainer/BoxContainer/MenuButtonsMargin" index="0"]
+vertical = false
+
+[node name="ExitButton" type="Button" parent="ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="0"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Exit"
+
+[node name="MainMenuButton" type="Button" parent="ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="1"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Main Menu"
+
+[node name="CloseButton" parent="ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="2"]
+size_flags_horizontal = 3
+text = "Restart"
+
+[node name="MainMenuConfirmation" parent="." index="1" instance=ExtResource("3_503i8")]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+update_content = true
+text = "Exit to the main menu?"
+title = "Confirm Exit"
+
+[node name="ExitConfirmation" parent="." index="2" instance=ExtResource("3_503i8")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+update_content = true
+text = "Exit the game?"
+title = "Confirm Exit"
+
+[connection signal="pressed" from="ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="confirmed" from="MainMenuConfirmation" to="." method="_on_main_menu_confirmation_confirmed"]
+[connection signal="confirmed" from="ExitConfirmation" to="." method="_on_exit_confirmation_confirmed"]

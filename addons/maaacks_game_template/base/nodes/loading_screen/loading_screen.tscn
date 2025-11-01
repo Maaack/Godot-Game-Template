@@ -1,0 +1,87 @@
+[gd_scene load_steps=2 format=3 uid="uid://cd0jbh4metflb"]
+
+[ext_resource type="Script" uid="uid://dgeewyjjpk4qn" path="res://addons/maaacks_game_template/base/nodes/loading_screen/loading_screen.gd" id="1_gbk34"]
+
+[node name="LoadingScreen" type="CanvasLayer"]
+process_mode = 3
+layer = 20
+script = ExtResource("1_gbk34")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackPanel" type="Panel" parent="Control"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="BackgroundColor" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="BackgroundTextureRect" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 30.0
+offset_top = -23.0
+offset_right = -30.0
+offset_bottom = 98.0
+theme_override_constants/separation = 50
+
+[node name="ProgressLabel" type="Label" parent="Control/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Loading..."
+horizontal_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="Control/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+max_value = 1.0
+
+[node name="ErrorMessage" type="AcceptDialog" parent="Control"]
+unique_name_in_owner = true
+title = "Loading Error"
+initial_position = 2
+size = Vector2i(360, 100)
+
+[node name="StalledMessage" type="ConfirmationDialog" parent="Control"]
+unique_name_in_owner = true
+title = "Loading Stalled"
+initial_position = 2
+size = Vector2i(360, 100)
+ok_button_text = "Try Waiting"
+cancel_button_text = "Reload"
+
+[node name="LoadingTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+autostart = true
+
+[connection signal="confirmed" from="Control/ErrorMessage" to="." method="_on_error_message_confirmed"]
+[connection signal="canceled" from="Control/StalledMessage" to="." method="_on_confirmation_dialog_canceled"]
+[connection signal="confirmed" from="Control/StalledMessage" to="." method="_on_confirmation_dialog_confirmed"]
+[connection signal="timeout" from="LoadingTimer" to="." method="_on_loading_timer_timeout"]

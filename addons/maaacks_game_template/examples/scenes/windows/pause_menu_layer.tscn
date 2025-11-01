@@ -1,0 +1,101 @@
+[gd_scene load_steps=6 format=3 uid="uid://ch7wxnbttg3ik"]
+
+[ext_resource type="Script" uid="uid://dn4473jhxuix" path="res://addons/maaacks_game_template/examples/scenes/windows/pause_menu_layer.gd" id="1_7wt2f"]
+[ext_resource type="PackedScene" uid="uid://6gdbfi0172ji" path="res://addons/maaacks_game_template/base/nodes/windows/overlaid_window.tscn" id="2_wso7n"]
+[ext_resource type="Script" uid="uid://bam78uxl5tbhb" path="res://addons/maaacks_game_template/examples/scenes/windows/pause_menu.gd" id="3_ykde5"]
+[ext_resource type="PackedScene" uid="uid://xvu2k02xdqi6" path="res://addons/maaacks_game_template/examples/scenes/windows/pause_menu_options_window.tscn" id="4_7wt2f"]
+[ext_resource type="PackedScene" uid="uid://cwt4p3bufkke5" path="res://addons/maaacks_game_template/base/nodes/windows/confirmation_overlaid_window.tscn" id="5_7wt2f"]
+
+[node name="PauseMenuLayer" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_7wt2f")
+
+[node name="PauseMenu" parent="." instance=ExtResource("2_wso7n")]
+unique_name_in_owner = true
+process_mode = 3
+custom_minimum_size = Vector2(256, 312)
+script = ExtResource("3_ykde5")
+options_menu_scene = ExtResource("4_7wt2f")
+main_menu_scene_path = ""
+restart_confirmation_node_path = NodePath("../RestartConfirmation")
+main_menu_confirmation_node_path = NodePath("../MainMenuConfirmation")
+exit_confirmation_node_path = NodePath("../ExitConfirmation")
+menu_container_node_path = NodePath("..")
+pauses_game = true
+update_content = true
+title = "Paused"
+
+[node name="TitleLabel" parent="PauseMenu/ContentContainer/BoxContainer/TitleMargin/BoxContainer" index="0"]
+text = "Paused"
+
+[node name="DescriptionMargin" parent="PauseMenu/ContentContainer/BoxContainer" index="1"]
+visible = false
+
+[node name="MenuButtonsMargin" parent="PauseMenu/ContentContainer/BoxContainer" index="2"]
+size_flags_vertical = 3
+
+[node name="CloseButton" parent="PauseMenu/ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="0"]
+text = "Resume"
+
+[node name="RestartButton" type="Button" parent="PauseMenu/ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="1"]
+layout_mode = 2
+text = "Restart"
+
+[node name="SaveGameButton" type="Button" parent="PauseMenu/ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="2"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "Save Game"
+
+[node name="LoadGameButton" type="Button" parent="PauseMenu/ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="3"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "Load Game"
+
+[node name="OptionsButton" type="Button" parent="PauseMenu/ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="4"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Options"
+
+[node name="MainMenuButton" type="Button" parent="PauseMenu/ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="5"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Main Menu"
+
+[node name="ExitButton" type="Button" parent="PauseMenu/ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="6"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Exit Game"
+
+[node name="RestartConfirmation" parent="." instance=ExtResource("5_7wt2f")]
+unique_name_in_owner = true
+visible = false
+update_content = true
+text = "Restart the game?"
+title = "Confirm Restart"
+
+[node name="MainMenuConfirmation" parent="." instance=ExtResource("5_7wt2f")]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(220, 0)
+update_content = true
+text = "Exit to the main menu?"
+title = "Confirm Exit"
+
+[node name="ExitConfirmation" parent="." instance=ExtResource("5_7wt2f")]
+unique_name_in_owner = true
+visible = false
+update_content = true
+text = "Exit the game?"
+title = "Confirm Exit"
+
+[connection signal="hidden" from="PauseMenu" to="." method="_on_pause_menu_hidden"]
+[connection signal="pressed" from="PauseMenu/ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons/RestartButton" to="PauseMenu" method="_on_restart_button_pressed"]
+[connection signal="pressed" from="PauseMenu/ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons/SaveGameButton" to="PauseMenu" method="_on_save_game_button_pressed"]
+[connection signal="pressed" from="PauseMenu/ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons/LoadGameButton" to="PauseMenu" method="_on_load_game_button_pressed"]
+[connection signal="pressed" from="PauseMenu/ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons/OptionsButton" to="PauseMenu" method="_on_options_button_pressed"]
+[connection signal="pressed" from="PauseMenu/ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons/MainMenuButton" to="PauseMenu" method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="PauseMenu/ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons/ExitButton" to="PauseMenu" method="_on_exit_button_pressed"]
+
+[editable path="PauseMenu"]

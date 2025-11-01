@@ -1,16 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://b2tqk64gy4pht"]
+[gd_scene load_steps=6 format=3 uid="uid://cegpeogqhswj3"]
 
-[ext_resource type="PackedScene" uid="uid://6p2ymb2rownn" path="res://scenes/credits/scrolling_credits.tscn" id="1_0sycx"]
-[ext_resource type="Script" uid="uid://bfdql7vusqsvw" path="res://scenes/end_credits/end_credits.gd" id="2_2v40y"]
-[ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/scenes/music_players/background_music_player.tscn" id="3_ec4p2"]
-[ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/scripts/capture_focus.gd" id="4_1kqi1"]
+[ext_resource type="PackedScene" uid="uid://b70k3m1utqn6g" path="res://scenes/credits/scrolling_credits.tscn" id="1_0sycx"]
+[ext_resource type="Script" uid="uid://br1857twdktc8" path="res://scenes/end_credits/end_credits.gd" id="2_2v40y"]
+[ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/nodes/music_players/background_music_player.tscn" id="3_bfvdl"]
+[ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/nodes/utilities/capture_focus.gd" id="4_1kqi1"]
+[ext_resource type="AudioStream" uid="uid://cyakcui2s5g46" path="res://assets/music_and_sfx/Maaack - Campfire Tales - Music 2b (3 min).mp3" id="4_2v40y"]
 
 [node name="EndCredits" instance=ExtResource("1_0sycx")]
 script = ExtResource("2_2v40y")
-main_menu_scene = "res://scenes/menus/main_menu/main_menu_with_animations.tscn"
+main_menu_scene_path = ""
 force_mouse_mode_visible = false
 
-[node name="BackgroundMusicPlayer" parent="." index="0" instance=ExtResource("3_ec4p2")]
+[node name="BackgroundMusicPlayer" parent="." index="0" instance=ExtResource("3_bfvdl")]
+stream = ExtResource("4_2v40y")
 
 [node name="BackgroundColor" type="ColorRect" parent="." index="1"]
 layout_mode = 1
@@ -30,9 +32,6 @@ grow_horizontal = 2
 grow_vertical = 2
 expand_mode = 1
 stretch_mode = 5
-
-[node name="ScrollContainer" parent="." index="3"]
-scroll_vertical = 0
 
 [node name="CenterContainer" type="CenterContainer" parent="." index="4"]
 layout_mode = 0
@@ -87,5 +86,5 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Menu"
 
-[connection signal="pressed" from="CenterContainer/EndMessagePanel/VBoxContainer/CenterContainer/HBoxContainer/ExitButton" to="." method="_on_ExitButton_pressed"]
-[connection signal="pressed" from="CenterContainer/EndMessagePanel/VBoxContainer/CenterContainer/HBoxContainer/MenuButton" to="." method="_on_MenuButton_pressed"]
+[connection signal="pressed" from="CenterContainer/EndMessagePanel/VBoxContainer/CenterContainer/HBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="CenterContainer/EndMessagePanel/VBoxContainer/CenterContainer/HBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]

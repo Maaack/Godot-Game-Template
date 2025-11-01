@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlkmofxhavh10"]
+
+[ext_resource type="Script" uid="uid://bqu3bc0tttrfk" path="res://addons/maaacks_game_template/utilities/download_and_extract.gd" id="1_1few7"]
+
+[node name="DownloadAndExtract" type="Node"]
+script = ExtResource("1_1few7")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="TimeoutTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
+[connection signal="timeout" from="TimeoutTimer" to="." method="_on_timeout_timer_timeout"]

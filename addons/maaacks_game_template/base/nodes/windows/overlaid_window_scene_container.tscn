@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://crndfbb22ri4s"]
+
+[ext_resource type="PackedScene" uid="uid://6gdbfi0172ji" path="res://addons/maaacks_game_template/base/nodes/windows/overlaid_window.tscn" id="1_07348"]
+[ext_resource type="Script" uid="uid://c6pmyo50c1tqy" path="res://addons/maaacks_game_template/base/nodes/windows/overlaid_window_scene_container.gd" id="2_p673y"]
+
+[node name="OverlaidWindowSceneContainer" instance=ExtResource("1_07348")]
+script = ExtResource("2_p673y")
+packed_scene = null
+
+[node name="SceneContainer" type="MarginContainer" parent="ContentContainer/BoxContainer" index="2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3

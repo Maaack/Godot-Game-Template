@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://drhhakm62vjsy"]
+
+[ext_resource type="Script" uid="uid://s0j82xowl675" path="res://addons/maaacks_game_template/utilities/api_client.gd" id="1_c5ofg"]
+
+[node name="APIClient" type="Node"]
+script = ExtResource("1_c5ofg")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="TimeoutTimer" type="Timer" parent="."]
+
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
+[connection signal="timeout" from="TimeoutTimer" to="." method="_on_timeout_timer_timeout"]
