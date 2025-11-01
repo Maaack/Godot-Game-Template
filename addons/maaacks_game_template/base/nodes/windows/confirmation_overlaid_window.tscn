@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwt4p3bufkke5"]
+
+[ext_resource type="PackedScene" uid="uid://6gdbfi0172ji" path="res://addons/maaacks_game_template/base/nodes/windows/overlaid_window.tscn" id="1_vfkm2"]
+[ext_resource type="Script" uid="uid://bgthh72eu0du" path="res://addons/maaacks_game_template/base/nodes/windows/confirmation_overlaid_window.gd" id="2_sw7p1"]
+
+[node name="ConfirmationOverlaidWindow" instance=ExtResource("1_vfkm2")]
+script = ExtResource("2_sw7p1")
+confirm_button_text = "Confirm"
+close_button_text = "Cancel"
+
+[node name="MenuButtons" parent="ContentContainer/BoxContainer/MenuButtonsMargin" index="0"]
+vertical = false
+
+[node name="CloseButton" parent="ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="0"]
+text = "Cancel"
+
+[node name="ConfirmButton" type="Button" parent="ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="1"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Confirm"
+
+[connection signal="pressed" from="ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons/ConfirmButton" to="." method="_on_confirm_button_pressed"]
