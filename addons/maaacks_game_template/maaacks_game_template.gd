@@ -70,26 +70,26 @@ func open_theme_selection_dialog(target_path : String) -> void:
 	theme_directores.append(target_path + THEMES_DIRECTORY_RELATIVE_PATH)
 	theme_selection_instance.theme_directories = theme_directores
 
-func _delayed_open_theme_selection_dialog(target_path : String) -> void:
+func open_setup_complete_dialog(_target_path : String) -> void:
+	selected_theme = ""
+	var setup_complete_scene : PackedScene = load(get_plugin_path() + "installer/setup_complete_dialog.tscn")
+	var setup_complete_instance = setup_complete_scene.instantiate()
+	add_child(setup_complete_instance)
+
+func _delayed_open_setup_complete_dialog(target_path : String) -> void:
 	var timer: Timer = Timer.new()
 	var callable := func():
 		timer.stop()
-		open_theme_selection_dialog(target_path)
+		open_setup_complete_dialog(target_path)
 		timer.queue_free()
 	timer.timeout.connect(callable)
 	add_child(timer)
 	timer.start(WINDOW_OPEN_DELAY)
 
-func _check_theme_needs_updating(target_path : String) -> void:
-	var current_theme_resource_path = ProjectSettings.get_setting("gui/theme/custom", "")
-	if current_theme_resource_path != "":
-		return
-	_delayed_open_theme_selection_dialog(target_path)
-
 func _update_main_scene(target_path : String, main_scene_path : String) -> void:
 	ProjectSettings.set_setting("application/run/main_scene", main_scene_path)
 	ProjectSettings.save()
-	_check_theme_needs_updating(target_path)
+	_delayed_open_setup_complete_dialog(target_path)
 
 func is_main_scene_set(target_path : String = get_copy_path()) -> bool:
 	var current_main_scene_path = ProjectSettings.get_setting("application/run/main_scene", "")
@@ -100,7 +100,7 @@ func _check_main_scene_needs_updating(target_path : String) -> void:
 	if not is_main_scene_set(target_path):
 		open_main_scene_confirmation_dialog(target_path)
 		return
-	_check_theme_needs_updating(target_path)
+	_delayed_open_setup_complete_dialog(target_path)
 
 func open_main_scene_confirmation_dialog(target_path : String) -> void:
 	var main_confirmation_scene : PackedScene = load(get_plugin_path() + "installer/main_scene_confirmation_dialog.tscn")
@@ -109,7 +109,7 @@ func open_main_scene_confirmation_dialog(target_path : String) -> void:
 	if main_confirmation_instance.has_method(&"set_main_scene_text"):
 		main_confirmation_instance.set_main_scene_text(new_main_scene_path)
 	main_confirmation_instance.confirmed.connect(_update_main_scene.bind(target_path, new_main_scene_path))
-	main_confirmation_instance.canceled.connect(_check_theme_needs_updating.bind(target_path))
+	main_confirmation_instance.canceled.connect(_delayed_open_setup_complete_dialog.bind(target_path))
 	add_child(main_confirmation_instance)
 
 func _open_play_opening_confirmation_dialog(target_path : String) -> void:

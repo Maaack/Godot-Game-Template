@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bivpkn7n06h1e"]
+
+[node name="SetupCompleteDialog" type="AcceptDialog"]
+oversampling_override = 1.0
+title = "Setup Complete!"
+initial_position = 2
+size = Vector2i(1024, 360)
+visible = true
+dialog_text = "Thanks for installing Maaack's Game Template!
+
+Go to `Project > Tools > Run Maaack's Game Template Setup...` to revisit the setup wizard or use additional tools.
+
+See the included README for additional instructions."
