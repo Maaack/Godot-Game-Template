@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dhr7kwfkmlq7o"]
+[gd_scene load_steps=21 format=3 uid="uid://dhr7kwfkmlq7o"]
 
 [ext_resource type="PackedScene" uid="uid://c6k5nnpbypshi" path="res://addons/maaacks_game_template/base/nodes/menus/main_menu/main_menu.tscn" id="1_sr523"]
 [ext_resource type="Script" uid="uid://6kkgt00vvrar" path="res://scenes/menus/main_menu/main_menu_with_animations.gd" id="2_ixa71"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dnaejbfe1nvn1" path="res://scenes/windows/main_menu_credits_window.tscn" id="4_vsp5b"]
 [ext_resource type="PackedScene" uid="uid://cwt4p3bufkke5" path="res://addons/maaacks_game_template/base/nodes/windows/confirmation_overlaid_window.tscn" id="5_6xh1d"]
 [ext_resource type="AudioStream" uid="uid://cyakcui2s5g46" path="res://assets/music_and_sfx/Maaack - Campfire Tales - Music 2b (3 min).mp3" id="5_sr523"]
+[ext_resource type="Script" uid="uid://kgp5jnrxxhdy" path="res://addons/maaacks_game_template/base/nodes/labels/plugin_version_label.gd" id="6_2k5l7"]
 
 [sub_resource type="Animation" id="1"]
 resource_name = "Intro"
@@ -337,6 +338,25 @@ stream = ExtResource("5_sr523")
 
 [node name="VersionContainer" parent="VersionMargin" index="0"]
 modulate = Color(1, 1, 1, 0)
+
+[node name="VersionLabel" parent="VersionMargin/VersionContainer" index="0"]
+visible = false
+
+[node name="PluginVersionLabel" type="Label" parent="VersionMargin/VersionContainer" index="1"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -88.0
+offset_top = -26.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "v1.3.4"
+horizontal_alignment = 2
+script = ExtResource("6_2k5l7")
+plugin_directory = "maaacks_game_template"
 
 [node name="TitleContainer" parent="MenuContainer/TitleMargin" index="0"]
 modulate = Color(1, 1, 1, 0)
