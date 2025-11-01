@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://d25665kl0b64c"]
+[gd_scene load_steps=2 format=3 uid="uid://bjr38vv2fmnfl"]
 
-[ext_resource type="Script" uid="uid://cufxsojv3gqn1" path="res://scenes/menus/options_menu/game/reset_game_control/reset_game_control.gd" id="1_mkb8o"]
+[ext_resource type="Script" uid="uid://jfxq6xboqsv8" path="res://scenes/menus/options_menu/game/reset_game_control/reset_game_control.gd" id="1_mkb8o"]
 
 [node name="ResetGameControl" type="HBoxContainer"]
 custom_minimum_size = Vector2(0, 32)
@@ -10,18 +10,31 @@ offset_bottom = 242.0
 script = ExtResource("1_mkb8o")
 
 [node name="ResetLabel" type="Label" parent="."]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Reset Game :"
 
 [node name="ResetButton" type="Button" parent="."]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(72, 32)
 layout_mode = 2
 text = "Reset"
 
-[node name="ConfirmResetDialog" type="ConfirmationDialog" parent="."]
-dialog_text = "Do you want to reset your game data?"
+[node name="CancelButton" type="Button" parent="."]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(72, 32)
+layout_mode = 2
+text = "No"
 
-[connection signal="pressed" from="ResetButton" to="." method="_on_ResetButton_pressed"]
-[connection signal="canceled" from="ConfirmResetDialog" to="." method="_on_confirm_reset_dialog_canceled"]
-[connection signal="confirmed" from="ConfirmResetDialog" to="." method="_on_ConfirmResetDialog_confirmed"]
+[node name="ConfirmButton" type="Button" parent="."]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(72, 32)
+layout_mode = 2
+text = "Yes"
+
+[connection signal="pressed" from="ResetButton" to="." method="_on_reset_button_pressed"]
+[connection signal="pressed" from="CancelButton" to="." method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="ConfirmButton" to="." method="_on_confirm_button_pressed"]

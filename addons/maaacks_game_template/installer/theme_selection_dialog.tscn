@@ -35,7 +35,7 @@ theme_override_constants/separation = 16
 [node name="Label" type="Label" parent="VBoxContainer"]
 custom_minimum_size = Vector2(384, 0)
 layout_mode = 2
-text = "A custom theme was not detected for the project. Starter options are provided below. These can be customized as needed.
+text = "Set the projects default theme to a start theme provided below. These can be customized as needed.
 
 Requires restarting the editor to take full effect."
 autowrap_mode = 3

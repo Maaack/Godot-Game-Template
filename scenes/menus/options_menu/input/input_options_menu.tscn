@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://dr4wtgbceshug"]
+[gd_scene load_steps=3 format=3 uid="uid://cf1w2mtb8ntwd"]
 
-[ext_resource type="PackedScene" uid="uid://dp3rgqaehb3xu" path="res://addons/maaacks_game_template/base/nodes/menus/options_menu/input/input_options_menu.tscn" id="1_hyv0n"]
-[ext_resource type="PackedScene" uid="uid://do040dg4l71ch" path="res://scenes/menus/options_menu/input/input_icon_mapper.tscn" id="3_2dtis"]
+[ext_resource type="PackedScene" uid="uid://dp3rgqaehb3xu" path="res://addons/maaacks_game_template/base/nodes/menus/options_menu/input/input_options_menu.tscn" id="1_i27v5"]
+[ext_resource type="PackedScene" uid="uid://cul468jd6nxq1" path="res://scenes/menus/options_menu/input/input_icon_mapper.tscn" id="2_hyv0n"]
 
-[node name="Controls" instance=ExtResource("1_hyv0n")]
+[node name="Controls" instance=ExtResource("1_i27v5")]
 
 [node name="InputActionsList" parent="VBoxContainer/InputMappingContainer" index="1" node_paths=PackedStringArray("input_icon_mapper")]
 input_icon_mapper = NodePath("../../../InputIconMapper")
@@ -11,4 +11,6 @@ input_icon_mapper = NodePath("../../../InputIconMapper")
 [node name="InputActionsTree" parent="VBoxContainer/InputMappingContainer" index="2" node_paths=PackedStringArray("input_icon_mapper")]
 input_icon_mapper = NodePath("../../../InputIconMapper")
 
-[node name="InputIconMapper" parent="." index="6" instance=ExtResource("3_2dtis")]
+[node name="InputIconMapper" parent="." index="6" instance=ExtResource("2_hyv0n")]
+
+[editable path="KeyAssignmentWindow"]
