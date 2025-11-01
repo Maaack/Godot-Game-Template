@@ -93,7 +93,11 @@ func _replace_action(action_name : String, readable_input_name : String = "") ->
 func _on_button_pressed(action_name : String, action_group : int) -> void:
 	editing_action_name = action_name
 	editing_action_group = action_group
-	_replace_action(action_name)
+	var button = _get_button_by_action(action_name, action_group)
+	var readable_input_name : String
+	if button and button in button_readable_input_map:
+		readable_input_name = button_readable_input_map[button]
+	_replace_action(action_name, readable_input_name)
 
 func _new_action_box() -> Node:
 	var new_action_box : Node = %ActionBoxContainer.duplicate()

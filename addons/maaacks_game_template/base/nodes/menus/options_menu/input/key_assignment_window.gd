@@ -105,5 +105,8 @@ func _on_input_text_edit_gui_input(event) -> void:
 func _on_visibility_changed() -> void:
 	super._on_visibility_changed()
 	if visible:
-		%InputLabel.text = NO_INPUT_TEXT
+		if not text.strip_edges().is_empty():
+			%InputLabel.text = text
+		else:
+			%InputLabel.text = NO_INPUT_TEXT
 		%InputTextEdit.grab_focus()
