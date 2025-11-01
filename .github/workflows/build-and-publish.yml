@@ -37,11 +37,11 @@ permissions:
   contents: write
 
 env:
-  # Change this to the Godot version you're using (>=4)
-  # You also need to change all images.
+  # Set this repository variable to the version to build with (>=4)
+  # This will be used for all container images: barichello/godot-ci:[#.#]
   # Look at available versions here: https://hub.docker.com/r/barichello/godot-ci/tags
   GODOT_VERSION: ${{ vars.GODOT_VERSION }}
-  # Change this to your game name (it will be the filename downloaded)
+  # Set this repository variable to your game name (it will be the filename downloaded)
   EXPORT_NAME: ${{ vars.EXPORT_NAME }}
   # NOTE: If your `project.godot` is at the repository root, set `PROJECT_PATH` to "."
   # If it's in a subdirectory, set it to the subdirectory name (e.g., "your-game")
@@ -80,6 +80,7 @@ jobs:
           if ! command -v zip >/dev/null 2>&1; then
             apt-get update && apt-get install -y zip
           fi
+          # Change to the web directory and zip its contents directly
           cd build/web
           zip -r ../${EXPORT_NAME}-web.zip .
           ls -lh ../${EXPORT_NAME}-web.zip
@@ -129,6 +130,7 @@ jobs:
           if ! command -v zip >/dev/null 2>&1; then
             apt-get update && apt-get install -y zip
           fi
+          # Change to the web directory and zip its contents directly
           cd build/windows
           zip -r ../${EXPORT_NAME}-windows.zip .
           ls -lh ../${EXPORT_NAME}-windows.zip
@@ -178,6 +180,7 @@ jobs:
           if ! command -v zip >/dev/null 2>&1; then
             apt-get update && apt-get install -y zip
           fi
+          # Change to the web directory and zip its contents directly
           cd build/linux
           zip -r ../${EXPORT_NAME}-linux.zip .
           ls -lh ../${EXPORT_NAME}-linux.zip
