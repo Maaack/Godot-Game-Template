@@ -12,8 +12,7 @@ If you have a game you'd like to share, join the [Discord server](https://discor
 
 
 ## All Shared
-### 2025
-https://ferry-games.itch.io/departure  
+### 2025  
 https://store.steampowered.com/app/3911550/Warp_Marked_Demo/  
 https://maaack.itch.io/kobo-expansion  
 https://keur-collectif.itch.io/heartfix-express-demo  
