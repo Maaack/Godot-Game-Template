@@ -13,6 +13,9 @@ confirm_new_game = true
 options_packed_scene = ExtResource("3_0jpat")
 credits_packed_scene = ExtResource("4_m0ubd")
 
+[node name="TitleLabel" parent="MenuContainer/TitleMargin/TitleContainer" index="0"]
+text = "Game Template"
+
 [node name="ContinueGameButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" index="1"]
 unique_name_in_owner = true
 visible = false
