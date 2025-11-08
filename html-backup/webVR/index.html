@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>VR全景-单场景-点击进入场景</title>
+		<meta charset="utf-8">
+		<script type="text/javascript" src="libs/three.js"></script>
+		<script type="text/javascript" src="libs/OrbitControls.js"></script>
+		<script type="text/javascript" src="libs/Tween.min.js"></script>
+		<script type="text/javascript" src="libs/jquery-1.11.2.min.js"></script>
+		<style>
+			body {
+				margin: 0;
+				overflow: hidden;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="container"></div>
+		<script type="text/javascript">
+			var camera, scene, controls, renderer, renderer2;
+			var bool = true;
+
+			var isUserInteracting = false,
+				onPointerDownMouseX = 0,
+				onPointerDownMouseY = 0,
+				lon = 0,
+				onPointerDownLon = 0,
+				lat = 0,
+				onPointerDownLat = 0,
+				phi = 0,
+				theta = 0;
+
+			var mesh;
+
+			init();
+
+
+			window.addEventListener('resize', onWindowResize);
+
+			function initControls(camera, renderer) {
+				let controls = new THREE.OrbitControls(camera, renderer.domElement)
+				// 如果使用animate方法时，将此函数删除
+				//controls.addEventListener( 'change', render );
+				// 使动画循环使用时阻尼或自转 意思是否有惯性
+				controls.enableDamping = true;
+				//动态阻尼系数 就是鼠标拖拽旋转灵敏度
+				controls.dampingFactor = 1.4;
+				//是否可以缩放
+				controls.enableZoom = false;
+				//是否自动旋转
+				controls.autoRotate = true;
+				controls.autoRotateSpeed = 0;
+				//是否开启右键拖拽
+				controls.enablePan = false
+				//是否开启旋转
+				controls.enableRotate = false
+				return controls
+			}
+
+			function init() {
+				const container = document.getElementById('container');
+				scene = new THREE.Scene();
+
+				renderer = new THREE.WebGLRenderer();
+				renderer.setPixelRatio(window.devicePixelRatio);
+				renderer.setSize(window.innerWidth, window.innerHeight);
+				container.appendChild(renderer.domElement);
+
+				camera = new THREE.PerspectiveCamera(170, window.innerWidth / window.innerHeight, 0.1, 10000);
+				camera.position.set(0, 1200, 0);
+
+				controls = initControls(camera, renderer);
+
+				const geometry = new THREE.SphereGeometry(1200, 1200, 1200);
+				geometry.scale(-1, 1, 1);
+
+				const loader = new THREE.TextureLoader();
+				loader.load('assets/0000.jpg', function(texture) {
+					const material = new THREE.MeshBasicMaterial({
+						map: texture
+					});
+
+					mesh = new THREE.Mesh(geometry, material);
+
+					scene.add(mesh);
+
+					setTimeout(function() {
+						let tween = new TWEEN.Tween({
+								fov: 170,
+								ars: 40,
+								rot: 0,
+							})
+							.to({
+								fov: 130,
+								ars: 0,
+								rot: Math.PI * 1.01,
+							}, 2300)
+							.easing(TWEEN.Easing.Quadratic.Out)
+							.onComplete(function() {
+								$(".welPage").css("display", "flex")
+
+								TWEEN.remove(tween);
+
+								setTimeout(function() {
+									clickJInru()
+								}, 2000)
+							})
+							.onUpdate(function() {
+								controls.object.fov = this.fov;
+								controls.object.updateProjectionMatrix()
+								mesh.rotation.y = this.rot;
+							})
+							.start();
+					}, 1000)
+				});
+
+				function clickJInru() {
+					const cameraLook = new THREE.Vector3();
+					camera.getWorldDirection(cameraLook);
+					mesh.rotation.y = Math.PI * 1.01;
+
+					let tween = new TWEEN.Tween({
+							fov: camera.fov,
+							z: 0,
+							cy: camera.position.y,
+						})
+						.to({
+							fov: 70,
+							z: -1200,
+							cy: 0,
+						}, 4000)
+						.easing(TWEEN.Easing.Linear.None)
+						.onComplete(function() {
+							controls.enableRotate = true;
+							controls.enableZoom = true;
+
+							TWEEN.remove(tween);
+						})
+						.onUpdate(function() {
+							camera.position.y = this.cy;
+							camera.fov = this.fov;
+							camera.updateProjectionMatrix();
+							mesh.rotation.y += 0.005;
+
+							const target = new THREE.Vector3(0, 0, this.z);
+							camera.lookAt(target);
+						})
+						.start();
+				}
+				animate();
+			}
+
+			function onWindowResize() {
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize(window.innerWidth, window.innerHeight);
+
+			}
+
+			function animate() {
+				TWEEN.update();
+
+				renderer.render(scene, camera);
+
+				requestAnimationFrame(animate);
+			}
+		</script>
+	</body>
+</html>
