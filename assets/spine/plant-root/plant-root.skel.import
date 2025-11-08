@@ -1,0 +1,14 @@
+[remap]
+
+importer="spine.skel"
+type="SpineSkeletonFileResource"
+uid="uid://ci7hylmc3608d"
+path="res://.godot/imported/plant-root.skel-780fd5e70ff6bd085f1a1155e1e5cbfe.spskel"
+
+[deps]
+
+source_file="res://assets/spine/plant-root/plant-root.skel"
+dest_files=["res://.godot/imported/plant-root.skel-780fd5e70ff6bd085f1a1155e1e5cbfe.spskel"]
+
+[params]
+

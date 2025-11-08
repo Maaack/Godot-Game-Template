@@ -1,0 +1,14 @@
+[remap]
+
+importer="spine.skel"
+type="SpineSkeletonFileResource"
+uid="uid://culvu1ainsffe"
+path="res://.godot/imported/plan-stage-1.skel-2878e3c6c0f71e3451f5176d715fda79.spskel"
+
+[deps]
+
+source_file="res://assets/spine/plant-stage-1/plan-stage-1.skel"
+dest_files=["res://.godot/imported/plan-stage-1.skel-2878e3c6c0f71e3451f5176d715fda79.spskel"]
+
+[params]
+

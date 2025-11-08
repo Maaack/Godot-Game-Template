@@ -1,0 +1,16 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://d3ot8wqnwc3ay"
+path="res://.godot/imported/plat-root.atlas-4374f83bf159e86046516c5e7f812f6e.spatlas"
+
+[deps]
+
+source_file="res://assets/spine/plant-root/plat-root.atlas"
+dest_files=["res://.godot/imported/plat-root.atlas-4374f83bf159e86046516c5e7f812f6e.spatlas"]
+
+[params]
+
+normal_map_prefix="n"
+specular_map_prefix="s"

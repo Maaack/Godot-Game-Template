@@ -1,0 +1,16 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://cuw0k3wbby12u"
+path="res://.godot/imported/plant-stage-1.atlas-158e93f9a68ffd4c7f9e15c556109293.spatlas"
+
+[deps]
+
+source_file="res://assets/spine/plant-stage-1/plant-stage-1.atlas"
+dest_files=["res://.godot/imported/plant-stage-1.atlas-158e93f9a68ffd4c7f9e15c556109293.spatlas"]
+
+[params]
+
+normal_map_prefix="n"
+specular_map_prefix="s"
