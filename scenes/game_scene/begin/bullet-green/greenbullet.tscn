@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://b78ga8et8ngta"]
+
+[ext_resource type="Texture2D" uid="uid://b6rovf1apjlth" path="res://assets/bullet/green-bullet.png" id="1_r22s6"]
+[ext_resource type="Script" uid="uid://batfxp37dpw5m" path="res://scenes/game_scene/begin/greenbullet.gd" id="2_28ics"]
+
+[node name="Greenbullet" type="Sprite2D"]
+texture = ExtResource("1_r22s6")
+flip_h = true
+script = ExtResource("2_28ics")
