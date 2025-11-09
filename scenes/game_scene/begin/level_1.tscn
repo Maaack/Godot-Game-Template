@@ -1,0 +1,46 @@
+[gd_scene load_steps=9 format=3 uid="uid://dirx58aognr06"]
+
+[ext_resource type="Texture2D" uid="uid://bgqb3wbjeuyjo" path="res://resources/back-ground/background.png" id="1_hu8oq"]
+[ext_resource type="Texture2D" uid="uid://cba7o4cre72tu" path="res://assets/spine/plant-root/plat-root.png" id="2_e35xt"]
+[ext_resource type="Script" uid="uid://cr03a8fuo1ca" path="res://scenes/game_scene/begin/tower.gd" id="3_fdnxm"]
+[ext_resource type="Texture2D" uid="uid://c40si3ddhev16" path="res://assets/spine/plant-stage-1/plant-stage-1.png" id="3_oyht3"]
+[ext_resource type="Script" uid="uid://batfxp37dpw5m" path="res://scenes/game_scene/begin/greenbullet.gd" id="3_pcmbq"]
+[ext_resource type="Texture2D" uid="uid://l5q0tky7svve" path="res://assets/enemy/enemy-maomaochong-0.png" id="4_agjmw"]
+[ext_resource type="Texture2D" uid="uid://b6rovf1apjlth" path="res://assets/bullet/green-bullet.png" id="4_pcmbq"]
+[ext_resource type="Script" uid="uid://d4kv23aqud6yv" path="res://scenes/game_scene/begin/enemy_maomaochong_0.gd" id="5_me443"]
+
+[node name="Level1" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("1_hu8oq")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Greenbullet" type="Sprite2D" parent="."]
+position = Vector2(2.38419e-07, 0)
+texture = ExtResource("4_pcmbq")
+flip_h = true
+script = ExtResource("3_pcmbq")
+
+[node name="Plat-root" type="Sprite2D" parent="."]
+position = Vector2(2, 123)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_e35xt")
+script = ExtResource("3_fdnxm")
+
+[node name="Plant-stage-1" type="Sprite2D" parent="."]
+position = Vector2(16, -62)
+texture = ExtResource("3_oyht3")
+
+[node name="Enemy-maomaochong-0" type="Sprite2D" parent="."]
+position = Vector2(562, -7)
+texture = ExtResource("4_agjmw")
+script = ExtResource("5_me443")
