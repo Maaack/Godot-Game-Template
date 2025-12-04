@@ -5,7 +5,24 @@
 
 [node name="PauseMenuOptionsOverlaidWindow" instance=ExtResource("1_a6sle")]
 process_mode = 3
+anchors_preset = 15
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
 packed_scene = ExtResource("2_r1t3m")
+title_visible = false
+
+[node name="TitleMargin" parent="ContentContainer/BoxContainer" index="0"]
+visible = false
 
 [node name="TitleLabel" parent="ContentContainer/BoxContainer/TitleMargin/BoxContainer" index="0"]
 text = "Options"
+
+[node name="CloseButton" parent="ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="0"]
+size_flags_horizontal = 0
+text = "Back"
