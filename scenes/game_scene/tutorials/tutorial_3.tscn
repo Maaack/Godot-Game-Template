@@ -15,7 +15,7 @@ title_font_size = 20
 theme_override_font_sizes/font_size = 20
 text = "Tutorial"
 
-[node name="DescriptionLabel" parent="ContentContainer/BoxContainer/DescriptionMargin" index="0"]
+[node name="DescriptionLabel" parent="ContentContainer/BoxContainer/BodyMargin" index="0"]
 text = "The color picker at the bottom-right updates the level state. This change persists until the game is reset.
 
 The label at the bottom-center displays the current input action detected, if any are setup for the project."
