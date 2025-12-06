@@ -233,29 +233,27 @@ jobs:
           chmod +x butler
           ./butler -V
 
-      - name: Get version from tag or set default
-        id: version
+      - name: Get latest release tag
+        id: latest
         run: |
-          if [ "${{ github.event_name }}" = "release" ]; then
-            VERSION="${{ github.event.release.tag_name }}"
-          else
-            VERSION="dev-${{ github.run_number }}"
-          fi
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
-          echo "Deploying version: $VERSION"
+          tag=$(curl -s \
+            -H "authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            https://api.github.com/repos/${{ github.repository }}/releases/latest \
+            | jq -r .tag_name)
+          echo "tag=$tag" >> $GITHUB_OUTPUT
 
       - name: Upload to Itch.io - Web
         run: |
-          ./butler push builds/web ${{ env.ITCH_USERNAME }}/${{ env.ITCH_GAME }}:html5 --userversion "${{ steps.version.outputs.version }}"
+          ./butler push builds/web ${{ env.ITCH_USERNAME }}/${{ env.ITCH_GAME }}:html5 --userversion "${{ steps.latest.outputs.tag }}"
 
       - name: Upload to Itch.io - Windows
         run: |
-          ./butler push builds/windows ${{ env.ITCH_USERNAME }}/${{ env.ITCH_GAME }}:windows --userversion "${{ steps.version.outputs.version }}"
+          ./butler push builds/windows ${{ env.ITCH_USERNAME }}/${{ env.ITCH_GAME }}:windows --userversion "${{ steps.latest.outputs.tag }}"
 
       - name: Upload to Itch.io - Linux
         run: |
-          ./butler push builds/linux ${{ env.ITCH_USERNAME }}/${{ env.ITCH_GAME }}:linux --userversion "${{ steps.version.outputs.version }}"
+          ./butler push builds/linux ${{ env.ITCH_USERNAME }}/${{ env.ITCH_GAME }}:linux --userversion "${{ steps.latest.outputs.tag }}"
 
       - name: Upload to Itch.io - macOS
         run: |
-          ./butler push builds/mac ${{ env.ITCH_USERNAME }}/${{ env.ITCH_GAME }}:mac --userversion "${{ steps.version.outputs.version }}"
+          ./butler push builds/mac ${{ env.ITCH_USERNAME }}/${{ env.ITCH_GAME }}:mac --userversion "${{ steps.latest.outputs.tag }}"
