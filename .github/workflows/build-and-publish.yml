@@ -23,18 +23,15 @@
 # Original file: https://github.com/abarichello/godot-ci/blob/master/.github/workflows/godot-ci.yml
 # This edited version is triggered using a Github Release and uploads artifacts to the release.
 # Furthermore, a new job (upload to itch.io using butler) has been added.
-# Modified by: Nicolas Oulianov (github @oulianov)
+# Modified by: Nicolas Oulianov (github @oulianov) & Marek Belski
 
-name: "Build and Deploy to Itch.io"
+name: "Build and Publish Demo"
 
 on:
-  release:
-    types: [published]
+  push:
+    branches:
+      - 'demo-version'
   workflow_dispatch:
-
-permissions:
-  # Allow release asset uploads
-  contents: write
 
 env:
   # Set this repository variable to the version to build with (>=4)
@@ -212,8 +209,8 @@ jobs:
           name: mac
           path: build/mac
 
-  deploy-to-itch:
-    name: Deploy to Itch.io
+  publish-builds:
+    name: Publish Builds
     needs: [export-web, export-windows, export-linux, export-mac]
     runs-on: ubuntu-24.04
     env:
