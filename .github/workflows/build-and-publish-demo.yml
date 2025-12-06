@@ -71,18 +71,6 @@ jobs:
           cd $PROJECT_PATH
           godot --headless --verbose --export-release "Web" "$EXPORT_DIR/web/index.html"
 
-      - name: Prepare web release asset (zip)
-        run: |
-          # ensure zip is available in the container
-          if ! command -v zip >/dev/null 2>&1; then
-            apt-get update && apt-get install -y zip
-          fi
-          # Change to the web directory and zip its contents directly
-          cd build/web
-          zip -r ../${EXPORT_NAME}-web.zip .
-          ls -lh ../${EXPORT_NAME}-web.zip
-        shell: bash
-
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
