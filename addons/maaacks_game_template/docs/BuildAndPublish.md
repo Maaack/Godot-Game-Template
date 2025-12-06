@@ -133,7 +133,6 @@ Remove the job ID (ie. `export-mac`) from the needs of the `publish-builds` job:
     needs: [export-web, export-windows, export-linux, export-mac]
 ```
 
-
 And remove this part, which publishes it to itch.io:
 
 ```yml
@@ -141,7 +140,6 @@ And remove this part, which publishes it to itch.io:
     run: |
       ./butler push builds/mac ${{ env.ITCH_USERNAME }}/${{ env.ITCH_GAME }}:mac --userversion "${{ steps.version.outputs.version }}"
 ```
-
 
 #### Adding a platform
 If you want to export to a **new** platform, **copy paste** the build job and add a new step to itch.io publication.
