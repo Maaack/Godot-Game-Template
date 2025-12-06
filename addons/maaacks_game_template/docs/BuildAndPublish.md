@@ -34,6 +34,9 @@ Then, run the export for one platform manually **at least once.** This will crea
 
 The `build-and-publish.yml` will **trigger** the build configs in `export_presets.cfg` **by name**. So make sure that your exports names are the same as in the list above. You can change the names or add more build configs with small edits to `build-and-publish.yml`.
 
+#### Additional Git setup
+Some version of Godot will add `export_presets.cfg` to `.gitignore` automatically. You'll want to remove that, so that git checks in your export configuration file with the rest of your code.
+
 #### Additional MacOS setup
 
 ##### MacOS Bundle name
