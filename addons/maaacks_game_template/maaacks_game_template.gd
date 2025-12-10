@@ -59,12 +59,17 @@ func _update_gui_theme() -> void:
 	ProjectSettings.set_setting("gui/theme/custom", selected_theme)
 	ProjectSettings.save()
 
+func _on_visibility_changed_to_hidden(dialog_window : Window) -> void:
+	if dialog_window and dialog_window.is_inside_tree() and not dialog_window.visible:
+		dialog_window.queue_free()
+
 func open_theme_selection_dialog(target_path : String) -> void:
 	selected_theme = ""
 	var theme_selection_scene : PackedScene = load(get_plugin_path() + "installer/theme_selection_dialog.tscn")
-	var theme_selection_instance = theme_selection_scene.instantiate()
+	var theme_selection_instance : ConfirmationDialog = theme_selection_scene.instantiate()
 	theme_selection_instance.confirmed.connect(_update_gui_theme)
 	theme_selection_instance.theme_selected.connect(_on_theme_selected)
+	theme_selection_instance.visibility_changed.connect(_on_visibility_changed_to_hidden.bind(theme_selection_instance))
 	add_child(theme_selection_instance)
 	var theme_directores : Array[String]
 	theme_directores.append(target_path + THEMES_DIRECTORY_RELATIVE_PATH)
@@ -73,7 +78,8 @@ func open_theme_selection_dialog(target_path : String) -> void:
 func open_setup_complete_dialog(_target_path : String) -> void:
 	selected_theme = ""
 	var setup_complete_scene : PackedScene = load(get_plugin_path() + "installer/setup_complete_dialog.tscn")
-	var setup_complete_instance = setup_complete_scene.instantiate()
+	var setup_complete_instance : AcceptDialog = setup_complete_scene.instantiate()
+	setup_complete_instance.visibility_changed.connect(_on_visibility_changed_to_hidden.bind(setup_complete_instance))
 	add_child(setup_complete_instance)
 
 func _delayed_open_setup_complete_dialog(target_path : String) -> void:
@@ -110,6 +116,7 @@ func open_main_scene_confirmation_dialog(target_path : String) -> void:
 		main_confirmation_instance.set_main_scene_text(new_main_scene_path)
 	main_confirmation_instance.confirmed.connect(_update_main_scene.bind(target_path, new_main_scene_path))
 	main_confirmation_instance.canceled.connect(_delayed_open_setup_complete_dialog.bind(target_path))
+	main_confirmation_instance.visibility_changed.connect(_on_visibility_changed_to_hidden.bind(main_confirmation_instance))
 	add_child(main_confirmation_instance)
 
 func _open_play_opening_confirmation_dialog(target_path : String) -> void:
@@ -117,6 +124,7 @@ func _open_play_opening_confirmation_dialog(target_path : String) -> void:
 	var play_confirmation_instance : ConfirmationDialog = play_confirmation_scene.instantiate()
 	play_confirmation_instance.confirmed.connect(_run_opening_scene.bind(target_path))
 	play_confirmation_instance.canceled.connect(_check_main_scene_needs_updating.bind(target_path))
+	play_confirmation_instance.visibility_changed.connect(_on_visibility_changed_to_hidden.bind(play_confirmation_instance))
 	add_child(play_confirmation_instance)
 
 func _open_delete_examples_confirmation_dialog(target_path : String) -> void:
@@ -124,12 +132,14 @@ func _open_delete_examples_confirmation_dialog(target_path : String) -> void:
 	var delete_confirmation_instance : ConfirmationDialog = delete_confirmation_scene.instantiate()
 	delete_confirmation_instance.confirmed.connect(_delete_source_examples_directory.bind(target_path))
 	delete_confirmation_instance.canceled.connect(_check_main_scene_needs_updating.bind(target_path))
+	delete_confirmation_instance.visibility_changed.connect(_on_visibility_changed_to_hidden.bind(delete_confirmation_instance))
 	add_child(delete_confirmation_instance)
 
 func open_delete_examples_short_confirmation_dialog() -> void:
 	var delete_confirmation_scene : PackedScene = load(get_plugin_path() + "installer/delete_examples_short_confirmation_dialog.tscn")
 	var delete_confirmation_instance : ConfirmationDialog = delete_confirmation_scene.instantiate()
 	delete_confirmation_instance.confirmed.connect(_delete_source_examples_directory)
+	delete_confirmation_instance.visibility_changed.connect(_on_visibility_changed_to_hidden.bind(delete_confirmation_instance))
 	add_child(delete_confirmation_instance)
 
 func _run_opening_scene(target_path : String) -> void:
@@ -266,6 +276,7 @@ func _open_confirmation_dialog() -> void:
 	var confirmation_instance : ConfirmationDialog = confirmation_scene.instantiate()
 	confirmation_instance.confirmed.connect(open_copy_and_edit_dialog)
 	confirmation_instance.canceled.connect(_check_main_scene_needs_updating.bind(get_copy_path()))
+	confirmation_instance.visibility_changed.connect(_on_visibility_changed_to_hidden.bind(confirmation_instance))
 	add_child(confirmation_instance)
 
 func _open_check_plugin_version() -> void:
