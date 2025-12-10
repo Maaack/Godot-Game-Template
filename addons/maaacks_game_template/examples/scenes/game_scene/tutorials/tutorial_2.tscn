@@ -14,6 +14,6 @@ title_font_size = 20
 theme_override_font_sizes/font_size = 20
 text = "Tutorial"
 
-[node name="DescriptionLabel" parent="ContentContainer/BoxContainer/DescriptionMargin" index="0"]
+[node name="DescriptionLabel" parent="ContentContainer/BoxContainer/BodyMargin" index="0"]
 text = "Progress is saved.
 Pressing Continue from the main menu will load the last level played."
