@@ -6,10 +6,10 @@ signal end_reached
 @export var auto_scroll_speed: float = 60.0
 @export var input_scroll_speed : float = 400.0
 @export var scroll_restart_delay : float = 1.5
+@export var scroll_paused : bool = false
 
 var timer : Timer = Timer.new()
 var _current_scroll_position : float = 0.0
-var scroll_paused : bool = false
 
 @onready var header_space : Control = %HeaderSpace
 @onready var footer_space : Control = %FooterSpace
@@ -78,6 +78,7 @@ func _ready() -> void:
 	timer.timeout.connect(_on_scroll_restart_timer_timeout)
 	set_header_and_footer()
 	add_child(timer)
+	scroll_paused = false
 
 
 func _process(delta : float) -> void:

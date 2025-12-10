@@ -28,7 +28,7 @@ title = "Paused"
 [node name="TitleLabel" parent="PauseMenu/ContentContainer/BoxContainer/TitleMargin/BoxContainer" index="0"]
 text = "Paused"
 
-[node name="DescriptionMargin" parent="PauseMenu/ContentContainer/BoxContainer" index="1"]
+[node name="BodyMargin" parent="PauseMenu/ContentContainer/BoxContainer" index="1"]
 visible = false
 
 [node name="MenuButtonsMargin" parent="PauseMenu/ContentContainer/BoxContainer" index="2"]
