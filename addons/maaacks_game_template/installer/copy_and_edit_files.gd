@@ -33,7 +33,6 @@ func hide() -> void:
 	visible = false
 
 func close() -> void:
-	if Engine.is_editor_hint(): return
 	queue_free()
 
 func _remove_uids(content : String) -> String:
