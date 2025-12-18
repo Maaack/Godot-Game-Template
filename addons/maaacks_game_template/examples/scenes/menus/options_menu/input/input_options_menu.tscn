@@ -12,5 +12,3 @@ input_icon_mapper = NodePath("../../../InputIconMapper")
 input_icon_mapper = NodePath("../../../InputIconMapper")
 
 [node name="InputIconMapper" parent="." index="6" instance=ExtResource("3_y3sxr")]
-
-[editable path="KeyAssignmentWindow"]
