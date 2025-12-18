@@ -5,8 +5,13 @@
 
 [node name="KeyAssignmentWindow" instance=ExtResource("1_6c67a")]
 custom_minimum_size = Vector2(420, 200)
+offset_left = -210.0
+offset_top = -100.0
+offset_right = 210.0
+offset_bottom = 100.0
 script = ExtResource("2_oif0q")
 input_confirmation = 0
+update_content = true
 close_button_text = "Close"
 
 [node name="TitleLabel" parent="ContentContainer/BoxContainer/TitleMargin/BoxContainer" index="0"]
