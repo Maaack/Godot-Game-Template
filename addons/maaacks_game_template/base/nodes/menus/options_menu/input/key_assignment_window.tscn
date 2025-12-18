@@ -49,10 +49,10 @@ joypad_enabled = false
 mouse_hidden_enabled = false
 
 [node name="CloseButton" parent="ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="0"]
-focus_neighbor_top = NodePath("../../../VBoxContainer/InputTextEdit")
+focus_neighbor_top = NodePath("../../../BodyMargin/VBoxContainer/InputTextEdit")
 
 [node name="ConfirmButton" parent="ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="1"]
-focus_neighbor_top = NodePath("../../../VBoxContainer/InputTextEdit")
+focus_neighbor_top = NodePath("../../../BodyMargin/VBoxContainer/InputTextEdit")
 
 [node name="DelayTimer" type="Timer" parent="." index="1"]
 unique_name_in_owner = true
