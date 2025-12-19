@@ -171,6 +171,7 @@ offset_top = -80.0
 offset_right = 150.0
 offset_bottom = 80.0
 ui_cancel_closes = false
+update_content = true
 text = "Really exit the game?"
 close_button_text = "Close"
 title_visible = false
