@@ -5,14 +5,9 @@ extends PanelContainer
 signal closed
 signal opened
 
-@onready var content_container : Container = %ContentContainer
-@onready var title_label : Label = %TitleLabel
-@onready var title_margin : MarginContainer = %TitleMargin
-@onready var description_label : RichTextLabel = %DescriptionLabel
-@onready var close_button : Button = %CloseButton
-@onready var menu_buttons : BoxContainer = %MenuButtons
+@export var ui_cancel_closes : bool = true
 
-@export_group("Edit Content")
+@export_group("Content")
 @export var update_content : bool = false
 @export_multiline var text : String :
 	set(value):
@@ -45,11 +40,20 @@ signal opened
 		if update_content and is_inside_tree():
 			title_margin.visible = title_visible
 
+@onready var content_container : Container = %ContentContainer
+@onready var title_label : Label = %TitleLabel
+@onready var title_margin : MarginContainer = %TitleMargin
+@onready var description_label : RichTextLabel = %DescriptionLabel
+@onready var close_button : Button = %CloseButton
+@onready var menu_buttons : BoxContainer = %MenuButtons
+
 func _ready() -> void:
+	update_content = update_content
+	text = text
+	close_button_text = close_button_text
 	title = title
 	title_font_size = title_font_size
 	title_visible = title_visible
-	text = text
 
 func close() -> void:
 	if not visible: return
@@ -60,7 +64,7 @@ func _handle_cancel_input() -> void:
 	close()
 
 func _unhandled_input(event : InputEvent) -> void:
-	if visible and event.is_action_released("ui_cancel"):
+	if visible and event.is_action_released("ui_cancel") and ui_cancel_closes:
 		_handle_cancel_input()
 		get_viewport().set_input_as_handled()
 
