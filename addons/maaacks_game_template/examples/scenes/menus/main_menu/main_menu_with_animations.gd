@@ -19,7 +19,7 @@ func load_game_scene() -> void:
 	super.load_game_scene()
 
 func new_game() -> void:
-	if confirm_new_game and GameStateExample.get_levels_reached() > 0:
+	if confirm_new_game and continue_game_button.visible:
 		new_game_confirmation.show()
 	else:
 		GameStateExample.reset()
