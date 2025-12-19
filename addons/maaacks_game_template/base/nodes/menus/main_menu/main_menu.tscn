@@ -32,37 +32,6 @@ grow_vertical = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="VersionMargin" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
-
-[node name="VersionContainer" type="Control" parent="VersionMargin"]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="VersionLabel" type="Label" parent="VersionMargin/VersionContainer"]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -88.0
-offset_top = -26.0
-grow_horizontal = 0
-grow_vertical = 0
-text = "v0.0.0"
-horizontal_alignment = 2
-script = ExtResource("6_pdiij")
-
 [node name="MenuContainer" type="MarginContainer" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
@@ -160,6 +129,37 @@ text = "Credits"
 unique_name_in_owner = true
 layout_mode = 2
 text = "Exit"
+
+[node name="VersionMargin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VersionContainer" type="Control" parent="VersionMargin"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VersionLabel" type="Label" parent="VersionMargin/VersionContainer"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -88.0
+offset_top = -26.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "v0.0.0"
+horizontal_alignment = 2
+script = ExtResource("6_pdiij")
 
 [node name="ExitConfirmation" parent="." instance=ExtResource("7_im16j")]
 unique_name_in_owner = true
