@@ -14,6 +14,7 @@ signal game_exited
 @export var options_packed_scene : PackedScene
 ## The scene to open when a player clicks the 'Credits' button.
 @export var credits_packed_scene : PackedScene
+@export var confirm_exit : bool = true
 @export_group("Extra Settings")
 ## If true, signals that the game has started loading in the background, instead of directly loading it.
 @export var signal_game_start : bool = false
@@ -28,6 +29,7 @@ var sub_menu : Control
 @onready var options_button = %OptionsButton
 @onready var credits_button = %CreditsButton
 @onready var exit_button = %ExitButton
+@onready var exit_confirmation = %ExitConfirmation
 
 func get_game_scene_path() -> String:
 	if game_scene_path.is_empty():
@@ -43,6 +45,12 @@ func load_game_scene() -> void:
 
 func new_game() -> void:
 	load_game_scene()
+
+func try_exit_game() -> void:
+	if confirm_exit and (not exit_confirmation.visible):
+		exit_confirmation.show()
+	else:
+		exit_game()
 
 func exit_game() -> void:
 	if OS.has_feature("web"):
@@ -77,7 +85,7 @@ func _input(event : InputEvent) -> void:
 		if sub_menu:
 			_close_sub_menu()
 		else:
-			exit_game()
+			try_exit_game()
 	if event.is_action_released("ui_accept") and get_viewport().gui_get_focus_owner() == null:
 		menu_buttons_box_container.focus_first()
 
@@ -113,4 +121,7 @@ func _on_credits_button_pressed() -> void:
 	_open_sub_menu(credits_packed_scene)
 
 func _on_exit_button_pressed() -> void:
+	try_exit_game()
+
+func _on_exit_confirmation_confirmed():
 	exit_game()
