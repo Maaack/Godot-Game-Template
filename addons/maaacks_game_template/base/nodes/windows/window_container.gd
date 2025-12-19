@@ -48,10 +48,12 @@ signal opened
 @onready var menu_buttons : BoxContainer = %MenuButtons
 
 func _ready() -> void:
+	update_content = update_content
+	text = text
+	close_button_text = close_button_text
 	title = title
 	title_font_size = title_font_size
 	title_visible = title_visible
-	text = text
 
 func close() -> void:
 	if not visible: return
