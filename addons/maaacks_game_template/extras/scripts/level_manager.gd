@@ -37,16 +37,13 @@ extends Node
 
 ## Reference to the current level node.
 var current_level : Node
-var current_level_path : String :
-	set = set_current_level_path
+var current_level_path : String : set = set_current_level_path
+var next_level_path : String
 
 func set_current_level_path(value : String) -> void:
 	current_level_path = value
 
-var next_level_path : String : 
-	set = set_next_level_path
-	
-func set_next_level_path(value : String) -> void:
+func _on_next_level_set(value : String) -> void:
 	next_level_path = value
 
 func _try_connecting_signal_to_node(node : Node, signal_name : String, callable : Callable) -> void:
@@ -77,7 +74,7 @@ func has_next_level() -> bool:
 func is_on_last_level() -> bool:
 	return not has_next_level()
 
-func _advance_level() -> bool:
+func set_level_to_next() -> bool:
 	if is_on_last_level(): return false
 	var current_level_id := _find_in_scene_lister(current_level_path)
 	if current_level_id > -1:
@@ -89,7 +86,7 @@ func _advance_level() -> bool:
 	return true
 
 func _advance_and_load_main_menu() -> void:
-	_advance_level()
+	set_level_to_next()
 	_load_main_menu()
 
 func get_ending_scene_path() -> String:
@@ -124,12 +121,12 @@ func load_current_level() -> void:
 
 func _advance_and_reload_level() -> void:
 	var _prior_level_path = current_level_path
-	_advance_level()
+	set_level_to_next()
 	current_level_path = _prior_level_path
 	load_current_level()
 
 func _load_next_level() -> void:
-	_advance_level()
+	set_level_to_next()
 	load_current_level()
 
 func _reload_level() -> void:
@@ -175,7 +172,7 @@ func _connect_level_signals() -> void:
 	_try_connecting_signal_to_level(&"level_won_and_changed", _on_level_won_and_changed)
 	_try_connecting_signal_to_level(&"level_changed", _on_level_changed)
 	_try_connecting_signal_to_level(&"level_passed", _load_next_level)
-	_try_connecting_signal_to_level(&"next_level_set", set_next_level_path)
+	_try_connecting_signal_to_level(&"next_level_set", _on_next_level_set)
 
 func _on_level_loader_level_loaded() -> void:
 	current_level = level_loader.current_level

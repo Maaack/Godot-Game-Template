@@ -11,8 +11,8 @@ func get_current_level_path() -> String:
 		current_level_path = state_level_path
 	return super.get_current_level_path()
 
-func _advance_level() -> bool:
-	var _advanced := super._advance_level()
+func set_level_to_next() -> bool:
+	var _advanced := super.set_level_to_next()
 	if _advanced:
 		GameState.level_reached(current_level_path)
 	return _advanced
