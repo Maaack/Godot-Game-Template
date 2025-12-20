@@ -85,6 +85,14 @@ func set_level_to_next() -> bool:
 	next_level_path = ""
 	return true
 
+func set_level_to_prev() -> bool:
+	var current_level_id := _find_in_scene_lister(current_level_path)
+	if current_level_id > 0:
+		current_level_id -= 1 
+		current_level_path = scene_lister.files[current_level_id]
+		return true
+	return false
+
 func _advance_and_load_main_menu() -> void:
 	set_level_to_next()
 	_load_main_menu()
