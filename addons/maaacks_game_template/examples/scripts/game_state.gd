@@ -6,7 +6,7 @@ const FILE_PATH = "res://addons/maaacks_game_template/examples/scripts/game_stat
 
 @export var level_states : Dictionary = {}
 @export var current_level_path : String
-@export var continue_level_path : String
+@export var checkpoint_level_path : String
 @export var total_games_played : int
 @export var play_time : int
 @export var total_time : int
@@ -36,20 +36,25 @@ static func get_current_level_path() -> String:
 	var game_state := get_or_create_state()
 	return game_state.current_level_path
 
+static func get_checkpoint_level_path() -> String:
+	if not has_game_state(): 
+		return ""
+	var game_state := get_or_create_state()
+	return game_state.checkpoint_level_path
+
 static func get_levels_reached() -> int:
 	if not has_game_state(): 
 		return 0
 	var game_state := get_or_create_state()
 	return game_state.level_states.size()
 
-static func level_reached(level_path : String) -> void:
+static func set_checkpoint_level_path(level_path : String) -> void:
 	var game_state := get_or_create_state()
-	game_state.current_level_path = level_path
-	game_state.continue_level_path = level_path
+	game_state.checkpoint_level_path = level_path
 	get_level_state(level_path)
 	GlobalState.save()
 
-static func set_current_level(level_path : String) -> void:
+static func set_current_level_path(level_path : String) -> void:
 	var game_state := get_or_create_state()
 	game_state.current_level_path = level_path
 	GlobalState.save()
@@ -61,14 +66,14 @@ static func start_game() -> void:
 
 static func continue_game() -> void:
 	var game_state := get_or_create_state()
-	game_state.current_level_path = game_state.continue_level_path
+	game_state.current_level_path = game_state.checkpoint_level_path
 	GlobalState.save()
 
 static func reset() -> void:
 	var game_state := get_or_create_state()
 	game_state.level_states = {}
 	game_state.current_level_path = ""
-	game_state.continue_level_path = ""
+	game_state.checkpoint_level_path = ""
 	game_state.play_time = 0
 	game_state.total_time = 0
 	GlobalState.save()
