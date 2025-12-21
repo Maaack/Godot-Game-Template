@@ -73,8 +73,6 @@ func get_relative_level_path(offset : int = 1) -> String:
 		if current_level_id >= max(0, -(offset)) and current_level_id < scene_lister.files.size() - max(0, offset):
 			current_level_id += offset
 			return scene_lister.files[current_level_id]
-		else:
-			return current_level_path
 	return ""
 
 func get_next_level_path() -> String:
@@ -115,23 +113,8 @@ func load_level(level_path : String) -> void:
 	current_level_path = level_path
 	level_loader.load_level(level_path)
 
-func _set_checkpoint_and_load_main_menu(next_level_path : String = "") -> void:
-	if next_level_path.is_empty():
-		next_level_path = get_next_level_path()
-	checkpoint_level_path = next_level_path
-	_load_main_menu()
-
-func _set_checkpoint_and_reload_level(next_level_path : String = "") -> void:
-	if next_level_path.is_empty():
-		next_level_path = get_next_level_path()
-	checkpoint_level_path = next_level_path
-	_reload_level()
-
-func _load_next_level(next_level_path : String = "") -> void:
-	if next_level_path.is_empty():
-		next_level_path = get_next_level_path()
-	checkpoint_level_path = next_level_path
-	load_level(next_level_path)
+func _load_checkpoint_level() -> void:
+	load_level(get_checkpoint_level_path())
 
 func _reload_level() -> void:
 	load_level(current_level_path)
@@ -146,24 +129,28 @@ func _load_win_screen_or_ending() -> void:
 	else:
 		_load_ending()
 
-func _load_level_won_screen_or_next_level(next_level : String = "") -> void:
+func _load_level_won_screen_or_next_level(next_level_path : String = "") -> void:
 	if level_won_scene:
 		var instance = level_won_scene.instantiate()
 		get_tree().current_scene.add_child(instance)
-		_try_connecting_signal_to_node(instance, &"continue_pressed", _load_next_level.bind(next_level))
-		_try_connecting_signal_to_node(instance, &"restart_pressed", _set_checkpoint_and_reload_level.bind(next_level))
-		_try_connecting_signal_to_node(instance, &"main_menu_pressed", _set_checkpoint_and_load_main_menu.bind(next_level))
+		_try_connecting_signal_to_node(instance, &"continue_pressed", _load_checkpoint_level)
+		_try_connecting_signal_to_node(instance, &"restart_pressed", _reload_level)
+		_try_connecting_signal_to_node(instance, &"main_menu_pressed", _load_main_menu)
 	else:
-		_load_next_level(next_level)
+		_load_checkpoint_level()
 
 func _on_level_won(next_level_path : String = ""):
-	if is_on_last_level() and next_level_path.is_empty():
+	if next_level_path.is_empty():
+		next_level_path = get_next_level_path()
+	if next_level_path.is_empty():
 		_load_win_screen_or_ending()
 	else:
+		checkpoint_level_path = next_level_path
 		_load_level_won_screen_or_next_level(next_level_path)
 
-func _on_level_changed(next_level : String):
-	_load_next_level(next_level)
+func _on_level_changed(next_level_path : String):
+	checkpoint_level_path = next_level_path
+	_load_checkpoint_level()
 
 func _connect_level_signals() -> void:
 	_try_connecting_signal_to_level(&"level_lost", _on_level_lost)
@@ -183,7 +170,7 @@ func _on_level_loader_level_ready() -> void:
 
 func _auto_load() -> void:
 	if auto_load:
-		load_level(get_checkpoint_level_path())
+		_load_checkpoint_level()
 
 func _ready() -> void:
 	if Engine.is_editor_hint(): return
