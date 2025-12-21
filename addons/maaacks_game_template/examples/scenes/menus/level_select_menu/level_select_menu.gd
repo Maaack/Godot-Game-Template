@@ -29,5 +29,5 @@ func add_levels_to_container() -> void:
 		level_paths.append(file_path)
 
 func _on_level_buttons_container_item_activated(index: int) -> void:
-	GameStateExample.set_current_level(level_paths[index])
+	GameStateExample.set_current_level_path(level_paths[index])
 	level_selected.emit()
