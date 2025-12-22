@@ -1,0 +1,64 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgravx3vt5g3i"]
+
+[ext_resource type="PackedScene" uid="uid://cwt4p3bufkke5" path="res://addons/maaacks_game_template/base/nodes/windows/confirmation_overlaid_window.tscn" id="1_6c67a"]
+[ext_resource type="Script" uid="uid://custha7r0uoic" path="res://addons/maaacks_game_template/base/nodes/menus/options_menu/input/key_assignment_window.gd" id="2_oif0q"]
+
+[node name="KeyAssignmentWindow" instance=ExtResource("1_6c67a")]
+custom_minimum_size = Vector2(420, 200)
+offset_left = -210.0
+offset_top = -100.0
+offset_right = 210.0
+offset_bottom = 100.0
+script = ExtResource("2_oif0q")
+input_confirmation = 0
+update_content = true
+close_button_text = "Close"
+
+[node name="TitleLabel" parent="ContentContainer/BoxContainer/TitleMargin/BoxContainer" index="0"]
+text = "Set Input"
+
+[node name="DescriptionLabel" parent="ContentContainer/BoxContainer/BodyMargin" index="0"]
+visible = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ContentContainer/BoxContainer/BodyMargin" index="1"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="InputLabel" type="Label" parent="ContentContainer/BoxContainer/BodyMargin/VBoxContainer" index="0"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "None"
+horizontal_alignment = 1
+
+[node name="InputTextEdit" type="TextEdit" parent="ContentContainer/BoxContainer/BodyMargin/VBoxContainer" index="1"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+placeholder_text = "Focus here to assign inputs."
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+middle_mouse_paste_enabled = false
+caret_move_on_right_click = false
+
+[node name="MenuButtons" parent="ContentContainer/BoxContainer/MenuButtonsMargin" index="0"]
+null_focus_enabled = false
+joypad_enabled = false
+mouse_hidden_enabled = false
+
+[node name="CloseButton" parent="ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="0"]
+focus_neighbor_top = NodePath("../../../BodyMargin/VBoxContainer/InputTextEdit")
+
+[node name="ConfirmButton" parent="ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="1"]
+focus_neighbor_top = NodePath("../../../BodyMargin/VBoxContainer/InputTextEdit")
+
+[node name="DelayTimer" type="Timer" parent="." index="1"]
+unique_name_in_owner = true
+wait_time = 0.1
+one_shot = true
+
+[connection signal="focus_entered" from="ContentContainer/BoxContainer/BodyMargin/VBoxContainer/InputTextEdit" to="." method="_on_input_text_edit_focus_entered"]
+[connection signal="focus_exited" from="ContentContainer/BoxContainer/BodyMargin/VBoxContainer/InputTextEdit" to="." method="_on_input_text_edit_focus_exited"]
+[connection signal="gui_input" from="ContentContainer/BoxContainer/BodyMargin/VBoxContainer/InputTextEdit" to="." method="_on_input_text_edit_gui_input"]

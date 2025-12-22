@@ -7,7 +7,7 @@
 script = ExtResource("2_p673y")
 packed_scene = null
 
-[node name="SceneContainer" type="MarginContainer" parent="ContentContainer/BoxContainer" index="2"]
+[node name="SceneContainer" type="MarginContainer" parent="ContentContainer/BoxContainer/BodyMargin" index="1"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3

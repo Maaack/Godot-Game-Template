@@ -11,6 +11,9 @@ extends Node
 ## Optional screen to be shown after the game is lost.
 @export var game_lost_scene : PackedScene
 
+var has_lost_game : bool = false
+var has_won_game : bool = false
+
 func _try_connecting_signal_to_node(node : Node, signal_name : String, callable : Callable) -> void:
 	if node.has_signal(signal_name) and not node.is_connected(signal_name, callable):
 		node.connect(signal_name, callable)
@@ -57,7 +60,11 @@ func _load_win_screen_or_ending() -> void:
 		_load_ending()
 
 func game_lost() -> void:
+	if has_won_game or has_lost_game: return
+	has_lost_game = true
 	_load_lose_screen_or_reload()
 
 func game_won() -> void:
+	if has_won_game or has_lost_game: return
+	has_won_game = true
 	_load_win_screen_or_ending()

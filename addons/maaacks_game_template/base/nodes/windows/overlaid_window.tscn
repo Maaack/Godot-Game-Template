@@ -9,3 +9,4 @@ script = ExtResource("1_euyj1")
 pauses_game = false
 makes_mouse_visible = true
 exclusive = true
+exclusive_background_color = Color(0, 0, 0, 0.5)

@@ -34,6 +34,9 @@ Then, run the export for one platform manually **at least once.** This will crea
 
 The `build-and-publish.yml` will **trigger** the build configs in `export_presets.cfg` **by name**. So make sure that your exports names are the same as in the list above. You can change the names or add more build configs with small edits to `build-and-publish.yml`.
 
+#### Additional Git setup
+Some version of Godot will add `export_presets.cfg` to `.gitignore` automatically. You'll want to remove that, so that git checks in your export configuration file with the rest of your code.
+
 #### Additional MacOS setup
 
 ##### MacOS Bundle name
@@ -48,30 +51,27 @@ To avoid this, you need to notarize your game, i.e. tell Apple who you are and w
 
 For that, you'll need first to create an Apple developer account (99USD/year). Then, you'll need to adapt the Export configuration of MacOS [using this guide](https://docs.godotengine.org/en/latest/tutorials/export/exporting_for_macos.html#if-you-have-an-apple-developer-id-certificate-and-exporting-from-linux-or-windows) to add **rcodesign** notarization and your Apple tokens.
 
-### 2. Copy and adapt the `build-and-publish.yml` file
+### 2. Create `GODOT_VERSION` and `EXPORT_NAME` variables
+
+Go to your Github repository Settings > Secrets and Variables > Actions. Then, select the **Variables** tab.
+
+Create two **Repository Variables**: `GODOT_VERSION` and `EXPORT_NAME`. 
+
+> [!NOTE]  
+> Repository variables will be available for this Github repository only, [but you can do more complex stuff if required](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-variables).  
+> Using variables is great, because repo admins can still see these values in Github and edit them.
+
+Change the `EXPORT_NAME` to fit the name of your game. This will be the name of the file your players download.
+
+By default, the workflow file is made for Godot 4.5, but you can set `GODOT_VERSION` to the version of Godot for your project. This will be used for loading container images and export templates. This workflow file uses [godot-ci](https://github.com/abarichello/godot-ci?tab=readme-ov-file) to build your game, so make sure the Godot version you're referring to is [available on Docker.](https://hub.docker.com/r/barichello/godot-ci/tags)
+
+### 3. Copy the `build-and-publish.yml` file
 
 Copy the file `addons/maaacks_game_template/extras/scripts/build-and-publish.yml` into the `.github/workflows` folder at the root of your github repository.
 
 Then, push the file to github on your main branch. The workflow file will be detected by github as a Github Action.
 
-Let's see how you need to adapt it to suit your game and your publication settings.
-
-#### Required: Edit your game's name
-
-```yml
-# Change the `EXPORT_NAME` to fit the name of your game.
-# This will be the name of the file your players download.
-EXPORT_NAME: your-game
-# If your `project.godot` is at the repository root, set `PROJECT_PATH` to "."
-# If it's in a subdirectory, set it to the subdirectory name (e.g., "your-game")
-PROJECT_PATH: .
-```
-
-#### Required: Edit Godot version
-
-By default, the workflow file is made for Godot 4.5. If you're using a different version, replace `GODOT_VERSION: 4.5` at the beginning of the file and all instances of `image: barichello/godot-ci:4.5` with your version. This workflow file uses [godot-ci](https://github.com/abarichello/godot-ci?tab=readme-ov-file) to build your game, so make sure the Godot version you're referring to is [available on Docker.](https://hub.docker.com/r/barichello/godot-ci/tags)
-
-#### (Optional) Edit the export platforms
+### 4. (Optional) Edit the export platforms
 
 The workflow file is made in two parts:
 
@@ -80,89 +80,99 @@ The workflow file is made in two parts:
 
 By default, the workflow file tries to build configs named `Web`, `Linux`, `macOS` and `Windows Desktop`, and will fail if one of the configs is not available.
 
-- If you **don't want** to export to one platform, **delete** the build jobs and the publish steps in the `build-and-publish.yml`. For example, if you don't want to export for macOS, delete this part which builds the artifact.
+#### Deleting a platform
 
-  ```yml
+If you **don't want** to export to one platform, **delete** the build jobs and the publish steps in the `build-and-publish.yml`.  
+
+For example, if you don't want to export for macOS, delete this part which builds the artifact:
+
+```yml
   export-mac:
-  name: macOS Export
-  runs-on: ubuntu-24.04
-  container:
-     image: barichello/godot-ci:4.5
-  steps:
-     - name: Checkout
+    name: macOS Export
+    runs-on: ubuntu-24.04
+    container:
+      image: barichello/godot-ci:${{ vars.GODOT_VERSION }}
+    steps:
+      - name: Checkout
         uses: actions/checkout@v4
         with:
-        lfs: true
+          lfs: true
 
-     - name: Setup
+      - name: Setup
         run: |
-        mkdir -v -p ~/.local/share/godot/export_templates/
-        mkdir -v -p ~/.config/
-        mv /root/.config/godot ~/.config/godot || true
-        mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable || true
-        env:
-        GODOT_VERSION: ${{ env.GODOT_VERSION }}
+          mkdir -v -p ~/.local/share/godot/export_templates/
+          mkdir -v -p ~/.config/
+          mv /root/.config/godot ~/.config/godot || true
+          mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable || true
 
-     - name: Mac Build
+      - name: Mac Build
         run: |
-        mkdir -v -p build/mac
-        EXPORT_DIR="$(readlink -f build)"
-        cd $PROJECT_PATH
-        godot --headless --verbose --export-release "macOS" "$EXPORT_DIR/mac/$EXPORT_NAME.zip"
+          mkdir -v -p build/mac
+          EXPORT_DIR="$(readlink -f build)"
+          cd $PROJECT_PATH
+          godot --headless --verbose --export-release "macOS" "$EXPORT_DIR/mac/${EXPORT_NAME}-mac.zip"
 
-     - name: Upload to GitHub Release (if this run is a release)
+      - name: Upload to GitHub Release (if this run is a release)
         if: ${{ github.event_name == 'release' }}
-        uses: actions/upload-release-asset@v1
-        env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: svenstaro/upload-release-action@v2
         with:
-        upload_url: ${{ github.event.release.upload_url }}
-        asset_path: build/mac/${{ env.EXPORT_NAME }}.zip
-        asset_name: ${{ env.EXPORT_NAME }}-mac.zip
-        asset_content_type: application/zip
+          file: build/mac/${{ env.EXPORT_NAME }}-mac.zip
 
-     - name: Upload Artifact
+      - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-        name: mac
-        path: build/mac/${{ env.EXPORT_NAME }}.zip
-  ```
+          name: mac
+          path: build/mac
 
-  And this part, which publish it to itch.io:
+```
 
-  ```yml
+Remove the job ID (ie. `export-mac`) from the needs of the `publish-builds` job:
+```yml
+  publish-builds:
+    name: Publish Builds
+    needs: [export-web, export-windows, export-linux, export-mac]
+```
+
+And remove this part, which publishes it to itch.io:
+
+```yml
   - name: Upload to Itch.io - macOS
+    run: |
+      ./butler push builds/mac ${{ env.ITCH_USERNAME }}/${{ env.ITCH_GAME }}:mac --userversion "${{ steps.version.outputs.version }}"
+```
+
+#### Adding a platform
+If you want to export to a **new** platform, **copy paste** the build job and add a new step to itch.io publication.
+
+In the build job, change:
+   1. the name of the **export config** that you created in Godot.
+   2. the paths in which the build artifact is created.  
+
+For example:
+
+```yml
+- name: NEW_PLATFORM Build
   run: |
-     ./butler push builds/mac ${{ env.ITCH_USERNAME }}/${{ env.ITCH_GAME }}:mac --userversion "${{ steps.version.outputs.version }}"
-  ```
+      mkdir -v -p build/NEW_PLATFORM
+      EXPORT_DIR="$(readlink -f build)"
+      cd $PROJECT_PATH
+      godot --headless --verbose --export-release "BUILD_CONFIG_NAME" "$EXPORT_DIR/NEW_PLATFORM/$EXPORT_NAME.zip"
+```
 
-- If you want to export to a **new** platform, **copy paste** the build job and add a new step to itch.io publication.
+In the itch.io publication step, make sure to change the path and the tag.
 
-  In the build job, change 1. the name of the **export config** that you created in Godot and 2. the paths in which the build artifact is created. For example:
+```yml
+- name: Upload to Itch.io - NEW_PLATFORM_TAG
+      run: |
+      ./butler push builds/NEW_PLATFORM ${{ env.ITCH_USERNAME }}/${{ env.ITCH_GAME }}:NEW_PLATFORM_TAG --userversion "${{ steps.version.outputs.version }}"
 
-  ```yml
-      - name: NEW_PLATFORM Build
-     run: |
-       mkdir -v -p build/NEW_PLATFORM
-       EXPORT_DIR="$(readlink -f build)"
-       cd $PROJECT_PATH
-       godot --headless --verbose --export-release "BUILD_CONFIG_NAME" "$EXPORT_DIR/NEW_PLATFORM/$EXPORT_NAME.zip"
-  ```
-
-  In the itch.io publication step, make sure to change the path and the tag.
-
-  ```yml
-  - name: Upload to Itch.io - macOS
-       run: |
-         ./butler push builds/NEW_PLATFORM ${{ env.ITCH_USERNAME }}/${{ env.ITCH_GAME }}:NEW_PLATFORM_TAG --userversion "${{ steps.version.outputs.version }}"
-
-  ```
+```
 
 ## Setup Itch.io publication
 
 ### 1. Create a new project on itch.io
 
-1. Go to [itch.io], click on the top right and **Upload a New Project**.
+1. Go to [itch.io](https://itch.io/), click on the top right and **Upload a New Project**.
 
 2. Fill in the game name and any information you want, but don't upload any file.
 
@@ -170,15 +180,15 @@ By default, the workflow file tries to build configs named `Web`, `Linux`, `macO
 
 4. Save the project as a **Draft** (you can change this to public later, once you tested that everything works).
 
-### 2. Create a `ITCH_USERNAME` and `ITCH_GAME` variable
+### 2. Create `ITCH_USERNAME` and `ITCH_GAME` variables
 
 To find your itch.io username and the name of your game, look at the url of your project: `https://your-username.itch.io/your-game`. The username is the first part of the URL, and the game name is in the last part.
 
 Then, go to your Github repository Settings > Secrets and Variables > Actions. Then, select the **Variables** tab.
 
-Create two **Repository Variables**: `ITCH_USERNAME` and `ITCH_GAME`. Repository variables will be available for this Github repository only, [but you can do more complex stuff if required](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-variables). Using variables is great, because repo admins can still see these values in Github and edit them.
+Create two **Repository Variables**: `ITCH_USERNAME` and `ITCH_GAME`.
 
-You should have something like this (with your real username and your real game name instead):
+You should have something like this (with your real username and your real game name instead, and any other repository variables):
 
 ![github variables](../media/build-and-publish/github-variables.png)
 

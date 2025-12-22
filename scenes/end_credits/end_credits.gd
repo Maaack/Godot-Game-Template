@@ -44,6 +44,7 @@ func _ready() -> void:
 		menu_button.hide()
 	if OS.has_feature("web"):
 		exit_button.hide()
+	end_message_panel.hide()
 	super._ready()
 
 func _unhandled_input(event : InputEvent) -> void:

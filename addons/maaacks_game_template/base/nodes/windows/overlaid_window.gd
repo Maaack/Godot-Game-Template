@@ -11,13 +11,14 @@ extends WindowContainer
 			process_mode = PROCESS_MODE_INHERIT
 @export var makes_mouse_visible : bool = true
 @export var exclusive : bool = true
+@export var exclusive_background_color : Color
 
 var _initial_pause_state : bool = false
 var _initial_focus_mode : FocusMode = FOCUS_ALL
 var _initial_mouse_mode : Input.MouseMode
 var _initial_focus_control
 var _scene_tree : SceneTree 
-var _exclusive_control_node : Node
+var _exclusive_control_node : ColorRect
 
 func close() -> void:
 	if not visible: return
@@ -31,7 +32,8 @@ func close() -> void:
 	super.close()
 
 func _overlaid_window_setup():
-	_initial_pause_state = _scene_tree.paused
+	if _scene_tree:
+		_initial_pause_state = _scene_tree.paused
 	_initial_mouse_mode = Input.get_mouse_mode()
 	_initial_focus_control = get_viewport().gui_get_focus_owner()
 	if _initial_focus_control:
@@ -42,8 +44,9 @@ func _overlaid_window_setup():
 	if makes_mouse_visible:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	if exclusive:
-		_exclusive_control_node = Control.new()
+		_exclusive_control_node = ColorRect.new()
 		_exclusive_control_node.name = self.name + "ExclusiveControl"
+		_exclusive_control_node.color = exclusive_background_color
 		_exclusive_control_node.set_anchors_preset(PRESET_FULL_RECT)
 		add_sibling.call_deferred(_exclusive_control_node)
 		await _exclusive_control_node.draw

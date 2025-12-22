@@ -15,7 +15,7 @@ title_visible = false
 [node name="TitleMargin" parent="ContentContainer/BoxContainer" index="0"]
 visible = false
 
-[node name="DescriptionLabel" parent="ContentContainer/BoxContainer/DescriptionMargin" index="0"]
+[node name="DescriptionLabel" parent="ContentContainer/BoxContainer/BodyMargin" index="0"]
 text = "You won!"
 
 [node name="MenuButtons" parent="ContentContainer/BoxContainer/MenuButtonsMargin" index="0"]

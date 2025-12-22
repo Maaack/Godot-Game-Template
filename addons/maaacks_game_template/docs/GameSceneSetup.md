@@ -12,17 +12,23 @@ This should be enough to capture when the `ui-cancel` input action is pressed in
 ## Level Loading
 Some level loading scripts are provided with the examples. They load levels in order from a list, or dynamically by file paths. 
 
-A `LevelLoader` must be provided with a `level_container` in the scene. Levels will get added to and removed from this node. The example uses the `SubViewport`, but any leaf node (ie. node without children) in the scene should work. An optional `level_loading_screen` in the scene can be attached to show progress of loading levels.
-
-The `LevelManager` manages the progress through levels. It works with a level loader and can open menus when players win or lose. It can either be assigned a starting level path (for open world progression) or a scene lister (for linear level progression).
+The `LevelManager` manages the progress through levels. It works with a level loader and can open menus when players win or lose. With a child `SceneLister`, it manages progression linearly. Otherwise, it will rely on the levels themselves providing the path to the next level. It can either be assigned a starting level path (for open world progression) or start from the first level in a scene lister (for linear level progression).
 
 The specific `level_and_state_manager.gd` in the scene inherits from `LevelManager` in order to sync progress with the player's `GameState`, as well.
+
+A `LevelLoader` loads levels, attaches them to a container, and manages a loading screen. It must be provided with a `level_container` in the scene. The example uses the `SubViewport`, but any leaf node (ie. node without children) in the scene should work. An optional `level_loading_screen` in the scene can be attached to show progress of loading levels.
 
 ### Linear Level Progress
 With linear progression, the path in the `starting_level_path` setting can be removed. Levels can be added to the `SceneLister` by either selecting a directory to automatically find scenes, or populating the files array manually.
 
+If using the level select scene, then the `SceneLister` there will also need to be updated to match.
+
+By default, the manager will open the first level from the `SceneLister`. It'll then set the checkpoint to the next level in the list when the current level is won. When winning the last level, it'll load the window for the game being won.
+
 ### Non-Linear Level Progress
 Alternatively, with open world progression, the reference in the `scene_lister` setting can be removed. Instead, the path to the next level is expected to be provided by the current level. The example levels demonstrate this with the `next_level_path` setting.
+
+By default, the manager will open `starting_level_path`. It'll then set the checkpoint to the next level sent in the `level_won` or `level_changed` signal from the current level. If no level path is provided, it'll load the window for the game being won.
 
 ### Games without levels
 Level Loading is not required if the entire game takes place in one scene.  

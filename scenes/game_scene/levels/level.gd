@@ -1,8 +1,7 @@
 extends Node
 
 signal level_lost
-signal level_won
-signal level_won_and_changed(level_path : String)
+signal level_won(level_path : String)
 
 ## Optional path to the next level if using an open world level system.
 @export_file("*.tscn") var next_level_path : String
@@ -13,10 +12,7 @@ func _on_lose_button_pressed() -> void:
 	level_lost.emit()
 
 func _on_win_button_pressed() -> void:
-	if not next_level_path.is_empty():
-		level_won_and_changed.emit(next_level_path)
-	else:
-		level_won.emit()
+	level_won.emit(next_level_path)
 
 func open_tutorials() -> void:
 	%TutorialManager.open_tutorials()

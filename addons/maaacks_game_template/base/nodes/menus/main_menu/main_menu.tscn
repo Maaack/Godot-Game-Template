@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://c6k5nnpbypshi"]
+[gd_scene load_steps=8 format=3 uid="uid://c6k5nnpbypshi"]
 
 [ext_resource type="Script" uid="uid://bhgs1upaahk3y" path="res://addons/maaacks_game_template/base/nodes/menus/main_menu/main_menu.gd" id="1"]
 [ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/nodes/utilities/capture_focus.gd" id="4_l1ebe"]
 [ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/nodes/music_players/background_music_player.tscn" id="4_w8sbm"]
 [ext_resource type="Script" uid="uid://b5oej1q4h7jvh" path="res://addons/maaacks_game_template/base/nodes/autoloads/ui_sound_controller/ui_sound_controller.gd" id="6_bs342"]
 [ext_resource type="Script" uid="uid://dmkubt2nsnsbn" path="res://addons/maaacks_game_template/base/nodes/labels/config_version_label.gd" id="6_pdiij"]
+[ext_resource type="PackedScene" uid="uid://cwt4p3bufkke5" path="res://addons/maaacks_game_template/base/nodes/windows/confirmation_overlaid_window.tscn" id="7_im16j"]
 [ext_resource type="Script" uid="uid://bkwlopi4qn32o" path="res://addons/maaacks_game_template/base/nodes/labels/config_name_label.gd" id="7_j7612"]
 
 [node name="MainMenu" type="Control"]
@@ -30,37 +31,6 @@ grow_horizontal = 2
 grow_vertical = 2
 expand_mode = 1
 stretch_mode = 5
-
-[node name="VersionMargin" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
-
-[node name="VersionContainer" type="Control" parent="VersionMargin"]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="VersionLabel" type="Label" parent="VersionMargin/VersionContainer"]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -88.0
-offset_top = -26.0
-grow_horizontal = 0
-grow_vertical = 0
-text = "v0.0.0"
-horizontal_alignment = 2
-script = ExtResource("6_pdiij")
 
 [node name="MenuContainer" type="MarginContainer" parent="."]
 unique_name_in_owner = true
@@ -160,7 +130,53 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Exit"
 
+[node name="VersionMargin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VersionContainer" type="Control" parent="VersionMargin"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VersionLabel" type="Label" parent="VersionMargin/VersionContainer"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -88.0
+offset_top = -26.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "v0.0.0"
+horizontal_alignment = 2
+script = ExtResource("6_pdiij")
+
+[node name="ExitConfirmation" parent="." instance=ExtResource("7_im16j")]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(300, 160)
+layout_mode = 1
+offset_left = -150.0
+offset_top = -80.0
+offset_right = 150.0
+offset_bottom = 80.0
+ui_cancel_closes = false
+text = "Really exit the game?"
+title_visible = false
+
 [connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="confirmed" from="ExitConfirmation" to="." method="_on_exit_confirmation_confirmed"]

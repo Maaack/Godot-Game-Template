@@ -29,12 +29,17 @@ func get_next_scene_path() -> String:
 		return AppConfig.main_menu_scene_path
 	return next_scene_path
 
+func _on_scene_loaded() -> void:
+		SceneLoader.change_scene_to_resource()
+
 func _load_next_scene() -> void:
 	var status = SceneLoader.get_status()
-	if show_loading_screen or status != ResourceLoader.THREAD_LOAD_LOADED:
+	if status == ResourceLoader.THREAD_LOAD_LOADED:
+		_on_scene_loaded()
+	elif show_loading_screen:
 		SceneLoader.change_scene_to_loading_screen()
-	else:
-		SceneLoader.change_scene_to_resource()
+	elif not SceneLoader.scene_loaded.is_connected(_on_scene_loaded):
+		SceneLoader.scene_loaded.connect(_on_scene_loaded, CONNECT_ONE_SHOT)
 
 func _add_textures_to_container(textures : Array[Texture2D]) -> void:
 	for texture in textures:

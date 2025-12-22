@@ -26,12 +26,8 @@ pauses_game = true
 [node name="TitleLabel" parent="ContentContainer/BoxContainer/TitleMargin/BoxContainer" index="0"]
 text = "Paused"
 
-[node name="DescriptionMargin" parent="ContentContainer/BoxContainer" index="1"]
+[node name="BodyMargin" parent="ContentContainer/BoxContainer" index="1"]
 visible = false
-
-[node name="DescriptionLabel" parent="ContentContainer/BoxContainer/DescriptionMargin" index="0"]
-horizontal_alignment = 0
-vertical_alignment = 0
 
 [node name="MenuButtonsMargin" parent="ContentContainer/BoxContainer" index="2"]
 size_flags_vertical = 3

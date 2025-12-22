@@ -20,9 +20,6 @@ packed_scene = ExtResource("3_8w6bb")
 [node name="TitleMargin" parent="ContentContainer/BoxContainer" index="0"]
 visible = false
 
-[node name="DescriptionMargin" parent="ContentContainer/BoxContainer" index="1"]
-visible = false
-
 [node name="CloseButton" parent="ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="0"]
 size_flags_horizontal = 0
 text = "Back"
