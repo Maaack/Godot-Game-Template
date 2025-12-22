@@ -6,7 +6,7 @@
 custom_minimum_size = Vector2(420, 200)
 update_content = true
 text = "Progress is saved.
-Pressing Continue from the main menu will load the last level played."
+Pressing Continue from the main menu will load at the last checkpoint."
 title = "Tutorial"
 title_font_size = 20
 
