@@ -76,7 +76,6 @@ func open_theme_selection_dialog(target_path : String) -> void:
 	theme_selection_instance.theme_directories = theme_directores
 
 func open_setup_complete_dialog(_target_path : String) -> void:
-	selected_theme = ""
 	var setup_complete_scene : PackedScene = load(get_plugin_path() + "installer/setup_complete_dialog.tscn")
 	var setup_complete_instance : AcceptDialog = setup_complete_scene.instantiate()
 	setup_complete_instance.visibility_changed.connect(_on_visibility_changed_to_hidden.bind(setup_complete_instance))

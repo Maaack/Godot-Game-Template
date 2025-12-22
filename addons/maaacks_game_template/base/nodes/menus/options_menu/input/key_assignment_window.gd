@@ -57,8 +57,8 @@ func _focus_on_ok() -> void:
 	confirm_button.grab_focus()
 
 func _ready() -> void:
-	confirm_button.focus_neighbor_top = ^"../../../VBoxContainer/InputTextEdit"
-	close_button.focus_neighbor_top = ^"../../../VBoxContainer/InputTextEdit"
+	confirm_button.focus_neighbor_top = ^"../../../BodyMargin/VBoxContainer/InputTextEdit"
+	close_button.focus_neighbor_top = ^"../../../BodyMargin/VBoxContainer/InputTextEdit"
 	super._ready()
 
 func _input_matches_last(event : InputEvent) -> bool:

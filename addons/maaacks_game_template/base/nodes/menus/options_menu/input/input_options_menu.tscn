@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://bxp45814v6ydv" path="res://addons/maaacks_game_template/base/nodes/menus/options_menu/input/input_actions_list.tscn" id="4_lf2nw"]
 [ext_resource type="PackedScene" uid="uid://ci6wgl2ngd35n" path="res://addons/maaacks_game_template/base/nodes/menus/options_menu/input/input_actions_tree.tscn" id="5_b2whh"]
 [ext_resource type="PackedScene" uid="uid://cwt4p3bufkke5" path="res://addons/maaacks_game_template/base/nodes/windows/confirmation_overlaid_window.tscn" id="7_5j1ya"]
+[ext_resource type="PackedScene" uid="uid://dgravx3vt5g3i" path="res://addons/maaacks_game_template/base/nodes/menus/options_menu/input/key_assignment_window.tscn" id="7_r3r3g"]
 [ext_resource type="PackedScene" uid="uid://6gdbfi0172ji" path="res://addons/maaacks_game_template/base/nodes/windows/overlaid_window.tscn" id="8_jtpjy"]
-[ext_resource type="Script" uid="uid://custha7r0uoic" path="res://addons/maaacks_game_template/base/nodes/menus/options_menu/input/key_assignment_window.gd" id="9_pdk84"]
 
 [node name="Controls" type="MarginContainer"]
 anchors_preset = 15
@@ -88,55 +88,9 @@ layout_mode = 2
 update_content = true
 title = "Already Assigned"
 
-[node name="KeyAssignmentWindow" parent="." instance=ExtResource("7_5j1ya")]
+[node name="KeyAssignmentWindow" parent="." instance=ExtResource("7_r3r3g")]
 visible = false
-custom_minimum_size = Vector2(420, 200)
 layout_mode = 2
-script = ExtResource("9_pdk84")
-input_confirmation = 0
-update_content = true
-
-[node name="DescriptionLabel" parent="KeyAssignmentWindow/ContentContainer/BoxContainer/BodyMargin" index="0"]
-visible = false
-
-[node name="VBoxContainer" type="VBoxContainer" parent="KeyAssignmentWindow/ContentContainer/BoxContainer/BodyMargin" index="1"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="InputLabel" type="Label" parent="KeyAssignmentWindow/ContentContainer/BoxContainer/BodyMargin/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "None"
-horizontal_alignment = 1
-
-[node name="InputTextEdit" type="TextEdit" parent="KeyAssignmentWindow/ContentContainer/BoxContainer/BodyMargin/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_vertical = 3
-placeholder_text = "Focus here to assign inputs."
-context_menu_enabled = false
-shortcut_keys_enabled = false
-selecting_enabled = false
-deselect_on_focus_loss_enabled = false
-drag_and_drop_selection_enabled = false
-middle_mouse_paste_enabled = false
-caret_move_on_right_click = false
-
-[node name="MenuButtons" parent="KeyAssignmentWindow/ContentContainer/BoxContainer/MenuButtonsMargin" index="0"]
-null_focus_enabled = false
-joypad_enabled = false
-mouse_hidden_enabled = false
-
-[node name="CloseButton" parent="KeyAssignmentWindow/ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="0"]
-focus_neighbor_top = NodePath("../../../BodyMargin/VBoxContainer/InputTextEdit")
-
-[node name="ConfirmButton" parent="KeyAssignmentWindow/ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="1"]
-focus_neighbor_top = NodePath("../../../BodyMargin/VBoxContainer/InputTextEdit")
-
-[node name="DelayTimer" type="Timer" parent="KeyAssignmentWindow"]
-unique_name_in_owner = true
-wait_time = 0.1
-one_shot = true
 
 [connection signal="already_assigned" from="VBoxContainer/InputMappingContainer/InputActionsList" to="." method="_on_input_actions_list_already_assigned"]
 [connection signal="button_clicked" from="VBoxContainer/InputMappingContainer/InputActionsList" to="." method="_on_input_actions_list_button_clicked"]
@@ -149,8 +103,3 @@ one_shot = true
 [connection signal="confirmed" from="KeyDeletionConfirmation" to="." method="_on_key_deletion_confirmation_confirmed"]
 [connection signal="confirmed" from="ResetConfirmation" to="." method="_on_reset_confirmation_confirmed"]
 [connection signal="confirmed" from="KeyAssignmentWindow" to="." method="_on_key_assignment_window_confirmed"]
-[connection signal="focus_entered" from="KeyAssignmentWindow/ContentContainer/BoxContainer/BodyMargin/VBoxContainer/InputTextEdit" to="KeyAssignmentWindow" method="_on_input_text_edit_focus_entered"]
-[connection signal="focus_exited" from="KeyAssignmentWindow/ContentContainer/BoxContainer/BodyMargin/VBoxContainer/InputTextEdit" to="KeyAssignmentWindow" method="_on_input_text_edit_focus_exited"]
-[connection signal="gui_input" from="KeyAssignmentWindow/ContentContainer/BoxContainer/BodyMargin/VBoxContainer/InputTextEdit" to="KeyAssignmentWindow" method="_on_input_text_edit_gui_input"]
-
-[editable path="KeyAssignmentWindow"]
