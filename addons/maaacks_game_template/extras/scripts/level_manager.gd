@@ -31,23 +31,17 @@ extends Node
 @export var level_lost_scene : PackedScene
 ## Optional screen to be shown after the level is won.
 @export var level_won_scene : PackedScene
-@export_group("Debugging")
-## Loads a level on start.
-@export_file("*.tscn") var force_level_path : String = ""
 
 ## Reference to the current level node.
 var current_level : Node
-var current_level_path : String :
-	set = set_current_level_path
+var current_level_path : String : set = set_current_level_path
+var checkpoint_level_path : String : set = set_checkpoint_level_path
 
 func set_current_level_path(value : String) -> void:
 	current_level_path = value
 
-var next_level_path : String : 
-	set = set_next_level_path
-	
-func set_next_level_path(value : String) -> void:
-	next_level_path = value
+func set_checkpoint_level_path(value : String) -> void:
+	checkpoint_level_path = value
 
 func _try_connecting_signal_to_node(node : Node, signal_name : String, callable : Callable) -> void:
 	if node.has_signal(signal_name) and not node.is_connected(signal_name, callable):
@@ -66,31 +60,26 @@ func _load_main_menu() -> void:
 
 func _find_in_scene_lister(level_path : String) -> int:
 	if not scene_lister: return -1
+	level_path = ResourceUID.ensure_path(level_path)
 	return scene_lister.files.find(level_path)
 
-func has_next_level() -> bool:
-	if scene_lister:
-		var current_level_id = _find_in_scene_lister(current_level_path)
-		return current_level_id < scene_lister.files.size() - 1
-	return (not next_level_path.is_empty()) and next_level_path != current_level_path
-
 func is_on_last_level() -> bool:
-	return not has_next_level()
+	var current_level_id = _find_in_scene_lister(current_level_path)
+	return current_level_id > -1 and current_level_id == scene_lister.files.size() - 1
 
-func _advance_level() -> bool:
-	if is_on_last_level(): return false
+func get_relative_level_path(offset : int = 1) -> String:
 	var current_level_id := _find_in_scene_lister(current_level_path)
 	if current_level_id > -1:
-		current_level_id += 1
-		current_level_path = scene_lister.files[current_level_id]
-		return true
-	current_level_path = next_level_path
-	next_level_path = ""
-	return true
+		if current_level_id >= max(0, -(offset)) and current_level_id < scene_lister.files.size() - max(0, offset):
+			current_level_id += offset
+			return scene_lister.files[current_level_id]
+	return ""
 
-func _advance_and_load_main_menu() -> void:
-	_advance_level()
-	_load_main_menu()
+func get_next_level_path() -> String:
+	return get_relative_level_path(1)
+
+func get_prev_level_path() -> String:
+	return get_relative_level_path(-1)
 
 func get_ending_scene_path() -> String:
 	if ending_scene_path.is_empty():
@@ -112,28 +101,23 @@ func _on_level_lost() -> void:
 	else:
 		_reload_level()
 
-func get_current_level_path() -> String:
-	if current_level_path.is_empty():
-		current_level_path = starting_level_path
+func get_checkpoint_level_path() -> String:
+	if checkpoint_level_path.is_empty():
 		if scene_lister:
-			current_level_path = scene_lister.files.front()
-	return current_level_path if force_level_path.is_empty() else force_level_path
+			return scene_lister.files.front()
+		if not starting_level_path.is_empty():
+			return starting_level_path
+	return checkpoint_level_path
 
-func load_current_level() -> void:
-	level_loader.load_level(get_current_level_path())
+func load_level(level_path : String) -> void:
+	current_level_path = level_path
+	level_loader.load_level(level_path)
 
-func _advance_and_reload_level() -> void:
-	var _prior_level_path = current_level_path
-	_advance_level()
-	current_level_path = _prior_level_path
-	load_current_level()
-
-func _load_next_level() -> void:
-	_advance_level()
-	load_current_level()
+func _load_checkpoint_level() -> void:
+	load_level(get_checkpoint_level_path())
 
 func _reload_level() -> void:
-	load_current_level()
+	load_level(current_level_path)
 
 func _load_win_screen_or_ending() -> void:
 	if game_won_scene:
@@ -145,37 +129,33 @@ func _load_win_screen_or_ending() -> void:
 	else:
 		_load_ending()
 
-func _load_level_won_screen_or_next_level() -> void:
+func _load_level_won_screen_or_next_level(next_level_path : String = "") -> void:
 	if level_won_scene:
 		var instance = level_won_scene.instantiate()
 		get_tree().current_scene.add_child(instance)
-		_try_connecting_signal_to_node(instance, &"continue_pressed", _load_next_level)
-		_try_connecting_signal_to_node(instance, &"restart_pressed", _advance_and_reload_level)
-		_try_connecting_signal_to_node(instance, &"main_menu_pressed", _advance_and_load_main_menu)
+		_try_connecting_signal_to_node(instance, &"continue_pressed", _load_checkpoint_level)
+		_try_connecting_signal_to_node(instance, &"restart_pressed", _reload_level)
+		_try_connecting_signal_to_node(instance, &"main_menu_pressed", _load_main_menu)
 	else:
-		_load_next_level()
+		_load_checkpoint_level()
 
-func _on_level_won():
-	if is_on_last_level():
+func _on_level_won(next_level_path : String = ""):
+	if next_level_path.is_empty():
+		next_level_path = get_next_level_path()
+	if next_level_path.is_empty():
 		_load_win_screen_or_ending()
 	else:
-		_load_level_won_screen_or_next_level()
+		checkpoint_level_path = next_level_path
+		_load_level_won_screen_or_next_level(next_level_path)
 
-func _on_level_won_and_changed(next_level : String):
-	next_level_path = next_level
-	_on_level_won()
-
-func _on_level_changed(next_level : String):
-	next_level_path = next_level
-	_load_next_level()
+func _on_level_changed(next_level_path : String):
+	checkpoint_level_path = next_level_path
+	_load_checkpoint_level()
 
 func _connect_level_signals() -> void:
 	_try_connecting_signal_to_level(&"level_lost", _on_level_lost)
 	_try_connecting_signal_to_level(&"level_won", _on_level_won)
-	_try_connecting_signal_to_level(&"level_won_and_changed", _on_level_won_and_changed)
 	_try_connecting_signal_to_level(&"level_changed", _on_level_changed)
-	_try_connecting_signal_to_level(&"level_passed", _load_next_level)
-	_try_connecting_signal_to_level(&"next_level_set", set_next_level_path)
 
 func _on_level_loader_level_loaded() -> void:
 	current_level = level_loader.current_level
@@ -190,7 +170,7 @@ func _on_level_loader_level_ready() -> void:
 
 func _auto_load() -> void:
 	if auto_load:
-		load_current_level()
+		_load_checkpoint_level()
 
 func _ready() -> void:
 	if Engine.is_editor_hint(): return

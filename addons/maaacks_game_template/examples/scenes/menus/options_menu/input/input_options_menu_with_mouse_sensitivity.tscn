@@ -37,4 +37,3 @@ tick_count = 8
 layout_mode = 2
 
 [editable path="VBoxContainer/MarginContainer/VBoxContainer/MouseSensitivityControl"]
-[editable path="KeyAssignmentWindow"]

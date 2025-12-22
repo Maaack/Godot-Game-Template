@@ -367,7 +367,6 @@ offset_left = -210.0
 offset_top = -100.0
 offset_right = 210.0
 offset_bottom = 100.0
-update_content = true
 text = "Are you sure you want to start a new game?
 
 All progress in the current game will be lost."

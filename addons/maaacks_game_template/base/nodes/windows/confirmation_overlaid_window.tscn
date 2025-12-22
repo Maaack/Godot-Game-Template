@@ -6,6 +6,7 @@
 [node name="ConfirmationOverlaidWindow" instance=ExtResource("1_vfkm2")]
 script = ExtResource("2_sw7p1")
 confirm_button_text = "Confirm"
+update_content = true
 close_button_text = "Cancel"
 
 [node name="MenuButtons" parent="ContentContainer/BoxContainer/MenuButtonsMargin" index="0"]
