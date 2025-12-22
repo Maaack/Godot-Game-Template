@@ -16,4 +16,4 @@ text = "Tutorial"
 
 [node name="DescriptionLabel" parent="ContentContainer/BoxContainer/BodyMargin" index="0"]
 text = "Progress is saved.
-Pressing Continue from the main menu will load the last level played."
+Pressing Continue from the main menu will load at the last checkpoint."
