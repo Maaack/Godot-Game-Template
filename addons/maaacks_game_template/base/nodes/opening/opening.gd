@@ -115,6 +115,11 @@ func _show_next_image(animated : bool = true) -> void:
 	_wait_and_fade_out(texture_rect)
 
 func _ready() -> void:
-	SceneLoader.load_scene(get_next_scene_path(), true)
-	_add_textures_to_container(images)
-	_transition_in()
+	var args := OS.get_cmdline_args()
+	var skip: bool = "--skip-intros" in args
+	if skip:
+		SceneLoader.load_scene(get_next_scene_path())
+	else:
+		SceneLoader.load_scene(get_next_scene_path(), true)
+		_add_textures_to_container(images)
+		_transition_in()
