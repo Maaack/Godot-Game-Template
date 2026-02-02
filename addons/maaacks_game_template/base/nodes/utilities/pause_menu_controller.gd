@@ -20,6 +20,7 @@ func pause() -> void:
 	if is_inside_tree() and _initial_focus_control:
 		_initial_focus_control.grab_focus()
 
+# If pause menu should take precedence, override _input() instead.
 func _unhandled_input(event : InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		pause()
