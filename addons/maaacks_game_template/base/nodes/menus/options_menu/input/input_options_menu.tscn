@@ -62,7 +62,6 @@ text = "Reset"
 visible = false
 custom_minimum_size = Vector2(420, 200)
 layout_mode = 2
-update_content = true
 text = "Are you sure you want to remove KEY from ACTION?"
 title = "Remove Key"
 
@@ -70,7 +69,6 @@ title = "Remove Key"
 visible = false
 custom_minimum_size = Vector2(420, 200)
 layout_mode = 2
-update_content = true
 text = "Are you sure you want to reset controls back to the defaults?"
 title = "Reset to Default"
 
@@ -90,6 +88,7 @@ title = "Already Assigned"
 
 [node name="KeyAssignmentWindow" parent="." instance=ExtResource("7_r3r3g")]
 visible = false
+custom_minimum_size = Vector2(420, 200)
 layout_mode = 2
 
 [connection signal="already_assigned" from="VBoxContainer/InputMappingContainer/InputActionsList" to="." method="_on_input_actions_list_already_assigned"]
