@@ -70,7 +70,7 @@ The `examples/` folder contains an example project using inherited scenes from t
 
 ### Minimal
 
-Users that want a minimal set of features can try [Maaack's Menus Template](https://github.com/Maaack/Godot-Menus-Template) or other options from the [plugin suite](/addons/maaacks_game_template/docs/PluginSuite.md).  
+Users that want a minimal set of features can try [Maaack's Minimal Game Template](https://github.com/Maaack/Godot-Minimal-Game-Template) or other options from the [plugin suite](/addons/maaacks_game_template/docs/PluginSuite.md).  
 
 
 ## Installation
