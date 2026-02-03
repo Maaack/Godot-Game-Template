@@ -129,7 +129,7 @@ func _load_win_screen_or_ending() -> void:
 	else:
 		_load_ending()
 
-func _load_level_won_screen_or_next_level(next_level_path : String = "") -> void:
+func _load_level_won_screen_or_checkpoint() -> void:
 	if level_won_scene:
 		var instance = level_won_scene.instantiate()
 		get_tree().current_scene.add_child(instance)
@@ -146,7 +146,7 @@ func _on_level_won(next_level_path : String = ""):
 		_load_win_screen_or_ending()
 	else:
 		checkpoint_level_path = next_level_path
-		_load_level_won_screen_or_next_level(next_level_path)
+		_load_level_won_screen_or_checkpoint()
 
 func _on_level_changed(next_level_path : String):
 	checkpoint_level_path = next_level_path

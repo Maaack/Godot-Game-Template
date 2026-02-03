@@ -2,7 +2,7 @@
 
 ![Plugins Suite](../media/maaacks-plugin-suite-256x256.gif)
 
-Maaack's Game Template is a culmination of a suite of plugins, that can be downloaded individually, if desired.  
+Maaack's Game Templates are a culmination of a suite of plugins, that can be downloaded individually, if desired.  
 
 ## GitHub
 
@@ -15,6 +15,10 @@ Maaack's Game Template is a culmination of a suite of plugins, that can be downl
         - [UI Sound Controller](https://github.com/Maaack/Godot-UI-Sound-Controller)
         - [Music Controller](https://github.com/Maaack/Godot-Music-Controller)
 
+- [Minimal Game Template](https://github.com/Maaack/Godot-Minimal-Game-Template) 
+    - [Options Menus](https://github.com/Maaack/Godot-Options-Menus)
+        - [Input Remapping](https://github.com/Maaack/Godot-Input-Remapping)
+
 ## Godot Asset Library
 
 - [Game Template](https://godotengine.org/asset-library/asset/2709) 
@@ -25,6 +29,10 @@ Maaack's Game Template is a culmination of a suite of plugins, that can be downl
         - [Credits Scene](https://godotengine.org/asset-library/asset/2932)
         - [UI Sound Controller](https://godotengine.org/asset-library/asset/2897)
         - [Music Controller](https://godotengine.org/asset-library/asset/2898)
+
+- [Minimal Game Template](https://godotengine.org/asset-library/asset/4657) 
+    - [Options Menus](https://godotengine.org/asset-library/asset/3058)
+        - [Input Remapping](https://godotengine.org/asset-library/asset/4051)
 
 ## YouTube Video
 

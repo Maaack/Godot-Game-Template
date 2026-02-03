@@ -61,7 +61,7 @@ func _on_api_client_request_failed(error) -> void:
 	queue_free()
 
 func _on_api_client_response_received(response_body) -> void:
-	if response_body is not Array:
+	if response_body is not Array or response_body.is_empty():
 		failed.emit()
 		queue_free()
 		return

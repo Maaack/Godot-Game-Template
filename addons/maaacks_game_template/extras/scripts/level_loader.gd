@@ -14,6 +14,7 @@ signal level_ready
 @export_group("Debugging")
 @export var current_level : Node
 
+var current_level_path : String
 var is_loading : bool = false
 
 func _attach_level(level_resource : Resource):
@@ -29,7 +30,8 @@ func load_level(level_path : String):
 		await current_level.tree_exited
 		current_level = null
 	is_loading = true
-	SceneLoader.load_scene(level_path, true)
+	current_level_path = level_path
+	SceneLoader.load_scene(current_level_path, true)
 	if level_loading_screen:
 		level_loading_screen.reset()
 	level_load_started.emit()

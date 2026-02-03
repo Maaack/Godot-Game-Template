@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://ceosghqutgxop"]
+[gd_scene format=3 uid="uid://ceosghqutgxop"]
 
 [ext_resource type="PackedScene" uid="uid://6gdbfi0172ji" path="res://addons/maaacks_game_template/base/nodes/windows/overlaid_window.tscn" id="1_2a4pl"]
 
-[node name="OverlaidWindow" instance=ExtResource("1_2a4pl")]
+[node name="OverlaidWindow" unique_id=902196267 instance=ExtResource("1_2a4pl")]
 custom_minimum_size = Vector2(420, 200)
 update_content = true
 text = "Progress is saved.
@@ -10,10 +10,10 @@ Pressing Continue from the main menu will load at the last checkpoint."
 title = "Tutorial"
 title_font_size = 20
 
-[node name="TitleLabel" parent="ContentContainer/BoxContainer/TitleMargin/BoxContainer" index="0"]
+[node name="TitleLabel" parent="ContentContainer/BoxContainer/TitleMargin/BoxContainer" parent_id_path=PackedInt32Array(1788474031) index="0" unique_id=1049966061]
 theme_override_font_sizes/font_size = 20
 text = "Tutorial"
 
-[node name="DescriptionLabel" parent="ContentContainer/BoxContainer/BodyMargin" index="0"]
+[node name="DescriptionLabel" parent="ContentContainer/BoxContainer/BodyMargin" parent_id_path=PackedInt32Array(590613964) index="0" unique_id=617407155]
 text = "Progress is saved.
 Pressing Continue from the main menu will load at the last checkpoint."
