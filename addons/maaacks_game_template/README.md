@@ -146,6 +146,7 @@ These instructions assume starting with just the contents of `addons/`. This wil
 [Input Icon Mapping](/addons/maaacks_game_template/docs/InputIconMapping.md)  
 [Joypad Inputs](/addons/maaacks_game_template/docs/JoypadInputs.md)  
 [Blending Music](/addons/maaacks_game_template/docs/BlendingMusic.md)  
+[Add UI Sound Effects](/addons/maaacks_game_template/docs/AddingUISFX.md)  
 [Add Custom Options](/addons/maaacks_game_template/docs/AddingCustomOptions.md)  
 [Game Saving](/addons/maaacks_game_template/docs/GameSaving.md)  
 [How Parts Work](/addons/maaacks_game_template/docs/HowPartsWork.md)  
