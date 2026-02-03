@@ -90,6 +90,9 @@ func _on_api_client_response_received(response_body : Variant) -> void:
 	if response_body is not Array:
 		push_error("Response was not an array")
 		return
+	if response_body.is_empty():
+		push_error("Response was an empty array")
+		return
 	var latest_release : Dictionary = response_body.front()
 	_newest_version = default_version
 	if latest_release.has("tag_name"):
