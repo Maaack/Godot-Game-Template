@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://ch7wxnbttg3ik"]
+[gd_scene format=3 uid="uid://ch7wxnbttg3ik"]
 
 [ext_resource type="Script" uid="uid://dn4473jhxuix" path="res://addons/maaacks_game_template/examples/scenes/windows/pause_menu_layer.gd" id="1_7wt2f"]
 [ext_resource type="PackedScene" uid="uid://6gdbfi0172ji" path="res://addons/maaacks_game_template/base/nodes/windows/overlaid_window.tscn" id="2_wso7n"]
@@ -6,11 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://xvu2k02xdqi6" path="res://addons/maaacks_game_template/examples/scenes/windows/pause_menu_options_window.tscn" id="4_7wt2f"]
 [ext_resource type="PackedScene" uid="uid://cwt4p3bufkke5" path="res://addons/maaacks_game_template/base/nodes/windows/confirmation_overlaid_window.tscn" id="5_7wt2f"]
 
-[node name="PauseMenuLayer" type="CanvasLayer"]
+[node name="PauseMenuLayer" type="CanvasLayer" unique_id=914002369]
 process_mode = 3
 script = ExtResource("1_7wt2f")
 
-[node name="PauseMenu" parent="." instance=ExtResource("2_wso7n")]
+[node name="PauseMenu" parent="." unique_id=6629802 instance=ExtResource("2_wso7n")]
 unique_name_in_owner = true
 process_mode = 3
 custom_minimum_size = Vector2(256, 312)
@@ -25,68 +25,65 @@ pauses_game = true
 update_content = true
 title = "Paused"
 
-[node name="TitleLabel" parent="PauseMenu/ContentContainer/BoxContainer/TitleMargin/BoxContainer" index="0"]
+[node name="TitleLabel" parent="PauseMenu/ContentContainer/BoxContainer/TitleMargin/BoxContainer" parent_id_path=PackedInt32Array(6629802, 1788474031) index="0" unique_id=1049966061]
 text = "Paused"
 
-[node name="BodyMargin" parent="PauseMenu/ContentContainer/BoxContainer" index="1"]
+[node name="BodyMargin" parent="PauseMenu/ContentContainer/BoxContainer" parent_id_path=PackedInt32Array(6629802, 394030069) index="1" unique_id=590613964]
 visible = false
 
-[node name="MenuButtonsMargin" parent="PauseMenu/ContentContainer/BoxContainer" index="2"]
+[node name="MenuButtonsMargin" parent="PauseMenu/ContentContainer/BoxContainer" parent_id_path=PackedInt32Array(6629802, 394030069) index="2" unique_id=1413292752]
 size_flags_vertical = 3
 
-[node name="CloseButton" parent="PauseMenu/ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="0"]
+[node name="CloseButton" parent="PauseMenu/ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" parent_id_path=PackedInt32Array(6629802, 1371114575) index="0" unique_id=314526102]
 text = "Resume"
 
-[node name="RestartButton" type="Button" parent="PauseMenu/ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="1"]
+[node name="RestartButton" type="Button" parent="PauseMenu/ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" parent_id_path=PackedInt32Array(6629802, 1371114575) index="1" unique_id=261040990]
 layout_mode = 2
 text = "Restart"
 
-[node name="SaveGameButton" type="Button" parent="PauseMenu/ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="2"]
+[node name="SaveGameButton" type="Button" parent="PauseMenu/ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" parent_id_path=PackedInt32Array(6629802, 1371114575) index="2" unique_id=1952904817]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 text = "Save Game"
 
-[node name="LoadGameButton" type="Button" parent="PauseMenu/ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="3"]
+[node name="LoadGameButton" type="Button" parent="PauseMenu/ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" parent_id_path=PackedInt32Array(6629802, 1371114575) index="3" unique_id=31108573]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 text = "Load Game"
 
-[node name="OptionsButton" type="Button" parent="PauseMenu/ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="4"]
+[node name="OptionsButton" type="Button" parent="PauseMenu/ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" parent_id_path=PackedInt32Array(6629802, 1371114575) index="4" unique_id=487135325]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Options"
 
-[node name="MainMenuButton" type="Button" parent="PauseMenu/ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="5"]
+[node name="MainMenuButton" type="Button" parent="PauseMenu/ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" parent_id_path=PackedInt32Array(6629802, 1371114575) index="5" unique_id=920922356]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Main Menu"
 
-[node name="ExitButton" type="Button" parent="PauseMenu/ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="6"]
+[node name="ExitButton" type="Button" parent="PauseMenu/ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" parent_id_path=PackedInt32Array(6629802, 1371114575) index="6" unique_id=2037900804]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Exit Game"
 
-[node name="RestartConfirmation" parent="." instance=ExtResource("5_7wt2f")]
+[node name="RestartConfirmation" parent="." unique_id=1453441706 instance=ExtResource("5_7wt2f")]
 unique_name_in_owner = true
 visible = false
-update_content = true
 text = "Restart the game?"
 title = "Confirm Restart"
 
-[node name="MainMenuConfirmation" parent="." instance=ExtResource("5_7wt2f")]
+[node name="MainMenuConfirmation" parent="." unique_id=1848000740 instance=ExtResource("5_7wt2f")]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(220, 0)
-update_content = true
 text = "Exit to the main menu?"
 title = "Confirm Exit"
 
-[node name="ExitConfirmation" parent="." instance=ExtResource("5_7wt2f")]
+[node name="ExitConfirmation" parent="." unique_id=1161491301 instance=ExtResource("5_7wt2f")]
 unique_name_in_owner = true
 visible = false
-update_content = true
 text = "Exit the game?"
 title = "Confirm Exit"
 

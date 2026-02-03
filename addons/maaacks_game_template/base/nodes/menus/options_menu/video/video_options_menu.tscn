@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://b2numvphf2kau"]
+[gd_scene format=3 uid="uid://b2numvphf2kau"]
 
 [ext_resource type="Script" uid="uid://cpe5r24151r5n" path="res://addons/maaacks_game_template/base/nodes/menus/options_menu/video/video_options_menu.gd" id="1"]
 [ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/nodes/utilities/capture_focus.gd" id="2_dgrai"]
@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c01ayjblhcg1t" path="res://addons/maaacks_game_template/base/nodes/menus/options_menu/option_control/vector_2_list_option_control.tscn" id="4_gwtfq"]
 [ext_resource type="PackedScene" uid="uid://b6bl3n5mp3m1e" path="res://addons/maaacks_game_template/base/nodes/menus/options_menu/option_control/list_option_control.tscn" id="5_881de"]
 
-[node name="Video" type="MarginContainer"]
+[node name="Video" type="MarginContainer" unique_id=1604782575]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -14,7 +14,7 @@ theme_override_constants/margin_top = 24
 theme_override_constants/margin_bottom = 24
 script = ExtResource("1")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1251699420]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -22,7 +22,7 @@ alignment = 1
 script = ExtResource("2_dgrai")
 search_depth = 2
 
-[node name="FullscreenControl" parent="VBoxContainer" instance=ExtResource("3_uded6")]
+[node name="FullscreenControl" parent="VBoxContainer" unique_id=1477535498 instance=ExtResource("3_uded6")]
 unique_name_in_owner = true
 layout_mode = 2
 option_name = "Fullscreen"
@@ -30,7 +30,7 @@ option_section = 3
 key = "Fullscreen"
 section = "VideoSettings"
 
-[node name="ResolutionControl" parent="VBoxContainer" instance=ExtResource("4_gwtfq")]
+[node name="ResolutionControl" parent="VBoxContainer" unique_id=646319285 instance=ExtResource("4_gwtfq")]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Select a screen size"
@@ -42,7 +42,7 @@ key = "ScreenResolution"
 section = "VideoSettings"
 property_type = 6
 
-[node name="VSyncControl" parent="VBoxContainer" instance=ExtResource("5_881de")]
+[node name="VSyncControl" parent="VBoxContainer" unique_id=2127470729 instance=ExtResource("5_881de")]
 unique_name_in_owner = true
 layout_mode = 2
 lock_titles = true

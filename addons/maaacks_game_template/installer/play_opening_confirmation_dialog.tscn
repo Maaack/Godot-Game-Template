@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b8808yj7a0ghj"]
 
-[node name="PlayOpeningConfirmationDialog" type="ConfirmationDialog"]
+[node name="PlayOpeningConfirmationDialog" type="ConfirmationDialog" unique_id=2132524785]
 oversampling_override = 1.0
 title = "Run & Test"
 initial_position = 2

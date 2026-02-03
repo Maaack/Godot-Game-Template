@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dr1ard3qf6t81"]
+[gd_scene format=3 uid="uid://dr1ard3qf6t81"]
 
 [ext_resource type="Script" uid="uid://bt52j7aly5clg" path="res://addons/maaacks_game_template/examples/scenes/menus/options_menu/mini_options_menu_with_reset.gd" id="2_84xi1"]
 [ext_resource type="PackedScene" uid="uid://cl416gdb1fgwr" path="res://addons/maaacks_game_template/base/nodes/menus/options_menu/option_control/slider_option_control.tscn" id="2_y41j7"]
@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/nodes/utilities/capture_focus.gd" id="3_jnwru"]
 [ext_resource type="PackedScene" uid="uid://bsxh6v7j0257h" path="res://addons/maaacks_game_template/base/nodes/menus/options_menu/option_control/toggle_option_control.tscn" id="4_uwr8s"]
 
-[node name="MiniOptionsMenu" type="VBoxContainer"]
+[node name="MiniOptionsMenu" type="VBoxContainer" unique_id=1724615502]
 custom_minimum_size = Vector2(400, 260)
 anchors_preset = 8
 anchor_left = 0.5
@@ -25,14 +25,14 @@ alignment = 1
 script = ExtResource("2_84xi1")
 audio_control_scene = ExtResource("2_y41j7")
 
-[node name="AudioControlContainer" type="VBoxContainer" parent="."]
+[node name="AudioControlContainer" type="VBoxContainer" parent="." unique_id=803318905]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 8
 script = ExtResource("3_jnwru")
 search_depth = 2
 
-[node name="MuteControl" parent="." instance=ExtResource("4_uwr8s")]
+[node name="MuteControl" parent="." unique_id=1252265559 instance=ExtResource("4_uwr8s")]
 unique_name_in_owner = true
 layout_mode = 2
 option_name = "Mute"
@@ -40,7 +40,7 @@ option_section = 2
 key = "Mute"
 section = "AudioSettings"
 
-[node name="FullscreenControl" parent="." instance=ExtResource("4_uwr8s")]
+[node name="FullscreenControl" parent="." unique_id=836716545 instance=ExtResource("4_uwr8s")]
 unique_name_in_owner = true
 layout_mode = 2
 option_name = "Fullscreen"
@@ -48,7 +48,7 @@ option_section = 3
 key = "FullscreenEnabled"
 section = "VideoSettings"
 
-[node name="ResetGameControl" parent="." instance=ExtResource("3_7aalw")]
+[node name="ResetGameControl" parent="." unique_id=919045811 instance=ExtResource("3_7aalw")]
 layout_mode = 2
 
 [connection signal="setting_changed" from="MuteControl" to="." method="_on_mute_control_setting_changed"]
