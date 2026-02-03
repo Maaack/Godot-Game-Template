@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://ddneme7dcyian"]
+[gd_scene format=3 uid="uid://ddneme7dcyian"]
 
 [ext_resource type="Script" uid="uid://3bd6350v3ux5" path="res://addons/maaacks_game_template/examples/scenes/game_scene/levels/level.gd" id="1_65ilt"]
 [ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/nodes/utilities/capture_focus.gd" id="2_2mss3"]
@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://1aoiji5yh0sy" path="res://addons/maaacks_game_template/examples/scenes/game_scene/tutorial_manager.gd" id="4_fh83m"]
 [ext_resource type="PackedScene" uid="uid://dvwhul2i007fs" path="res://addons/maaacks_game_template/examples/scenes/game_scene/tutorials/tutorial_3.tscn" id="5_fh83m"]
 
-[node name="Level3" type="Control"]
+[node name="Level3" type="Control" unique_id=710690354]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,7 +15,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_65ilt")
 
-[node name="BackgroundColor" type="ColorRect" parent="."]
+[node name="BackgroundColor" type="ColorRect" parent="." unique_id=2048289432]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -25,7 +25,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1139802558]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -37,69 +37,69 @@ theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=24784916]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1118917856]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Example Level #3"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=1867660130]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1499324122]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 32
 script = ExtResource("2_2mss3")
 
-[node name="WinButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="WinButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=500607117]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Win"
 
-[node name="LoseButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="LoseButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1616502597]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Lose"
 
-[node name="LoseButton2" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="LoseButton2" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1282863293]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Lose"
 
-[node name="LoseButton3" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="LoseButton3" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=760845382]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Lose"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1147500718]
 layout_mode = 2
 
-[node name="TutorialButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="TutorialButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=90402611]
 layout_mode = 2
 text = "Tutorial"
 
-[node name="InputDisplayLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="InputDisplayLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1335603973]
 layout_mode = 2
 size_flags_horizontal = 3
 horizontal_alignment = 1
 script = ExtResource("3_f4j1i")
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1223774581]
 layout_mode = 2
 text = "Change Level Color: "
 
-[node name="ColorPickerButton" type="ColorPickerButton" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="ColorPickerButton" type="ColorPickerButton" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=550861861]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Change Color"
 
-[node name="TutorialManager" type="Node" parent="."]
+[node name="TutorialManager" type="Node" parent="." unique_id=18876677]
 unique_name_in_owner = true
 script = ExtResource("4_fh83m")
 tutorial_scenes = Array[PackedScene]([ExtResource("5_fh83m")])

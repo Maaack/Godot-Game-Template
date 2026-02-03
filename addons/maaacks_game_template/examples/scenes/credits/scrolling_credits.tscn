@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://t2dui8ppm3a4"]
+[gd_scene format=3 uid="uid://t2dui8ppm3a4"]
 
 [ext_resource type="PackedScene" uid="uid://bfvsqg5fi2ja0" path="res://addons/maaacks_game_template/examples/scenes/credits/credits_label.tscn" id="3_fbdex"]
 [ext_resource type="Script" uid="uid://bnub0cq2y0deh" path="res://addons/maaacks_game_template/examples/scenes/credits/scrolling_credits.gd" id="4"]
 
-[node name="ScrollingCredits" type="Control"]
+[node name="ScrollingCredits" type="Control" unique_id=1162279489]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,7 +12,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("4")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1039720129]
 unique_name_in_owner = true
 layout_mode = 0
 anchor_right = 1.0
@@ -21,20 +21,20 @@ scroll_vertical = 0
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer" unique_id=2067921385]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HeaderSpace" type="Control" parent="ScrollContainer/VBoxContainer"]
+[node name="HeaderSpace" type="Control" parent="ScrollContainer/VBoxContainer" unique_id=1552560353]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 720)
 layout_mode = 2
 
-[node name="CreditsLabel" parent="ScrollContainer/VBoxContainer" instance=ExtResource("3_fbdex")]
+[node name="CreditsLabel" parent="ScrollContainer/VBoxContainer" unique_id=1486745388 instance=ExtResource("3_fbdex")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="FooterSpace" type="Control" parent="ScrollContainer/VBoxContainer"]
+[node name="FooterSpace" type="Control" parent="ScrollContainer/VBoxContainer" unique_id=1703782196]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 720)
 layout_mode = 2

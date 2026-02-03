@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cv35cxoqfhn2h"]
+[gd_scene format=3 uid="uid://cv35cxoqfhn2h"]
 
 [ext_resource type="Script" uid="uid://c3mignmhuvvq4" path="res://addons/maaacks_game_template/base/nodes/menus/options_menu/paginated_tab_container.gd" id="1_fqpxk"]
 [ext_resource type="PackedScene" uid="uid://cf1w2mtb8ntwd" path="res://scenes/menus/options_menu/input/input_options_menu.tscn" id="2_w1dvr"]
@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dh567s4jy3m2d" path="res://scenes/menus/options_menu/video/video_options_menu_with_extras.tscn" id="5_kr6xa"]
 [ext_resource type="PackedScene" uid="uid://cdqt3bebxpqxk" path="res://scenes/menus/options_menu/game/game_options_menu.tscn" id="6_n2uhm"]
 
-[node name="MasterOptionsMenu" type="TabContainer"]
+[node name="MasterOptionsMenu" type="TabContainer" unique_id=549332586]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -17,26 +17,26 @@ tab_alignment = 1
 current_tab = 0
 script = ExtResource("1_fqpxk")
 
-[node name="Controls" parent="." instance=ExtResource("2_w1dvr")]
+[node name="Controls" parent="." unique_id=2037238962 instance=ExtResource("2_w1dvr")]
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="Inputs" parent="." instance=ExtResource("3_bn2s3")]
+[node name="Inputs" parent="." unique_id=1859549554 instance=ExtResource("3_bn2s3")]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="Audio" parent="." instance=ExtResource("4_6wkjv")]
+[node name="Audio" parent="." unique_id=1303232430 instance=ExtResource("4_6wkjv")]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
-[node name="Video" parent="." instance=ExtResource("5_kr6xa")]
+[node name="Video" parent="." unique_id=1595237002 instance=ExtResource("5_kr6xa")]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 3
 
-[node name="Game" parent="." instance=ExtResource("6_n2uhm")]
+[node name="Game" parent="." unique_id=736133616 instance=ExtResource("6_n2uhm")]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 4
