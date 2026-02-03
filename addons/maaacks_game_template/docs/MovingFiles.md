@@ -24,7 +24,7 @@ Alternatively, the developer can specify paths in the scenes that reference the 
 * `opening.tscn`  
 * `main_menu.tscn`  
 * `main_menu_with_animations.tscn`  
-* `pause_menu.tscn`  
+* `pause_menu_layer.tscn`  
 * `game_ui.tscn` (`level_manager.gd`)  
 * `end_credits.tscn`  
 
