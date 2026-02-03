@@ -16,6 +16,7 @@ func _add_microphone_audio_stream() -> void:
 
 func _ready() -> void:
 	if ProjectSettings.get_setting("audio/driver/enable_input", false):
+		show()
 		if AudioServer.input_device.is_empty():
 			_add_microphone_audio_stream()
 		else:
