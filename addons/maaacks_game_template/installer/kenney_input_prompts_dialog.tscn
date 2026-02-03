@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d3x8m40qtdrj"]
+[gd_scene format=3 uid="uid://d3x8m40qtdrj"]
 
 [ext_resource type="Script" uid="uid://bduy6qihnm0qo" path="res://addons/maaacks_game_template/installer/kenney_input_prompts_dialog.gd" id="1_nf1bc"]
 [ext_resource type="Texture2D" uid="uid://cmni5hv40bfaa" path="res://addons/maaacks_game_template/assets/input-icons/icons-filled-colored.png" id="2_0nqam"]
@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://bsgf78aysgdnd" path="res://addons/maaacks_game_template/assets/input-icons/icons-outlined-colored-vector.svg" id="12_rrkvx"]
 [ext_resource type="Texture2D" uid="uid://c1lpc33fpmd4p" path="res://addons/maaacks_game_template/assets/input-icons/icons-outlined-white-vector.svg" id="13_bkfjd"]
 
-[node name="KenneyInputPromptsDialog" type="ConfirmationDialog"]
+[node name="KenneyInputPromptsDialog" type="ConfirmationDialog" unique_id=141817893]
 oversampling_override = 1.0
 title = "Add Kenney Input Prompts Pack"
 initial_position = 2
@@ -25,7 +25,7 @@ dialog_autowrap = true
 cancel_button_text = "No"
 script = ExtResource("1_nf1bc")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1531022853]
 custom_minimum_size = Vector2(560, 443)
 anchors_preset = 15
 anchor_right = 1.0
@@ -38,7 +38,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 16
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=1200813079]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(384, 0)
 layout_mode = 2
@@ -49,7 +49,7 @@ This adds icons for a majority of input keys and devices in the input remapping 
 Choose a style for icons in the input remapping menu. The style can be changed later."
 autowrap_mode = 3
 
-[node name="ItemList" type="ItemList" parent="VBoxContainer"]
+[node name="ItemList" type="ItemList" parent="VBoxContainer" unique_id=1072267315]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3

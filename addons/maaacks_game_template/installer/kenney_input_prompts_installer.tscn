@@ -1,22 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://d27twrcwmfxrs"]
+[gd_scene format=3 uid="uid://d27twrcwmfxrs"]
 
 [ext_resource type="Script" uid="uid://ca36dy2vkk46q" path="res://addons/maaacks_game_template/installer/kenney_input_prompts_installer.gd" id="1_ebstj"]
 [ext_resource type="PackedScene" uid="uid://d3x8m40qtdrj" path="res://addons/maaacks_game_template/installer/kenney_input_prompts_dialog.tscn" id="1_pslk0"]
 [ext_resource type="PackedScene" uid="uid://dlkmofxhavh10" path="res://addons/maaacks_game_template/utilities/download_and_extract.tscn" id="3_ebstj"]
 
-[node name="KenneyInputPromptsInstaller" type="Node"]
+[node name="KenneyInputPromptsInstaller" type="Node" unique_id=910863368]
 script = ExtResource("1_ebstj")
 copy_dir_path = "res://"
 extract_extension = "assets/kenney_input-prompts"
 
-[node name="DownloadAndExtract" parent="." instance=ExtResource("3_ebstj")]
+[node name="DownloadAndExtract" parent="." unique_id=227176651 instance=ExtResource("3_ebstj")]
 zip_url = "https://github.com/Maaack/Kenney-Input-Prompts/archive/refs/tags/1.3.zip"
 extract_path = "res://assets/kenney_input-prompts/"
 skip_base_zip_dir = true
 zip_file_path = "res://kenney_input-prompts.zip"
 metadata/_custom_type_script = "uid://bqu3bc0tttrfk"
 
-[node name="SkipInstallationDialog" type="ConfirmationDialog" parent="."]
+[node name="SkipInstallationDialog" type="ConfirmationDialog" parent="." unique_id=1861126542]
 title = "Skip Installation?"
 initial_position = 2
 size = Vector2i(682, 160)
@@ -26,15 +26,15 @@ dialog_text = "The input prompts pack appears to already be installed.
 Do you want to force a reinstall of the pack, or skip to picking a style?"
 cancel_button_text = "Reinstall"
 
-[node name="KenneyInputPromptsDialog" parent="." instance=ExtResource("1_pslk0")]
+[node name="KenneyInputPromptsDialog" parent="." unique_id=257967393 instance=ExtResource("1_pslk0")]
 visible = false
 
-[node name="InstallingDialog" type="AcceptDialog" parent="."]
+[node name="InstallingDialog" type="AcceptDialog" parent="." unique_id=1047580895]
 title = "Installing..."
 initial_position = 2
 size = Vector2i(400, 100)
 
-[node name="MarginContainer" type="MarginContainer" parent="InstallingDialog"]
+[node name="MarginContainer" type="MarginContainer" parent="InstallingDialog" unique_id=1283250877]
 offset_left = 4.0
 offset_top = 4.0
 offset_right = 396.0
@@ -44,23 +44,23 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="VBoxContainer" type="VBoxContainer" parent="InstallingDialog/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="InstallingDialog/MarginContainer" unique_id=1482728160]
 layout_mode = 2
 alignment = 1
 
-[node name="StageLabel" type="Label" parent="InstallingDialog/MarginContainer/VBoxContainer"]
+[node name="StageLabel" type="Label" parent="InstallingDialog/MarginContainer/VBoxContainer" unique_id=891187745]
 unique_name_in_owner = true
 layout_mode = 2
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ProgressBar" type="ProgressBar" parent="InstallingDialog/MarginContainer/VBoxContainer"]
+[node name="ProgressBar" type="ProgressBar" parent="InstallingDialog/MarginContainer/VBoxContainer" unique_id=356766981]
 unique_name_in_owner = true
 layout_mode = 2
 max_value = 1.0
 step = 0.001
 
-[node name="CleanUpDialog" type="ConfirmationDialog" parent="."]
+[node name="CleanUpDialog" type="ConfirmationDialog" parent="." unique_id=1542805390]
 auto_translate_mode = 1
 title = "Clean Up Extra Content?"
 initial_position = 2
@@ -74,7 +74,7 @@ Would you like to have the extra content removed?"
 dialog_autowrap = true
 cancel_button_text = "No"
 
-[node name="ErrorDialog" type="AcceptDialog" parent="."]
+[node name="ErrorDialog" type="AcceptDialog" parent="." unique_id=925144911]
 title = "Error!"
 initial_position = 2
 size = Vector2i(400, 128)

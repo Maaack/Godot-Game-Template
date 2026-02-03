@@ -5,7 +5,7 @@ When setting up a game scene, it is useful to refer to the `game_scene/game_ui.t
 There are a few parts to setting up a basic game scene, as done in the `GameUI` example used in the template.
 
 ## Pausing
-The `PauseMenuController` node can be added to the tree, or the `pause_menu_controller.gd` script may be attached to an empty `Node`. Selecting the node should then allow for setting the `pause_menu_packed` value in the inspector. Set it to the `pause_menu.tscn` scene and save.
+The `PauseMenuController` node can be added to the tree, or the `pause_menu_controller.gd` script may be attached to an empty `Node`. Selecting the node should then allow for setting the `pause_menu_packed` value in the inspector. Set it to the `pause_menu_layer.tscn` (or `pause_menu.tscn`) scene and save.
 
 This should be enough to capture when the `ui-cancel` input action is pressed in-game. On keyboards, this is commonly the `Esc` key.
 

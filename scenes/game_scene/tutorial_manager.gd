@@ -16,7 +16,10 @@ func open_tutorials() -> void:
 			push_warning("tutorial failed to open %s" % tutorial_scene)
 			return
 		get_tree().current_scene.call_deferred("add_child", tutorial_menu)
-		await tutorial_menu.tree_exited
+		if tutorial_menu.has_signal(&"closed"):
+			await tutorial_menu.closed
+		else:
+			await tutorial_menu.tree_exited
 		if is_inside_tree() and _initial_focus_control:
 			_initial_focus_control.grab_focus()
 

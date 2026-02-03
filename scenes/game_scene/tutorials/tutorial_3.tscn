@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://b444n7xu3j48v"]
+[gd_scene format=3 uid="uid://b444n7xu3j48v"]
 
 [ext_resource type="PackedScene" uid="uid://6gdbfi0172ji" path="res://addons/maaacks_game_template/base/nodes/windows/overlaid_window.tscn" id="1_hy5iy"]
 
-[node name="OverlaidWindow" instance=ExtResource("1_hy5iy")]
+[node name="OverlaidWindow" unique_id=1122261693 instance=ExtResource("1_hy5iy")]
 custom_minimum_size = Vector2(420, 200)
 update_content = true
 text = "The color picker at the bottom-right updates the level state. This change persists until the game is reset.
@@ -11,11 +11,11 @@ The label at the bottom-center displays the current input action detected, if an
 title = "Tutorial"
 title_font_size = 20
 
-[node name="TitleLabel" parent="ContentContainer/BoxContainer/TitleMargin/BoxContainer" index="0"]
+[node name="TitleLabel" parent="ContentContainer/BoxContainer/TitleMargin/BoxContainer" parent_id_path=PackedInt32Array(1788474031) index="0" unique_id=1049966061]
 theme_override_font_sizes/font_size = 20
 text = "Tutorial"
 
-[node name="DescriptionLabel" parent="ContentContainer/BoxContainer/BodyMargin" index="0"]
+[node name="DescriptionLabel" parent="ContentContainer/BoxContainer/BodyMargin" parent_id_path=PackedInt32Array(590613964) index="0" unique_id=617407155]
 text = "The color picker at the bottom-right updates the level state. This change persists until the game is reset.
 
 The label at the bottom-center displays the current input action detected, if any are setup for the project."

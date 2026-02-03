@@ -1,10 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://c0el5tf2xs2rd"]
+[gd_scene format=3 uid="uid://c0el5tf2xs2rd"]
 
 [ext_resource type="Script" uid="uid://bgrtey1hosj1b" path="res://scenes/menus/level_select_menu/level_select_menu.gd" id="1_a0tqu"]
 [ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/nodes/utilities/capture_focus.gd" id="2_tjb7s"]
 [ext_resource type="Script" uid="uid://wjq7li836lwj" path="res://addons/maaacks_game_template/extras/scripts/scene_lister.gd" id="3_le4jx"]
 
-[node name="LevelSelectMenu" type="Control"]
+[node name="LevelSelectMenu" type="Control" unique_id=688960495]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,7 +13,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_a0tqu")
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="." unique_id=1814828904]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,7 +22,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_tjb7s")
 
-[node name="LevelButtonsContainer" type="ItemList" parent="Control"]
+[node name="LevelButtonsContainer" type="ItemList" parent="Control" unique_id=495511343]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 1
@@ -41,7 +41,7 @@ auto_height = true
 item_count = 1
 item_0/text = "1 - ExampleLevel"
 
-[node name="SceneLister" type="Node" parent="."]
+[node name="SceneLister" type="Node" parent="." unique_id=649336979]
 script = ExtResource("3_le4jx")
 files = Array[String](["res://scenes/game_scene/levels/level_1.tscn", "res://scenes/game_scene/levels/level_2.tscn", "res://scenes/game_scene/levels/level_3.tscn"])
 directory = "res://scenes/game_scene/levels"
