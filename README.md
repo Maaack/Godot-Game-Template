@@ -45,6 +45,9 @@ The `base/` folder holds the core components of the menus application.
 -   Gamepad Support
 -   UI Sound Controller
 -   Background Music Controller
+-   Credits Reader (Markdown File Parser)
+-   Global State Management (Basic Saving/Loading)
+-   Global Config Autoload
 
 ### Extras
 
@@ -67,10 +70,11 @@ The `examples/` folder contains an example project using inherited scenes from t
 -   End Credits
 -   Main Menu w/ Animations
 -   Opening w/ Godot Logo
+-   Game and Level State Management
 
 ### Minimal
 
-Users that want a minimal set of features can try [Maaack's Menus Template](https://github.com/Maaack/Godot-Menus-Template) or other options from the [plugin suite](/addons/maaacks_game_template/docs/PluginSuite.md).  
+Users that want a minimal set of features can try [Maaack's Minimal Game Template](https://github.com/Maaack/Godot-Minimal-Game-Template) or other options from the [plugin suite](/addons/maaacks_game_template/docs/PluginSuite.md).  
 
 
 ## Installation
@@ -142,6 +146,7 @@ These instructions assume starting with just the contents of `addons/`. This wil
 [Input Icon Mapping](/addons/maaacks_game_template/docs/InputIconMapping.md)  
 [Joypad Inputs](/addons/maaacks_game_template/docs/JoypadInputs.md)  
 [Blending Music](/addons/maaacks_game_template/docs/BlendingMusic.md)  
+[Add UI Sound Effects](/addons/maaacks_game_template/docs/AddingUISFX.md)  
 [Add Custom Options](/addons/maaacks_game_template/docs/AddingCustomOptions.md)  
 [Game Saving](/addons/maaacks_game_template/docs/GameSaving.md)  
 [How Parts Work](/addons/maaacks_game_template/docs/HowPartsWork.md)  
