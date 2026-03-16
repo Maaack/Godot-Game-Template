@@ -11,7 +11,7 @@ const DownloadAndExtract = MaaacksGameTemplatePlugin.DownloadAndExtract
 const RELATIVE_PATH_TO_CONFIGURE_SCENE = "scenes/menus/options_menu/input/input_icon_mapper.tscn"
 const REIMPORT_CHECK_DELAY : float = 0.5
 const OPEN_SCENE_DELAY : float = 0.5
-const MATCH_REGEX = """(\\[node name="InputIconMapper" instance=ExtResource\\("[0-9a-z_]+"\\)\\])[\\s\\S]*"""
+const MATCH_REGEX = """(\\[node name="InputIconMapper" (unique_id=[0-9]+ )?instance=ExtResource\\("[0-9a-z_]+"\\)\\])[\\s\\S]*"""
 
 const FILLED_WHITE_CONFIGURATION = """
 replace_strings = {
