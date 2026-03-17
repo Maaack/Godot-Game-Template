@@ -22,7 +22,8 @@ var _exclusive_control_node : ColorRect
 
 func close() -> void:
 	if not visible: return
-	_scene_tree.paused = _initial_pause_state
+	if pauses_game:
+		_scene_tree.paused = _initial_pause_state
 	Input.set_mouse_mode(_initial_mouse_mode)
 	if is_instance_valid(_initial_focus_control) and _initial_focus_control.is_inside_tree():
 		_initial_focus_control.focus_mode = _initial_focus_mode
