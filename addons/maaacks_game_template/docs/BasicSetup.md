@@ -4,11 +4,18 @@ These instructions cover the basics for setting up the template.
 
 ## Setup Wizard
 
-First, open the _Setup Wizard_ by navigating to `Project > Tools > Run Maaack's Game Template Setup...`.
+The _Setup Wizard_ shows the user's progress through the setup process.
+
+### Open
+
+Open the _Setup Wizard_ by navigating to `Project > Tools > Run Maaack's Game Template Setup...`.
 
 ![Setup Wizard Location](/addons/maaacks_game_template/media/setup-wizard-location.png)
 
-The _Setup Wizard_ shows the user's progress through the setup process. A typical full installation will have the following steps completed:  
+
+### Check & Complete
+
+ A typical full installation will have the following steps completed:  
 -  Using Latest Version
 -  Copy Example Files
 -  Delete Example Files
