@@ -58,7 +58,7 @@ To change the _Opening_:
 1.  [Main Menu Setup](/addons/maaacks_game_template/docs/MainMenuSetup.md)  
 2.  [Options Menu Setup](/addons/maaacks_game_template/docs/OptionsMenuSetup.md)  
 3.  [Game Scene Setup](/addons/maaacks_game_template/docs/GameSceneSetup.md)  
-4.  [Credits Setup](/addons/maaacks_game_template/docs/CreditsSetup.md)  
+4.  [Updating Credits](/addons/maaacks_game_template/docs/UpdatingCredits.md)  
 5.  [Blending Music](/addons/maaacks_game_template/docs/BlendingMusic.md)  
 6.  [Adding UI Sound Effects](/addons/maaacks_game_template/docs/AddingUISFX.md)  
 
