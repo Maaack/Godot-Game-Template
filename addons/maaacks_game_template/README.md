@@ -1,6 +1,10 @@
 # Godot Game Template
 For Godot 4.6 (4.3+ compatible)
 
+> [!NOTE]  
+> Animations from 4.6 are not fully backwards compatible.   
+> It is recommended to use the latest Godot version or use `main_menu.tscn` instead of `main_menu_with_animations.tscn`.
+
 This template has a main menu, options menus, pause menu, credits, scene loader, extra tools, and an example game scene.  
 
 [Example on itch.io](https://maaack.itch.io/godot-game-template)  
