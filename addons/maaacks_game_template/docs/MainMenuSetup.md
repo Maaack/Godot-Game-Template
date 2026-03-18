@@ -1,6 +1,6 @@
 # Main Menu Setup
 
-These are instructions for further editing the menus. Basic instructions are available in the [README](/addons/maaacks_game_template/README.md#usage).
+These are instructions for editing the main menu.
 
 ## Selecting a Menu
 The path to the main menu is set in the `AppConfig` autoload. `main_menu_with_animations.tscn` is the main menu scene used by default. Open the `app_config.tscn` scene, inspect the root note, and edit the `Main Menu Scene Path` to the desired scene.
@@ -11,6 +11,11 @@ Alternatively, the main menu path can be set directly in the following scenes:
 * `pause_menu_layer.tscn`  
 * `game_ui.tscn` (`level_manager.gd`)  
 * `end_credits.tscn`  
+
+> [!IMPORTANT]  
+> Animations from 4.6 are not fully backwards compatible.  
+> When running, `main_menu_with_animations.tscn` will show a gray screen for Godot versions < 4.6.  
+> It is recommended to use the latest version of Godot, or use `main_menu.tscn` instead of `main_menu_with_animations.tscn`.
 
 ## Clear Inheritance
 

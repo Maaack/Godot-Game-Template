@@ -2,8 +2,8 @@
 For Godot 4.6 (4.3+ compatible)
 
 > [!NOTE]  
-> Animations from 4.6 are not fully backwards compatible.   
-> It is recommended to use the latest Godot version or use `main_menu.tscn` instead of `main_menu_with_animations.tscn`.
+> Using the latest version of Godot is recommended.   
+> If getting stuck on a gray screen, see [Main Menu Setup](/addons/maaacks_game_template/docs/MainMenuSetup.md).  
 
 This template has a main menu, options menus, pause menu, credits, scene loader, extra tools, and an example game scene.  
 
@@ -139,7 +139,8 @@ As part of setup, example scenes are copied out of `/addons/` into a desired fol
 [Game Scene Setup](/addons/maaacks_game_template/docs/GameSceneSetup.md)  
 [Updating Credits](/addons/maaacks_game_template/docs/UpdatingCredits.md)  
 [Blending Music](/addons/maaacks_game_template/docs/BlendingMusic.md)  
-[Adding UI Sound Effects](/addons/maaacks_game_template/docs/AddingUISFX.md)  [Loading Scenes](/addons/maaacks_game_template/docs/LoadingScenes.md)  
+[Adding UI Sound Effects](/addons/maaacks_game_template/docs/AddingUISFX.md)  
+[Loading Scenes](/addons/maaacks_game_template/docs/LoadingScenes.md)  
 [Input Icon Mapping](/addons/maaacks_game_template/docs/InputIconMapping.md)  
 [Joypad Inputs](/addons/maaacks_game_template/docs/JoypadInputs.md)  
 [Game Saving](/addons/maaacks_game_template/docs/GameSaving.md)  
