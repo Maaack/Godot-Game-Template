@@ -135,7 +135,7 @@ As part of setup, example scenes are copied out of `/addons/` into a desired fol
 ### More Documentation
 
 [Main Menu Setup](/addons/maaacks_game_template/docs/MainMenuSetup.md)  
-[Options Menus Setup](/addons/maaacks_game_template/docs/OptionsMenusSetup.md)  
+[Options Menu Setup](/addons/maaacks_game_template/docs/OptionsMenuSetup.md)  
 [Game Scene Setup](/addons/maaacks_game_template/docs/GameSceneSetup.md)  
 [Credits Setup](/addons/maaacks_game_template/docs/CreditsSetup.md)  
 [Blending Music](/addons/maaacks_game_template/docs/BlendingMusic.md)  
