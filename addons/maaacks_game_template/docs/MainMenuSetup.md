@@ -2,9 +2,19 @@
 
 These are instructions for further editing the menus. Basic instructions are available in the [README](/addons/maaacks_game_template/README.md#usage).
 
-## Inheritance
+## Selecting a Menu
+The path to the main menu is set in the `AppConfig` autoload. `main_menu_with_animations.tscn` is the main menu scene used by default. Open the `app_config.tscn` scene, inspect the root note, and edit the `Main Menu Scene Path` to the desired scene.
 
-Most example scenes in the template inherit from scenes in `addons`. This is useful for developing of the plugin, but often less useful for those using it.  When editing the example scenes, any nodes inherited from a parent scene are highlighted in yellow in the scene tree. Inherited nodes cannot be edited like native nodes. Therefore, it is recommended to first right-click on the root node, and select `Clear Inheritance`. You'll get a warning that this cannot be undone, but it's okay. You probably won't need to undo it, and if you do, there are solutions.
+Alternatively, the main menu path can be set directly in the following scenes:
+
+* `opening.tscn`  
+* `pause_menu_layer.tscn`  
+* `game_ui.tscn` (`level_manager.gd`)  
+* `end_credits.tscn`  
+
+## Clear Inheritance
+
+Most example scenes in the template inherit from scenes in `addons`. Nodes inherited from a parent scene are highlighted in yellow (by default) in the scene tree. Inherited nodes cannot be edited like native nodes. Therefore, it is recommended to first right-click on the root node, and select `Clear Inheritance`. You'll get a warning that this cannot be undone, but it's okay. The inheritance is useful when developing the plugin itself, but much less so for a game.
 
 ## Visual Placement
 
