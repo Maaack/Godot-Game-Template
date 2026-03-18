@@ -14,7 +14,6 @@ Credits are parsed automatically from the `ATTRIBUTION.md` file included with th
     1.  Optionally, disable `Auto Update` and customize the text.
 6.  Save the scene (even if it shows no changes).
 
-
 ### Alternative
 Optionally, `*.md` can be included for export in the _Export_ window's `Resources` tab, and steps 4-6 can be skipped, as `credits_label.tscn` will continue to update from `ATTRIBUTION.md` when exported.
 
@@ -24,7 +23,6 @@ Optionally, `*.md` can be included for export in the _Export_ window's `Resource
 > ### Role
 > Contributor name  
 > [Contributor name w/ link]()  
-
 
 ### Tools or Sourced Assets
 > ### [Asset Type]
