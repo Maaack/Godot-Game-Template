@@ -16,6 +16,10 @@ Alternatively, the main menu path can be set directly in the following scenes:
 
 Most example scenes in the template inherit from scenes in `addons`. Nodes inherited from a parent scene are highlighted in yellow (by default) in the scene tree. Inherited nodes cannot be edited like native nodes. Therefore, it is recommended to first right-click on the root node, and select `Clear Inheritance`. You'll get a warning that this cannot be undone, but it's okay. The inheritance is useful when developing the plugin itself, but much less so for a game.
 
+## Title and Subtitle
+
+The title will automatically update from the project's name. If a custom title is desired, select the `TitleLabel` node, set `Auto Update` to false, and set `Text` to the custom title. The `SubTitleLabel` can be customized with the `Text` field as well, or hidden entirely.
+
 ## Visual Placement
 
 The positions and anchor presets of the UI elements can be adjusted to match most designs with ease. Buttons can be centered, right or left justfied, or arranged horizontally. Most visual UI elements are contained within `MarginContainer` and `Control` nodes that allow for fine-tuning of placement.
