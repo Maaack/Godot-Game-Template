@@ -1,5 +1,8 @@
 # New Projects
 
+> [!WARNING]  
+> This page is being deprecated in favor of [Basic Setup](/addons/maaacks_game_template/docs/BasicSetup.md).
+
 These instructions assume starting with the entire contents of the project folder. This will be the case when cloning the repo, or starting from the *template* version in the Godot Asset Library accessible from the Project Manager window.
   
 
