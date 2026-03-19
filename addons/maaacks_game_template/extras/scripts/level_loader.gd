@@ -29,8 +29,8 @@ func load_level(level_path : String):
 		current_level.queue_free()
 		await current_level.tree_exited
 		current_level = null
-	is_loading = true
 	current_level_path = level_path
+	is_loading = true
 	SceneLoader.load_scene(current_level_path, true)
 	if level_loading_screen:
 		level_loading_screen.reset()

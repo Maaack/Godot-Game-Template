@@ -47,11 +47,10 @@ var joypad_sensitivity : float = PlayerConfig.get_config(AppSettings.INPUT_SECTI
 ```
 
 ### Validation
- Validate the values being stored in your local `player_config.cfg` file.  
-1.  Refer to [Accessing Persistent User Data User](https://docs.godotengine.org/en/stable/tutorials/io/data_paths.html#accessing-persistent-user-data-user) to find Godot user data on your machine.
-2.  Find the directory that matches your project's name.  
-3.  Open `player_config.cfg` (should be in the top directory of the project).
-4.  Find the section by the section name in brackets, and the key name followed by an equals.
+Validate the values being stored in your local `player_config.cfg` file.  
+1.  Navigate to `Project > Open User Data Folder`.
+2.  Open `player_config.cfg`.
+3.  Find the section by the section name in brackets, and the key name followed by an equals.
 
 For example, here is how the player's desired input sensitivity could appear in the config file.
 

@@ -14,14 +14,14 @@ Open the _Setup Wizard_ by navigating to `Project > Tools > Run Maaack's Game Te
 
 ### Check & Complete
 
- A typical full installation will have the following steps completed:  
+A typical full installation will have the following steps completed:  
 -  Using Latest Version
 -  Copy Example Files
 -  Delete Example Files
 -  Update Autoload Paths
 -  Set Main Scene
 
-![Setup Wizard of Game Template v1.4.4](/addons/maaacks_game_template/media/setup-wizard-window.png)
+![Setup Wizard Window](/addons/maaacks_game_template/media/setup-wizard-window.png)
 
 Depending on how the template was installed, or if any issues occurred, some of these may need to be run from the wizard to be completed.
 

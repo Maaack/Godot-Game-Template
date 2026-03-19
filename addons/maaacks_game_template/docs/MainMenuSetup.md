@@ -3,14 +3,14 @@
 These are instructions for editing the main menu.
 
 ## Selecting a Menu
-The path to the main menu is set in the `AppConfig` autoload. `main_menu_with_animations.tscn` is the main menu scene used by default. Open the `app_config.tscn` scene, inspect the root note, and edit the `Main Menu Scene Path` to the desired scene.
+The main menu by default is `main_menu_with_animations.tscn`. The path to the main menu is set in the `AppConfig` autoload. Open the `app_config.tscn` scene, inspect the root note, and edit the `Main Menu Scene Path` to the desired scene.
 
-Alternatively, the main menu path can be set directly in the following scenes:
+Alternatively, the path to the main menu can be set directly in the following scenes:
 
-* `opening.tscn`  
-* `pause_menu_layer.tscn`  
-* `game_ui.tscn` (`level_manager.gd`)  
-* `end_credits.tscn`  
+- `opening.tscn`  
+- `pause_menu_layer.tscn`  
+- `game_ui.tscn` (`level_manager.gd`)  
+- `end_credits.tscn`  
 
 > [!IMPORTANT]  
 > Animations from 4.6 are not fully backwards compatible.  
