@@ -3,7 +3,6 @@
 > [!WARNING]  
 > This page is being deprecated in favor of [Options Menus Setup](/addons/maaacks_game_template/docs/OptionsMenusSetup.md).
 
-
 This page covers adding new buttons, sliders, or editable text fields to the options menus that automatically persist between sessions.
 
 ## To the Menu
