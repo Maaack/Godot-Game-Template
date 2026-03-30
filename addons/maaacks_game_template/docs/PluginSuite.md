@@ -4,37 +4,22 @@
 
 Maaack's Game Templates are a culmination of a suite of plugins, that can be downloaded individually, if desired.  
 
-## GitHub
+## Hierarchy
 
-- [Game Template](https://github.com/Maaack/Godot-Game-Template) 
-    - [Menus Template](https://github.com/Maaack/Godot-Menus-Template)
-        - [Options Menus](https://github.com/Maaack/Godot-Options-Menus)
-            - [Input Remapping](https://github.com/Maaack/Godot-Input-Remapping)
-        - [Scene Loader](https://github.com/Maaack/Godot-Scene-Loader)
-        - [Credits Scene](https://github.com/Maaack/Godot-Credits-Scene)
-        - [UI Sound Controller](https://github.com/Maaack/Godot-UI-Sound-Controller)
-        - [Music Controller](https://github.com/Maaack/Godot-Music-Controller)
+- Game Template ( [Github](https://github.com/Maaack/Godot-Game-Template) | [Asset Library](https://godotengine.org/asset-library/asset/2709) )
+    - Menus Template ( [Github](https://github.com/Maaack/Godot-Menus-Template) | [Asset Library](https://godotengine.org/asset-library/asset/2899) )
+        - Options Menus ( [Github](https://github.com/Maaack/Godot-Options-Menus) | [Asset Library](https://godotengine.org/asset-library/asset/3058) )
+            - Input Remapping ( [Github](https://github.com/Maaack/Godot-Input-Remapping) | [Asset Library](https://godotengine.org/asset-library/asset/4051) )
+        - Scene Loader ( [Github](https://github.com/Maaack/Godot-Scene-Loader) | [Asset Library](https://godotengine.org/asset-library/asset/2896) )
+        - Credits Scene ( [Github](https://github.com/Maaack/Godot-Credits-Scene) | [Asset Library](https://godotengine.org/asset-library/asset/2932) )
+        - UI Sound Controller ( [Github](https://github.com/Maaack/Godot-UI-Sound-Controller) | [Asset Library](https://godotengine.org/asset-library/asset/2897) )
+        - Music Controller ( [Github](https://github.com/Maaack/Godot-Music-Controller) | [Asset Library](https://godotengine.org/asset-library/asset/2898) )
+- Minimal Game Template ( [Github](https://github.com/Maaack/Godot-Minimal-Game-Template) | [Asset Library](https://godotengine.org/asset-library/asset/4657) )
+    - Options Menus ( [Github](https://github.com/Maaack/Godot-Options-Menus) | [Asset Library](https://godotengine.org/asset-library/asset/3058) )
+        - Input Remapping ( [Github](https://github.com/Maaack/Godot-Input-Remapping) | [Asset Library](https://godotengine.org/asset-library/asset/4051) )
 
-- [Minimal Game Template](https://github.com/Maaack/Godot-Minimal-Game-Template) 
-    - [Options Menus](https://github.com/Maaack/Godot-Options-Menus)
-        - [Input Remapping](https://github.com/Maaack/Godot-Input-Remapping)
 
-## Godot Asset Library
-
-- [Game Template](https://godotengine.org/asset-library/asset/2709) 
-    - [Menus Template](https://godotengine.org/asset-library/asset/2899)
-        - [Options Menus](https://godotengine.org/asset-library/asset/3058)
-            - [Input Remapping](https://godotengine.org/asset-library/asset/4051)
-        - [Scene Loader](https://godotengine.org/asset-library/asset/2896)
-        - [Credits Scene](https://godotengine.org/asset-library/asset/2932)
-        - [UI Sound Controller](https://godotengine.org/asset-library/asset/2897)
-        - [Music Controller](https://godotengine.org/asset-library/asset/2898)
-
-- [Minimal Game Template](https://godotengine.org/asset-library/asset/4657) 
-    - [Options Menus](https://godotengine.org/asset-library/asset/3058)
-        - [Input Remapping](https://godotengine.org/asset-library/asset/4051)
-
-## YouTube Video
+## Overview
 
 [![All Plugins Video](https://img.youtube.com/vi/3yzaUSaROhw/hqdefault.jpg)](https://youtu.be/3yzaUSaROhw)  
 
