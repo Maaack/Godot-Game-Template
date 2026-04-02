@@ -3,7 +3,7 @@ For Godot 4.6 (4.3+ compatible)
 
 > [!NOTE]  
 > Using the latest version of Godot is recommended.   
-> If getting stuck on a gray screen, see [Main Menu Setup](/addons/maaacks_game_template/docs/MainMenuSetup.md).  
+> See [Main Menu Setup](/addons/maaacks_game_template/docs/MainMenuSetup.md) for use with versions < 4.6.  
 
 This template has a main menu, options menus, pause menu, credits, scene loader, extra tools, and an example game scene.  
 
