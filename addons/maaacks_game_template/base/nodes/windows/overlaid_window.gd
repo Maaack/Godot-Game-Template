@@ -32,7 +32,8 @@ func _set_focus_none(node : Node) -> void:
 func _set_focus_initial() -> void:
 	for node in _initial_node_focus_modes:
 		if is_instance_valid(node) and node is Control:
-			node.focus_mode = _initial_node_focus_modes[node]
+			node.focus_mode = _initial_node_focus_modes[node][0]
+			node.focus_behavior_recursive = _initial_node_focus_modes[node][1]
 	_initial_node_focus_modes.clear()
 
 func close() -> void:
