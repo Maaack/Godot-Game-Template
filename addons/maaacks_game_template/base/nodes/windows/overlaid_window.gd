@@ -27,6 +27,7 @@ func _set_focus_none(node : Node) -> void:
 		if child is Control:
 			_initial_node_focus_modes[child] = child.focus_mode
 			child.focus_mode = Control.FOCUS_NONE
+		_set_focus_none(child)
 
 func _set_focus_initial() -> void:
 	for node in _initial_node_focus_modes:
