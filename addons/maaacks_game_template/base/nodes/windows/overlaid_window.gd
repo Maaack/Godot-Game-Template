@@ -20,7 +20,6 @@ var _initial_node_focus_modes : Dictionary
 var _scene_tree : SceneTree 
 var _exclusive_control_node : ColorRect
 
-
 func _set_focus_none(node : Node) -> void:
 	for child in node.get_children():
 		if child == self: continue
