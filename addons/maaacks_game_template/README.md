@@ -3,7 +3,7 @@ For Godot 4.6 (4.3+ compatible)
 
 > [!NOTE]  
 > Using the latest version of Godot is recommended.   
-> If getting stuck on a gray screen, see [Main Menu Setup](/addons/maaacks_game_template/docs/MainMenuSetup.md).  
+> See [Main Menu Setup](/addons/maaacks_game_template/docs/MainMenuSetup.md) for use with versions < 4.6.  
 
 This template has a main menu, options menus, pause menu, credits, scene loader, extra tools, and an example game scene.  
 
@@ -155,10 +155,10 @@ As part of setup, example scenes are copied out of `/addons/` into a desired fol
 
 ## Featured Games
 
-| Baking Godium | Spud Customs | Rent Seek Kill |  
+| HeartFix Express | Baking Godium | Rent Seek Kill |  
 | :-------:| :-------: | :-------: |
-| ![Baking Godium](/addons/maaacks_game_template/media/thumbnail-game-baking-godium.png) | ![Spud Customs](/addons/maaacks_game_template/media/thumbnail-game-spud-customs.png) | ![Rent-Seek-Kill](/addons/maaacks_game_template/media/thumbnail-game-rent-seek-kill.png) |
-|  [Play on itch.io](https://maaack.itch.io/baking-godium) | [Find on Steam](https://store.steampowered.com/app/3291880/Spud_Customs/) | [Play on itch.io](https://xandruher.itch.io/rent-seek-kill)  |
+| ![HeartFix Express](/addons/maaacks_game_template/media/thumbnail-game-heartfix-express.png) | ![Baking Godium](/addons/maaacks_game_template/media/thumbnail-game-baking-godium.png) | ![Rent-Seek-Kill](/addons/maaacks_game_template/media/thumbnail-game-rent-seek-kill.png) |
+|  [Find on Steam](https://store.steampowered.com/app/3983290/HeartFix_Express_Demo/)  | [Play on itch.io](https://maaack.itch.io/baking-godium) | [Play on itch.io](https://xandruher.itch.io/rent-seek-kill)  |
 
 
 [All Shared Games](/addons/maaacks_game_template/docs/GamesMade.md)  
