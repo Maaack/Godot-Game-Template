@@ -36,7 +36,8 @@ func _set_focus_initial() -> void:
 
 func close() -> void:
 	if not visible: return
-	_scene_tree.paused = _initial_pause_state
+	if pauses_game:
+		_scene_tree.paused = _initial_pause_state
 	Input.set_mouse_mode(_initial_mouse_mode)
 	_set_focus_initial()
 	if is_instance_valid(_initial_focus_control) and _initial_focus_control.is_inside_tree():
