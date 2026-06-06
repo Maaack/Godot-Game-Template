@@ -20,13 +20,11 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+# ---------------
+# Unless we intend to publish source code through itch, this should not be necessary
 
 name: "Publish Source Zip"
 
-on:
-  release:
-    types: [published]
-  workflow_dispatch:
 
 jobs:
   publish-source-zip:

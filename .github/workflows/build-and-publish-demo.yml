@@ -25,12 +25,12 @@
 # Furthermore, a new job (upload to itch.io using butler) has been added.
 # Modified by: Nicolas Oulianov (github @oulianov) & Marek Belski
 
-name: "Build and Publish Demo"
+name: "Build and Publish"
 
 on:
   push:
-    branches:
-      - 'demo-version'
+    tags:
+      - v*
   workflow_dispatch:
 
 env:
@@ -51,10 +51,9 @@ jobs:
     container:
       image: barichello/godot-ci:${{ vars.GODOT_VERSION }}
     steps:
-      - name: Checkout Demo Version
+      - name: Checkout  
         uses: actions/checkout@v4
         with:
-          ref: 'demo-version'
           lfs: true
 
       - name: Setup
@@ -83,10 +82,9 @@ jobs:
     container:
       image: barichello/godot-ci:${{ vars.GODOT_VERSION }}
     steps:
-      - name: Checkout Demo Version
+      - name: Checkout 
         uses: actions/checkout@v4
         with:
-          ref: 'demo-version'
           lfs: true
 
       - name: Setup
@@ -127,10 +125,9 @@ jobs:
     container:
       image: barichello/godot-ci:${{ vars.GODOT_VERSION }}
     steps:
-      - name: Checkout Demo Version
+      - name: Checkout 
         uses: actions/checkout@v4
         with:
-          ref: 'demo-version'
           lfs: true
 
       - name: Setup
@@ -171,10 +168,9 @@ jobs:
     container:
       image: barichello/godot-ci:${{ vars.GODOT_VERSION }}
     steps:
-      - name: Checkout Demo Version
+      - name: Checkout
         uses: actions/checkout@v4
         with:
-          ref: 'demo-version'
           lfs: true
 
       - name: Setup
