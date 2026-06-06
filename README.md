@@ -1,4 +1,5 @@
 # Godot Game Template
+Fork of [Maaack's Godot Game Template](https://github.com/maaack/godot-game-template)
 For Godot 4.6 (4.3+ compatible)
 
 > [!NOTE]  
@@ -108,8 +109,8 @@ When editing an existing project:
 6.  Click to Install.
 7.  Reload the project (you may see errors before you do this).
 8.  Enable the plugin from the Project Settings > Plugins tab.  
-    1.  If it's enabled for the first time, the setup wizard will start.  
-    2.  Close the window behind it and complete the setup wizard.  
+	1.  If it's enabled for the first time, the setup wizard will start.  
+	2.  Close the window behind it and complete the setup wizard.  
 9.  Continue with the [Basic Setup](/addons/maaacks_game_template/docs/BasicSetup.md)
 
 
@@ -121,8 +122,8 @@ When editing an existing project:
 3.  Move the `addons/maaacks_game_template` folder into your project's `addons/` folder.  
 4.  Open/Reload the project.  
 5.  Enable the plugin from the Project Settings > Plugins tab.  
-    1.  If it's enabled for the first time, the setup wizard will start.  
-    2.  Close the window behind it and complete the setup wizard.  
+	1.  If it's enabled for the first time, the setup wizard will start.  
+	2.  Close the window behind it and complete the setup wizard.  
 6.  Continue with the [Basic Setup](/addons/maaacks_game_template/docs/BasicSetup.md)
 
 
