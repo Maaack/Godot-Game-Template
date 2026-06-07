@@ -274,14 +274,16 @@ jobs:
           chmod +x butler
           ./butler -V
 
-      - name: Get latest release tag
+      - name: Get Release Version
         id: latest
         run: |
-          tag=$(curl -s \
-            -H "authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-            https://api.github.com/repos/${{ github.repository }}/releases/latest \
-            | jq -r .tag_name)
-          echo "tag=$tag" >> $GITHUB_OUTPUT
+          if [[ "${GITHUB_EVENT_NAME}" == "push" && "${GITHUB_REF_TYPE}" == "tag" ]]; then
+            VERSION="${GITHUB_REF_NAME}"
+          else
+            VERSION="${GITHUB_SHA::5}"
+          fi
+
+          echo "tag=$VERSION" >> $GITHUB_OUTPUT
 
       - name: Upload to Itch.io - Web
         run: |
