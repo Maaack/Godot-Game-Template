@@ -57,19 +57,19 @@ jobs:
           lfs: true
 
       - name: Set project version in project.godot
-      shell: bash
-      run: |
-        if [[ "${GITHUB_EVENT_NAME}" == "push" && "${GITHUB_REF_TYPE}" == "tag" ]]; then
-          VERSION="${GITHUB_REF_NAME}"
-        else
-          VERSION="${GITHUB_SHA::5}"
-        fi
+        shell: bash
+        run: |
+          if [[ "${GITHUB_EVENT_NAME}" == "push" && "${GITHUB_REF_TYPE}" == "tag" ]]; then
+            VERSION="${GITHUB_REF_NAME}"
+          else
+            VERSION="${GITHUB_SHA::5}"
+          fi
 
-        echo "Using version: $VERSION"
+          echo "Using version: $VERSION"
 
-        sed -i 's/^config\/version=".*"/config\/version="'"$VERSION"'"/' project.godot
+          sed -i 's/^config\/version=".*"/config\/version="'"$VERSION"'"/' project.godot
 
-        grep '^config/version=' project.godot
+          grep '^config/version=' project.godot
 
       - name: Setup
         run: |
@@ -103,19 +103,19 @@ jobs:
           lfs: true
 
       - name: Set project version in project.godot
-      shell: bash
-      run: |
-        if [[ "${GITHUB_EVENT_NAME}" == "push" && "${GITHUB_REF_TYPE}" == "tag" ]]; then
-          VERSION="${GITHUB_REF_NAME}"
-        else
-          VERSION="${GITHUB_SHA::5}"
-        fi
+        shell: bash
+        run: |
+          if [[ "${GITHUB_EVENT_NAME}" == "push" && "${GITHUB_REF_TYPE}" == "tag" ]]; then
+            VERSION="${GITHUB_REF_NAME}"
+          else
+            VERSION="${GITHUB_SHA::5}"
+          fi
 
-        echo "Using version: $VERSION"
+          echo "Using version: $VERSION"
 
-        sed -i 's/^config\/version=".*"/config\/version="'"$VERSION"'"/' project.godot
+          sed -i 's/^config\/version=".*"/config\/version="'"$VERSION"'"/' project.godot
 
-        grep '^config/version=' project.godot
+          grep '^config/version=' project.godot
 
       - name: Setup
         run: |
@@ -161,19 +161,19 @@ jobs:
           lfs: true
 
       - name: Set project version in project.godot
-      shell: bash
-      run: |
-        if [[ "${GITHUB_EVENT_NAME}" == "push" && "${GITHUB_REF_TYPE}" == "tag" ]]; then
-          VERSION="${GITHUB_REF_NAME}"
-        else
-          VERSION="${GITHUB_SHA::5}"
-        fi
+        shell: bash
+        run: |
+          if [[ "${GITHUB_EVENT_NAME}" == "push" && "${GITHUB_REF_TYPE}" == "tag" ]]; then
+            VERSION="${GITHUB_REF_NAME}"
+          else
+            VERSION="${GITHUB_SHA::5}"
+          fi
 
-        echo "Using version: $VERSION"
+          echo "Using version: $VERSION"
 
-        sed -i 's/^config\/version=".*"/config\/version="'"$VERSION"'"/' project.godot
+          sed -i 's/^config\/version=".*"/config\/version="'"$VERSION"'"/' project.godot
 
-        grep '^config/version=' project.godot
+          grep '^config/version=' project.godot
 
       - name: Setup
         run: |
@@ -219,19 +219,19 @@ jobs:
           lfs: true
 
       - name: Set project version in project.godot
-      shell: bash
-      run: |
-        if [[ "${GITHUB_EVENT_NAME}" == "push" && "${GITHUB_REF_TYPE}" == "tag" ]]; then
-          VERSION="${GITHUB_REF_NAME}"
-        else
-          VERSION="${GITHUB_SHA::5}"
-        fi
+        shell: bash
+        run: |
+          if [[ "${GITHUB_EVENT_NAME}" == "push" && "${GITHUB_REF_TYPE}" == "tag" ]]; then
+            VERSION="${GITHUB_REF_NAME}"
+          else
+            VERSION="${GITHUB_SHA::5}"
+          fi
 
-        echo "Using version: $VERSION"
+          echo "Using version: $VERSION"
 
-        sed -i 's/^config\/version=".*"/config\/version="'"$VERSION"'"/' project.godot
+          sed -i 's/^config\/version=".*"/config\/version="'"$VERSION"'"/' project.godot
 
-        grep '^config/version=' project.godot
+          grep '^config/version=' project.godot
 
       - name: Setup
         run: |
