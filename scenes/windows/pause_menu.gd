@@ -20,6 +20,7 @@ extends OverlaidWindow
 
 var open_window : Node
 var _ignore_first_cancel : bool = false
+var restarting : bool = false
 
 func get_main_menu_scene_path() -> String:
 	if main_menu_scene_path.is_empty():
@@ -91,6 +92,7 @@ func _ready() -> void:
 	_refresh_options_button()
 	_refresh_main_menu_button()
 	restart_confirmation.confirmed.connect(_on_restart_confirmation_confirmed)
+	restart_confirmation.closed.connect(_on_restart_confirmation_closed)
 	main_menu_confirmation.confirmed.connect(_on_main_menu_confirmation_confirmed)
 	exit_confirmation.confirmed.connect(_on_exit_confirmation_confirmed)
 
@@ -107,8 +109,12 @@ func _on_exit_button_pressed() -> void:
 	_show_window(exit_confirmation)
 
 func _on_restart_confirmation_confirmed() -> void:
-	SceneLoader.reload_current_scene()
-	close()
+	restarting = true
+
+func _on_restart_confirmation_closed() -> void:
+	if restarting:
+		SceneLoader.reload_current_scene()
+		close()
 
 func _on_main_menu_confirmation_confirmed():
 	_load_scene(get_main_menu_scene_path())
