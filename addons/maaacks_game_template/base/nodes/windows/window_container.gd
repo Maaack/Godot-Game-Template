@@ -28,12 +28,6 @@ signal opened
 		if update_content and is_inside_tree():
 			title_label.text = title
 
-@export_range(0, 1000, 1) var title_font_size : int = 16 :
-	set(value):
-		title_font_size = value
-		if update_content and is_inside_tree():
-			title_label.set("theme_override_font_sizes/font_size", title_font_size)
-
 @export var title_visible : bool = true :
 	set(value):
 		title_visible = value
@@ -52,7 +46,6 @@ func _ready() -> void:
 	text = text
 	close_button_text = close_button_text
 	title = title
-	title_font_size = title_font_size
 	title_visible = title_visible
 
 func close() -> void:
