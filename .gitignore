@@ -8,6 +8,7 @@ export_presets.cfg
 
 # Imported translations (automatically generated from CSV files)
 *.translation.godot/
+*.translation
 
 # Mono-specific ignores
 .mono/
