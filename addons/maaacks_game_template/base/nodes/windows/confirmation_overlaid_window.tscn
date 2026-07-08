@@ -7,7 +7,11 @@
 script = ExtResource("2_sw7p1")
 confirm_button_text = "Confirm"
 update_content = true
+title = "Confirm?"
 close_button_text = "Cancel"
+
+[node name="TitleLabel" parent="ContentContainer/BoxContainer/TitleMargin/BoxContainer" parent_id_path=PackedInt32Array(1788474031) index="0" unique_id=1049966061]
+text = "Confirm?"
 
 [node name="MenuButtons" parent="ContentContainer/BoxContainer/MenuButtonsMargin" parent_id_path=PackedInt32Array(1413292752) index="0" unique_id=1371114575]
 vertical = false
