@@ -12,6 +12,7 @@ extends WindowContainer
 @export var makes_mouse_visible : bool = true
 @export var exclusive : bool = true
 @export var exclusive_background_color : Color
+@export var ignore_siblings : bool = false
 
 var _initial_pause_state : bool = false
 var _initial_mouse_mode : Input.MouseMode
@@ -21,8 +22,12 @@ var _scene_tree : SceneTree
 var _exclusive_control_node : ColorRect
 
 func _set_focus_none(node : Node) -> void:
-	for child in node.get_children():
-		if child == self: continue
+	var all_children := node.get_children()
+	if ignore_siblings and self in all_children:
+		return
+	for child in all_children:
+		if child == self:
+			continue
 		if child is Control:
 			_initial_node_focus_modes[child] = child.focus_mode
 			child.focus_mode = Control.FOCUS_NONE
@@ -36,7 +41,8 @@ func _set_focus_initial() -> void:
 
 func close() -> void:
 	if not visible: return
-	_scene_tree.paused = _initial_pause_state
+	if pauses_game:
+		_scene_tree.paused = _initial_pause_state
 	Input.set_mouse_mode(_initial_mouse_mode)
 	_set_focus_initial()
 	if is_instance_valid(_initial_focus_control) and _initial_focus_control.is_inside_tree():
