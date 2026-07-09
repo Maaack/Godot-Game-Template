@@ -20,6 +20,7 @@ extends OverlaidWindow
 
 var open_window : Node
 var _ignore_first_cancel : bool = false
+var restarting : bool = false
 
 func get_main_menu_scene_path() -> String:
 	if main_menu_scene_path.is_empty():
@@ -34,27 +35,15 @@ func close_window() -> void:
 			open_window.hide()
 		open_window = null
 
-func _disable_focus() -> void:
-	for child in %MenuButtons.get_children():
-		if child is Control:
-			child.focus_mode = FOCUS_NONE
-
-func _enable_focus() -> void:
-	for child in %MenuButtons.get_children():
-		if child is Control:
-			child.focus_mode = FOCUS_ALL
-
 func _load_scene(scene_path: String) -> void:
 	_scene_tree.paused = false
 	SceneLoader.load_scene(scene_path)
 
 func _show_window(window : Control) -> void:
-	_disable_focus.call_deferred()
 	window.show()
 	open_window = window
 	await window.hidden
 	open_window = null
-	_enable_focus.call_deferred()
 
 func _load_and_show_menu(scene : PackedScene) -> void:
 	var window_instance : Control = scene.instantiate()
@@ -91,6 +80,7 @@ func _ready() -> void:
 	_refresh_options_button()
 	_refresh_main_menu_button()
 	restart_confirmation.confirmed.connect(_on_restart_confirmation_confirmed)
+	restart_confirmation.closed.connect(_on_restart_confirmation_closed)
 	main_menu_confirmation.confirmed.connect(_on_main_menu_confirmation_confirmed)
 	exit_confirmation.confirmed.connect(_on_exit_confirmation_confirmed)
 
@@ -107,8 +97,12 @@ func _on_exit_button_pressed() -> void:
 	_show_window(exit_confirmation)
 
 func _on_restart_confirmation_confirmed() -> void:
-	SceneLoader.reload_current_scene()
-	close()
+	restarting = true
+
+func _on_restart_confirmation_closed() -> void:
+	if restarting:
+		SceneLoader.reload_current_scene()
+		close()
 
 func _on_main_menu_confirmation_confirmed():
 	_load_scene(get_main_menu_scene_path())
