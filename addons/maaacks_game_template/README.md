@@ -1,5 +1,5 @@
 # Godot Game Template
-For Godot 4.6 (4.3+ compatible)
+For Godot 4.7 (4.3+ compatible)
 
 > [!NOTE]  
 > Using the latest version of Godot is recommended.   
