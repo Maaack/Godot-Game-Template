@@ -37,7 +37,17 @@ If adding a 3D background to the menu, a 3D world node in the scene tree should 
 
 ## Level Select
 
-A basic level select scene is available to add to the menu. In `main_menu_with_animations.tscn`, click the root `MainMenu` mode and set `Level Select Packed Scene` to `level_select_menu.tscn`. The button will appear on the main menu when the player has reached the second level.  
+A basic level select scene is available to add to the menu. In `main_menu_with_animations.tscn`, click the root `MainMenu` node in the Scene tree.  
+![Select MainMenu node](../media/documentation/select-main-menu-node.png)  
+
+Then select the folder icon for `Level Select Packed Scene` in the Inspector.  
+![Set Level Select Packed Scene](../media/documentation/select_level_select_packed_scene.png)  
+
+Search for "level_select" and  select `level_select_menu.tscn`.  
+![Find and select level_select_menu scene](../media/documentation/select_level_select_menu_scene.png)  
+
+> [!NOTE]  
+> The button will appear on the main menu when the player has reached the second level.  
 
 Levels can be added to the menu by inspecting the `SceneLister` and either selecting a directory to automatically read scene files from, or populating the files array manually.
 
