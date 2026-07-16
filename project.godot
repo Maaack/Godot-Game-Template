@@ -13,7 +13,7 @@ config_version=5
 config/name="Game Template"
 config/version="0.0.0"
 run/main_scene="res://scenes/opening/opening.tscn"
-config/features=PackedStringArray("4.6")
+config/features=PackedStringArray("4.7")
 config/icon="res://icon.png"
 
 [autoload]
