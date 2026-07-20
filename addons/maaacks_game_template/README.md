@@ -1,5 +1,5 @@
 # Godot Game Template
-For Godot 4.6 (4.3+ compatible)
+For Godot 4.7 (4.3+ compatible)
 
 > [!NOTE]  
 > Using the latest version of Godot is recommended.   
@@ -83,14 +83,14 @@ Users that want a minimal set of features can try [Maaack's Minimal Game Templat
 
 ## Installation
 
-### Godot Asset Library
+### Godot Asset Store & Library
 This package is available as both a template and a plugin, meaning it can be used to start a new project, or added to an existing project. 
 
 ![Package Icon](/addons/maaacks_game_template/media/game-icon-black-transparent-256x256.png)  
 
 When starting a new project:
 
-1.  Go to the `Asset Library Projects` tab.
+1.  Go to the `Asset Store` tab.
 2.  Search for "Maaack's Game Template".
 3.  Click on the result to open the template details.
 4.  Click to Download.
@@ -100,15 +100,15 @@ When starting a new project:
 
 When editing an existing project:
 
-1.  Go to the `AssetLib` tab.
-2.  Search for "Maaack's Game Template Plugin".
+1.  Go to the `Asset Store` tab.
+2.  Search for "Maaack's Game Template Addon".
 3.  Click on the result to open the plugin details.
 4.  Click to Download.
 5.  Check that contents are getting installed to `addons/` and there are no conflicts.
 6.  Click to Install.
 7.  Reload the project (you may see errors before you do this).
 8.  Enable the plugin from the Project Settings > Plugins tab.  
-    1.  If it's enabled for the first time, the setup wizard will start.  
+	1.  If it's enabled for the first time, the setup wizard will start.  
     2.  Close the window behind it and complete the setup wizard.  
 9.  Continue with the [Basic Setup](/addons/maaacks_game_template/docs/BasicSetup.md)
 
@@ -121,7 +121,7 @@ When editing an existing project:
 3.  Move the `addons/maaacks_game_template` folder into your project's `addons/` folder.  
 4.  Open/Reload the project.  
 5.  Enable the plugin from the Project Settings > Plugins tab.  
-    1.  If it's enabled for the first time, the setup wizard will start.  
+	1.  If it's enabled for the first time, the setup wizard will start.  
     2.  Close the window behind it and complete the setup wizard.  
 6.  Continue with the [Basic Setup](/addons/maaacks_game_template/docs/BasicSetup.md)
 
@@ -172,5 +172,7 @@ Join the [Discord server](https://discord.gg/AyZrJh5AMp ) and share your work wi
 ## Links
 [Attribution](/addons/maaacks_game_template/ATTRIBUTION.md)  
 [License](/addons/maaacks_game_template/LICENSE.txt)  
+[Godot Asset Store - Template](https://store.godotengine.org/asset/maaack/maaacks-game-template/)  
+[Godot Asset Store - Addon](https://store.godotengine.org/asset/maaack/maaacks-game-template-addon/)  
 [Godot Asset Library - Template](https://godotengine.org/asset-library/asset/2703)  
 [Godot Asset Library - Plugin](https://godotengine.org/asset-library/asset/2709)  

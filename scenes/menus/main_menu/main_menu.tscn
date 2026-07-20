@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dnaejbfe1nvn1" path="res://scenes/windows/main_menu_credits_window.tscn" id="4_m0ubd"]
 [ext_resource type="PackedScene" uid="uid://cwt4p3bufkke5" path="res://addons/maaacks_game_template/base/nodes/windows/confirmation_overlaid_window.tscn" id="5_627ab"]
 
-[node name="MainMenu" unique_id=1058120615 instance=ExtResource("1_ub2bi")]
+[node name="MainMenu" unique_id=869232425 instance=ExtResource("1_ub2bi")]
 script = ExtResource("2_x31ro")
 level_select_packed_scene = null
 confirm_new_game = true
@@ -16,22 +16,24 @@ credits_packed_scene = ExtResource("4_m0ubd")
 [node name="TitleLabel" parent="MenuContainer/TitleMargin/TitleContainer" parent_id_path=PackedInt32Array(556427956) index="0" unique_id=359406872]
 text = "Game Template"
 
-[node name="ContinueGameButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" parent_id_path=PackedInt32Array(2017477786) index="1" unique_id=2077321160]
+[node name="ContinueGameButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" parent_id_path=PackedInt32Array(2017477786) index="1" unique_id=1495566523]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 text = "Continue"
 
-[node name="LevelSelectButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" parent_id_path=PackedInt32Array(2017477786) index="2" unique_id=1742178973]
+[node name="LevelSelectButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" parent_id_path=PackedInt32Array(2017477786) index="2" unique_id=1348895676]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 text = "Level Select"
 
-[node name="VersionLabel" parent="VersionMargin/VersionContainer" parent_id_path=PackedInt32Array(1603969262) index="0" unique_id=793266470]
-text = "0.0.0"
+[node name="ExitButton2" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" parent_id_path=PackedInt32Array(2017477786) index="6" unique_id=2050632838]
+unique_name_in_owner = true
+layout_mode = 2
+text = "bruh"
 
-[node name="NewGameConfirmation" parent="." index="5" unique_id=613417993 instance=ExtResource("5_627ab")]
+[node name="NewGameConfirmation" parent="." index="5" unique_id=487332143 instance=ExtResource("5_627ab")]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(420, 200)
@@ -40,11 +42,16 @@ offset_left = -210.0
 offset_top = -100.0
 offset_right = 210.0
 offset_bottom = 100.0
+ignore_siblings = false
+title = "New Game"
 text = "Are you sure you want to start a new game?
 
 All progress in the current game will be lost."
-title = "New Game"
+
+[node name="ExitConfirmation" parent="." index="6" unique_id=912502155]
+ignore_siblings = false
 
 [connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/ContinueGameButton" to="." method="_on_continue_game_button_pressed"]
 [connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/LevelSelectButton" to="." method="_on_level_select_button_pressed"]
+[connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/ExitButton2" to="." method="_on_exit_button_pressed"]
 [connection signal="confirmed" from="NewGameConfirmation" to="." method="_on_new_game_confirmation_confirmed"]

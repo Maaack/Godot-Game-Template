@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://b0x8acab1b4oe"]
 
-[ext_resource type="PackedScene" uid="uid://6gdbfi0172ji" path="res://addons/maaacks_game_template/base/nodes/windows/overlaid_window.tscn" id="1_yn032"]
-[ext_resource type="Script" uid="uid://dr4iktfflpdxh" path="res://scenes/windows/pause_menu.gd" id="2_00o4m"]
-[ext_resource type="PackedScene" uid="uid://bh3sehmvmyc7n" path="res://scenes/windows/pause_menu_options_window.tscn" id="3_mdvg7"]
-[ext_resource type="PackedScene" uid="uid://cwt4p3bufkke5" path="res://addons/maaacks_game_template/base/nodes/windows/confirmation_overlaid_window.tscn" id="4_6lma4"]
+[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/nodes/windows/overlaid_window.tscn" id="1_yn032"]
+[ext_resource type="Script" path="res://scenes/windows/pause_menu.gd" id="2_00o4m"]
+[ext_resource type="PackedScene" path="res://scenes/windows/pause_menu_options_window.tscn" id="3_mdvg7"]
+[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/nodes/windows/confirmation_overlaid_window.tscn" id="4_6lma4"]
 
-[node name="PauseMenu" unique_id=1026917916 instance=ExtResource("1_yn032")]
+[node name="PauseMenu" unique_id=156357199 instance=ExtResource("1_yn032")]
 process_mode = 3
 custom_minimum_size = Vector2(256, 312)
 offset_left = -128.0
@@ -35,33 +35,33 @@ size_flags_vertical = 3
 [node name="CloseButton" parent="ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" parent_id_path=PackedInt32Array(1371114575) index="0" unique_id=314526102]
 text = "Resume"
 
-[node name="RestartButton" type="Button" parent="ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" parent_id_path=PackedInt32Array(1371114575) index="1" unique_id=1809411342]
+[node name="RestartButton" type="Button" parent="ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" parent_id_path=PackedInt32Array(1371114575) index="1" unique_id=1371657172]
 layout_mode = 2
 text = "Restart"
 
-[node name="OptionsButton" type="Button" parent="ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" parent_id_path=PackedInt32Array(1371114575) index="2" unique_id=1774519262]
+[node name="OptionsButton" type="Button" parent="ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" parent_id_path=PackedInt32Array(1371114575) index="2" unique_id=1126383675]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Options"
 
-[node name="MainMenuButton" type="Button" parent="ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" parent_id_path=PackedInt32Array(1371114575) index="3" unique_id=2034982936]
+[node name="MainMenuButton" type="Button" parent="ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" parent_id_path=PackedInt32Array(1371114575) index="3" unique_id=928043706]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Main Menu"
 
-[node name="ExitButton" type="Button" parent="ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" parent_id_path=PackedInt32Array(1371114575) index="4" unique_id=1378733000]
+[node name="ExitButton" type="Button" parent="ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" parent_id_path=PackedInt32Array(1371114575) index="4" unique_id=1398257582]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Exit Game"
 
-[node name="RestartConfirmation" parent="." index="1" unique_id=1129557320 instance=ExtResource("4_6lma4")]
+[node name="RestartConfirmation" parent="." index="1" unique_id=1405814931 instance=ExtResource("4_6lma4")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 text = "Restart the game?"
 title = "Confirm Restart"
 
-[node name="MainMenuConfirmation" parent="." index="2" unique_id=1974060733 instance=ExtResource("4_6lma4")]
+[node name="MainMenuConfirmation" parent="." index="2" unique_id=1770307648 instance=ExtResource("4_6lma4")]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(220, 0)
@@ -69,7 +69,7 @@ layout_mode = 2
 text = "Exit to the main menu?"
 title = "Confirm Exit"
 
-[node name="ExitConfirmation" parent="." index="3" unique_id=1672855184 instance=ExtResource("4_6lma4")]
+[node name="ExitConfirmation" parent="." index="3" unique_id=1587469343 instance=ExtResource("4_6lma4")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2

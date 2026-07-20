@@ -172,8 +172,8 @@ offset_top = -80.0
 offset_right = 150.0
 offset_bottom = 80.0
 ui_cancel_closes = false
+title = "Exit Game?"
 text = "Really exit the game?"
-title_visible = false
 
 [connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]

@@ -5,7 +5,7 @@ extends Label
 const NO_VERSION_STRING : String = "0.0.0"
 
 ## Prefixes the value of `application/config/version` when displaying to the user.
-@export var version_prefix : String = ""
+@export var version_prefix : String = "v"
 
 func update_version_label() -> void:
 	var config_version : String = ProjectSettings.get_setting("application/config/version", NO_VERSION_STRING)

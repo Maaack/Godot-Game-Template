@@ -9,6 +9,14 @@ signal opened
 
 @export_group("Content")
 @export var update_content : bool = false
+
+@export var title : String = "Menu" :
+	set(value):
+		title = value
+		if update_content and is_inside_tree():
+			title_label.text = title
+			title_margin.visible = not title.is_empty()
+
 @export_multiline var text : String :
 	set(value):
 		text = value
@@ -20,25 +28,6 @@ signal opened
 		close_button_text = value
 		if update_content and is_inside_tree():
 			close_button.text = close_button_text
-
-@export_subgroup("Title")
-@export var title : String = "Menu" :
-	set(value):
-		title = value
-		if update_content and is_inside_tree():
-			title_label.text = title
-
-@export_range(0, 1000, 1) var title_font_size : int = 16 :
-	set(value):
-		title_font_size = value
-		if update_content and is_inside_tree():
-			title_label.set("theme_override_font_sizes/font_size", title_font_size)
-
-@export var title_visible : bool = true :
-	set(value):
-		title_visible = value
-		if update_content and is_inside_tree():
-			title_margin.visible = title_visible
 
 @onready var content_container : Container = %ContentContainer
 @onready var title_label : Label = %TitleLabel
@@ -52,8 +41,6 @@ func _ready() -> void:
 	text = text
 	close_button_text = close_button_text
 	title = title
-	title_font_size = title_font_size
-	title_visible = title_visible
 
 func close() -> void:
 	if not visible: return

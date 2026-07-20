@@ -2,7 +2,7 @@
 
 importer="csv_translation"
 type="Translation"
-uid="uid://i6ihop1vp2ei"
+uid="uid://tijfdylrbvh4"
 
 [deps]
 
@@ -13,7 +13,7 @@ dest_files=["res://addons/maaacks_game_template/base/translations/menus_translat
 
 [params]
 
-compress=true
+compress=1
 delimiter=0
 unescape_keys=false
 unescape_translations=true
