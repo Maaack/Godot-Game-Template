@@ -1,10 +1,8 @@
 # Attribution
 ## Collaborators
 
-### Role
-Person 1  
-Person 2  
-[Person w/ Link]()  
+### Game Lead
+[SecretJuice](https://secretjuice1.itch.io/) 
 
 ## Sourced
 ### Asset Type
