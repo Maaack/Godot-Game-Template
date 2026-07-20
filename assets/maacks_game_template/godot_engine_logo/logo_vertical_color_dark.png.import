@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cf77mc07j26a4"
-path="res://.godot/imported/logo.png-31474a8ee58537d771c887e29197a8a3.ctex"
+uid="uid://daput5j66exgu"
+path="res://.godot/imported/logo_vertical_color_dark.png-e576da56297d289571b1d6b9cb2445e6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/plugin_logo/logo.png"
-dest_files=["res://.godot/imported/logo.png-31474a8ee58537d771c887e29197a8a3.ctex"]
+source_file="res://assets/maacks_game_template/godot_engine_logo/logo_vertical_color_dark.png"
+dest_files=["res://.godot/imported/logo_vertical_color_dark.png-e576da56297d289571b1d6b9cb2445e6.ctex"]
 
 [params]
 
