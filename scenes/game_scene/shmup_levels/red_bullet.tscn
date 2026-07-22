@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://d5vfvflaxloj"]
+
+[ext_resource type="Script" uid="uid://2nvf0081xtmv" path="res://scenes/game_scene/shmup_levels/bullet.gd" id="1_4uq5n"]
+[ext_resource type="Script" uid="uid://b3nmnw70cwsre" path="res://scenes/game_scene/shmup_levels/velocity.gd" id="1_l3mdg"]
+
+[sub_resource type="Gradient" id="Gradient_4uq5n"]
+colors = PackedColorArray(0, 0, 0, 0, 0.8035538, 4.428029e-06, 4.813075e-07, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8vfvq"]
+gradient = SubResource("Gradient_4uq5n")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_053kx"]
+radius = 5.0990195
+
+[node name="RedBullet" type="Area2D" unique_id=1264128201]
+script = ExtResource("1_4uq5n")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2091738744]
+position = Vector2(-4.4999995, 0)
+scale = Vector2(0.10546875, 8)
+texture = SubResource("GradientTexture1D_8vfvq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1429112927]
+position = Vector2(5, 0)
+shape = SubResource("CircleShape2D_053kx")
+
+[node name="VelocityComponent" type="Node" parent="." unique_id=2126643307]
+script = ExtResource("1_l3mdg")
+velocity = Vector2(1000, 0)

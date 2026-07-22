@@ -6,10 +6,10 @@ This page covers the `ProjectMusicController`, which is used to blend music in b
 
 1.  Verify the `Music` audio bus.
 
-    1.  Open the Audio bus editor.
-    2.  Confirm that `Music` audio bus is available.
-        1.  If the last bus is `New Bus`, try restarting the editor and checking again.
-    3.  If the audio bus doesn't exist, add it and save the project.
+	1.  Open the Audio bus editor.
+	2.  Confirm that `Music` audio bus is available.
+		1.  If the last bus is `New Bus`, try restarting the editor and checking again.
+	3.  If the audio bus doesn't exist, add it and save the project.
 
 2.  Verify the `ProjectMusicController` autoload.
 

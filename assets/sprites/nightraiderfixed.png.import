@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c86drr8n6n1sb"
-path="res://.godot/imported/logo.png-31474a8ee58537d771c887e29197a8a3.ctex"
+uid="uid://cstri87vuj5gv"
+path="res://.godot/imported/nightraiderfixed.png-0beba531de7da26bd251dc1fdfdeccfe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/plugin_logo/logo.png"
-dest_files=["res://.godot/imported/logo.png-31474a8ee58537d771c887e29197a8a3.ctex"]
+source_file="res://assets/sprites/nightraiderfixed.png"
+dest_files=["res://.godot/imported/nightraiderfixed.png-0beba531de7da26bd251dc1fdfdeccfe.ctex"]
 
 [params]
 

@@ -113,7 +113,7 @@ For example, if you don't want to export for macOS, delete this part which build
           godot --headless --verbose --export-release "macOS" "$EXPORT_DIR/mac/${EXPORT_NAME}-mac.zip"
 
       - name: Upload to GitHub Release (if this run is a release)
-        if: ${{ github.event_name == 'release' }}
+		if: ${{ github.event_name == 'release' }}
         uses: svenstaro/upload-release-action@v2
         with:
           file: build/mac/${{ env.EXPORT_NAME }}-mac.zip

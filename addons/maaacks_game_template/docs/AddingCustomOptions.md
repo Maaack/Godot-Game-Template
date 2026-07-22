@@ -9,8 +9,8 @@ This page covers adding new buttons, sliders, or editable text fields to the opt
 Custom options can be added to a menu without any code.
 
 1.  Add an `option_control.tscn` node as a child to a container in a scene.
-    1.  `slider_option_control.tscn` or `toggle_option_control.tscn` can be used if those types match requirements. In that case, skip step 6.
-    2.  `list_option_control.tscn` and `vector_2_list_option_control.tscn` are also available, but more complicated. See the `ScreenResolution` example.
+	1.  `slider_option_control.tscn` or `toggle_option_control.tscn` can be used if those types match requirements. In that case, skip step 6.
+	2.  `list_option_control.tscn` and `vector_2_list_option_control.tscn` are also available, but more complicated. See the `ScreenResolution` example.
 3.  Select the `OptionControl` node just added, to edit it in the inspector.
 4.  Add an `Option Name`. This prefills the `Key` string.
 5.  Select an `Option Section`. This prefills the `Section` string.

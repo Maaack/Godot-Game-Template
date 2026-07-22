@@ -22,4 +22,3 @@ Maaack's Game Templates are a culmination of a suite of plugins, that can be dow
 ## Overview
 
 [![All Plugins Video](https://img.youtube.com/vi/3yzaUSaROhw/hqdefault.jpg)](https://youtu.be/3yzaUSaROhw)  
-

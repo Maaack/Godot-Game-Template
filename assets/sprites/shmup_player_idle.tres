@@ -1,0 +1,14 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://dyphuevebh8mb"]
+
+[ext_resource type="Texture2D" uid="uid://cstri87vuj5gv" path="res://assets/sprites/nightraiderfixed.png" id="1_3n8md"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3n8md")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
