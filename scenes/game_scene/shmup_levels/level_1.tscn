@@ -1,17 +1,8 @@
 [gd_scene format=3 uid="uid://duk4ju3idshai"]
 
-[ext_resource type="SpriteFrames" uid="uid://dyphuevebh8mb" path="res://assets/sprites/shmup_player_idle.tres" id="1_eugwy"]
-[ext_resource type="Script" uid="uid://c5k12kem82fi5" path="res://scenes/game_scene/shmup_levels/player.gd" id="1_vvf27"]
-[ext_resource type="Script" uid="uid://b3nmnw70cwsre" path="res://scenes/game_scene/shmup_levels/velocity.gd" id="2_aneso"]
-[ext_resource type="Script" uid="uid://bjyctmjqqchb1" path="res://scenes/game_scene/shmup_levels/input_component.gd" id="4_04iec"]
-[ext_resource type="Script" uid="uid://d47eflrnfo3g" path="res://scenes/game_scene/shmup_levels/equipment_component.gd" id="5_5pbi3"]
-[ext_resource type="Script" uid="uid://c7ijvwlbppgd" path="res://scenes/game_scene/shmup_levels/weapon_component.gd" id="6_3bqoa"]
-[ext_resource type="PackedScene" uid="uid://d5vfvflaxloj" path="res://scenes/game_scene/shmup_levels/red_bullet.tscn" id="7_ybm64"]
+[ext_resource type="PackedScene" uid="uid://dn2mufat3fbjy" path="res://scenes/game_scene/game/player.tscn" id="1_aneso"]
+[ext_resource type="PackedScene" uid="uid://dfoijjdnbiby2" path="res://scenes/game_scene/game/red_enemy.tscn" id="3_vvf27"]
 [ext_resource type="Script" uid="uid://ch8aaykixbwn5" path="res://scenes/game_scene/input_display_label.gd" id="8_qg3e5"]
-[ext_resource type="PackedScene" uid="uid://pcj806xqwwjc" path="res://scenes/game_scene/shmup_levels/blue_bullet.tscn" id="8_yoo7s"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_04iec"]
-size = Vector2(59, 37)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_053kx"]
 size = Vector2(332, 20)
@@ -21,54 +12,8 @@ size = Vector2(20, 754)
 
 [node name="Level1" type="Node" unique_id=156853197]
 
-[node name="Player" type="CharacterBody2D" parent="." unique_id=980218788 node_paths=PackedStringArray("vel", "input")]
+[node name="Player" parent="." unique_id=1251191690 instance=ExtResource("1_aneso")]
 position = Vector2(76, 115)
-collision_layer = 3
-collision_mask = 3
-motion_mode = 1
-script = ExtResource("1_vvf27")
-vel = NodePath("VelocityComponent")
-input = NodePath("InputComponent")
-movement_speed = 400
-
-[node name="RedMuzzel" type="Node2D" parent="Player" unique_id=1315428402]
-position = Vector2(44, -20)
-
-[node name="BlueMuzzel" type="Node2D" parent="Player" unique_id=569489025]
-position = Vector2(44, 20)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=291297135]
-position = Vector2(2.5, 0.5)
-shape = SubResource("RectangleShape2D_04iec")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=402198173]
-scale = Vector2(0.5, 0.5)
-sprite_frames = ExtResource("1_eugwy")
-
-[node name="VelocityComponent" type="Node" parent="Player" unique_id=709171475]
-script = ExtResource("2_aneso")
-velocity = Vector2(0, 100)
-
-[node name="InputComponent" type="Node" parent="Player" unique_id=1421847583]
-script = ExtResource("4_04iec")
-
-[node name="RedGun" type="Node" parent="Player" unique_id=952078866 node_paths=PackedStringArray("usable")]
-script = ExtResource("5_5pbi3")
-usable = NodePath("GunComponent")
-
-[node name="GunComponent" type="Node" parent="Player/RedGun" unique_id=1761220666 node_paths=PackedStringArray("projectile_spawn_point")]
-script = ExtResource("6_3bqoa")
-projectile_spawn_point = NodePath("../../RedMuzzel")
-projectile = ExtResource("7_ybm64")
-
-[node name="BlueGun" type="Node" parent="Player" unique_id=1592652051 node_paths=PackedStringArray("usable")]
-script = ExtResource("5_5pbi3")
-usable = NodePath("GunComponent")
-
-[node name="GunComponent" type="Node" parent="Player/BlueGun" unique_id=2125175258 node_paths=PackedStringArray("projectile_spawn_point")]
-script = ExtResource("6_3bqoa")
-projectile_spawn_point = NodePath("../../BlueMuzzel")
-projectile = ExtResource("8_yoo7s")
 
 [node name="PlayerPin" type="Node2D" parent="." unique_id=1464035281]
 
@@ -105,10 +50,10 @@ collision_mask = 3
 position = Vector2(-10, 358)
 shape = SubResource("RectangleShape2D_k0krf")
 
-[node name="Label" type="Label" parent="." unique_id=1956789955]
+[node name="InputLabel" type="Label" parent="." unique_id=1956789955]
 offset_right = 40.0
 offset_bottom = 23.0
 script = ExtResource("8_qg3e5")
 
-[connection signal="input_alt_attack" from="Player/InputComponent" to="Player/BlueGun" method="on_signal_received"]
-[connection signal="input_attack" from="Player/InputComponent" to="Player/RedGun" method="on_signal_received"]
+[node name="RedEnemy" parent="." unique_id=1237394666 instance=ExtResource("3_vvf27")]
+position = Vector2(1065, 214)

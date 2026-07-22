@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://dfoijjdnbiby2"]
+
+[ext_resource type="Script" uid="uid://bri1o26jvdu3p" path="res://components/health_component.gd" id="1_p3btu"]
+[ext_resource type="Script" uid="uid://y2hwbt58wv1v" path="res://scenes/game_scene/game/enemy.gd" id="1_sas5n"]
+[ext_resource type="Script" uid="uid://dxv4eo30eda25" path="res://components/hurtbox_component.gd" id="2_jq1dc"]
+[ext_resource type="Script" uid="uid://b3nmnw70cwsre" path="res://components/velocity_component.gd" id="4_pw74w"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_k0krf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p3btu"]
+size = Vector2(40, 40)
+
+[node name="RedEnemy" type="Node2D" unique_id=1237394666]
+script = ExtResource("1_sas5n")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=182919927]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(0, -2.8610227e-06)
+scale = Vector2(40, 39.999996)
+texture = SubResource("PlaceholderTexture2D_k0krf")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=445239026]
+script = ExtResource("1_p3btu")
+health = 3
+max_health = 3
+
+[node name="HurtboxComponent" type="Area2D" parent="." unique_id=272354500 node_paths=PackedStringArray("health_component")]
+script = ExtResource("2_jq1dc")
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=616209328]
+shape = SubResource("RectangleShape2D_p3btu")
+
+[node name="VelocityComponent" type="Node" parent="." unique_id=1087061164]
+script = ExtResource("4_pw74w")
+velocity = Vector2(-100, 0)
+metadata/_custom_type_script = "uid://b3nmnw70cwsre"
+
+[connection signal="health_die" from="HealthComponent" to="." method="_on_health_component_health_die"]

@@ -1,5 +1,5 @@
 extends Node
-class_name EquipmentComponent
+class_name SignalUserComponent
 
 @export_group("Dependencies")
 @export var usable: UsableComponent = null

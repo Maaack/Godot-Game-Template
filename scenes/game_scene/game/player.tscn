@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://dn2mufat3fbjy"]
+
+[ext_resource type="Script" uid="uid://c5k12kem82fi5" path="res://scenes/game_scene/game/player.gd" id="1_44l0u"]
+[ext_resource type="SpriteFrames" uid="uid://dyphuevebh8mb" path="res://assets/sprites/shmup_player_idle.tres" id="2_4f4ye"]
+[ext_resource type="Script" uid="uid://bjyctmjqqchb1" path="res://components/input_component.gd" id="4_h2cr2"]
+[ext_resource type="Script" uid="uid://d47eflrnfo3g" path="res://components/signal_user_component.gd" id="5_7iak7"]
+[ext_resource type="Script" uid="uid://c7ijvwlbppgd" path="res://components/gun_component.gd" id="6_ii083"]
+[ext_resource type="PackedScene" uid="uid://d5vfvflaxloj" path="res://scenes/game_scene/game/red_bullet.tscn" id="7_mgqr5"]
+[ext_resource type="PackedScene" uid="uid://pcj806xqwwjc" path="res://scenes/game_scene/game/blue_bullet.tscn" id="8_k26gj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_04iec"]
+size = Vector2(59, 37)
+
+[node name="Player" type="CharacterBody2D" unique_id=1251191690 node_paths=PackedStringArray("input")]
+collision_layer = 3
+collision_mask = 3
+motion_mode = 1
+script = ExtResource("1_44l0u")
+input = NodePath("InputComponent")
+movement_speed = 400
+
+[node name="RedMuzzle" type="Node2D" parent="." unique_id=1510933730]
+position = Vector2(44, -20)
+
+[node name="BlueMuzzle" type="Node2D" parent="." unique_id=1502037505]
+position = Vector2(44, 20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=536912173]
+position = Vector2(2.5, 0.5)
+shape = SubResource("RectangleShape2D_04iec")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1324378752]
+scale = Vector2(0.5, 0.5)
+sprite_frames = ExtResource("2_4f4ye")
+
+[node name="InputComponent" type="Node" parent="." unique_id=1124154708]
+script = ExtResource("4_h2cr2")
+
+[node name="RedGun" type="Node" parent="." unique_id=2143370246 node_paths=PackedStringArray("usable")]
+script = ExtResource("5_7iak7")
+usable = NodePath("GunComponent")
+
+[node name="GunComponent" type="Node" parent="RedGun" unique_id=1295625511 node_paths=PackedStringArray("projectile_spawn_point")]
+script = ExtResource("6_ii083")
+projectile_spawn_point = NodePath("../../RedMuzzle")
+projectile = ExtResource("7_mgqr5")
+
+[node name="BlueGun" type="Node" parent="." unique_id=1784581896 node_paths=PackedStringArray("usable")]
+script = ExtResource("5_7iak7")
+usable = NodePath("GunComponent")
+
+[node name="GunComponent" type="Node" parent="BlueGun" unique_id=1223298351 node_paths=PackedStringArray("projectile_spawn_point")]
+script = ExtResource("6_ii083")
+projectile_spawn_point = NodePath("../../BlueMuzzle")
+projectile = ExtResource("8_k26gj")
+
+[connection signal="input_alt_attack" from="InputComponent" to="BlueGun" method="on_signal_received"]
+[connection signal="input_attack" from="InputComponent" to="RedGun" method="on_signal_received"]
