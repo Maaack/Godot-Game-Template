@@ -51,10 +51,10 @@ func _add_textures_to_container(textures : Array[Texture2D]) -> void:
 		%ImagesContainer.call_deferred("add_child", texture_rect)
 
 func _event_skips_image(event : InputEvent) -> bool:
-	return event.is_action_released(&"ui_accept") or event.is_action_released(&"ui_select")
+	return event.is_action_pressed(&"ui_accept") or event.is_action_pressed(&"ui_select")
 
 func _event_skips_intro(event : InputEvent) -> bool:
-	return event.is_action_released(&"ui_cancel")
+	return event.is_action_pressed(&"ui_cancel")
 
 func _event_is_mouse_button_released(event : InputEvent) -> bool:
 	return event is InputEventMouseButton and not event.is_pressed()
