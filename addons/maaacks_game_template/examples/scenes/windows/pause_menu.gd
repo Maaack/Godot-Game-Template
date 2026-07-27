@@ -19,7 +19,6 @@ extends OverlaidWindow
 @onready var exit_button = %ExitButton
 
 var open_window : Node
-var _ignore_first_cancel : bool = false
 var restarting : bool = false
 
 func get_main_menu_scene_path() -> String:
@@ -53,18 +52,10 @@ func _load_and_show_menu(scene : PackedScene) -> void:
 	window_instance.queue_free()
 
 func _handle_cancel_input() -> void:
-	if _ignore_first_cancel:
-		_ignore_first_cancel = false
-		return
 	if open_window != null:
 		close_window()
 	else:
 		super._handle_cancel_input()
-
-func show() -> void:
-	super.show()
-	if Input.is_action_pressed("ui_cancel"):
-		_ignore_first_cancel = true
 
 func _refresh_exit_button() -> void:
 	exit_button.visible = !OS.has_feature("web")
