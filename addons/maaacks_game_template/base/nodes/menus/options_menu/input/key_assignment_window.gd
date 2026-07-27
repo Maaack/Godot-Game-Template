@@ -27,6 +27,7 @@ func _record_input_event(event : InputEvent) -> void:
 	last_input_event = event
 	%InputLabel.text = last_input_text
 	confirm_button.disabled = false
+	get_viewport().set_input_as_handled()
 
 func _is_recordable_input(event : InputEvent) -> bool:
 	return event != null and \
