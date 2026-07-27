@@ -23,7 +23,7 @@ var _exclusive_control_node : ColorRect
 func _set_focus_none(node : Node) -> void:
 	var all_children := node.get_children()
 	for child in all_children:
-		if child == self:
+		if child == self or (child is Control and not child.visible):
 			continue
 		if child is Control:
 			_initial_node_focus_modes[child] = child.focus_mode
