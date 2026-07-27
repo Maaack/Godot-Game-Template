@@ -365,10 +365,10 @@ offset_left = -210.0
 offset_top = -100.0
 offset_right = 210.0
 offset_bottom = 100.0
+title = "New Game"
 text = "Are you sure you want to start a new game?
 
 All progress in the current game will be lost."
-title = "New Game"
 
 [node name="MouseFilter" type="Control" parent="." index="8" unique_id=33285267]
 layout_mode = 1

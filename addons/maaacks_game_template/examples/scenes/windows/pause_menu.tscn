@@ -58,23 +58,23 @@ text = "Exit Game"
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-text = "Restart the game?"
 title = "Confirm Restart"
+text = "Restart the game?"
 
 [node name="MainMenuConfirmation" parent="." index="2" unique_id=1770307648 instance=ExtResource("4_e5wrg")]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(220, 0)
 layout_mode = 2
-text = "Exit to the main menu?"
 title = "Confirm Exit"
+text = "Exit to the main menu?"
 
 [node name="ExitConfirmation" parent="." index="3" unique_id=1587469343 instance=ExtResource("4_e5wrg")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-text = "Exit the game?"
 title = "Confirm Exit"
+text = "Exit the game?"
 
 [connection signal="pressed" from="ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons/OptionsButton" to="." method="_on_options_button_pressed"]

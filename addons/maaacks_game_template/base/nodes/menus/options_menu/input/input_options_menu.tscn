@@ -58,15 +58,15 @@ text = "Reset"
 visible = false
 custom_minimum_size = Vector2(420, 200)
 layout_mode = 2
-text = "Are you sure you want to remove KEY from ACTION?"
 title = "Remove Key"
+text = "Are you sure you want to remove KEY from ACTION?"
 
 [node name="ResetConfirmation" parent="." unique_id=1967398625 instance=ExtResource("7_5j1ya")]
 visible = false
 custom_minimum_size = Vector2(420, 200)
 layout_mode = 2
-text = "Are you sure you want to reset controls back to the defaults?"
 title = "Reset to Default"
+text = "Are you sure you want to reset controls back to the defaults?"
 
 [node name="OneInputMinimumMessage" parent="." unique_id=1110523665 instance=ExtResource("8_jtpjy")]
 visible = false
