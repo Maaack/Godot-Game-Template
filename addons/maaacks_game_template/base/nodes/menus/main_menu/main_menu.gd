@@ -82,9 +82,7 @@ func _event_is_mouse_button_released(event : InputEvent) -> bool:
 
 func _input(event : InputEvent) -> void:
 	if event.is_action_released("ui_cancel"):
-		if sub_menu:
-			_close_sub_menu()
-		else:
+		if not sub_menu:
 			try_exit_game()
 	if event.is_action_released("ui_accept") and get_viewport().gui_get_focus_owner() == null:
 		menu_buttons_box_container.focus_first()
