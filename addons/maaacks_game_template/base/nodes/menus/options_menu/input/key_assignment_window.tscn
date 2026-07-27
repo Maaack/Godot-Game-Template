@@ -10,8 +10,8 @@ offset_right = 210.0
 offset_bottom = 100.0
 script = ExtResource("2_oif0q")
 input_confirmation = 0
-close_button_text = "Close"
 title = "Set Input"
+close_button_text = "Close"
 
 [node name="TitleLabel" parent="ContentContainer/BoxContainer/TitleMargin/BoxContainer" parent_id_path=PackedInt32Array(1788474031) index="0" unique_id=1049966061]
 text = "Set Input"

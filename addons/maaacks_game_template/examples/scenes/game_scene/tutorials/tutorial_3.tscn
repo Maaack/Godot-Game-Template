@@ -5,11 +5,10 @@
 [node name="OverlaidWindow" unique_id=1491564368 instance=ExtResource("1_3qhfy")]
 custom_minimum_size = Vector2(420, 200)
 update_content = true
+title = "Tutorial"
 text = "The color picker at the bottom-right updates the level state. This change persists until the game is reset.
 
 The label at the bottom-center displays the current input action detected, if any are setup for the project."
-title = "Tutorial"
-title_font_size = 20
 
 [node name="TitleLabel" parent="ContentContainer/BoxContainer/TitleMargin/BoxContainer" parent_id_path=PackedInt32Array(1788474031) index="0" unique_id=1049966061]
 theme_override_font_sizes/font_size = 20
