@@ -25,7 +25,7 @@ Alternatively, the developer can specify paths in the scenes that reference the 
 * `main_menu.tscn`  
 * `main_menu_with_animations.tscn`  
 * `pause_menu_layer.tscn`  
-* `game_ui.tscn` (`level_manager.gd`)  
+* `game.tscn` (`level_manager.gd`)  
 * `end_credits.tscn`  
 
 Any file paths in these scenes left blank will default to the values in `AppConfig`.

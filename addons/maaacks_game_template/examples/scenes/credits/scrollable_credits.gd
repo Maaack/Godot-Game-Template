@@ -8,7 +8,7 @@ extends Control
 var _line_number : float = 0
 
 func _on_visibility_changed() -> void:
-	if visible:
+	if is_visible_in_tree():
 		credits_label.scroll_to_line(0)
 		credits_label.grab_focus()
 

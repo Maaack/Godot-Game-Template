@@ -12,25 +12,26 @@ extends WindowContainer
 @export var makes_mouse_visible : bool = true
 @export var exclusive : bool = true
 @export var exclusive_background_color : Color
-@export var ignore_siblings : bool = false
 
 var _initial_pause_state : bool = false
 var _initial_mouse_mode : Input.MouseMode
 var _initial_focus_control
 var _initial_node_focus_modes : Dictionary
+var _initial_tab_focus_modes : Dictionary
 var _scene_tree : SceneTree 
 var _exclusive_control_node : ColorRect
 
 func _set_focus_none(node : Node) -> void:
 	var all_children := node.get_children()
-	if ignore_siblings and self in all_children:
-		return
 	for child in all_children:
-		if child == self:
+		if child == self or (child is Control and not child.visible):
 			continue
 		if child is Control:
 			_initial_node_focus_modes[child] = child.focus_mode
 			child.focus_mode = Control.FOCUS_NONE
+			if child is TabContainer:
+				_initial_tab_focus_modes[child] = child.tab_focus_mode
+				child.tab_focus_mode = Control.FOCUS_NONE
 		_set_focus_none(child)
 
 func _set_focus_initial() -> void:
@@ -38,6 +39,10 @@ func _set_focus_initial() -> void:
 		if is_instance_valid(node) and node is Control:
 			node.focus_mode = _initial_node_focus_modes[node]
 	_initial_node_focus_modes.clear()
+	for node in _initial_tab_focus_modes:
+		if is_instance_valid(node) and node is TabContainer:
+			node.tab_focus_mode = _initial_tab_focus_modes[node]
+	_initial_tab_focus_modes.clear()
 
 func close() -> void:
 	if not visible: return

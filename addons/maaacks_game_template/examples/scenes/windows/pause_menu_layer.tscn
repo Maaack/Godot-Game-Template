@@ -22,7 +22,6 @@ main_menu_confirmation_node_path = NodePath("../MainMenuConfirmation")
 exit_confirmation_node_path = NodePath("../ExitConfirmation")
 menu_container_node_path = NodePath("..")
 pauses_game = true
-ignore_siblings = true
 update_content = true
 title = "Paused"
 
@@ -72,7 +71,6 @@ text = "Exit Game"
 [node name="RestartConfirmation" parent="." unique_id=1453441706 instance=ExtResource("5_7wt2f")]
 unique_name_in_owner = true
 visible = false
-ignore_siblings = true
 title = "Confirm Restart"
 text = "Restart the game?"
 
@@ -80,14 +78,12 @@ text = "Restart the game?"
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(220, 0)
-ignore_siblings = true
 title = "Confirm Exit"
 text = "Exit to the main menu?"
 
 [node name="ExitConfirmation" parent="." unique_id=1161491301 instance=ExtResource("5_7wt2f")]
 unique_name_in_owner = true
 visible = false
-ignore_siblings = true
 title = "Confirm Exit"
 text = "Exit the game?"
 
