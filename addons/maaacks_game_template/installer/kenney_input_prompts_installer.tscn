@@ -27,7 +27,6 @@ Do you want to force a reinstall of the pack, or skip to picking a style?"
 cancel_button_text = "Reinstall"
 
 [node name="KenneyInputPromptsDialog" parent="." unique_id=257967393 instance=ExtResource("1_pslk0")]
-visible = false
 
 [node name="InstallingDialog" type="AcceptDialog" parent="." unique_id=1047580895]
 title = "Installing..."

@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://bde0cbmryrv5s"]
+
+[ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/nodes/music_players/background_music_player.tscn" id="1_cyqpy"]
+[ext_resource type="Script" uid="uid://ca84daa8dggkl" path="res://addons/maaacks_game_template/examples/scenes/game/scripts/game_timer.gd" id="2_s766r"]
+[ext_resource type="Script" uid="uid://cyh0d64pfygbl" path="res://addons/maaacks_game_template/base/nodes/utilities/pause_menu_controller.gd" id="3_xlbbx"]
+[ext_resource type="PackedScene" uid="uid://ch7wxnbttg3ik" path="res://addons/maaacks_game_template/examples/scenes/windows/pause_menu_layer.tscn" id="4_n7i66"]
+[ext_resource type="Script" uid="uid://bbymrin0cm704" path="res://addons/maaacks_game_template/extras/scripts/level_loader.gd" id="5_g02sl"]
+[ext_resource type="Script" uid="uid://cmqngqwso0uve" path="res://addons/maaacks_game_template/examples/scripts/level_and_state_manager.gd" id="6_pm3vb"]
+[ext_resource type="PackedScene" uid="uid://bve6co8x25of" path="res://addons/maaacks_game_template/examples/scenes/windows/game_won_window.tscn" id="7_6gar2"]
+[ext_resource type="PackedScene" uid="uid://whpmo2tt4mwr" path="res://addons/maaacks_game_template/examples/scenes/windows/level_lost_window.tscn" id="8_oed0s"]
+[ext_resource type="PackedScene" uid="uid://cns5v1sn14qht" path="res://addons/maaacks_game_template/examples/scenes/windows/level_won_window.tscn" id="9_mbv6o"]
+[ext_resource type="Script" uid="uid://wjq7li836lwj" path="res://addons/maaacks_game_template/extras/scripts/scene_lister.gd" id="10_bmi5i"]
+[ext_resource type="PackedScene" uid="uid://dbuv0htkikcv4" path="res://addons/maaacks_game_template/examples/scenes/loading_screen/level_loading_screen.tscn" id="11_a7q2h"]
+
+[node name="Game" type="Node" unique_id=1262092417]
+
+[node name="BackgroundMusicPlayer" parent="." unique_id=986713811 instance=ExtResource("1_cyqpy")]
+
+[node name="GameTimer" type="Node" parent="." unique_id=116840261]
+script = ExtResource("2_s766r")
+
+[node name="PauseMenuController" type="Node" parent="." unique_id=1685173287]
+script = ExtResource("3_xlbbx")
+pause_menu_packed = ExtResource("4_n7i66")
+
+[node name="LevelLoader" type="Node" parent="." unique_id=1364778615 node_paths=PackedStringArray("level_container", "level_loading_screen")]
+script = ExtResource("5_g02sl")
+level_container = NodePath("../LevelContainer")
+level_loading_screen = NodePath("../LevelLoadingScreen")
+
+[node name="LevelManager" type="Node" parent="." unique_id=1350972375 node_paths=PackedStringArray("level_loader", "scene_lister")]
+script = ExtResource("6_pm3vb")
+level_loader = NodePath("../LevelLoader")
+starting_level_path = "res://addons/maaacks_game_template/examples/scenes/game/levels/level_1.tscn"
+scene_lister = NodePath("SceneLister")
+game_won_scene = ExtResource("7_6gar2")
+level_lost_scene = ExtResource("8_oed0s")
+level_won_scene = ExtResource("9_mbv6o")
+
+[node name="SceneLister" type="Node" parent="LevelManager" unique_id=673614733]
+script = ExtResource("10_bmi5i")
+files = Array[String](["res://addons/maaacks_game_template/examples/scenes/game/levels/level_1.tscn", "res://addons/maaacks_game_template/examples/scenes/game/levels/level_2.tscn", "res://addons/maaacks_game_template/examples/scenes/game/levels/level_3.tscn"])
+directory = "res://addons/maaacks_game_template/examples/scenes/game/levels"
+
+[node name="LevelContainer" type="Node" parent="." unique_id=437554331]
+
+[node name="LevelLoadingScreen" parent="." unique_id=816430938 instance=ExtResource("11_a7q2h")]
+visible = false

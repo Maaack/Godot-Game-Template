@@ -20,6 +20,8 @@ func open_tutorials() -> void:
 			await tutorial_menu.closed
 		else:
 			await tutorial_menu.tree_exited
+		if is_instance_valid(tutorial_menu):
+			tutorial_menu.queue_free()
 		if is_inside_tree() and _initial_focus_control:
 			_initial_focus_control.grab_focus()
 

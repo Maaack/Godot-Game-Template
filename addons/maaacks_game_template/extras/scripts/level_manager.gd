@@ -50,6 +50,11 @@ func _try_connecting_signal_to_node(node : Node, signal_name : String, callable 
 func _try_connecting_signal_to_level(signal_name : String, callable : Callable) -> void:
 	_try_connecting_signal_to_node(current_level, signal_name, callable)
 
+func _close_scene(node:Node) -> void:
+	if not is_instance_valid(node):
+		return
+	node.queue_free()
+
 func get_main_menu_scene_path() -> String:
 	if main_menu_scene_path.is_empty():
 		return AppConfig.main_menu_scene_path
@@ -98,6 +103,7 @@ func _on_level_lost() -> void:
 		get_tree().current_scene.add_child(instance)
 		_try_connecting_signal_to_node(instance, &"restart_pressed", _reload_level)
 		_try_connecting_signal_to_node(instance, &"main_menu_pressed", _load_main_menu)
+		instance.hidden.connect(_close_scene.bind(instance), CONNECT_ONE_SHOT)
 	else:
 		_reload_level()
 
@@ -126,6 +132,7 @@ func _load_win_screen_or_ending() -> void:
 		_try_connecting_signal_to_node(instance, &"continue_pressed", _load_ending)
 		_try_connecting_signal_to_node(instance, &"restart_pressed", _reload_level)
 		_try_connecting_signal_to_node(instance, &"main_menu_pressed", _load_main_menu)
+		instance.hidden.connect(_close_scene.bind(instance), CONNECT_ONE_SHOT)
 	else:
 		_load_ending()
 
@@ -136,6 +143,7 @@ func _load_level_won_screen_or_checkpoint() -> void:
 		_try_connecting_signal_to_node(instance, &"continue_pressed", _load_checkpoint_level)
 		_try_connecting_signal_to_node(instance, &"restart_pressed", _reload_level)
 		_try_connecting_signal_to_node(instance, &"main_menu_pressed", _load_main_menu)
+		instance.hidden.connect(_close_scene.bind(instance), CONNECT_ONE_SHOT)
 	else:
 		_load_checkpoint_level()
 
