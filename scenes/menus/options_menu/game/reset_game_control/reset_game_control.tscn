@@ -1,34 +1,34 @@
 [gd_scene format=3 uid="uid://bjr38vv2fmnfl"]
 
-[ext_resource type="Script" uid="uid://jfxq6xboqsv8" path="res://scenes/menus/options_menu/game/reset_game_control/reset_game_control.gd" id="1_mkb8o"]
+[ext_resource type="Script" uid="uid://b0a62mov63wfg" path="res://scenes/menus/options_menu/game/reset_game_control/reset_game_control.gd" id="1_mkb8o"]
 
-[node name="ResetGameControl" type="HBoxContainer" unique_id=196931702]
+[node name="ResetGameControl" type="HBoxContainer" unique_id=1147095030]
 custom_minimum_size = Vector2(0, 32)
 offset_top = 210.0
 offset_right = 305.0
 offset_bottom = 242.0
 script = ExtResource("1_mkb8o")
 
-[node name="ResetLabel" type="Label" parent="." unique_id=1759384561]
+[node name="ResetLabel" type="Label" parent="." unique_id=666807423]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Reset Game :"
 
-[node name="ResetButton" type="Button" parent="." unique_id=57762798]
+[node name="ResetButton" type="Button" parent="." unique_id=846056487]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(72, 32)
 layout_mode = 2
 text = "Reset"
 
-[node name="CancelButton" type="Button" parent="." unique_id=2089314894]
+[node name="CancelButton" type="Button" parent="." unique_id=130771510]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(72, 32)
 layout_mode = 2
 text = "No"
 
-[node name="ConfirmButton" type="Button" parent="." unique_id=989400073]
+[node name="ConfirmButton" type="Button" parent="." unique_id=963578876]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(72, 32)

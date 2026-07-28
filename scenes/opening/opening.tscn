@@ -1,10 +1,10 @@
-[gd_scene format=3 uid="uid://bk80fxrac0p3i"]
+[gd_scene format=3 uid="uid://ns1v8wyj2l7g"]
 
 [ext_resource type="PackedScene" uid="uid://sikc02ddepyt" path="res://addons/maaacks_game_template/base/nodes/opening/opening.tscn" id="1_ke3tw"]
-[ext_resource type="Texture2D" uid="uid://daput5j66exgu" path="res://assets/godot_engine_logo/logo_vertical_color_dark.png" id="2_yhkvs"]
+[ext_resource type="Texture2D" uid="uid://7fpbknl5sesd" path="res://assets/godot_engine_logo/logo_vertical_color_dark.png" id="2_ke3tw"]
 
 [node name="Opening" unique_id=684202726 instance=ExtResource("1_ke3tw")]
-images = Array[Texture2D]([ExtResource("2_yhkvs")])
+images = Array[Texture2D]([ExtResource("2_ke3tw")])
 
 [node name="ImagesContainer" parent="." index="1" unique_id=1471559661]
 theme_override_constants/margin_left = 64
