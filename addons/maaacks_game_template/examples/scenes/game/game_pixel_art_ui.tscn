@@ -10,8 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://cns5v1sn14qht" path="res://addons/maaacks_game_template/examples/scenes/windows/level_won_window.tscn" id="8_ygcdk"]
 [ext_resource type="Script" uid="uid://wjq7li836lwj" path="res://addons/maaacks_game_template/extras/scripts/scene_lister.gd" id="9_tprr6"]
 [ext_resource type="PackedScene" uid="uid://dbuv0htkikcv4" path="res://addons/maaacks_game_template/examples/scenes/loading_screen/level_loading_screen.tscn" id="10_bt4gg"]
-[ext_resource type="Script" uid="uid://tooek7mdq54x" path="res://addons/maaacks_game_template/examples/scenes/game/configurable_sub_viewport.gd" id="11_guykg"]
-[ext_resource type="Script" uid="uid://ca84daa8dggkl" path="res://addons/maaacks_game_template/examples/scenes/game/game_timer.gd" id="12_vh7lg"]
+[ext_resource type="Script" uid="uid://tooek7mdq54x" path="res://addons/maaacks_game_template/extras/scripts/configurable_sub_viewport.gd" id="11_guykg"]
+[ext_resource type="Script" uid="uid://ca84daa8dggkl" path="res://addons/maaacks_game_template/extras/scripts/game_timer.gd" id="12_vh7lg"]
 
 [node name="GamePixelArtUI" type="Node" unique_id=824648486]
 
