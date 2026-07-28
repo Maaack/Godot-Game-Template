@@ -51,7 +51,7 @@ func _try_connecting_signal_to_level(signal_name : String, callable : Callable) 
 	_try_connecting_signal_to_node(current_level, signal_name, callable)
 
 func _close_scene(node:Node) -> void:
-	if node == null:
+	if not is_instance_valid(node):
 		return
 	node.queue_free()
 
