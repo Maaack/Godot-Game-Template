@@ -1,9 +1,377 @@
 [gd_scene format=3 uid="uid://b0x8acab1b4oe"]
 
 [ext_resource type="PackedScene" uid="uid://6gdbfi0172ji" path="res://addons/maaacks_game_template/base/nodes/windows/overlaid_window.tscn" id="1_yn032"]
-[ext_resource type="Script" uid="uid://dr4iktfflpdxh" path="res://scenes/windows/pause_menu.gd" id="2_00o4m"]
-[ext_resource type="PackedScene" uid="uid://bh3sehmvmyc7n" path="res://scenes/windows/pause_menu_options_window.tscn" id="3_mdvg7"]
+[ext_resource type="PackedScene" uid="uid://crndfbb22ri4s" path="res://addons/maaacks_game_template/base/nodes/windows/overlaid_window_scene_container.tscn" id="2_rj0l4"]
+[ext_resource type="PackedScene" uid="uid://dp3rgqaehb3xu" path="res://addons/maaacks_game_template/base/nodes/menus/options_menu/input/input_options_menu.tscn" id="3_yxvt7"]
 [ext_resource type="PackedScene" uid="uid://cwt4p3bufkke5" path="res://addons/maaacks_game_template/base/nodes/windows/confirmation_overlaid_window.tscn" id="4_6lma4"]
+[ext_resource type="PackedScene" uid="uid://qoexj4ptqt8a" path="res://addons/maaacks_game_template/base/nodes/menus/options_menu/input/input_icon_mapper.tscn" id="4_rowxg"]
+[ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/nodes/utilities/capture_focus.gd" id="5_t7r61"]
+[ext_resource type="PackedScene" uid="uid://cl416gdb1fgwr" path="res://addons/maaacks_game_template/base/nodes/menus/options_menu/option_control/slider_option_control.tscn" id="6_x4cfi"]
+[ext_resource type="PackedScene" uid="uid://c8vnncjwqcpab" path="res://addons/maaacks_game_template/base/nodes/menus/options_menu/audio/audio_options_menu.tscn" id="7_xexta"]
+[ext_resource type="PackedScene" uid="uid://b6bl3n5mp3m1e" path="res://addons/maaacks_game_template/base/nodes/menus/options_menu/option_control/list_option_control.tscn" id="8_rod1b"]
+[ext_resource type="PackedScene" uid="uid://b2numvphf2kau" path="res://addons/maaacks_game_template/base/nodes/menus/options_menu/video/video_options_menu.tscn" id="9_xmkqq"]
+
+[sub_resource type="GDScript" id="GDScript_bvdos"]
+script/source = "@tool
+extends OverlaidWindow
+
+@export var options_menu_scene : PackedScene
+## Path to a main menu scene.
+## Will attempt to read from AppConfig if left empty.
+@export_file(\"*.tscn\") var main_menu_scene_path : String
+@export_node_path(&\"ConfirmationOverlaidWindow\") var restart_confirmation_node_path : NodePath
+@export_node_path(&\"ConfirmationOverlaidWindow\") var main_menu_confirmation_node_path : NodePath
+@export_node_path(&\"ConfirmationOverlaidWindow\") var exit_confirmation_node_path : NodePath
+@export var menu_container_node_path : NodePath = ^\"..\"
+
+@onready var restart_confirmation : ConfirmationOverlaidWindow = get_node(restart_confirmation_node_path)
+@onready var main_menu_confirmation : ConfirmationOverlaidWindow = get_node(main_menu_confirmation_node_path)
+@onready var exit_confirmation : ConfirmationOverlaidWindow = get_node(exit_confirmation_node_path)
+@onready var menu_container : Node = get_node(menu_container_node_path)
+@onready var options_button = %OptionsButton
+@onready var main_menu_button = %MainMenuButton
+@onready var exit_button = %ExitButton
+
+var open_window : Node
+var restarting : bool = false
+
+func get_main_menu_scene_path() -> String:
+	if main_menu_scene_path.is_empty():
+		return AppConfig.main_menu_scene_path
+	return main_menu_scene_path
+
+func close_window() -> void:
+	if open_window != null:
+		if open_window.has_method(\"close\"):
+			open_window.close()
+		else:
+			open_window.hide()
+		open_window = null
+
+func _load_scene(scene_path: String) -> void:
+	_scene_tree.paused = false
+	SceneLoader.load_scene(scene_path)
+
+func _show_window(window : Control) -> void:
+	window.show()
+	open_window = window
+	await window.hidden
+	open_window = null
+
+func _load_and_show_menu(scene : PackedScene) -> void:
+	var window_instance : Control = scene.instantiate()
+	window_instance.visible = false
+	menu_container.add_child.call_deferred(window_instance)
+	await _show_window(window_instance)
+	window_instance.queue_free()
+
+func _handle_cancel_input() -> void:
+	if open_window != null:
+		close_window()
+	else:
+		super._handle_cancel_input()
+
+func _refresh_exit_button() -> void:
+	exit_button.visible = !OS.has_feature(\"web\")
+
+func _refresh_options_button() -> void:
+	options_button.visible = options_menu_scene != null
+
+func _refresh_main_menu_button() -> void:
+	main_menu_button.visible = !get_main_menu_scene_path().is_empty()
+
+func _ready() -> void:
+	_refresh_exit_button()
+	_refresh_options_button()
+	_refresh_main_menu_button()
+	restart_confirmation.confirmed.connect(_on_restart_confirmation_confirmed)
+	restart_confirmation.closed.connect(_on_restart_confirmation_closed)
+	main_menu_confirmation.confirmed.connect(_on_main_menu_confirmation_confirmed)
+	exit_confirmation.confirmed.connect(_on_exit_confirmation_confirmed)
+
+func _on_restart_button_pressed() -> void:
+	_show_window(restart_confirmation)
+
+func _on_options_button_pressed() -> void:
+	_load_and_show_menu(options_menu_scene)
+
+func _on_main_menu_button_pressed() -> void:
+	_show_window(main_menu_confirmation)
+
+func _on_exit_button_pressed() -> void:
+	_show_window(exit_confirmation)
+
+func _on_restart_confirmation_confirmed() -> void:
+	restarting = true
+
+func _on_restart_confirmation_closed() -> void:
+	if restarting:
+		SceneLoader.reload_current_scene()
+		close()
+
+func _on_main_menu_confirmation_confirmed():
+	_load_scene(get_main_menu_scene_path())
+
+func _on_exit_confirmation_confirmed():
+	get_tree().quit()
+"
+
+[sub_resource type="GDScript" id="GDScript_7eg5m"]
+script/source = "extends \"res://addons/maaacks_game_template/base/nodes/menus/options_menu/paginated_tab_container.gd\"
+
+
+## Shows the tab for controls remapping even if no input actions are found.
+@export var force_show_controls := false
+## Shows a tab for input sensitivity sliders on the mouse and joypad.
+## These require manual setup. For example, call `PlayerConfig.get_config(AppSettings.INPUT_SECTION, \"MouseSensitivity\", 1.0)`
+## to get a float of the desired mouse sensitivity and apply it to the camera motion.
+## Refer to the documentation on Options Menu Setup for more.
+@export var show_input_sensitivity := false
+
+
+func _ready():
+	var inputs_actions := AppSettings.get_action_names()
+	for iter in range(get_tab_count()):
+		if get(\"tab_%d/title\" % iter) == \"Controls\":
+			set(\"tab_%d/hidden\" % iter, inputs_actions.is_empty() and not force_show_controls)
+			continue
+		if get(\"tab_%d/title\" % iter) == \"Inputs\":
+			set(\"tab_%d/hidden\" % iter, not show_input_sensitivity)
+			continue
+"
+
+[sub_resource type="PackedScene" id="PackedScene_g0wi3"]
+_bundled = {
+"base_scene": 0,
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"id_paths": [],
+"names": PackedStringArray("InputIconMapper"),
+"node_count": 1,
+"node_ids": PackedInt32Array(36436200),
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 2147483647, 0, -1, 0, 0),
+"variants": [ExtResource("4_rowxg")],
+"version": 3
+}
+
+[sub_resource type="PackedScene" id="PackedScene_cjd3l"]
+_bundled = {
+"base_scene": 0,
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"id_paths": [PackedInt32Array(1004992485), PackedInt32Array(1004992485), PackedInt32Array()],
+"names": PackedStringArray("Controls", "InputActionsList", "input_icon_mapper", "InputActionsTree", "input_icon_mapper", "InputIconMapper"),
+"node_count": 4,
+"node_ids": PackedInt32Array(1211114974, 2089976301, 780755880, 463780402),
+"node_paths": [NodePath("./VBoxContainer/InputMappingContainer"), NodePath("./VBoxContainer/InputMappingContainer"), NodePath(".")],
+"nodes": PackedInt32Array(-1, -1, 2147483647, 0, -1, 0, 0, 1073741824, -1, 2147483647, 524289, -1, 1, 1073741826, 1, 0, 1073741825, -1, 2147483647, 786435, -1, 1, 1073741828, 2, 0, 1073741826, 0, 2147483647, 1835013, 3, 0, 0),
+"variants": [ExtResource("3_yxvt7"), NodePath("../../../InputIconMapper"), NodePath("../../../InputIconMapper"), SubResource("PackedScene_g0wi3")],
+"version": 3
+}
+
+[sub_resource type="PackedScene" id="PackedScene_lq558"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [NodePath("VBoxContainer/MarginContainer/VBoxContainer/MouseSensitivityControl"), NodePath("VBoxContainer/MarginContainer/VBoxContainer/JoypadSensitivityControl")],
+"id_paths": [PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array()],
+"names": PackedStringArray("Inputs", "MarginContainer", "anchors_preset", "anchor_right", "anchor_bottom", "grow_horizontal", "grow_vertical", "size_flags_horizontal", "size_flags_vertical", "VBoxContainer", "VBoxContainer", "layout_mode", "size_flags_horizontal", "size_flags_vertical", "theme_override_constants/separation", "script", "search_depth", "MarginContainer", "MarginContainer", "layout_mode", "theme_override_constants/margin_top", "theme_override_constants/margin_bottom", "VBoxContainer", "VBoxContainer", "layout_mode", "size_flags_vertical", "theme_override_constants/separation", "alignment", "MouseSensitivityControl", "layout_mode", "option_name", "option_section", "key", "section", "OptionLabel", "text", "HSlider", "min_value", "max_value", "tick_count", "JoypadSensitivityControl", "layout_mode", "option_name", "option_section", "key", "section", "OptionLabel", "text", "HSlider", "min_value", "max_value", "tick_count"),
+"node_count": 10,
+"node_ids": PackedInt32Array(1174701465, 1317559332, 1543907980, 1915207179, 643274346, 1854788461, 424108384, 1262184387, 1854788461, 424108384),
+"node_paths": [NodePath("."), NodePath("./VBoxContainer"), NodePath("./VBoxContainer/MarginContainer"), NodePath("./VBoxContainer/MarginContainer/VBoxContainer"), NodePath("./VBoxContainer/MarginContainer/VBoxContainer/MouseSensitivityControl"), NodePath("./VBoxContainer/MarginContainer/VBoxContainer/MouseSensitivityControl"), NodePath("./VBoxContainer/MarginContainer/VBoxContainer"), NodePath("./VBoxContainer/MarginContainer/VBoxContainer/JoypadSensitivityControl"), NodePath("./VBoxContainer/MarginContainer/VBoxContainer/JoypadSensitivityControl")],
+"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 7, 2, 0, 3, 1, 4, 2, 5, 3, 6, 4, 7, 5, 8, 6, 0, 1073741824, 0, 10, 9, -1, 6, 11, 7, 12, 8, 13, 9, 14, 10, 15, 11, 16, 12, 0, 1073741825, 0, 18, 17, -1, 3, 19, 13, 20, 14, 21, 15, 0, 1073741826, 0, 23, 22, -1, 4, 24, 16, 25, 17, 26, 18, 27, 19, 0, 1073741827, 0, 2147483647, 28, 20, 5, 29, 21, 30, 22, 31, 23, 32, 24, 33, 25, 0, 1073741828, -1, 2147483647, 262178, -1, 1, 35, 26, 0, 1073741829, -1, 2147483647, 524324, -1, 3, 37, 27, 38, 28, 39, 29, 0, 1073741830, 0, 2147483647, 40, 30, 5, 41, 31, 42, 32, 43, 33, 44, 34, 45, 35, 0, 1073741831, -1, 2147483647, 262190, -1, 1, 47, 36, 0, 1073741832, -1, 2147483647, 524336, -1, 3, 49, 37, 50, 38, 51, 39, 0),
+"variants": [15, 1.0, 1.0, 2, 2, 3, 3, 2, 4, 4, 8, ExtResource("5_t7r61"), 5, 2, 32, 32, 2, 3, 8, 1, ExtResource("6_x4cfi"), 2, "Mouse Sensitivity", 1, "MouseSensitivity", "InputSettings", "Mouse Sensitivity :", 0.25, 2.0, 8, ExtResource("6_x4cfi"), 2, "Joypad Sensitivity", 1, "JoypadSensitivity", "InputSettings", "Joypad Sensitivity :", 0.25, 2.0, 8],
+"version": 3
+}
+
+[sub_resource type="GDScript" id="GDScript_h2dl8"]
+script/source = "@tool
+extends ListOptionControl
+
+func _set_input_device() -> void:
+	var current_setting : Variant = _get_setting(default_value)
+	if current_setting is bool:
+		current_setting = &\"Default\"
+	AudioServer.input_device = _get_setting(default_value)
+
+func _add_microphone_audio_stream() -> void:
+	var instance := AudioStreamPlayer.new()
+	instance.stream = AudioStreamMicrophone.new()
+	instance.autoplay = true
+	add_child.call_deferred(instance)
+	instance.ready.connect(_set_input_device)
+
+func _ready() -> void:
+	if ProjectSettings.get_setting(\"audio/driver/enable_input\", false):
+		show()
+		if AudioServer.input_device.is_empty():
+			_add_microphone_audio_stream()
+		else:
+			_set_input_device()
+		if not Engine.is_editor_hint():
+			option_values = AudioServer.get_input_device_list()
+	else:
+		hide()
+	super._ready()
+
+func _on_setting_changed(value : Variant) -> void:
+	if value >= option_values.size(): return
+	AudioServer.input_device = option_values[value]
+	super._on_setting_changed(value)
+
+func _value_title_map(value : Variant) -> String:
+	if value is String:
+		return value
+	else:
+		return super._value_title_map(value)
+"
+
+[sub_resource type="PackedScene" id="PackedScene_va6fv"]
+_bundled = {
+"base_scene": 0,
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"id_paths": [PackedInt32Array(), PackedInt32Array()],
+"names": PackedStringArray("AudioInputOptionControl", "visible", "script", "option_name", "option_section", "key", "section", "property_type", "OptionLabel", "text", "OptionButton", "size_flags_horizontal", "text_overrun_behavior", "clip_text"),
+"node_count": 3,
+"node_ids": PackedInt32Array(1342985187, 1854788461, 264509485),
+"node_paths": [NodePath("."), NodePath(".")],
+"nodes": PackedInt32Array(-1, -1, 2147483647, 0, -1, 7, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 0, 1073741824, -1, 2147483647, 262152, -1, 1, 9, 8, 0, 1073741825, -1, 2147483647, 524298, -1, 3, 11, 9, 12, 10, 13, 11, 0),
+"variants": [ExtResource("8_rod1b"), false, SubResource("GDScript_h2dl8"), "Input Device", 2, "InputDevice", "AudioSettings", 4, "Input Device :", 3, 1, true],
+"version": 3
+}
+
+[sub_resource type="PackedScene" id="PackedScene_50h2i"]
+_bundled = {
+"base_scene": 0,
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"id_paths": [PackedInt32Array(1265848630)],
+"names": PackedStringArray("Audio", "AudioInputOptionControl", "layout_mode"),
+"node_count": 2,
+"node_ids": PackedInt32Array(1131662414, 2143824163),
+"node_paths": [NodePath("./VBoxContainer")],
+"nodes": PackedInt32Array(-1, -1, 2147483647, 0, -1, 0, 0, 1073741824, 0, 2147483647, 786433, 1, 1, 2, 2, 0),
+"variants": [ExtResource("7_xexta"), SubResource("PackedScene_va6fv"), 2],
+"version": 3
+}
+
+[sub_resource type="PackedScene" id="PackedScene_fdgga"]
+_bundled = {
+"base_scene": 0,
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"id_paths": [PackedInt32Array(1251699420), PackedInt32Array(1251699420)],
+"names": PackedStringArray("Video", "AntiAliasingControl", "layout_mode", "lock_titles", "option_values", "option_titles", "option_name", "option_section", "key", "section", "property_type", "default_value", "CameraShakeControl", "visible", "layout_mode", "lock_titles", "option_values", "option_titles", "option_name", "option_section", "key", "section", "property_type", "default_value"),
+"node_count": 3,
+"node_ids": PackedInt32Array(1341025403, 875699929, 1618834366),
+"node_paths": [NodePath("./VBoxContainer"), NodePath("./VBoxContainer")],
+"nodes": PackedInt32Array(-1, -1, 2147483647, 0, -1, 0, 0, 1073741824, 0, 2147483647, 1048577, 1, 10, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 0, 1073741825, 0, 2147483647, 1310732, 12, 11, 13, 13, 14, 14, 15, 15, 16, 16, 17, 17, 18, 18, 19, 19, 20, 20, 21, 21, 22, 22, 23, 23, 0),
+"variants": [ExtResource("9_xmkqq"), ExtResource("8_rod1b"), 2, true, [0, 1, 2, 3], Array[String](["Disabled (Fastest)", "2x", "4x", "8x (Slowest)"]), "Anti-Aliasing", 3, "Anti-aliasing", "VideoSettings", 2, 0, ExtResource("8_rod1b"), false, 2, true, [1.0, 0.75, 0.5, 0.0], Array[String](["Normal", "Reduced", "Minimal", "None"]), "Camera Shake", 3, "CameraShake", "VideoSettings", 3, 1.0],
+"version": 3
+}
+
+[sub_resource type="GDScript" id="GDScript_j1p0s"]
+script/source = "extends Control
+
+func _on_ResetGameControl_reset_confirmed() -> void:
+	GameState.reset()
+"
+
+[sub_resource type="GDScript" id="GDScript_2hgf8"]
+script/source = "extends HBoxContainer
+
+const RESET_STRING := \"Reset Game:\"
+const CONFIRM_STRING := \"Confirm Reset:\"
+
+signal reset_confirmed
+
+func _on_cancel_button_pressed():
+	%CancelButton.hide()
+	%ConfirmButton.hide()
+	%ResetButton.show()
+	%ResetButton.grab_focus()
+	%ResetLabel.text = RESET_STRING
+
+func _on_reset_button_pressed():
+	%CancelButton.show()
+	%ConfirmButton.show()
+	%CancelButton.grab_focus()
+	%ResetButton.hide()
+	%ResetLabel.text = CONFIRM_STRING
+
+func _on_confirm_button_pressed():
+	reset_confirmed.emit()
+	get_tree().paused = false
+	SceneLoader.reload_current_scene()
+"
+
+[sub_resource type="PackedScene" id="PackedScene_q0nwq"]
+_bundled = {
+"conn_count": 3,
+"conns": PackedInt32Array(1073741829, 1073741828, 34, 33, 2, 0, 0, 1073741831, 1073741830, 36, 35, 2, 0, 0, 1073741833, 1073741832, 38, 37, 2, 0, 0),
+"editable_instances": [],
+"id_paths": [PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array()],
+"names": PackedStringArray("ResetGameControl", "HBoxContainer", "custom_minimum_size", "offset_top", "offset_right", "offset_bottom", "script", "ResetLabel", "Label", "unique_name_in_owner", "layout_mode", "size_flags_horizontal", "text", "ResetButton", "Button", "unique_name_in_owner", "custom_minimum_size", "layout_mode", "text", "CancelButton", "Button", "unique_name_in_owner", "visible", "custom_minimum_size", "layout_mode", "text", "ConfirmButton", "Button", "unique_name_in_owner", "visible", "custom_minimum_size", "layout_mode", "text", "_on_reset_button_pressed", "pressed", "_on_cancel_button_pressed", "pressed", "_on_confirm_button_pressed", "pressed"),
+"node_count": 5,
+"node_ids": PackedInt32Array(196931702, 1759384561, 57762798, 2089314894, 989400073),
+"node_paths": [NodePath("."), NodePath("."), NodePath("."), NodePath("."), NodePath("."), NodePath("ResetButton"), NodePath("."), NodePath("CancelButton"), NodePath("."), NodePath("ConfirmButton")],
+"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 5, 2, 0, 3, 1, 4, 2, 5, 3, 6, 4, 0, 1073741824, 0, 8, 7, -1, 4, 9, 5, 10, 6, 11, 7, 12, 8, 0, 1073741825, 0, 14, 13, -1, 4, 15, 9, 16, 10, 17, 11, 18, 12, 0, 1073741826, 0, 20, 19, -1, 5, 21, 13, 22, 14, 23, 15, 24, 16, 25, 17, 0, 1073741827, 0, 27, 26, -1, 5, 28, 18, 29, 19, 30, 20, 31, 21, 32, 22, 0),
+"variants": [Vector2(0, 32), 210.0, 305.0, 242.0, SubResource("GDScript_2hgf8"), true, 2, 3, "Reset Game :", true, Vector2(72, 32), 2, "Reset", true, false, Vector2(72, 32), 2, "No", true, false, Vector2(72, 32), 2, "Yes"],
+"version": 3
+}
+
+[sub_resource type="PackedScene" id="PackedScene_gs1vs"]
+_bundled = {
+"conn_count": 1,
+"conns": PackedInt32Array(1073741827, 1073741826, 19, 18, 2, 0, 0),
+"editable_instances": [],
+"id_paths": [PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array()],
+"names": PackedStringArray("Game", "MarginContainer", "anchors_preset", "anchor_right", "anchor_bottom", "theme_override_constants/margin_top", "theme_override_constants/margin_bottom", "script", "VBoxContainer", "VBoxContainer", "custom_minimum_size", "layout_mode", "size_flags_horizontal", "alignment", "script", "search_depth", "ResetGameControl", "layout_mode", "_on_ResetGameControl_reset_confirmed", "reset_confirmed"),
+"node_count": 3,
+"node_ids": PackedInt32Array(1931351880, 1371401230, 1222963760),
+"node_paths": [NodePath("."), NodePath("./VBoxContainer"), NodePath("."), NodePath("VBoxContainer/ResetGameControl")],
+"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 6, 2, 0, 3, 1, 4, 2, 5, 3, 6, 4, 7, 5, 0, 1073741824, 0, 9, 8, -1, 6, 10, 6, 11, 7, 12, 8, 13, 9, 14, 10, 15, 11, 0, 1073741825, 0, 2147483647, 16, 12, 1, 17, 13, 0),
+"variants": [15, 1.0, 1.0, 24, 24, SubResource("GDScript_j1p0s"), Vector2(400, 0), 2, 4, 1, ExtResource("5_t7r61"), 2, SubResource("PackedScene_q0nwq"), 2],
+"version": 3
+}
+
+[sub_resource type="PackedScene" id="PackedScene_w4r27"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"id_paths": [PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array()],
+"names": PackedStringArray("MasterOptionsMenu", "TabContainer", "anchors_preset", "anchor_right", "anchor_bottom", "grow_horizontal", "grow_vertical", "tab_alignment", "current_tab", "script", "Controls", "layout_mode", "metadata/_tab_index", "Inputs", "visible", "layout_mode", "metadata/_tab_index", "Audio", "visible", "layout_mode", "metadata/_tab_index", "Video", "visible", "layout_mode", "metadata/_tab_index", "Game", "visible", "layout_mode", "metadata/_tab_index"),
+"node_count": 6,
+"node_ids": PackedInt32Array(549332586, 2037238962, 1859549554, 1303232430, 1595237002, 736133616),
+"node_paths": [NodePath("."), NodePath("."), NodePath("."), NodePath("."), NodePath(".")],
+"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 8, 2, 0, 3, 1, 4, 2, 5, 3, 6, 4, 7, 5, 8, 6, 9, 7, 0, 1073741824, 0, 2147483647, 10, 8, 2, 11, 9, 12, 10, 0, 1073741825, 0, 2147483647, 13, 11, 3, 14, 12, 15, 13, 16, 14, 0, 1073741826, 0, 2147483647, 17, 15, 3, 18, 16, 19, 17, 20, 18, 0, 1073741827, 0, 2147483647, 21, 19, 3, 22, 20, 23, 21, 24, 22, 0, 1073741828, 0, 2147483647, 25, 23, 3, 26, 24, 27, 25, 28, 26, 0),
+"variants": [15, 1.0, 1.0, 2, 2, 1, 0, SubResource("GDScript_7eg5m"), SubResource("PackedScene_cjd3l"), 2, 0, SubResource("PackedScene_lq558"), false, 2, 1, SubResource("PackedScene_50h2i"), false, 2, 2, SubResource("PackedScene_fdgga"), false, 2, 3, SubResource("PackedScene_gs1vs"), false, 2, 4],
+"version": 3
+}
+
+[sub_resource type="PackedScene" id="PackedScene_t3g83"]
+_bundled = {
+"base_scene": 0,
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"id_paths": [PackedInt32Array(394030069), PackedInt32Array(1788474031), PackedInt32Array(1371114575)],
+"names": PackedStringArray("PauseMenuOptionsOverlaidWindow", "process_mode", "anchors_preset", "anchor_left", "anchor_top", "anchor_right", "anchor_bottom", "offset_left", "offset_top", "offset_right", "offset_bottom", "packed_scene", "TitleMargin", "visible", "TitleLabel", "text", "CloseButton", "size_flags_horizontal", "text"),
+"node_count": 4,
+"node_ids": PackedInt32Array(1370819670, 1262022916, 1049966061, 314526102),
+"node_paths": [NodePath("./ContentContainer/BoxContainer"), NodePath("./ContentContainer/BoxContainer/TitleMargin/BoxContainer"), NodePath("./ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons")],
+"nodes": PackedInt32Array(-1, -1, 2147483647, 0, -1, 11, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 0, 1073741824, -1, 2147483647, 262156, -1, 1, 13, 12, 0, 1073741825, -1, 2147483647, 262158, -1, 1, 15, 13, 0, 1073741826, -1, 2147483647, 262160, -1, 2, 17, 14, 18, 15, 0),
+"variants": [ExtResource("2_rj0l4"), 3, 15, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, SubResource("PackedScene_w4r27"), false, "Options", 0, "Back"],
+"version": 3
+}
 
 [node name="PauseMenu" unique_id=1026917916 instance=ExtResource("1_yn032")]
 process_mode = 3
@@ -14,8 +382,8 @@ offset_right = 128.0
 offset_bottom = 157.0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-script = ExtResource("2_00o4m")
-options_menu_scene = ExtResource("3_mdvg7")
+script = SubResource("GDScript_bvdos")
+options_menu_scene = SubResource("PackedScene_t3g83")
 main_menu_scene_path = ""
 restart_confirmation_node_path = NodePath("RestartConfirmation")
 main_menu_confirmation_node_path = NodePath("MainMenuConfirmation")
@@ -58,23 +426,23 @@ text = "Exit Game"
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-text = "Restart the game?"
 title = "Confirm Restart"
+text = "Restart the game?"
 
 [node name="MainMenuConfirmation" parent="." index="2" unique_id=1974060733 instance=ExtResource("4_6lma4")]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(220, 0)
 layout_mode = 2
-text = "Exit to the main menu?"
 title = "Confirm Exit"
+text = "Exit to the main menu?"
 
 [node name="ExitConfirmation" parent="." index="3" unique_id=1672855184 instance=ExtResource("4_6lma4")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-text = "Exit the game?"
 title = "Confirm Exit"
+text = "Exit the game?"
 
 [connection signal="pressed" from="ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons/OptionsButton" to="." method="_on_options_button_pressed"]
