@@ -1,6 +1,6 @@
 # Game Scene Setup
 
-When setting up a game scene, it is useful to refer to the `game_scene/game_ui.tscn` included in the examples.  
+When setting up a game scene, it is useful to refer to the `game_scene/game.tscn` included in the examples.  
 
 There are a few parts to setting up a basic game scene, as done in the `GameUI` example used in the template.
 
@@ -81,7 +81,7 @@ Generally, any game is going to require reading some inputs from the player. Whe
 
 If the game involves moving a player character, then the inputs for movements could be read by a `player_character.gd` script overriding the `_process(delta)` or `_input(event)` methods.  
 
-If the game involves sending commands to multiple units, then those inputs probably should be read by a `game_ui.gd` script, that then propagates those calls further down the chain.  
+If the game involves sending commands to multiple units, then those inputs probably should be read by a `game.gd` script, that then propagates those calls further down the chain.  
 
 ## Win & Lose Screens
 The example includes win and lose screens. These are triggered by the `LevelManager` when a level is won or lost.
