@@ -1,10 +1,10 @@
-[gd_scene format=3 uid="uid://dsgjm4y4ygfjp"]
+[gd_scene format=3 uid="uid://d3ivnbs4wws46"]
 
-[ext_resource type="Script" uid="uid://cgy36frxni35g" path="res://scenes/game/levels/level.gd" id="1_x2ody"]
+[ext_resource type="Script" uid="uid://c66k1d3cq0ky" path="res://scenes/game/levels/level.gd" id="1_x2ody"]
 [ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/nodes/utilities/capture_focus.gd" id="2_eom8k"]
-[ext_resource type="Script" uid="uid://dvewqdtaf68y8" path="res://addons/maaacks_game_template/extras/scripts/input_display_label.gd" id="3_s3pix"]
-[ext_resource type="Script" uid="uid://1aoiji5yh0sy" path="res://addons/maaacks_game_template/extras/scripts/tutorial_manager.gd" id="4_4awcv"]
-[ext_resource type="PackedScene" uid="uid://ckjxbak847xo2" path="res://scenes/game/tutorials/tutorial_2.tscn" id="5_ik6v6"]
+[ext_resource type="Script" uid="uid://bgucl16gipd0v" path="res://scripts/input_display_label.gd" id="3_s3pix"]
+[ext_resource type="Script" uid="uid://dft825yyufsb7" path="res://scripts/tutorial_manager.gd" id="4_4awcv"]
+[ext_resource type="PackedScene" uid="uid://duf4gvaiqxt4v" path="res://scenes/game/tutorials/tutorial_2.tscn" id="5_eom8k"]
 
 [node name="Level2" type="Control" unique_id=2110036821]
 layout_mode = 3
@@ -98,7 +98,7 @@ text = "Change Color"
 [node name="TutorialManager" type="Node" parent="." unique_id=927712379]
 unique_name_in_owner = true
 script = ExtResource("4_4awcv")
-tutorial_scenes = Array[PackedScene]([ExtResource("5_ik6v6")])
+tutorial_scenes = Array[PackedScene]([ExtResource("5_eom8k")])
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/LoseButton" to="." method="_on_lose_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/WinButton" to="." method="_on_win_button_pressed"]

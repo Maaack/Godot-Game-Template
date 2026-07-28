@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://cegpeogqhswj3"]
+[gd_scene format=3 uid="uid://b38t3r8luxeeo"]
 
-[ext_resource type="PackedScene" uid="uid://b70k3m1utqn6g" path="res://scenes/credits/scrolling_credits.tscn" id="1_0sycx"]
-[ext_resource type="Script" uid="uid://c58oxtomj2pjn" path="res://scenes/end_credits/end_credits.gd" id="2_2v40y"]
+[ext_resource type="PackedScene" uid="uid://ujsudptnjgbw" path="res://scenes/credits/scrolling_credits.tscn" id="1_0sycx"]
+[ext_resource type="Script" uid="uid://d24n5318pf376" path="res://scenes/end_credits/end_credits.gd" id="2_2v40y"]
 [ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/nodes/music_players/background_music_player.tscn" id="3_bfvdl"]
 [ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/nodes/utilities/capture_focus.gd" id="4_1kqi1"]
 
