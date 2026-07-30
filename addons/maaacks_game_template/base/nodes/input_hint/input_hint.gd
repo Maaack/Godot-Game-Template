@@ -1,6 +1,8 @@
 extends Control
 ## Node for providing players with input hints for specific actions.
 
+const KEYBOARD_AND_MOUSE := [InputEventHelper.DEVICE_KEYBOARD, InputEventHelper.DEVICE_MOUSE, InputEventHelper.DEVICE_GENERIC]
+
 ## Name of the input action.
 @export var action_name : StringName :
 	set(value):
@@ -13,10 +15,13 @@ extends Control
 		input_number = value
 		if is_inside_tree():
 			_refresh()
-## Delay before incrementing input_number.
+## Delay before incrementing input_number, and displaying the next input action.
 @export var input_cycle_delay : float = 0.0
+@export_group("Device Specific")
 ## Show input hints exlusively for the last detected device (Keyboard or Joypad)
 @export var last_device_specific : bool = true
+## Combines displaying the inputs for keyboard and mouse.
+@export var combine_keyboard_and_mouse : bool = true
 ## Delay before refreshing current device.
 @export var device_update_delay : float = 0.5
 @export_group("Icons")
@@ -29,7 +34,7 @@ extends Control
 		if is_inside_tree():
 			_icon_texture_rect.expand_mode = expand_mode
 
-var _last_input_device : String
+var _last_input_device : String = InputEventHelper.DEVICE_GENERIC
 var _can_update_last_device : bool = false
 
 @onready var _name_label : Label = %Name
@@ -38,9 +43,17 @@ var _can_update_last_device : bool = false
 @onready var _update_delay_timer = %UpdateDelay
 
 func _get_input_event() -> InputEvent:
-	if last_device_specific:
+	var input_events : Array
+	if not last_device_specific:
+		input_events = InputMap.action_get_events(action_name)
+	elif combine_keyboard_and_mouse and _last_input_device in KEYBOARD_AND_MOUSE:
+		var _input_keyboard := InputEventHelper.get_action_device_event(action_name, InputEventHelper.DEVICE_KEYBOARD, input_number)
+		var _input_mouse := InputEventHelper.get_action_device_event(action_name, InputEventHelper.DEVICE_MOUSE, input_number)
+		input_events.append(_input_keyboard)
+		if _input_keyboard != _input_mouse:
+			input_events.append(_input_mouse)
+	else:
 		return InputEventHelper.get_action_device_event(action_name, _last_input_device, input_number)
-	var input_events := InputMap.action_get_events(action_name)
 	return input_events[input_number % input_events.size()]
 
 func _refresh() -> void:
@@ -75,8 +88,9 @@ func _input(event):
 		_update_delay_timer.start(device_update_delay)
 		_refresh()
 
-func _on_timer_timeout():
+func _on_cycle_delay_timeout():
 	input_number += 1
+	_refresh()
 
 func _on_update_delay_timeout():
 	_can_update_last_device = true

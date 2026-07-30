@@ -35,5 +35,5 @@ unique_name_in_owner = true
 [node name="UpdateDelay" type="Timer" parent="." unique_id=110639894]
 unique_name_in_owner = true
 
-[connection signal="timeout" from="CycleDelay" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="CycleDelay" to="." method="_on_cycle_delay_timeout"]
 [connection signal="timeout" from="UpdateDelay" to="." method="_on_update_delay_timeout"]
