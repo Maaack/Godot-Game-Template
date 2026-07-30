@@ -9,11 +9,13 @@ func _on_cancel_button_pressed():
 	%CancelButton.hide()
 	%ConfirmButton.hide()
 	%ResetButton.show()
+	%ResetButton.grab_focus()
 	%ResetLabel.text = RESET_STRING
 
 func _on_reset_button_pressed():
 	%CancelButton.show()
 	%ConfirmButton.show()
+	%CancelButton.grab_focus()
 	%ResetButton.hide()
 	%ResetLabel.text = CONFIRM_STRING
 

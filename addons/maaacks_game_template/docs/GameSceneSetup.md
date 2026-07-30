@@ -1,13 +1,15 @@
 # Game Scene Setup
 
-When setting up a game scene, it is useful to refer to the `game_scene/game_ui.tscn` included in the examples.  
+When setting up a game scene, it is useful to refer to the `game_scene/game.tscn` included in the examples.  
 
-There are a few parts to setting up a basic game scene, as done in the `GameUI` example used in the template.
+There are a few parts to setting up a basic game scene, as done in the `Game` example used in the template.
 
 ## Pausing
-The `PauseMenuController` node can be added to the tree, or the `pause_menu_controller.gd` script may be attached to an empty `Node`. Selecting the node should then allow for setting the `pause_menu_packed` value in the inspector. Set it to the `pause_menu.tscn` scene and save.
+The `PauseMenuController` node can be added to the tree, or the `pause_menu_controller.gd` script may be attached to an empty `Node`. Selecting the node should then allow for setting the `pause_menu_packed` value in the inspector. Set it to the `pause_menu_layer.tscn` (or `pause_menu.tscn`) scene and save.
 
 This should be enough to capture when the `ui-cancel` input action is pressed in-game. On keyboards, this is commonly the `Esc` key.
+
+![Escape key aasigned to ui_cancel](/addons/maaacks_game_template/media/documentation/ui_cancel-action-inputs.png)
 
 ## Level Loading
 Some level loading scripts are provided with the examples. They load levels in order from a list, or dynamically by file paths. 
@@ -47,8 +49,22 @@ To manage the win and lose screens and transitioning to other scenes, add a `Nod
 
 A `BackgroundMusicPlayer` can be added to the main game scene, but if using levels, the level scenes are typically a better place for them, as that allows for tracks to vary by level.  
 
-## SubViewports
-The game example has the levels loaded into a `SubViewport` node, contained within a `SubViewportContainer`. This has a couple of advantages.
+## Level Container
+### Default
+The default game scene has the levels attaching to a `LevelContainer` node. This supports most 2D and 3D games.  
+
+UI elements can be added as siblings to the existing nodes, or be in the levels.  
+
+### Custom CanvasLayer
+
+If putting the game scene in a canvas layer, an issue may be encountered with the layering of windows. One solution is to make sure the canvas layer is nested inside of another node, rather than a sibling of the `LevelManager` and `PauseMenuController`. Another solution is to set the `Layer` parameter lower (ex. -1).  
+
+### Pixel Art Games
+
+If working with a pixel art game, often the goal is that the number of art pixels on-screen is to remain the same regardless of screen resolution. As in, the art scales with the monitor, rather than bigger monitors showing more of a scene. This is done by setting the viewport size in the project settings, and setting the stretch mode to either `canvas_mode` or `viewport`.
+
+#### SubViewports
+The `game_pixel_art_ui.tscn` scene has the levels loaded into a `SubViewport` node, contained within a `SubViewportContainer`. This has a couple of advantages.
 
 - Separates elements intended to appear inside the game world from those intended to appear on a layer above it. 
 - Allows setting a fixed resolution for the game, like pixel art games.
@@ -62,14 +78,12 @@ It has some disadvantages, as well.
 - Requires enabling Audio Listeners to hear audio from the game world.
 - Extra processing overhead for the viewport layer.
 
-If a subviewport does not work well for the game, use any empty `Node` as the game world or level container, instead.  
-
-### Pixel Art Games
-If working with a pixel art game, often the goal is that the number of art pixels on-screen is to remain the same regardless of screen resolution. As in, the art scales with the monitor, rather than bigger monitors showing more of a scene. This is done by setting the viewport size in the project settings, and setting the stretch mode to either `canvas_mode` or `viewport`.
 
 If a higher resolution is desired for the menus and UI than the game, then the project viewport size should be set to a multiple of the desired game window size. Then set the stretch shrink in `SubViewportContainer` to the multiple of the resolution. For example, if the game is at `640x360`, then the project viewport size can be set to `1280x720`, and the stretch shrink set to `2` (`1280x720 / 2 = 640x360`). Finally, set the texture filter on the `SubViewportContainer` to `Nearest`.
 
-### Mouse Interaction
+![Game Resolution vs. Screen Resolution](/addons/maaacks_game_template/media/documentation/game-resolution-vs-screen-resolution.png)
+
+#### Mouse Interaction
 If trying to detect `mouse_enter` and `mouse_exit` events on areas inside the game world, enable physics object picking on the `SubViewport`.
 
 ## Read Inputs
@@ -77,7 +91,7 @@ Generally, any game is going to require reading some inputs from the player. Whe
 
 If the game involves moving a player character, then the inputs for movements could be read by a `player_character.gd` script overriding the `_process(delta)` or `_input(event)` methods.  
 
-If the game involves sending commands to multiple units, then those inputs probably should be read by a `game_ui.gd` script, that then propagates those calls further down the chain.  
+If the game involves sending commands to multiple units, then those inputs probably should be read by a `game.gd` script, that then propagates those calls further down the chain.  
 
 ## Win & Lose Screens
 The example includes win and lose screens. These are triggered by the `LevelManager` when a level is won or lost.

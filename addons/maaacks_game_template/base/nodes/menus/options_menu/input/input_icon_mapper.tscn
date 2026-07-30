@@ -1,4 +1,4 @@
-[gd_scene load_steps=427 format=3 uid="uid://qoexj4ptqt8a"]
+[gd_scene format=3 uid="uid://qoexj4ptqt8a"]
 
 [ext_resource type="Script" uid="uid://cqigj1uumknrp" path="res://addons/maaacks_game_template/base/nodes/menus/options_menu/input/input_icon_mapper.gd" id="1_msrpt"]
 [ext_resource type="Texture2D" uid="uid://bjtnb8wcsj6m5" path="res://assets/kenney_input-prompts/PlayStation Series/Default/playstation_button_color_circle.png" id="2_rgq0l"]
@@ -427,7 +427,7 @@
 [ext_resource type="Texture2D" uid="uid://75oo7lnetbu4" path="res://assets/kenney_input-prompts/Nintendo Switch/Default/switch_stick_top_r.png" id="417_14a81"]
 [ext_resource type="Texture2D" uid="uid://fv03pi5adwuq" path="res://assets/kenney_input-prompts/Nintendo Switch/Default/switch_up.png" id="418_cdn4l"]
 
-[node name="InputIconMapper" type="Node"]
+[node name="InputIconMapper" type="Node" unique_id=338050523]
 script = ExtResource("1_msrpt")
 prioritized_strings = Array[String](["color"])
 replace_strings = {

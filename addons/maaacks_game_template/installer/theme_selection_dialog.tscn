@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://d25mdvmlbn35"]
+[gd_scene format=3 uid="uid://d25mdvmlbn35"]
 
 [ext_resource type="Script" uid="uid://c6p8xjvlrgsfk" path="res://addons/maaacks_game_template/installer/theme_selection_dialog.gd" id="1_5u0gx"]
 [ext_resource type="Script" uid="uid://bij7wsh8d44gv" path="res://addons/maaacks_game_template/base/nodes/utilities/file_lister.gd" id="2_luhgx"]
 
-[node name="ThemeSelectionDialog" type="ConfirmationDialog"]
+[node name="ThemeSelectionDialog" type="ConfirmationDialog" unique_id=1923085742]
 oversampling_override = 1.0
 title = "Use a Starter Theme"
 initial_position = 2
@@ -14,12 +14,12 @@ dialog_autowrap = true
 cancel_button_text = "No"
 script = ExtResource("1_5u0gx")
 
-[node name="FileLister" type="Node" parent="."]
+[node name="FileLister" type="Node" parent="." unique_id=105896521]
 unique_name_in_owner = true
 script = ExtResource("2_luhgx")
 ends_with = ".tres"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=769564059]
 custom_minimum_size = Vector2(560, 443)
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,7 +32,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 16
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=804286205]
 custom_minimum_size = Vector2(384, 0)
 layout_mode = 2
 text = "Set the projects default theme to a start theme provided below. These can be customized as needed.
@@ -40,36 +40,36 @@ text = "Set the projects default theme to a start theme provided below. These ca
 Requires restarting the editor to take full effect."
 autowrap_mode = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1467622109]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ItemList" type="ItemList" parent="VBoxContainer/HBoxContainer"]
+[node name="ItemList" type="ItemList" parent="VBoxContainer/HBoxContainer" unique_id=1867843362]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="VSeparator" type="VSeparator" parent="VBoxContainer/HBoxContainer"]
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer/HBoxContainer" unique_id=760795920]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer" unique_id=743082645]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_right = 16
 
-[node name="ThemePreviewContainer" type="TabContainer" parent="VBoxContainer/HBoxContainer/MarginContainer"]
+[node name="ThemePreviewContainer" type="TabContainer" parent="VBoxContainer/HBoxContainer/MarginContainer" unique_id=1589276431]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 current_tab = 0
 
-[node name="Tab1" type="Control" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer"]
+[node name="Tab1" type="Control" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer" unique_id=126620399]
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab1"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab1" unique_id=1265284030]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -81,48 +81,48 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab1/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab1/MarginContainer" unique_id=1738445662]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab1/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab1/MarginContainer/VBoxContainer" unique_id=1370570709]
 layout_mode = 2
 text = "Label"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab1/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab1/MarginContainer/VBoxContainer" unique_id=2037425090]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab1/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab1/MarginContainer/VBoxContainer/HBoxContainer" unique_id=2137217914]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Button"
 
-[node name="Button2" type="Button" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab1/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Button2" type="Button" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab1/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1703701708]
 layout_mode = 2
 size_flags_horizontal = 3
 toggle_mode = true
 button_pressed = true
 text = "Button"
 
-[node name="Button3" type="Button" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab1/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Button3" type="Button" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab1/MarginContainer/VBoxContainer/HBoxContainer" unique_id=2138904310]
 layout_mode = 2
 size_flags_horizontal = 3
 disabled = true
 text = "Button"
 
-[node name="CheckButton" type="CheckButton" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab1/MarginContainer/VBoxContainer"]
+[node name="CheckButton" type="CheckButton" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab1/MarginContainer/VBoxContainer" unique_id=1219421491]
 layout_mode = 2
 text = "CheckButton"
 
-[node name="CheckBox" type="CheckBox" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab1/MarginContainer/VBoxContainer"]
+[node name="CheckBox" type="CheckBox" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab1/MarginContainer/VBoxContainer" unique_id=1689998241]
 layout_mode = 2
 text = "CheckBox"
 
-[node name="MenuButton" type="MenuButton" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab1/MarginContainer/VBoxContainer"]
+[node name="MenuButton" type="MenuButton" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab1/MarginContainer/VBoxContainer" unique_id=2023390786]
 layout_mode = 2
 text = "MenuButton"
 
-[node name="OptionButton" type="OptionButton" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab1/MarginContainer/VBoxContainer"]
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab1/MarginContainer/VBoxContainer" unique_id=178947235]
 layout_mode = 2
 selected = 0
 item_count = 2
@@ -131,12 +131,12 @@ popup/item_0/id = 0
 popup/item_1/text = "OptionButton2"
 popup/item_1/id = 1
 
-[node name="Tab2" type="Control" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer"]
+[node name="Tab2" type="Control" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer" unique_id=1118675129]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab2"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab2" unique_id=88049233]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -148,31 +148,31 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab2/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab2/MarginContainer" unique_id=1700688968]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab2/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab2/MarginContainer/VBoxContainer" unique_id=1891786524]
 layout_mode = 2
 text = "Another label"
 horizontal_alignment = 1
 
-[node name="LineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab2/MarginContainer/VBoxContainer"]
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab2/MarginContainer/VBoxContainer" unique_id=1149432987]
 layout_mode = 2
 
-[node name="TextEdit" type="TextEdit" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab2/MarginContainer/VBoxContainer"]
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab2/MarginContainer/VBoxContainer" unique_id=1224468134]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="HSlider" type="HSlider" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab2/MarginContainer/VBoxContainer"]
+[node name="HSlider" type="HSlider" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab2/MarginContainer/VBoxContainer" unique_id=1806059044]
 layout_mode = 2
 
-[node name="HScrollBar" type="HScrollBar" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab2/MarginContainer/VBoxContainer"]
+[node name="HScrollBar" type="HScrollBar" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab2/MarginContainer/VBoxContainer" unique_id=2059385849]
 layout_mode = 2
 
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab2/MarginContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab2/MarginContainer/VBoxContainer" unique_id=451515291]
 layout_mode = 2
 
-[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab2/MarginContainer/VBoxContainer"]
+[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer/HBoxContainer/MarginContainer/ThemePreviewContainer/Tab2/MarginContainer/VBoxContainer" unique_id=1218906396]
 layout_mode = 2
 value = 50.0
 

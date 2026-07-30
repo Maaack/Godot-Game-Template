@@ -4,6 +4,8 @@ extends Node
 
 const DEVICE_KEYBOARD = "Keyboard"
 const DEVICE_MOUSE = "Mouse"
+const DEVICE_JOYPAD = "Joypad"
+const DEVICE_SCREEN = "Screen"
 const DEVICE_XBOX_CONTROLLER = "Xbox"
 const DEVICE_SWITCH_CONTROLLER = "Switch"
 const DEVICE_SWITCH_JOYCON_LEFT_CONTROLLER = "Switch Left Joycon"
@@ -98,7 +100,13 @@ static func is_joypad_event(event: InputEvent) -> bool:
 static func is_mouse_event(event: InputEvent) -> bool:
 	return event is InputEventMouseButton or event is InputEventMouseMotion
 
-static func get_device_name_by_id(device_id : int) -> String:
+static func is_screen_event(event: InputEvent) -> bool:
+	return event is InputEventScreenDrag or event is InputEventScreenTouch
+
+static func is_keyboard_event(event: InputEvent) -> bool:
+	return event is InputEventKey
+
+static func get_joypad_device_name_by_id(device_id : int) -> String:
 	if device_id >= 0:
 		var device_name = Input.get_joy_name(device_id)
 		for device_key in SDL_DEVICE_NAMES:
@@ -107,12 +115,23 @@ static func get_device_name_by_id(device_id : int) -> String:
 					return device_key
 	return DEVICE_GENERIC
 
-static func get_device_name(event: InputEvent) -> String:
+static func get_joypad_device_name(event: InputEvent) -> String:
 	if event is InputEventJoypadButton or event is InputEventJoypadMotion:
 		if event.device == -1:
 			return DEVICE_GENERIC
 		var device_id = event.device
-		return get_device_name_by_id(device_id)
+		return get_joypad_device_name_by_id(device_id)
+	return DEVICE_GENERIC
+
+static func get_input_device_name(event: InputEvent) -> String:
+	if is_joypad_event(event):
+		return DEVICE_JOYPAD
+	if is_screen_event(event):
+		return DEVICE_SCREEN
+	if is_mouse_event(event):
+		return DEVICE_MOUSE
+	if is_keyboard_event(event):
+		return DEVICE_KEYBOARD
 	return DEVICE_GENERIC
 
 static func _display_server_supports_keycode_from_physical():
@@ -156,20 +175,36 @@ static func get_text(event : InputEvent) -> String:
 		return OS.get_keycode_string(keycode)
 	return event.as_text()
 
-static func get_device_specific_text(event : InputEvent, device_name : String = "") -> String:
-	if device_name.is_empty():
-		device_name = get_device_name(event)
+static func get_joypad_event_button_name(event : InputEventJoypadButton, joypad_device_name : String) -> String:
+	var joypad_button : String = ""
+	if event.button_index in JOYPAD_DPAD_NAMES:
+		joypad_button = JOYPAD_DPAD_NAMES[event.button_index]
+	elif event.button_index < JOYPAD_BUTTON_NAME_MAP[joypad_device_name].size():
+		joypad_button = JOYPAD_BUTTON_NAME_MAP[joypad_device_name][event.button_index]
+	return joypad_button
+
+static func get_event_device_text(event : InputEvent, joypad_device_name : String = "") -> String:
+	if joypad_device_name.is_empty():
+		joypad_device_name = get_joypad_device_name(event)
 	if event is InputEventJoypadButton:
-		var joypad_button : String = ""
-		if event.button_index in JOYPAD_DPAD_NAMES:
-			joypad_button = JOYPAD_DPAD_NAMES[event.button_index]
-		elif event.button_index < JOYPAD_BUTTON_NAME_MAP[device_name].size():
-			joypad_button = JOYPAD_BUTTON_NAME_MAP[device_name][event.button_index]
-		return "%s %s" % [device_name, joypad_button]
+		var joypad_button : String = get_joypad_event_button_name(event, joypad_device_name)
+		return "%s %s" % [joypad_device_name, joypad_button]
 	if event is InputEventJoypadMotion:
-		return "%s %s" % [device_name, get_text(event)]
+		return "%s %s" % [joypad_device_name, get_text(event)]
 	if event is InputEventMouseButton:
 		if event.button_index < MOUSE_BUTTONS.size():
 			var mouse_button : String = MOUSE_BUTTONS[event.button_index]
 			return "%s %s" % [DEVICE_MOUSE, mouse_button]
 	return get_text(event).capitalize()
+
+static func get_action_device_event(action_name : StringName, input_device_name : String, input_number : int = 0) -> InputEvent:
+	var input_events := InputMap.action_get_events(action_name)
+	if input_events.size() < 1 : return
+	var matching_events : Array[InputEvent]
+	for input_event in input_events:
+		if get_input_device_name(input_event) == input_device_name:
+			matching_events.append(input_event)
+	if not matching_events.is_empty():
+		return matching_events[input_number % matching_events.size()]
+	var first_event_device := get_input_device_name(input_events[0])
+	return get_action_device_event(action_name, first_event_device, input_number)

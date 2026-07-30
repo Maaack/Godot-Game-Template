@@ -1,9 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://dhr7kwfkmlq7o"]
+[gd_scene format=3 uid="uid://dhr7kwfkmlq7o"]
 
 [ext_resource type="PackedScene" uid="uid://c6k5nnpbypshi" path="res://addons/maaacks_game_template/base/nodes/menus/main_menu/main_menu.tscn" id="1_sr523"]
-[ext_resource type="Script" uid="uid://6kkgt00vvrar" path="res://scenes/menus/main_menu/main_menu_with_animations.gd" id="2_ixa71"]
-[ext_resource type="PackedScene" uid="uid://mhk7ai1jtttm" path="res://scenes/windows/main_menu_options_window.tscn" id="3_2k5l7"]
-[ext_resource type="PackedScene" uid="uid://dnaejbfe1nvn1" path="res://scenes/windows/main_menu_credits_window.tscn" id="4_vsp5b"]
+[ext_resource type="Script" uid="uid://bgxix7esjru83" path="res://scenes/menus/main_menu/main_menu_with_animations.gd" id="2_sr523"]
+[ext_resource type="PackedScene" uid="uid://mhk7ai1jtttm" path="res://scenes/windows/main_menu_options_window.tscn" id="3_ixa71"]
+[ext_resource type="PackedScene" uid="uid://dnaejbfe1nvn1" path="res://scenes/windows/main_menu_credits_window.tscn" id="4_2k5l7"]
 [ext_resource type="PackedScene" uid="uid://cwt4p3bufkke5" path="res://addons/maaacks_game_template/base/nodes/windows/confirmation_overlaid_window.tscn" id="5_6xh1d"]
 [ext_resource type="AudioStream" uid="uid://cyakcui2s5g46" path="res://assets/music_and_sfx/Maaack - Campfire Tales - Music 2b (3 min).mp3" id="5_sr523"]
 [ext_resource type="Script" uid="uid://kgp5jnrxxhdy" path="res://addons/maaacks_game_template/base/nodes/labels/plugin_version_label.gd" id="6_2k5l7"]
@@ -316,33 +316,59 @@ states/Start/position = Vector2(82, 123)
 transitions = ["Intro", "OpenMainMenu", SubResource("11"), "OpenMainMenu", "OpenSubMenu", SubResource("14"), "Start", "Intro", SubResource("AnimationNodeStateMachineTransition_j0orr"), "OpenSubMenu", "OpenMainMenu", SubResource("AnimationNodeStateMachineTransition_63dxc")]
 graph_offset = Vector2(-180.277, 49)
 
-[node name="MainMenu" instance=ExtResource("1_sr523")]
-script = ExtResource("2_ixa71")
+[node name="MainMenu" unique_id=589811630 instance=ExtResource("1_sr523")]
+script = ExtResource("2_sr523")
 level_select_packed_scene = null
 confirm_new_game = true
-options_packed_scene = ExtResource("3_2k5l7")
-credits_packed_scene = ExtResource("4_vsp5b")
+options_packed_scene = ExtResource("3_ixa71")
+credits_packed_scene = ExtResource("4_2k5l7")
 
-[node name="MenuAnimationPlayer" type="AnimationPlayer" parent="." index="1"]
-libraries = {
-&"": SubResource("AnimationLibrary_2kqig")
-}
+[node name="MenuAnimationPlayer" type="AnimationPlayer" parent="." index="1" unique_id=1492532975]
+libraries/ = SubResource("AnimationLibrary_2kqig")
 
-[node name="MenuAnimationTree" type="AnimationTree" parent="." index="2"]
+[node name="MenuAnimationTree" type="AnimationTree" parent="." index="2" unique_id=1630488919]
 tree_root = SubResource("AnimationNodeStateMachine_vikuh")
 anim_player = NodePath("../MenuAnimationPlayer")
 parameters/conditions/intro_done = false
 
-[node name="BackgroundMusicPlayer" parent="." index="3"]
+[node name="BackgroundMusicPlayer" parent="." index="3" unique_id=1141822549]
 stream = ExtResource("5_sr523")
 
-[node name="VersionContainer" parent="VersionMargin" index="0"]
+[node name="TitleContainer" parent="MenuContainer/TitleMargin" parent_id_path=PackedInt32Array(2112060331) index="0" unique_id=556427956]
 modulate = Color(1, 1, 1, 0)
 
-[node name="VersionLabel" parent="VersionMargin/VersionContainer" index="0"]
-visible = false
+[node name="TitleLabel" parent="MenuContainer/TitleMargin/TitleContainer" index="0" unique_id=359406872]
+text = "Game Template"
 
-[node name="PluginVersionLabel" type="Label" parent="VersionMargin/VersionContainer" index="1"]
+[node name="SubTitleContainer" parent="MenuContainer/SubTitleMargin" parent_id_path=PackedInt32Array(1510335937) index="0" unique_id=930520368]
+modulate = Color(1, 1, 1, 0)
+
+[node name="MenuButtonsContainer" parent="MenuContainer/MenuButtonsMargin" parent_id_path=PackedInt32Array(210553886) index="0" unique_id=116448484]
+modulate = Color(1, 1, 1, 0)
+
+[node name="MenuButtonsBoxContainer" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer" index="0" unique_id=2017477786]
+lock = true
+
+[node name="ContinueGameButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" index="1" unique_id=1206401873]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "Continue"
+
+[node name="LevelSelectButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" index="2" unique_id=78300098]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "Level Select"
+
+[node name="VersionContainer" parent="VersionMargin" parent_id_path=PackedInt32Array(1732528471) index="0" unique_id=1603969262]
+modulate = Color(1, 1, 1, 0)
+
+[node name="VersionLabel" parent="VersionMargin/VersionContainer" index="0" unique_id=793266470]
+visible = false
+text = "v1.0.0"
+
+[node name="PluginVersionLabel" type="Label" parent="VersionMargin/VersionContainer" index="1" unique_id=1136385696]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -353,36 +379,12 @@ offset_left = -88.0
 offset_top = -26.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "v1.4.0"
+text = "v1.5.0"
 horizontal_alignment = 2
 script = ExtResource("6_2k5l7")
 plugin_directory = "maaacks_game_template"
 
-[node name="TitleContainer" parent="MenuContainer/TitleMargin" index="0"]
-modulate = Color(1, 1, 1, 0)
-
-[node name="SubTitleContainer" parent="MenuContainer/SubTitleMargin" index="0"]
-modulate = Color(1, 1, 1, 0)
-
-[node name="MenuButtonsContainer" parent="MenuContainer/MenuButtonsMargin" index="0"]
-modulate = Color(1, 1, 1, 0)
-
-[node name="MenuButtonsBoxContainer" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer" index="0"]
-lock = true
-
-[node name="ContinueGameButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" index="1"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-text = "Continue"
-
-[node name="LevelSelectButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" index="2"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-text = "Level Select"
-
-[node name="NewGameConfirmation" parent="." index="7" instance=ExtResource("5_6xh1d")]
+[node name="NewGameConfirmation" parent="." index="7" unique_id=1747133399 instance=ExtResource("5_6xh1d")]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(420, 200)
@@ -391,12 +393,12 @@ offset_left = -210.0
 offset_top = -100.0
 offset_right = 210.0
 offset_bottom = 100.0
+title = "New Game"
 text = "Are you sure you want to start a new game?
 
 All progress in the current game will be lost."
-title = "New Game"
 
-[node name="MouseFilter" type="Control" parent="." index="8"]
+[node name="MouseFilter" type="Control" parent="." index="8" unique_id=33285267]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

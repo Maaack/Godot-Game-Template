@@ -63,7 +63,7 @@ Create two **Repository Variables**: `GODOT_VERSION` and `EXPORT_NAME`.
 
 Change the `EXPORT_NAME` to fit the name of your game. This will be the name of the file your players download.
 
-By default, the workflow file is made for Godot 4.5, but you can set `GODOT_VERSION` to the version of Godot for your project. This will be used for loading container images and export templates. This workflow file uses [godot-ci](https://github.com/abarichello/godot-ci?tab=readme-ov-file) to build your game, so make sure the Godot version you're referring to is [available on Docker.](https://hub.docker.com/r/barichello/godot-ci/tags)
+By default, the workflow file is made for Godot 4.6, but you can set `GODOT_VERSION` to the version of Godot for your project. This will be used for loading container images and export templates. This workflow file uses [godot-ci](https://github.com/abarichello/godot-ci?tab=readme-ov-file) to build your game, so make sure the Godot version you're referring to is [available on Docker.](https://hub.docker.com/r/barichello/godot-ci/tags)
 
 ### 3. Copy the `build-and-publish.yml` file
 

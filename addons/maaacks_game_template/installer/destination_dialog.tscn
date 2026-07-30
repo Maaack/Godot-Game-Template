@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ckx50am7thhd2"]
 
-[node name="DestinationDialog" type="FileDialog"]
+[node name="DestinationDialog" type="FileDialog" unique_id=475642814]
 oversampling_override = 1.0
 title = "Select a Destination"
 initial_position = 2

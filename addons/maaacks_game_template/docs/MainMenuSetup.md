@@ -1,10 +1,29 @@
 # Main Menu Setup
 
-These are instructions for further editing the menus. Basic instructions are available in the [README](/addons/maaacks_game_template/README.md#usage).
+These are instructions for editing the main menu.
 
-## Inheritance
+## Selecting a Menu
+The main menu by default is `main_menu_with_animations.tscn`. The path to the main menu is set in the `AppConfig` autoload. Open the `app_config.tscn` scene, inspect the root note, and edit the `Main Menu Scene Path` to the desired scene.
 
-Most example scenes in the template inherit from scenes in `addons`. This is useful for developing of the plugin, but often less useful for those using it.  When editing the example scenes, any nodes inherited from a parent scene are highlighted in yellow in the scene tree. Inherited nodes cannot be edited like native nodes. Therefore, it is recommended to first right-click on the root node, and select `Clear Inheritance`. You'll get a warning that this cannot be undone, but it's okay. You probably won't need to undo it, and if you do, there are solutions.
+Alternatively, the path to the main menu can be set directly in the following scenes:
+
+- `opening.tscn`  
+- `pause_menu_layer.tscn`  
+- `game.tscn` (`level_manager.gd`)  
+- `end_credits.tscn`  
+
+> [!IMPORTANT]  
+> Animations from 4.6 are not fully backwards compatible.  
+> When running, `main_menu_with_animations.tscn` will show a gray screen for Godot versions < 4.6.  
+> It is recommended to use the latest version of Godot, or use `main_menu.tscn` instead of `main_menu_with_animations.tscn`.
+
+## Clear Inheritance
+
+Most example scenes in the template inherit from scenes in `addons`. Nodes inherited from a parent scene are highlighted in yellow (by default) in the scene tree. Inherited nodes cannot be edited like native nodes. Therefore, it is recommended to first right-click on the root node, and select `Clear Inheritance`. You'll get a warning that this cannot be undone, but it's okay. The inheritance is useful when developing the plugin itself, but much less so for a game.
+
+## Title and Subtitle
+
+The title will automatically update from the project's name. If a custom title is desired, select the `TitleLabel` node, set `Auto Update` to false, and set `Text` to the custom title. The `SubTitleLabel` can be customized with the `Text` field as well, or hidden entirely.
 
 ## Visual Placement
 
@@ -14,11 +33,21 @@ The positions and anchor presets of the UI elements can be adjusted to match mos
 Some designs may require rearranging the nodes in the scene tree. This is easier once the inheritance to the parent scene is cleared. However, if editing `main_menu_with_animations.tscn`, keep in mind that there are animations, and moving elements outside of the animated containers may have undesired effects.
 
 ## 3D Background 
-When adding a 3D background to the menu, it is recommended to use a `SubViewportContainer` in place of or right above the `BackgroundTextureRect`. Then add a `SubViewport` to it, and finally the 3D world node to that. This structure gives fine-tune control of scaling, allows for layering 3D views when they have transparency, and makes it easy to add a texture shader to the whole background.
+If adding a 3D background to the menu, a 3D world node in the scene tree should normally display behind the control nodes. Using a `SubViewport` with the 3D world node attached to that adds a degree of control over scaling. Adding that into a `SubViewportContainer` provides even more fine-tune control of layering and makes it easy to add a texture shader to the whole background.
 
 ## Level Select
 
-A basic level select scene is available to add to the menu. In `main_menu_with_animations.tscn`, click the root `MainMenu` mode and set `Level Select Packed Scene` to `level_select_menu.tscn`. The button will appear on the main menu when the player has reached the second level.  
+A basic level select scene is available to add to the menu. In `main_menu_with_animations.tscn`, click the root `MainMenu` node in the Scene tree.  
+![Select MainMenu node](/addons/maaacks_game_template/media/documentation/select-main-menu-node.png)  
+
+Then select the folder icon for `Level Select Packed Scene` in the Inspector.  
+![Set Level Select Packed Scene](/addons/maaacks_game_template/media/documentation/select_level_select_packed_scene.png)  
+
+Search for "level_select" and  select `level_select_menu.tscn`.  
+![Find and select level_select_menu scene](/addons/maaacks_game_template/media/documentation/select_level_select_menu_scene.png)  
+
+> [!NOTE]  
+> The button will appear on the main menu when the player has reached the second level.  
 
 Levels can be added to the menu by inspecting the `SceneLister` and either selecting a directory to automatically read scene files from, or populating the files array manually.
 
