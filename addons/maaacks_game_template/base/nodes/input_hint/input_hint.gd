@@ -17,6 +17,8 @@ extends Control
 @export var input_cycle_delay : float = 0.0
 ## Show input hints exlusively for the last detected device (Keyboard or Joypad)
 @export var last_device_specific : bool = true
+## Delay before refreshing current device.
+@export var device_update_delay : float = 0.5
 @export_group("Icons")
 ## Reference to an InputIconMapper in the scene tree.
 @export var input_icon_mapper : InputIconMapper
@@ -27,11 +29,13 @@ extends Control
 		if is_inside_tree():
 			_icon_texture_rect.expand_mode = expand_mode
 
-var _last_input_device : String = ""
+var _last_input_device : String
+var _can_update_last_device : bool = false
 
 @onready var _name_label : Label = %Name
 @onready var _icon_texture_rect : TextureRect = %Icon
 @onready var _cycle_delay_timer : Timer = %CycleDelay
+@onready var _update_delay_timer = %UpdateDelay
 
 func _get_input_event() -> InputEvent:
 	if last_device_specific:
@@ -58,13 +62,21 @@ func _ready() -> void:
 		input_icon_mapper.joypad_device_changed.connect(_refresh)
 	if input_cycle_delay > 0:
 		_cycle_delay_timer.start(input_cycle_delay)
+	if last_device_specific:
+		_update_delay_timer.start(device_update_delay)
 
 func _input(event):
-	if not last_device_specific: return
-	var input_device_name = InputEventHelper.get_input_device_name(event)
-	if input_device_name != _last_input_device:
-		_last_input_device = input_device_name
+	if (not last_device_specific) or (not _can_update_last_device):
+		return
+	var _input_device : String = InputEventHelper.get_input_device_name(event)
+	if _input_device != InputEventHelper.DEVICE_GENERIC and _input_device != _last_input_device:
+		_last_input_device = _input_device
+		_can_update_last_device = false
+		_update_delay_timer.start(device_update_delay)
 		_refresh()
 
 func _on_timer_timeout():
 	input_number += 1
+
+func _on_update_delay_timeout():
+	_can_update_last_device = true
