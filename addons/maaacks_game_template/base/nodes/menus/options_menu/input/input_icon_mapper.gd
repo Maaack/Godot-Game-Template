@@ -115,21 +115,21 @@ func _match_icons_to_inputs() -> void:
 		_match_icon_to_file(file)
 
 func get_icon(input_event : InputEvent) -> Texture:
-	var specific_text = InputEventHelper.get_device_specific_text(input_event, last_joypad_device)
-	if specific_text in matching_icons:
-		return matching_icons[specific_text]
+	var device_text = InputEventHelper.get_event_device_text(input_event, last_joypad_device)
+	if device_text in matching_icons:
+		return matching_icons[device_text]
 	return null
 
 func _assign_joypad_0_to_last() -> void:
 	if last_joypad_device != intial_joypad_device : return
 	var connected_joypads := Input.get_connected_joypads()
 	if connected_joypads.is_empty(): return
-	last_joypad_device = InputEventHelper.get_device_name_by_id(connected_joypads[0])
+	last_joypad_device = InputEventHelper.get_joypad_device_name_by_id(connected_joypads[0])
 
 func _input(event : InputEvent) -> void:
-	var device_name = InputEventHelper.get_device_name(event)
-	if device_name != InputEventHelper.DEVICE_GENERIC and device_name != last_joypad_device:
-		last_joypad_device = device_name
+	var joypad_device_name = InputEventHelper.get_joypad_device_name(event)
+	if joypad_device_name != InputEventHelper.DEVICE_GENERIC and joypad_device_name != last_joypad_device:
+		last_joypad_device = joypad_device_name
 		joypad_device_changed.emit()
 
 func _ready() -> void:
