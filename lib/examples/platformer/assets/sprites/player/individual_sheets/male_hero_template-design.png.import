@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cstri87vuj5gv"
-path="res://.godot/imported/nightraiderfixed.png-0beba531de7da26bd251dc1fdfdeccfe.ctex"
+uid="uid://dhcy3eamcguq6"
+path="res://.godot/imported/male_hero_template-design.png-aef017dafe620bd5ca1f4f78533f60e2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/nightraiderfixed.png"
-dest_files=["res://.godot/imported/nightraiderfixed.png-0beba531de7da26bd251dc1fdfdeccfe.ctex"]
+source_file="res://lib/examples/platformer/assets/sprites/player/individual_sheets/male_hero_template-design.png"
+dest_files=["res://.godot/imported/male_hero_template-design.png-aef017dafe620bd5ca1f4f78533f60e2.ctex"]
 
 [params]
 

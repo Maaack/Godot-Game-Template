@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://duk4ju3idshai"]
 
-[ext_resource type="PackedScene" uid="uid://dn2mufat3fbjy" path="res://scenes/game_scene/game/player.tscn" id="1_aneso"]
-[ext_resource type="PackedScene" uid="uid://dfoijjdnbiby2" path="res://scenes/game_scene/game/red_enemy.tscn" id="3_vvf27"]
-[ext_resource type="Script" uid="uid://ch8aaykixbwn5" path="res://scenes/game_scene/input_display_label.gd" id="8_qg3e5"]
+[ext_resource type="PackedScene" uid="uid://dn2mufat3fbjy" path="res://lib/examples/shmup/game/player.tscn" id="1_ritrk"]
+[ext_resource type="Script" uid="uid://ch8aaykixbwn5" path="res://scenes/game_scene/input_display_label.gd" id="2_nridq"]
+[ext_resource type="PackedScene" uid="uid://dfoijjdnbiby2" path="res://lib/examples/shmup/game/red_enemy.tscn" id="3_lm2ok"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_053kx"]
 size = Vector2(332, 20)
@@ -12,7 +12,7 @@ size = Vector2(20, 754)
 
 [node name="Level1" type="Node" unique_id=156853197]
 
-[node name="Player" parent="." unique_id=1251191690 instance=ExtResource("1_aneso")]
+[node name="Player" parent="." unique_id=1251191690 instance=ExtResource("1_ritrk")]
 position = Vector2(76, 115)
 
 [node name="PlayerPin" type="Node2D" parent="." unique_id=1464035281]
@@ -53,7 +53,7 @@ shape = SubResource("RectangleShape2D_k0krf")
 [node name="InputLabel" type="Label" parent="." unique_id=1956789955]
 offset_right = 40.0
 offset_bottom = 23.0
-script = ExtResource("8_qg3e5")
+script = ExtResource("2_nridq")
 
-[node name="RedEnemy" parent="." unique_id=1237394666 instance=ExtResource("3_vvf27")]
+[node name="RedEnemy" parent="." unique_id=1237394666 instance=ExtResource("3_lm2ok")]
 position = Vector2(1065, 214)

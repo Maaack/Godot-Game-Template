@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://d5vfvflaxloj"]
 
-[ext_resource type="Script" uid="uid://2nvf0081xtmv" path="res://scenes/game_scene/game/bullet.gd" id="1_tstjr"]
-[ext_resource type="Script" uid="uid://b3nmnw70cwsre" path="res://components/velocity_component.gd" id="2_tstjr"]
-[ext_resource type="Script" uid="uid://ca0ipcu8q1f62" path="res://components/hitbox_component.gd" id="3_vfvav"]
-[ext_resource type="Script" uid="uid://cihrtrctmnl1u" path="res://components/damage_component.gd" id="4_lmxhd"]
+[ext_resource type="Script" uid="uid://2nvf0081xtmv" path="res://lib/examples/shmup/game/bullet.gd" id="1_lofha"]
+[ext_resource type="Script" uid="uid://b3nmnw70cwsre" path="res://lib/components/velocity_component.gd" id="2_6geg5"]
+[ext_resource type="Script" uid="uid://ca0ipcu8q1f62" path="res://lib/components/hitbox_component.gd" id="3_i5jhb"]
+[ext_resource type="Script" uid="uid://cihrtrctmnl1u" path="res://lib/components/damage_component.gd" id="4_bvjqc"]
 
 [sub_resource type="Gradient" id="Gradient_4uq5n"]
 colors = PackedColorArray(0, 0, 0, 0, 0.8035538, 4.428029e-06, 4.813075e-07, 1)
@@ -15,7 +15,7 @@ gradient = SubResource("Gradient_4uq5n")
 radius = 5.0990195
 
 [node name="RedBullet" type="Node2D" unique_id=1496514419]
-script = ExtResource("1_tstjr")
+script = ExtResource("1_lofha")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2091738744]
 position = Vector2(-4.4999995, 0)
@@ -23,11 +23,11 @@ scale = Vector2(0.10546875, 8)
 texture = SubResource("GradientTexture1D_8vfvq")
 
 [node name="VelocityComponent" type="Node" parent="." unique_id=2126643307]
-script = ExtResource("2_tstjr")
+script = ExtResource("2_6geg5")
 velocity = Vector2(1000, 0)
 
 [node name="HitboxComponent" type="Area2D" parent="." unique_id=1636075681 node_paths=PackedStringArray("damage_component")]
-script = ExtResource("3_vfvav")
+script = ExtResource("3_i5jhb")
 damage_component = NodePath("../DamageComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=1429112927]
@@ -35,6 +35,6 @@ position = Vector2(5, 0)
 shape = SubResource("CircleShape2D_053kx")
 
 [node name="DamageComponent" type="Node" parent="." unique_id=518809642]
-script = ExtResource("4_lmxhd")
+script = ExtResource("4_bvjqc")
 
 [connection signal="hitbox_hit" from="HitboxComponent" to="." method="_on_hitbox_component_hitbox_hit"]

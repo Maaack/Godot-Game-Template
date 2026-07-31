@@ -1,0 +1,274 @@
+[gd_scene format=3 uid="uid://b8os5xoj20jaf"]
+
+[ext_resource type="Script" uid="uid://b6aeu0jtowes4" path="res://lib/examples/platformer/game/player.gd" id="1_0fici"]
+[ext_resource type="Script" uid="uid://ca0ipcu8q1f62" path="res://lib/components/hitbox_component.gd" id="1_lkju0"]
+[ext_resource type="Script" uid="uid://cihrtrctmnl1u" path="res://lib/components/damage_component.gd" id="2_dgegi"]
+[ext_resource type="SpriteFrames" uid="uid://dlg5eeyjfw56o" path="res://lib/examples/platformer/assets/sprites/player/player_sprite_frames.tres" id="2_w20he"]
+[ext_resource type="Script" uid="uid://bjyctmjqqchb1" path="res://lib/components/input_component.gd" id="3_3odpi"]
+[ext_resource type="Script" uid="uid://bbsramt6qxcco" path="res://lib/flipping_animated_sprite_2d.gd" id="3_ru7re"]
+[ext_resource type="Script" uid="uid://spodeljqaxm1" path="res://lib/state_machine_component.gd" id="4_ul66j"]
+[ext_resource type="Script" uid="uid://uqth5slnbumm" path="res://lib/examples/platformer/game/idle_state.gd" id="5_0fici"]
+[ext_resource type="Script" uid="uid://b0lgwbk682cd5" path="res://lib/examples/platformer/levels/jump_state.gd" id="6_0bmcs"]
+[ext_resource type="Script" uid="uid://b3nmnw70cwsre" path="res://lib/components/velocity_component.gd" id="6_b21t0"]
+[ext_resource type="Script" uid="uid://b0w2ew0tnbjps" path="res://lib/examples/platformer/levels/fall_state.gd" id="7_jxgdg"]
+[ext_resource type="Script" uid="uid://c2g1gsclehm51" path="res://lib/examples/platformer/levels/run_state.gd" id="8_jxgdg"]
+[ext_resource type="Script" uid="uid://c0n047x8j2lof" path="res://lib/examples/platformer/levels/hurt_state.gd" id="10_4vxo8"]
+[ext_resource type="Script" uid="uid://cuwmkx3bc6ulp" path="res://lib/examples/platformer/levels/jump_buffer.gd" id="11_61tla"]
+[ext_resource type="Script" uid="uid://dxv4eo30eda25" path="res://lib/components/hurtbox_component.gd" id="13_wh8ka"]
+[ext_resource type="Script" uid="uid://bri1o26jvdu3p" path="res://lib/components/health_component.gd" id="14_sqwm1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_053kx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k0krf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rsd80"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0gsyv"]
+size = Vector2(38, 88)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r1nj2"]
+size = Vector2(32, 81)
+
+[node name="Level1" type="Node2D" unique_id=1475786766]
+
+[node name="Level" type="Node2D" parent="." unique_id=464068812]
+
+[node name="Polygon2D" type="Polygon2D" parent="Level" unique_id=1003199805]
+scale = Vector2(1, 10.800001)
+color = Color(0.43423706, 0.3945852, 0.24394193, 1)
+polygon = PackedVector2Array(0, 0, 0, 100, 100, 100, 100, 0)
+uv = PackedVector2Array(104, 104, 104, 16)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Level/Polygon2D" unique_id=1009947638]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Polygon2D/StaticBody2D" unique_id=115940386]
+position = Vector2(50.000004, 49.999996)
+scale = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_053kx")
+
+[node name="Polygon2D2" type="Polygon2D" parent="Level" unique_id=846692990]
+position = Vector2(1820, 0)
+scale = Vector2(1, 10.800001)
+color = Color(0.43423706, 0.3945852, 0.24394193, 1)
+polygon = PackedVector2Array(0, 0, 0, 100, 100, 100, 100, 0)
+uv = PackedVector2Array(104, 104, 104, 16)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Level/Polygon2D2" unique_id=544975336]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Polygon2D2/StaticBody2D" unique_id=309903680]
+position = Vector2(50, 49.999992)
+scale = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_k0krf")
+
+[node name="Polygon2D3" type="Polygon2D" parent="Level" unique_id=1824929794]
+position = Vector2(6, 980)
+scale = Vector2(19.14, 1.0000011)
+color = Color(0.43423706, 0.3945852, 0.24394193, 1)
+polygon = PackedVector2Array(0, 0, 0, 100, 100, 100, 100, 0)
+uv = PackedVector2Array(104, 104, 104, 16)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Level/Polygon2D3" unique_id=129637217]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Polygon2D3/StaticBody2D" unique_id=482999315]
+position = Vector2(50.000004, 49.999947)
+scale = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_rsd80")
+
+[node name="Polygon2D4" type="Polygon2D" parent="Level" unique_id=535731786]
+position = Vector2(25, 571)
+scale = Vector2(5.699998, 1.0000011)
+color = Color(0.43423706, 0.3945852, 0.24394193, 1)
+polygon = PackedVector2Array(0, 0, 0, 100, 100, 100, 100, 0)
+uv = PackedVector2Array(104, 104, 104, 16)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Level/Polygon2D4" unique_id=1229228817]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Polygon2D4/StaticBody2D" unique_id=926529572]
+position = Vector2(50.000004, 49.999947)
+scale = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_rsd80")
+
+[node name="Polygon2D6" type="Polygon2D" parent="Level" unique_id=823124441]
+position = Vector2(1197, 853.00006)
+scale = Vector2(2.528988, 1.685133)
+color = Color(0.43423706, 0.3945852, 0.24394193, 1)
+polygon = PackedVector2Array(0, 0, 0, 100, 100, 100, 100, 0)
+uv = PackedVector2Array(104, 104, 104, 16)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Level/Polygon2D6" unique_id=24345957]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Polygon2D6/StaticBody2D" unique_id=804945092]
+position = Vector2(50.000004, 49.999947)
+scale = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_rsd80")
+
+[node name="Polygon2D7" type="Polygon2D" parent="Level" unique_id=2131508238]
+position = Vector2(768, 702)
+scale = Vector2(2.528988, 0.7251329)
+color = Color(0.43423706, 0.3945852, 0.24394193, 1)
+polygon = PackedVector2Array(0, 0, 0, 100, 100, 100, 100, 0)
+uv = PackedVector2Array(104, 104, 104, 16)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Level/Polygon2D7" unique_id=956322172]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Polygon2D7/StaticBody2D" unique_id=363313401]
+position = Vector2(50.000004, 49.999947)
+scale = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_rsd80")
+
+[node name="Polygon2D5" type="Polygon2D" parent="Level" unique_id=492407817]
+position = Vector2(844, 367)
+scale = Vector2(5.699998, 1.0000011)
+color = Color(0.43423706, 0.3945852, 0.24394193, 1)
+polygon = PackedVector2Array(0, 0, 0, 100, 100, 100, 100, 0)
+uv = PackedVector2Array(104, 104, 104, 16)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Level/Polygon2D5" unique_id=1193898669]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Polygon2D5/StaticBody2D" unique_id=1832558297]
+position = Vector2(50.000004, 49.999947)
+scale = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_rsd80")
+
+[node name="Polygon2D8" type="Polygon2D" parent="Level" unique_id=1113781611]
+position = Vector2(1728, 447)
+scale = Vector2(0.8999977, 1.0000011)
+color = Color(0.4726475, 0.18975359, 0.21228936, 1)
+polygon = PackedVector2Array(0, 0, 0, 100, 100, 100, 100, 0)
+uv = PackedVector2Array(104, 104, 104, 16)
+
+[node name="HitboxComponent" type="Area2D" parent="Level/Polygon2D8" unique_id=601534014 node_paths=PackedStringArray("damage_component")]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_lkju0")
+damage_component = NodePath("../DamageComponent")
+metadata/_custom_type_script = "uid://ca0ipcu8q1f62"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Polygon2D8/HitboxComponent" unique_id=1993144249]
+position = Vector2(50.000004, 49.999947)
+scale = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_rsd80")
+
+[node name="DamageComponent" type="Node" parent="Level/Polygon2D8" unique_id=1621620656]
+script = ExtResource("2_dgegi")
+metadata/_custom_type_script = "uid://cihrtrctmnl1u"
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=1162776182 node_paths=PackedStringArray("state_machine", "velocity_component")]
+position = Vector2(1105, 703)
+script = ExtResource("1_0fici")
+state_machine = NodePath("StateMachineComponent")
+velocity_component = NodePath("VelocityComponent")
+
+[node name="FlippingAnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=1472984419]
+texture_filter = 1
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("2_w20he")
+animation = &"hurt"
+script = ExtResource("3_ru7re")
+
+[node name="InputComponent" type="Node" parent="Player" unique_id=1499063378]
+script = ExtResource("3_3odpi")
+metadata/_custom_type_script = "uid://bjyctmjqqchb1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=481042447]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_0gsyv")
+
+[node name="StateMachineComponent" type="Node" parent="Player" unique_id=177009459 node_paths=PackedStringArray("starting_state")]
+script = ExtResource("4_ul66j")
+starting_state = NodePath("IdleState")
+
+[node name="IdleState" type="Node" parent="Player/StateMachineComponent" unique_id=404905956 node_paths=PackedStringArray("state_machine", "sprite", "velocity", "body", "run_state", "jump_state", "fall_state")]
+script = ExtResource("5_0fici")
+state_machine = NodePath("..")
+sprite = NodePath("../../FlippingAnimatedSprite2D")
+velocity = NodePath("../../VelocityComponent")
+body = NodePath("../..")
+damp_accel = 4000.0
+run_state = NodePath("../RunState")
+jump_state = NodePath("../JumpState")
+fall_state = NodePath("../FallState")
+
+[node name="JumpState" type="Node" parent="Player/StateMachineComponent" unique_id=1839954726 node_paths=PackedStringArray("state_machine", "sprite", "velocity", "body", "idle_state", "fall_state")]
+script = ExtResource("6_0bmcs")
+state_machine = NodePath("..")
+sprite = NodePath("../../FlippingAnimatedSprite2D")
+velocity = NodePath("../../VelocityComponent")
+body = NodePath("../..")
+jump_velocity = -1250.0
+terminal_velocity = 1200.0
+horizontal_move_speed = 800.0
+horizontal_acceleration = 3000.0
+gravity = 2500.0
+idle_state = NodePath("../IdleState")
+fall_state = NodePath("../FallState")
+
+[node name="FallState" type="Node" parent="Player/StateMachineComponent" unique_id=1051403661 node_paths=PackedStringArray("state_machine", "sprite", "velocity", "body", "idle_state", "jump_state", "run_state")]
+script = ExtResource("7_jxgdg")
+state_machine = NodePath("..")
+sprite = NodePath("../../FlippingAnimatedSprite2D")
+velocity = NodePath("../../VelocityComponent")
+body = NodePath("../..")
+horizontal_move_speed = 800.0
+horizontal_acceleration = 3000.0
+gravity = 3000.0
+idle_state = NodePath("../IdleState")
+jump_state = NodePath("../JumpState")
+run_state = NodePath("../RunState")
+
+[node name="RunState" type="Node" parent="Player/StateMachineComponent" unique_id=1667247925 node_paths=PackedStringArray("state_machine", "sprite", "velocity", "body", "idle_state", "fall_state", "jump_state")]
+script = ExtResource("8_jxgdg")
+state_machine = NodePath("..")
+sprite = NodePath("../../FlippingAnimatedSprite2D")
+velocity = NodePath("../../VelocityComponent")
+body = NodePath("../..")
+horizontal_move_speed = 800.0
+horizontal_acceleration = 4000.0
+idle_state = NodePath("../IdleState")
+fall_state = NodePath("../FallState")
+jump_state = NodePath("../JumpState")
+
+[node name="HurtState" type="Node" parent="Player/StateMachineComponent" unique_id=776197926 node_paths=PackedStringArray("state_machine", "sprite", "velocity", "body", "idle_state")]
+script = ExtResource("10_4vxo8")
+state_machine = NodePath("..")
+sprite = NodePath("../../FlippingAnimatedSprite2D")
+velocity = NodePath("../../VelocityComponent")
+body = NodePath("../..")
+idle_state = NodePath("../IdleState")
+
+[node name="VelocityComponent" type="Node" parent="Player" unique_id=1194311101]
+script = ExtResource("6_b21t0")
+metadata/_custom_type_script = "uid://b3nmnw70cwsre"
+
+[node name="JumpBuffer" type="Node" parent="Player" unique_id=179384994 node_paths=PackedStringArray("state_machine", "body", "jump_state")]
+script = ExtResource("11_61tla")
+state_machine = NodePath("../StateMachineComponent")
+body = NodePath("..")
+jump_state = NodePath("../StateMachineComponent/JumpState")
+jump_buffer_seconds = 0.2
+coyote_time_seconds = 0.2
+
+[node name="HurtboxComponent" type="Area2D" parent="Player" unique_id=950042974 node_paths=PackedStringArray("health_component")]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("13_wh8ka")
+health_component = NodePath("../HealthComponent")
+metadata/_custom_type_script = "uid://dxv4eo30eda25"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/HurtboxComponent" unique_id=1691236368]
+position = Vector2(0, 4.5)
+shape = SubResource("RectangleShape2D_r1nj2")
+
+[node name="HealthComponent" type="Node" parent="Player" unique_id=674515307]
+script = ExtResource("14_sqwm1")
+health = 5
+metadata/_custom_type_script = "uid://bri1o26jvdu3p"
+
+[connection signal="health_hurt" from="Player/HealthComponent" to="Player/StateMachineComponent/HurtState" method="_on_health_component_health_hurt"]

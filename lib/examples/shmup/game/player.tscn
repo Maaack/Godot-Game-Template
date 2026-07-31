@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://dn2mufat3fbjy"]
 
-[ext_resource type="Script" uid="uid://c5k12kem82fi5" path="res://scenes/game_scene/game/player.gd" id="1_44l0u"]
-[ext_resource type="SpriteFrames" uid="uid://dyphuevebh8mb" path="res://assets/sprites/shmup_player_idle.tres" id="2_4f4ye"]
-[ext_resource type="Script" uid="uid://bjyctmjqqchb1" path="res://components/input_component.gd" id="4_h2cr2"]
-[ext_resource type="Script" uid="uid://d47eflrnfo3g" path="res://components/signal_user_component.gd" id="5_7iak7"]
-[ext_resource type="Script" uid="uid://c7ijvwlbppgd" path="res://components/gun_component.gd" id="6_ii083"]
-[ext_resource type="PackedScene" uid="uid://d5vfvflaxloj" path="res://scenes/game_scene/game/red_bullet.tscn" id="7_mgqr5"]
-[ext_resource type="PackedScene" uid="uid://pcj806xqwwjc" path="res://scenes/game_scene/game/blue_bullet.tscn" id="8_k26gj"]
+[ext_resource type="Script" uid="uid://c5k12kem82fi5" path="res://lib/examples/shmup/game/player.gd" id="1_44l0u"]
+[ext_resource type="SpriteFrames" uid="uid://dyphuevebh8mb" path="res://lib/examples/shmup/assets/sprites/shmup_player_idle.tres" id="2_y1r87"]
+[ext_resource type="Script" uid="uid://bjyctmjqqchb1" path="res://lib/components/input_component.gd" id="4_h2cr2"]
+[ext_resource type="Script" uid="uid://d47eflrnfo3g" path="res://lib/components/signal_user_component.gd" id="5_7iak7"]
+[ext_resource type="Script" uid="uid://c7ijvwlbppgd" path="res://lib/components/gun_component.gd" id="6_ii083"]
+[ext_resource type="PackedScene" uid="uid://d5vfvflaxloj" path="res://lib/examples/shmup/game/red_bullet.tscn" id="7_mgqr5"]
+[ext_resource type="PackedScene" uid="uid://pcj806xqwwjc" path="res://lib/examples/shmup/game/blue_bullet.tscn" id="8_k26gj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_04iec"]
 size = Vector2(59, 37)
@@ -31,7 +31,7 @@ shape = SubResource("RectangleShape2D_04iec")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1324378752]
 scale = Vector2(0.5, 0.5)
-sprite_frames = ExtResource("2_4f4ye")
+sprite_frames = ExtResource("2_y1r87")
 
 [node name="InputComponent" type="Node" parent="." unique_id=1124154708]
 script = ExtResource("4_h2cr2")

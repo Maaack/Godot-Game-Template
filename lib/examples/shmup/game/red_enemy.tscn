@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://dfoijjdnbiby2"]
 
-[ext_resource type="Script" uid="uid://bri1o26jvdu3p" path="res://components/health_component.gd" id="1_p3btu"]
-[ext_resource type="Script" uid="uid://y2hwbt58wv1v" path="res://scenes/game_scene/game/enemy.gd" id="1_sas5n"]
-[ext_resource type="Script" uid="uid://dxv4eo30eda25" path="res://components/hurtbox_component.gd" id="2_jq1dc"]
-[ext_resource type="Script" uid="uid://b3nmnw70cwsre" path="res://components/velocity_component.gd" id="4_pw74w"]
+[ext_resource type="Script" uid="uid://bri1o26jvdu3p" path="res://lib/components/health_component.gd" id="1_p3btu"]
+[ext_resource type="Script" uid="uid://y2hwbt58wv1v" path="res://lib/examples/shmup/game/enemy.gd" id="1_sas5n"]
+[ext_resource type="Script" uid="uid://dxv4eo30eda25" path="res://lib/components/hurtbox_component.gd" id="2_jq1dc"]
+[ext_resource type="Script" uid="uid://b3nmnw70cwsre" path="res://lib/components/velocity_component.gd" id="4_pw74w"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_k0krf"]
 

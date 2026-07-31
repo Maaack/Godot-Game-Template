@@ -1,6 +1,6 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://dyphuevebh8mb"]
 
-[ext_resource type="Texture2D" uid="uid://cstri87vuj5gv" path="res://assets/sprites/nightraiderfixed.png" id="1_3n8md"]
+[ext_resource type="Texture2D" uid="uid://cstri87vuj5gv" path="res://lib/examples/shmup/assets/sprites/nightraiderfixed.png" id="1_3n8md"]
 
 [resource]
 animations = [{

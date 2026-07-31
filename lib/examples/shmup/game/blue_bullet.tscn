@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://pcj806xqwwjc"]
 
-[ext_resource type="Script" uid="uid://2nvf0081xtmv" path="res://scenes/game_scene/game/bullet.gd" id="1_a160q"]
-[ext_resource type="Script" uid="uid://b3nmnw70cwsre" path="res://components/velocity_component.gd" id="2_a160q"]
+[ext_resource type="Script" uid="uid://2nvf0081xtmv" path="res://lib/examples/shmup/game/bullet.gd" id="1_2jdtf"]
+[ext_resource type="Script" uid="uid://b3nmnw70cwsre" path="res://lib/components/velocity_component.gd" id="2_g8wbs"]
 
 [sub_resource type="Gradient" id="Gradient_bktc7"]
 colors = PackedColorArray(0, 0, 0, 0, 0, 0, 1, 1)
@@ -13,7 +13,7 @@ gradient = SubResource("Gradient_bktc7")
 radius = 5.0990195
 
 [node name="BlueBullet" type="Area2D" unique_id=1264128201]
-script = ExtResource("1_a160q")
+script = ExtResource("1_2jdtf")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2091738744]
 position = Vector2(-4.4999995, 0)
@@ -25,5 +25,5 @@ position = Vector2(5, 0)
 shape = SubResource("CircleShape2D_053kx")
 
 [node name="VelocityComponent" type="Node" parent="." unique_id=2126643307]
-script = ExtResource("2_a160q")
+script = ExtResource("2_g8wbs")
 velocity = Vector2(1000, 0)

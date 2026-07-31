@@ -2,7 +2,6 @@ extends CharacterBody2D
 class_name Player
 
 @export_group("Dependencies")
-@export var vel: VelocityComponent
 @export var input: InputComponent
 
 @export_group("Movement")

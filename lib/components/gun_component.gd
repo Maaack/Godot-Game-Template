@@ -15,7 +15,6 @@ var _fire_interval := 1 / fire_rate
 var _can_fire = true
 
 func use() -> void:
-	print("use")
 	if _can_fire:
 		_can_fire = false
 		fire()
@@ -24,7 +23,6 @@ func use() -> void:
 		_can_fire = true
 
 func fire() -> void:
-	print("fire")
 	fired.emit()
 	var new_proj := projectile.instantiate()
 	get_tree().current_scene.add_child(new_proj)
