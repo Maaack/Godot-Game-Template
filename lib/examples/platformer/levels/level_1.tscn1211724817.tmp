@@ -270,13 +270,11 @@ shape = SubResource("RectangleShape2D_r1nj2")
 
 [node name="HealthComponent" type="Node" parent="Player" unique_id=674515307]
 script = ExtResource("14_sqwm1")
-health = 15000
-max_health = 15000
+health = 5
 metadata/_custom_type_script = "uid://bri1o26jvdu3p"
 
-[node name="KnockbackComponent" type="Node" parent="Player" unique_id=840984885 node_paths=PackedStringArray("body")]
+[node name="KnockbackComponent" type="Node" parent="Player" unique_id=840984885]
 script = ExtResource("17_dgegi")
-body = NodePath("..")
 
 [connection signal="health_hurt" from="Player/HealthComponent" to="Player/StateMachineComponent/HurtState" method="_on_health_component_health_hurt"]
 [connection signal="health_hurt" from="Player/HealthComponent" to="Player/KnockbackComponent" method="knockback"]

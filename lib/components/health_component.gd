@@ -11,14 +11,14 @@ class_name HealthComponent
 ## Whether to allow healing past the set max_health
 @export var allow_overheal: bool = false
 
-signal health_hurt
+signal health_hurt(source: DamageComponent, taken: int, health: int)
 signal health_heal
 signal health_die
 signal health_set
 
-func hurt(total: int) -> void:
-	var taken = total
-	if health < total:
+func hurt(source: DamageComponent) -> void:
+	var taken = source.damage
+	if health < source.damage:
 		taken = health
 	health -= taken
 	
@@ -26,11 +26,11 @@ func hurt(total: int) -> void:
 	
 	if dying:
 		if signal_hurt_and_death:
-			health_hurt.emit(total, taken, health)
+			health_hurt.emit(source, taken, health)
 		die()
 		return
 	
-	health_hurt.emit(total, taken, health)
+	health_hurt.emit(source, taken, health)
 
 func heal(val: int) -> void:
 	if health >= max_health and !allow_overheal:
