@@ -11,6 +11,11 @@ Author: [Name]()
 Source: [Domain : webpage.html]()  
 License: [License]()
 
+### Male Hero Character
+#### 2D Platformer Template
+Author: [Ozzbit Games](https://ozzbit-games.itch.io)
+License: Free Version License
+
 #### Godot Engine Logo
 Author: Andrea Calabró  
 Source: [godotengine.org : press](https://godotengine.org/press/)  
