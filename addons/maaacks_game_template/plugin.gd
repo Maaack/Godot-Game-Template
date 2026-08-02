@@ -372,13 +372,11 @@ func _add_audio_bus(bus_name : String) -> void:
 	ProjectSettings.save()
 
 func _install_audio_busses() -> void:
-	if ProjectSettings.has_setting(PROJECT_SETTINGS_PATH + "disable_install_audio_busses"):
-		if ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + "disable_install_audio_busses") :
-			return
-	_add_audio_bus("Music")
-	_add_audio_bus("SFX")
-	ProjectSettings.set_setting(PROJECT_SETTINGS_PATH + "disable_install_audio_busses", true)
-	ProjectSettings.save()
+	if not ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + "disable_install_audio_busses", false):
+		_add_audio_bus("Music")
+		_add_audio_bus("SFX")
+		ProjectSettings.set_setting(PROJECT_SETTINGS_PATH + "disable_install_audio_busses", true)
+		ProjectSettings.save()
 
 func _add_tool_options() -> void:
 	add_tool_menu_item("Run " + get_plugin_name() + " Setup...", open_setup_wizard)
