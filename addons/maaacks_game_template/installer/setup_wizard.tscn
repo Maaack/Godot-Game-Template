@@ -63,7 +63,7 @@ text = "Run"
 [node name="CopyLabel" type="Label" parent="VBoxContainer/StepsContainer" unique_id=1894223639]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Copy Example Files"
+text = "Copy Example Files *"
 
 [node name="CopyCheckBox" type="CheckBox" parent="VBoxContainer/StepsContainer" unique_id=757403442]
 unique_name_in_owner = true
@@ -80,7 +80,7 @@ text = "Run"
 [node name="DeleteLabel" type="Label" parent="VBoxContainer/StepsContainer" unique_id=1855034900]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Delete Example Files"
+text = "Delete Example Files *"
 
 [node name="DeleteCheckBox" type="CheckBox" parent="VBoxContainer/StepsContainer" unique_id=952196576]
 unique_name_in_owner = true
@@ -97,7 +97,7 @@ text = "Run"
 [node name="UpdatePathsLabel" type="Label" parent="VBoxContainer/StepsContainer" unique_id=641573803]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Update Autoload Paths"
+text = "Update Autoload Paths *"
 
 [node name="UpdatePathsCheckBox" type="CheckBox" parent="VBoxContainer/StepsContainer" unique_id=818510729]
 unique_name_in_owner = true
