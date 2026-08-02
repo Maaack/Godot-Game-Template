@@ -342,8 +342,10 @@ func _show_plugin_dialogues() -> void:
 		_open_confirmation_dialog()
 		ProjectSettings.set_setting(PROJECT_SETTINGS_PATH + "disable_install_wizard", true)
 		ProjectSettings.save()
+		return
 	if is_partially_installed():
 		_open_continue_setup_dialog()
+		return
 
 func _resave_if_recently_opened() -> void:
 	if Engine.get_physics_frames() < MAX_PHYSICS_FRAMES_FROM_START:
