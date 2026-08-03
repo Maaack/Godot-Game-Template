@@ -253,14 +253,9 @@ func _configure_icons() -> void:
 	else:
 		EditorInterface.open_scene_from_path(input_mapper_path)
 	await get_tree().create_timer(OPEN_SCENE_DELAY).timeout
-	print("Checkpoint 1")
 	EditorInterface.save_scene()
-	print("Checkpoint 2")
 	await get_tree().create_timer(REIMPORT_CHECK_DELAY).timeout
-	print("Checkpoint 3")
 	_clean_up_or_complete()
-	print("Checkpoint 4")
-
 
 func _configure_and_complete() -> void:
 	if _configuration_index >= 0: 
