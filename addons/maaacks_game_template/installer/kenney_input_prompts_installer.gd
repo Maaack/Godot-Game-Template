@@ -9,7 +9,7 @@ signal completed
 
 const DownloadAndExtract = MaaacksGameTemplatePlugin.DownloadAndExtract
 const RELATIVE_PATH_TO_CONFIGURE_SCENE = "scenes/menus/options_menu/input/input_icon_mapper.tscn"
-const REIMPORT_CHECK_DELAY : float = 0.5
+const REIMPORT_CHECK_DELAY : float = 1.0
 const OPEN_SCENE_DELAY : float = 0.5
 const MATCH_REGEX = """(\\[node name="InputIconMapper" (unique_id=[0-9]+ )?instance=ExtResource\\("[0-9a-z_]+"\\)\\])[\\s\\S]*"""
 
@@ -253,9 +253,14 @@ func _configure_icons() -> void:
 	else:
 		EditorInterface.open_scene_from_path(input_mapper_path)
 	await get_tree().create_timer(OPEN_SCENE_DELAY).timeout
+	print("Checkpoint 1")
 	EditorInterface.save_scene()
+	print("Checkpoint 2")
 	await get_tree().create_timer(REIMPORT_CHECK_DELAY).timeout
+	print("Checkpoint 3")
 	_clean_up_or_complete()
+	print("Checkpoint 4")
+
 
 func _configure_and_complete() -> void:
 	if _configuration_index >= 0: 
