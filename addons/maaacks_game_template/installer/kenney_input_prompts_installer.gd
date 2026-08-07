@@ -8,10 +8,11 @@ signal canceled
 signal completed
 
 const DownloadAndExtract = MaaacksGameTemplatePlugin.DownloadAndExtract
-const RELATIVE_PATH_TO_CONFIGURE_SCENE = "scenes/menus/options_menu/input/input_icon_mapper.tscn"
+const CONFIGURE_SCENE_RELATIVE_PATH = "scenes/menus/options_menu/input/input_icon_mapper.tscn"
 const REIMPORT_CHECK_DELAY : float = 1.0
 const OPEN_SCENE_DELAY : float = 0.5
 const MATCH_REGEX = """(\\[node name="InputIconMapper" (unique_id=[0-9]+ )?instance=ExtResource\\("[0-9a-z_]+"\\)\\])[\\s\\S]*"""
+const ASSETS_RELATIVE_PATH = "assets/kenney_input-prompts"
 
 const FILLED_WHITE_CONFIGURATION = """
 replace_strings = {
@@ -223,7 +224,7 @@ func _delete_extras() -> void:
 	EditorInterface.get_resource_filesystem().scan()
 
 func _configure_icons() -> void:
-	var input_mapper_path := copy_dir_path + RELATIVE_PATH_TO_CONFIGURE_SCENE
+	var input_mapper_path := copy_dir_path + CONFIGURE_SCENE_RELATIVE_PATH
 	var icon_mapper_string := FileAccess.get_file_as_string(input_mapper_path)
 	var replacing_string := "$1\n"
 	match(_configuration_index % 4):
@@ -242,6 +243,7 @@ func _configure_icons() -> void:
 			pass
 		2:
 			replacing_string = replacing_string.replace("Default", "Double")
+	replacing_string = replacing_string.replace("res://" + ASSETS_RELATIVE_PATH, copy_dir_path + ASSETS_RELATIVE_PATH)
 	var regex = RegEx.new()
 	regex.compile(MATCH_REGEX)
 	icon_mapper_string = regex.sub(icon_mapper_string, replacing_string)
