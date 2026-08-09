@@ -219,7 +219,7 @@ func _update_scene_loader_path(target_path : String) -> void:
 	var file_path : String = get_scene_loader_path()
 	var file_text : String = FileAccess.get_file_as_string(file_path)
 	var path_for_regex := LOADING_SCREEN_SCENE_RELATIVE_PATH.replace("/", "\\/").replace(".", "\\.")
-	var regex := RegEx.create_from_string("loading_screen_path = \"(\\S*)%s.tscn\"" % path_for_regex)
+	var regex := RegEx.create_from_string("loading_screen_path = \"(\\S*)%s\"" % path_for_regex)
 	var replacement : String = "loading_screen_path = \"%s%s\"" % [target_path, LOADING_SCREEN_SCENE_RELATIVE_PATH]
 	file_text = regex.sub(file_text, replacement)
 	var file = FileAccess.open(file_path, FileAccess.WRITE)
