@@ -217,10 +217,9 @@ func _update_app_config_paths(target_path : String) -> void:
 func _update_scene_loader_path(target_path : String) -> void:
 	var file_path : String = get_scene_loader_path()
 	var file_text : String = FileAccess.get_file_as_string(file_path)
-	var prefix : String = "loading_screen_path = \""
-	var target_string = prefix + get_plugin_examples_path()
-	var replacing_string = prefix + target_path
-	file_text = file_text.replace(target_string, replacing_string)
+	var regex := RegEx.create_from_string("loading_screen_path = \"(\\S*)scenes\\/loading_screen\\/loading_screen\\.tscn\"")
+	var replacement : String = "loading_screen_path = \"%sscenes/loading_screen/loading_screen.tscn\"" % target_path
+	file_text = regex.sub(file_text, replacement)
 	var file = FileAccess.open(file_path, FileAccess.WRITE)
 	file.store_string(file_text)
 	file.close()
