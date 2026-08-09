@@ -38,7 +38,7 @@ To change the _Main Menu_, _Game Scene_, or _Ending Scene_:
 
 1.  Open `app_config.tscn`.
 2.  Select the `AppConfig` node.
-3.  Update `Main Menu Scene Path` to the desired path (`main_menu_with_animations.tscn` by default).  
+3.  Update `Main Menu Scene Path` to the desired path (`main_menu.tscn` by default).  
 4.  Update `Game Scene Path` to the path of the project's game scene (`game.tscn` by default).  
 5.  Update the optional `Ending Scene Path` to the desired scene (`end_credits.tscn` by default).  
 6.  Save the scene.

@@ -14,7 +14,7 @@ This page covers adding sound effects to common UI elements like buttons and sli
     1.  By scene.
 
 
-        1.  Open `main_menu_with_animations.tscn` and `pause_menu.tscn`.
+        1.  Open `main_menu.tscn` and `pause_menu.tscn`.
         2.  In the Scene Tree, select the `UISoundController` node.
         3.  In the Inspector, add audio streams to the various UI node events.
         4.  Save the scenes.  
