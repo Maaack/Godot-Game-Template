@@ -1,9 +1,10 @@
 # Godot Game Template
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/Maaack/Godot-Game-Template) ![GitHub Release Date](https://img.shields.io/github/release-date/Maaack/Godot-Game-Template)
 [![Discord members](https://img.shields.io/discord/772191827570720798.svg?label=&logo=discord&logoColor=ffffff)](https://discord.gg/AyZrJh5AMp)  
-For Godot 4.7 (4.3+ compatible)
 
 This template has a main menu, options menus, pause menu, credits, scene loader, extra tools, and an example game scene.  
+
+For Godot 4.7 (4.3+ compatible)
 
 [Example on itch.io](https://maaack.itch.io/godot-game-template)  
 
