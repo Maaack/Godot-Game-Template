@@ -15,6 +15,7 @@ const MAIN_SCENE_RELATIVE_PATH = "scenes/opening/opening.tscn"
 const OVERRIDE_RELATIVE_PATH = "installer/override.cfg"
 const APP_CONFIG_RELATIVE_PATH = "base/nodes/autoloads/app_config/app_config.tscn"
 const SCENE_LOADER_RELATIVE_PATH = "base/nodes/autoloads/scene_loader/scene_loader.tscn"
+const LOADING_SCREEN_SCENE_RELATIVE_PATH = "scenes/loading_screen/loading_screen.tscn"
 const THEMES_DIRECTORY_RELATIVE_PATH = "resources/themes"
 const WINDOW_OPEN_DELAY : float = 0.5
 const RUNNING_CHECK_DELAY : float = 0.25
@@ -217,8 +218,9 @@ func _update_app_config_paths(target_path : String) -> void:
 func _update_scene_loader_path(target_path : String) -> void:
 	var file_path : String = get_scene_loader_path()
 	var file_text : String = FileAccess.get_file_as_string(file_path)
-	var regex := RegEx.create_from_string("loading_screen_path = \"(\\S*)scenes\\/loading_screen\\/loading_screen\\.tscn\"")
-	var replacement : String = "loading_screen_path = \"%sscenes/loading_screen/loading_screen.tscn\"" % target_path
+	var path_for_regex := LOADING_SCREEN_SCENE_RELATIVE_PATH.replace("/", "\\/").replace(".", "\\.")
+	var regex := RegEx.create_from_string("loading_screen_path = \"(\\S*)%s.tscn\"" % path_for_regex)
+	var replacement : String = "loading_screen_path = \"%s%s\"" % [target_path, LOADING_SCREEN_SCENE_RELATIVE_PATH]
 	file_text = regex.sub(file_text, replacement)
 	var file = FileAccess.open(file_path, FileAccess.WRITE)
 	file.store_string(file_text)
