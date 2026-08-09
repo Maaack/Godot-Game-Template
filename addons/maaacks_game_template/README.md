@@ -1,11 +1,10 @@
 # Godot Game Template
-For Godot 4.7 (4.3+ compatible)
-
-> [!NOTE]  
-> Using the latest version of Godot is recommended.   
-> See [Main Menu Setup](/addons/maaacks_game_template/docs/MainMenuSetup.md) for use with versions < 4.6.  
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/Maaack/Godot-Game-Template) ![GitHub Release Date](https://img.shields.io/github/release-date/Maaack/Godot-Game-Template)
+[![Discord members](https://img.shields.io/discord/772191827570720798.svg?label=&logo=discord&logoColor=ffffff)](https://discord.gg/AyZrJh5AMp)  
 
 This template has a main menu, options menus, pause menu, credits, scene loader, extra tools, and an example game scene.  
+
+For Godot 4.7 (4.3+ compatible)
 
 [Example on itch.io](https://maaack.itch.io/godot-game-template)  
 
@@ -20,8 +19,6 @@ This template has a main menu, options menus, pause menu, credits, scene loader,
 ![Main Menu](/addons/maaacks_game_template/media/screenshot-6-main-menu-5.png)  
 ![Key Rebinding](/addons/maaacks_game_template/media/screenshot-6-input-list-8.png)  
 ![Audio Controls](/addons/maaacks_game_template/media/screenshot-6-audio-options-2.png)  
-![Video Controls](/addons/maaacks_game_template/media/screenshot-6-video-options-5.png)  
-![Pause Menu](/addons/maaacks_game_template/media/screenshot-6-pause-menu-3.png)  
 [More Screenshots](/addons/maaacks_game_template/docs/Screenshots.md)  
 
 ## Objective

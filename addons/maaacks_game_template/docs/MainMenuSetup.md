@@ -14,8 +14,8 @@ Alternatively, the path to the main menu can be set directly in the following sc
 
 > [!IMPORTANT]  
 > Animations from 4.6 are not fully backwards compatible.  
-> When running, `main_menu_with_animations.tscn` will show a gray screen for Godot versions < 4.6.  
-> It is recommended to use the latest version of Godot, or use and edit `main_menu.tscn`.
+> If using `main_menu_with_animations.tscn`, the scene will show a gray screen for Godot versions < 4.6.  
+> It is recommended to use the latest version of Godot, or add custom animations to `main_menu.tscn`, instead.
 
 ## Clear Inheritance
 
