@@ -14,7 +14,11 @@ const EXAMPLES_RELATIVE_PATH = "examples/"
 const MAIN_SCENE_RELATIVE_PATH = "scenes/opening/opening.tscn"
 const OVERRIDE_RELATIVE_PATH = "installer/override.cfg"
 const APP_CONFIG_RELATIVE_PATH = "base/nodes/autoloads/app_config/app_config.tscn"
+const MAIN_MENU_RELATIVE_PATH = "scenes/menus/main_menu/main_menu.tscn"
+const GAME_SCENE_RELATIVE_PATH = "scenes/game/game.tscn"
+const ENDING_SCENE_RELATIVE_PATH = "scenes/end_credits/end_credits.tscn"
 const SCENE_LOADER_RELATIVE_PATH = "base/nodes/autoloads/scene_loader/scene_loader.tscn"
+const LOADING_SCREEN_SCENE_RELATIVE_PATH = "scenes/loading_screen/loading_screen.tscn"
 const THEMES_DIRECTORY_RELATIVE_PATH = "resources/themes"
 const WINDOW_OPEN_DELAY : float = 0.5
 const RUNNING_CHECK_DELAY : float = 0.25
@@ -200,16 +204,17 @@ func _copy_override_file() -> void:
 func _update_app_config_paths(target_path : String) -> void:
 	var file_path : String = get_app_config_path()
 	var file_text : String = FileAccess.get_file_as_string(file_path)
-	var prefixes : Array[String] = [
-		"main_menu_scene_path",
-		"game_scene_path",
-		"ending_scene_path",
-		]
-	for prefix in prefixes:
-		prefix += " = \""
-		var target_string = prefix + get_plugin_examples_path()
-		var replacing_string = prefix + target_path
-		file_text = file_text.replace(target_string, replacing_string)
+	var scene_paths : Dictionary[String, String] = {
+		"main_menu_scene_path" = MAIN_MENU_RELATIVE_PATH,
+		"game_scene_path" = GAME_SCENE_RELATIVE_PATH,
+		"ending_scene_path" = ENDING_SCENE_RELATIVE_PATH
+		}
+	for key in scene_paths:
+		var relative_path = scene_paths[key]
+		var path_for_regex := relative_path.replace("/", "\\/").replace(".", "\\.")
+		var regex := RegEx.create_from_string("%s = \"(\\S*)%s\"" % [key, path_for_regex])
+		var replacement : String = "%s = \"%s%s\"" % [key, target_path, relative_path]
+		file_text = regex.sub(file_text, replacement)
 	var file = FileAccess.open(file_path, FileAccess.WRITE)
 	file.store_string(file_text)
 	file.close()
@@ -217,10 +222,10 @@ func _update_app_config_paths(target_path : String) -> void:
 func _update_scene_loader_path(target_path : String) -> void:
 	var file_path : String = get_scene_loader_path()
 	var file_text : String = FileAccess.get_file_as_string(file_path)
-	var prefix : String = "loading_screen_path = \""
-	var target_string = prefix + get_plugin_examples_path()
-	var replacing_string = prefix + target_path
-	file_text = file_text.replace(target_string, replacing_string)
+	var path_for_regex := LOADING_SCREEN_SCENE_RELATIVE_PATH.replace("/", "\\/").replace(".", "\\.")
+	var regex := RegEx.create_from_string("loading_screen_path = \"(\\S*)%s\"" % path_for_regex)
+	var replacement : String = "loading_screen_path = \"%s%s\"" % [target_path, LOADING_SCREEN_SCENE_RELATIVE_PATH]
+	file_text = regex.sub(file_text, replacement)
 	var file = FileAccess.open(file_path, FileAccess.WRITE)
 	file.store_string(file_text)
 	file.close()

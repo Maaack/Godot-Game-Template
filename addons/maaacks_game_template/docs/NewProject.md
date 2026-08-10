@@ -28,7 +28,7 @@ These instructions assume starting with the entire contents of the project folde
     1.  Go to `Project > Project Settings… > General > Application > Config`.
     2.  Update `Name` to `"Game Name"`.
     3.  Close the window.
-    4.  Open `main_menu_with_animations.tscn`.
+    4.  Open `main_menu.tscn`.
     5.  Select the `TitleLabel` node.
     6.  The `Text` should match the project's name.
         1. If `Text` is customized, set `Auto Update` to false.  
