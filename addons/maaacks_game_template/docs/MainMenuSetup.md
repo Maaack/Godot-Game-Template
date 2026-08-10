@@ -3,7 +3,7 @@
 These are instructions for editing the main menu.
 
 ## Selecting a Menu
-The main menu by default is `main_menu_with_animations.tscn`. The path to the main menu is set in the `AppConfig` autoload. Open the `app_config.tscn` scene, inspect the root note, and edit the `Main Menu Scene Path` to the desired scene.
+The main menu by default is `main_menu.tscn`. The path to the main menu is set in the `AppConfig` autoload. Open the `app_config.tscn` scene, inspect the root note, and edit the `Main Menu Scene Path` to the desired scene.
 
 Alternatively, the path to the main menu can be set directly in the following scenes:
 
@@ -14,8 +14,8 @@ Alternatively, the path to the main menu can be set directly in the following sc
 
 > [!IMPORTANT]  
 > Animations from 4.6 are not fully backwards compatible.  
-> When running, `main_menu_with_animations.tscn` will show a gray screen for Godot versions < 4.6.  
-> It is recommended to use the latest version of Godot, or use `main_menu.tscn` instead of `main_menu_with_animations.tscn`.
+> If using `main_menu_with_animations.tscn`, the scene will show a gray screen for Godot versions < 4.6.  
+> It is recommended to use the latest version of Godot, or add custom animations to `main_menu.tscn`, instead.
 
 ## Clear Inheritance
 
@@ -37,7 +37,7 @@ If adding a 3D background to the menu, a 3D world node in the scene tree should 
 
 ## Level Select
 
-A basic level select scene is available to add to the menu. In `main_menu_with_animations.tscn`, click the root `MainMenu` node in the Scene tree.  
+A basic level select scene is available to add to the menu. In `main_menu.tscn`, click the root `MainMenu` node in the Scene tree.  
 ![Select MainMenu node](/addons/maaacks_game_template/media/documentation/select-main-menu-node.png)  
 
 Then select the folder icon for `Level Select Packed Scene` in the Inspector.  
