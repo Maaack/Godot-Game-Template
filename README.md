@@ -1,5 +1,6 @@
 # Godot Game Template
-![GitHub commit activity](https://img.shields.io/github/commit-activity/m/Maaack/Godot-Game-Template) ![GitHub Release Date](https://img.shields.io/github/release-date/Maaack/Godot-Game-Template)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/Maaack/Godot-Game-Template)
+![GitHub Release Date](https://img.shields.io/github/release-date/Maaack/Godot-Game-Template)
 [![Discord members](https://img.shields.io/discord/772191827570720798.svg?label=&logo=discord&logoColor=ffffff)](https://discord.gg/AyZrJh5AMp)  
 
 This template has a main menu, options menus, pause menu, credits, scene loader, extra tools, and an example game scene.  
@@ -16,6 +17,7 @@ For Godot 4.7 (4.3+ compatible)
 [More Videos](/addons/maaacks_game_template/docs/Videos.md)
 
 ### Screenshots
+
 ![Main Menu](/addons/maaacks_game_template/media/screenshot-6-main-menu-5.png)  
 ![Key Rebinding](/addons/maaacks_game_template/media/screenshot-6-input-list-8.png)  
 ![Audio Controls](/addons/maaacks_game_template/media/screenshot-6-audio-options-2.png)  
@@ -128,7 +130,7 @@ When editing an existing project:
 [Basic Setup](/addons/maaacks_game_template/docs/BasicSetup.md) is done through the _Setup Wizard_ at `Project > Tools > Run Maaack's Game Template Setup...`.
 
 As part of setup, example scenes are copied out of `/addons/` into a desired folder (project root by default). These can be edited to fit requirements.
-   
+
 ### More Documentation
 
 [Main Menu Setup](/addons/maaacks_game_template/docs/MainMenuSetup.md)  
@@ -164,7 +166,7 @@ As part of setup, example scenes are copied out of `/addons/` into a desired fol
 ## Community
 
 Join the [Discord server](https://discord.gg/AyZrJh5AMp) and share your work with others. It's also a space for getting or giving feedback, and asking for help. 
- 
+
 
 ## Links
 [Attribution](/addons/maaacks_game_template/ATTRIBUTION.md)  
