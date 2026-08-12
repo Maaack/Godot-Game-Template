@@ -1,7 +1,6 @@
 @tool
 extends AcceptDialog
 
-@export_file("*.tscn") var check_version_scene_path : String
 @export_dir var input_prompts_directory_path : String
 ## Optional link to webpage for reporting issues. Must start with "https://"
 @export var issues_url : String
@@ -35,29 +34,23 @@ func _refresh_plugin_details() -> void:
 			var plugin_name : String = config.get_value("plugin", "name", "Plugin")
 			plugin_label.text = "%s v%s" % [plugin_name, current_plugin_version]
 
-func _show_plugin_versions_match() -> void:
+func _show_plugin_versions_match(_tag_name : String) -> void:
 	update_label.text = "Using Latest Version"
 	update_check_box.button_pressed = true
 	update_button.disabled = true
 
 func _enable_update_plugin_tool_option(tag_name : String) -> void:
-	update_label.text = "Update to Latest Version v%s" % tag_name
+	update_label.text = "Update to Latest Version %s" % tag_name
 	update_button.disabled = false
 
 func _open_check_plugin_version() -> void:
-	if check_version_scene_path.is_empty():
-		push_warning("Variable \"check_version_scene_path\" is not set")
-		return
-	if ProjectSettings.get_setting(MaaacksGameTemplatePlugin.get_settings_path() + "disable_update_check", false):
-		update_label.text = "Check for Latest Version"
-		update_button.disabled = false
-		return
-	var check_version_scene : PackedScene = load(check_version_scene_path)
-	var check_version_instance : Node = check_version_scene.instantiate()
-	check_version_instance.auto_start = true
+	var check_version_instance := PluginUpdater.instance.get_check_plugin_version(MaaacksGameTemplatePlugin.instance.get_plugin_path(), MaaacksGameTemplatePlugin.PLUGIN_REPO_URL)
+	add_child(check_version_instance)
 	check_version_instance.new_version_detected.connect(_enable_update_plugin_tool_option)
 	check_version_instance.versions_matched.connect(_show_plugin_versions_match)
-	add_child(check_version_instance)
+	check_version_instance.compare_versions()
+	await check_version_instance.done
+	check_version_instance.queue_free()
 
 func _refresh_copy_and_delete_examples() -> void:
 	var examples_path = MaaacksGameTemplatePlugin.instance.get_plugin_examples_path()
@@ -115,7 +108,7 @@ func _on_update_button_pressed():
 		_open_check_plugin_version()
 		return
 	else:
-		tree_exited.connect(func(): MaaacksGameTemplatePlugin.instance.open_update_plugin())
+		tree_exited.connect(func(): PluginUpdater.instance.open_update_plugin(MaaacksGameTemplatePlugin.instance.get_plugin_path(), MaaacksGameTemplatePlugin.PLUGIN_REPO_URL))
 		queue_free()
 
 func _on_copy_button_pressed():
