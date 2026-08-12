@@ -3,6 +3,8 @@ extends AcceptDialog
 
 @export_file("*.tscn") var check_version_scene_path : String
 @export_dir var input_prompts_directory_path : String
+## Optional link to webpage for reporting issues. Must start with "https://"
+@export var issues_url : String
 
 @onready var plugin_label : Label = %PluginLabel
 @onready var update_label : Label  = %UpdateLabel
@@ -20,6 +22,7 @@ extends AcceptDialog
 @onready var set_default_theme_button : Button = %SetDefaultThemeButton
 @onready var add_input_icons_check_box : CheckBox = %AddInputIconsCheckBox
 @onready var add_input_icons_button : Button = %AddInputIconsButton
+@onready var issues_link_label = %IssuesLink
 
 func _refresh_plugin_details() -> void:
 	for enabled_plugin in ProjectSettings.get_setting("editor_plugins/enabled"):
@@ -90,6 +93,9 @@ func _refresh_input_prompts() -> void:
 		add_input_icons_check_box.button_pressed = true
 	add_input_icons_button.disabled = false
 
+func _refresh_report_an_issue_link() -> void:
+	issues_link_label.visible = not issues_url.is_empty()
+
 func _refresh_options():
 	_refresh_plugin_details()
 	_open_check_plugin_version()
@@ -98,6 +104,7 @@ func _refresh_options():
 	_refresh_main_scene()
 	_refresh_default_theme()
 	_refresh_input_prompts()
+	_refresh_report_an_issue_link()
 
 func _ready():
 	_refresh_options()
@@ -137,3 +144,7 @@ func _on_set_default_theme_button_pressed():
 func _on_add_input_icons_button_pressed():
 	tree_exited.connect(func(): MaaacksGameTemplatePlugin.instance.open_input_icons_dialog())
 	queue_free()
+
+func _on_issues_link_meta_clicked(meta):
+	if (not issues_url.is_empty()) and issues_url.begins_with("https://"):
+		var _err = OS.shell_open(issues_url)
