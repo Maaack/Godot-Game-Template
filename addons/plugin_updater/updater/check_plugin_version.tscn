@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://djimb0bei5nk6"]
+
+[ext_resource type="Script" uid="uid://df7kv2ejfyniy" path="res://addons/plugin_updater/updater/check_plugin_version.gd" id="1_aqelj"]
+[ext_resource type="PackedScene" uid="uid://cejsq41gjq8vk" path="res://addons/plugin_updater/utilities/api_client.tscn" id="2_5myc0"]
+
+[node name="CheckPluginVersion" type="Node" unique_id=2013017819]
+script = ExtResource("1_aqelj")
+plugin_directory = "res://addons/plugin_updater/"
+plugin_repo_url = "https://github.com/Maaack/Godot-Plugin-Updater"
+
+[node name="APIClient" parent="." unique_id=920131410 instance=ExtResource("2_5myc0")]
+api_url = "https://api.github.com/repos/Maaack/Godot-Plugin-Updater/releases"
+request_method = 0
+
+[connection signal="request_failed" from="APIClient" to="." method="_on_api_client_request_failed"]
+[connection signal="response_received" from="APIClient" to="." method="_on_api_client_response_received"]
