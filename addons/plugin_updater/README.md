@@ -1,16 +1,17 @@
+![Logo](/addons/plugin_updater/media/icon_256x256.png)
 # Godot Plugin Updater
-Generic update wizard for plugins hosted on open source repositories. The plugin checks current plugin versions against lastest releases in the respective repos, and offers to update any that are out-of-date.
 
-Supports plugins for Godot 4.4 through 4.7.1!
+A plugin for updating plugins. Works with Godot plugins hosted on public repositories and using tagged releases.
+
+Currently, only GitHub is supported, but other hosts are planned. Supports plugins for Godot 4.4 through 4.7.1!
 
 ## Objective
 
-Provide a generic solution for plugins hosted on open-source repositories to provide automatic updates through the editor.
+Provide a generic solution for plugins hosted on open-source repositories to offer automatic updates through the editor.
 
 Any updates available will appear under the **Project > Tools > Update Plugins...** menu item.
 
-Currently, only GitHub is supported, but other platforms are planned.
-
+![Updates menu location](/addons/plugin_updater/media/updates-location.png)
 
 ## Installation
 
@@ -21,7 +22,7 @@ Currently, only GitHub is supported, but other platforms are planned.
 2.  Extract the contents of the archive.
 3.  Move the `addons/plugin_updater` folder into your project's `addons/` folder.  
 4.  Open/Reload the project.  
-5.  Enable the plugin from the Project Settings > Plugins tab.  
+5.  Enable the plugin from the **Project > Project Settings > Plugins** tab.  
 
 
 ## Usage
@@ -36,32 +37,34 @@ Open the script of the plugin that you want to have automatic updates. This can 
 If you are going to include the Plugin Updater with your plugin, then just add the following code:
 ```gdscript
 func get_plugin_path() -> String:
-	return get_script().resource_path.get_base_dir()
+	return get_script().resource_path.get_base_dir() + "/"
 
-func _enter_tree() -> void:
+func _add_to_auto_update_list() -> void:
     PluginUpdater.add_plugin(get_plugin_path(), "https://github.com/{USERNAME}/{REPO_NAME}")
 
-func _exit_tree() -> void:
+func _remove_from_auto_update_list() -> void:
 	PluginUpdater.remove_plugin(get_plugin_path())
+
+func _enter_tree() -> void:
+	_add_to_auto_update_list()
+
+func _exit_tree() -> void:
+	_remove_from_auto_update_list()
 ```
 
 #### Supporting Plugin Updater
-If you'd rather avoid including the Plugin Updater or making it a dependency, but would still like to optionally support it, you can add the following code:
+If you'd rather avoid including the Plugin Updater or making it a dependency, but would still like to optionally support it, you can substitute the following code:
 
 ```gdscript
-func get_plugin_path() -> String:
-	return get_script().resource_path.get_base_dir()
-
-func _enter_tree() -> void:
+func _add_to_auto_update_list() -> void:
 	var plugin_repos:Dictionary = ProjectSettings.get_setting("plugin_updater/plugins", {})
-	plugin_repos[get_plugin_path()] = "https://github.com/{USERNAME}/{REPO_NAME}"
+	plugin_repos[get_plugin_path()] = PLUGIN_REPO_URL
 	ProjectSettings.set_setting("plugin_updater/plugins", plugin_repos)
 
-func _exit_tree() -> void:
-    var plugin_repos:Dictionary = ProjectSettings.get_setting("plugin_updater/plugins", {})
-    plugin_repos.erase(get_plugin_path())
+func _remove_from_auto_update_list() -> void:
+	var plugin_repos:Dictionary = ProjectSettings.get_setting("plugin_updater/plugins", {})
+	plugin_repos.erase(get_plugin_path())
 	ProjectSettings.set_setting("plugin_updater/plugins", plugin_repos)
-
 ```
 
 ### Testing

@@ -31,7 +31,7 @@ static func remove_plugin(plugin_directory:String):
 	ProjectSettings.set_setting(PROJECT_SETTINGS_PATH, plugin_repos)
 
 func get_plugin_path() -> String:
-	return get_script().resource_path.get_base_dir()
+	return get_script().resource_path.get_base_dir() + "/"
 
 func _on_new_version_detected(new_plugin_version:String, check_version_instance:CheckPluginVersion) -> void:
 	_add_update_plugin_tool_option(check_version_instance.get_plugin_name(), new_plugin_version, check_version_instance.plugin_directory, check_version_instance.plugin_repo_url)
