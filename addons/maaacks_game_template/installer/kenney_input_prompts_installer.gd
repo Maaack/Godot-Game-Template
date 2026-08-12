@@ -7,7 +7,7 @@ signal canceled
 ## Sent when the installation process has completed.
 signal completed
 
-const DownloadAndExtract = MaaacksGameTemplatePlugin.DownloadAndExtract
+const DownloadAndExtract = PluginUpdater.DownloadAndExtract
 const CONFIGURE_SCENE_RELATIVE_PATH = "scenes/menus/options_menu/input/input_icon_mapper.tscn"
 const REIMPORT_CHECK_DELAY : float = 1.0
 const OPEN_SCENE_DELAY : float = 0.5

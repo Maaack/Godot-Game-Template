@@ -6,11 +6,6 @@ const PLUGIN_PATH = "res://addons/maaacks_game_template/"
 const PLUGIN_NAME = "Maaack's Game Template"
 const PROJECT_SETTINGS_PATH = "maaacks_game_template/"
 const PLUGIN_REPO_URL = "https://github.com/Maaack/Godot-Game-Template"
-
-const APIClient = preload(PLUGIN_PATH + "utilities/api_client.gd")
-const DownloadAndExtract = preload(PLUGIN_PATH + "utilities/download_and_extract.gd")
-const CopyAndEdit = preload(PLUGIN_PATH + "installer/copy_and_edit_files.gd")
-
 const EXAMPLES_RELATIVE_PATH = "examples/"
 const MAIN_SCENE_RELATIVE_PATH = "scenes/opening/opening.tscn"
 const OVERRIDE_RELATIVE_PATH = "installer/override.cfg"
@@ -26,6 +21,7 @@ const RUNNING_CHECK_DELAY : float = 0.25
 const OPEN_EDITOR_DELAY : float = 0.1
 const MAX_PHYSICS_FRAMES_FROM_START : int = 60
 const AVAILABLE_TRANSLATIONS : Array = ["en", "fr"]
+const CopyAndEdit = preload(PLUGIN_PATH + "installer/copy_and_edit_files.gd")
 
 static var instance : MaaacksGameTemplatePlugin
 
