@@ -5,6 +5,7 @@ extends EditorPlugin
 const PLUGIN_PATH = "res://addons/maaacks_game_template/"
 const PLUGIN_NAME = "Maaack's Game Template"
 const PROJECT_SETTINGS_PATH = "maaacks_game_template/"
+const PLUGIN_REPO_URL = "https://github.com/Maaack/Godot-Game-Template"
 
 const APIClient = preload(PLUGIN_PATH + "utilities/api_client.gd")
 const DownloadAndExtract = preload(PLUGIN_PATH + "utilities/download_and_extract.gd")
@@ -29,7 +30,6 @@ const AVAILABLE_TRANSLATIONS : Array = ["en", "fr"]
 static var instance : MaaacksGameTemplatePlugin
 
 var selected_theme : String
-var update_plugin_tool_string : String
 
 static func get_plugin_name() -> String:
 	return PLUGIN_NAME
@@ -308,39 +308,10 @@ func _open_continue_setup_dialog() -> void:
 	confirmation_instance.visibility_changed.connect(_on_visibility_changed_to_hidden.bind(confirmation_instance))
 	add_child(confirmation_instance)
 
-func _open_check_plugin_version() -> void:
-	if ProjectSettings.has_setting(PROJECT_SETTINGS_PATH + "disable_update_check"):
-		if ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + "disable_update_check"):
-			return
-	else:
-		ProjectSettings.set_setting(PROJECT_SETTINGS_PATH + "disable_update_check", false)
-		ProjectSettings.save()
-	var check_version_scene : PackedScene = load(get_plugin_path() + "installer/check_plugin_version.tscn")
-	var check_version_instance : Node = check_version_scene.instantiate()
-	check_version_instance.auto_start = true
-	check_version_instance.new_version_detected.connect(_add_update_plugin_tool_option)
-	add_child(check_version_instance)
-
-func open_update_plugin() -> void:
-	var update_plugin_scene : PackedScene = load(get_plugin_path() + "installer/update_plugin.tscn")
-	var update_plugin_instance : Node = update_plugin_scene.instantiate()
-	update_plugin_instance.auto_start = true
-	update_plugin_instance.update_completed.connect(_remove_update_plugin_tool_option)
-	add_child(update_plugin_instance)
-
 func open_setup_wizard() -> void:
 	var setup_wizard_scene : PackedScene = load(get_plugin_path() + "installer/setup_wizard.tscn")
 	var setup_wizard_instance : Node = setup_wizard_scene.instantiate()
 	add_child(setup_wizard_instance)
-
-func _add_update_plugin_tool_option(new_version : String) -> void:
-	update_plugin_tool_string = "Update %s to v%s..." % [get_plugin_name(), new_version]
-	add_tool_menu_item(update_plugin_tool_string, open_update_plugin)
-
-func _remove_update_plugin_tool_option() -> void:
-	if update_plugin_tool_string.is_empty(): return
-	remove_tool_menu_item(update_plugin_tool_string)
-	update_plugin_tool_string = ""
 
 func _show_plugin_dialogues() -> void:
 	if not ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + "disable_install_wizard", false):
@@ -387,11 +358,15 @@ func _install_audio_busses() -> void:
 
 func _add_tool_options() -> void:
 	add_tool_menu_item("Run " + get_plugin_name() + " Setup...", open_setup_wizard)
-	_open_check_plugin_version()
 
 func _remove_tool_options() -> void:
 	remove_tool_menu_item("Run " + get_plugin_name() + " Setup...")
-	_remove_update_plugin_tool_option()
+
+func _add_to_auto_update_list() -> void:
+	PluginUpdater.add_plugin(get_plugin_path(), PLUGIN_REPO_URL)
+
+func _remove_from_auto_update_list() -> void:
+	PluginUpdater.remove_plugin(get_plugin_path())
 
 func _enable_plugin():
 	add_autoload_singleton("AppConfig", get_app_config_path())
@@ -410,9 +385,11 @@ func _enter_tree() -> void:
 	_add_tool_options()
 	_add_translations()
 	_show_plugin_dialogues()
+	_add_to_auto_update_list()
 	_resave_if_recently_opened()
 	instance = self
 
 func _exit_tree() -> void:
 	_remove_tool_options()
+	_remove_from_auto_update_list()
 	instance = null
