@@ -61,7 +61,7 @@ func _open_check_plugin_version() -> void:
 
 func _refresh_copy_and_delete_examples() -> void:
 	var examples_path = MaaacksGameTemplatePlugin.instance.get_plugin_examples_path()
-	if MaaacksGameTemplatePlugin.get_copy_path() != examples_path:
+	if MaaacksGameTemplatePlugin.instance.get_copy_path() != examples_path:
 		copy_check_box.button_pressed = true
 	var dir := DirAccess.open("res://")
 	if dir.dir_exists(examples_path):
@@ -127,18 +127,18 @@ func _on_delete_button_pressed():
 	queue_free()
 
 func _on_update_paths_button_pressed():
-	MaaacksGameTemplatePlugin.instance.update_autoload_paths(MaaacksGameTemplatePlugin.get_copy_path())
+	MaaacksGameTemplatePlugin.instance.update_autoload_paths(MaaacksGameTemplatePlugin.instance.get_copy_path())
 	_refresh_update_autoload_paths()
 	update_paths_button.disabled = true
 	await get_tree().create_timer(1.0).timeout
 	update_paths_button.disabled = false
 
 func _on_set_main_scene_button_pressed():
-	tree_exited.connect(func(): MaaacksGameTemplatePlugin.instance.open_main_scene_confirmation_dialog(MaaacksGameTemplatePlugin.get_copy_path()))
+	tree_exited.connect(func(): MaaacksGameTemplatePlugin.instance.open_main_scene_confirmation_dialog(MaaacksGameTemplatePlugin.instance.get_copy_path()))
 	queue_free()
 
 func _on_set_default_theme_button_pressed():
-	tree_exited.connect(func(): MaaacksGameTemplatePlugin.instance.open_theme_selection_dialog(MaaacksGameTemplatePlugin.get_copy_path()))
+	tree_exited.connect(func(): MaaacksGameTemplatePlugin.instance.open_theme_selection_dialog(MaaacksGameTemplatePlugin.instance.get_copy_path()))
 	queue_free()
 
 func _on_add_input_icons_button_pressed():

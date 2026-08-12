@@ -2,7 +2,6 @@
 class_name MaaacksGameTemplatePlugin
 extends EditorPlugin
 
-const PLUGIN_PATH = "res://addons/maaacks_game_template/"
 const PLUGIN_NAME = "Maaack's Game Template"
 const PROJECT_SETTINGS_PATH = "maaacks_game_template/"
 const PLUGIN_REPO_URL = "https://github.com/Maaack/Godot-Game-Template"
@@ -21,7 +20,7 @@ const RUNNING_CHECK_DELAY : float = 0.25
 const OPEN_EDITOR_DELAY : float = 0.1
 const MAX_PHYSICS_FRAMES_FROM_START : int = 60
 const AVAILABLE_TRANSLATIONS : Array = ["en", "fr"]
-const CopyAndEdit = preload(PLUGIN_PATH + "installer/copy_and_edit_files.gd")
+const CopyAndEdit = preload("installer/copy_and_edit_files.gd")
 
 static var instance : MaaacksGameTemplatePlugin
 
@@ -33,19 +32,19 @@ static func get_plugin_name() -> String:
 static func get_settings_path() -> String:
 	return PROJECT_SETTINGS_PATH
 
-static func get_plugin_path() -> String:
-	return PLUGIN_PATH
+func get_plugin_path() -> String:
+	return get_script().resource_path.get_base_dir() + "/"
 
-static func get_plugin_examples_path() -> String:
+func get_plugin_examples_path() -> String:
 	return get_plugin_path() + EXAMPLES_RELATIVE_PATH
 
-static func get_app_config_path() -> String:
+func get_app_config_path() -> String:
 	return get_plugin_path() + APP_CONFIG_RELATIVE_PATH
 
-static func get_scene_loader_path() -> String:
+func get_scene_loader_path() -> String:
 	return get_plugin_path() + SCENE_LOADER_RELATIVE_PATH
 
-static func get_copy_path() -> String:
+func get_copy_path() -> String:
 	var copy_path = ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + "copy_path", get_plugin_examples_path())
 	if not copy_path.ends_with("/"):
 		copy_path += "/"
