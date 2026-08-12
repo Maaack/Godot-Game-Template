@@ -23,10 +23,9 @@ Users that want a minimal set of features can try [Maaack's Minimal Game Templat
 
 ## Installation
 
-### Godot Asset Store & Library
-This package is available as both a template and a plugin, meaning it can be used to start a new project, or added to an existing project. 
+*Maaack's Game Template* is available in both the *Godot Asset Library* and the *Godot Asset Store*. It is available as both a template and a plugin, meaning it can be used to start a new project, or added to an existing project.
 
-#### New Project
+### New Project
 While in the *Godot Project Manager*:
 
 1.  Go to the **Asset Store** tab.
@@ -37,7 +36,7 @@ While in the *Godot Project Manager*:
 6.  Click to **Install & Edit**.
 7.  Continue with the [Basic Setup](/addons/maaacks_game_template/docs/BasicSetup.md).
 
-#### Existing Project
+### Existing Project
 While editing a project in *Godot*:
 
 1.  Go to the **Asset Store** tab.
@@ -53,22 +52,9 @@ While editing a project in *Godot*:
 9.  Continue with the [Basic Setup](/addons/maaacks_game_template/docs/BasicSetup.md).
 
 
-### GitHub
-
-
-1.  Download the latest release version from [GitHub](https://github.com/Maaack/Godot-Game-Template/releases/latest).  
-2.  Extract the contents of the archive.
-3.  Move the `addons/maaacks_game_template` folder into your project's `addons/` folder.  
-4.  Open/Reload the project.  
-8.  Enable the plugin from the **Project > Project Settings > Plugins** tab.  
-    1.  If it's enabled for the first time, the setup wizard will start.  
-    2.  Close the window behind it and complete the setup wizard.  
-6.  Continue with the [Basic Setup](/addons/maaacks_game_template/docs/BasicSetup.md).
-
-
 ## Usage
 
-[Basic Setup](/addons/maaacks_game_template/docs/BasicSetup.md) is done through the _Setup Wizard_ at `Project > Tools > Run Maaack's Game Template Setup...`.
+[Basic Setup](/addons/maaacks_game_template/docs/BasicSetup.md) is done through the _Setup Wizard_ at **Project > Tools > Run Maaack's Game Template Setup...**.  
 
 As part of setup, example scenes are copied out of `/addons/` into a desired folder (project root by default). These can be edited to fit requirements.
 
