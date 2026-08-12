@@ -3,12 +3,12 @@
 This plugin supports automatic updating with the *[Plugin Updater](https://github.com/Maaack/Godot-Plugin-Updater)*. *Plugin Updater* is installed in `/addons/` alongside this plugin, and must also be enabled in the **Project > Project Settings > Plugins** tab to function.
 
 > [!NOTE]  
-> The input prompts installer depends on the Plugin Updater being installed in the same project. The Plugin Updater does *not* need to be enabled for the input prompts installer to function.
+> The input prompts installer depends on *Plugin Updater* being installed in the same project. *Plugin Updater* does *not* need to be enabled for the input prompts installer to function.
 
 ## Starting an Update
 
 > [!IMPORTANT]  
-> Save the state of the project, and close all open scenes and scripts.
+> Save and backup the state of the project. Close all scenes and scripts in the editor before updating them.
 
 If an update is available, then the option to update will be listed at **Project > Tools > Update Plugins... > Maaack's Game Template to v...**.
 
