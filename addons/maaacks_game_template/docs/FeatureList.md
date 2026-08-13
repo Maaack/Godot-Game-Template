@@ -1,4 +1,5 @@
 # Features
+
 This page provides a list of the features available with *Maaack's Game Template*.
 
 ## Base

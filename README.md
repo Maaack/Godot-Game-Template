@@ -53,13 +53,13 @@ While editing a project in *Godot*:
 
 ## Usage
 
-[Basic Setup](/addons/maaacks_game_template/docs/BasicSetup.md) is done through the _Setup Wizard_ at **Project > Tools > Run Maaack's Game Template Setup...**.  
+[Basic Setup](/addons/maaacks_game_template/docs/BasicSetup.md) is done through the setup wizard at **Project > Tools > Run Maaack's Game Template Setup...**.  
 
 As part of setup, example scenes are copied out of `/addons/` into a desired folder (project root by default). These can be edited to fit requirements.
 
 ### More Documentation
 
-[Feature List](/addons/maaacks_game_template/docs/FeatureList.md)
+[Feature List](/addons/maaacks_game_template/docs/FeatureList.md)  
 [Main Menu Setup](/addons/maaacks_game_template/docs/MainMenuSetup.md)  
 [Options Menu Setup](/addons/maaacks_game_template/docs/OptionsMenuSetup.md)  
 [Game Scene Setup](/addons/maaacks_game_template/docs/GameSceneSetup.md)  
