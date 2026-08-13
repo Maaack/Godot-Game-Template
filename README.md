@@ -19,7 +19,7 @@ The template can be the start of a new project, or plug into an existing one. It
 
 ### Minimal
 
-Users that want a minimal set of features can try [Maaack's Minimal Game Template](https://github.com/Maaack/Godot-Minimal-Game-Template) or other options from the [plugin suite](/addons/maaacks_game_template/docs/PluginSuite.md).  
+Users that want a minimal set of features can try *[Maaack's Minimal Game Template](https://github.com/Maaack/Godot-Minimal-Game-Template)* or other options from the [plugin suite](/addons/maaacks_game_template/docs/PluginSuite.md).  
 
 ## Installation
 
@@ -51,16 +51,15 @@ While editing a project in *Godot*:
     2.  Close the window behind it and complete the setup wizard.  
 9.  Continue with the [Basic Setup](/addons/maaacks_game_template/docs/BasicSetup.md).
 
-
 ## Usage
 
 [Basic Setup](/addons/maaacks_game_template/docs/BasicSetup.md) is done through the _Setup Wizard_ at **Project > Tools > Run Maaack's Game Template Setup...**.  
 
 As part of setup, example scenes are copied out of `/addons/` into a desired folder (project root by default). These can be edited to fit requirements.
 
-
 ### More Documentation
 
+[Feature List](/addons/maaacks_game_template/docs/FeatureList.md)
 [Main Menu Setup](/addons/maaacks_game_template/docs/MainMenuSetup.md)  
 [Options Menu Setup](/addons/maaacks_game_template/docs/OptionsMenuSetup.md)  
 [Game Scene Setup](/addons/maaacks_game_template/docs/GameSceneSetup.md)  
@@ -106,7 +105,6 @@ As part of setup, example scenes are copied out of `/addons/` into a desired fol
 ## Community
 
 Join the [Discord server](https://discord.gg/AyZrJh5AMp) and share your work with others. It's also a space for getting or giving feedback, and asking for help. 
-
 
 ## Links
 [Attribution](/addons/maaacks_game_template/ATTRIBUTION.md)  
