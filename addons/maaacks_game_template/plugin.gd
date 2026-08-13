@@ -13,7 +13,6 @@ const CopyAndEdit = preload(PLUGIN_PATH + "installer/copy_and_edit_files.gd")
 const EXAMPLES_RELATIVE_PATH = "examples/"
 const MAIN_SCENE_RELATIVE_PATH = "scenes/opening/opening.tscn"
 const OVERRIDE_RELATIVE_PATH = "installer/override.cfg"
-const APP_CONFIG_RELATIVE_PATH = "base/nodes/autoloads/app_config/app_config.tscn"
 const MAIN_MENU_RELATIVE_PATH = "scenes/menus/main_menu/main_menu.tscn"
 const GAME_SCENE_RELATIVE_PATH = "scenes/game/game.tscn"
 const ENDING_SCENE_RELATIVE_PATH = "scenes/end_credits/end_credits.tscn"
@@ -42,9 +41,6 @@ static func get_plugin_path() -> String:
 
 static func get_plugin_examples_path() -> String:
 	return get_plugin_path() + EXAMPLES_RELATIVE_PATH
-
-static func get_app_config_path() -> String:
-	return get_plugin_path() + APP_CONFIG_RELATIVE_PATH
 
 static func get_scene_loader_path() -> String:
 	return get_plugin_path() + SCENE_LOADER_RELATIVE_PATH
@@ -226,24 +222,6 @@ func update_project_paths(target_path : String, overwrite : bool = true) -> void
 func _set_default_project_paths() -> void:
 	update_project_paths(get_plugin_examples_path(), false)
 
-func _update_app_config_paths(target_path : String) -> void:
-	var file_path : String = get_app_config_path()
-	var file_text : String = FileAccess.get_file_as_string(file_path)
-	var scene_paths : Dictionary[String, String] = {
-		"main_menu_scene_path" = MAIN_MENU_RELATIVE_PATH,
-		"game_scene_path" = GAME_SCENE_RELATIVE_PATH,
-		"ending_scene_path" = ENDING_SCENE_RELATIVE_PATH
-		}
-	for key in scene_paths:
-		var relative_path = scene_paths[key]
-		var path_for_regex := relative_path.replace("/", "\\/").replace(".", "\\.")
-		var regex := RegEx.create_from_string("%s = \"(\\S*)%s\"" % [key, path_for_regex])
-		var replacement : String = "%s = \"%s%s\"" % [key, target_path, relative_path]
-		file_text = regex.sub(file_text, replacement)
-	var file = FileAccess.open(file_path, FileAccess.WRITE)
-	file.store_string(file_text)
-	file.close()
-
 func _update_scene_loader_path(target_path : String) -> void:
 	var file_path : String = get_scene_loader_path()
 	var file_text : String = FileAccess.get_file_as_string(file_path)
@@ -264,11 +242,6 @@ func _add_translations() -> void:
 			translations.append(translation_path)
 	ProjectSettings.set_setting("internationalization/locale/translations", translations)
 
-func _is_app_config_path_updated(target_path) -> bool:
-	var file_text : String = FileAccess.get_file_as_string(get_app_config_path())
-	var target_string = "main_menu_scene_path = \"" + get_plugin_examples_path()
-	return !file_text.contains(target_string)
-
 func _is_scene_loader_path_updated(target_path) -> bool:
 	var file_text : String = FileAccess.get_file_as_string(get_scene_loader_path())
 	var target_string = "loading_screen_path = \"" + get_plugin_examples_path()
@@ -277,10 +250,9 @@ func _is_scene_loader_path_updated(target_path) -> bool:
 func are_autoload_paths_updated() -> bool:
 	var copy_path := get_copy_path()
 	if copy_path == get_plugin_examples_path(): return false
-	return _is_app_config_path_updated(copy_path) and _is_scene_loader_path_updated(copy_path)
+	return _is_scene_loader_path_updated(copy_path)
 
 func update_autoload_paths(target_path : String) -> void:
-	_update_app_config_paths(target_path)
 	_update_scene_loader_path(target_path)
 
 func _on_completed_copy_to_directory(target_path : String) -> void:
