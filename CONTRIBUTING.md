@@ -12,6 +12,7 @@ Steps to contributing:
 2. Create a branch.
 3. Fix a bug or add a feature.
     1. Please discuss before working on a feature. If it's not planned, it is unlikely to get merged in.
+    2. Please submit only human-written code & documentation. No output of AI/LLMs.
 4. Review, clean up, and reduce changes to a minimum.
 5. Submit a pull request to `Maaack/Godot-Game-Template:main`.
 6. Respond to comments and requests from review.
