@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://sikc02ddepyt"]
 
 [ext_resource type="Script" uid="uid://dtco0s8byckx6" path="res://addons/maaacks_game_template/base/nodes/opening/opening.gd" id="1_fcjph"]
+[ext_resource type="PackedScene" uid="uid://cjke6crjg14a0" path="res://addons/maaacks_game_template/base/nodes/config/start_up/start_up.tscn" id="2_5i5om"]
 
 [node name="Opening" type="Control" unique_id=331014594]
 layout_mode = 3
@@ -10,6 +11,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fcjph")
+
+[node name="StartUp" parent="." unique_id=1177605314 instance=ExtResource("2_5i5om")]
 
 [node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="." unique_id=1317385298]
 process_mode = 3
