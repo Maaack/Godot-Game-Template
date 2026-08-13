@@ -55,6 +55,15 @@ static func get_copy_path() -> String:
 		copy_path += "/"
 	return copy_path
 
+static func get_main_menu_path(default_path : String = "") -> String:
+	return ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + "main_menu_scene_path", default_path)
+
+static func get_game_path(default_path : String = "") -> String:
+	return ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + "game_scene_path", default_path)
+
+static func get_ending_scene_path(default_path : String = "") -> String:
+	return ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + "ending_scene_path", default_path)
+
 func _on_theme_selected(theme_resource_path: String) -> void:
 	selected_theme = theme_resource_path
 
@@ -201,6 +210,22 @@ func _copy_override_file() -> void:
 	var override_path : String = get_plugin_path() + OVERRIDE_RELATIVE_PATH
 	_raw_copy_file_path(override_path, "res://"+override_path.get_file())
 
+func update_project_paths(target_path : String, overwrite : bool = true) -> void:
+	var scene_paths : Dictionary[String, String] = {
+		"main_menu_scene_path" = MAIN_MENU_RELATIVE_PATH,
+		"game_scene_path" = GAME_SCENE_RELATIVE_PATH,
+		"ending_scene_path" = ENDING_SCENE_RELATIVE_PATH,
+		}
+	for key in scene_paths:
+		if (not overwrite) and ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + key) != null:
+			continue
+		var relative_path = scene_paths[key]
+		var full_path = target_path + relative_path
+		ProjectSettings.set_setting(PROJECT_SETTINGS_PATH + key, full_path)
+
+func _set_default_project_paths() -> void:
+	update_project_paths(get_plugin_examples_path(), false)
+
 func _update_app_config_paths(target_path : String) -> void:
 	var file_path : String = get_app_config_path()
 	var file_text : String = FileAccess.get_file_as_string(file_path)
@@ -261,6 +286,7 @@ func update_autoload_paths(target_path : String) -> void:
 func _on_completed_copy_to_directory(target_path : String) -> void:
 	ProjectSettings.set_setting(PROJECT_SETTINGS_PATH + "copy_path", target_path)
 	ProjectSettings.save()
+	update_project_paths(target_path)
 	update_autoload_paths(target_path)
 	_copy_override_file()
 	_open_play_opening_confirmation_dialog(target_path)
@@ -394,6 +420,7 @@ func _remove_tool_options() -> void:
 	_remove_update_plugin_tool_option()
 
 func _enable_plugin():
+	_set_default_project_paths()
 	add_autoload_singleton("AppConfig", get_app_config_path())
 	add_autoload_singleton("SceneLoader", get_scene_loader_path())
 	add_autoload_singleton("ProjectMusicController", get_plugin_path() + "base/nodes/autoloads/music_controller/project_music_controller.tscn")
