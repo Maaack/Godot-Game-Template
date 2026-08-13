@@ -4,35 +4,30 @@ extends Node
 
 signal update_completed
 
-const DownloadAndExtract = MaaacksGameTemplatePlugin.DownloadAndExtract
-const APIClient = MaaacksGameTemplatePlugin.APIClient
-const ReleaseNotesLabel = preload("./release_notes_label.gd")
+const DownloadAndExtract = PluginUpdater.DownloadAndExtract
+const APIClient = PluginUpdater.APIClient
+const ReleaseNotesLabel = preload("release_notes_label.gd")
 
-const API_RELEASES_URL := "https://api.github.com/repos/%s/%s/releases"
-const UPDATE_CONFIRMATION_MESSAGE := "This will update the contents of the plugin folder (addons/%s/).\nFiles outside of the plugin folder will not be affected.\n\nUpdate %s to v%s?"
-const PLUGIN_EXTRACT_PATH := "res://addons/%s/"
-const PLUGIN_TEMP_ZIP_PATH := "res://%s_%s_update.zip"
+const GITHUB_REGEX := "https:\\/\\/github\\.com\\/([\\w-]+)\\/([\\w-]+)\\/*"
+const GITHUB_RELEASES_URL := "https://api.github.com/repos/%s/%s/releases"
+const RELEASES_URL_MAP := {
+	GITHUB_REGEX : GITHUB_RELEASES_URL
+}
+const UPDATE_CONFIRMATION_MESSAGE := "This will update the contents of %s.\nFiles outside of %s will not be affected.\n\nUpdate %s to %s?"
+const PLUGIN_TEMP_ZIP_PATH := "res://addons/%s_%s_update.zip"
 
 ## The directory of the plugin to update. Typically in res://addons/.
 @export var plugin_directory : String
 ## The URL of the GitHub repo to pull new releases.
-@export var plugin_github_url : String :
+@export var plugin_repo_url : String :
 	set(value):
-		plugin_github_url = value
+		plugin_repo_url = value
 		_update_urls()
 @export_group("Advanced")
-## If true, automatically download the new version when ready.
-@export var auto_start : bool = false
-## Text to remove from the tag before showing to the user.
-@export var replace_tag_name : String = "v"
 ## The default lowest version to display.
 @export var default_version : String = "0.0.0"
-## If true, test getting the new version.
-## Replace with @export_tool_button for Godot 4.4+
-@export var _test_action : bool = false :
-	set(value):
-		if value and Engine.is_editor_hint():
-			get_newest_version()
+## Test getting the new version.
+@export_tool_button("Update Plugin", "ProjectUpgrade") var _update_plugin_action = get_latest_release
 
 @onready var _api_client : APIClient = $APIClient
 @onready var _download_and_extract_node : DownloadAndExtract = $DownloadAndExtract
@@ -42,8 +37,6 @@ const PLUGIN_TEMP_ZIP_PATH := "res://%s_%s_update.zip"
 @onready var _success_dialog : AcceptDialog = $SuccessDialog
 @onready var _release_notes_label : ReleaseNotesLabel = %ReleaseNotesLabel
 @onready var _update_label : Label = %UpdateLabel
-@onready var _warning_message_button : LinkButton = %WarningMessageButton
-@onready var _warning_message_label : Label = %WarningMessageLabel
 @onready var _release_notes_button : LinkButton = %ReleaseNotesButton
 @onready var _release_notes_panel : Panel = %ReleaseNotesPanel
 @onready var _stage_label : Label = %StageLabel
@@ -55,7 +48,7 @@ var _plugin_name : String
 var _current_plugin_version : String
 
 func _load_plugin_details() -> void:
-	if plugin_directory.is_empty(): return
+	if plugin_directory.is_empty() or not DirAccess.dir_exists_absolute(plugin_directory): return
 	for enabled_plugin in ProjectSettings.get_setting("editor_plugins/enabled"):
 		if enabled_plugin.contains(plugin_directory):
 			var config := ConfigFile.new()
@@ -66,14 +59,17 @@ func _load_plugin_details() -> void:
 			_plugin_name = config.get_value("plugin", "name", "Plugin")
 
 func _update_urls() -> void:
-	if plugin_github_url.is_empty(): return
+	if plugin_repo_url.is_empty(): return
 	if _api_client == null: return
-	var regex := RegEx.create_from_string("https:\\/\\/github\\.com\\/([\\w-]+)\\/([\\w-]+)\\/*")
-	var regex_match := regex.search(plugin_github_url)
-	if regex_match == null: return
-	var username := regex_match.get_string(1)
-	var repository := regex_match.get_string(2)
-	_api_client.api_url = API_RELEASES_URL % [username, repository]
+	for regex_key in RELEASES_URL_MAP:
+		var regex := RegEx.create_from_string(regex_key)
+		var regex_match := regex.search(plugin_repo_url)
+		if regex_match == null:
+			continue
+		var username := regex_match.get_string(1)
+		var repository := regex_match.get_string(2)
+		_api_client.api_url = RELEASES_URL_MAP[regex_key] % [username, repository]
+		return
 
 func _show_error_dialog(error : String) -> void:
 	_error_dialog.show()
@@ -81,7 +77,7 @@ func _show_error_dialog(error : String) -> void:
 
 func _show_success_dialog() -> void:
 	_success_dialog.show()
-	_success_dialog.dialog_text = "%s updated to v%s." % [_plugin_name, _newest_version]
+	_success_dialog.dialog_text = "%s updated to %s." % [_plugin_name, _newest_version]
 
 func _on_api_client_request_failed(error : String) -> void:
 	_show_error_dialog(error)
@@ -96,21 +92,19 @@ func _on_api_client_response_received(response_body : Variant) -> void:
 	var latest_release : Dictionary = response_body.front()
 	_newest_version = default_version
 	if latest_release.has("tag_name"):
-		var tag_name = latest_release["tag_name"]
-		if replace_tag_name:
-			tag_name = tag_name.replacen(replace_tag_name, "")
-		_newest_version = tag_name
+		_newest_version = latest_release["tag_name"]
 	if latest_release.has("zipball_url"):
 		_zipball_url = latest_release["zipball_url"]
 	_download_and_extract_node.zip_url = _zipball_url
-	_download_and_extract_node.zip_file_path = PLUGIN_TEMP_ZIP_PATH % [plugin_directory, _newest_version]
-	_update_label.text = UPDATE_CONFIRMATION_MESSAGE % [plugin_directory, _plugin_name, _newest_version]
+	_download_and_extract_node.zip_file_path = PLUGIN_TEMP_ZIP_PATH % [_plugin_name.to_pascal_case(), _newest_version]
+	var _relative_path := "res://%s" % _download_and_extract_node.path_match_string
+	_update_label.text = UPDATE_CONFIRMATION_MESSAGE % [plugin_directory, _relative_path, _plugin_name, _newest_version]
 	if latest_release.has("body"):
 		_release_notes_label.from_release_notes(latest_release["body"])
 	_update_confirmation_dialog.show()
 
 func _on_download_and_extract_zip_saved() -> void:
-	OS.move_to_trash(ProjectSettings.globalize_path(PLUGIN_EXTRACT_PATH % plugin_directory))
+	OS.move_to_trash(ProjectSettings.globalize_path(plugin_directory))
 
 func _on_download_and_extract_run_failed(error : String) -> void:
 	_show_error_dialog(error)
@@ -138,15 +132,12 @@ func _on_update_confirmation_dialog_confirmed() -> void:
 	_download_and_extract_node.run()
 	_installing_dialog.show()
 
-func _on_warning_message_button_pressed():
-	_warning_message_label.show()
-	_warning_message_button.hide()
-
 func _on_release_notes_button_pressed() -> void:
 	_release_notes_panel.show()
 	_release_notes_button.hide()
 
-func get_newest_version() -> void:
+func get_latest_release() -> void:
+	_load_plugin_details()
 	_api_client.request()
 
 func _ready() -> void:
@@ -155,8 +146,6 @@ func _ready() -> void:
 	_installing_dialog.hide()
 	_error_dialog.hide()
 	_success_dialog.hide()
-	if auto_start:
-		get_newest_version()
 
 func _process(_delta : float) -> void:
 	if _installing_dialog.visible:

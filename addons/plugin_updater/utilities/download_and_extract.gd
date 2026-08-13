@@ -152,11 +152,12 @@ func _make_extract_path() -> void:
 		push_error(FAILED_TO_MAKE_EXTRACT_DIR)
 
 func _extract_files() -> void:
+	if not downloaded_zip_file:
+		return
 	if stage == DownloadAndExtractStage.EXTRACT:
 		run_failed.emit(EXTRACT_IN_PROGRESS)
 		push_warning(EXTRACT_IN_PROGRESS)
 		return
-	stage = DownloadAndExtractStage.EXTRACT
 	if not _zip_exists():
 		run_failed.emit(DOWNLOADED_ZIP_FILE_DOESNT_EXIST)
 		push_error(DOWNLOADED_ZIP_FILE_DOESNT_EXIST)
@@ -173,6 +174,7 @@ func _extract_files() -> void:
 		if not base_zip_path.ends_with("/"):
 			push_warning("Skipping extracting base path, but it is not a directory.")
 		zipped_file_paths.remove_at(0)
+	stage = DownloadAndExtractStage.EXTRACT
 
 func _on_request_completed(result, response_code, headers, body) -> void:
 	# If already timed out on client-side, then return.
@@ -244,7 +246,7 @@ func _extract_next_zipped_file() -> void:
 		skipped_file_paths.append(zipped_file_path)
 		return
 	var extract_path_dir := extract_path
-	if not extract_path_dir.ends_with("/"):
+	if (not extract_path_dir.is_empty()) and (not extract_path_dir.ends_with("/")):
 		extract_path_dir += "/"
 	var full_path := extract_path_dir 
 	if skip_base_zip_dir:

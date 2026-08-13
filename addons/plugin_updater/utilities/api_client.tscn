@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cejsq41gjq8vk"]
+
+[ext_resource type="Script" uid="uid://b1jckn6ejnqej" path="res://addons/plugin_updater/utilities/api_client.gd" id="1_c5ofg"]
+
+[node name="APIClient" type="Node" unique_id=67662551]
+script = ExtResource("1_c5ofg")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="." unique_id=1576811748]
+
+[node name="TimeoutTimer" type="Timer" parent="." unique_id=1833875005]
+
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
+[connection signal="timeout" from="TimeoutTimer" to="." method="_on_timeout_timer_timeout"]
