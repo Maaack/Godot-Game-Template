@@ -11,7 +11,6 @@ visible = true
 ok_button_text = "Done"
 dialog_autowrap = true
 script = ExtResource("1_jck5m")
-check_version_scene_path = "res://addons/maaacks_game_template/installer/check_plugin_version.tscn"
 input_prompts_directory_path = "res://assets/kenney_input-prompts/"
 issues_url = "https://github.com/Maaack/Godot-Game-Template/issues"
 
