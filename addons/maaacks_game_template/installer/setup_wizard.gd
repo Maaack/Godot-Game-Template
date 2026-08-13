@@ -44,6 +44,9 @@ func _enable_update_plugin_tool_option(tag_name : String) -> void:
 	update_button.disabled = false
 
 func _open_check_plugin_version() -> void:
+	if PluginUpdater.instance == null:
+		update_label.text = "Plugin Updater Disabled"
+		return
 	var check_version_instance := PluginUpdater.instance.get_check_plugin_version(MaaacksGameTemplatePlugin.instance.get_plugin_path(), MaaacksGameTemplatePlugin.PLUGIN_REPO_URL)
 	add_child(check_version_instance)
 	check_version_instance.new_version_detected.connect(_enable_update_plugin_tool_option)
