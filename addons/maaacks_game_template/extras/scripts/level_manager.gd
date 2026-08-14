@@ -23,7 +23,7 @@ extends Node
 ## Will use ProjectSettings paths if left empty.
 @export_file("*.tscn") var main_menu_scene_path : String
 ## Optional path to an ending scene.
-## Will attempt to read from ProjectSettings paths if left empty.
+## Will use ProjectSettings paths if left empty.
 @export_file("*.tscn") var ending_scene_path : String
 ## Optional screen to be shown after the game is won.
 @export var game_won_scene : PackedScene
