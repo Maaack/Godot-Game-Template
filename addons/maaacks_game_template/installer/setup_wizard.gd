@@ -66,8 +66,8 @@ func _refresh_copy_and_delete_examples() -> void:
 	else:
 		delete_check_box.button_pressed = true
 
-func _refresh_update_autoload_paths() -> void:
-	update_paths_check_box.button_pressed = MaaacksGameTemplatePlugin.instance.are_autoload_paths_updated()
+func _refresh_update_project_paths() -> void:
+	update_paths_check_box.button_pressed = MaaacksGameTemplatePlugin.instance.are_project_paths_updated()
 	update_paths_button.disabled = false
 
 func _refresh_main_scene() -> void:
@@ -96,7 +96,7 @@ func _refresh_options():
 	_refresh_plugin_details()
 	_open_check_plugin_version()
 	_refresh_copy_and_delete_examples()
-	_refresh_update_autoload_paths()
+	_refresh_update_project_paths()
 	_refresh_main_scene()
 	_refresh_default_theme()
 	_refresh_input_prompts()
@@ -123,8 +123,8 @@ func _on_delete_button_pressed():
 	queue_free()
 
 func _on_update_paths_button_pressed():
-	MaaacksGameTemplatePlugin.instance.update_autoload_paths(MaaacksGameTemplatePlugin.instance.get_copy_path())
-	_refresh_update_autoload_paths()
+	MaaacksGameTemplatePlugin.instance.update_project_paths(MaaacksGameTemplatePlugin.instance.get_copy_path())
+	_refresh_update_project_paths()
 	update_paths_button.disabled = true
 	await get_tree().create_timer(1.0).timeout
 	update_paths_button.disabled = false
