@@ -3,7 +3,7 @@
 These are instructions for editing the main menu.
 
 ## Selecting a Menu
-The main menu by default is `main_menu.tscn`. The path to the main menu is set in the `AppConfig` autoload. Open the `app_config.tscn` scene, inspect the root note, and edit the `Main Menu Scene Path` to the desired scene.
+The main menu by default is `main_menu.tscn`. The path to the main menu is set in the **Project Settings**. Open the **Project > Project Settings > General** tab, navigate to *Maaacks Game Template* settings, and edit the `Main Menu Scene Path` to the desired scene.
 
 Alternatively, the path to the main menu can be set directly in the following scenes:
 

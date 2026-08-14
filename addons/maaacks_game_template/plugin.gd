@@ -8,7 +8,6 @@ const PLUGIN_REPO_URL = "https://github.com/Maaack/Godot-Game-Template"
 const EXAMPLES_RELATIVE_PATH = "examples/"
 const MAIN_SCENE_RELATIVE_PATH = "scenes/opening/opening.tscn"
 const OVERRIDE_RELATIVE_PATH = "installer/override.cfg"
-const APP_CONFIG_RELATIVE_PATH = "base/nodes/autoloads/app_config/app_config.tscn"
 const MAIN_MENU_RELATIVE_PATH = "scenes/menus/main_menu/main_menu.tscn"
 const GAME_SCENE_RELATIVE_PATH = "scenes/game/game.tscn"
 const ENDING_SCENE_RELATIVE_PATH = "scenes/end_credits/end_credits.tscn"
@@ -20,6 +19,14 @@ const RUNNING_CHECK_DELAY : float = 0.25
 const OPEN_EDITOR_DELAY : float = 0.1
 const MAX_PHYSICS_FRAMES_FROM_START : int = 60
 const AVAILABLE_TRANSLATIONS : Array = ["en", "fr"]
+const MAIN_MENU_SCENE_PATH_KEY = "main_menu_scene_path"
+const GAME_SCENE_PATH_KEY = "game_scene_path"
+const ENDING_SCENE_PATH_KEY = "ending_scene_path"
+const SCENE_PATHS : Dictionary[String, String] = {
+	MAIN_MENU_SCENE_PATH_KEY : MAIN_MENU_RELATIVE_PATH,
+	GAME_SCENE_PATH_KEY : GAME_SCENE_RELATIVE_PATH,
+	ENDING_SCENE_PATH_KEY : ENDING_SCENE_RELATIVE_PATH,
+}
 const CopyAndEdit = preload("installer/copy_and_edit_files.gd")
 
 static var instance : MaaacksGameTemplatePlugin
@@ -38,9 +45,6 @@ func get_plugin_path() -> String:
 func get_plugin_examples_path() -> String:
 	return get_plugin_path() + EXAMPLES_RELATIVE_PATH
 
-func get_app_config_path() -> String:
-	return get_plugin_path() + APP_CONFIG_RELATIVE_PATH
-
 func get_scene_loader_path() -> String:
 	return get_plugin_path() + SCENE_LOADER_RELATIVE_PATH
 
@@ -49,6 +53,15 @@ func get_copy_path() -> String:
 	if not copy_path.ends_with("/"):
 		copy_path += "/"
 	return copy_path
+
+static func get_main_menu_path(default_path : String = "") -> String:
+	return ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + MAIN_MENU_SCENE_PATH_KEY, default_path)
+
+static func get_game_path(default_path : String = "") -> String:
+	return ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + GAME_SCENE_PATH_KEY, default_path)
+
+static func get_ending_scene_path(default_path : String = "") -> String:
+	return ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + ENDING_SCENE_PATH_KEY, default_path)
 
 func _on_theme_selected(theme_resource_path: String) -> void:
 	selected_theme = theme_resource_path
@@ -196,23 +209,20 @@ func _copy_override_file() -> void:
 	var override_path : String = get_plugin_path() + OVERRIDE_RELATIVE_PATH
 	_raw_copy_file_path(override_path, "res://"+override_path.get_file())
 
-func _update_app_config_paths(target_path : String) -> void:
-	var file_path : String = get_app_config_path()
-	var file_text : String = FileAccess.get_file_as_string(file_path)
-	var scene_paths : Dictionary[String, String] = {
-		"main_menu_scene_path" = MAIN_MENU_RELATIVE_PATH,
-		"game_scene_path" = GAME_SCENE_RELATIVE_PATH,
-		"ending_scene_path" = ENDING_SCENE_RELATIVE_PATH
-		}
-	for key in scene_paths:
-		var relative_path = scene_paths[key]
-		var path_for_regex := relative_path.replace("/", "\\/").replace(".", "\\.")
-		var regex := RegEx.create_from_string("%s = \"(\\S*)%s\"" % [key, path_for_regex])
-		var replacement : String = "%s = \"%s%s\"" % [key, target_path, relative_path]
-		file_text = regex.sub(file_text, replacement)
-	var file = FileAccess.open(file_path, FileAccess.WRITE)
-	file.store_string(file_text)
-	file.close()
+func _set_project_paths(target_path : String, overwrite : bool = true) -> void:
+	for key in SCENE_PATHS:
+		if (not overwrite) and ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + key) != null:
+			continue
+		var relative_path = SCENE_PATHS[key]
+		var full_path = target_path + relative_path
+		ProjectSettings.set_setting(PROJECT_SETTINGS_PATH + key, full_path)
+	
+func _set_default_project_paths() -> void:
+	_set_project_paths(get_plugin_examples_path(), false)
+
+func update_project_paths(target_path : String) -> void:
+	_set_project_paths(target_path)
+	update_autoload_paths(target_path)
 
 func _update_scene_loader_path(target_path : String) -> void:
 	var file_path : String = get_scene_loader_path()
@@ -234,29 +244,30 @@ func _add_translations() -> void:
 			translations.append(translation_path)
 	ProjectSettings.set_setting("internationalization/locale/translations", translations)
 
-func _is_app_config_path_updated(target_path) -> bool:
-	var file_text : String = FileAccess.get_file_as_string(get_app_config_path())
-	var target_string = "main_menu_scene_path = \"" + get_plugin_examples_path()
-	return !file_text.contains(target_string)
+func _are_all_project_paths_updated(target_path) -> bool:
+	for key in SCENE_PATHS:
+		var value : String = ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + key, "")
+		if not value == target_path + SCENE_PATHS[key]:
+			return false
+	return true
 
 func _is_scene_loader_path_updated(target_path) -> bool:
 	var file_text : String = FileAccess.get_file_as_string(get_scene_loader_path())
 	var target_string = "loading_screen_path = \"" + get_plugin_examples_path()
 	return !file_text.contains(target_string)
 
-func are_autoload_paths_updated() -> bool:
+func are_project_paths_updated() -> bool:
 	var copy_path := get_copy_path()
 	if copy_path == get_plugin_examples_path(): return false
-	return _is_app_config_path_updated(copy_path) and _is_scene_loader_path_updated(copy_path)
+	return _is_scene_loader_path_updated(copy_path) and _are_all_project_paths_updated(copy_path)
 
 func update_autoload_paths(target_path : String) -> void:
-	_update_app_config_paths(target_path)
 	_update_scene_loader_path(target_path)
 
 func _on_completed_copy_to_directory(target_path : String) -> void:
 	ProjectSettings.set_setting(PROJECT_SETTINGS_PATH + "copy_path", target_path)
 	ProjectSettings.save()
-	update_autoload_paths(target_path)
+	update_project_paths(target_path)
 	_copy_override_file()
 	_open_play_opening_confirmation_dialog(target_path)
 
@@ -271,7 +282,7 @@ func is_partially_installed() -> bool:
 		return false
 	if not are_examples_deleted():
 		return true
-	if not are_autoload_paths_updated():
+	if not are_project_paths_updated():
 		return true
 	return false
 
@@ -364,13 +375,12 @@ func _remove_from_auto_update_list() -> void:
 	PluginUpdater.remove_plugin(get_plugin_path())
 
 func _enable_plugin():
-	add_autoload_singleton("AppConfig", get_app_config_path())
+	_set_default_project_paths()
 	add_autoload_singleton("SceneLoader", get_scene_loader_path())
 	add_autoload_singleton("ProjectMusicController", get_plugin_path() + "base/nodes/autoloads/music_controller/project_music_controller.tscn")
 	add_autoload_singleton("ProjectUISoundController", get_plugin_path() + "base/nodes/autoloads/ui_sound_controller/project_ui_sound_controller.tscn")
 
 func _disable_plugin():
-	remove_autoload_singleton("AppConfig")
 	remove_autoload_singleton("SceneLoader")
 	remove_autoload_singleton("ProjectMusicController")
 	remove_autoload_singleton("ProjectUISoundController")

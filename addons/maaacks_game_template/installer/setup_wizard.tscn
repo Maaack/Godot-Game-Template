@@ -97,7 +97,7 @@ text = "Run"
 [node name="UpdatePathsLabel" type="Label" parent="VBoxContainer/StepsContainer" unique_id=641573803]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Update Autoload Paths *"
+text = "Update Project Paths *"
 
 [node name="UpdatePathsCheckBox" type="CheckBox" parent="VBoxContainer/StepsContainer" unique_id=818510729]
 unique_name_in_owner = true
