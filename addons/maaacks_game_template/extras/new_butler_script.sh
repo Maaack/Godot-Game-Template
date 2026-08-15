@@ -2,8 +2,8 @@
 
 # This script is used to upload multiple builds of a Godot project to itch.io with `butler`.
 
-channels=("win", "mac", "linux", "html5", "android")
-channel_folders=("windows", "macos", "linux", "html", "android")
+channels=("win" "mac" "linux" "html5" "android")
+directories=("windows" "macos" "linux" "html" "android")
 target="default"
 source_file="butler_source.txt"
 target_key=""
@@ -14,14 +14,10 @@ if [ $# -gt 0 ]; then
 fi
 target_key="url_$target"
 
-# Check for the existance of the variables file and create it if not
+# Check for the source file and load it if it exists.
 if [ -e "$source_file" ]; then
-  echo "file exists"
   source "$source_file"
 fi
-
-echo $target_key
-echo ${!target_key}
 
 # If the url variable is still empty, ask the user.
 if [ -z "${!target_key}" ]; then
@@ -33,17 +29,21 @@ if [ -z "${!target_key}" ]; then
   echo ${!target_key}
 fi
 
-
-
-# Save the user input into the variable
-
 # Save the new values of the variables back into the file
 for i in "${!url_@}"; do
   printf '%s=%q\n' "$i" "${!i}"
 done > $source_file
 
-# Loop through channel_folders
+len=${#channels[@]}
 
-# Check if channel folder exists in directory (case-insensitive)
+for((i=0; i<$len; i++)); do
+  channel="${channels[i]}"
+  directory="${directories[i]}"
+  if [ -d "$directory" ]; then
+    echo butler push $directory/ ${!target_key}:$channel
+    butler push $directory/ ${!target_key}:$channel
+  else
+    echo "The directory \`$directory\` did not exist."
+  fi 
+done
 
-# Push the folder through butler through the matching channel
