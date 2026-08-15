@@ -26,8 +26,9 @@ if [ -z "${!target_key}" ]; then
   if [[ "$page_url" =~ ^https?://([^.]+).itch.io/(.+) ]]; then
     eval $target_key="${BASH_REMATCH[1]}/${BASH_REMATCH[2]}"
   fi
-  echo ${!target_key}
 fi
+echo "Uploading to ${!target_key}. ($target)"
+read -p "Press Enter to continue..." </dev/tty
 
 # Save the new values of the variables back into the file
 for i in "${!url_@}"; do
