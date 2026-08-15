@@ -14,7 +14,7 @@ After installing it, run `butler login` and go through the login flow. You shoul
 
 ## Exporting
 
-It is recommended to create an `exports/` directory for your builds, add the directory to your `.gitignore` file (if applicable), and also add a `.gdignore` file to the directory to avoid having Godot add `*.import` files to it as well.
+It is recommended to create an `exports/` directory for your builds, add the directory to your `.gitignore` file (if applicable), and also add a `.gdignore` file to the directory to avoid having *Godot* add `*.import` files to it as well. Lastly, you can add `exports/*` to the list of **Filters to exclude files/folders from project**.
 
 ## Butler Manager
 
