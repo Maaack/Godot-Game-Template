@@ -49,7 +49,7 @@ var _current_plugin_version : String
 
 func _load_plugin_details() -> void:
 	if plugin_directory.is_empty() or not DirAccess.dir_exists_absolute(plugin_directory): return
-	for enabled_plugin in ProjectSettings.get_setting("editor_plugins/enabled"):
+	for enabled_plugin in PluginUpdater.get_enabled_plugins():
 		if enabled_plugin.contains(plugin_directory):
 			var config := ConfigFile.new()
 			var error = config.load(enabled_plugin)

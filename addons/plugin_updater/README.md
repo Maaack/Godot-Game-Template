@@ -15,15 +15,19 @@ Any updates available will appear under the **Project > Tools > Update Plugins..
 
 ## Installation
 
-### GitHub
+*Plugin Updater* is available in both the *Godot Asset Library* and the *Godot Asset Store*. It is available as a plugin, meaning it can be added to an existing project.
 
+### Existing Project
+While editing a project in *Godot*:
 
-1.  Download the latest release version from [GitHub](https://github.com/Maaack/Godot-Plugin-Updater/releases/latest).  
-2.  Extract the contents of the archive.
-3.  Move the `addons/plugin_updater` folder into your project's `addons/` folder.  
-4.  Open/Reload the project.  
-5.  Enable the plugin from the **Project > Project Settings > Plugins** tab.  
-
+1.  Go to the **Asset Store** tab.
+2.  Search for "Plugin Updater".
+3.  Click on the result to open the plugin details.
+4.  Click to **Download**.
+5.  Check that contents are getting installed to `addons/` and there are no conflicts.
+6.  Click to **Install**.
+7.  Complete the installation and extraction.
+8.  Enable the plugin from the **Project > Project Settings > Plugins** tab.  
 
 ## Usage
 
@@ -39,32 +43,42 @@ If you are going to include the Plugin Updater with your plugin, then just add t
 func get_plugin_path() -> String:
 	return get_script().resource_path.get_base_dir() + "/"
 
-func _add_to_auto_update_list() -> void:
+func _enter_tree() -> void:
     PluginUpdater.add_plugin(get_plugin_path(), "https://github.com/{USERNAME}/{REPO_NAME}")
 
-func _remove_from_auto_update_list() -> void:
-	PluginUpdater.remove_plugin(get_plugin_path())
-
-func _enter_tree() -> void:
-	_add_to_auto_update_list()
-
 func _exit_tree() -> void:
-	_remove_from_auto_update_list()
+	PluginUpdater.remove_plugin(get_plugin_path())
 ```
 
 #### Supporting Plugin Updater
 If you'd rather avoid including the Plugin Updater or making it a dependency, but would still like to optionally support it, you can substitute the following code:
 
 ```gdscript
-func _add_to_auto_update_list() -> void:
+func _enter_tree() -> void:
 	var plugin_repos:Dictionary = ProjectSettings.get_setting("plugin_updater/plugins", {})
-	plugin_repos[get_plugin_path()] = PLUGIN_REPO_URL
+	plugin_repos[get_plugin_path()] = "https://github.com/{USERNAME}/{REPO_NAME}"
 	ProjectSettings.set_setting("plugin_updater/plugins", plugin_repos)
+	ProjectSettings.save()
 
-func _remove_from_auto_update_list() -> void:
+func _exit_tree() -> void:
 	var plugin_repos:Dictionary = ProjectSettings.get_setting("plugin_updater/plugins", {})
 	plugin_repos.erase(get_plugin_path())
 	ProjectSettings.set_setting("plugin_updater/plugins", plugin_repos)
+	ProjectSettings.save()
+```
+
+### External Requests
+
+The `api_client.tscn` and `download_and_extract.tscn` nodes make external requests using the built-in `HTTPRequest` class. These requests are made when the plugin is enabled, or when the editor starts, and during an update.
+
+Here is an example of the request to check for updates for *Plugin Updater*:
+```http
+GET https://api.github.com/repos/Maaack/Godot-Plugin-Updater/releases
+Content-Type: application/json
+```
+Here is an example of the request to update to the latest release of *Plugin Updater*:
+```http
+GET https://api.github.com/repos/Maaack/Godot-Plugin-Updater/zipball/v0.5.0
 ```
 
 ### Testing
