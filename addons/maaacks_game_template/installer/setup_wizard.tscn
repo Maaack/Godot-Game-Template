@@ -109,6 +109,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 disabled = true
+text = "Run"
 
 [node name="SetMainSceneLabel" type="Label" parent="VBoxContainer/StepsContainer" unique_id=485048782]
 layout_mode = 2
