@@ -253,6 +253,8 @@ func _add_translations() -> void:
 func _are_all_project_paths_updated(target_path) -> bool:
 	for key in SCENE_PATHS:
 		var value : String = ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + key, "")
+		if value.is_empty() and SCENE_PATHS[key].is_empty():
+			continue
 		if not value == target_path + SCENE_PATHS[key]:
 			return false
 	return true
