@@ -54,14 +54,20 @@ func get_copy_path() -> String:
 		copy_path += "/"
 	return copy_path
 
-static func get_main_menu_path(default_path : String = "") -> String:
-	return ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + MAIN_MENU_SCENE_PATH_KEY, default_path)
+static func get_main_menu_path(override_path : String = "") -> String:
+	if (not override_path.is_empty()) and FileAccess.file_exists(override_path):
+		return override_path
+	return ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + MAIN_MENU_SCENE_PATH_KEY, override_path)
 
-static func get_game_path(default_path : String = "") -> String:
-	return ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + GAME_SCENE_PATH_KEY, default_path)
+static func get_game_path(override_path : String = "") -> String:
+	if (not override_path.is_empty()) and FileAccess.file_exists(override_path):
+		return override_path
+	return ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + GAME_SCENE_PATH_KEY, override_path)
 
-static func get_ending_scene_path(default_path : String = "") -> String:
-	return ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + ENDING_SCENE_PATH_KEY, default_path)
+static func get_ending_scene_path(override_path : String = "") -> String:
+	if (not override_path.is_empty()) and FileAccess.file_exists(override_path):
+		return override_path
+	return ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + ENDING_SCENE_PATH_KEY, override_path)
 
 func _on_theme_selected(theme_resource_path: String) -> void:
 	selected_theme = theme_resource_path
