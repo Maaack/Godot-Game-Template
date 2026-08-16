@@ -214,9 +214,11 @@ func _set_project_paths(target_path : String, overwrite : bool = true) -> void:
 		if (not overwrite) and ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + key) != null:
 			continue
 		var relative_path = SCENE_PATHS[key]
-		var full_path = target_path + relative_path
+		var full_path = ""
+		if not relative_path.is_empty():
+			full_path = target_path + relative_path
 		ProjectSettings.set_setting(PROJECT_SETTINGS_PATH + key, full_path)
-	
+
 func _set_default_project_paths() -> void:
 	_set_project_paths(get_plugin_examples_path(), false)
 
@@ -258,7 +260,8 @@ func _is_scene_loader_path_updated(target_path) -> bool:
 
 func are_project_paths_updated() -> bool:
 	var copy_path := get_copy_path()
-	if copy_path == get_plugin_examples_path(): return false
+	if copy_path == get_plugin_examples_path():
+		return false
 	return _is_scene_loader_path_updated(copy_path) and _are_all_project_paths_updated(copy_path)
 
 func update_autoload_paths(target_path : String) -> void:

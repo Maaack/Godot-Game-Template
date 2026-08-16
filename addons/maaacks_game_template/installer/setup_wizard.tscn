@@ -172,8 +172,8 @@ scroll_active = false
 
 [connection signal="pressed" from="VBoxContainer/StepsContainer/UpdateButton" to="." method="_on_update_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/StepsContainer/CopyButton" to="." method="_on_copy_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/StepsContainer/DeleteButton" to="." method="_on_delete_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/StepsContainer/UpdatePathsButton" to="." method="_on_update_paths_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/StepsContainer/DeleteButton" to="." method="_on_delete_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/StepsContainer/SetMainSceneButton" to="." method="_on_set_main_scene_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/StepsContainer/SetDefaultThemeButton" to="." method="_on_set_default_theme_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/StepsContainer/AddInputIconsButton" to="." method="_on_add_input_icons_button_pressed"]
