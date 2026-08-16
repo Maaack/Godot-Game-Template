@@ -17,8 +17,8 @@ Open the _Setup Wizard_ by navigating to `Project > Tools > Run Maaack's Game Te
 A typical full installation will have the following steps completed:  
 -  Using Latest Version
 -  Copy Example Files
+-  Update Project Paths
 -  Delete Example Files
--  Update Autoload Paths
 -  Set Main Scene
 
 ![Setup Wizard Window](/addons/maaacks_game_template/media/setup-wizard-window.png)
