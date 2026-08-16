@@ -39,6 +39,15 @@ static func get_plugin_name() -> String:
 static func get_settings_path() -> String:
 	return PROJECT_SETTINGS_PATH
 
+static func get_main_menu_path(default_path : String = "") -> String:
+	return ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + MAIN_MENU_SCENE_PATH_KEY, default_path)
+
+static func get_game_path(default_path : String = "") -> String:
+	return ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + GAME_SCENE_PATH_KEY, default_path)
+
+static func get_ending_scene_path(default_path : String = "") -> String:
+	return ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + ENDING_SCENE_PATH_KEY, default_path)
+
 func get_plugin_path() -> String:
 	return get_script().resource_path.get_base_dir() + "/"
 
@@ -53,15 +62,6 @@ func get_copy_path() -> String:
 	if not copy_path.ends_with("/"):
 		copy_path += "/"
 	return copy_path
-
-static func get_main_menu_path(default_path : String = "") -> String:
-	return ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + MAIN_MENU_SCENE_PATH_KEY, default_path)
-
-static func get_game_path(default_path : String = "") -> String:
-	return ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + GAME_SCENE_PATH_KEY, default_path)
-
-static func get_ending_scene_path(default_path : String = "") -> String:
-	return ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + ENDING_SCENE_PATH_KEY, default_path)
 
 func _on_theme_selected(theme_resource_path: String) -> void:
 	selected_theme = theme_resource_path
