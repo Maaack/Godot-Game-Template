@@ -39,14 +39,20 @@ static func get_plugin_name() -> String:
 static func get_settings_path() -> String:
 	return PROJECT_SETTINGS_PATH
 
-static func get_main_menu_path(default_path : String = "") -> String:
-	return ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + MAIN_MENU_SCENE_PATH_KEY, default_path)
+static func get_main_menu_path(override_path : String = "") -> String:
+	if (not override_path.is_empty()) and FileAccess.file_exists(override_path):
+		return override_path
+	return ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + MAIN_MENU_SCENE_PATH_KEY, override_path)
 
-static func get_game_path(default_path : String = "") -> String:
-	return ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + GAME_SCENE_PATH_KEY, default_path)
+static func get_game_path(override_path : String = "") -> String:
+	if (not override_path.is_empty()) and FileAccess.file_exists(override_path):
+		return override_path
+	return ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + GAME_SCENE_PATH_KEY, override_path)
 
-static func get_ending_scene_path(default_path : String = "") -> String:
-	return ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + ENDING_SCENE_PATH_KEY, default_path)
+static func get_ending_scene_path(override_path : String = "") -> String:
+	if (not override_path.is_empty()) and FileAccess.file_exists(override_path):
+		return override_path
+	return ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + ENDING_SCENE_PATH_KEY, override_path)
 
 func get_plugin_path() -> String:
 	return get_script().resource_path.get_base_dir() + "/"
@@ -249,6 +255,8 @@ func _add_translations() -> void:
 func _are_all_project_paths_updated(target_path) -> bool:
 	for key in SCENE_PATHS:
 		var value : String = ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + key, "")
+		if value.is_empty() and SCENE_PATHS[key].is_empty():
+			continue
 		if not value == target_path + SCENE_PATHS[key]:
 			return false
 	return true
