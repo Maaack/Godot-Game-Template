@@ -1,5 +1,5 @@
 @tool
-class_name PopupWindowPanelContainer
+class_name PopupWindowSceneContainer
 extends PopupWindowPanel
 
 var instance : Node

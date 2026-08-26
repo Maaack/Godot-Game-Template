@@ -58,7 +58,7 @@ func close() -> void:
 		_parent_instance.hide()
 	super.close()
 
-func _overlaid_window_setup():
+func _open_popup():
 	if _scene_tree:
 		_initial_pause_state = _scene_tree.paused
 	_initial_mouse_mode = Input.get_mouse_mode()
@@ -116,7 +116,7 @@ func _on_visibility_changed() -> void:
 	if _parent_instance:
 		_parent_instance.visible = visible
 	if is_visible_in_tree():
-		_overlaid_window_setup()
+		_open_popup()
 
 func _enter_tree() -> void:
 	_scene_tree = get_tree()
