@@ -1,11 +1,10 @@
 [gd_scene format=3 uid="uid://b2s0kvrx8r2kq"]
 
-[ext_resource type="Script" uid="uid://b3onujul5qho1" path="res://addons/maaacks_game_template/base/nodes/windows/window_container.gd" id="1_te2s1"]
-[ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/nodes/utilities/capture_focus.gd" id="2_xihbi"]
+[ext_resource type="Script" uid="uid://b3onujul5qho1" path="res://addons/maaacks_game_template/base/nodes/windows/window_panel.gd" id="1_70uak"]
+[ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/nodes/utilities/capture_focus.gd" id="2_rt5id"]
 
 [node name="WindowContainer" type="PanelContainer" unique_id=2023947717]
 process_mode = 3
-anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -18,7 +17,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-script = ExtResource("1_te2s1")
+script = ExtResource("1_70uak")
 
 [node name="ContentContainer" type="MarginContainer" parent="." unique_id=1755486830]
 unique_name_in_owner = true
@@ -79,7 +78,7 @@ size_flags_vertical = 3
 theme_override_constants/separation = 16
 alignment = 1
 vertical = true
-script = ExtResource("2_xihbi")
+script = ExtResource("2_rt5id")
 
 [node name="CloseButton" type="Button" parent="ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" unique_id=314526102]
 unique_name_in_owner = true
