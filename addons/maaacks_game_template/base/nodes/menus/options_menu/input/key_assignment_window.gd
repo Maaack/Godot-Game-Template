@@ -1,5 +1,5 @@
 @tool
-extends ConfirmationOverlaidWindow
+extends ConfirmationPopupWindowPanel
 ## Scene to confirm a new input for an action name.
 
 const LISTENING_TEXT : String = "Listening for input..."

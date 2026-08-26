@@ -1,5 +1,5 @@
 @tool
-extends OverlaidWindow
+extends PopupWindowPanel
 
 signal continue_pressed
 signal main_menu_pressed

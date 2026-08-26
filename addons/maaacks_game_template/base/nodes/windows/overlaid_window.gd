@@ -1,5 +1,5 @@
 @tool
-class_name OverlaidWindow
+class_name PopupWindowPanel
 extends WindowPanel
 
 @export var pauses_game : bool = false :

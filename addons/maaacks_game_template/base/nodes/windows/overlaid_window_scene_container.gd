@@ -1,6 +1,6 @@
 @tool
-class_name OverlaidWindowContainer
-extends OverlaidWindow
+class_name PopupWindowPanelContainer
+extends PopupWindowPanel
 
 var instance : Node
 @onready var scene_container : Container = %SceneContainer

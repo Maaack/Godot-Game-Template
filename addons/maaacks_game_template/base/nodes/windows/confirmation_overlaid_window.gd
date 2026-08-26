@@ -1,6 +1,6 @@
 @tool
-class_name ConfirmationOverlaidWindow
-extends OverlaidWindow
+class_name ConfirmationPopupWindowPanel
+extends PopupWindowPanel
 
 signal confirmed
 
