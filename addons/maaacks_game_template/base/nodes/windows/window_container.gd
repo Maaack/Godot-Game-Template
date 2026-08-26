@@ -3,7 +3,6 @@ class_name WindowContainer
 extends PanelContainer
 
 signal closed
-signal opened
 
 @export var ui_cancel_closes : bool = true
 
@@ -57,10 +56,6 @@ func _unhandled_input(event : InputEvent) -> void:
 
 func _on_close_button_pressed() -> void:
 	close()
-
-func show() -> void:
-	super.show()
-	opened.emit()
 
 func _exit_tree():
 	if Engine.is_editor_hint(): return
