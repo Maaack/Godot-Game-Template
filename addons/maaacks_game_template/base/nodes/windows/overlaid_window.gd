@@ -12,7 +12,6 @@ extends WindowContainer
 @export var makes_mouse_visible : bool = true
 @export var exclusive : bool = true
 @export var parent_scene : PackedScene
-@export var exclusive_background_color : Color
 
 var _initial_pause_state : bool = false
 var _initial_mouse_mode : Input.MouseMode
@@ -20,8 +19,8 @@ var _initial_focus_control
 var _initial_node_focus_modes : Dictionary
 var _initial_tab_focus_modes : Dictionary
 var _scene_tree : SceneTree 
-var _exclusive_control_node : ColorRect
 var _parent_instance : Node
+var _is_reparenting : bool = false
 
 func _set_focus_none(node : Node) -> void:
 	var all_children := node.get_children()
@@ -47,6 +46,7 @@ func _set_focus_initial() -> void:
 	_initial_tab_focus_modes.clear()
 
 func close() -> void:
+	if _is_reparenting: return
 	if not visible: return
 	if pauses_game:
 		_scene_tree.paused = _initial_pause_state
@@ -54,10 +54,8 @@ func close() -> void:
 	_set_focus_initial()
 	if is_instance_valid(_initial_focus_control) and _initial_focus_control.is_inside_tree():
 		_initial_focus_control.grab_focus()
-	if _exclusive_control_node:
-		_exclusive_control_node.queue_free()
 	if _parent_instance:
-		_parent_instance.queue_free()
+		_parent_instance.hide()
 	super.close()
 
 func _overlaid_window_setup():
@@ -72,22 +70,48 @@ func _overlaid_window_setup():
 		_scene_tree.paused = pauses_game or _initial_pause_state
 	if makes_mouse_visible:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	if exclusive:
+	if exclusive and get_tree().current_scene:
 		_set_focus_none(get_tree().current_scene)
-		#_exclusive_control_node = ColorRect.new()
-		#_exclusive_control_node.name = self.name + "ExclusiveControl"
-		#_exclusive_control_node.color = exclusive_background_color
-		#_exclusive_control_node.set_anchors_preset(PRESET_FULL_RECT)
-		#add_sibling.call_deferred(_exclusive_control_node)
-		#await _exclusive_control_node.draw
-		#get_parent().move_child(_exclusive_control_node, get_index())
+	if _parent_instance:
+		_parent_instance.show()
+		set_anchors_and_offsets_preset(Control.PRESET_CENTER)
+
+func _setup_parent_instance():
+	if Engine.is_editor_hint():
+		return
+	if _scene_tree.current_scene and _scene_tree.current_scene == self:
+		return
 	if parent_scene is PackedScene and (not is_instance_valid(_parent_instance)):
 		_parent_instance = parent_scene.instantiate()
+		_parent_instance.name += "Of" + self.name
 		add_sibling.call_deferred(_parent_instance)
 		await _parent_instance.ready
+		_is_reparenting = true
+		var _was_visible = visible
+		if not visible:
+			size += Vector2.ONE
+			show.call_deferred()
+			reset_size.call_deferred()
+			await resized
 		reparent.call_deferred(_parent_instance)
+		await tree_entered
+		_is_reparenting = false
+		visible = _was_visible
+
+func _setup():
+	_setup_parent_instance()
+
+func _ready() -> void:
+	if not visibility_changed.is_connected(_on_visibility_changed):
+		visibility_changed.connect(_on_visibility_changed)
+	super._ready()
+	_setup()
 
 func _on_visibility_changed() -> void:
+	if _is_reparenting:
+		return
+	if _parent_instance:
+		_parent_instance.visible = visible
 	if is_visible_in_tree():
 		_overlaid_window_setup()
 

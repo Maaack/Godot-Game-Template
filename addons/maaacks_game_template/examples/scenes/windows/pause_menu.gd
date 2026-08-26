@@ -64,7 +64,7 @@ func _refresh_options_button() -> void:
 func _refresh_main_menu_button() -> void:
 	main_menu_button.visible = !get_main_menu_scene_path().is_empty()
 
-func _ready() -> void:
+func _setup() -> void:
 	_refresh_exit_button()
 	_refresh_options_button()
 	_refresh_main_menu_button()
@@ -72,6 +72,7 @@ func _ready() -> void:
 	restart_confirmation.closed.connect(_on_restart_confirmation_closed)
 	main_menu_confirmation.confirmed.connect(_on_main_menu_confirmation_confirmed)
 	exit_confirmation.confirmed.connect(_on_exit_confirmation_confirmed)
+	super._setup()
 
 func _on_restart_button_pressed() -> void:
 	_show_window(restart_confirmation)

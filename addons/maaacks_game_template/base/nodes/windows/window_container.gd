@@ -40,6 +40,8 @@ func _ready() -> void:
 	text = text
 	close_button_text = close_button_text
 	title = title
+	if not close_button.pressed.is_connected(_on_close_button_pressed):
+		close_button.pressed.connect(_on_close_button_pressed)
 
 func close() -> void:
 	if not visible: return

@@ -11,4 +11,3 @@ pauses_game = false
 makes_mouse_visible = true
 exclusive = true
 parent_scene = ExtResource("3_uemfq")
-exclusive_background_color = Color(0, 0, 0, 0.5)
