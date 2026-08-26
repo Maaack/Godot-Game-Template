@@ -15,5 +15,6 @@ var instance : Node
 				instance = packed_scene.instantiate()
 				scene_container.add_child(instance)
 
-func _ready() -> void:
+func _setup() -> void:
+	super._setup()
 	packed_scene = packed_scene
