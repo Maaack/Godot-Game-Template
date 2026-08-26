@@ -3,9 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/nodes/music_players/background_music_player.tscn" id="1_tr8b4"]
 [ext_resource type="Script" uid="uid://bmcttnpvsi36l" path="res://scenes/game/scripts/game_timer.gd" id="2_1qftq"]
 [ext_resource type="Script" uid="uid://cyh0d64pfygbl" path="res://addons/maaacks_game_template/base/nodes/utilities/pause_menu_controller.gd" id="3_vvut4"]
-[ext_resource type="PackedScene" uid="uid://dc7om4hdsifti" path="res://scenes/windows/pause_menu_layer.tscn" id="4_5prq0"]
+[ext_resource type="PackedScene" uid="uid://b0x8acab1b4oe" path="res://scenes/windows/pause_menu.tscn" id="4_kp23o"]
 [ext_resource type="Script" uid="uid://bbymrin0cm704" path="res://addons/maaacks_game_template/extras/scripts/level_loader.gd" id="5_4ybgr"]
-[ext_resource type="Script" uid="uid://brh5v3dnfoxa3" path="res://scripts/level_and_state_manager.gd" id="6_lo7qv"]
+[ext_resource type="Script" uid="uid://xo4s7jr6h54w" path="res://scripts/level_and_state_manager.gd" id="6_lo7qv"]
 [ext_resource type="PackedScene" uid="uid://ba11po12cvait" path="res://scenes/windows/game_won_window.tscn" id="7_xpges"]
 [ext_resource type="PackedScene" uid="uid://bx7s80d8smic4" path="res://scenes/windows/level_lost_window.tscn" id="8_iu41y"]
 [ext_resource type="PackedScene" uid="uid://cc0d45hr46e5m" path="res://scenes/windows/level_won_window.tscn" id="9_7ke7p"]
@@ -21,7 +21,7 @@ script = ExtResource("2_1qftq")
 
 [node name="PauseMenuController" type="Node" parent="." unique_id=1685173287]
 script = ExtResource("3_vvut4")
-pause_menu_packed = ExtResource("4_5prq0")
+pause_menu_packed = ExtResource("4_kp23o")
 
 [node name="LevelLoader" type="Node" parent="." unique_id=1364778615 node_paths=PackedStringArray("level_container", "level_loading_screen")]
 script = ExtResource("5_4ybgr")

@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/nodes/music_players/background_music_player.tscn" id="1_cyqpy"]
 [ext_resource type="Script" uid="uid://ca84daa8dggkl" path="res://addons/maaacks_game_template/examples/scenes/game/scripts/game_timer.gd" id="2_s766r"]
 [ext_resource type="Script" uid="uid://cyh0d64pfygbl" path="res://addons/maaacks_game_template/base/nodes/utilities/pause_menu_controller.gd" id="3_xlbbx"]
-[ext_resource type="PackedScene" uid="uid://ch7wxnbttg3ik" path="res://addons/maaacks_game_template/examples/scenes/windows/pause_menu_layer.tscn" id="4_n7i66"]
+[ext_resource type="PackedScene" uid="uid://bpphyypwqyoyl" path="res://addons/maaacks_game_template/examples/scenes/windows/pause_menu.tscn" id="4_hui74"]
 [ext_resource type="Script" uid="uid://bbymrin0cm704" path="res://addons/maaacks_game_template/extras/scripts/level_loader.gd" id="5_g02sl"]
 [ext_resource type="Script" uid="uid://cmqngqwso0uve" path="res://addons/maaacks_game_template/examples/scripts/level_and_state_manager.gd" id="6_pm3vb"]
 [ext_resource type="PackedScene" uid="uid://bve6co8x25of" path="res://addons/maaacks_game_template/examples/scenes/windows/game_won_window.tscn" id="7_6gar2"]
@@ -21,7 +21,7 @@ script = ExtResource("2_s766r")
 
 [node name="PauseMenuController" type="Node" parent="." unique_id=1685173287]
 script = ExtResource("3_xlbbx")
-pause_menu_packed = ExtResource("4_n7i66")
+pause_menu_packed = ExtResource("4_hui74")
 
 [node name="LevelLoader" type="Node" parent="." unique_id=1364778615 node_paths=PackedStringArray("level_container", "level_loading_screen")]
 script = ExtResource("5_g02sl")
