@@ -11,6 +11,7 @@ extends WindowContainer
 			process_mode = PROCESS_MODE_INHERIT
 @export var makes_mouse_visible : bool = true
 @export var exclusive : bool = true
+@export var parent_scene : PackedScene
 @export var exclusive_background_color : Color
 
 var _initial_pause_state : bool = false
@@ -20,6 +21,7 @@ var _initial_node_focus_modes : Dictionary
 var _initial_tab_focus_modes : Dictionary
 var _scene_tree : SceneTree 
 var _exclusive_control_node : ColorRect
+var _parent_instance : Node
 
 func _set_focus_none(node : Node) -> void:
 	var all_children := node.get_children()
@@ -54,6 +56,8 @@ func close() -> void:
 		_initial_focus_control.grab_focus()
 	if _exclusive_control_node:
 		_exclusive_control_node.queue_free()
+	if _parent_instance:
+		_parent_instance.queue_free()
 	super.close()
 
 func _overlaid_window_setup():
@@ -69,13 +73,18 @@ func _overlaid_window_setup():
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	if exclusive:
 		_set_focus_none(get_tree().current_scene)
-		_exclusive_control_node = ColorRect.new()
-		_exclusive_control_node.name = self.name + "ExclusiveControl"
-		_exclusive_control_node.color = exclusive_background_color
-		_exclusive_control_node.set_anchors_preset(PRESET_FULL_RECT)
-		add_sibling.call_deferred(_exclusive_control_node)
-		await _exclusive_control_node.draw
-		get_parent().move_child(_exclusive_control_node, get_index())
+		#_exclusive_control_node = ColorRect.new()
+		#_exclusive_control_node.name = self.name + "ExclusiveControl"
+		#_exclusive_control_node.color = exclusive_background_color
+		#_exclusive_control_node.set_anchors_preset(PRESET_FULL_RECT)
+		#add_sibling.call_deferred(_exclusive_control_node)
+		#await _exclusive_control_node.draw
+		#get_parent().move_child(_exclusive_control_node, get_index())
+	if parent_scene is PackedScene and (not is_instance_valid(_parent_instance)):
+		_parent_instance = parent_scene.instantiate()
+		add_sibling.call_deferred(_parent_instance)
+		await _parent_instance.ready
+		reparent.call_deferred(_parent_instance)
 
 func _on_visibility_changed() -> void:
 	if is_visible_in_tree():
