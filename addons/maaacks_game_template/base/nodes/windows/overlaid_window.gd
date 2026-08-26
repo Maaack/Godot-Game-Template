@@ -68,7 +68,8 @@ func _overlaid_window_setup():
 	if _initial_focus_control:
 		_initial_focus_control.release_focus()
 	if Engine.is_editor_hint(): return
-	_scene_tree.paused = pauses_game or _initial_pause_state
+	if _scene_tree:
+		_scene_tree.paused = pauses_game or _initial_pause_state
 	if makes_mouse_visible:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	if exclusive:
