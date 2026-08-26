@@ -93,8 +93,11 @@ func _setup_parent_instance():
 			show.call_deferred()
 			reset_size.call_deferred()
 			await resized
+		var _canvas_layer_node = get_canvas_layer_node()
 		reparent.call_deferred(_parent_instance)
 		await tree_entered
+		if _parent_instance is CanvasLayer and _canvas_layer_node:
+			_parent_instance.layer = _canvas_layer_node.layer * 2
 		_is_reparenting = false
 		visible = _was_visible
 
