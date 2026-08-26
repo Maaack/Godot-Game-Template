@@ -1,5 +1,5 @@
 @tool
-class_name WindowContainer
+class_name WindowPanel
 extends PanelContainer
 
 signal closed

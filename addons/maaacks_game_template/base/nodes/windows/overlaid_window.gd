@@ -1,6 +1,6 @@
 @tool
 class_name OverlaidWindow
-extends WindowContainer
+extends WindowPanel
 
 @export var pauses_game : bool = false :
 	set(value):
