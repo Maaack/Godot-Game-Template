@@ -83,7 +83,7 @@ func _setup_parent_instance():
 		return
 	if parent_scene is PackedScene and (not is_instance_valid(_parent_instance)):
 		_parent_instance = parent_scene.instantiate()
-		_parent_instance.name += "Of" + self.name
+		_parent_instance.name = "%s%s" % [name, _parent_instance.name] 
 		add_sibling.call_deferred(_parent_instance)
 		await _parent_instance.ready
 		_is_reparenting = true
