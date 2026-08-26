@@ -4,8 +4,8 @@ extends PopupWindowPanel
 signal restart_pressed
 signal main_menu_pressed
 
-func _ready():
-	super._ready()
+func _setup() -> void:
+	super._setup()
 	if OS.has_feature("web"):
 		%ExitButton.hide()
 

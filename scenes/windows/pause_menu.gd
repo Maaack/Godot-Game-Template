@@ -64,7 +64,8 @@ func _refresh_options_button() -> void:
 func _refresh_main_menu_button() -> void:
 	main_menu_button.visible = !get_main_menu_scene_path().is_empty()
 
-func _ready() -> void:
+func _setup() -> void:
+	super._setup()
 	_refresh_exit_button()
 	_refresh_options_button()
 	_refresh_main_menu_button()
