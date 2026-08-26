@@ -1,11 +1,12 @@
 @tool
-extends OverlaidWindow
+extends PopupWindowPanel
 
 signal continue_pressed
 signal main_menu_pressed
 signal restart_pressed
 
 func _ready():
+	super._ready()
 	if OS.has_feature("web"):
 		%ExitButton.hide()
 
