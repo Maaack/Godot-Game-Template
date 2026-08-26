@@ -103,10 +103,10 @@ func _setup_parent_instance():
 
 func _setup():
 	_setup_parent_instance()
-
-func _ready() -> void:
 	if not visibility_changed.is_connected(_on_visibility_changed):
 		visibility_changed.connect(_on_visibility_changed)
+
+func _ready() -> void:
 	super._ready()
 	_setup()
 
