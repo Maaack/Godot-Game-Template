@@ -64,6 +64,31 @@ func close() -> void:
 		_parent_instance.queue_free()
 	super.close()
 
+func _add_parent_instance_coroutine() -> void:
+	var _canvas_layer_node = get_canvas_layer_node()
+	_parent_instance = parent_scene.instantiate()
+	_parent_instance.name = "%s%s" % [name, _parent_instance.name] 
+	add_sibling.call_deferred(_parent_instance)
+	await _parent_instance.ready
+	if _parent_instance is CanvasLayer:
+		var _next_layer = 1
+		if _canvas_layer_node:
+			_next_layer = _canvas_layer_node.layer * 2
+		_parent_instance.layer = _next_layer
+
+func _resize_coroutine() -> void:
+	# Force correct sizing
+	size += Vector2.ONE
+	set_deferred(&"size", size - Vector2.ONE)
+	await resized
+
+func _reparent_coroutine() -> void:
+	is_reparenting = true
+	_original_parent = get_parent()
+	reparent.call_deferred(_parent_instance)
+	await tree_entered
+	is_reparenting = false
+
 func _setup_parent_instance():
 	if Engine.is_editor_hint():
 		return
@@ -73,21 +98,9 @@ func _setup_parent_instance():
 		return
 	if not parent_scene is PackedScene:
 		return
-	var _canvas_layer_node = get_canvas_layer_node()
-	_parent_instance = parent_scene.instantiate()
-	_parent_instance.name = "%s%s" % [name, _parent_instance.name] 
-	add_sibling.call_deferred(_parent_instance)
-	await _parent_instance.ready
-	is_reparenting = true
-	_original_parent = get_parent()
-	reparent.call_deferred(_parent_instance)
-	await tree_entered
-	if _parent_instance is CanvasLayer:
-		var _next_layer = 1
-		if _canvas_layer_node:
-			_next_layer = _canvas_layer_node.layer * 2
-		_parent_instance.layer = _next_layer
-	is_reparenting = false
+	await _add_parent_instance_coroutine()
+	await _resize_coroutine()
+	await _reparent_coroutine()
 
 func _open_popup():
 	if is_opened:
