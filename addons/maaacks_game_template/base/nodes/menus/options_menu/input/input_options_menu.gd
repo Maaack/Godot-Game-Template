@@ -76,10 +76,12 @@ func _on_input_actions_tree_remove_button_clicked(action_name, input_name) -> vo
 	key_deletion_confirmation.show()
 
 func _popup_already_assigned(action_name, input_name) -> void:
+	await draw
 	already_assigned_message.text = tr(ALREADY_ASSIGNED_TEXT).format({key = input_name, action = action_name})
 	already_assigned_message.show()
 
 func _popup_minimum_reached(action_name : String) -> void:
+	await draw
 	one_input_minimum_message.text = ONE_INPUT_MINIMUM_TEXT % action_name
 	one_input_minimum_message.show()
 

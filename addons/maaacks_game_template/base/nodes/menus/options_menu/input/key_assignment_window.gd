@@ -109,6 +109,7 @@ func _on_input_text_edit_gui_input(event) -> void:
 
 func _on_visibility_changed() -> void:
 	super._on_visibility_changed()
+	await draw
 	if visible:
 		if is_inside_tree():
 			if input_label:

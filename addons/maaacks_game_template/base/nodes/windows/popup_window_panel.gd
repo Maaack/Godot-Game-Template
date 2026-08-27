@@ -66,13 +66,13 @@ func close() -> void:
 		return
 	if not is_opened:
 		return
+	await _revert_parent_coroutine()
 	if pauses_game:
 		_scene_tree.paused = _initial_pause_state
 	Input.set_mouse_mode(_initial_mouse_mode)
 	_set_focus_initial()
 	if is_instance_valid(_initial_focus_control) and _initial_focus_control.is_inside_tree():
 		_initial_focus_control.grab_focus()
-	await _revert_parent_coroutine()
 	super.close()
 
 func _add_parent_instance_coroutine() -> void:
@@ -120,13 +120,13 @@ func _setup_parent_instance_coroutine():
 	await _reparent_coroutine()
 
 func _popup_open_coroutine():
-	await _setup_parent_instance_coroutine()
-	if _scene_tree:
-		_initial_pause_state = _scene_tree.paused
 	_initial_mouse_mode = Input.get_mouse_mode()
 	_initial_focus_control = get_viewport().gui_get_focus_owner()
 	if _initial_focus_control:
 		_initial_focus_control.release_focus()
+	await _setup_parent_instance_coroutine()
+	if _scene_tree:
+		_initial_pause_state = _scene_tree.paused
 	if Engine.is_editor_hint(): return
 	if _scene_tree:
 		_scene_tree.paused = pauses_game or _initial_pause_state
