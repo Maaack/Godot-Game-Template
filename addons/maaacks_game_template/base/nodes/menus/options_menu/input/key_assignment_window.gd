@@ -61,10 +61,10 @@ func _on_input_text_edit_focus_exited() -> void:
 func _focus_on_ok() -> void:
 	confirm_button.grab_focus()
 
-func _setup() -> void:
+func _ready() -> void:
+	super._ready()
 	confirm_button.focus_neighbor_top = ^"../../../BodyMargin/VBoxContainer/InputTextEdit"
 	close_button.focus_neighbor_top = ^"../../../BodyMargin/VBoxContainer/InputTextEdit"
-	super._setup()
 
 func _input_matches_last(event : InputEvent) -> bool:
 	return last_input_text == InputEventHelper.get_text(event)

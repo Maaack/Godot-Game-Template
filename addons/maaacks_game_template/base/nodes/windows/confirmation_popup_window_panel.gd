@@ -12,8 +12,8 @@ signal confirmed
 		if update_content and is_inside_tree():
 			confirm_button.text = confirm_button_text
 
-func _setup() -> void:
-	super._setup()
+func _ready() -> void:
+	super._ready()
 	if not confirm_button.pressed.is_connected(_on_confirm_button_pressed):
 		confirm_button.pressed.connect(_on_confirm_button_pressed)
 

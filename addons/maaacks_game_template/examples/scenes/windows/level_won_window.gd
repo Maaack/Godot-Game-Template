@@ -5,8 +5,8 @@ signal continue_pressed
 signal main_menu_pressed
 signal restart_pressed
 
-func _setup() -> void:
-	super._setup()
+func _ready() -> void:
+	super._ready()
 	if OS.has_feature("web"):
 		%ExitButton.hide()
 

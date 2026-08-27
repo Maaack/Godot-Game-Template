@@ -8,12 +8,11 @@ extends PopupWindowPanel
 @export_node_path(&"ConfirmationPopupWindowPanel") var restart_confirmation_node_path : NodePath
 @export_node_path(&"ConfirmationPopupWindowPanel") var main_menu_confirmation_node_path : NodePath
 @export_node_path(&"ConfirmationPopupWindowPanel") var exit_confirmation_node_path : NodePath
-@export var menu_container_node_path : NodePath = ^".."
+
 
 @onready var restart_confirmation : ConfirmationPopupWindowPanel = get_node(restart_confirmation_node_path)
 @onready var main_menu_confirmation : ConfirmationPopupWindowPanel = get_node(main_menu_confirmation_node_path)
 @onready var exit_confirmation : ConfirmationPopupWindowPanel = get_node(exit_confirmation_node_path)
-@onready var menu_container : Node = get_node(menu_container_node_path)
 @onready var options_button = %OptionsButton
 @onready var main_menu_button = %MainMenuButton
 @onready var exit_button = %ExitButton
@@ -45,7 +44,7 @@ func _show_window(window : Control) -> void:
 func _load_and_show_menu(scene : PackedScene) -> void:
 	var window_instance : Control = scene.instantiate()
 	window_instance.visible = false
-	menu_container.add_child.call_deferred(window_instance)
+	add_sibling.call_deferred(window_instance)
 	await _show_window(window_instance)
 	window_instance.queue_free()
 
@@ -64,8 +63,8 @@ func _refresh_options_button() -> void:
 func _refresh_main_menu_button() -> void:
 	main_menu_button.visible = !get_main_menu_scene_path().is_empty()
 
-func _setup() -> void:
-	super._setup()
+func _ready() -> void:
+	super._ready()
 	_refresh_exit_button()
 	_refresh_options_button()
 	_refresh_main_menu_button()

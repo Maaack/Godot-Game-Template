@@ -20,9 +20,9 @@ var _initial_node_focus_modes : Dictionary
 var _initial_tab_focus_modes : Dictionary
 var _scene_tree : SceneTree 
 var _parent_instance : Node
+var _original_parent : Node
 var is_reparenting : bool = false
 var is_opened : bool = false
-var child_popup_window_panels : Array[PopupWindowPanel]
 
 func _set_focus_none(node : Node) -> void:
 	var all_children := node.get_children()
@@ -60,8 +60,34 @@ func close() -> void:
 	if is_instance_valid(_initial_focus_control) and _initial_focus_control.is_inside_tree():
 		_initial_focus_control.grab_focus()
 	if _parent_instance:
-		_parent_instance.hide.call_deferred()
+		reparent.call_deferred(_original_parent)
+		_parent_instance.queue_free()
 	super.close()
+
+func _setup_parent_instance():
+	if Engine.is_editor_hint():
+		return
+	if _scene_tree.current_scene and _scene_tree.current_scene == self:
+		return
+	if is_instance_valid(_parent_instance):
+		return
+	if not parent_scene is PackedScene:
+		return
+	var _canvas_layer_node = get_canvas_layer_node()
+	_parent_instance = parent_scene.instantiate()
+	_parent_instance.name = "%s%s" % [name, _parent_instance.name] 
+	add_sibling.call_deferred(_parent_instance)
+	await _parent_instance.ready
+	is_reparenting = true
+	_original_parent = get_parent()
+	reparent.call_deferred(_parent_instance)
+	await tree_entered
+	if _parent_instance is CanvasLayer:
+		var _next_layer = 1
+		if _canvas_layer_node:
+			_next_layer = _canvas_layer_node.layer * 2
+		_parent_instance.layer = _next_layer
+	is_reparenting = false
 
 func _open_popup():
 	if is_opened:
@@ -74,62 +100,20 @@ func _open_popup():
 	if _initial_focus_control:
 		_initial_focus_control.release_focus()
 	if Engine.is_editor_hint(): return
+	_setup_parent_instance()
 	if _scene_tree:
 		_scene_tree.paused = pauses_game or _initial_pause_state
 	if makes_mouse_visible:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	if exclusive and get_tree().current_scene:
 		_set_focus_none(get_tree().current_scene)
-	if _parent_instance:
-		_parent_instance.show()
-		set_anchors_and_offsets_preset(Control.PRESET_CENTER)
-
-func _setup_parent_instance():
-	if Engine.is_editor_hint():
-		return
-	if _scene_tree.current_scene and _scene_tree.current_scene == self:
-		return
-	if parent_scene is PackedScene and (not is_instance_valid(_parent_instance)):
-		_parent_instance = parent_scene.instantiate()
-		_parent_instance.name = "%s%s" % [name, _parent_instance.name] 
-		add_sibling.call_deferred(_parent_instance)
-		await _parent_instance.ready
-		is_reparenting = true
-		for child_popup in child_popup_window_panels:
-			child_popup.is_reparenting = true
-		var _was_visible = visible
-		if not visible:
-			size += Vector2.ONE
-			show.call_deferred()
-			reset_size.call_deferred()
-			await resized
-		var _canvas_layer_node = get_canvas_layer_node()
-		reparent.call_deferred(_parent_instance)
-		await tree_entered
-		is_reparenting = false
-		for child_popup in child_popup_window_panels:
-			child_popup.is_reparenting = false
-		visible = _was_visible
-
-func _on_child_entered_tree(node: Node):
-	if is_reparenting:
-		return
-	if node is PopupWindowPanel:
-		child_popup_window_panels.append(node)
-		node.is_reparenting = is_reparenting
-
-func _on_child_exiting_tree(node: Node):
-	if is_reparenting:
-		return
-	if node is PopupWindowPanel and node in child_popup_window_panels:
-		child_popup_window_panels.erase(node)
-
-func _setup():
-	_setup_parent_instance()
 
 func _ready() -> void:
 	super._ready()
-	_setup()
+	if visible:
+		_open_popup()
+	if not visibility_changed.is_connected(_on_visibility_changed):
+		visibility_changed.connect(_on_visibility_changed)
 
 func _on_visibility_changed() -> void:
 	if is_reparenting:
@@ -138,6 +122,8 @@ func _on_visibility_changed() -> void:
 		_parent_instance.visible = visible
 	if is_visible_in_tree():
 		_open_popup()
+	elif not visible:
+		close()
 
 func _recursive_layer_update(node: Node, last_layer:int) -> void:
 	var _children := node.get_children()
@@ -148,23 +134,10 @@ func _recursive_layer_update(node: Node, last_layer:int) -> void:
 
 func _enter_tree() -> void:
 	if is_reparenting:
-		var last_layer = 1
-		if _parent_instance is CanvasLayer:
-			last_layer = _parent_instance.layer
-		_recursive_layer_update(self, last_layer)
 		return
 	_scene_tree = get_tree()
-	if not visibility_changed.is_connected(_on_visibility_changed):
-		visibility_changed.connect(_on_visibility_changed)
-	if not child_entered_tree.is_connected(_on_child_entered_tree):
-		child_entered_tree.connect(_on_child_entered_tree)
-	if not child_exiting_tree.is_connected(_on_child_exiting_tree):
-		child_exiting_tree.connect(_on_child_exiting_tree)
-	_on_visibility_changed()
 
 func _exit_tree() -> void:
 	if is_reparenting:
 		return
 	super._exit_tree()
-	if _parent_instance:
-		_parent_instance.queue_free()
