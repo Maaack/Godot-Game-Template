@@ -20,8 +20,9 @@ var _initial_node_focus_modes : Dictionary
 var _initial_tab_focus_modes : Dictionary
 var _scene_tree : SceneTree 
 var _parent_instance : Node
-var _is_reparenting : bool = false
+var is_reparenting : bool = false
 var is_opened : bool = false
+var child_popup_window_panels : Array[PopupWindowPanel]
 
 func _set_focus_none(node : Node) -> void:
 	var all_children := node.get_children()
@@ -47,7 +48,7 @@ func _set_focus_initial() -> void:
 	_initial_tab_focus_modes.clear()
 
 func close() -> void:
-	if _is_reparenting: return
+	if is_reparenting: return
 	if not visible: return
 	if not is_opened:
 		return
@@ -93,7 +94,9 @@ func _setup_parent_instance():
 		_parent_instance.name = "%s%s" % [name, _parent_instance.name] 
 		add_sibling.call_deferred(_parent_instance)
 		await _parent_instance.ready
-		_is_reparenting = true
+		is_reparenting = true
+		for child_popup in child_popup_window_panels:
+			child_popup.is_reparenting = true
 		var _was_visible = visible
 		if not visible:
 			size += Vector2.ONE
@@ -103,20 +106,33 @@ func _setup_parent_instance():
 		var _canvas_layer_node = get_canvas_layer_node()
 		reparent.call_deferred(_parent_instance)
 		await tree_entered
-		_is_reparenting = false
+		is_reparenting = false
+		for child_popup in child_popup_window_panels:
+			child_popup.is_reparenting = false
 		visible = _was_visible
+
+func _on_child_entered_tree(node: Node):
+	if is_reparenting:
+		return
+	if node is PopupWindowPanel:
+		child_popup_window_panels.append(node)
+		node.is_reparenting = is_reparenting
+
+func _on_child_exiting_tree(node: Node):
+	if is_reparenting:
+		return
+	if node is PopupWindowPanel and node in child_popup_window_panels:
+		child_popup_window_panels.erase(node)
 
 func _setup():
 	_setup_parent_instance()
-	if not visibility_changed.is_connected(_on_visibility_changed):
-		visibility_changed.connect(_on_visibility_changed)
 
 func _ready() -> void:
 	super._ready()
 	_setup()
 
 func _on_visibility_changed() -> void:
-	if _is_reparenting:
+	if is_reparenting:
 		return
 	if _parent_instance and _parent_instance.visible != visible:
 		_parent_instance.visible = visible
@@ -131,18 +147,23 @@ func _recursive_layer_update(node: Node, last_layer:int) -> void:
 		_recursive_layer_update(_child, last_layer)
 
 func _enter_tree() -> void:
-	if _is_reparenting:
+	if is_reparenting:
 		var last_layer = 1
 		if _parent_instance is CanvasLayer:
 			last_layer = _parent_instance.layer
 		_recursive_layer_update(self, last_layer)
+		return
 	_scene_tree = get_tree()
 	if not visibility_changed.is_connected(_on_visibility_changed):
 		visibility_changed.connect(_on_visibility_changed)
+	if not child_entered_tree.is_connected(_on_child_entered_tree):
+		child_entered_tree.connect(_on_child_entered_tree)
+	if not child_exiting_tree.is_connected(_on_child_exiting_tree):
+		child_exiting_tree.connect(_on_child_exiting_tree)
 	_on_visibility_changed()
 
 func _exit_tree() -> void:
-	if _is_reparenting:
+	if is_reparenting:
 		return
 	super._exit_tree()
 	if _parent_instance:

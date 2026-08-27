@@ -26,7 +26,7 @@ func get_main_menu_scene_path() -> String:
 
 func close_window() -> void:
 	if open_window != null:
-		if open_window.has_method("close"):
+		if open_window.has_method(&"close"):
 			open_window.close()
 		else:
 			open_window.hide()
