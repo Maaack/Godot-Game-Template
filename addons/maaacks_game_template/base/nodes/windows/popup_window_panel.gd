@@ -2,6 +2,8 @@
 class_name PopupWindowPanel
 extends WindowPanel
 
+## If true, opening the window will pause the game if it is not already.
+## Closing the window will return the paused flag to its original state.
 @export var pauses_game : bool = false :
 	set(value):
 		pauses_game = value
@@ -9,8 +11,14 @@ extends WindowPanel
 			process_mode = PROCESS_MODE_ALWAYS
 		else:
 			process_mode = PROCESS_MODE_INHERIT
+## If true, opening the window will make the mouse visible if it hidden.
 @export var makes_mouse_visible : bool = true
+## If true, opening the window will grab and remove focus from all other control 
+## nodes currently visible in the scene. Closing the window will return the focus
+## flag to its original state on all the affected nodes.
 @export var exclusive : bool = true
+## Optional packed scene that will serve as the parent of the window when opened.
+## This can be used for a CanvasLayer or background element.
 @export var parent_scene : PackedScene
 
 var _initial_pause_state : bool = false

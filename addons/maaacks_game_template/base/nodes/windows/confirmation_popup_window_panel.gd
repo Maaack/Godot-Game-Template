@@ -4,13 +4,14 @@ extends PopupWindowPanel
 
 signal confirmed
 
-@onready var confirm_button : Button = %ConfirmButton
-
+## Text to use for the confirm button.
 @export var confirm_button_text : String = "Confirm" :
 	set(value):
 		confirm_button_text = value
 		if update_content and is_inside_tree():
 			confirm_button.text = confirm_button_text
+
+@onready var confirm_button : Button = %ConfirmButton
 
 func _ready() -> void:
 	super._ready()

@@ -4,11 +4,14 @@ extends PanelContainer
 
 signal closed
 
+## If true, the `ui_cancel` action (ex. Escape key) will close the window.
 @export var ui_cancel_closes : bool = true
 
 @export_group("Content")
+## If true, content of the window will be updated to match values in the Inspector.
 @export var update_content : bool = false
 
+## Optional title to add to the top of the window.
 @export var title : String = "Menu" :
 	set(value):
 		title = value
@@ -16,12 +19,14 @@ signal closed
 			title_label.text = title
 			title_margin.visible = not title.is_empty()
 
+## Optional text to add to the body of the window.
 @export_multiline var text : String :
 	set(value):
 		text = value
 		if update_content and is_inside_tree():
 			description_label.text = text
 
+## Text to use for the close button.
 @export var close_button_text : String = "Close" :
 	set(value):
 		close_button_text = value
