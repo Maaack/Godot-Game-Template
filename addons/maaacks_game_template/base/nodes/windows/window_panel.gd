@@ -39,6 +39,7 @@ signal closed
 @onready var description_label : RichTextLabel = %DescriptionLabel
 @onready var close_button : Button = %CloseButton
 @onready var menu_buttons : BoxContainer = %MenuButtons
+@onready var is_opened = visible
 
 func _ready() -> void:
 	update_content = update_content
@@ -47,9 +48,19 @@ func _ready() -> void:
 	title = title
 	if not close_button.pressed.is_connected(_on_close_button_pressed):
 		close_button.pressed.connect(_on_close_button_pressed)
+	if not visibility_changed.is_connected(_on_visibility_changed):
+		visibility_changed.connect(_on_visibility_changed)
+
+func open() -> void:
+	if is_opened:
+		return
+	is_opened = true
+	show()
 
 func close() -> void:
-	if not visible: return
+	if not is_opened:
+		return
+	is_opened = false
 	hide()
 	closed.emit()
 
@@ -60,6 +71,12 @@ func _unhandled_input(event : InputEvent) -> void:
 	if is_visible_in_tree() and event.is_action_pressed("ui_cancel") and ui_cancel_closes:
 		_handle_cancel_input()
 		get_viewport().set_input_as_handled()
+
+func _on_visibility_changed() -> void:
+	if is_visible_in_tree():
+		open()
+	elif not visible:
+		close()
 
 func _on_close_button_pressed() -> void:
 	close()

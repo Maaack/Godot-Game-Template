@@ -30,7 +30,6 @@ var _scene_tree : SceneTree
 var _parent_instance : Node
 var _original_parent : Node
 var is_reparenting : bool = false
-var is_opened : bool = false
 
 func _set_focus_none(node : Node) -> void:
 	var all_children := node.get_children()
@@ -56,24 +55,22 @@ func _set_focus_initial() -> void:
 	_initial_tab_focus_modes.clear()
 
 func close() -> void:
-	if is_reparenting: return
-	if not visible: return
+	if is_reparenting: 
+		return
 	if not is_opened:
 		return
-	is_opened = false
 	if pauses_game:
 		_scene_tree.paused = _initial_pause_state
 	Input.set_mouse_mode(_initial_mouse_mode)
 	_set_focus_initial()
 	if is_instance_valid(_initial_focus_control) and _initial_focus_control.is_inside_tree():
 		_initial_focus_control.grab_focus()
-	if _parent_instance:
-		reparent.call_deferred(_original_parent)
-		_parent_instance.queue_free()
+	await _revert_parent_coroutine()
 	super.close()
 
 func _add_parent_instance_coroutine() -> void:
 	var _canvas_layer_node = get_canvas_layer_node()
+	await draw
 	_parent_instance = parent_scene.instantiate()
 	_parent_instance.name = "%s%s" % [name, _parent_instance.name] 
 	add_sibling.call_deferred(_parent_instance)
@@ -86,9 +83,9 @@ func _add_parent_instance_coroutine() -> void:
 
 func _resize_coroutine() -> void:
 	# Force correct sizing
-	size += Vector2.ONE
-	set_deferred(&"size", size - Vector2.ONE)
-	await resized
+	if size != get_minimum_size():
+		reset_size()
+		await resized
 
 func _reparent_coroutine() -> void:
 	is_reparenting = true
@@ -97,7 +94,16 @@ func _reparent_coroutine() -> void:
 	await tree_entered
 	is_reparenting = false
 
-func _setup_parent_instance():
+func _revert_parent_coroutine() -> void:
+	if not _parent_instance:
+		return
+	is_reparenting = true
+	reparent.call_deferred(_original_parent)
+	await tree_entered
+	is_reparenting = false
+	_parent_instance.queue_free()
+
+func _setup_parent_instance_coroutine():
 	if Engine.is_editor_hint():
 		return
 	if _scene_tree.current_scene and _scene_tree.current_scene == self:
@@ -107,13 +113,14 @@ func _setup_parent_instance():
 	if not parent_scene is PackedScene:
 		return
 	await _add_parent_instance_coroutine()
-	await _resize_coroutine()
+	#await _resize_coroutine()
 	await _reparent_coroutine()
 
-func _open_popup():
+func open():
 	if is_opened:
 		return
-	is_opened = true
+	super.open()
+	await _setup_parent_instance_coroutine()
 	if _scene_tree:
 		_initial_pause_state = _scene_tree.paused
 	_initial_mouse_mode = Input.get_mouse_mode()
@@ -121,7 +128,6 @@ func _open_popup():
 	if _initial_focus_control:
 		_initial_focus_control.release_focus()
 	if Engine.is_editor_hint(): return
-	_setup_parent_instance()
 	if _scene_tree:
 		_scene_tree.paused = pauses_game or _initial_pause_state
 	if makes_mouse_visible:
@@ -129,22 +135,12 @@ func _open_popup():
 	if exclusive and get_tree().current_scene:
 		_set_focus_none(get_tree().current_scene)
 
-func _ready() -> void:
-	super._ready()
-	if visible:
-		_open_popup()
-	if not visibility_changed.is_connected(_on_visibility_changed):
-		visibility_changed.connect(_on_visibility_changed)
-
 func _on_visibility_changed() -> void:
 	if is_reparenting:
 		return
+	super._on_visibility_changed()
 	if _parent_instance and _parent_instance.visible != visible:
 		_parent_instance.visible = visible
-	if is_visible_in_tree():
-		_open_popup()
-	elif not visible:
-		close()
 
 func _recursive_layer_update(node: Node, last_layer:int) -> void:
 	var _children := node.get_children()
