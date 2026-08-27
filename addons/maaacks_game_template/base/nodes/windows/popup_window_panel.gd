@@ -21,6 +21,7 @@ var _initial_tab_focus_modes : Dictionary
 var _scene_tree : SceneTree 
 var _parent_instance : Node
 var _is_reparenting : bool = false
+var is_opened : bool = false
 
 func _set_focus_none(node : Node) -> void:
 	var all_children := node.get_children()
@@ -48,6 +49,9 @@ func _set_focus_initial() -> void:
 func close() -> void:
 	if _is_reparenting: return
 	if not visible: return
+	if not is_opened:
+		return
+	is_opened = false
 	if pauses_game:
 		_scene_tree.paused = _initial_pause_state
 	Input.set_mouse_mode(_initial_mouse_mode)
@@ -55,10 +59,13 @@ func close() -> void:
 	if is_instance_valid(_initial_focus_control) and _initial_focus_control.is_inside_tree():
 		_initial_focus_control.grab_focus()
 	if _parent_instance:
-		_parent_instance.hide()
+		_parent_instance.hide.call_deferred()
 	super.close()
 
 func _open_popup():
+	if is_opened:
+		return
+	is_opened = true
 	if _scene_tree:
 		_initial_pause_state = _scene_tree.paused
 	_initial_mouse_mode = Input.get_mouse_mode()
@@ -96,8 +103,6 @@ func _setup_parent_instance():
 		var _canvas_layer_node = get_canvas_layer_node()
 		reparent.call_deferred(_parent_instance)
 		await tree_entered
-		if _parent_instance is CanvasLayer and _canvas_layer_node:
-			_parent_instance.layer = _canvas_layer_node.layer * 2
 		_is_reparenting = false
 		visible = _was_visible
 
@@ -113,13 +118,32 @@ func _ready() -> void:
 func _on_visibility_changed() -> void:
 	if _is_reparenting:
 		return
-	if _parent_instance:
+	if _parent_instance and _parent_instance.visible != visible:
 		_parent_instance.visible = visible
 	if is_visible_in_tree():
 		_open_popup()
 
+func _recursive_layer_update(node: Node, last_layer:int) -> void:
+	var _children := node.get_children()
+	for _child in _children:
+		if _child is CanvasLayer:
+			_child.layer = last_layer * 2
+		_recursive_layer_update(_child, last_layer)
+
 func _enter_tree() -> void:
+	if _is_reparenting:
+		var last_layer = 1
+		if _parent_instance is CanvasLayer:
+			last_layer = _parent_instance.layer
+		_recursive_layer_update(self, last_layer)
 	_scene_tree = get_tree()
 	if not visibility_changed.is_connected(_on_visibility_changed):
 		visibility_changed.connect(_on_visibility_changed)
 	_on_visibility_changed()
+
+func _exit_tree() -> void:
+	if _is_reparenting:
+		return
+	super._exit_tree()
+	if _parent_instance:
+		_parent_instance.queue_free()
