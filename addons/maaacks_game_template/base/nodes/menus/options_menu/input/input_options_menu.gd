@@ -27,7 +27,6 @@ const KEY_DELETION_TEXT : String = "Are you sure you want to remove {key} from {
 					input_actions_list.hide()
 					input_actions_tree.show()
 
-
 var last_input_readable_name
 
 func _ready() -> void:
@@ -101,5 +100,8 @@ func _on_input_actions_list_button_clicked(action_name, readable_input_name) -> 
 	_open_key_assignment_window(action_name, readable_input_name)
 
 func _on_reset_confirmation_confirmed() -> void:
-	input_actions_list.reset()
-	input_actions_tree.reset()
+	match(remapping_mode):
+		0:
+			input_actions_list.reset()
+		1:
+			input_actions_tree.reset()

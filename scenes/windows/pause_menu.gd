@@ -5,14 +5,10 @@ extends PopupWindowPanel
 ## Path to a main menu scene.
 ## Will use ProjectSettings paths if left empty.
 @export_file("*.tscn") var main_menu_scene_path : String
-@export_node_path(&"ConfirmationPopupWindowPanel") var restart_confirmation_node_path : NodePath
-@export_node_path(&"ConfirmationPopupWindowPanel") var main_menu_confirmation_node_path : NodePath
-@export_node_path(&"ConfirmationPopupWindowPanel") var exit_confirmation_node_path : NodePath
 
-
-@onready var restart_confirmation : ConfirmationPopupWindowPanel = get_node(restart_confirmation_node_path)
-@onready var main_menu_confirmation : ConfirmationPopupWindowPanel = get_node(main_menu_confirmation_node_path)
-@onready var exit_confirmation : ConfirmationPopupWindowPanel = get_node(exit_confirmation_node_path)
+@onready var restart_confirmation = %RestartConfirmation
+@onready var main_menu_confirmation = %MainMenuConfirmation
+@onready var exit_confirmation = %ExitConfirmation
 @onready var options_button = %OptionsButton
 @onready var main_menu_button = %MainMenuButton
 @onready var exit_button = %ExitButton

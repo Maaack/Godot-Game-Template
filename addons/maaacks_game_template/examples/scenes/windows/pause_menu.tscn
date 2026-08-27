@@ -17,10 +17,6 @@ size_flags_vertical = 1
 script = ExtResource("2_0ln3r")
 options_menu_scene = ExtResource("3_wiw3s")
 main_menu_scene_path = ""
-restart_confirmation_node_path = NodePath("RestartConfirmation")
-main_menu_confirmation_node_path = NodePath("MainMenuConfirmation")
-exit_confirmation_node_path = NodePath("ExitConfirmation")
-menu_container_node_path = NodePath("..")
 pauses_game = true
 
 [node name="TitleLabel" parent="ContentContainer/BoxContainer/TitleMargin/BoxContainer" parent_id_path=PackedInt32Array(1788474031) index="0" unique_id=1049966061]
