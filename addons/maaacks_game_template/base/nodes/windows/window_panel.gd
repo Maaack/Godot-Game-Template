@@ -73,6 +73,7 @@ func _unhandled_input(event : InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 
 func _on_visibility_changed() -> void:
+	if Engine.is_editor_hint(): return
 	if is_visible_in_tree():
 		open()
 	elif not visible:

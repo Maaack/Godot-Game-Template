@@ -21,6 +21,8 @@ extends WindowPanel
 ## This can be used for a CanvasLayer or background element.
 @export var parent_scene : PackedScene
 
+@onready var _original_size := size
+
 var _initial_pause_state : bool = false
 var _initial_mouse_mode : Input.MouseMode
 var _initial_focus_control
@@ -30,6 +32,11 @@ var _scene_tree : SceneTree
 var _parent_instance : Node
 var _original_parent : Node
 var is_reparenting : bool = false
+
+func _ready() -> void:
+	super._ready()
+	if is_visible_in_tree():
+		await _popup_open_coroutine()
 
 func _set_focus_none(node : Node) -> void:
 	var all_children := node.get_children()
@@ -71,6 +78,9 @@ func close() -> void:
 func _add_parent_instance_coroutine() -> void:
 	var _canvas_layer_node = get_canvas_layer_node()
 	await draw
+	if size != _original_size:
+		await resized
+	_original_size = size
 	_parent_instance = parent_scene.instantiate()
 	_parent_instance.name = "%s%s" % [name, _parent_instance.name] 
 	add_sibling.call_deferred(_parent_instance)
@@ -80,12 +90,6 @@ func _add_parent_instance_coroutine() -> void:
 		if _canvas_layer_node:
 			_next_layer = _canvas_layer_node.layer * 2
 		_parent_instance.layer = _next_layer
-
-func _resize_coroutine() -> void:
-	# Force correct sizing
-	if size != get_minimum_size():
-		reset_size()
-		await resized
 
 func _reparent_coroutine() -> void:
 	is_reparenting = true
@@ -113,13 +117,9 @@ func _setup_parent_instance_coroutine():
 	if not parent_scene is PackedScene:
 		return
 	await _add_parent_instance_coroutine()
-	#await _resize_coroutine()
 	await _reparent_coroutine()
 
-func open():
-	if is_opened:
-		return
-	super.open()
+func _popup_open_coroutine():
 	await _setup_parent_instance_coroutine()
 	if _scene_tree:
 		_initial_pause_state = _scene_tree.paused
@@ -134,6 +134,12 @@ func open():
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	if exclusive and get_tree().current_scene:
 		_set_focus_none(get_tree().current_scene)
+
+func open():
+	if is_opened:
+		return
+	super.open()
+	await _popup_open_coroutine()
 
 func _on_visibility_changed() -> void:
 	if is_reparenting:
