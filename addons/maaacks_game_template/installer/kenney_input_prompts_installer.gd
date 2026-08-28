@@ -9,7 +9,7 @@ signal completed
 
 const DownloadAndExtract = PluginUpdater.DownloadAndExtract
 const CONFIGURE_SCENE_RELATIVE_PATH = "scenes/menus/options_menu/input/input_icon_mapper.tscn"
-const REIMPORT_CHECK_DELAY : float = 1.0
+const SAVE_FILE_DELAY : float = 1.0
 const OPEN_SCENE_DELAY : float = 0.5
 const MATCH_REGEX = """(\\[node name="InputIconMapper" (unique_id=[0-9]+ )?instance=ExtResource\\("[0-9a-z_]+"\\)\\])[\\s\\S]*"""
 const ASSETS_RELATIVE_PATH = "assets/kenney_input-prompts"
@@ -126,8 +126,6 @@ const PACKAGE_EXTRA_FILES := [
 var _configuration_index : int = -1
 ## State flag of whether the tool is waiting for the filesystem to finish scanning.
 var scanning : bool = false
-## State flag for whether the tool is waiting for the filesystem to finish reimporting.
-var reimporting : bool = false
 ## Flag for whether the tool will force a download and extraction, even if the contents exist.
 var force : bool = false
 
@@ -163,10 +161,7 @@ func _process(_delta : float) -> void:
 		var file_system := EditorInterface.get_resource_filesystem()
 		if not file_system.is_scanning():
 			scanning = false
-			await get_tree().create_timer(REIMPORT_CHECK_DELAY).timeout
-			if reimporting:
-				await file_system.resources_reimported
-			reimporting = false
+			await get_tree().create_timer(SAVE_FILE_DELAY).timeout
 			_configure_and_complete()
 
 func _delete_recursive(path : String) -> void:
@@ -256,7 +251,7 @@ func _configure_icons() -> void:
 		EditorInterface.open_scene_from_path(input_mapper_path)
 	await get_tree().create_timer(OPEN_SCENE_DELAY).timeout
 	EditorInterface.save_scene()
-	await get_tree().create_timer(REIMPORT_CHECK_DELAY).timeout
+	await get_tree().create_timer(SAVE_FILE_DELAY).timeout
 	_clean_up_or_complete()
 
 func _configure_and_complete() -> void:
@@ -265,12 +260,10 @@ func _configure_and_complete() -> void:
 		return
 	_clean_up_or_complete()
 
-func _scan_filesystem_and_reimport() -> void:
+func _scan_filesystem() -> void:
 	var file_system := EditorInterface.get_resource_filesystem()
 	file_system.scan()
 	scanning = true
-	await file_system.resources_reimporting
-	reimporting = true
 
 func _enable_forced_install() -> void:
 	force = true
@@ -325,7 +318,7 @@ func _on_error_dialog_canceled() -> void:
 	queue_free()
 
 func _on_download_and_extract_run_completed() -> void:
-	_scan_filesystem_and_reimport()
+	_scan_filesystem()
 
 func _on_download_and_extract_run_failed(error : String) -> void:
 	_show_error_dialog(error)
