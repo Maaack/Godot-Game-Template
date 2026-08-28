@@ -1,10 +1,8 @@
 @tool
-class_name OverlaidWindowContainer
-extends OverlaidWindow
+class_name PopupWindowSceneContainer
+extends PopupWindowPanel
 
-var instance : Node
-@onready var scene_container : Container = %SceneContainer
-
+## Packed scene to load in the body of the window.
 @export var packed_scene : PackedScene :
 	set(value):
 		packed_scene = value
@@ -15,5 +13,10 @@ var instance : Node
 				instance = packed_scene.instantiate()
 				scene_container.add_child(instance)
 
+@onready var scene_container : Container = %SceneContainer
+
+var instance : Node
+
 func _ready() -> void:
+	super._ready()
 	packed_scene = packed_scene

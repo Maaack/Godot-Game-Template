@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://b5qy5nr1wivs4" path="res://addons/maaacks_game_template/examples/scenes/menus/main_menu/main_menu_with_animations.gd" id="2_ncvk7"]
 [ext_resource type="PackedScene" uid="uid://dum2pujhh1w4g" path="res://addons/maaacks_game_template/examples/scenes/windows/main_menu_options_window.tscn" id="3_801fg"]
 [ext_resource type="PackedScene" uid="uid://c5pfkjxskjc60" path="res://addons/maaacks_game_template/examples/scenes/windows/main_menu_credits_window.tscn" id="4_801fg"]
-[ext_resource type="PackedScene" uid="uid://cwt4p3bufkke5" path="res://addons/maaacks_game_template/base/nodes/windows/confirmation_overlaid_window.tscn" id="5_801fg"]
+[ext_resource type="PackedScene" uid="uid://cwt4p3bufkke5" path="res://addons/maaacks_game_template/base/nodes/windows/confirmation_popup_window_panel.tscn" id="5_801fg"]
 
 [sub_resource type="Animation" id="1"]
 resource_name = "Intro"
@@ -159,18 +159,6 @@ tracks/5/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer:lock")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
 
 [sub_resource type="Animation" id="4"]
 resource_name = "OpenSubMenu"
@@ -262,18 +250,6 @@ tracks/5/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
 }
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer:lock")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2kqig"]
 _data = {
@@ -347,7 +323,7 @@ visible = false
 layout_mode = 2
 text = "Continue"
 
-[node name="LevelSelectButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" index="2" unique_id=78300098]
+[node name="LevelSelectButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" parent_id_path=PackedInt32Array(2017477786) index="2" unique_id=78300098]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2

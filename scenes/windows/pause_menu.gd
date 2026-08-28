@@ -1,19 +1,14 @@
 @tool
-extends OverlaidWindow
+extends PopupWindowPanel
 
 @export var options_menu_scene : PackedScene
 ## Path to a main menu scene.
 ## Will use ProjectSettings paths if left empty.
 @export_file("*.tscn") var main_menu_scene_path : String
-@export_node_path(&"ConfirmationOverlaidWindow") var restart_confirmation_node_path : NodePath
-@export_node_path(&"ConfirmationOverlaidWindow") var main_menu_confirmation_node_path : NodePath
-@export_node_path(&"ConfirmationOverlaidWindow") var exit_confirmation_node_path : NodePath
-@export var menu_container_node_path : NodePath = ^".."
 
-@onready var restart_confirmation : ConfirmationOverlaidWindow = get_node(restart_confirmation_node_path)
-@onready var main_menu_confirmation : ConfirmationOverlaidWindow = get_node(main_menu_confirmation_node_path)
-@onready var exit_confirmation : ConfirmationOverlaidWindow = get_node(exit_confirmation_node_path)
-@onready var menu_container : Node = get_node(menu_container_node_path)
+@onready var restart_confirmation = %RestartConfirmation
+@onready var main_menu_confirmation = %MainMenuConfirmation
+@onready var exit_confirmation = %ExitConfirmation
 @onready var options_button = %OptionsButton
 @onready var main_menu_button = %MainMenuButton
 @onready var exit_button = %ExitButton
@@ -26,7 +21,7 @@ func get_main_menu_scene_path() -> String:
 
 func close_window() -> void:
 	if open_window != null:
-		if open_window.has_method("close"):
+		if open_window.has_method(&"close"):
 			open_window.close()
 		else:
 			open_window.hide()
@@ -45,7 +40,7 @@ func _show_window(window : Control) -> void:
 func _load_and_show_menu(scene : PackedScene) -> void:
 	var window_instance : Control = scene.instantiate()
 	window_instance.visible = false
-	menu_container.add_child.call_deferred(window_instance)
+	add_sibling.call_deferred(window_instance)
 	await _show_window(window_instance)
 	window_instance.queue_free()
 
@@ -65,6 +60,7 @@ func _refresh_main_menu_button() -> void:
 	main_menu_button.visible = !get_main_menu_scene_path().is_empty()
 
 func _ready() -> void:
+	super._ready()
 	_refresh_exit_button()
 	_refresh_options_button()
 	_refresh_main_menu_button()
