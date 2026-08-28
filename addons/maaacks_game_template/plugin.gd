@@ -39,21 +39,6 @@ static func get_plugin_name() -> String:
 static func get_settings_path() -> String:
 	return PROJECT_SETTINGS_PATH
 
-func get_plugin_path() -> String:
-	return get_script().resource_path.get_base_dir() + "/"
-
-func get_plugin_examples_path() -> String:
-	return get_plugin_path() + EXAMPLES_RELATIVE_PATH
-
-func get_scene_loader_path() -> String:
-	return get_plugin_path() + SCENE_LOADER_RELATIVE_PATH
-
-func get_copy_path() -> String:
-	var copy_path = ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + "copy_path", get_plugin_examples_path())
-	if not copy_path.ends_with("/"):
-		copy_path += "/"
-	return copy_path
-
 static func get_main_menu_path(override_path : String = "") -> String:
 	if (not override_path.is_empty()) and FileAccess.file_exists(override_path):
 		return override_path
@@ -68,6 +53,21 @@ static func get_ending_scene_path(override_path : String = "") -> String:
 	if (not override_path.is_empty()) and FileAccess.file_exists(override_path):
 		return override_path
 	return ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + ENDING_SCENE_PATH_KEY, override_path)
+
+func get_plugin_path() -> String:
+	return get_script().resource_path.get_base_dir() + "/"
+
+func get_plugin_examples_path() -> String:
+	return get_plugin_path() + EXAMPLES_RELATIVE_PATH
+
+func get_scene_loader_path() -> String:
+	return get_plugin_path() + SCENE_LOADER_RELATIVE_PATH
+
+func get_copy_path() -> String:
+	var copy_path = ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + "copy_path", get_plugin_examples_path())
+	if not copy_path.ends_with("/"):
+		copy_path += "/"
+	return copy_path
 
 func _on_theme_selected(theme_resource_path: String) -> void:
 	selected_theme = theme_resource_path
@@ -156,9 +156,11 @@ func _open_delete_examples_confirmation_dialog(target_path : String) -> void:
 	add_child(delete_confirmation_instance)
 
 func open_delete_examples_short_confirmation_dialog() -> void:
+	var copy_path := get_copy_path()
 	var delete_confirmation_scene : PackedScene = load(get_plugin_path() + "installer/delete_examples_short_confirmation_dialog.tscn")
 	var delete_confirmation_instance : ConfirmationDialog = delete_confirmation_scene.instantiate()
-	delete_confirmation_instance.confirmed.connect(_delete_source_examples_directory)
+	delete_confirmation_instance.confirmed.connect(_delete_source_examples_directory.bind(copy_path))
+	delete_confirmation_instance.canceled.connect(_delayed_call_with_path.bind(open_setup_wizard, copy_path))
 	delete_confirmation_instance.visibility_changed.connect(_on_visibility_changed_to_hidden.bind(delete_confirmation_instance))
 	add_child(delete_confirmation_instance)
 
@@ -220,9 +222,11 @@ func _set_project_paths(target_path : String, overwrite : bool = true) -> void:
 		if (not overwrite) and ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + key) != null:
 			continue
 		var relative_path = SCENE_PATHS[key]
-		var full_path = target_path + relative_path
+		var full_path = ""
+		if not relative_path.is_empty():
+			full_path = target_path + relative_path
 		ProjectSettings.set_setting(PROJECT_SETTINGS_PATH + key, full_path)
-	
+
 func _set_default_project_paths() -> void:
 	_set_project_paths(get_plugin_examples_path(), false)
 
@@ -266,7 +270,8 @@ func _is_scene_loader_path_updated(target_path) -> bool:
 
 func are_project_paths_updated() -> bool:
 	var copy_path := get_copy_path()
-	if copy_path == get_plugin_examples_path(): return false
+	if copy_path == get_plugin_examples_path():
+		return false
 	return _is_scene_loader_path_updated(copy_path) and _are_all_project_paths_updated(copy_path)
 
 func update_autoload_paths(target_path : String) -> void:
@@ -322,7 +327,7 @@ func _open_continue_setup_dialog() -> void:
 	confirmation_instance.visibility_changed.connect(_on_visibility_changed_to_hidden.bind(confirmation_instance))
 	add_child(confirmation_instance)
 
-func open_setup_wizard() -> void:
+func open_setup_wizard(_target_path: String = "") -> void:
 	var setup_wizard_scene : PackedScene = load(get_plugin_path() + "installer/setup_wizard.tscn")
 	var setup_wizard_instance : Node = setup_wizard_scene.instantiate()
 	add_child(setup_wizard_instance)

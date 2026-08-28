@@ -67,8 +67,9 @@ func _refresh_copy_and_delete_examples() -> void:
 		delete_check_box.button_pressed = true
 
 func _refresh_update_project_paths() -> void:
-	update_paths_check_box.button_pressed = MaaacksGameTemplatePlugin.instance.are_project_paths_updated()
-	update_paths_button.disabled = false
+	var project_paths_flag := MaaacksGameTemplatePlugin.instance.are_project_paths_updated()
+	update_paths_check_box.button_pressed = project_paths_flag
+	update_paths_button.disabled = project_paths_flag
 
 func _refresh_main_scene() -> void:
 	if MaaacksGameTemplatePlugin.instance.is_main_scene_set():
@@ -126,8 +127,6 @@ func _on_update_paths_button_pressed():
 	MaaacksGameTemplatePlugin.instance.update_project_paths(MaaacksGameTemplatePlugin.instance.get_copy_path())
 	_refresh_update_project_paths()
 	update_paths_button.disabled = true
-	await get_tree().create_timer(1.0).timeout
-	update_paths_button.disabled = false
 
 func _on_set_main_scene_button_pressed():
 	tree_exited.connect(func(): MaaacksGameTemplatePlugin.instance.open_main_scene_confirmation_dialog(MaaacksGameTemplatePlugin.instance.get_copy_path()))
