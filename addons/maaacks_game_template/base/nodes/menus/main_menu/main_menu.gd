@@ -23,7 +23,6 @@ signal game_exited
 
 var sub_menu : Control
 
-@onready var menu_container = %MenuContainer
 @onready var menu_buttons_box_container = %MenuButtonsBoxContainer
 @onready var new_game_button = %NewGameButton
 @onready var options_button = %OptionsButton
@@ -61,7 +60,6 @@ func exit_game() -> void:
 func _open_sub_menu(menu : PackedScene) -> Node:
 	sub_menu = menu.instantiate()
 	add_child(sub_menu)
-	menu_container.hide()
 	sub_menu.hidden.connect(_close_sub_menu, CONNECT_ONE_SHOT)
 	sub_menu_opened.emit()
 	return sub_menu
@@ -71,7 +69,6 @@ func _close_sub_menu() -> void:
 		return
 	sub_menu.queue_free()
 	sub_menu = null
-	menu_container.show()
 	sub_menu_closed.emit()
 
 func _event_is_mouse_button_released(event : InputEvent) -> bool:
@@ -83,6 +80,7 @@ func _input(event : InputEvent) -> void:
 			try_exit_game()
 	if event.is_action_pressed("ui_accept") and get_viewport().gui_get_focus_owner() == null:
 		menu_buttons_box_container.focus_first()
+		get_viewport().set_input_as_handled()
 
 func _hide_exit_for_web() -> void:
 	if OS.has_feature("web"):
