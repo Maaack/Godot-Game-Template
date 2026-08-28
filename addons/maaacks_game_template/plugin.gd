@@ -22,10 +22,12 @@ const AVAILABLE_TRANSLATIONS : Array = ["en", "fr"]
 const MAIN_MENU_SCENE_PATH_KEY = "main_menu_scene_path"
 const GAME_SCENE_PATH_KEY = "game_scene_path"
 const ENDING_SCENE_PATH_KEY = "ending_scene_path"
+const LOADING_SCENE_PATH_KEY = "loading_scene_path"
 const SCENE_PATHS : Dictionary[String, String] = {
 	MAIN_MENU_SCENE_PATH_KEY : MAIN_MENU_RELATIVE_PATH,
 	GAME_SCENE_PATH_KEY : GAME_SCENE_RELATIVE_PATH,
 	ENDING_SCENE_PATH_KEY : ENDING_SCENE_RELATIVE_PATH,
+	LOADING_SCENE_PATH_KEY : LOADING_SCREEN_SCENE_RELATIVE_PATH,
 }
 const CopyAndEdit = preload("installer/copy_and_edit_files.gd")
 
@@ -53,6 +55,11 @@ static func get_ending_scene_path(override_path : String = "") -> String:
 	if (not override_path.is_empty()) and FileAccess.file_exists(override_path):
 		return override_path
 	return ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + ENDING_SCENE_PATH_KEY, override_path)
+
+static func get_loading_scene_path(override_path : String = "") -> String:
+	if (not override_path.is_empty()) and FileAccess.file_exists(override_path):
+		return override_path
+	return ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + LOADING_SCENE_PATH_KEY, override_path)
 
 func get_plugin_path() -> String:
 	return get_script().resource_path.get_base_dir() + "/"
