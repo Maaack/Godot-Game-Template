@@ -156,10 +156,11 @@ func _open_delete_examples_confirmation_dialog(target_path : String) -> void:
 	add_child(delete_confirmation_instance)
 
 func open_delete_examples_short_confirmation_dialog() -> void:
+	var copy_path := get_copy_path()
 	var delete_confirmation_scene : PackedScene = load(get_plugin_path() + "installer/delete_examples_short_confirmation_dialog.tscn")
 	var delete_confirmation_instance : ConfirmationDialog = delete_confirmation_scene.instantiate()
-	delete_confirmation_instance.confirmed.connect(_delete_source_examples_directory)
-	delete_confirmation_instance.canceled.connect(_delayed_call_with_path.bind(open_setup_wizard, ""))
+	delete_confirmation_instance.confirmed.connect(_delete_source_examples_directory.bind(copy_path))
+	delete_confirmation_instance.canceled.connect(_delayed_call_with_path.bind(open_setup_wizard, copy_path))
 	delete_confirmation_instance.visibility_changed.connect(_on_visibility_changed_to_hidden.bind(delete_confirmation_instance))
 	add_child(delete_confirmation_instance)
 
