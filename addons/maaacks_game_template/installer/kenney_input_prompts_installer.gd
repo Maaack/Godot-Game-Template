@@ -9,7 +9,7 @@ signal completed
 
 const DownloadAndExtract = PluginUpdater.DownloadAndExtract
 const CONFIGURE_SCENE_RELATIVE_PATH = "scenes/menus/options_menu/input/input_icon_mapper.tscn"
-const REIMPORT_CHECK_DELAY : float = 1.0
+const SAVE_FILE_DELAY : float = 1.0
 const OPEN_SCENE_DELAY : float = 0.5
 const MATCH_REGEX = """(\\[node name="InputIconMapper" (unique_id=[0-9]+ )?instance=ExtResource\\("[0-9a-z_]+"\\)\\])[\\s\\S]*"""
 const ASSETS_RELATIVE_PATH = "assets/kenney_input-prompts"
@@ -161,7 +161,7 @@ func _process(_delta : float) -> void:
 		var file_system := EditorInterface.get_resource_filesystem()
 		if not file_system.is_scanning():
 			scanning = false
-			await get_tree().create_timer(REIMPORT_CHECK_DELAY).timeout
+			await get_tree().create_timer(SAVE_FILE_DELAY).timeout
 			_configure_and_complete()
 
 func _delete_recursive(path : String) -> void:
@@ -251,7 +251,7 @@ func _configure_icons() -> void:
 		EditorInterface.open_scene_from_path(input_mapper_path)
 	await get_tree().create_timer(OPEN_SCENE_DELAY).timeout
 	EditorInterface.save_scene()
-	await get_tree().create_timer(REIMPORT_CHECK_DELAY).timeout
+	await get_tree().create_timer(SAVE_FILE_DELAY).timeout
 	_clean_up_or_complete()
 
 func _configure_and_complete() -> void:
