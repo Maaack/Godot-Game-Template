@@ -124,7 +124,7 @@ func _on_delete_button_pressed():
 	queue_free()
 
 func _on_update_paths_button_pressed():
-	MaaacksGameTemplatePlugin.instance.update_project_paths(MaaacksGameTemplatePlugin.instance.get_copy_path())
+	MaaacksGameTemplatePlugin.instance.update_project_paths()
 	_refresh_update_project_paths()
 	update_paths_button.disabled = true
 

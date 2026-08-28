@@ -224,7 +224,7 @@ func _copy_override_file() -> void:
 	var override_path : String = get_plugin_path() + OVERRIDE_RELATIVE_PATH
 	_raw_copy_file_path(override_path, "res://"+override_path.get_file())
 
-func _set_project_paths(target_path : String, overwrite : bool = true) -> void:
+func set_project_paths(target_path : String, overwrite : bool = true) -> void:
 	for key in SCENE_PATHS:
 		if (not overwrite) and ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + key) != null:
 			continue
@@ -235,22 +235,10 @@ func _set_project_paths(target_path : String, overwrite : bool = true) -> void:
 		ProjectSettings.set_setting(PROJECT_SETTINGS_PATH + key, full_path)
 
 func _set_default_project_paths() -> void:
-	_set_project_paths(get_plugin_examples_path(), false)
+	set_project_paths(get_plugin_examples_path(), false)
 
-func update_project_paths(target_path : String) -> void:
-	_set_project_paths(target_path)
-	update_autoload_paths(target_path)
-
-func _update_scene_loader_path(target_path : String) -> void:
-	var file_path : String = get_scene_loader_path()
-	var file_text : String = FileAccess.get_file_as_string(file_path)
-	var path_for_regex := LOADING_SCREEN_SCENE_RELATIVE_PATH.replace("/", "\\/").replace(".", "\\.")
-	var regex := RegEx.create_from_string("loading_screen_path = \"(\\S*)%s\"" % path_for_regex)
-	var replacement : String = "loading_screen_path = \"%s%s\"" % [target_path, LOADING_SCREEN_SCENE_RELATIVE_PATH]
-	file_text = regex.sub(file_text, replacement)
-	var file = FileAccess.open(file_path, FileAccess.WRITE)
-	file.store_string(file_text)
-	file.close()
+func update_project_paths() -> void:
+	set_project_paths(get_copy_path())
 
 func _add_translations() -> void:
 	var dir := DirAccess.open("res://")
@@ -270,24 +258,16 @@ func _are_all_project_paths_updated(target_path) -> bool:
 			return false
 	return true
 
-func _is_scene_loader_path_updated(target_path) -> bool:
-	var file_text : String = FileAccess.get_file_as_string(get_scene_loader_path())
-	var target_string = "loading_screen_path = \"" + get_plugin_examples_path()
-	return !file_text.contains(target_string)
-
 func are_project_paths_updated() -> bool:
 	var copy_path := get_copy_path()
 	if copy_path == get_plugin_examples_path():
 		return false
-	return _is_scene_loader_path_updated(copy_path) and _are_all_project_paths_updated(copy_path)
-
-func update_autoload_paths(target_path : String) -> void:
-	_update_scene_loader_path(target_path)
+	return _are_all_project_paths_updated(copy_path)
 
 func _on_completed_copy_to_directory(target_path : String) -> void:
 	ProjectSettings.set_setting(PROJECT_SETTINGS_PATH + "copy_path", target_path)
 	ProjectSettings.save()
-	update_project_paths(target_path)
+	set_project_paths(target_path)
 	_copy_override_file()
 	_open_play_opening_confirmation_dialog(target_path)
 
