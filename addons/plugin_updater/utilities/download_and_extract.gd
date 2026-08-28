@@ -58,13 +58,7 @@ enum DownloadAndExtractStage{
 @export_range(0.0, 3.0) var extraction_delay : float = 0.25
 ## Duration to wait before the request times out.
 @export var request_timeout : float = 0.0
-@export var _start_run_action : bool = false :
-	set(value):
-		if value and Engine.is_editor_hint():
-			run()
-# For Godot 4.4
-# @export_tool_button("Download & Extract") var _start_run_action = run
-
+@export_tool_button("Download & Extract") var _start_run_action = run
 
 @onready var _http_request : HTTPRequest = $HTTPRequest
 @onready var _timeout_timer : Timer= $TimeoutTimer
