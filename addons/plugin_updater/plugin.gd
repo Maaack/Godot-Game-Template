@@ -117,12 +117,16 @@ func _add_tool_options() -> void:
 func _remove_tool_options() -> void:
 	_remove_update_plugin_tool_option()
 
-func _enter_tree() -> void:
+func _enable_plugin():
 	add_plugin(get_plugin_path(), PROJECT_REPO_URL)
+
+func _disable_plugin():
+	remove_plugin(get_plugin_path())
+
+func _enter_tree() -> void:
 	_add_tool_options()
 	instance = self
 
 func _exit_tree() -> void:
-	remove_plugin(get_plugin_path())
 	_remove_tool_options()
 	instance = null

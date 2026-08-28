@@ -24,12 +24,7 @@ const COMMON_REPLACE_STRINGS: Dictionary = {
 @export var add_stick_directions : bool = false
 @export var intial_joypad_device : String = InputEventHelper.DEVICE_GENERIC
 ## Attempt to match the icon names to the input names based on the string rules.
-@export var _match_icons_to_inputs_action : bool = false :
-	set(value):
-		if value and Engine.is_editor_hint():
-			_match_icons_to_inputs()
-# For Godot 4.4
-# @export_tool_button("Match Icons to Inputs") var _match_icons_to_inputs_action = _match_icons_to_inputs
+@export_tool_button("Match Icons to Inputs") var _match_icons_to_inputs_action = _match_icons_to_inputs
 @export var matching_icons : Dictionary # Dictionary[String, Texture]
 @export_group("Debug")
 @export var all_icons : Dictionary # Dictionary[String, Texture]
