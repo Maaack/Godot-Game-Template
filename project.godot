@@ -106,6 +106,7 @@ disable_install_audio_busses=true
 main_menu_scene_path="res://scenes/menus/main_menu/main_menu.tscn"
 game_scene_path="res://scenes/game/game.tscn"
 ending_scene_path="res://scenes/end_credits/end_credits.tscn"
+loading_scene_path="res://scenes/loading_screen/loading_screen.tscn"
 
 [physics]
 
