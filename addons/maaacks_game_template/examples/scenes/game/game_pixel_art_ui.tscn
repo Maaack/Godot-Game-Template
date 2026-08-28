@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://ctxrxydjahutd"]
 
 [ext_resource type="Script" uid="uid://cyh0d64pfygbl" path="res://addons/maaacks_game_template/base/nodes/utilities/pause_menu_controller.gd" id="1_aye2m"]
-[ext_resource type="PackedScene" uid="uid://ch7wxnbttg3ik" path="res://addons/maaacks_game_template/examples/scenes/windows/pause_menu_layer.tscn" id="2_l334e"]
 [ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/nodes/music_players/background_music_player.tscn" id="3_35hrq"]
 [ext_resource type="Script" uid="uid://bbymrin0cm704" path="res://addons/maaacks_game_template/extras/scripts/level_loader.gd" id="4_eohys"]
+[ext_resource type="PackedScene" uid="uid://bpphyypwqyoyl" path="res://addons/maaacks_game_template/examples/scenes/windows/pause_menu.tscn" id="4_p6u55"]
 [ext_resource type="Script" uid="uid://cmqngqwso0uve" path="res://addons/maaacks_game_template/examples/scripts/level_and_state_manager.gd" id="5_km8h0"]
 [ext_resource type="PackedScene" uid="uid://bve6co8x25of" path="res://addons/maaacks_game_template/examples/scenes/windows/game_won_window.tscn" id="6_g1i2c"]
 [ext_resource type="PackedScene" uid="uid://whpmo2tt4mwr" path="res://addons/maaacks_game_template/examples/scenes/windows/level_lost_window.tscn" id="7_gfip7"]
@@ -22,7 +22,7 @@ script = ExtResource("12_vh7lg")
 
 [node name="PauseMenuController" type="Node" parent="." unique_id=1685173287 node_paths=PackedStringArray("focused_viewport")]
 script = ExtResource("1_aye2m")
-pause_menu_packed = ExtResource("2_l334e")
+pause_menu_packed = ExtResource("4_p6u55")
 focused_viewport = NodePath("../ViewportContainer/ConfigurableSubViewport")
 
 [node name="LevelLoader" type="Node" parent="." unique_id=1047451806 node_paths=PackedStringArray("level_container", "level_loading_screen")]
