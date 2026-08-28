@@ -111,6 +111,13 @@ ending_scene_path="res://scenes/end_credits/end_credits.tscn"
 
 common/enable_pause_aware_picking=true
 
+[plugin_updater]
+
+plugins={
+"res://addons/maaacks_game_template/": "https://github.com/Maaack/Godot-Game-Template",
+"res://addons/plugin_updater/": "https://github.com/Maaack/Godot-Plugin-Updater"
+}
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
