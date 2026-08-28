@@ -159,6 +159,7 @@ func open_delete_examples_short_confirmation_dialog() -> void:
 	var delete_confirmation_scene : PackedScene = load(get_plugin_path() + "installer/delete_examples_short_confirmation_dialog.tscn")
 	var delete_confirmation_instance : ConfirmationDialog = delete_confirmation_scene.instantiate()
 	delete_confirmation_instance.confirmed.connect(_delete_source_examples_directory)
+	delete_confirmation_instance.canceled.connect(_delayed_call_with_path.bind(open_setup_wizard, ""))
 	delete_confirmation_instance.visibility_changed.connect(_on_visibility_changed_to_hidden.bind(delete_confirmation_instance))
 	add_child(delete_confirmation_instance)
 
@@ -325,7 +326,7 @@ func _open_continue_setup_dialog() -> void:
 	confirmation_instance.visibility_changed.connect(_on_visibility_changed_to_hidden.bind(confirmation_instance))
 	add_child(confirmation_instance)
 
-func open_setup_wizard() -> void:
+func open_setup_wizard(_target_path: String = "") -> void:
 	var setup_wizard_scene : PackedScene = load(get_plugin_path() + "installer/setup_wizard.tscn")
 	var setup_wizard_instance : Node = setup_wizard_scene.instantiate()
 	add_child(setup_wizard_instance)
