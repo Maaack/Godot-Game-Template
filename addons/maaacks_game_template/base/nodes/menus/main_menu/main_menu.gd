@@ -31,7 +31,7 @@ var sub_menu : Control
 @onready var exit_confirmation = %ExitConfirmation
 
 func get_game_scene_path() -> String:
-	return MaaacksGameTemplatePlugin.get_game_path(game_scene_path)
+	return MaaacksGameTemplate.get_game_path(game_scene_path)
 
 func load_game_scene() -> void:
 	if signal_game_start:

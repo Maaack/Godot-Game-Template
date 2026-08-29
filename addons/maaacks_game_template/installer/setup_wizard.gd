@@ -25,7 +25,7 @@ extends AcceptDialog
 
 func _refresh_plugin_details() -> void:
 	for enabled_plugin in ProjectSettings.get_setting("editor_plugins/enabled"):
-		if enabled_plugin.contains(MaaacksGameTemplatePlugin.get_settings_path()):
+		if enabled_plugin.contains(MaaacksGameTemplate.get_settings_path()):
 			var config := ConfigFile.new()
 			var error = config.load(enabled_plugin)
 			if error != OK:
@@ -107,13 +107,8 @@ func _ready():
 	_refresh_options()
 
 func _on_update_button_pressed():
-	if ProjectSettings.get_setting(MaaacksGameTemplatePlugin.get_settings_path() + "disable_update_check", false):
-		ProjectSettings.set_setting(MaaacksGameTemplatePlugin.get_settings_path() + "disable_update_check", false)
-		_open_check_plugin_version()
-		return
-	else:
-		tree_exited.connect(func(): PluginUpdater.instance.open_update_plugin(MaaacksGameTemplatePlugin.instance.get_plugin_path(), MaaacksGameTemplatePlugin.PLUGIN_REPO_URL))
-		queue_free()
+	tree_exited.connect(func(): PluginUpdater.instance.open_update_plugin(MaaacksGameTemplatePlugin.instance.get_plugin_path(), MaaacksGameTemplatePlugin.PLUGIN_REPO_URL))
+	queue_free()
 
 func _on_copy_button_pressed():
 	tree_exited.connect(func(): MaaacksGameTemplatePlugin.instance.open_copy_and_edit_dialog())

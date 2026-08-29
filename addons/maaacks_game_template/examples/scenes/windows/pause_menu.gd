@@ -17,7 +17,7 @@ var open_window : Node
 var restarting : bool = false
 
 func get_main_menu_scene_path() -> String:
-	return MaaacksGameTemplatePlugin.get_main_menu_path(main_menu_scene_path)
+	return MaaacksGameTemplate.get_main_menu_path(main_menu_scene_path)
 
 func close_window() -> void:
 	if open_window != null:

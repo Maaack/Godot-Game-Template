@@ -74,7 +74,7 @@ func set_loading_screen(value : String) -> void:
 	loading_screen_path = value
 	var _loading_screen_path := loading_screen_path
 	if _loading_screen_path.is_empty():
-		_loading_screen_path = MaaacksGameTemplatePlugin.get_loading_scene_path()
+		_loading_screen_path = MaaacksGameTemplate.get_loading_scene_path()
 	if _loading_screen_path.is_empty():
 		return
 	_loading_screen = load(_loading_screen_path)
