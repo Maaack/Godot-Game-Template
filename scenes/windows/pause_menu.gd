@@ -46,9 +46,8 @@ func _load_and_show_menu(scene : PackedScene) -> void:
 
 func _handle_cancel_input() -> void:
 	if open_window != null:
-		close_window()
-	else:
-		super._handle_cancel_input()
+		return
+	super._handle_cancel_input()
 
 func _refresh_exit_button() -> void:
 	exit_button.visible = !OS.has_feature("web")
@@ -86,8 +85,8 @@ func _on_restart_confirmation_confirmed() -> void:
 
 func _on_restart_confirmation_closed() -> void:
 	if restarting:
+		await draw
 		SceneLoader.reload_current_scene()
-		close()
 
 func _on_main_menu_confirmation_confirmed():
 	_load_scene(get_main_menu_scene_path())
