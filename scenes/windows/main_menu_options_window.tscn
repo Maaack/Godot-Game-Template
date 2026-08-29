@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://mhk7ai1jtttm"]
 
-[ext_resource type="PackedScene" uid="uid://crndfbb22ri4s" path="res://addons/maaacks_game_template/base/nodes/windows/overlaid_window_scene_container.tscn" id="1_miy0a"]
-[ext_resource type="PackedScene" uid="uid://bg48j7ffj4nja" path="res://scenes/menus/options_menu/master_options_menu_with_tabs.tscn" id="2_miy0a"]
+[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/nodes/windows/popup_window_scene_container.tscn" id="1_miy0a"]
+[ext_resource type="PackedScene" path="res://scenes/menus/options_menu/master_options_menu_with_tabs.tscn" id="2_mljqd"]
 
 [node name="MainMenuOptionsOverlaidWindow" unique_id=1787637973 instance=ExtResource("1_miy0a")]
 anchors_preset = 15
@@ -15,7 +15,7 @@ offset_right = 0.0
 offset_bottom = 0.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-packed_scene = ExtResource("2_miy0a")
+packed_scene = ExtResource("2_mljqd")
 update_content = true
 close_button_text = "Back"
 
