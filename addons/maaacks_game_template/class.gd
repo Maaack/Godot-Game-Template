@@ -62,9 +62,12 @@ static func get_loading_scene_path(override_path : String = "") -> String:
 
 static func set_project_paths(target_path : String, overwrite : bool = true) -> void:
 	for key in SCENE_PATHS:
-		if (not overwrite) and ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + key) != null:
-			continue
 		var relative_path = SCENE_PATHS[key]
+		var stored_path := ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + key)
+		if (not overwrite) and stored_path != null:
+			continue
+		if relative_path.is_empty() and (not stored_path.is_empty()):
+			continue
 		var full_path = ""
 		if not relative_path.is_empty():
 			full_path = target_path + relative_path
@@ -73,9 +76,10 @@ static func set_project_paths(target_path : String, overwrite : bool = true) -> 
 
 static func are_project_paths_updated(target_path) -> bool:
 	for key in SCENE_PATHS:
-		var value : String = ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + key, "")
-		if value.is_empty() and SCENE_PATHS[key].is_empty():
+		var relative_path = SCENE_PATHS[key]
+		if relative_path.is_empty():
 			continue
-		if not value == target_path + SCENE_PATHS[key]:
+		var stored_path : String = ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + key, "")
+		if stored_path != target_path + relative_path:
 			return false
 	return true
