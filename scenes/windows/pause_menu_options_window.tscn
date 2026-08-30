@@ -16,9 +16,6 @@ offset_right = 0.0
 offset_bottom = 0.0
 packed_scene = ExtResource("2_a6sle")
 
-[node name="TitleMargin" parent="ContentContainer/BoxContainer" parent_id_path=PackedInt32Array(394030069) index="0" unique_id=1262022916]
-visible = false
-
 [node name="TitleLabel" parent="ContentContainer/BoxContainer/TitleMargin/BoxContainer" parent_id_path=PackedInt32Array(1788474031) index="0" unique_id=1049966061]
 text = "Options"
 

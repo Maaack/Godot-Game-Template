@@ -6,6 +6,13 @@
 [node name="PopupWindowSceneContainer" unique_id=232665413 instance=ExtResource("1_07348")]
 script = ExtResource("2_p673y")
 packed_scene = null
+title = ""
+
+[node name="TitleMargin" parent="ContentContainer/BoxContainer" parent_id_path=PackedInt32Array(394030069) index="0" unique_id=1262022916]
+visible = false
+
+[node name="TitleLabel" parent="ContentContainer/BoxContainer/TitleMargin/BoxContainer" parent_id_path=PackedInt32Array(1788474031) index="0" unique_id=1049966061]
+text = ""
 
 [node name="SceneContainer" type="MarginContainer" parent="ContentContainer/BoxContainer/BodyMargin" parent_id_path=PackedInt32Array(590613964) index="1" unique_id=1464754606]
 unique_name_in_owner = true
