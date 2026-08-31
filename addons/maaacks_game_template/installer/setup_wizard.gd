@@ -1,7 +1,6 @@
 @tool
 extends AcceptDialog
 
-@export_file("*.tscn") var check_version_scene_path : String
 @export_dir var input_prompts_directory_path : String
 ## Optional link to webpage for reporting issues. Must start with "https://"
 @export var issues_url : String
@@ -26,7 +25,7 @@ extends AcceptDialog
 
 func _refresh_plugin_details() -> void:
 	for enabled_plugin in ProjectSettings.get_setting("editor_plugins/enabled"):
-		if enabled_plugin.contains(MaaacksGameTemplatePlugin.get_settings_path()):
+		if enabled_plugin.contains(MaaacksGameTemplate.get_settings_path()):
 			var config := ConfigFile.new()
 			var error = config.load(enabled_plugin)
 			if error != OK:
@@ -35,33 +34,30 @@ func _refresh_plugin_details() -> void:
 			var plugin_name : String = config.get_value("plugin", "name", "Plugin")
 			plugin_label.text = "%s v%s" % [plugin_name, current_plugin_version]
 
-func _show_plugin_versions_match() -> void:
+func _show_plugin_versions_match(_tag_name : String) -> void:
 	update_label.text = "Using Latest Version"
 	update_check_box.button_pressed = true
 	update_button.disabled = true
 
 func _enable_update_plugin_tool_option(tag_name : String) -> void:
-	update_label.text = "Update to Latest Version v%s" % tag_name
+	update_label.text = "Update to Latest Version %s" % tag_name
 	update_button.disabled = false
 
 func _open_check_plugin_version() -> void:
-	if check_version_scene_path.is_empty():
-		push_warning("Variable \"check_version_scene_path\" is not set")
+	if PluginUpdater.instance == null:
+		update_label.text = "Plugin Updater Disabled"
 		return
-	if ProjectSettings.get_setting(MaaacksGameTemplatePlugin.get_settings_path() + "disable_update_check", false):
-		update_label.text = "Check for Latest Version"
-		update_button.disabled = false
-		return
-	var check_version_scene : PackedScene = load(check_version_scene_path)
-	var check_version_instance : Node = check_version_scene.instantiate()
-	check_version_instance.auto_start = true
+	var check_version_instance := PluginUpdater.instance.get_check_plugin_version(MaaacksGameTemplatePlugin.instance.get_plugin_path(), MaaacksGameTemplatePlugin.PLUGIN_REPO_URL)
+	add_child(check_version_instance)
 	check_version_instance.new_version_detected.connect(_enable_update_plugin_tool_option)
 	check_version_instance.versions_matched.connect(_show_plugin_versions_match)
-	add_child(check_version_instance)
+	check_version_instance.compare_versions()
+	await check_version_instance.done
+	check_version_instance.queue_free()
 
 func _refresh_copy_and_delete_examples() -> void:
 	var examples_path = MaaacksGameTemplatePlugin.instance.get_plugin_examples_path()
-	if MaaacksGameTemplatePlugin.get_copy_path() != examples_path:
+	if MaaacksGameTemplatePlugin.instance.get_copy_path() != examples_path:
 		copy_check_box.button_pressed = true
 	var dir := DirAccess.open("res://")
 	if dir.dir_exists(examples_path):
@@ -70,9 +66,10 @@ func _refresh_copy_and_delete_examples() -> void:
 	else:
 		delete_check_box.button_pressed = true
 
-func _refresh_update_autoload_paths() -> void:
-	update_paths_check_box.button_pressed = MaaacksGameTemplatePlugin.instance.are_autoload_paths_updated()
-	update_paths_button.disabled = false
+func _refresh_update_project_paths() -> void:
+	var project_paths_flag := MaaacksGameTemplatePlugin.instance.are_project_paths_updated()
+	update_paths_check_box.button_pressed = project_paths_flag
+	update_paths_button.disabled = project_paths_flag
 
 func _refresh_main_scene() -> void:
 	if MaaacksGameTemplatePlugin.instance.is_main_scene_set():
@@ -100,7 +97,7 @@ func _refresh_options():
 	_refresh_plugin_details()
 	_open_check_plugin_version()
 	_refresh_copy_and_delete_examples()
-	_refresh_update_autoload_paths()
+	_refresh_update_project_paths()
 	_refresh_main_scene()
 	_refresh_default_theme()
 	_refresh_input_prompts()
@@ -110,13 +107,8 @@ func _ready():
 	_refresh_options()
 
 func _on_update_button_pressed():
-	if ProjectSettings.get_setting(MaaacksGameTemplatePlugin.get_settings_path() + "disable_update_check", false):
-		ProjectSettings.set_setting(MaaacksGameTemplatePlugin.get_settings_path() + "disable_update_check", false)
-		_open_check_plugin_version()
-		return
-	else:
-		tree_exited.connect(func(): MaaacksGameTemplatePlugin.instance.open_update_plugin())
-		queue_free()
+	tree_exited.connect(func(): PluginUpdater.instance.open_update_plugin(MaaacksGameTemplatePlugin.instance.get_plugin_path(), MaaacksGameTemplatePlugin.PLUGIN_REPO_URL))
+	queue_free()
 
 func _on_copy_button_pressed():
 	tree_exited.connect(func(): MaaacksGameTemplatePlugin.instance.open_copy_and_edit_dialog())
@@ -127,18 +119,16 @@ func _on_delete_button_pressed():
 	queue_free()
 
 func _on_update_paths_button_pressed():
-	MaaacksGameTemplatePlugin.instance.update_autoload_paths(MaaacksGameTemplatePlugin.get_copy_path())
-	_refresh_update_autoload_paths()
+	MaaacksGameTemplatePlugin.instance.update_project_paths()
+	_refresh_update_project_paths()
 	update_paths_button.disabled = true
-	await get_tree().create_timer(1.0).timeout
-	update_paths_button.disabled = false
 
 func _on_set_main_scene_button_pressed():
-	tree_exited.connect(func(): MaaacksGameTemplatePlugin.instance.open_main_scene_confirmation_dialog(MaaacksGameTemplatePlugin.get_copy_path()))
+	tree_exited.connect(func(): MaaacksGameTemplatePlugin.instance.open_main_scene_confirmation_dialog(MaaacksGameTemplatePlugin.instance.get_copy_path()))
 	queue_free()
 
 func _on_set_default_theme_button_pressed():
-	tree_exited.connect(func(): MaaacksGameTemplatePlugin.instance.open_theme_selection_dialog(MaaacksGameTemplatePlugin.get_copy_path()))
+	tree_exited.connect(func(): MaaacksGameTemplatePlugin.instance.open_theme_selection_dialog(MaaacksGameTemplatePlugin.instance.get_copy_path()))
 	queue_free()
 
 func _on_add_input_icons_button_pressed():

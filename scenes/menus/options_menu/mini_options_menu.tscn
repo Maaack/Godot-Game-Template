@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://uiqm2lat7nai"]
 
-[ext_resource type="Script" uid="uid://cqtded1lw2j1r" path="res://scenes/menus/options_menu/mini_options_menu.gd" id="1_7t2pa"]
-[ext_resource type="PackedScene" uid="uid://cl416gdb1fgwr" path="res://addons/maaacks_game_template/base/nodes/menus/options_menu/option_control/slider_option_control.tscn" id="2_7t2pa"]
-[ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/nodes/utilities/capture_focus.gd" id="3_x0e25"]
-[ext_resource type="PackedScene" uid="uid://c01ayjblhcg1t" path="res://addons/maaacks_game_template/base/nodes/menus/options_menu/option_control/vector_2_list_option_control.tscn" id="4_x0e25"]
-[ext_resource type="PackedScene" uid="uid://bsxh6v7j0257h" path="res://addons/maaacks_game_template/base/nodes/menus/options_menu/option_control/toggle_option_control.tscn" id="4_xg1r4"]
+[ext_resource type="Script" path="res://scenes/menus/options_menu/mini_options_menu.gd" id="1_7t2pa"]
+[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/nodes/menus/options_menu/option_control/slider_option_control.tscn" id="2_x0e25"]
+[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/nodes/menus/options_menu/option_control/toggle_option_control.tscn" id="3_xg1r4"]
+[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/nodes/menus/options_menu/option_control/vector_2_list_option_control.tscn" id="4_jtf1g"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/base/nodes/utilities/capture_focus.gd" id="5_csyft"]
 
 [node name="MiniOptionsMenu" type="VBoxContainer" unique_id=2109470311]
 custom_minimum_size = Vector2(400, 260)
@@ -23,9 +23,9 @@ size_flags_horizontal = 4
 theme_override_constants/separation = 8
 alignment = 1
 script = ExtResource("1_7t2pa")
-audio_control_scene = ExtResource("2_7t2pa")
+audio_control_scene = ExtResource("2_x0e25")
 
-[node name="FullscreenControl" parent="." unique_id=311912129 instance=ExtResource("4_xg1r4")]
+[node name="FullscreenControl" parent="." unique_id=311912129 instance=ExtResource("3_xg1r4")]
 unique_name_in_owner = true
 layout_mode = 2
 option_name = "Fullscreen"
@@ -33,7 +33,7 @@ option_section = 3
 key = "FullscreenEnabled"
 section = "VideoSettings"
 
-[node name="ResolutionControl" parent="." unique_id=21057374 instance=ExtResource("4_x0e25")]
+[node name="ResolutionControl" parent="." unique_id=21057374 instance=ExtResource("4_jtf1g")]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Select a screen size"
@@ -49,7 +49,7 @@ property_type = 6
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 8
-script = ExtResource("3_x0e25")
+script = ExtResource("5_csyft")
 search_depth = 2
 
 [connection signal="setting_changed" from="FullscreenControl" to="." method="_on_fullscreen_control_setting_changed"]

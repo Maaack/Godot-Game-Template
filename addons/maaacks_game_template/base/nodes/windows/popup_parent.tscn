@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://djd1otv7t1bd8"]
+
+[node name="PopupParent" type="CanvasLayer" unique_id=2008552931]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=968532893]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.7529412)

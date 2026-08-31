@@ -1,44 +1,50 @@
 #!/bin/bash
-# butler manager command
-# Uploads directories as builds to matching itch.io channels.
-# HTML5 => html5
-# Linux => linux
-# Windows => win
-# MacOS => osx
 
-file=upload_destination.txt
-directories=("HTML5" "Linux" "Windows" "MacOS")
-channels=("html5" "linux" "win" "osx")
+# This script is used to upload multiple builds of a Godot project to itch.io with `butler`.
 
-# Check if the file exists
-if [ ! -e $file ]; then
-    # File doesn't exist, create an empty one
-    touch $file
+channels=("win" "mac" "linux" "html5" "android")
+directories=("windows" "macos" "linux" "html" "android")
+target="default"
+source_file="butler_source.txt"
+target_key=""
+
+# Get specific target from input variable "target" (default = "default")
+if [ $# -gt 0 ]; then
+  target=$1
+fi
+target_key="url_$target"
+
+# Check for the source file and load it if it exists.
+if [ -e "$source_file" ]; then
+  source "$source_file"
 fi
 
-# File exists, read the first line into a variable
-read -r destination < $file
-    
-if [ -z "$destination" ]; then
-    # File is empty, prompt the user for input
-    echo "Please enter the build destination (username/project-url-after-slash)."
-    read -r user_input
-    
-    # Save user input to the file
-    echo "$user_input" > "$file"
-    echo "Destination saved to $file."
-    destination="$user_input"
+# If the url variable is still empty, ask the user.
+if [ -z "${!target_key}" ]; then
+  page_url=""
+  read -p "What is game page URL? " -r page_url
+  if [[ "$page_url" =~ ^https?://([^.]+).itch.io/(.+) ]]; then
+    eval $target_key="${BASH_REMATCH[1]}/${BASH_REMATCH[2]}"
+  fi
 fi
+echo "Uploading to ${!target_key}. ($target)"
+read -p "Press Enter to continue..." </dev/tty
 
-# Check for the existence of directories and upload contents
-for ((i=0; i<${#directories[@]}; i++)); do
-    dir="${directories[i]}"
-    channel="${channels[i]}"
-    
-    if [ -d "$dir" ]; then
-        echo butler push ./$dir/ $destination:$channel
-        butler push ./$dir/ $destination:$channel
-    else
-        echo "Directory '$dir' does not exist."
-    fi
+# Save the new values of the variables back into the file
+for i in "${!url_@}"; do
+  printf '%s=%q\n' "$i" "${!i}"
+done > $source_file
+
+len=${#channels[@]}
+
+for((i=0; i<$len; i++)); do
+  channel="${channels[i]}"
+  directory="${directories[i]}"
+  if [ -d "$directory" ]; then
+    echo butler push $directory/ ${!target_key}:$channel
+    butler push $directory/ ${!target_key}:$channel
+  else
+    echo "The directory \`$directory\` did not exist."
+  fi 
 done
+

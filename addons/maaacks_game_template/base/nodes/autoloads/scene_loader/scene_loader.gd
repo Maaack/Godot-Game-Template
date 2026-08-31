@@ -5,7 +5,8 @@ extends Node
 signal scene_loaded
 
 ## Path to the loading screen to display to players while loading a scene.
-@export_file("*.tscn") var loading_screen_path : String : set = set_loading_screen
+## Will use ProjectSettings paths if left empty.
+@export_file("*.tscn") var loading_screen_path : String : get = get_loading_screen_path, set = set_loading_screen_path
 
 @export_group("Debug")
 ## If true, enable debug mode.
@@ -69,12 +70,16 @@ func change_scene_to_loading_screen() -> void:
 		push_error("failed to change scenes to loading screen: %d" % err)
 		get_tree().quit()
 
-func set_loading_screen(value : String) -> void:
+func set_loading_screen_path(value : String) -> void:
 	loading_screen_path = value
-	if loading_screen_path == "":
-		push_warning("loading screen path is empty")
+	if loading_screen_path.is_empty():
 		return
 	_loading_screen = load(loading_screen_path)
+
+func get_loading_screen_path() -> String:
+	if loading_screen_path.is_empty():
+		return MaaacksGameTemplate.get_loading_scene_path()
+	return loading_screen_path
 
 func is_loading_scene(check_scene_path) -> bool:
 	return check_scene_path == _scene_path
@@ -113,6 +118,7 @@ func _unhandled_key_input(event : InputEvent) -> void:
 			get_tree().quit()
 
 func _ready() -> void:
+	loading_screen_path = loading_screen_path
 	set_process(false)
 
 func _process(_delta) -> void:

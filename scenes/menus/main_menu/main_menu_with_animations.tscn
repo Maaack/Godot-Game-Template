@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://dhr7kwfkmlq7o"]
 
-[ext_resource type="PackedScene" uid="uid://c6k5nnpbypshi" path="res://addons/maaacks_game_template/base/nodes/menus/main_menu/main_menu.tscn" id="1_sr523"]
-[ext_resource type="Script" uid="uid://bgxix7esjru83" path="res://scenes/menus/main_menu/main_menu_with_animations.gd" id="2_sr523"]
-[ext_resource type="PackedScene" uid="uid://mhk7ai1jtttm" path="res://scenes/windows/main_menu_options_window.tscn" id="3_ixa71"]
-[ext_resource type="PackedScene" uid="uid://dnaejbfe1nvn1" path="res://scenes/windows/main_menu_credits_window.tscn" id="4_2k5l7"]
-[ext_resource type="PackedScene" uid="uid://cwt4p3bufkke5" path="res://addons/maaacks_game_template/base/nodes/windows/confirmation_overlaid_window.tscn" id="5_6xh1d"]
+[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/nodes/menus/main_menu/main_menu.tscn" id="1_sr523"]
+[ext_resource type="Script" path="res://scenes/menus/main_menu/main_menu_with_animations.gd" id="2_ixa71"]
+[ext_resource type="PackedScene" path="res://scenes/windows/main_menu_options_window.tscn" id="3_2k5l7"]
+[ext_resource type="PackedScene" path="res://scenes/windows/main_menu_credits_window.tscn" id="4_vsp5b"]
+[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/nodes/windows/confirmation_popup_window_panel.tscn" id="5_6xh1d"]
 
 [sub_resource type="Animation" id="1"]
 resource_name = "Intro"
@@ -159,18 +159,6 @@ tracks/5/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer:lock")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
 
 [sub_resource type="Animation" id="4"]
 resource_name = "OpenSubMenu"
@@ -262,18 +250,6 @@ tracks/5/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
 }
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer:lock")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2kqig"]
 _data = {
@@ -315,11 +291,11 @@ transitions = ["Intro", "OpenMainMenu", SubResource("11"), "OpenMainMenu", "Open
 graph_offset = Vector2(-180.277, 49)
 
 [node name="MainMenu" unique_id=589811630 instance=ExtResource("1_sr523")]
-script = ExtResource("2_sr523")
+script = ExtResource("2_ixa71")
 level_select_packed_scene = null
 confirm_new_game = true
-options_packed_scene = ExtResource("3_ixa71")
-credits_packed_scene = ExtResource("4_2k5l7")
+options_packed_scene = ExtResource("3_2k5l7")
+credits_packed_scene = ExtResource("4_vsp5b")
 
 [node name="MenuAnimationPlayer" type="AnimationPlayer" parent="." index="1" unique_id=1492532975]
 libraries/ = SubResource("AnimationLibrary_2kqig")
@@ -347,7 +323,7 @@ visible = false
 layout_mode = 2
 text = "Continue"
 
-[node name="LevelSelectButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" index="2" unique_id=78300098]
+[node name="LevelSelectButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" parent_id_path=PackedInt32Array(2017477786) index="2" unique_id=78300098]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2

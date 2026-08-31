@@ -13,9 +13,9 @@ These instructions assume starting with the entire contents of the project folde
         2.  In the `Setup Wizard` window next to "Delete Example Files", click `Run`.
         3.  In the next window, select `Yes` to continue with removing the example files.
 
-    2.  Update autoload file paths.
+    2.  Update project file paths.
         1.  Go to `Project > Tools > Run Maaack's Game Template Setup...`.
-        2.  In the `Setup Wizard` window next to "Update Autoload Paths", click `Run`.
+        2.  In the `Setup Wizard` window next to "Update Project Paths", click `Run`.
 
     3.  Set a default theme.
         1.  Go to `Project > Tools > Run Maaack's Game Template Setup...`.

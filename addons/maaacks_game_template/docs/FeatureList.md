@@ -21,7 +21,6 @@ The `base/` folder holds the core components of the menus application.
 -   Background Music Controller
 -   Credits Reader (Markdown File Parser)
 -   Global State Management (Basic Saving/Loading)
--   Global Config Autoload
 
 ## Extras
 

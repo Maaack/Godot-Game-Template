@@ -18,7 +18,9 @@ The flow of scenes in the template by default goes `Opening -> Main Menu -> Game
 
 The `Opening` is referenced in the project settings, and will get automatically update if moved in the editor.  
 
-The rest have their default paths stored in the `AppConfig` autoload. These do not get automatically updated, so the developer must update these paths if they change.  
+The rest have their default paths stored in the **Project Settings**. These do not get automatically updated, so the developer must update these paths if they change.  
+
+The recommended way is to update the `Copy Path` to the target folder, open the setup wizard, and run to update the project paths.
 
 Alternatively, the developer can specify paths in the scenes that reference the other scenes by path. These include:
 * `opening.tscn`  
@@ -28,7 +30,7 @@ Alternatively, the developer can specify paths in the scenes that reference the 
 * `game.tscn` (`level_manager.gd`)  
 * `end_credits.tscn`  
 
-Any file paths in these scenes left blank will default to the values in `AppConfig`.
+Any file paths in these scenes left blank will default to the values in **Project Settings**.
 
 ## Internal Details 
 

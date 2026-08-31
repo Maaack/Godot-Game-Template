@@ -8,7 +8,7 @@ signal game_started
 signal game_exited
 
 ## Defines the path to the game scene. Hides the play button if empty.
-## Will attempt to read from AppConfig if left empty.
+## Will use ProjectSettings paths if left empty.
 @export_file("*.tscn") var game_scene_path : String
 ## The scene to open when a player clicks the 'Options' button.
 @export var options_packed_scene : PackedScene
@@ -23,7 +23,6 @@ signal game_exited
 
 var sub_menu : Control
 
-@onready var menu_container = %MenuContainer
 @onready var menu_buttons_box_container = %MenuButtonsBoxContainer
 @onready var new_game_button = %NewGameButton
 @onready var options_button = %OptionsButton
@@ -32,9 +31,7 @@ var sub_menu : Control
 @onready var exit_confirmation = %ExitConfirmation
 
 func get_game_scene_path() -> String:
-	if game_scene_path.is_empty():
-		return AppConfig.game_scene_path
-	return game_scene_path
+	return MaaacksGameTemplate.get_game_path(game_scene_path)
 
 func load_game_scene() -> void:
 	if signal_game_start:
@@ -63,9 +60,7 @@ func exit_game() -> void:
 func _open_sub_menu(menu : PackedScene) -> Node:
 	sub_menu = menu.instantiate()
 	add_child(sub_menu)
-	menu_container.hide()
 	sub_menu.hidden.connect(_close_sub_menu, CONNECT_ONE_SHOT)
-	sub_menu.tree_exiting.connect(_close_sub_menu, CONNECT_ONE_SHOT)
 	sub_menu_opened.emit()
 	return sub_menu
 
@@ -74,7 +69,6 @@ func _close_sub_menu() -> void:
 		return
 	sub_menu.queue_free()
 	sub_menu = null
-	menu_container.show()
 	sub_menu_closed.emit()
 
 func _event_is_mouse_button_released(event : InputEvent) -> bool:
@@ -86,6 +80,7 @@ func _input(event : InputEvent) -> void:
 			try_exit_game()
 	if event.is_action_pressed("ui_accept") and get_viewport().gui_get_focus_owner() == null:
 		menu_buttons_box_container.focus_first()
+		get_viewport().set_input_as_handled()
 
 func _hide_exit_for_web() -> void:
 	if OS.has_feature("web"):

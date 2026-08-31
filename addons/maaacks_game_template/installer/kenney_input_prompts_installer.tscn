@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ca36dy2vkk46q" path="res://addons/maaacks_game_template/installer/kenney_input_prompts_installer.gd" id="1_ebstj"]
 [ext_resource type="PackedScene" uid="uid://d3x8m40qtdrj" path="res://addons/maaacks_game_template/installer/kenney_input_prompts_dialog.tscn" id="1_pslk0"]
-[ext_resource type="PackedScene" uid="uid://dlkmofxhavh10" path="res://addons/maaacks_game_template/utilities/download_and_extract.tscn" id="3_ebstj"]
+[ext_resource type="PackedScene" uid="uid://cvs1njvxbu308" path="res://addons/plugin_updater/utilities/download_and_extract.tscn" id="3_ebstj"]
 
 [node name="KenneyInputPromptsInstaller" type="Node" unique_id=910863368]
 script = ExtResource("1_ebstj")
@@ -14,7 +14,6 @@ zip_url = "https://github.com/Maaack/Kenney-Input-Prompts/archive/refs/tags/1.3.
 extract_path = "res://assets/kenney_input-prompts/"
 skip_base_zip_dir = true
 zip_file_path = "res://kenney_input-prompts.zip"
-metadata/_custom_type_script = "uid://bqu3bc0tttrfk"
 
 [node name="SkipInstallationDialog" type="ConfirmationDialog" parent="." unique_id=1861126542]
 title = "Skip Installation?"

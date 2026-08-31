@@ -2,9 +2,9 @@
 
 This page features snippets of extra documentation on key pieces of the plugin. It was previously included in the README.
 
-- `app_config.tscn` is an autoload scene. It calls `app_settings.gd` to load all the configuration settings from the config file (if it exists) through `player_config.gd`.
-- `scene_loader.tscn` is an autoload scene. It can load scenes in the background or with a loading screen (`loading_screen.tscn` by default).   
 - `opening.tscn` is a simple scene for fading in/out a few images at the start of the game. It then loads the next scene (`main_menu.tscn`).  
+- `start_up.tscn` is a node in `opening.tscn`. It calls `app_settings.gd` to load all the configuration settings from the config file (if it exists) through `player_config.gd`.
+- `scene_loader.tscn` is an autoload scene. It can load scenes in the background or with a loading screen (`loading_screen.tscn` by default).   
 - `main_menu.tscn` is where a player can start the game, change settings, watch credits, or quit. It can link to the path of a game scene to play, and the packed scene of an options menu to use.  
 - `option_control.tscn` and its inherited scenes are used for most configurable options in the menus. They work with `player_config.gd` to keep settings persistent between runs.
 - `credits_label.tscn` reads from `ATTRIBUTION.md` to automatically generate the content for it's scrolling text label.  

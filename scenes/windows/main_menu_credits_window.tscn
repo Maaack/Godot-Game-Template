@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://dnaejbfe1nvn1"]
 
-[ext_resource type="PackedScene" uid="uid://crndfbb22ri4s" path="res://addons/maaacks_game_template/base/nodes/windows/overlaid_window_scene_container.tscn" id="1_rkudv"]
-[ext_resource type="Script" uid="uid://73icq127jwpf" path="res://scenes/windows/main_menu_credits_window.gd" id="2_rkudv"]
-[ext_resource type="PackedScene" uid="uid://bjg10p50pmw2p" path="res://scenes/credits/scrollable_credits.tscn" id="3_bndrm"]
+[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/nodes/windows/popup_window_scene_container.tscn" id="1_rkudv"]
+[ext_resource type="Script" path="res://scenes/windows/main_menu_credits_window.gd" id="2_bndrm"]
+[ext_resource type="PackedScene" path="res://scenes/credits/scrollable_credits.tscn" id="3_8w6bb"]
 
 [node name="MainMenuCreditsOverlaidWindow" unique_id=1453761674 instance=ExtResource("1_rkudv")]
 anchors_preset = 15
@@ -14,11 +14,8 @@ offset_left = 0.0
 offset_top = 0.0
 offset_right = 0.0
 offset_bottom = 0.0
-script = ExtResource("2_rkudv")
-packed_scene = ExtResource("3_bndrm")
-
-[node name="TitleMargin" parent="ContentContainer/BoxContainer" parent_id_path=PackedInt32Array(394030069) index="0" unique_id=1262022916]
-visible = false
+script = ExtResource("2_bndrm")
+packed_scene = ExtResource("3_8w6bb")
 
 [node name="CloseButton" parent="ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" parent_id_path=PackedInt32Array(1371114575) index="0" unique_id=314526102]
 size_flags_horizontal = 0

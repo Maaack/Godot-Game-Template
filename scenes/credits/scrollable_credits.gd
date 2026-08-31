@@ -8,9 +8,11 @@ extends Control
 var _line_number : float = 0
 
 func _on_visibility_changed() -> void:
+	await draw
 	if is_visible_in_tree():
 		credits_label.scroll_to_line(0)
-		credits_label.grab_focus()
+		if credits_label.is_inside_tree():
+			credits_label.grab_focus()
 
 func _ready() -> void:
 	visibility_changed.connect(_on_visibility_changed)
