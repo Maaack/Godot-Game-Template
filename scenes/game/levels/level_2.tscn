@@ -1,33 +1,28 @@
 [gd_scene format=3 uid="uid://danrqx83o0lal"]
 
-[ext_resource type="Script" path="res://scenes/game/levels/level.gd" id="1_x2ody"]
-[ext_resource type="Script" path="res://addons/maaacks_game_template/base/nodes/utilities/capture_focus.gd" id="2_eom8k"]
-[ext_resource type="Script" path="res://scenes/game/scripts/input_display_label.gd" id="3_s3pix"]
-[ext_resource type="Script" path="res://scenes/game/scripts/tutorial_manager.gd" id="4_4awcv"]
-[ext_resource type="PackedScene" path="res://scenes/game/tutorials/tutorial_2.tscn" id="5_ik6v6"]
+[ext_resource type="Script" uid="uid://k41652yns7c0" path="res://scenes/game/levels/level_2.gd" id="1_12bjt"]
+[ext_resource type="Script" uid="uid://ch8aaykixbwn5" path="res://scenes/game/scripts/input_display_label.gd" id="3_kjg0a"]
+[ext_resource type="Script" uid="uid://cel1hwdc232gb" path="res://scenes/game/scripts/tutorial_manager.gd" id="4_w8c7f"]
+[ext_resource type="PackedScene" uid="uid://dv5cs1lbxmxva" path="res://scenes/game/tutorials/tutorial_2.tscn" id="5_i1l6d"]
+[ext_resource type="Script" uid="uid://xf0hvek5d8v" path="res://scenes/game/levels/character_body_2d.gd" id="5_x2ody"]
 
-[node name="Level2" type="Control" unique_id=2110036821]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("1_x2ody")
-next_level_path = "res://scenes/game/levels/level_3.tscn"
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0gu67"]
 
-[node name="BackgroundColor" type="ColorRect" parent="." unique_id=1479828644]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eom8k"]
+size = Vector2(80, 240)
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=523912810]
-layout_mode = 1
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x2ody"]
+size = Vector2(80, 240)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s3pix"]
+size = Vector2(24, 64)
+
+[node name="Level2" type="Node2D" unique_id=1020502710]
+script = ExtResource("1_12bjt")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=106723707]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer" unique_id=523912810]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -38,70 +33,141 @@ theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=107158970]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer" unique_id=107158970]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=806912222]
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer" unique_id=806912222]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Example Level #2"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=1089021380]
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/MarginContainer/VBoxContainer" unique_id=1089021380]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1396072092]
+[node name="Control" type="Control" parent="CanvasLayer/MarginContainer/VBoxContainer" unique_id=1981014336]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/separation = 32
-script = ExtResource("2_eom8k")
+mouse_filter = 2
 
-[node name="LoseButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=842568930]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Lose"
-
-[node name="WinButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=2033630088]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Win"
-
-[node name="LoseButton2" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=866810661]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Lose"
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=429267659]
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer" unique_id=429267659]
 layout_mode = 2
 
-[node name="TutorialButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=63948276]
+[node name="TutorialButton" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=63948276]
 layout_mode = 2
 text = "Tutorial"
 
-[node name="InputDisplayLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=919863907]
+[node name="InputDisplayLabel" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=919863907]
 layout_mode = 2
 size_flags_horizontal = 3
 horizontal_alignment = 1
-script = ExtResource("3_s3pix")
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1863562002]
-layout_mode = 2
-text = "Change Level Color: "
-
-[node name="ColorPickerButton" type="ColorPickerButton" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=153143410]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Change Color"
+script = ExtResource("3_kjg0a")
 
 [node name="TutorialManager" type="Node" parent="." unique_id=927712379]
 unique_name_in_owner = true
-script = ExtResource("4_4awcv")
-tutorial_scenes = Array[PackedScene]([ExtResource("5_ik6v6")])
+script = ExtResource("4_w8c7f")
+tutorial_scenes = Array[PackedScene]([ExtResource("5_i1l6d")])
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/LoseButton" to="." method="_on_lose_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/WinButton" to="." method="_on_win_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/LoseButton2" to="." method="_on_lose_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/TutorialButton" to="." method="_on_tutorial_button_pressed"]
-[connection signal="color_changed" from="MarginContainer/VBoxContainer/HBoxContainer2/ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
+[node name="World" type="Node2D" parent="." unique_id=660390528]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="World" unique_id=271684871]
+position = Vector2(1, 120)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/StaticBody2D" unique_id=1511380734]
+shape = SubResource("WorldBoundaryShape2D_0gu67")
+
+[node name="Label" type="Label" parent="World/StaticBody2D" unique_id=51872343]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.0
+offset_top = -37.5
+offset_right = 12.0
+offset_bottom = 37.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "=========================================================================="
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WinArea2D" type="Area2D" parent="World" unique_id=1429975498]
+position = Vector2(300, 0)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/WinArea2D" unique_id=851865462]
+shape = SubResource("RectangleShape2D_eom8k")
+
+[node name="Label" type="Label" parent="World/WinArea2D" unique_id=1741988595]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -42.0
+offset_top = -24.5
+offset_right = 42.0
+offset_bottom = 24.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Enter
+To Win"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LoseArea2D" type="Area2D" parent="World" unique_id=2042256546]
+position = Vector2(-300, 0)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/LoseArea2D" unique_id=2131972517]
+shape = SubResource("RectangleShape2D_x2ody")
+
+[node name="Label" type="Label" parent="World/LoseArea2D" unique_id=1423956754]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -42.0
+offset_top = -24.5
+offset_right = 42.0
+offset_bottom = 24.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Enter
+To Lose"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="World" unique_id=171191911]
+script = ExtResource("5_x2ody")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/CharacterBody2D" unique_id=1607512979]
+shape = SubResource("RectangleShape2D_s3pix")
+
+[node name="Label" type="Label" parent="World/CharacterBody2D" unique_id=1115253374]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -42.0
+offset_top = -24.5
+offset_right = 42.0
+offset_bottom = 24.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "_o_
+|
+/ \\"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Camera2D" type="Camera2D" parent="World/CharacterBody2D" unique_id=818666870]
+
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer2/TutorialButton" to="." method="_on_tutorial_button_pressed"]
+[connection signal="body_entered" from="World/WinArea2D" to="." method="_on_win_area_2d_body_entered"]
+[connection signal="body_entered" from="World/LoseArea2D" to="." method="_on_lose_area_2d_body_entered"]

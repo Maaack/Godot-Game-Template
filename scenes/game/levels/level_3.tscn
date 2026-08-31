@@ -1,32 +1,34 @@
 [gd_scene format=3 uid="uid://rpyqx1valdin"]
 
-[ext_resource type="Script" path="res://scenes/game/levels/level.gd" id="1_2ipf5"]
-[ext_resource type="Script" path="res://addons/maaacks_game_template/base/nodes/utilities/capture_focus.gd" id="2_qo6vl"]
-[ext_resource type="Script" path="res://scenes/game/scripts/input_display_label.gd" id="3_i50ya"]
-[ext_resource type="Script" path="res://scenes/game/scripts/tutorial_manager.gd" id="4_ul4y5"]
-[ext_resource type="PackedScene" path="res://scenes/game/tutorials/tutorial_3.tscn" id="5_uncf6"]
+[ext_resource type="Script" uid="uid://8pcyis8a4m5v" path="res://scenes/game/levels/level_3.gd" id="1_2ipf5"]
+[ext_resource type="Script" uid="uid://ch8aaykixbwn5" path="res://scenes/game/scripts/input_display_label.gd" id="3_4popk"]
+[ext_resource type="Script" uid="uid://cel1hwdc232gb" path="res://scenes/game/scripts/tutorial_manager.gd" id="4_mdq82"]
+[ext_resource type="Script" uid="uid://dvg7123oky0p8" path="res://scenes/game/levels/character_body_3d.gd" id="5_2ipf5"]
+[ext_resource type="PackedScene" uid="uid://b444n7xu3j48v" path="res://scenes/game/tutorials/tutorial_3.tscn" id="5_32y40"]
 
-[node name="Level3" type="Control" unique_id=710690354]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qaipj"]
+
+[sub_resource type="Sky" id="Sky_1cqto"]
+sky_material = SubResource("ProceduralSkyMaterial_qaipj")
+
+[sub_resource type="Environment" id="Environment_0gu67"]
+background_mode = 2
+sky = SubResource("Sky_1cqto")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_2ipf5"]
+data = PackedVector3Array(-1.4142137, 0.5, 6.585787, -31.499998, 0.5, -31.499998, 2.3849761e-08, 0.5, 6, -2, 0.5, 8, -31.499998, 0.5, -31.499998, -1.4142137, 0.5, 6.585787, -1.4142135, 0.5, 9.414213, -31.499998, 0.5, -31.499998, -2, 0.5, 8, 2.3849761e-08, 0.5, 6, -31.499998, 0.5, -31.499998, 1.4142133, 0.5, 6.5857863, -31.499998, 0.5, -31.499998, -1.4142135, 0.5, 9.414213, -31.499998, 0.5, 31.500002, 31.5, -0.5, 31.500006, -31.499998, -0.5, -31.499998, -31.499998, -0.5, 31.500002, -8.742278e-08, 0.5, 10, -31.499998, 0.5, 31.500002, -1.4142135, 0.5, 9.414213, 31.5, -0.5, 31.500006, 31.5, -0.5, -31.499994, -31.499998, -0.5, -31.499998, 31.5, 0.5, -31.499994, 31.5, 0.5, 31.500006, -31.499998, 0.5, -31.499998, 1.4142133, 0.5, 6.5857863, -31.499998, 0.5, -31.499998, 31.5, 0.5, 31.500006, 1.4142133, 0.5, 6.5857863, 31.5, 0.5, 31.500006, 2, 0.5, 8, -8.742278e-08, 0.5, 10, 31.5, 0.5, 31.500006, -31.499998, 0.5, 31.500002, -8.742278e-08, 0.5, 10, 1.4142135, 0.5, 9.414213, 31.5, 0.5, 31.500006, 2, 0.5, 8, 31.5, 0.5, 31.500006, 1.4142135, 0.5, 9.414213, -1.4142137, 8, 6.585787, -2, 0.5, 8, -1.4142137, 0.5, 6.585787, 2.3849761e-08, 8, 6, -1.4142137, 0.5, 6.585787, 2.3849761e-08, 0.5, 6, -2, 8, 8, -1.4142135, 0.5, 9.414213, -2, 0.5, 8, -1.4142135, 8, 9.414213, -8.742278e-08, 0.5, 10, -1.4142135, 0.5, 9.414213, -1.4142137, 8, 6.585787, -2, 8, 8, -2, 0.5, 8, -1.4142137, 8, 6.585787, -1.4142137, 0.5, 6.585787, 2.3849761e-08, 8, 6, -2, 8, 8, -1.4142135, 8, 9.414213, -1.4142135, 0.5, 9.414213, -1.4142135, 8, 9.414213, -8.742278e-08, 8, 10, -8.742278e-08, 0.5, 10, -1.4142137, 8, 6.585787, 0, 8, 8, -2, 8, 8, -1.4142137, 8, 6.585787, 2.3849761e-08, 8, 6, 0, 8, 8, -2, 8, 8, 0, 8, 8, -1.4142135, 8, 9.414213, -1.4142135, 8, 9.414213, 0, 8, 8, -8.742278e-08, 8, 10, 1.4142133, 8, 6.5857863, 2.3849761e-08, 0.5, 6, 1.4142133, 0.5, 6.5857863, 2, 8, 8, 1.4142133, 0.5, 6.5857863, 2, 0.5, 8, -8.742278e-08, 8, 10, 1.4142135, 0.5, 9.414213, -8.742278e-08, 0.5, 10, 1.4142135, 8, 9.414213, 2, 0.5, 8, 1.4142135, 0.5, 9.414213, 2.3849761e-08, 8, 6, 2.3849761e-08, 0.5, 6, 1.4142133, 8, 6.5857863, 1.4142133, 8, 6.5857863, 1.4142133, 0.5, 6.5857863, 2, 8, 8, -8.742278e-08, 8, 10, 1.4142135, 8, 9.414213, 1.4142135, 0.5, 9.414213, 2, 8, 8, 2, 0.5, 8, 1.4142135, 8, 9.414213, 2.3849761e-08, 8, 6, 1.4142133, 8, 6.5857863, 0, 8, 8, 0, 8, 8, 1.4142133, 8, 6.5857863, 2, 8, 8, -8.742278e-08, 8, 10, 0, 8, 8, 1.4142135, 8, 9.414213, 0, 8, 8, 2, 8, 8, 1.4142135, 8, 9.414213, -32.5, -0.5, -32, -32.5, -0.5, 32, -32, -0.5, -32, -32, -0.5, -32, -32.5, -0.5, 32, -31.499998, -0.5, -32, -31.499998, -0.5, -32, -32.5, -0.5, 32, -31.499998, -0.5, -31.499998, -32.5, -0.5, -32, -32, -0.5, -32, -32.5, 8.5, -32, -32.5, -0.5, -32, -32.5, 8.5, -32, -32.5, -0.5, 32, -31.499998, -0.5, -31.499998, -32.5, -0.5, 32, -31.499998, -0.5, 31.500002, -32.5, -0.5, 32, -32, -0.5, 32, -31.499998, -0.5, 31.500002, -32, -0.5, 32, -31.499998, -0.5, 32, -31.499998, -0.5, 31.500002, -31.499998, 8.5, 31.500002, -31.499998, 0.5, -31.499998, -31.499998, 0.5, 31.500002, -32.5, -0.5, 32, -32, 8.5, 32, -32, -0.5, 32, -32, -0.5, -32, -32, 8.5, -32, -32.5, 8.5, -32, -31.499998, 8.5, -31.499998, -31.499998, 0.5, -31.499998, -31.499998, 8.5, 31.500002, -32, 8.5, -32, -31.499998, 8.5, -32, -31.499998, 8.5, -31.499998, -32.5, 8.5, -32, -32, 8.5, -32, -31.499998, 8.5, 32, -32, 8.5, -32, -31.499998, 8.5, -31.499998, -31.499998, 8.5, 31.500002, -32.5, -0.5, 32, -32.5, 8.5, -32, -32.5, 8.5, 32, -32.5, -0.5, 32, -32.5, 8.5, 32, -32, 8.5, 32, -32.5, 8.5, -32, -32, 8.5, 32, -32.5, 8.5, 32, -32.5, 8.5, -32, -31.499998, 8.5, 32, -32, 8.5, 32, -32, 8.5, -32, -31.499998, 8.5, 31.500002, -31.499998, 8.5, 32, 31.5, -0.5, -32, 31.5, -0.5, -31.499994, 32, -0.5, -32, 31.5, -0.5, -31.499994, 31.5, -0.5, 31.500006, 32, -0.5, -32, 32, -0.5, -32, 31.5, -0.5, 32, 32.5, -0.5, -32, 32, -0.5, -32, 32.5, -0.5, -32, 32, 8.5, -32, 31.5, 8.5, -31.499994, 31.5, 0.5, 31.500006, 31.5, 0.5, -31.499994, 32, -0.5, -32, 31.5, -0.5, 31.500006, 31.5, -0.5, 32, 32.5, -0.5, -32, 31.5, -0.5, 32, 32, -0.5, 32, 32.5, -0.5, -32, 32, -0.5, 32, 32.5, -0.5, 32, 32.5, -0.5, -32, 32.5, -0.5, 32, 32.5, 8.5, 32, 32, -0.5, 32, 32.5, 8.5, 32, 32.5, -0.5, 32, 32.5, -0.5, -32, 32.5, 8.5, -32, 32, 8.5, -32, 32.5, -0.5, -32, 32.5, 8.5, 32, 32.5, 8.5, -32, 31.5, 8.5, -32, 32.5, 8.5, 32, 31.5, 8.5, -31.499994, 31.5, 8.5, -32, 32, 8.5, -32, 32.5, 8.5, 32, 32, 8.5, -32, 32.5, 8.5, -32, 32.5, 8.5, 32, 31.5, 8.5, -31.499994, 31.5, 8.5, 31.500006, 31.5, 0.5, 31.500006, 32, -0.5, 32, 32, 8.5, 32, 32.5, 8.5, 32, 31.5, 8.5, -31.499994, 32.5, 8.5, 32, 31.5, 8.5, 31.500006, 31.5, 8.5, 31.500006, 32, 8.5, 32, 31.5, 8.5, 32, 31.5, 8.5, 31.500006, 32.5, 8.5, 32, 32, 8.5, 32, -32, -0.5, -32.499996, -32, -0.5, -32, -31.499998, -0.5, -32, -32, -0.5, -32.499996, -32, 8.5, -32.499996, -32, -0.5, -32, -32, -0.5, -32.499996, -31.499998, -0.5, -32, 31.5, -0.5, -32, -31.499998, -0.5, -32, -31.499998, -0.5, -31.499998, 31.5, -0.5, -32, -31.499998, 8.5, -31.499998, 31.5, 0.5, -31.499994, -31.499998, 0.5, -31.499998, -32, -0.5, -32, -32, 8.5, -32.499996, -32, 8.5, -32, -32, 8.5, -32.499996, -31.499998, 8.5, -32, -32, 8.5, -32, -32, -0.5, -32.499996, 32, 8.5, -32.499996, -32, 8.5, -32.499996, -32, 8.5, -32.499996, 32, 8.5, -32.499996, -31.499998, 8.5, -32, -31.499998, 8.5, -32, 31.5, 8.5, -31.499994, -31.499998, 8.5, -31.499998, -32, -0.5, -32.499996, 31.5, -0.5, -32, 32, -0.5, -32.499996, -31.499998, -0.5, -31.499998, 31.5, -0.5, -31.499994, 31.5, -0.5, -32, -32, -0.5, -32.499996, 32, -0.5, -32.499996, 32, 8.5, -32.499996, 31.5, -0.5, -32, 32, -0.5, -32, 32, -0.5, -32.499996, 32, -0.5, -32.499996, 32, -0.5, -32, 32, 8.5, -32, -31.499998, 8.5, -31.499998, 31.5, 8.5, -31.499994, 31.5, 0.5, -31.499994, -31.499998, 8.5, -32, 31.5, 8.5, -32, 31.5, 8.5, -31.499994, -31.499998, 8.5, -32, 32, 8.5, -32.499996, 31.5, 8.5, -32, 32, -0.5, -32.499996, 32, 8.5, -32, 32, 8.5, -32.499996, 31.5, 8.5, -32, 32, 8.5, -32.499996, 32, 8.5, -32, -32, -0.5, 32, -32, -0.5, 32.500004, -31.499998, -0.5, 32, -32, -0.5, 32, -32, 8.5, 32, -32, -0.5, 32.500004, -31.499998, -0.5, 31.500002, -31.499998, -0.5, 32, 31.5, -0.5, 31.500006, -32, -0.5, 32.500004, 32, -0.5, 32.500004, -31.499998, -0.5, 32, -32, -0.5, 32.500004, -32, 8.5, 32.500004, 32, -0.5, 32.500004, -32, -0.5, 32.500004, -32, 8.5, 32, -32, 8.5, 32.500004, -32, 8.5, 32, -31.499998, 8.5, 32, -32, 8.5, 32.500004, -31.499998, 8.5, 31.500002, -31.499998, 0.5, 31.500002, 31.5, 8.5, 31.500006, -32, 8.5, 32.500004, -31.499998, 8.5, 32, 31.5, 8.5, 32, -31.499998, 8.5, 31.500002, 31.5, 8.5, 32, -31.499998, 8.5, 32, -31.499998, -0.5, 32, 31.5, -0.5, 32, 31.5, -0.5, 31.500006, -31.499998, -0.5, 32, 32, -0.5, 32.500004, 31.5, -0.5, 32, 31.5, 8.5, 31.500006, -31.499998, 0.5, 31.500002, 31.5, 0.5, 31.500006, 31.5, -0.5, 32, 32, -0.5, 32.500004, 32, -0.5, 32, 32, -0.5, 32, 32, -0.5, 32.500004, 32, 8.5, 32.500004, -32, 8.5, 32.500004, 32, 8.5, 32.500004, 32, -0.5, 32.500004, -31.499998, 8.5, 31.500002, 31.5, 8.5, 31.500006, 31.5, 8.5, 32, -32, 8.5, 32.500004, 31.5, 8.5, 32, 32, 8.5, 32.500004, 32, -0.5, 32, 32, 8.5, 32.500004, 32, 8.5, 32, 31.5, 8.5, 32, 32, 8.5, 32, 32, 8.5, 32.500004)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0gu67"]
+size = Vector3(32, 8, 16)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0gu67"]
+
+[node name="Level3" type="Node3D" unique_id=808041491]
 script = ExtResource("1_2ipf5")
 
-[node name="BackgroundColor" type="ColorRect" parent="." unique_id=2048289432]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2076466247]
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1139802558]
-layout_mode = 1
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer" unique_id=1139802558]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -37,76 +39,121 @@ theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=24784916]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer" unique_id=24784916]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1118917856]
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer" unique_id=1118917856]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Example Level #3"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=1867660130]
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/MarginContainer/VBoxContainer" unique_id=1867660130]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1499324122]
+[node name="Control" type="Control" parent="CanvasLayer/MarginContainer/VBoxContainer" unique_id=1744100605]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/separation = 32
-script = ExtResource("2_qo6vl")
+mouse_filter = 2
 
-[node name="WinButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=500607117]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Win"
-
-[node name="LoseButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1616502597]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Lose"
-
-[node name="LoseButton2" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1282863293]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Lose"
-
-[node name="LoseButton3" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=760845382]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Lose"
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1147500718]
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer" unique_id=1147500718]
 layout_mode = 2
 
-[node name="TutorialButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=90402611]
+[node name="TutorialButton" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=90402611]
 layout_mode = 2
 text = "Tutorial"
 
-[node name="InputDisplayLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1335603973]
+[node name="InputDisplayLabel" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1335603973]
 layout_mode = 2
 size_flags_horizontal = 3
 horizontal_alignment = 1
-script = ExtResource("3_i50ya")
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1223774581]
-layout_mode = 2
-text = "Change Level Color: "
-
-[node name="ColorPickerButton" type="ColorPickerButton" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=550861861]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Change Color"
+script = ExtResource("3_4popk")
 
 [node name="TutorialManager" type="Node" parent="." unique_id=18876677]
 unique_name_in_owner = true
-script = ExtResource("4_ul4y5")
-tutorial_scenes = Array[PackedScene]([ExtResource("5_uncf6")])
+script = ExtResource("4_mdq82")
+tutorial_scenes = Array[PackedScene]([ExtResource("5_32y40")])
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/WinButton" to="." method="_on_win_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/LoseButton" to="." method="_on_lose_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/LoseButton2" to="." method="_on_lose_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/LoseButton3" to="." method="_on_lose_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/TutorialButton" to="." method="_on_tutorial_button_pressed"]
-[connection signal="color_changed" from="MarginContainer/VBoxContainer/HBoxContainer2/ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
+[node name="World" type="Node3D" parent="." unique_id=1529055841]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World" unique_id=205547843]
+environment = SubResource("Environment_0gu67")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World" unique_id=1788996009]
+transform = Transform3D(0.8660254, 0.35355347, -0.35355347, 0, 0.7071068, 0.7071068, 0.50000006, -0.61237246, 0.61237246, 0, 0, 0)
+shadow_enabled = true
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World" unique_id=2092568780]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="World/StaticBody3D" unique_id=1088308243]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -21)
+size = Vector3(64, 1, 64)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="World/StaticBody3D/CSGBox3D" unique_id=1700219779]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 8)
+radius = 2.0
+height = 8.0
+
+[node name="CSGBox3D" type="CSGBox3D" parent="World/StaticBody3D/CSGBox3D" unique_id=927637598]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.999998, 4, 0)
+size = Vector3(1, 9, 64)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="World/StaticBody3D/CSGBox3D" unique_id=134137073]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 4, 0)
+size = Vector3(1, 9, 64)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="World/StaticBody3D/CSGBox3D" unique_id=626816702]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 7.003546e-07, 4, -31.999996)
+size = Vector3(1, 9, 64)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="World/StaticBody3D/CSGBox3D" unique_id=1937106653]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -7.003546e-07, 4, 32.000004)
+size = Vector3(1, 9, 64)
+
+[node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="World/StaticBody3D" unique_id=234830040]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -21)
+shape = SubResource("ConcavePolygonShape3D_2ipf5")
+
+[node name="WinArea3D" type="Area3D" parent="World" unique_id=951327815]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 6, -20)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/WinArea3D" unique_id=116265185]
+shape = SubResource("BoxShape3D_0gu67")
+
+[node name="Label3D" type="Label3D" parent="World/WinArea3D" unique_id=1217239411]
+pixel_size = 0.1
+text = "Enter
+To Win"
+
+[node name="LoseArea3D" type="Area3D" parent="World" unique_id=1792313799]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 6, -20)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/LoseArea3D" unique_id=1030523366]
+shape = SubResource("BoxShape3D_0gu67")
+
+[node name="Label3D" type="Label3D" parent="World/LoseArea3D" unique_id=2067115818]
+pixel_size = 0.1
+text = "Enter
+To Lose"
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="World" unique_id=1772878733]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("5_2ipf5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/CharacterBody3D" unique_id=517704925]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
+shape = SubResource("CapsuleShape3D_0gu67")
+
+[node name="Camera3D" type="Camera3D" parent="World/CharacterBody3D" unique_id=1650659976]
+
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer2/TutorialButton" to="." method="_on_tutorial_button_pressed"]
+[connection signal="body_entered" from="World/WinArea3D" to="." method="_on_win_area_3d_body_entered"]
+[connection signal="body_entered" from="World/LoseArea3D" to="." method="_on_lose_area_3d_body_entered"]
