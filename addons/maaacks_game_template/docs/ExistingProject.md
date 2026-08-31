@@ -10,7 +10,7 @@ To revisit any part of the initial setup, find the `Setup Wizard` at `Project > 
 1.  Update the project’s name in the main menu.
     
 
-    1.  Open `main_menu_with_animations.tscn`.
+    1.  Open `main_menu.tscn`.
     2.  Select the `TitleLabel` node.
     3.  The `Text` should match the project's name (in the project's settings).
         1. If `Text` is customized, set `Auto Update` to false.
@@ -21,7 +21,7 @@ To revisit any part of the initial setup, find the `Setup Wizard` at `Project > 
 2.  Link the main menu to a custom game scene (skip if using the example game scene).
     
 
-    1.  Open `main_menu_with_animations.tscn`.
+    1.  Open `main_menu.tscn`.
     2.  Select the `MainMenu` node.
     3.  Update `Game Scene Path` to the path of the project's game scene.
     4.  Save the scene.

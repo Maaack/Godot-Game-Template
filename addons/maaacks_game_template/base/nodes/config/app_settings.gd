@@ -169,7 +169,8 @@ static func _set_v_sync_from_config(window: Window) -> DisplayServer.VSyncMode:
 	return vsync
 
 static func set_video_from_config(window : Window) -> void:
-	window.size_changed.connect(_on_window_size_changed.bind(window))
+	if not window.size_changed.is_connected(_on_window_size_changed.bind(window)):
+		window.size_changed.connect(_on_window_size_changed.bind(window))
 	var fullscreen_enabled := _set_fullscreen_from_config(window)
 	if not (fullscreen_enabled or OS.has_feature("web")):
 		var current_resolution : Vector2i = get_resolution(window)

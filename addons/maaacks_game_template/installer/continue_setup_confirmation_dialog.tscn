@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://85fv50c5bc3d"]
+
+[node name="ContinueSetupConfirmationDialog" type="ConfirmationDialog" unique_id=540119939]
+oversampling_override = 1.0
+title = "Continue Setup"
+initial_position = 2
+size = Vector2i(640, 240)
+visible = true
+exclusive = false
+ok_button_text = "Continue Setup"
+dialog_text = "Setup of Maaack's Game Template is nearly complete.
+
+Would you like to open the setup wizard now?"
+dialog_autowrap = true
+cancel_button_text = "Ignore"

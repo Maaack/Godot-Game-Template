@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://bg48j7ffj4nja"]
 
-[ext_resource type="Script" uid="uid://diwaw7fi8rd63" path="res://scenes/menus/options_menu/master_options_menu_with_tabs.gd" id="1_fqpxk"]
-[ext_resource type="PackedScene" uid="uid://cf1w2mtb8ntwd" path="res://scenes/menus/options_menu/input/input_options_menu.tscn" id="2_w1dvr"]
-[ext_resource type="PackedScene" uid="uid://buoevo3i7n8yx" path="res://scenes/menus/options_menu/input/input_extras_menu.tscn" id="3_bn2s3"]
-[ext_resource type="PackedScene" uid="uid://bvmm1v4tarha2" path="res://scenes/menus/options_menu/audio/audio_options_menu.tscn" id="4_6wkjv"]
-[ext_resource type="PackedScene" uid="uid://dh567s4jy3m2d" path="res://scenes/menus/options_menu/video/video_options_menu_with_extras.tscn" id="5_kr6xa"]
-[ext_resource type="PackedScene" uid="uid://cdqt3bebxpqxk" path="res://scenes/menus/options_menu/game/game_options_menu.tscn" id="6_n2uhm"]
+[ext_resource type="Script" path="res://scenes/menus/options_menu/master_options_menu_with_tabs.gd" id="1_fqpxk"]
+[ext_resource type="PackedScene" path="res://scenes/menus/options_menu/input/input_options_menu.tscn" id="2_w1dvr"]
+[ext_resource type="PackedScene" path="res://scenes/menus/options_menu/input/input_extras_menu.tscn" id="3_bn2s3"]
+[ext_resource type="PackedScene" path="res://scenes/menus/options_menu/audio/audio_options_menu.tscn" id="4_6wkjv"]
+[ext_resource type="PackedScene" path="res://scenes/menus/options_menu/video/video_options_menu_with_extras.tscn" id="5_kr6xa"]
+[ext_resource type="PackedScene" path="res://scenes/menus/options_menu/game/game_options_menu.tscn" id="6_n2uhm"]
 
 [node name="MasterOptionsMenu" type="TabContainer" unique_id=1111795112]
 anchors_preset = 15

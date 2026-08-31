@@ -13,8 +13,8 @@ func pause() -> void:
 		focused_viewport = get_viewport()
 	var _initial_focus_control = focused_viewport.gui_get_focus_owner()
 	pause_menu.show()
-	if pause_menu is CanvasLayer:
-		await pause_menu.visibility_changed
+	if pause_menu.has_signal(&"closed"):
+		await pause_menu.closed
 	else:
 		await pause_menu.hidden
 	if is_inside_tree() and _initial_focus_control:

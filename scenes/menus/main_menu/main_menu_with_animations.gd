@@ -27,14 +27,15 @@ func new_game() -> void:
 
 func intro_done() -> void:
 	animation_state_machine.travel("OpenMainMenu")
+	menu_buttons_box_container.lock = false
 
 func _is_in_intro() -> bool:
 	return animation_state_machine.get_current_node() == "Intro"
 
 func _event_skips_intro(event : InputEvent) -> bool:
-	return event.is_action_pressed("ui_accept") or \
-		event.is_action_pressed("ui_select") or \
-		event.is_action_pressed("ui_cancel") or \
+	return event.is_action_released("ui_accept") or \
+		event.is_action_released("ui_select") or \
+		event.is_action_released("ui_cancel") or \
 		_event_is_mouse_button_released(event)
 
 func _open_sub_menu(menu : PackedScene) -> Node:

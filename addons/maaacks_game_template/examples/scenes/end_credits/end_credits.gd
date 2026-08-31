@@ -2,7 +2,7 @@
 extends "res://addons/maaacks_game_template/examples/scenes/credits/scrolling_credits.gd"
 
 ## Defines the path to the main menu. Hides the Main Menu button if not set.
-## Will attempt to read from AppConfig if left empty.
+## Will use ProjectSettings paths if left empty.
 @export_file("*.tscn") var main_menu_scene_path : String
 ## This option forces the mouse to be visible when the menu shows up.
 ## Useful for games that capture the mouse, and don't automatically return it.
@@ -14,9 +14,7 @@ extends "res://addons/maaacks_game_template/examples/scenes/credits/scrolling_cr
 @onready var init_mouse_filter : MouseFilter = mouse_filter
 
 func get_main_menu_scene_path() -> String:
-	if main_menu_scene_path.is_empty():
-		return AppConfig.main_menu_scene_path
-	return main_menu_scene_path
+	return MaaacksGameTemplate.get_main_menu_path(main_menu_scene_path)
 
 func _end_reached() -> void:
 	end_message_panel.show()

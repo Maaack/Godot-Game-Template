@@ -6,7 +6,7 @@
 [node name="Opening" unique_id=1930105641 instance=ExtResource("1_tjbcx")]
 images = Array[Texture2D]([ExtResource("2_5ncfi")])
 
-[node name="ImagesContainer" parent="." index="1" unique_id=1471559661]
+[node name="ImagesContainer" parent="." index="2" unique_id=1471559661]
 theme_override_constants/margin_left = 64
 theme_override_constants/margin_top = 64
 theme_override_constants/margin_right = 64

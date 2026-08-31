@@ -1,0 +1,141 @@
+[gd_scene format=3 uid="uid://dq5d0bxm86cie"]
+
+[ext_resource type="Script" uid="uid://3gffrn4v6hju" path="res://addons/plugin_updater/updater/update_plugin.gd" id="1_s6qpc"]
+[ext_resource type="PackedScene" uid="uid://cejsq41gjq8vk" path="res://addons/plugin_updater/utilities/api_client.tscn" id="2_s6pdq"]
+[ext_resource type="PackedScene" uid="uid://cvs1njvxbu308" path="res://addons/plugin_updater/utilities/download_and_extract.tscn" id="3_s6pdq"]
+[ext_resource type="Script" uid="uid://bsy5732fxiqh8" path="res://addons/plugin_updater/updater/release_notes_label.gd" id="4_1amwf"]
+
+[node name="UpdatePlugin" type="Node" unique_id=192125767]
+script = ExtResource("1_s6qpc")
+plugin_directory = "res://addons/plugin_updater/"
+plugin_repo_url = "https://github.com/Maaack/Godot-Plugin-Updater"
+
+[node name="APIClient" parent="." unique_id=897421534 instance=ExtResource("2_s6pdq")]
+api_url = "https://api.github.com/repos/Maaack/Godot-Plugin-Updater/releases"
+request_method = 0
+
+[node name="DownloadAndExtract" parent="." unique_id=692551309 instance=ExtResource("3_s6pdq")]
+path_match_string = "addons/"
+skip_base_zip_dir = true
+force = true
+
+[node name="UpdateConfirmationDialog" type="ConfirmationDialog" parent="." unique_id=607805234]
+auto_translate_mode = 1
+oversampling_override = 1.0
+title = "Update Plugin?"
+initial_position = 2
+size = Vector2i(640, 360)
+dialog_autowrap = true
+
+[node name="MarginContainer" type="MarginContainer" parent="UpdateConfirmationDialog" unique_id=1366172194]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 632.0
+offset_bottom = 311.0
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UpdateConfirmationDialog/MarginContainer" unique_id=1306702682]
+layout_mode = 2
+
+[node name="UpdateLabel" type="Label" parent="UpdateConfirmationDialog/MarginContainer/VBoxContainer" unique_id=1695426949]
+unique_name_in_owner = true
+layout_mode = 2
+text = "This will update the contents of res://addons/plugin_updater/.
+Files outside of there will not be affected.
+
+Update Plugin Updater to v0.0.0?"
+
+[node name="HSeparator" type="HSeparator" parent="UpdateConfirmationDialog/MarginContainer/VBoxContainer" unique_id=20078693]
+layout_mode = 2
+
+[node name="ReleaseNotesButton" type="LinkButton" parent="UpdateConfirmationDialog/MarginContainer/VBoxContainer" unique_id=1256239963]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Show Release Notes"
+
+[node name="ReleaseNotesPanel" type="Panel" parent="UpdateConfirmationDialog/MarginContainer/VBoxContainer" unique_id=2021046327]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 420)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ReleaseNotesLabel" type="RichTextLabel" parent="UpdateConfirmationDialog/MarginContainer/VBoxContainer/ReleaseNotesPanel" unique_id=611400908]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+focus_mode = 2
+bbcode_enabled = true
+selection_enabled = true
+script = ExtResource("4_1amwf")
+h1_font_size = 64
+h2_font_size = 48
+h3_font_size = 32
+h4_font_size = 24
+h5_font_size = 16
+h6_font_size = 12
+bold_headings = true
+
+[node name="InstallingDialog" type="AcceptDialog" parent="." unique_id=690962187]
+auto_translate_mode = 1
+title = "Installing..."
+initial_position = 2
+size = Vector2i(400, 111)
+exclusive = false
+
+[node name="MarginContainer" type="MarginContainer" parent="InstallingDialog" unique_id=516640038]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 396.0
+offset_bottom = 96.0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InstallingDialog/MarginContainer" unique_id=713005699]
+layout_mode = 2
+alignment = 1
+
+[node name="StageLabel" type="Label" parent="InstallingDialog/MarginContainer/VBoxContainer" unique_id=1057483320]
+unique_name_in_owner = true
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="InstallingDialog/MarginContainer/VBoxContainer" unique_id=429862156]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+
+[node name="ErrorDialog" type="AcceptDialog" parent="." unique_id=402256175]
+auto_translate_mode = 1
+title = "Error!"
+initial_position = 2
+size = Vector2i(400, 128)
+
+[node name="SuccessDialog" type="AcceptDialog" parent="." unique_id=852686035]
+auto_translate_mode = 1
+title = "Update Complete"
+initial_position = 2
+size = Vector2i(400, 128)
+dialog_text = "%s updated to %s."
+
+[connection signal="request_failed" from="APIClient" to="." method="_on_api_client_request_failed"]
+[connection signal="response_received" from="APIClient" to="." method="_on_api_client_response_received"]
+[connection signal="run_completed" from="DownloadAndExtract" to="." method="_on_download_and_extract_run_completed"]
+[connection signal="run_failed" from="DownloadAndExtract" to="." method="_on_download_and_extract_run_failed"]
+[connection signal="zip_saved" from="DownloadAndExtract" to="." method="_on_download_and_extract_zip_saved"]
+[connection signal="canceled" from="UpdateConfirmationDialog" to="." method="_on_update_confirmation_dialog_canceled"]
+[connection signal="confirmed" from="UpdateConfirmationDialog" to="." method="_on_update_confirmation_dialog_confirmed"]
+[connection signal="pressed" from="UpdateConfirmationDialog/MarginContainer/VBoxContainer/ReleaseNotesButton" to="." method="_on_release_notes_button_pressed"]
+[connection signal="canceled" from="ErrorDialog" to="." method="_on_error_dialog_canceled"]
+[connection signal="confirmed" from="ErrorDialog" to="." method="_on_error_dialog_confirmed"]
+[connection signal="canceled" from="SuccessDialog" to="." method="_on_success_dialog_canceled"]
+[connection signal="confirmed" from="SuccessDialog" to="." method="_on_success_dialog_confirmed"]

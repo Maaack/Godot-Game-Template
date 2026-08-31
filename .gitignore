@@ -24,4 +24,4 @@ Exports/
 .DS_Store
 
 # Plugin specific
-addons/script-ide/*
+addons/script-ide/

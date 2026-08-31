@@ -63,6 +63,7 @@ func _on_visibility_changed() -> void:
 	call_deferred("update_focus")
 
 func _ready() -> void:
+	await draw
 	if is_inside_tree():
 		update_focus()
 		connect("visibility_changed", _on_visibility_changed)

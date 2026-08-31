@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://cvs1njvxbu308"]
+
+[ext_resource type="Script" uid="uid://byqwbta6erv5s" path="res://addons/plugin_updater/utilities/download_and_extract.gd" id="1_1few7"]
+
+[node name="DownloadAndExtract" type="Node" unique_id=839954497]
+script = ExtResource("1_1few7")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="." unique_id=775698945]
+
+[node name="TimeoutTimer" type="Timer" parent="." unique_id=1727912016]
+one_shot = true
+
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
+[connection signal="timeout" from="TimeoutTimer" to="." method="_on_timeout_timer_timeout"]
