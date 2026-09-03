@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://c7ykreesi2gns" path="res://addons/maaacks_game_template/examples/scenes/windows/main_menu_credits_window.gd" id="2_6b1bf"]
 [ext_resource type="PackedScene" uid="uid://osxulxw2oas3" path="res://addons/maaacks_game_template/examples/scenes/credits/scrollable_credits.tscn" id="3_kmo1t"]
 
-[node name="MainMenuCreditsOverlaidWindow" unique_id=1453761674 instance=ExtResource("1_6b1bf")]
+[node name="MainMenuCreditsWindow" unique_id=1453761674 instance=ExtResource("1_6b1bf")]
 anchors_preset = 15
 anchor_left = 0.0
 anchor_top = 0.0
