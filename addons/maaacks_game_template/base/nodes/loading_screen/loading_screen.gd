@@ -181,3 +181,7 @@ func close() -> void:
 	set_process(false)
 	_hide_popups()
 	hide()
+
+func _ready() -> void:
+	if not scene_loader_node:
+		push_warning("missing a scene loader autoload")
