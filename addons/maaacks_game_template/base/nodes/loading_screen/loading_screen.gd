@@ -24,6 +24,9 @@ enum StallStage{STARTED, WAITING, STILL_WAITING, GIVE_UP}
 ## Last text to show if opening the scene has stalled.
 @export var _complete_still_waiting : String = "Any Moment Now... (%d seconds)"
 
+## LoadingScreen depends on the SceneLoader autoload.
+@onready var scene_loader_node = get_tree().root.get_node_or_null(^"SceneLoader")
+
 var _stall_stage : StallStage = StallStage.STARTED
 var _scene_loading_complete : bool = false
 var _scene_loading_progress : float = 0.0 :
@@ -53,7 +56,9 @@ func _get_seconds_waiting() -> int:
 	return int((Time.get_ticks_msec() - _loading_start_time) / 1000.0)
 
 func _update_scene_loading_progress() -> void:
-	var new_progress = SceneLoader.get_progress()
+	if not scene_loader_node:
+		return
+	var new_progress = scene_loader_node.get_progress()
 	if new_progress > _scene_loading_progress:
 		_scene_loading_progress = new_progress
 
@@ -119,7 +124,9 @@ func _update_progress_messaging() -> void:
 		_hide_popups()
 
 func _process(_delta : float) -> void:
-	var status = SceneLoader.get_status()
+	if not scene_loader_node:
+		return
+	var status = scene_loader_node.get_status()
 	match(status):
 		ResourceLoader.THREAD_LOAD_IN_PROGRESS:
 			_update_scene_loading_progress()
