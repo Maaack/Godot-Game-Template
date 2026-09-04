@@ -45,12 +45,17 @@ While editing a project in *Godot*:
 4.  Click to **Download**.
 5.  Check that contents are getting installed to `addons/` and if there are any conflicts.  
 Conflicts that are safe to ignore:
-    1. `addons/plugin_updater/`
+    1.  `addons/plugin_updater/`
+    2.  `addons/maaacks_scene_loader/`
 6.  Click to **Install**.
 7.  Reload the project (you may see errors before you do this).
-8.  Enable the plugin from the **Project > Project Settings > Plugins** tab.  
-    1.  If it's enabled for the first time, the setup wizard will start.  
-    2.  Close the window behind it and complete the setup wizard.  
+8.  Enable the plugin(s) from the **Project > Project Settings > Plugins** tab.  
+    1.  Enable the following:
+        1.  *Plugin Updater*
+        2.  *Maaack's Scene Loader*
+        3.  *Maaack's Game Template*
+    2.  If it's enabled for the first time, the setup wizard will start.  
+    3.  Close the window behind it and complete the setup wizard.  
 9.  Continue with the [Basic Setup](/addons/maaacks_game_template/docs/BasicSetup.md).
 
 ## Usage
