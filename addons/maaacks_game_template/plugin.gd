@@ -313,13 +313,11 @@ func _remove_from_auto_update_list() -> void:
 func _enable_plugin():
 	_set_default_project_paths()
 	_add_to_auto_update_list()
-	add_autoload_singleton("SceneLoader", get_scene_loader_path())
 	add_autoload_singleton("ProjectMusicController", get_plugin_path() + "base/nodes/autoloads/music_controller/project_music_controller.tscn")
 	add_autoload_singleton("ProjectUISoundController", get_plugin_path() + "base/nodes/autoloads/ui_sound_controller/project_ui_sound_controller.tscn")
 
 func _disable_plugin():
 	_remove_from_auto_update_list()
-	remove_autoload_singleton("SceneLoader")
 	remove_autoload_singleton("ProjectMusicController")
 	remove_autoload_singleton("ProjectUISoundController")
 
