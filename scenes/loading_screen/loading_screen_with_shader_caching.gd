@@ -26,9 +26,9 @@ var _caching_progress : float = 0.0 :
 		_reset_loading_stage()
 
 func can_load_shader_cache() -> bool:
-	return not _spatial_shader_material_dir.is_empty() and \
-	not _cache_shaders_scene.is_empty() and \
-	SceneLoader.is_loading_scene(_cache_shaders_scene)
+	return not (_spatial_shader_material_dir.is_empty()) and \
+	(not _cache_shaders_scene.is_empty()) and scene_loader_node and \
+	scene_loader_node.is_loading_scene(_cache_shaders_scene)
 
 func update_total_loading_progress() -> void:
 	var partial_total := _scene_loading_progress
@@ -44,8 +44,10 @@ func _set_scene_loading_complete() -> void:
 		_show_all_draw_passes_once()
 	if can_load_shader_cache() and _caching_progress < 1.0:
 		return
-	SceneLoader._background_loading = false
-	SceneLoader.set_process(true)
+	if not scene_loader_node:
+		return
+	scene_loader_node._background_loading = false
+	scene_loader_node.set_process(true)
 
 func _show_all_draw_passes_once() -> void:
 	var all_materials := _traverse_folders(_spatial_shader_material_dir)
@@ -95,4 +97,6 @@ func _load_material(path:String) -> void:
 	%SpatialShaderTypeCaches.add_child(material_shower)
 
 func _ready() -> void:
-	SceneLoader._background_loading = true
+	if not scene_loader_node:
+		return
+	scene_loader_node._background_loading = true
