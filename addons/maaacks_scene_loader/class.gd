@@ -4,7 +4,7 @@ extends RefCounted
 
 const PLUGIN_NAME = "Maaack's Scene Loader"
 const PROJECT_SETTINGS_PATH = "maaacks_scene_loader/"
-const LOADING_SCREEN_SCENE_RELATIVE_PATH = "base/nodes/loading_screen/loading_screen.tscn"
+const LOADING_SCREEN_SCENE_RELATIVE_PATH = "scenes/loading_screens/loading_screen.tscn"
 const LOADING_SCENE_PATH_KEY = "loading_scene_path"
 const SCENE_PATHS : Dictionary[String, String] = {
 	LOADING_SCENE_PATH_KEY : LOADING_SCREEN_SCENE_RELATIVE_PATH,
