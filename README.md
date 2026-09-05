@@ -73,7 +73,7 @@ As part of setup, example scenes are copied out of `/addons/` into a desired fol
 [Updating Credits](/addons/maaacks_game_template/docs/UpdatingCredits.md)  
 [Blending Music](/addons/maaacks_game_template/docs/BlendingMusic.md)  
 [Adding UI Sound Effects](/addons/maaacks_game_template/docs/AddingUISFX.md)  
-[Loading Scenes](/addons/maaacks_game_template/docs/LoadingScenes.md)  
+[Loading Scenes](/addons/maaacks_scene_loader/docs/LoadingScenes.md)  
 [Input Icon Mapping](/addons/maaacks_game_template/docs/InputIconMapping.md)  
 [Joypad Inputs](/addons/maaacks_game_template/docs/JoypadInputs.md)  
 [Game Saving](/addons/maaacks_game_template/docs/GameSaving.md)  
