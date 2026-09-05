@@ -64,6 +64,6 @@ To change the _Opening_:
 ### Extra
 1.  [Adding Icons to the Input Options](/addons/maaacks_game_template/docs/InputIconMapping.md)  
 2.  [Supporting Joypad Inputs](/addons/maaacks_game_template/docs/JoypadInputs.md)  
-3.  [Loading scenes asynchronously](/addons/maaacks_game_template/docs/LoadingScenes.md)  
+3.  [Loading scenes asynchronously](/addons/maaacks_scene_loader/docs/LoadingScenes.md)  
 4.  [Utilizing Game Saving](/addons/maaacks_game_template/docs/GameSaving.md)  
 5.  [Uploading to itch.io](/addons/maaacks_game_template/docs/UploadingToItchIo.md)  

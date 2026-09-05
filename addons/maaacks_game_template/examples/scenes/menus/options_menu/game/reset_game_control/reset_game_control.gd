@@ -22,4 +22,4 @@ func _on_reset_button_pressed():
 func _on_confirm_button_pressed():
 	reset_confirmed.emit()
 	get_tree().paused = false
-	SceneLoader.reload_current_scene()
+	get_tree().reload_current_scene()

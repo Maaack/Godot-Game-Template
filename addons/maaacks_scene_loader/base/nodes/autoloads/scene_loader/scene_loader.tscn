@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cpehcs7n5c62p"]
+
+[ext_resource type="Script" uid="uid://m85f3c35vh7o" path="res://addons/maaacks_scene_loader/base/nodes/autoloads/scene_loader/scene_loader.gd" id="1_l0dhx"]
+
+[node name="SceneLoader" type="Node" unique_id=289728719]
+script = ExtResource("1_l0dhx")

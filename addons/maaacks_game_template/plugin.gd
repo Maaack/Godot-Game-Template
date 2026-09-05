@@ -182,7 +182,9 @@ func _set_default_project_paths() -> void:
 	MaaacksGameTemplate.set_project_paths(get_plugin_examples_path(), false)
 
 func update_project_paths() -> void:
-	MaaacksGameTemplate.set_project_paths(get_copy_path())
+	var copy_path := get_copy_path()
+	MaaacksGameTemplate.set_project_paths(copy_path)
+	MaaacksSceneLoader.set_project_paths(copy_path)
 
 func _add_translations() -> void:
 	var dir := DirAccess.open("res://")
@@ -197,7 +199,7 @@ func are_project_paths_updated() -> bool:
 	var copy_path := get_copy_path()
 	if copy_path == get_plugin_examples_path():
 		return false
-	return MaaacksGameTemplate.are_project_paths_updated(copy_path)
+	return MaaacksGameTemplate.are_project_paths_updated(copy_path) and MaaacksSceneLoader.are_project_paths_updated(copy_path)
 
 func _on_completed_copy_to_directory(target_path : String) -> void:
 	MaaacksGameTemplate.set_copy_path(target_path)
@@ -313,13 +315,11 @@ func _remove_from_auto_update_list() -> void:
 func _enable_plugin():
 	_set_default_project_paths()
 	_add_to_auto_update_list()
-	add_autoload_singleton("SceneLoader", get_scene_loader_path())
 	add_autoload_singleton("ProjectMusicController", get_plugin_path() + "base/nodes/autoloads/music_controller/project_music_controller.tscn")
 	add_autoload_singleton("ProjectUISoundController", get_plugin_path() + "base/nodes/autoloads/ui_sound_controller/project_ui_sound_controller.tscn")
 
 func _disable_plugin():
 	_remove_from_auto_update_list()
-	remove_autoload_singleton("SceneLoader")
 	remove_autoload_singleton("ProjectMusicController")
 	remove_autoload_singleton("ProjectUISoundController")
 

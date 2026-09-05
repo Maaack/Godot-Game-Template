@@ -17,6 +17,7 @@ signal game_exited
 @export var confirm_exit : bool = true
 @export_group("Extra Settings")
 ## If true, signals that the game has started loading in the background, instead of directly loading it.
+## Requires Maaack's Scene Loader.
 @export var signal_game_start : bool = false
 ## If true, signals that the player clicked the 'Exit' button, instead of immediately exiting.
 @export var signal_game_exit : bool = false
@@ -29,16 +30,21 @@ var sub_menu : Control
 @onready var credits_button = %CreditsButton
 @onready var exit_button = %ExitButton
 @onready var exit_confirmation = %ExitConfirmation
+## If Maaack's Scene Loader is installed, then it will be used to change scenes.
+@onready var scene_loader_node = get_tree().root.get_node_or_null(^"SceneLoader")
 
 func get_game_scene_path() -> String:
 	return MaaacksGameTemplate.get_game_path(game_scene_path)
 
 func load_game_scene() -> void:
-	if signal_game_start:
-		SceneLoader.load_scene(get_game_scene_path(), true)
-		game_started.emit()
+	if scene_loader_node:
+		if signal_game_start:
+			scene_loader_node.load_scene(get_game_scene_path(), true)
+			game_started.emit()
+		else:
+			scene_loader_node.load_scene(get_game_scene_path())
 	else:
-		SceneLoader.load_scene(get_game_scene_path())
+		get_tree().change_scene_to_file(get_game_scene_path())
 
 func new_game() -> void:
 	load_game_scene()
