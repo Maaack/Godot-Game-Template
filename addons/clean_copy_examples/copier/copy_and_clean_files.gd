@@ -38,7 +38,7 @@ func _remove_uids(content : String) -> String:
 
 func _replace_paths(content : String, target_path : String) -> String:
 	for example_path in examples_paths:
-		content.replace(example_path.trim_prefix("res://"), target_path.trim_prefix("res://"))
+		content = content.replace(example_path.trim_prefix("res://"), target_path.trim_prefix("res://"))
 	return content
 
 func _replace_strings(content : String) -> String:

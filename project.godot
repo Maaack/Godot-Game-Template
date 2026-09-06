@@ -24,6 +24,7 @@ SceneLoader="*res://addons/maaacks_scene_loader/base/nodes/autoloads/scene_loade
 [clean_copy_examples]
 
 examples_paths=Array[String](["res://addons/maaacks_game_template/examples/", "res://addons/maaacks_scene_loader/examples/"])
+copy_path="res://"
 
 [display]
 
