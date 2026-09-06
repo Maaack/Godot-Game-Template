@@ -5,6 +5,8 @@ const PROJECT_SETTINGS_PATH := "clean_copy_examples/"
 const COPY_SCENE_RELATIVE_PATH := "copier/copy_and_clean_files.tscn"
 const EXAMPLES_PATHS_KEY = "examples_paths"
 const COPY_PATH_KEY = "copy_path"
+const CopyAndCleanFiles := preload("copier/copy_and_clean_files.gd")
+const _COPY_AND_CLEAN_FILES_SCENE:PackedScene = preload("copier/copy_and_clean_files.tscn")
 
 static func get_copy_path(default_path : String = "") -> String:
 	var copy_path = ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + COPY_PATH_KEY, default_path)
@@ -30,6 +32,18 @@ static func are_examples_deleted() -> bool:
 		if not dir.dir_exists(examples_path):
 			return false
 	return true
+
+static func _on_copy_and_edit_completed(target_path:String) -> void:
+	CleanCopyExamples.set_copy_path(target_path)
+
+static func get_copy_and_clean_scene(examples_directory:String = "") -> CopyAndCleanFiles:
+	var copy_and_clean_files_instance:CopyAndCleanFiles = _COPY_AND_CLEAN_FILES_SCENE.instantiate()
+	if not examples_directory.is_empty():
+		copy_and_clean_files_instance.examples_paths = [examples_directory] as Array[String]
+	else:
+		copy_and_clean_files_instance.examples_paths = CleanCopyExamples.get_examples_paths()
+	copy_and_clean_files_instance.completed.connect(_on_copy_and_edit_completed)
+	return copy_and_clean_files_instance
 
 static func add_examples(examples_directory:String):
 	var example_paths := get_examples_paths()
