@@ -111,7 +111,6 @@ locale/translations=PackedStringArray("res://addons/maaacks_game_template/base/t
 [maaacks_game_template]
 
 copy_path="res://"
-disable_update_check=false
 disable_install_wizard=true
 disable_install_audio_busses=true
 main_menu_scene_path="res://scenes/menus/main_menu/main_menu.tscn"
