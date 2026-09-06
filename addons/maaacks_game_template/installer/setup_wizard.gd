@@ -111,7 +111,7 @@ func _on_update_button_pressed():
 	queue_free()
 
 func _on_copy_button_pressed():
-	tree_exited.connect(func(): MaaacksGameTemplatePlugin.instance.open_copy_and_edit_dialog())
+	tree_exited.connect(func(): MaaacksGameTemplatePlugin.instance.open_copy_and_clean_files_dialog())
 	queue_free()
 
 func _on_delete_button_pressed():

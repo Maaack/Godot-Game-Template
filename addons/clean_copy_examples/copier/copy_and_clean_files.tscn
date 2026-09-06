@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bgdxso8wdsm2l" path="res://addons/clean_copy_examples/copier/copy_and_clean_files.gd" id="1_qwmaq"]
 [ext_resource type="PackedScene" uid="uid://ckx50am7thhd2" path="res://addons/clean_copy_examples/copier/destination_dialog.tscn" id="2_ay5ui"]
 
-[node name="CopyAndEditFiles" type="Node" unique_id=1583348979]
+[node name="CopyAndCleanFiles" type="Node" unique_id=1583348979]
 script = ExtResource("1_qwmaq")
 replace_strings_map = {
 "StateExample": "State"
