@@ -12,7 +12,6 @@ const RUNNING_CHECK_DELAY : float = 0.25
 const OPEN_EDITOR_DELAY : float = 0.1
 const MAX_PHYSICS_FRAMES_FROM_START : int = 60
 const AVAILABLE_TRANSLATIONS : Array = ["en", "fr"]
-const CopyAndEdit = preload("installer/copy_and_edit_files.gd")
 
 static var instance : MaaacksGameTemplatePlugin
 
@@ -229,8 +228,7 @@ func open_input_icons_dialog() -> void:
 	add_child(input_icons_instance)
 
 func open_copy_and_edit_dialog() -> void:
-	var copy_and_edit_scene : PackedScene = load(get_plugin_path() + "installer/copy_and_edit_files.tscn")
-	var copy_and_edit_instance : CopyAndEdit = copy_and_edit_scene.instantiate()
+	var copy_and_edit_instance : CleanCopyExamples.CopyAndClean = CleanCopyExamples.get_copy_and_clean_scene()
 	copy_and_edit_instance.completed.connect(_on_completed_copy_to_directory)
 	copy_and_edit_instance.canceled.connect(_check_main_scene_needs_updating.bind(get_copy_path()))
 	add_child(copy_and_edit_instance)
