@@ -228,7 +228,7 @@ func open_input_icons_dialog() -> void:
 	add_child(input_icons_instance)
 
 func open_copy_and_clean_files_dialog() -> void:
-	var copy_and_clean_files_instance : CleanCopyExamplesPlugin.CopyAndCleanFiles = CleanCopyExamplesPlugin.instance.get_copy_and_clean_scene()
+	var copy_and_clean_files_instance := CleanCopyExamplesPlugin.instance.get_copy_and_clean_scene()
 	copy_and_clean_files_instance.completed.connect(_on_completed_copy_to_directory)
 	copy_and_clean_files_instance.canceled.connect(_check_main_scene_needs_updating.bind(get_copy_path()))
 	add_child(copy_and_clean_files_instance)

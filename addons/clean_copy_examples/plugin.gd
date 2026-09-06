@@ -12,9 +12,9 @@ func _on_copy_and_edit_completed(target_path:String) -> void:
 	CleanCopyExamples.set_copy_path(target_path)
 
 func get_copy_and_clean_scene(examples_directory:String = "") -> CopyAndCleanFiles:
-	var copy_and_clean_files_instance := _copy_and_clean_files_scene.instantiate()
+	var copy_and_clean_files_instance:CopyAndCleanFiles = _copy_and_clean_files_scene.instantiate()
 	if not examples_directory.is_empty():
-		copy_and_clean_files_instance.examples_paths = [examples_directory]
+		copy_and_clean_files_instance.examples_paths = [examples_directory] as Array[String]
 	else:
 		copy_and_clean_files_instance.examples_paths = CleanCopyExamples.get_examples_paths()
 	copy_and_clean_files_instance.completed.connect(_on_copy_and_edit_completed)

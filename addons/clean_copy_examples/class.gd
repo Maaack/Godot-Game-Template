@@ -16,8 +16,9 @@ static func set_copy_path(copy_path : String) -> void:
 	ProjectSettings.set_setting(PROJECT_SETTINGS_PATH + COPY_PATH_KEY, copy_path)
 	ProjectSettings.save()
 
-static func get_examples_paths() -> Array:
-	return ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + EXAMPLES_PATHS_KEY, [])
+static func get_examples_paths() -> Array[String]:
+	var default_value : Array[String] = []
+	return ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + EXAMPLES_PATHS_KEY, default_value)
 
 static func are_examples_copied() -> bool:
 	return not get_copy_path().is_empty()
