@@ -213,8 +213,7 @@ func are_examples_deleted() -> bool:
 func is_partially_installed() -> bool:
 	var copy_path : String = MaaacksGameTemplate.get_copy_path()
 	if copy_path.is_empty():
-		# Installation not started
-		return false
+		return true
 	if not are_examples_deleted():
 		return true
 	if not are_project_paths_updated():
