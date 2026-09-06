@@ -25,7 +25,17 @@ static func get_examples_paths() -> Array[String]:
 static func are_examples_copied() -> bool:
 	return not get_copy_path().is_empty()
 
-static func are_examples_deleted() -> bool:
+static func are_all_examples_deleted() -> bool:
+	var dir := DirAccess.open("res://")
+	var examples_paths := get_examples_paths()
+	for examples_path in examples_paths:
+		print("checking if exists %s" % examples_path)
+		if dir.dir_exists(examples_path):
+			print("nope!")
+			return false
+	return true
+
+static func are_any_examples_deleted() -> bool:
 	var dir := DirAccess.open("res://")
 	var examples_paths := get_examples_paths()
 	for examples_path in examples_paths:
