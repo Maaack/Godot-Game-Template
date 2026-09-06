@@ -137,34 +137,8 @@ func _run_opening_scene(target_path : String) -> void:
 	add_child(timer)
 	timer.start(RUNNING_CHECK_DELAY)
 
-func _delete_directory_recursive(dir_path : String) -> void:
-	if not dir_path.ends_with("/"):
-		dir_path += "/"
-	var dir = DirAccess.open(dir_path)
-	if dir:
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
-		var error : Error
-		while file_name != "" and error == 0:
-			var relative_path = dir_path.trim_prefix(get_plugin_examples_path())
-			var full_file_path = dir_path + file_name
-			if dir.current_is_dir():
-				_delete_directory_recursive(full_file_path)
-			else:
-				error = dir.remove(file_name)
-			file_name = dir.get_next()
-		if error:
-			push_error("plugin error - deleting path: %s" % error)
-	else:
-		push_error("plugin error - accessing path: %s" % dir)
-	dir.remove(dir_path)
-
 func _delete_source_examples_directory(target_path : String = "") -> void:
-	var examples_path = get_plugin_examples_path()
-	var dir := DirAccess.open("res://")
-	if dir.dir_exists(examples_path):
-		_delete_directory_recursive(examples_path)
-		EditorInterface.get_resource_filesystem().scan()
+	CleanCopyExamples.delete_examples()
 	if not target_path.is_empty():
 		_check_main_scene_needs_updating(target_path)
 

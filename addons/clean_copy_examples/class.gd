@@ -43,6 +43,17 @@ static func are_any_examples_deleted() -> bool:
 			return false
 	return true
 
+static func delete_examples() -> void:
+	if are_all_examples_deleted():
+		return
+	var examples_paths := get_examples_paths()
+	var dir := DirAccess.open("res://")
+	for examples_path in examples_paths:
+		if dir.dir_exists(examples_path):
+			var global_path := ProjectSettings.globalize_path(examples_path)
+			OS.move_to_trash(global_path)
+	EditorInterface.get_resource_filesystem().scan()
+
 static func _on_copy_and_edit_completed(target_path:String) -> void:
 	CleanCopyExamples.set_copy_path(target_path)
 
