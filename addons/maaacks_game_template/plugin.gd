@@ -310,14 +310,22 @@ func _add_to_auto_update_list() -> void:
 func _remove_from_auto_update_list() -> void:
 	PluginUpdater.remove_plugin(get_plugin_path())
 
+func _add_to_clean_copy_examples_list() -> void:
+	CleanCopyExamples.add_examples(get_plugin_examples_path())
+
+func _remove_from_clean_copy_examples_list() -> void:
+	CleanCopyExamples.remove_examples(get_plugin_examples_path())
+
 func _enable_plugin():
 	_set_default_project_paths()
 	_add_to_auto_update_list()
+	_add_to_clean_copy_examples_list()
 	add_autoload_singleton("ProjectMusicController", get_plugin_path() + "base/nodes/autoloads/music_controller/project_music_controller.tscn")
 	add_autoload_singleton("ProjectUISoundController", get_plugin_path() + "base/nodes/autoloads/ui_sound_controller/project_ui_sound_controller.tscn")
 
 func _disable_plugin():
 	_remove_from_auto_update_list()
+	_remove_from_clean_copy_examples_list()
 	remove_autoload_singleton("ProjectMusicController")
 	remove_autoload_singleton("ProjectUISoundController")
 
