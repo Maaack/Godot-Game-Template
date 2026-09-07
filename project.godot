@@ -17,17 +17,17 @@ config/icon="res://icon.png"
 
 [autoload]
 
+SceneLoader="*res://addons/maaacks_scene_loader/base/nodes/autoloads/scene_loader/scene_loader.tscn"
 ProjectMusicController="*res://addons/maaacks_game_template/base/nodes/autoloads/music_controller/project_music_controller.tscn"
 ProjectUISoundController="*res://addons/maaacks_game_template/base/nodes/autoloads/ui_sound_controller/project_ui_sound_controller.tscn"
-SceneLoader="*res://addons/maaacks_scene_loader/base/nodes/autoloads/scene_loader/scene_loader.tscn"
 
 [clean_copy_examples]
 
 examples_paths=Array[String](["res://addons/maaacks_scene_loader/examples/", "res://addons/maaacks_game_template/examples/"])
-copy_path="res://"
 replace_strings=Dictionary[String, String]({
 "StateExample": "State"
 })
+copy_path="res://"
 
 [display]
 
