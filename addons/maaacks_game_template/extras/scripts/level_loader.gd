@@ -10,9 +10,13 @@ signal level_ready
 ## Container where the level instance will be added.
 @export var level_container : Node
 ## Optional reference to a loading screen in the scene.
-@export var level_loading_screen : LoadingScreen
+## Requires Maaack's Scene Loader.
+@export var level_loading_screen : Node
 @export_group("Debugging")
 @export var current_level : Node
+
+## If Maaack's Scene Loader is installed, then it will be used to change scenes.
+@onready var scene_loader_node = get_tree().root.get_node_or_null(^"SceneLoader")
 
 var current_level_path : String
 var is_loading : bool = false
@@ -30,16 +34,20 @@ func load_level(level_path : String):
 		await current_level.tree_exited
 		current_level = null
 	current_level_path = level_path
-	is_loading = true
-	SceneLoader.load_scene(current_level_path, true)
-	if level_loading_screen:
-		level_loading_screen.reset()
-	level_load_started.emit()
-	await SceneLoader.scene_loaded
-	is_loading = false
-	current_level = _attach_level(SceneLoader.get_resource())
-	if level_loading_screen:
-		level_loading_screen.close()
+	if scene_loader_node:
+		is_loading = true
+		scene_loader_node.load_scene(level_path, true)
+		if level_loading_screen:
+			level_loading_screen.reset()
+		level_load_started.emit()
+		await scene_loader_node.scene_loaded
+		is_loading = false
+		current_level = _attach_level(scene_loader_node.get_resource())
+		if level_loading_screen:
+			level_loading_screen.close()
+	else:
+		var level_scene = load(level_path)
+		current_level = _attach_level(level_scene)
 	level_loaded.emit()
 	await current_level.ready
 	level_ready.emit()

@@ -20,13 +20,13 @@ The `Opening` is referenced in the project settings, and will get automatically 
 
 The rest have their default paths stored in the **Project Settings**. These do not get automatically updated, so the developer must update these paths if they change.  
 
-The recommended way is to update the `Copy Path` to the target folder, open the setup wizard, and run to update the project paths.
+The recommended way is to update the `Copy Path` to the target folder, open the setup wizard, and run to update the project paths. Otherwise, each individual path can be changed as needed.
 
 Alternatively, the developer can specify paths in the scenes that reference the other scenes by path. These include:
 * `opening.tscn`  
 * `main_menu.tscn`  
 * `main_menu_with_animations.tscn`  
-* `pause_menu_layer.tscn`  
+* `pause_menu.tscn`  
 * `game.tscn` (`level_manager.gd`)  
 * `end_credits.tscn`  
 

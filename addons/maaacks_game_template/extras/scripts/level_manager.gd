@@ -32,6 +32,9 @@ extends Node
 ## Optional screen to be shown after the level is won.
 @export var level_won_scene : PackedScene
 
+## If Maaack's Scene Loader is installed, then it will be used to change scenes.
+@onready var scene_loader_node = get_tree().root.get_node_or_null(^"SceneLoader")
+
 ## Reference to the current level node.
 var current_level : Node
 var current_level_path : String : set = set_current_level_path
@@ -56,10 +59,13 @@ func _close_scene(node:Node) -> void:
 	node.queue_free()
 
 func get_main_menu_scene_path() -> String:
-	return MaaacksGameTemplatePlugin.get_main_menu_path(main_menu_scene_path)
+	return MaaacksGameTemplate.get_main_menu_path(main_menu_scene_path)
 
 func _load_main_menu() -> void:
-	SceneLoader.load_scene(get_main_menu_scene_path())
+	if scene_loader_node:
+		scene_loader_node.load_scene(get_main_menu_scene_path())
+	else:
+		get_tree().change_scene_to_file(get_main_menu_scene_path())
 
 func _find_in_scene_lister(level_path : String) -> int:
 	if not scene_lister: return -1
@@ -85,11 +91,14 @@ func get_prev_level_path() -> String:
 	return get_relative_level_path(-1)
 
 func get_ending_scene_path() -> String:
-	return MaaacksGameTemplatePlugin.get_ending_scene_path(ending_scene_path)
+	return MaaacksGameTemplate.get_ending_scene_path(ending_scene_path)
 
 func _load_ending() -> void:
 	if not get_ending_scene_path().is_empty():
-		SceneLoader.load_scene(get_ending_scene_path())
+		if scene_loader_node:
+			scene_loader_node.load_scene(get_ending_scene_path())
+		else:
+			get_tree().change_scene_to_file(get_ending_scene_path())
 	else:
 		_load_main_menu()
 
