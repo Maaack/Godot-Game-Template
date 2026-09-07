@@ -23,19 +23,22 @@ text = "Use a keyboard or gamepad to move left, move right, and jump!"
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 
-[node name="InputHint" parent="ContentContainer/BoxContainer/BodyMargin/BoxContainer/HBoxContainer" index="0" unique_id=352483959 instance=ExtResource("2_aa1p5")]
+[node name="InputHint" parent="ContentContainer/BoxContainer/BodyMargin/BoxContainer/HBoxContainer" index="0" unique_id=352483959 node_paths=PackedStringArray("input_icon_mapper") instance=ExtResource("2_aa1p5")]
 layout_mode = 2
 size_flags_horizontal = 3
 action_name = &"ui_left"
+input_icon_mapper = NodePath("../../../../../../InputIconMapper")
 
-[node name="InputHint2" parent="ContentContainer/BoxContainer/BodyMargin/BoxContainer/HBoxContainer" index="1" unique_id=770503614 instance=ExtResource("2_aa1p5")]
+[node name="InputHint2" parent="ContentContainer/BoxContainer/BodyMargin/BoxContainer/HBoxContainer" index="1" unique_id=770503614 node_paths=PackedStringArray("input_icon_mapper") instance=ExtResource("2_aa1p5")]
 layout_mode = 2
 size_flags_horizontal = 3
 action_name = &"ui_right"
+input_icon_mapper = NodePath("../../../../../../InputIconMapper")
 
-[node name="InputHint3" parent="ContentContainer/BoxContainer/BodyMargin/BoxContainer/HBoxContainer" index="2" unique_id=8792550 instance=ExtResource("2_aa1p5")]
+[node name="InputHint3" parent="ContentContainer/BoxContainer/BodyMargin/BoxContainer/HBoxContainer" index="2" unique_id=8792550 node_paths=PackedStringArray("input_icon_mapper") instance=ExtResource("2_aa1p5")]
 layout_mode = 2
 size_flags_horizontal = 3
 action_name = &"ui_accept"
+input_icon_mapper = NodePath("../../../../../../InputIconMapper")
 
 [node name="InputIconMapper" parent="." index="1" unique_id=2136107125 instance=ExtResource("3_g8dct")]
