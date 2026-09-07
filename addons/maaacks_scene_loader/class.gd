@@ -9,6 +9,7 @@ const LOADING_SCENE_PATH_KEY = "loading_scene_path"
 const SCENE_PATHS : Dictionary[String, String] = {
 	LOADING_SCENE_PATH_KEY : LOADING_SCREEN_SCENE_RELATIVE_PATH,
 }
+
 static func get_plugin_name() -> String:
 	return PLUGIN_NAME
 
