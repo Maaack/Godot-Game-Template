@@ -62,7 +62,8 @@ func _refresh_copy_and_delete_examples() -> void:
 		copy_check_box.button_pressed = true
 	if not are_deleted:
 		copy_button.disabled = false
-		delete_button.disabled = false
+		if are_copied:
+			delete_button.disabled = false
 	else:
 		delete_check_box.button_pressed = true
 
