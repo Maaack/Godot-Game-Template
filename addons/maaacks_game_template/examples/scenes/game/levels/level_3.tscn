@@ -1,10 +1,12 @@
 [gd_scene format=3 uid="uid://ddneme7dcyian"]
 
 [ext_resource type="Script" uid="uid://8pcyis8a4m5v" path="res://addons/maaacks_game_template/examples/scenes/game/levels/level_3.gd" id="1_2ipf5"]
+[ext_resource type="Script" uid="uid://dqdyrkm3jily6" path="res://addons/maaacks_game_template/extras/scripts/capture_mouse.gd" id="2_xphih"]
 [ext_resource type="Script" uid="uid://dvewqdtaf68y8" path="res://addons/maaacks_game_template/examples/scenes/game/scripts/input_display_label.gd" id="3_4popk"]
 [ext_resource type="Script" uid="uid://1aoiji5yh0sy" path="res://addons/maaacks_game_template/examples/scenes/game/scripts/tutorial_manager.gd" id="4_mdq82"]
 [ext_resource type="Script" uid="uid://dvg7123oky0p8" path="res://addons/maaacks_game_template/examples/scenes/game/levels/character_body_3d.gd" id="5_2ipf5"]
 [ext_resource type="PackedScene" uid="uid://dvwhul2i007fs" path="res://addons/maaacks_game_template/examples/scenes/game/tutorials/tutorial_3.tscn" id="5_32y40"]
+[ext_resource type="Script" uid="uid://crxc70hdjyaqt" path="res://addons/maaacks_game_template/examples/scenes/game/levels/yaw_control_3d.gd" id="6_0o1jo"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qaipj"]
 
@@ -38,6 +40,7 @@ theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
+script = ExtResource("2_xphih")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer" unique_id=24784916]
 layout_mode = 2
@@ -153,6 +156,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
 shape = SubResource("CapsuleShape3D_0gu67")
 
 [node name="Camera3D" type="Camera3D" parent="World/CharacterBody3D" unique_id=1650659976]
+
+[node name="YawControl3D" type="Node3D" parent="World/CharacterBody3D" unique_id=32869769]
+script = ExtResource("6_0o1jo")
 
 [connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer2/TutorialButton" to="." method="_on_tutorial_button_pressed"]
 [connection signal="body_entered" from="World/WinArea3D" to="." method="_on_win_area_3d_body_entered"]

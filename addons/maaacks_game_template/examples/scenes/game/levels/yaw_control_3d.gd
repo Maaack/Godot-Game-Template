@@ -1,7 +1,7 @@
 extends Node3D
 
 @export var base_mouse_sensitivity : float = 0.001
-@export var base_joypad_sensitivity : float = 1.000
+@export var base_joypad_sensitivity : float = 1.250
 @export_node_path("CharacterBody3D") var character_body_node_path : NodePath = ^".."
 @onready var character_body : CharacterBody3D = get_node_or_null(character_body_node_path)
 
