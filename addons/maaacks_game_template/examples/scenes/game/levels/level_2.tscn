@@ -254,6 +254,8 @@ horizontal_alignment = 1
 
 [node name="WinArea2D" type="Area2D" parent="World" unique_id=1429975498]
 position = Vector2(480, 0)
+collision_layer = 2
+collision_mask = 2
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/WinArea2D" unique_id=851865462]
@@ -278,6 +280,8 @@ vertical_alignment = 1
 
 [node name="LoseArea2D" type="Area2D" parent="World" unique_id=2042256546]
 position = Vector2(-480, 0)
+collision_layer = 2
+collision_mask = 2
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/LoseArea2D" unique_id=2131972517]
@@ -301,6 +305,8 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="World" unique_id=171191911]
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("5_x2ody")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/CharacterBody2D" unique_id=1607512979]
