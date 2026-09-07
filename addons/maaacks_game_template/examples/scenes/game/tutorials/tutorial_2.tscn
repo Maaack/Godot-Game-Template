@@ -9,17 +9,15 @@ process_mode = 3
 custom_minimum_size = Vector2(420, 200)
 pauses_game = true
 update_content = true
-title = "Tutorial"
-text = "Move right and jump to win and progress.
-Move left to lose and try again."
+title = "2D Tutorial"
+text = "Use a keyboard or gamepad to move left, move right, and jump!"
 
 [node name="TitleLabel" parent="ContentContainer/BoxContainer/TitleMargin/BoxContainer" parent_id_path=PackedInt32Array(1788474031) index="0" unique_id=1049966061]
 theme_override_font_sizes/font_size = 20
-text = "Tutorial"
+text = "2D Tutorial"
 
 [node name="DescriptionLabel" parent="ContentContainer/BoxContainer/BodyMargin/BoxContainer" parent_id_path=PackedInt32Array(1957884530) index="0" unique_id=617407155]
-text = "Move right and jump to win and progress.
-Move left to lose and try again."
+text = "Use a keyboard or gamepad to move left, move right, and jump!"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ContentContainer/BoxContainer/BodyMargin/BoxContainer" parent_id_path=PackedInt32Array(1957884530) index="1" unique_id=65354983]
 custom_minimum_size = Vector2(0, 48)

@@ -7,14 +7,12 @@ process_mode = 3
 custom_minimum_size = Vector2(420, 200)
 pauses_game = true
 update_content = true
-title = "Tutorial"
-text = "Click the Win button to progress.
-Click the Lose button to try again."
+title = "UI Tutorial"
+text = "Use a mouse, keyboard, or gamepad to select a button and press it."
 
 [node name="TitleLabel" parent="ContentContainer/BoxContainer/TitleMargin/BoxContainer" parent_id_path=PackedInt32Array(1788474031) index="0" unique_id=1049966061]
 theme_override_font_sizes/font_size = 20
-text = "Tutorial"
+text = "UI Tutorial"
 
-[node name="DescriptionLabel" parent="ContentContainer/BoxContainer/BodyMargin" parent_id_path=PackedInt32Array(590613964) index="0" unique_id=617407155]
-text = "Press the Win button to progress.
-Press the Lose button to try again."
+[node name="DescriptionLabel" parent="ContentContainer/BoxContainer/BodyMargin/BoxContainer" parent_id_path=PackedInt32Array(1957884530) index="0" unique_id=617407155]
+text = "Use a mouse, keyboard, or gamepad to select a button and press it."
