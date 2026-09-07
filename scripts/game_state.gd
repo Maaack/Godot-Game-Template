@@ -12,6 +12,7 @@ const FILE_PATH = "res://scripts/game_state.gd"
 @export var total_time : int
 
 static func get_level_state(level_state_key : String) -> LevelState:
+	level_state_key = ResourceUID.ensure_path(level_state_key)
 	if not has_game_state(): 
 		return
 	var game_state := get_or_create_state()
