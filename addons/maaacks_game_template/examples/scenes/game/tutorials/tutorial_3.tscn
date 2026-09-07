@@ -17,12 +17,15 @@ Use a mouse or right-joystick to turn."
 theme_override_font_sizes/font_size = 20
 text = "3D Tutorial"
 
-[node name="DescriptionLabel" parent="ContentContainer/BoxContainer/BodyMargin/BoxContainer" parent_id_path=PackedInt32Array(1957884530) index="0" unique_id=617407155]
+[node name="BoxContainer" parent="ContentContainer/BoxContainer/BodyMargin" parent_id_path=PackedInt32Array(590613964) index="0" unique_id=1957884530]
+theme_override_constants/separation = 12
+
+[node name="DescriptionLabel" parent="ContentContainer/BoxContainer/BodyMargin/BoxContainer" index="0" unique_id=617407155]
 size_flags_vertical = 1
 text = "Use a keyboard or gamepad to move.
 Use a mouse or right-joystick to turn."
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ContentContainer/BoxContainer/BodyMargin/BoxContainer" parent_id_path=PackedInt32Array(1957884530) index="1" unique_id=1397154639]
+[node name="HBoxContainer" type="HBoxContainer" parent="ContentContainer/BoxContainer/BodyMargin/BoxContainer" index="1" unique_id=1397154639]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 
@@ -32,7 +35,7 @@ size_flags_horizontal = 3
 action_name = &"ui_up"
 input_icon_mapper = NodePath("../../../../../../InputIconMapper")
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="ContentContainer/BoxContainer/BodyMargin/BoxContainer" parent_id_path=PackedInt32Array(1957884530) index="2" unique_id=1400024993]
+[node name="HBoxContainer2" type="HBoxContainer" parent="ContentContainer/BoxContainer/BodyMargin/BoxContainer" index="2" unique_id=1400024993]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 
