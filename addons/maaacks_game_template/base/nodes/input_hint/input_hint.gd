@@ -66,7 +66,7 @@ func _refresh() -> void:
 		_name_label.text = ""
 	else:
 		_icon_texture_rect.texture = null
-		_name_label.text = InputEventHelper.get_text(input_event)
+		_name_label.text = "[ %s ]" % InputEventHelper.get_text(input_event)
 
 func _ready() -> void:
 	_refresh.call_deferred()
