@@ -29,10 +29,18 @@ func _remove_from_auto_update_list() -> void:
 	ProjectSettings.set_setting("plugin_updater/plugins", plugin_repos)
 
 func _add_to_clean_copy_examples_list() -> void:
-	CleanCopyExamples.add_examples(get_plugin_examples_path())
+	var default_value : Array[String] = []
+	var examples_paths : Array[String] = ProjectSettings.get_setting("clean_copy_examples/examples_paths", default_value)
+	examples_paths.append(get_plugin_examples_path())
+	ProjectSettings.set_setting("clean_copy_examples/examples_paths", examples_paths)
+	ProjectSettings.save()
 
 func _remove_from_clean_copy_examples_list() -> void:
-	CleanCopyExamples.remove_examples(get_plugin_examples_path())
+	var default_value : Array[String] = []
+	var examples_paths : Array[String] = ProjectSettings.get_setting("clean_copy_examples/examples_paths", default_value)
+	examples_paths.erase(get_plugin_examples_path())
+	ProjectSettings.set_setting("clean_copy_examples/examples_paths", examples_paths)
+	ProjectSettings.save()
 	
 func _enable_plugin():
 	_set_default_project_paths()
