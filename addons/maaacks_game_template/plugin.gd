@@ -285,9 +285,11 @@ func _remove_from_auto_update_list() -> void:
 
 func _add_to_clean_copy_examples_list() -> void:
 	CleanCopyExamples.add_examples(get_plugin_examples_path())
+	CleanCopyExamples.add_replace_string("StateExample", "State")
 
 func _remove_from_clean_copy_examples_list() -> void:
 	CleanCopyExamples.remove_examples(get_plugin_examples_path())
+	CleanCopyExamples.remove_replace_string("StateExample")
 
 func _enable_plugin():
 	_set_default_project_paths()

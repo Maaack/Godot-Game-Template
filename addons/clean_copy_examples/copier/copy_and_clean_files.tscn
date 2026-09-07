@@ -5,9 +5,6 @@
 
 [node name="CopyAndCleanFiles" type="Node" unique_id=1583348979]
 script = ExtResource("1_qwmaq")
-replace_strings_map = {
-"StateExample": "State"
-}
 
 [node name="DestinationDialog" parent="." unique_id=1967756482 instance=ExtResource("2_ay5ui")]
 
