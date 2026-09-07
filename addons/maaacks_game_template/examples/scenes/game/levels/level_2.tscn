@@ -11,6 +11,12 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0gu67"]
 size = Vector2(32, 32)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w2md0"]
+size = Vector2(32, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_34nmm"]
+size = Vector2(32, 96)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eom8k"]
 size = Vector2(80, 240)
 
@@ -98,12 +104,12 @@ text = "========================================================================
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="World/StaticBody2D" unique_id=1186724816]
-position = Vector2(340, -52)
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="World/StaticBody2D" unique_id=529887626]
+position = Vector2(270, -18)
 shape = SubResource("RectangleShape2D_0gu67")
 metadata/_edit_group_ = true
 
-[node name="Label" type="Label" parent="World/StaticBody2D/CollisionShape2D2" unique_id=117011126]
+[node name="Label" type="Label" parent="World/StaticBody2D/CollisionShape2D2" unique_id=824983436]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -120,9 +126,33 @@ text = "[_][_]
 [_][_]"
 horizontal_alignment = 1
 
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="World/StaticBody2D" unique_id=1716948064]
+position = Vector2(305, -34)
+shape = SubResource("RectangleShape2D_w2md0")
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="World/StaticBody2D/CollisionShape2D3" unique_id=332016273]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -11.5
+offset_top = -13.5
+offset_right = 11.5
+offset_bottom = 9.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/line_spacing = -7
+text = "[_][_]
+[_][_]
+[_][_]
+[_][_]"
+horizontal_alignment = 1
+
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="World/StaticBody2D" unique_id=1566763025]
-position = Vector2(340, -86)
-shape = SubResource("RectangleShape2D_0gu67")
+position = Vector2(340, -49)
+shape = SubResource("RectangleShape2D_34nmm")
 metadata/_edit_group_ = true
 
 [node name="Label" type="Label" parent="World/StaticBody2D/CollisionShape2D4" unique_id=1946310110]
@@ -131,111 +161,27 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -11.5
-offset_top = -13.5
-offset_right = 11.5
-offset_bottom = 9.5
+offset_left = -17.5
+offset_top = -54.0
+offset_right = 17.5
+offset_bottom = 54.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/line_spacing = -7
 text = "[_][_]
+[_][_]
+[_][_]
+[_][_]
+[_][_]
 [_][_]"
 horizontal_alignment = 1
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="World/StaticBody2D" unique_id=1473707772]
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="World/StaticBody2D" unique_id=1473707772]
 position = Vector2(454, -18)
 shape = SubResource("RectangleShape2D_0gu67")
 metadata/_edit_group_ = true
 
-[node name="Label" type="Label" parent="World/StaticBody2D/CollisionShape2D3" unique_id=1227609483]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -11.5
-offset_top = -13.5
-offset_right = 11.5
-offset_bottom = 9.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/line_spacing = -7
-text = "[_][_]
-[_][_]"
-horizontal_alignment = 1
-
-[node name="CollisionShape2D5" type="CollisionShape2D" parent="World/StaticBody2D" unique_id=529887626]
-position = Vector2(270, -18)
-shape = SubResource("RectangleShape2D_0gu67")
-metadata/_edit_group_ = true
-
-[node name="Label" type="Label" parent="World/StaticBody2D/CollisionShape2D5" unique_id=824983436]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -11.5
-offset_top = -13.5
-offset_right = 11.5
-offset_bottom = 9.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/line_spacing = -7
-text = "[_][_]
-[_][_]"
-horizontal_alignment = 1
-
-[node name="CollisionShape2D6" type="CollisionShape2D" parent="World/StaticBody2D" unique_id=1716948064]
-position = Vector2(305, -18)
-shape = SubResource("RectangleShape2D_0gu67")
-metadata/_edit_group_ = true
-
-[node name="Label" type="Label" parent="World/StaticBody2D/CollisionShape2D6" unique_id=332016273]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -11.5
-offset_top = -13.5
-offset_right = 11.5
-offset_bottom = 9.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/line_spacing = -7
-text = "[_][_]
-[_][_]"
-horizontal_alignment = 1
-
-[node name="CollisionShape2D7" type="CollisionShape2D" parent="World/StaticBody2D" unique_id=1618969766]
-position = Vector2(340, -18)
-shape = SubResource("RectangleShape2D_0gu67")
-metadata/_edit_group_ = true
-
-[node name="Label" type="Label" parent="World/StaticBody2D/CollisionShape2D7" unique_id=1333241938]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -11.5
-offset_top = -13.5
-offset_right = 11.5
-offset_bottom = 9.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/line_spacing = -7
-text = "[_][_]
-[_][_]"
-horizontal_alignment = 1
-
-[node name="CollisionShape2D8" type="CollisionShape2D" parent="World/StaticBody2D" unique_id=1896736043]
-position = Vector2(305, -52)
-shape = SubResource("RectangleShape2D_0gu67")
-metadata/_edit_group_ = true
-
-[node name="Label" type="Label" parent="World/StaticBody2D/CollisionShape2D8" unique_id=732660339]
+[node name="Label" type="Label" parent="World/StaticBody2D/CollisionShape2D5" unique_id=1227609483]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
