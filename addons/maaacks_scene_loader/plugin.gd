@@ -28,11 +28,27 @@ func _remove_from_auto_update_list() -> void:
 	plugin_repos.erase(get_plugin_path())
 	ProjectSettings.set_setting("plugin_updater/plugins", plugin_repos)
 
+func _add_to_clean_copy_examples_list() -> void:
+	var default_value : Array[String] = []
+	var examples_paths : Array[String] = ProjectSettings.get_setting("clean_copy_examples/examples_paths", default_value)
+	examples_paths.append(get_plugin_examples_path())
+	ProjectSettings.set_setting("clean_copy_examples/examples_paths", examples_paths)
+	ProjectSettings.save()
+
+func _remove_from_clean_copy_examples_list() -> void:
+	var default_value : Array[String] = []
+	var examples_paths : Array[String] = ProjectSettings.get_setting("clean_copy_examples/examples_paths", default_value)
+	examples_paths.erase(get_plugin_examples_path())
+	ProjectSettings.set_setting("clean_copy_examples/examples_paths", examples_paths)
+	ProjectSettings.save()
+	
 func _enable_plugin():
 	_set_default_project_paths()
 	_add_to_auto_update_list()
+	_add_to_clean_copy_examples_list()
 	add_autoload_singleton("SceneLoader", get_scene_loader_path())
 
 func _disable_plugin():
 	_remove_from_auto_update_list()
+	_remove_from_clean_copy_examples_list()
 	remove_autoload_singleton("SceneLoader")

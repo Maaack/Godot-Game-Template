@@ -45,8 +45,9 @@ While editing a project in *Godot*:
 4.  Click to **Download**.
 5.  Check that contents are getting installed to `addons/` and if there are any conflicts.  
 Conflicts that are safe to ignore:
-    1.  `addons/plugin_updater/`
-    2.  `addons/maaacks_scene_loader/`
+    -  `addons/plugin_updater/`
+    -  `addons/clean_copy_examples/`
+    -  `addons/maaacks_scene_loader/`
 6.  Click to **Install**.
 7.  Reload the project (you may see errors before you do this).
 8.  Enable the plugin(s) from the **Project > Project Settings > Plugins** tab.  

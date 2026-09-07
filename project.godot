@@ -17,9 +17,17 @@ config/icon="res://icon.png"
 
 [autoload]
 
+SceneLoader="*res://addons/maaacks_scene_loader/base/nodes/autoloads/scene_loader/scene_loader.tscn"
 ProjectMusicController="*res://addons/maaacks_game_template/base/nodes/autoloads/music_controller/project_music_controller.tscn"
 ProjectUISoundController="*res://addons/maaacks_game_template/base/nodes/autoloads/ui_sound_controller/project_ui_sound_controller.tscn"
-SceneLoader="*res://addons/maaacks_scene_loader/base/nodes/autoloads/scene_loader/scene_loader.tscn"
+
+[clean_copy_examples]
+
+examples_paths=Array[String](["res://addons/maaacks_scene_loader/examples/", "res://addons/maaacks_game_template/examples/"])
+replace_strings=Dictionary[String, String]({
+"StateExample": "State"
+})
+copy_path="res://"
 
 [display]
 
@@ -106,7 +114,6 @@ locale/translations=PackedStringArray("res://addons/maaacks_game_template/base/t
 [maaacks_game_template]
 
 copy_path="res://"
-disable_update_check=false
 disable_install_wizard=true
 disable_install_audio_busses=true
 main_menu_scene_path="res://scenes/menus/main_menu/main_menu.tscn"

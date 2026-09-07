@@ -14,11 +14,7 @@ const REPLACE_CONTENT_EXTENSIONS : Array = ["gd", "tscn", "tres", "md"]
 
 @onready var destination_dialog : FileDialog = $DestinationDialog
 
-@export_dir var relative_path : String :
-	set(value):
-		relative_path = value
-		if not relative_path.ends_with("/"):
-			relative_path += "/"
+@export_dir var examples_paths : Array[String]
 @export var replace_strings_map : Dictionary
 @export var visible : bool = true :
 	set(value):
@@ -41,7 +37,9 @@ func _remove_uids(content : String) -> String:
 	return regex.sub(content, "", true)
 
 func _replace_paths(content : String, target_path : String) -> String:
-	return content.replace(relative_path.trim_prefix("res://"), target_path.trim_prefix("res://"))
+	for example_path in examples_paths:
+		content = content.replace(example_path.trim_prefix("res://"), target_path.trim_prefix("res://"))
+	return content
 
 func _replace_strings(content : String) -> String:
 	for key in replace_strings_map:
@@ -110,7 +108,7 @@ func _copy_file_path(file_path : String, destination_path : String, target_path 
 		_replace_file_contents(destination_path, target_path)
 	return error
 
-func _copy_directory_path(dir_path : String, target_path : String) -> void:
+func _copy_directory_path(dir_path : String, examples_path : String, target_path : String) -> void:
 	if not dir_path.ends_with("/"):
 		dir_path += "/"
 	var dir = DirAccess.open(dir_path)
@@ -119,13 +117,13 @@ func _copy_directory_path(dir_path : String, target_path : String) -> void:
 		var file_name = dir.get_next()
 		var error : Error
 		while file_name != "" and error == 0:
-			var file_relative_path = dir_path.trim_prefix(relative_path)
+			var file_relative_path = dir_path.trim_prefix(examples_path)
 			var destination_path = target_path + file_relative_path + file_name
 			var full_file_path = dir_path + file_name
 			if dir.current_is_dir():
 				if not dir.dir_exists(destination_path):
 					error = dir.make_dir(destination_path)
-				_copy_directory_path(full_file_path, target_path)
+				_copy_directory_path(full_file_path, examples_path, target_path)
 			else:
 				error = _copy_file_path(full_file_path, destination_path, target_path)
 			file_name = dir.get_next()
@@ -165,7 +163,8 @@ func _delayed_saving_and_next_prompt(target_path : String) -> void:
 func _copy_to_directory(target_path : String) -> void:
 	if not target_path.ends_with("/"):
 		target_path += "/"
-	_copy_directory_path(relative_path, target_path)
+	for example_path in examples_paths:
+		_copy_directory_path(example_path, example_path, target_path)
 	_delayed_saving_and_next_prompt(target_path)
 
 func _on_destination_dialog_dir_selected(dir):

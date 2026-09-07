@@ -56,13 +56,14 @@ func _open_check_plugin_version() -> void:
 	check_version_instance.queue_free()
 
 func _refresh_copy_and_delete_examples() -> void:
-	var examples_path = MaaacksGameTemplatePlugin.instance.get_plugin_examples_path()
-	if MaaacksGameTemplatePlugin.instance.get_copy_path() != examples_path:
+	var are_copied := CleanCopyExamples.are_examples_copied()
+	var are_deleted := CleanCopyExamples.are_all_examples_deleted()
+	if are_copied:
 		copy_check_box.button_pressed = true
-	var dir := DirAccess.open("res://")
-	if dir.dir_exists(examples_path):
+	if not are_deleted:
 		copy_button.disabled = false
-		delete_button.disabled = false
+		if are_copied:
+			delete_button.disabled = false
 	else:
 		delete_check_box.button_pressed = true
 
@@ -111,7 +112,7 @@ func _on_update_button_pressed():
 	queue_free()
 
 func _on_copy_button_pressed():
-	tree_exited.connect(func(): MaaacksGameTemplatePlugin.instance.open_copy_and_edit_dialog())
+	tree_exited.connect(func(): MaaacksGameTemplatePlugin.instance.open_copy_and_clean_files_dialog())
 	queue_free()
 
 func _on_delete_button_pressed():
