@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://bcgr0b6wp5b5d"]
+
+[ext_resource type="Script" uid="uid://bgdxso8wdsm2l" path="res://addons/clean_copy_examples/copier/copy_and_clean_files.gd" id="1_qwmaq"]
+[ext_resource type="PackedScene" uid="uid://ckx50am7thhd2" path="res://addons/clean_copy_examples/copier/destination_dialog.tscn" id="2_ay5ui"]
+
+[node name="CopyAndCleanFiles" type="Node" unique_id=1583348979]
+script = ExtResource("1_qwmaq")
+
+[node name="DestinationDialog" parent="." unique_id=1967756482 instance=ExtResource("2_ay5ui")]
+
+[connection signal="canceled" from="DestinationDialog" to="." method="_on_destination_dialog_canceled"]
+[connection signal="dir_selected" from="DestinationDialog" to="." method="_on_destination_dialog_dir_selected"]

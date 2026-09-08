@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bnm2pikmis3jj"]
+
+[ext_resource type="PackedScene" path="res://addons/maaacks_scene_loader/base/nodes/loading_screen/loading_screen.tscn" id="1_fhody"]
+[ext_resource type="Script" path="res://scenes/loading_screens/loading_screen.gd" id="2_xkw5j"]
+
+[node name="LoadingScreen" unique_id=179842335 instance=ExtResource("1_fhody")]
+script = ExtResource("2_xkw5j")

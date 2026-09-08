@@ -12,7 +12,6 @@ const RUNNING_CHECK_DELAY : float = 0.25
 const OPEN_EDITOR_DELAY : float = 0.1
 const MAX_PHYSICS_FRAMES_FROM_START : int = 60
 const AVAILABLE_TRANSLATIONS : Array = ["en", "fr"]
-const CopyAndEdit = preload("installer/copy_and_edit_files.gd")
 
 static var instance : MaaacksGameTemplatePlugin
 
@@ -138,34 +137,8 @@ func _run_opening_scene(target_path : String) -> void:
 	add_child(timer)
 	timer.start(RUNNING_CHECK_DELAY)
 
-func _delete_directory_recursive(dir_path : String) -> void:
-	if not dir_path.ends_with("/"):
-		dir_path += "/"
-	var dir = DirAccess.open(dir_path)
-	if dir:
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
-		var error : Error
-		while file_name != "" and error == 0:
-			var relative_path = dir_path.trim_prefix(get_plugin_examples_path())
-			var full_file_path = dir_path + file_name
-			if dir.current_is_dir():
-				_delete_directory_recursive(full_file_path)
-			else:
-				error = dir.remove(file_name)
-			file_name = dir.get_next()
-		if error:
-			push_error("plugin error - deleting path: %s" % error)
-	else:
-		push_error("plugin error - accessing path: %s" % dir)
-	dir.remove(dir_path)
-
 func _delete_source_examples_directory(target_path : String = "") -> void:
-	var examples_path = get_plugin_examples_path()
-	var dir := DirAccess.open("res://")
-	if dir.dir_exists(examples_path):
-		_delete_directory_recursive(examples_path)
-		EditorInterface.get_resource_filesystem().scan()
+	CleanCopyExamples.delete_examples()
 	if not target_path.is_empty():
 		_check_main_scene_needs_updating(target_path)
 
@@ -182,7 +155,9 @@ func _set_default_project_paths() -> void:
 	MaaacksGameTemplate.set_project_paths(get_plugin_examples_path(), false)
 
 func update_project_paths() -> void:
-	MaaacksGameTemplate.set_project_paths(get_copy_path())
+	var copy_path := get_copy_path()
+	MaaacksGameTemplate.set_project_paths(copy_path)
+	MaaacksSceneLoader.set_project_paths(copy_path)
 
 func _add_translations() -> void:
 	var dir := DirAccess.open("res://")
@@ -197,7 +172,7 @@ func are_project_paths_updated() -> bool:
 	var copy_path := get_copy_path()
 	if copy_path == get_plugin_examples_path():
 		return false
-	return MaaacksGameTemplate.are_project_paths_updated(copy_path)
+	return MaaacksGameTemplate.are_project_paths_updated(copy_path) and MaaacksSceneLoader.are_project_paths_updated(copy_path)
 
 func _on_completed_copy_to_directory(target_path : String) -> void:
 	MaaacksGameTemplate.set_copy_path(target_path)
@@ -212,8 +187,7 @@ func are_examples_deleted() -> bool:
 func is_partially_installed() -> bool:
 	var copy_path : String = MaaacksGameTemplate.get_copy_path()
 	if copy_path.is_empty():
-		# Installation not started
-		return false
+		return true
 	if not are_examples_deleted():
 		return true
 	if not are_project_paths_updated():
@@ -226,17 +200,16 @@ func open_input_icons_dialog() -> void:
 	input_icons_instance.copy_dir_path = get_copy_path()
 	add_child(input_icons_instance)
 
-func open_copy_and_edit_dialog() -> void:
-	var copy_and_edit_scene : PackedScene = load(get_plugin_path() + "installer/copy_and_edit_files.tscn")
-	var copy_and_edit_instance : CopyAndEdit = copy_and_edit_scene.instantiate()
-	copy_and_edit_instance.completed.connect(_on_completed_copy_to_directory)
-	copy_and_edit_instance.canceled.connect(_check_main_scene_needs_updating.bind(get_copy_path()))
-	add_child(copy_and_edit_instance)
+func open_copy_and_clean_files_dialog() -> void:
+	var copy_and_clean_files_instance := CleanCopyExamples.get_copy_and_clean_scene()
+	copy_and_clean_files_instance.completed.connect(_on_completed_copy_to_directory)
+	copy_and_clean_files_instance.canceled.connect(_check_main_scene_needs_updating.bind(get_copy_path()))
+	add_child(copy_and_clean_files_instance)
 
 func _open_confirmation_dialog() -> void:
 	var confirmation_scene : PackedScene = load(get_plugin_path() + "installer/copy_confirmation_dialog.tscn")
 	var confirmation_instance : ConfirmationDialog = confirmation_scene.instantiate()
-	confirmation_instance.confirmed.connect(open_copy_and_edit_dialog)
+	confirmation_instance.confirmed.connect(open_copy_and_clean_files_dialog)
 	confirmation_instance.canceled.connect(_check_main_scene_needs_updating.bind(get_copy_path()))
 	confirmation_instance.visibility_changed.connect(_on_visibility_changed_to_hidden.bind(confirmation_instance))
 	add_child(confirmation_instance)
@@ -276,28 +249,6 @@ func _resave_if_recently_opened() -> void:
 		add_child(timer)
 		timer.start(OPEN_EDITOR_DELAY)
 
-func _add_audio_bus(bus_name : String) -> void:
-	var has_bus_name := false
-	for bus_idx in range(AudioServer.bus_count):
-		var existing_bus_name := AudioServer.get_bus_name(bus_idx)
-		if existing_bus_name == bus_name:
-			has_bus_name = true
-			break
-	if not has_bus_name:
-		AudioServer.add_bus()
-		var new_bus_idx := AudioServer.bus_count - 1
-		AudioServer.set_bus_name(new_bus_idx, bus_name)
-		AudioServer.set_bus_send(new_bus_idx, &"Master")
-	ProjectSettings.save()
-
-func _install_audio_busses() -> void:
-	var setting_key := MaaacksGameTemplate.get_settings_path() + "disable_install_audio_busses"
-	if not ProjectSettings.get_setting(setting_key, false):
-		_add_audio_bus("Music")
-		_add_audio_bus("SFX")
-		ProjectSettings.set_setting(setting_key, true)
-		ProjectSettings.save()
-
 func _add_tool_options() -> void:
 	add_tool_menu_item("Run " + MaaacksGameTemplate.get_plugin_name() + " Setup...", open_setup_wizard)
 
@@ -310,21 +261,24 @@ func _add_to_auto_update_list() -> void:
 func _remove_from_auto_update_list() -> void:
 	PluginUpdater.remove_plugin(get_plugin_path())
 
+func _add_to_clean_copy_examples_list() -> void:
+	CleanCopyExamples.add_examples(get_plugin_examples_path())
+	CleanCopyExamples.add_replace_string("StateExample", "State")
+
+func _remove_from_clean_copy_examples_list() -> void:
+	CleanCopyExamples.remove_examples(get_plugin_examples_path())
+	CleanCopyExamples.remove_replace_string("StateExample")
+
 func _enable_plugin():
 	_set_default_project_paths()
 	_add_to_auto_update_list()
-	add_autoload_singleton("SceneLoader", get_scene_loader_path())
-	add_autoload_singleton("ProjectMusicController", get_plugin_path() + "base/nodes/autoloads/music_controller/project_music_controller.tscn")
-	add_autoload_singleton("ProjectUISoundController", get_plugin_path() + "base/nodes/autoloads/ui_sound_controller/project_ui_sound_controller.tscn")
+	_add_to_clean_copy_examples_list()
 
 func _disable_plugin():
 	_remove_from_auto_update_list()
-	remove_autoload_singleton("SceneLoader")
-	remove_autoload_singleton("ProjectMusicController")
-	remove_autoload_singleton("ProjectUISoundController")
+	_remove_from_clean_copy_examples_list()
 
 func _enter_tree() -> void:
-	_install_audio_busses()
 	_add_tool_options()
 	_add_translations()
 	_show_plugin_dialogues()

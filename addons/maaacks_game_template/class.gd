@@ -8,17 +8,14 @@ const MAIN_SCENE_RELATIVE_PATH = "scenes/opening/opening.tscn"
 const MAIN_MENU_RELATIVE_PATH = "scenes/menus/main_menu/main_menu.tscn"
 const GAME_SCENE_RELATIVE_PATH = "scenes/game/game.tscn"
 const ENDING_SCENE_RELATIVE_PATH = "scenes/end_credits/end_credits.tscn"
-const LOADING_SCREEN_SCENE_RELATIVE_PATH = "scenes/loading_screen/loading_screen.tscn"
 const COPY_PATH_KEY = "copy_path"
 const MAIN_MENU_SCENE_PATH_KEY = "main_menu_scene_path"
 const GAME_SCENE_PATH_KEY = "game_scene_path"
 const ENDING_SCENE_PATH_KEY = "ending_scene_path"
-const LOADING_SCENE_PATH_KEY = "loading_scene_path"
 const SCENE_PATHS : Dictionary[String, String] = {
 	MAIN_MENU_SCENE_PATH_KEY : MAIN_MENU_RELATIVE_PATH,
 	GAME_SCENE_PATH_KEY : GAME_SCENE_RELATIVE_PATH,
 	ENDING_SCENE_PATH_KEY : ENDING_SCENE_RELATIVE_PATH,
-	LOADING_SCENE_PATH_KEY : LOADING_SCREEN_SCENE_RELATIVE_PATH,
 }
 
 static func get_plugin_name() -> String:
@@ -54,11 +51,6 @@ static func get_ending_scene_path(override_path : String = "") -> String:
 	if (not override_path.is_empty()) and FileAccess.file_exists(override_path):
 		return override_path
 	return ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + ENDING_SCENE_PATH_KEY, override_path)
-
-static func get_loading_scene_path(override_path : String = "") -> String:
-	if (not override_path.is_empty()) and FileAccess.file_exists(override_path):
-		return override_path
-	return ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + LOADING_SCENE_PATH_KEY, override_path)
 
 static func set_project_paths(target_path : String, overwrite : bool = true) -> void:
 	for key in SCENE_PATHS:

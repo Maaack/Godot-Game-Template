@@ -59,9 +59,15 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="DescriptionLabel" type="RichTextLabel" parent="ContentContainer/BoxContainer/BodyMargin" unique_id=617407155]
+[node name="BoxContainer" type="BoxContainer" parent="ContentContainer/BoxContainer/BodyMargin" unique_id=1957884530]
+layout_mode = 2
+vertical = true
+
+[node name="DescriptionLabel" type="RichTextLabel" parent="ContentContainer/BoxContainer/BodyMargin/BoxContainer" unique_id=617407155]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 bbcode_enabled = true
 fit_content = true
 horizontal_alignment = 1
