@@ -36,9 +36,11 @@ While editing a project in *Godot*:
 
 ## Usage
 
-Attach the `UISoundController.gd` script to a node that is in your UI scene, under the root node. Select the node, and assign your audio streams to the various supported UI events.
+Attach the `ui_sound_controller.gd` script to a node that is in a UI scene. Select the node, and assign audio streams to the supported UI events.
 
-Alternatively, open `ProjectUISoundController.tscn`, select the root node, and assign audio streams to UI events project-wide.
+Alternatively, if using the autoload, open `project_ui_sound_controller.tscn`, select the root node, and assign audio streams to the supported UI events project-wide.
+
+Refer to [Adding UI SFX](/addons/maaacks_ui_sound_controller/docs/AddingUISFX.md) for more details.
 
 ### More Documentation
 

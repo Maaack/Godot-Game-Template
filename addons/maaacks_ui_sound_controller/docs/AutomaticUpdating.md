@@ -5,7 +5,7 @@ This plugin supports automatic updating with the *[Plugin Updater](https://githu
 ## Starting an Update
 
 > [!IMPORTANT]  
-> Save the state of the project, and close all open scenes and scripts.
+> Save and backup the state of the project. Close all scenes and scripts in the editor before updating them.
 
 If an update is available, then the option to update will be listed at **Project > Tools > Update Plugins... > Maaack's UI Sound Controller to v...**.
 
