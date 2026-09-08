@@ -5,7 +5,7 @@ This plugin supports automatic updating with the *[Plugin Updater](https://githu
 ## Starting an Update
 
 > [!IMPORTANT]  
-> Save the state of the project, and close all open scenes and scripts.
+> Save and backup the state of the project. Close all scenes and scripts in the editor before updating them.
 
 If an update is available, then the option to update will be listed at **Project > Tools > Update Plugins... > Maaack's Music Controller to v...**.
 
@@ -16,6 +16,7 @@ A window will open and show progress through downloading, saving, and extracting
 This effectively deletes the current `addons/maaacks_music_controller/` folder and replaces it with a new one. Nothing outside of `addons/` should be affected.
 
 After extracting finishes, another window will open confirming a successful update.
+
 ## Disabling Automatic Checking
 
 You can disable the automatic update checks entirely by disabling *Plugin Updater* in the **Project > Project Settings > Plugins** tab.

@@ -15,11 +15,9 @@ For *Godot 4.7* (4.3+ compatible)
 
 Setup blending between audio stream players in your scenes within 5 minutes.
 
-[Maaack's Game Template](https://github.com/Maaack/Godot-Game-Template) is recommended for first time users.  
-
 ### Extras or Components
 
-Users that want additional features can try [Maaack's Game Template](https://github.com/Maaack/Godot-Game-Template) or other options from the [plugin suite](/addons/maaacks_music_controller/docs/PluginSuite.md).  
+Users that want additional features can try *[Maaack's Game Template](https://github.com/Maaack/Godot-Game-Template)* or other options from the [plugin suite](/addons/maaacks_music_controller/docs/PluginSuite.md).  
 
 ## Installation
 
