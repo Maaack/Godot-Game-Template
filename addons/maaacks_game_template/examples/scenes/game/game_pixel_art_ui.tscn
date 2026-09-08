@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://ctxrxydjahutd"]
 
 [ext_resource type="Script" uid="uid://cyh0d64pfygbl" path="res://addons/maaacks_game_template/base/nodes/utilities/pause_menu_controller.gd" id="1_aye2m"]
-[ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/nodes/music_players/background_music_player.tscn" id="3_35hrq"]
 [ext_resource type="Script" uid="uid://bbymrin0cm704" path="res://addons/maaacks_game_template/extras/scripts/level_loader.gd" id="4_eohys"]
 [ext_resource type="PackedScene" uid="uid://bpphyypwqyoyl" path="res://addons/maaacks_game_template/examples/scenes/windows/pause_menu.tscn" id="4_p6u55"]
 [ext_resource type="Script" uid="uid://cmqngqwso0uve" path="res://addons/maaacks_game_template/examples/scripts/level_and_state_manager.gd" id="5_km8h0"]
@@ -15,7 +14,10 @@
 
 [node name="GamePixelArtUI" type="Node" unique_id=824648486]
 
-[node name="BackgroundMusicPlayer" parent="." unique_id=986713811 instance=ExtResource("3_35hrq")]
+[node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="." unique_id=986713811]
+process_mode = 3
+autoplay = true
+bus = &"Music"
 
 [node name="GameTimer" type="Node" parent="." unique_id=116840261]
 script = ExtResource("12_vh7lg")
