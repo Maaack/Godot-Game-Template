@@ -249,27 +249,6 @@ func _resave_if_recently_opened() -> void:
 		add_child(timer)
 		timer.start(OPEN_EDITOR_DELAY)
 
-func _add_audio_bus(bus_name : String) -> void:
-	var has_bus_name := false
-	for bus_idx in range(AudioServer.bus_count):
-		var existing_bus_name := AudioServer.get_bus_name(bus_idx)
-		if existing_bus_name == bus_name:
-			has_bus_name = true
-			break
-	if not has_bus_name:
-		AudioServer.add_bus()
-		var new_bus_idx := AudioServer.bus_count - 1
-		AudioServer.set_bus_name(new_bus_idx, bus_name)
-		AudioServer.set_bus_send(new_bus_idx, &"Master")
-	ProjectSettings.save()
-
-func _install_audio_busses() -> void:
-	var setting_key := MaaacksGameTemplate.get_settings_path() + "disable_install_audio_busses"
-	if not ProjectSettings.get_setting(setting_key, false):
-		_add_audio_bus("SFX")
-		ProjectSettings.set_setting(setting_key, true)
-		ProjectSettings.save()
-
 func _add_tool_options() -> void:
 	add_tool_menu_item("Run " + MaaacksGameTemplate.get_plugin_name() + " Setup...", open_setup_wizard)
 
@@ -294,15 +273,12 @@ func _enable_plugin():
 	_set_default_project_paths()
 	_add_to_auto_update_list()
 	_add_to_clean_copy_examples_list()
-	add_autoload_singleton("ProjectUISoundController", get_plugin_path() + "base/nodes/autoloads/ui_sound_controller/project_ui_sound_controller.tscn")
 
 func _disable_plugin():
 	_remove_from_auto_update_list()
 	_remove_from_clean_copy_examples_list()
-	remove_autoload_singleton("ProjectUISoundController")
 
 func _enter_tree() -> void:
-	_install_audio_busses()
 	_add_tool_options()
 	_add_translations()
 	_show_plugin_dialogues()
