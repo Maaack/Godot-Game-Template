@@ -4,23 +4,9 @@ extends EditorPlugin
 
 const PLUGIN_REPO_URL = "https://github.com/Maaack/Godot-Music-Controller"
 const MUSIC_CONTROLLER_RELATIVE_PATH = "base/scenes/autoloads/project_music_controller.tscn"
-const OPEN_EDITOR_DELAY : float = 0.1
-const MAX_PHYSICS_FRAMES_FROM_START : int = 60
 
 func get_plugin_path() -> String:
 	return get_script().resource_path.get_base_dir() + "/"
-
-func _resave_if_recently_opened() -> void:
-	if Engine.get_physics_frames() < MAX_PHYSICS_FRAMES_FROM_START:
-		var timer: Timer = Timer.new()
-		var callable := func():
-			if Engine.get_frames_per_second() >= 10:
-				timer.stop()
-				EditorInterface.save_scene()
-				timer.queue_free()
-		timer.timeout.connect(callable)
-		add_child(timer)
-		timer.start(OPEN_EDITOR_DELAY)
 
 func _add_audio_bus(bus_name : String) -> void:
 	var has_bus_name := false
@@ -63,4 +49,3 @@ func _disable_plugin():
 
 func _enter_tree() -> void:
 	_install_audio_busses()
-	_resave_if_recently_opened()
