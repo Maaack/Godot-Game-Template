@@ -19,6 +19,7 @@ config/icon="res://icon.png"
 
 SceneLoader="*res://addons/maaacks_scene_loader/base/nodes/autoloads/scene_loader/scene_loader.tscn"
 ProjectMusicController="*res://addons/maaacks_music_controller/base/scenes/autoloads/project_music_controller.tscn"
+ProjectUISoundController="*res://addons/maaacks_ui_sound_controller/base/scenes/autoloads/project_ui_sound_controller.tscn"
 
 [clean_copy_examples]
 
@@ -35,7 +36,7 @@ window/size/viewport_height=720
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/maaacks_game_template/plugin.cfg", "res://addons/maaacks_music_controller/plugin.cfg", "res://addons/maaacks_scene_loader/plugin.cfg", "res://addons/plugin_updater/plugin.cfg")
+enabled=PackedStringArray("res://addons/maaacks_game_template/plugin.cfg", "res://addons/maaacks_music_controller/plugin.cfg", "res://addons/maaacks_scene_loader/plugin.cfg", "res://addons/maaacks_ui_sound_controller/plugin.cfg", "res://addons/plugin_updater/plugin.cfg")
 
 [gui]
 
@@ -127,6 +128,10 @@ disable_install_audio_busses=true
 
 loading_scene_path="res://scenes/loading_screens/loading_screen.tscn"
 
+[maaacks_ui_sound_controller]
+
+disable_install_audio_busses=true
+
 [physics]
 
 common/enable_pause_aware_picking=true
@@ -137,6 +142,7 @@ plugins={
 "res://addons/maaacks_game_template/": "https://github.com/Maaack/Godot-Game-Template",
 "res://addons/maaacks_music_controller/": "https://github.com/Maaack/Godot-Music-Controller",
 "res://addons/maaacks_scene_loader/": "https://github.com/Maaack/Godot-Scene-Loader",
+"res://addons/maaacks_ui_sound_controller/": "https://github.com/Maaack/Godot-UI-Sound-Controller",
 "res://addons/plugin_updater/": "https://github.com/Maaack/Godot-Plugin-Updater"
 }
 
