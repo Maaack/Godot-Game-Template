@@ -9,6 +9,8 @@ extends Control
 
 ## Hierarchical depth to search in the scene tree for a focusable control node.
 @export var search_depth : int = 1
+## If true, reverse the order of searched child nodes.
+@export var reverse_search : bool = false
 ## If true, always capture focus when made visible.
 @export var enabled : bool = false
 ## If true, capture focus if nothing currently is in focus.
@@ -17,7 +19,6 @@ extends Control
 @export var joypad_enabled : bool = true
 ## If true, capture focus if the mouse is hidden.
 @export var mouse_hidden_enabled : bool = true
-
 ## Locks focus
 @export var lock : bool = false :
 	set(value):
@@ -37,6 +38,8 @@ func _focus_first_search(control_node : Control, levels : int = 1) -> bool:
 	if levels < 1:
 		return false
 	var children = control_node.get_children()
+	if reverse_search:
+		children.reverse()
 	for child in children:
 		if _focus_first_search(child, levels - 1):
 			return true
