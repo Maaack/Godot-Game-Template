@@ -51,7 +51,7 @@ To revisit any part of the initial setup, find the `Setup Wizard` at `Project > 
     2.  [Setting up a Game Scene.](/addons/maaacks_game_template/docs/GameSceneSetup.md)  
     3.  [Loading scenes asynchronously.](/addons/maaacks_scene_loader/docs/LoadingScenes.md)  
     4.  [Adding icons to the Input Options.](/addons/maaacks_game_template/docs/InputIconMapping.md)  
-    5.  [Blending Music.](/addons/maaacks_game_template/docs/BlendingMusic.md)  
+    5.  [Blending Music.](/addons/maaacks_music_controller/docs/BlendingMusic.md)  
     6.  [Adding UI Sound Effects.](/addons/maaacks_game_template/docs/AddingUISFX.md)  
     7.  [Adding Custom Options.](/addons/maaacks_game_template/docs/AddingCustomOptions.md)
     8.  [Utilizing Game Saving.](/addons/maaacks_game_template/docs/GameSaving.md)  
