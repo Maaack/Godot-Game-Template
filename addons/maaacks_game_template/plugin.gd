@@ -266,7 +266,6 @@ func _add_audio_bus(bus_name : String) -> void:
 func _install_audio_busses() -> void:
 	var setting_key := MaaacksGameTemplate.get_settings_path() + "disable_install_audio_busses"
 	if not ProjectSettings.get_setting(setting_key, false):
-		_add_audio_bus("Music")
 		_add_audio_bus("SFX")
 		ProjectSettings.set_setting(setting_key, true)
 		ProjectSettings.save()
@@ -295,13 +294,11 @@ func _enable_plugin():
 	_set_default_project_paths()
 	_add_to_auto_update_list()
 	_add_to_clean_copy_examples_list()
-	add_autoload_singleton("ProjectMusicController", get_plugin_path() + "base/nodes/autoloads/music_controller/project_music_controller.tscn")
 	add_autoload_singleton("ProjectUISoundController", get_plugin_path() + "base/nodes/autoloads/ui_sound_controller/project_ui_sound_controller.tscn")
 
 func _disable_plugin():
 	_remove_from_auto_update_list()
 	_remove_from_clean_copy_examples_list()
-	remove_autoload_singleton("ProjectMusicController")
 	remove_autoload_singleton("ProjectUISoundController")
 
 func _enter_tree() -> void:
