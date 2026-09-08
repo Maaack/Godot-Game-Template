@@ -69,6 +69,7 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 16
 script = ExtResource("4_1kqi1")
+reverse_search = true
 
 [node name="ExitButton" type="Button" parent="CenterContainer/EndMessagePanel/VBoxContainer/CenterContainer/HBoxContainer" index="0" unique_id=1382070624]
 unique_name_in_owner = true
