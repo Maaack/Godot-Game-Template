@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dw8qysr1hx66l"]
 
-[ext_resource type="AudioStream" path="res://assets/music_and_sfx/Maaack - Campfire Tales - Music 1b (loopable).ogg" id="2_5jirj"]
 [ext_resource type="Script" path="res://scenes/game/scripts/game_timer.gd" id="1_4j704"]
+[ext_resource type="AudioStream" path="res://assets/music_and_sfx/Maaack - Campfire Tales - Music 1b (loopable).ogg" id="2_5jirj"]
 [ext_resource type="PackedScene" path="res://scenes/windows/pause_menu.tscn" id="3_kp23o"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/base/nodes/utilities/pause_menu_controller.gd" id="3_vvut4"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/level_loader.gd" id="5_4ybgr"]
@@ -16,9 +16,9 @@
 
 [node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="." unique_id=986713811]
 process_mode = 3
+stream = ExtResource("2_5jirj")
 autoplay = true
 bus = &"Music"
-stream = ExtResource("2_5jirj")
 parameters/looping = true
 
 [node name="GameTimer" type="Node" parent="." unique_id=116840261]
