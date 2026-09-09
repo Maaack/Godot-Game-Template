@@ -299,6 +299,9 @@ confirm_new_game = true
 options_packed_scene = ExtResource("3_2k5l7")
 credits_packed_scene = ExtResource("4_vsp5b")
 
+[node name="BackgroundMusicPlayer" parent="." index="0" unique_id=1141822549]
+stream = ExtResource("5_sr523")
+
 [node name="MenuAnimationPlayer" type="AnimationPlayer" parent="." index="1" unique_id=1492532975]
 libraries/ = SubResource("AnimationLibrary_2kqig")
 
@@ -306,9 +309,6 @@ libraries/ = SubResource("AnimationLibrary_2kqig")
 tree_root = SubResource("AnimationNodeStateMachine_vikuh")
 anim_player = NodePath("../MenuAnimationPlayer")
 parameters/conditions/intro_done = false
-
-[node name="BackgroundMusicPlayer" parent="." index="3" unique_id=1141822549]
-stream = ExtResource("5_sr523")
 
 [node name="TitleContainer" parent="MenuContainer/TitleMargin" parent_id_path=PackedInt32Array(2112060331) index="0" unique_id=556427956]
 modulate = Color(1, 1, 1, 0)
@@ -355,7 +355,7 @@ offset_left = -88.0
 offset_top = -26.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "v1.5.0"
+text = "v1.7.0"
 horizontal_alignment = 2
 script = ExtResource("6_2k5l7")
 plugin_directory = "maaacks_game_template"
