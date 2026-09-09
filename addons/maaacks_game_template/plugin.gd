@@ -5,7 +5,6 @@ extends EditorPlugin
 const PLUGIN_REPO_URL = "https://github.com/Maaack/Godot-Game-Template"
 const EXAMPLES_RELATIVE_PATH = "examples/"
 const OVERRIDE_RELATIVE_PATH = "installer/override.cfg"
-const SCENE_LOADER_RELATIVE_PATH = "base/nodes/autoloads/scene_loader/scene_loader.tscn"
 const THEMES_DIRECTORY_RELATIVE_PATH = "resources/themes"
 const WINDOW_OPEN_DELAY : float = 0.5
 const RUNNING_CHECK_DELAY : float = 0.25
@@ -22,9 +21,6 @@ func get_plugin_path() -> String:
 
 func get_plugin_examples_path() -> String:
 	return get_plugin_path() + EXAMPLES_RELATIVE_PATH
-
-func get_scene_loader_path() -> String:
-	return get_plugin_path() + SCENE_LOADER_RELATIVE_PATH
 
 func get_copy_path() -> String:
 	return MaaacksGameTemplate.get_copy_path(get_plugin_examples_path())
