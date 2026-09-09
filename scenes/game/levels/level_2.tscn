@@ -1,12 +1,21 @@
 [gd_scene format=3 uid="uid://danrqx83o0lal"]
 
-[ext_resource type="Script" uid="uid://k41652yns7c0" path="res://scenes/game/levels/level_2.gd" id="1_12bjt"]
-[ext_resource type="Script" uid="uid://ch8aaykixbwn5" path="res://scenes/game/scripts/input_display_label.gd" id="3_kjg0a"]
-[ext_resource type="Script" uid="uid://cel1hwdc232gb" path="res://scenes/game/scripts/tutorial_manager.gd" id="4_w8c7f"]
-[ext_resource type="PackedScene" uid="uid://dv5cs1lbxmxva" path="res://scenes/game/tutorials/tutorial_2.tscn" id="5_i1l6d"]
-[ext_resource type="Script" uid="uid://xf0hvek5d8v" path="res://scenes/game/levels/character_body_2d.gd" id="5_x2ody"]
+[ext_resource type="Script" path="res://scenes/game/levels/level_2.gd" id="1_x2ody"]
+[ext_resource type="Script" path="res://scenes/game/scripts/input_display_label.gd" id="2_eom8k"]
+[ext_resource type="Script" path="res://scenes/game/scripts/tutorial_manager.gd" id="3_s3pix"]
+[ext_resource type="PackedScene" path="res://scenes/game/tutorials/tutorial_2.tscn" id="4_4awcv"]
+[ext_resource type="Script" path="res://scenes/game/levels/character_body_2d.gd" id="5_ik6v6"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0gu67"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0gu67"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w2md0"]
+size = Vector2(32, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_34nmm"]
+size = Vector2(32, 96)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eom8k"]
 size = Vector2(80, 240)
@@ -18,7 +27,8 @@ size = Vector2(80, 240)
 size = Vector2(24, 64)
 
 [node name="Level2" type="Node2D" unique_id=1020502710]
-script = ExtResource("1_12bjt")
+script = ExtResource("1_x2ody")
+next_level_path = "res://scenes/game/levels/level_3.tscn"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=106723707]
 
@@ -63,12 +73,12 @@ text = "Tutorial"
 layout_mode = 2
 size_flags_horizontal = 3
 horizontal_alignment = 1
-script = ExtResource("3_kjg0a")
+script = ExtResource("2_eom8k")
 
 [node name="TutorialManager" type="Node" parent="." unique_id=927712379]
 unique_name_in_owner = true
-script = ExtResource("4_w8c7f")
-tutorial_scenes = Array[PackedScene]([ExtResource("5_i1l6d")])
+script = ExtResource("3_s3pix")
+tutorial_scenes = Array[PackedScene]([ExtResource("4_4awcv")])
 
 [node name="World" type="Node2D" parent="." unique_id=660390528]
 
@@ -78,24 +88,120 @@ position = Vector2(1, 120)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/StaticBody2D" unique_id=1511380734]
 shape = SubResource("WorldBoundaryShape2D_0gu67")
 
-[node name="Label" type="Label" parent="World/StaticBody2D" unique_id=51872343]
+[node name="Label" type="Label" parent="World/StaticBody2D/CollisionShape2D" unique_id=51872343]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -12.0
+offset_left = -627.5
 offset_top = -37.5
-offset_right = 12.0
+offset_right = 627.5
 offset_bottom = 37.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "=========================================================================="
+text = "========================================================================================================================================="
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="World/StaticBody2D" unique_id=529887626]
+position = Vector2(270, -18)
+shape = SubResource("RectangleShape2D_0gu67")
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="World/StaticBody2D/CollisionShape2D2" unique_id=824983436]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -11.5
+offset_top = -13.5
+offset_right = 11.5
+offset_bottom = 9.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/line_spacing = -7
+text = "[_][_]
+[_][_]"
+horizontal_alignment = 1
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="World/StaticBody2D" unique_id=1716948064]
+position = Vector2(305, -34)
+shape = SubResource("RectangleShape2D_w2md0")
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="World/StaticBody2D/CollisionShape2D3" unique_id=332016273]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -11.5
+offset_top = -13.5
+offset_right = 11.5
+offset_bottom = 9.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/line_spacing = -7
+text = "[_][_]
+[_][_]
+[_][_]
+[_][_]"
+horizontal_alignment = 1
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="World/StaticBody2D" unique_id=1566763025]
+position = Vector2(340, -49)
+shape = SubResource("RectangleShape2D_34nmm")
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="World/StaticBody2D/CollisionShape2D4" unique_id=1946310110]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -17.5
+offset_top = -54.0
+offset_right = 17.5
+offset_bottom = 54.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/line_spacing = -7
+text = "[_][_]
+[_][_]
+[_][_]
+[_][_]
+[_][_]
+[_][_]"
+horizontal_alignment = 1
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="World/StaticBody2D" unique_id=1473707772]
+position = Vector2(454, -18)
+shape = SubResource("RectangleShape2D_0gu67")
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="World/StaticBody2D/CollisionShape2D5" unique_id=1227609483]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -11.5
+offset_top = -13.5
+offset_right = 11.5
+offset_bottom = 9.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/line_spacing = -7
+text = "[_][_]
+[_][_]"
+horizontal_alignment = 1
+
 [node name="WinArea2D" type="Area2D" parent="World" unique_id=1429975498]
-position = Vector2(300, 0)
+position = Vector2(480, 0)
+collision_layer = 2
+collision_mask = 2
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/WinArea2D" unique_id=851865462]
@@ -119,7 +225,9 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="LoseArea2D" type="Area2D" parent="World" unique_id=2042256546]
-position = Vector2(-300, 0)
+position = Vector2(-480, 0)
+collision_layer = 2
+collision_mask = 2
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/LoseArea2D" unique_id=2131972517]
@@ -143,7 +251,9 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="World" unique_id=171191911]
-script = ExtResource("5_x2ody")
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("5_ik6v6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/CharacterBody2D" unique_id=1607512979]
 shape = SubResource("RectangleShape2D_s3pix")

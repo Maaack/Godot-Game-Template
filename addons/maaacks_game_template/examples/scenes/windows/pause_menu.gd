@@ -12,6 +12,8 @@ extends PopupWindowPanel
 @onready var options_button = %OptionsButton
 @onready var main_menu_button = %MainMenuButton
 @onready var exit_button = %ExitButton
+## If Maaack's Scene Loader is installed, then it will be used to change scenes.
+@onready var scene_loader_node = get_tree().root.get_node_or_null(^"SceneLoader")
 
 var open_window : Node
 var restarting : bool = false
@@ -29,7 +31,10 @@ func close_window() -> void:
 
 func _load_scene(scene_path: String) -> void:
 	_scene_tree.paused = false
-	SceneLoader.load_scene(scene_path)
+	if scene_loader_node:
+		scene_loader_node.load_scene(scene_path)
+	else:
+		get_tree().change_scene_to_file(scene_path)
 
 func _show_window(window : Control) -> void:
 	window.show()
@@ -86,7 +91,7 @@ func _on_restart_confirmation_confirmed() -> void:
 func _on_restart_confirmation_closed() -> void:
 	if restarting:
 		await draw
-		SceneLoader.reload_current_scene()
+		get_tree().reload_current_scene()
 
 func _on_main_menu_confirmation_confirmed():
 	_load_scene(get_main_menu_scene_path())

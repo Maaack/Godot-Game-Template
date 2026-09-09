@@ -1,30 +1,32 @@
 [gd_scene format=3 uid="uid://dw8qysr1hx66l"]
 
-[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/nodes/music_players/background_music_player.tscn" id="1_tr8b4"]
 [ext_resource type="AudioStream" path="res://assets/music_and_sfx/Maaack - Campfire Tales - Music 1b (loopable).ogg" id="2_5jirj"]
-[ext_resource type="Script" path="res://scenes/game/scripts/game_timer.gd" id="2_kp23o"]
+[ext_resource type="Script" path="res://scenes/game/scripts/game_timer.gd" id="1_4j704"]
+[ext_resource type="PackedScene" path="res://scenes/windows/pause_menu.tscn" id="3_kp23o"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/base/nodes/utilities/pause_menu_controller.gd" id="3_vvut4"]
-[ext_resource type="PackedScene" path="res://scenes/windows/pause_menu.tscn" id="4_5jirj"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/level_loader.gd" id="5_4ybgr"]
-[ext_resource type="Script" path="res://scripts/level_and_state_manager.gd" id="6_vaxfo"]
-[ext_resource type="PackedScene" path="res://scenes/windows/game_won_window.tscn" id="7_ftsea"]
-[ext_resource type="PackedScene" path="res://scenes/windows/level_lost_window.tscn" id="8_otnwt"]
-[ext_resource type="PackedScene" path="res://scenes/windows/level_won_window.tscn" id="9_3xj4h"]
+[ext_resource type="Script" path="res://scripts/level_and_state_manager.gd" id="5_5jirj"]
+[ext_resource type="PackedScene" path="res://scenes/windows/game_won_window.tscn" id="6_vaxfo"]
+[ext_resource type="PackedScene" path="res://scenes/windows/level_lost_window.tscn" id="7_ftsea"]
+[ext_resource type="PackedScene" path="res://scenes/windows/level_won_window.tscn" id="8_otnwt"]
+[ext_resource type="PackedScene" path="res://scenes/loading_screens/level_loading_screen.tscn" id="10_3xj4h"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/scene_lister.gd" id="10_h5e52"]
-[ext_resource type="PackedScene" path="res://scenes/loading_screen/level_loading_screen.tscn" id="11_5v6r0"]
 
 [node name="Game" type="Node" unique_id=1262092417]
 
-[node name="BackgroundMusicPlayer" parent="." unique_id=986713811 instance=ExtResource("1_tr8b4")]
+[node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="." unique_id=986713811]
+process_mode = 3
+autoplay = true
+bus = &"Music"
 stream = ExtResource("2_5jirj")
 parameters/looping = true
 
 [node name="GameTimer" type="Node" parent="." unique_id=116840261]
-script = ExtResource("2_kp23o")
+script = ExtResource("1_4j704")
 
 [node name="PauseMenuController" type="Node" parent="." unique_id=1685173287]
 script = ExtResource("3_vvut4")
-pause_menu_packed = ExtResource("4_5jirj")
+pause_menu_packed = ExtResource("3_kp23o")
 
 [node name="LevelLoader" type="Node" parent="." unique_id=1364778615 node_paths=PackedStringArray("level_container", "level_loading_screen")]
 script = ExtResource("5_4ybgr")
@@ -32,13 +34,13 @@ level_container = NodePath("../LevelContainer")
 level_loading_screen = NodePath("../LevelLoadingScreen")
 
 [node name="LevelManager" type="Node" parent="." unique_id=1350972375 node_paths=PackedStringArray("level_loader", "scene_lister")]
-script = ExtResource("6_vaxfo")
+script = ExtResource("5_5jirj")
 level_loader = NodePath("../LevelLoader")
 starting_level_path = "res://scenes/game/levels/level_1.tscn"
 scene_lister = NodePath("SceneLister")
-game_won_scene = ExtResource("7_ftsea")
-level_lost_scene = ExtResource("8_otnwt")
-level_won_scene = ExtResource("9_3xj4h")
+game_won_scene = ExtResource("6_vaxfo")
+level_lost_scene = ExtResource("7_ftsea")
+level_won_scene = ExtResource("8_otnwt")
 
 [node name="SceneLister" type="Node" parent="LevelManager" unique_id=673614733]
 script = ExtResource("10_h5e52")
@@ -47,5 +49,5 @@ directory = "res://scenes/game/levels"
 
 [node name="LevelContainer" type="Node" parent="." unique_id=437554331]
 
-[node name="LevelLoadingScreen" parent="." unique_id=816430938 instance=ExtResource("11_5v6r0")]
+[node name="LevelLoadingScreen" parent="." unique_id=816430938 instance=ExtResource("10_3xj4h")]
 visible = false

@@ -16,7 +16,7 @@ close_button_text = "Close"
 [node name="TitleLabel" parent="ContentContainer/BoxContainer/TitleMargin/BoxContainer" parent_id_path=PackedInt32Array(1788474031) index="0" unique_id=1049966061]
 text = "Set Input"
 
-[node name="DescriptionLabel" parent="ContentContainer/BoxContainer/BodyMargin" parent_id_path=PackedInt32Array(590613964) index="0" unique_id=617407155]
+[node name="DescriptionLabel" parent="ContentContainer/BoxContainer/BodyMargin/BoxContainer" parent_id_path=PackedInt32Array(1957884530) index="0" unique_id=617407155]
 visible = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ContentContainer/BoxContainer/BodyMargin" parent_id_path=PackedInt32Array(590613964) index="1" unique_id=1136766756]
