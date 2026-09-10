@@ -58,7 +58,7 @@ static func set_project_paths(target_path : String, overwrite : bool = true) -> 
 		var stored_path := ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + key)
 		if (not overwrite) and stored_path != null:
 			continue
-		if relative_path.is_empty() and (not stored_path.is_empty()):
+		if relative_path.is_empty() and not (stored_path == null or stored_path.is_empty()):
 			continue
 		var full_path = ""
 		if not relative_path.is_empty():
