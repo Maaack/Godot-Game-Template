@@ -17,6 +17,8 @@ Setup menus and accessibility features in about 15 minutes.
 
 The template can be the start of a new project, or plug into an existing one. It is game agnostic (2D or 3D) and can work with multiple target resolutions, up to 4k and down to 640x360. It's meant to cover the needs for a typical game jam, while remaining scalable and extensible enough to support commercial games.
 
+This template was originally made for Godot Wild Jam, and shares a no AI/LLM-gen policy. Please open an [issue](https://github.com/Maaack/Godot-Game-Template/issues) if there is a violation.  
+
 ### Minimal
 
 Users that want a minimal set of features can try *[Maaack's Minimal Game Template](https://github.com/Maaack/Godot-Minimal-Game-Template)* or other options from the [plugin suite](/addons/maaacks_game_template/docs/PluginSuite.md).  
