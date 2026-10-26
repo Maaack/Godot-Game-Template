@@ -92,7 +92,7 @@ jobs:
           file: build/${{ env.EXPORT_NAME }}-web.zip
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: web
           path: build/web
@@ -141,7 +141,7 @@ jobs:
           file: build/${{ env.EXPORT_NAME }}-windows.zip
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: windows
           path: build/${{ env.EXPORT_NAME }}-windows.zip
@@ -190,7 +190,7 @@ jobs:
           file: build/${{ env.EXPORT_NAME }}-linux.zip
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: linux
           path: build/${{ env.EXPORT_NAME }}-linux.zip
@@ -227,7 +227,7 @@ jobs:
           file: build/mac/${{ env.EXPORT_NAME }}-mac.zip
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: mac
           path: build/mac
