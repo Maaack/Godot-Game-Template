@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://cvl8bkcvmyk4e"]
 
-[ext_resource type="Script" path="res://scenes/game/scripts/game_timer.gd" id="1_tt8ce"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/base/nodes/utilities/pause_menu_controller.gd" id="3_48bbn"]
 [ext_resource type="PackedScene" path="res://scenes/windows/pause_menu.tscn" id="3_w6dhj"]
 [ext_resource type="Script" path="res://scripts/level_and_state_manager.gd" id="5_8yuu4"]
@@ -18,9 +17,6 @@
 process_mode = 3
 autoplay = true
 bus = &"Music"
-
-[node name="GameTimer" type="Node" parent="." unique_id=116840261]
-script = ExtResource("1_tt8ce")
 
 [node name="PauseMenuController" type="Node" parent="." unique_id=1685173287 node_paths=PackedStringArray("focused_viewport")]
 script = ExtResource("3_48bbn")
