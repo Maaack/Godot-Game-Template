@@ -17,9 +17,23 @@ Setup menus and accessibility features in about 15 minutes.
 
 The template can be the start of a new project, or plug into an existing one. It is game agnostic (2D or 3D) and can work with multiple target resolutions, up to 4k and down to 640x360. It's meant to cover the needs for a typical game jam, while remaining scalable and extensible enough to support commercial games.
 
-### Minimal
+## Choosing A Plugin
 
-Users that want a minimal set of features can try *[Maaack's Minimal Game Template](https://github.com/Maaack/Godot-Minimal-Game-Template)* or other options from the [plugin suite](/addons/maaacks_game_template/docs/PluginSuite.md).  
+| Features | Game Template  ([link](https://github.com/Maaack/Godot-Game-Template)) | Minimal Game Template  ([link](https://github.com/Maaack/Godot-Minimal-Game-Template)) | Menus Template ([link](https://github.com/Maaack/Godot-Minimal-Game-Template)) |
+| :-------:  | :-------: | :-------: | :-------: |
+| Main Menu | :green_circle:| :green_circle:| :green_circle:|
+| Options Menus | :green_circle:| :green_circle:| :green_circle:|
+| Credits Scene | :green_circle:| :green_circle:| :green_circle:|
+| Game Scene | :green_circle:| :green_circle:| :x: |
+| Level Loader | :green_circle:| :green_circle:| :x: |
+| Game & Level State | :green_circle:| :x: | :x: |
+| Scene Loader | :green_circle:| :yellow_circle: | :green_circle:|
+| Music Controller | :green_circle:| :yellow_circle: | :green_circle:|
+| UI Sound Controller | :green_circle:| :yellow_circle: | :green_circle:|
+
+**Key: :green_circle: Included, :yellow_circle: Installed Separately, :x: Not Available**
+
+More options are available from the [plugin suite](/addons/maaacks_game_template/docs/PluginSuite.md).  
 
 ## Installation
 
