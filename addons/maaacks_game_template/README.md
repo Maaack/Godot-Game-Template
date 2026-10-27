@@ -25,15 +25,15 @@ This template was originally made for Godot Wild Jam, and shares a no AI/LLM-gen
 | :-------:  | :-------: | :-------: | :-------: |
 | Main Menu | :green_circle: | :green_circle: | :green_circle: |
 | Options Menus | :green_circle: | :green_circle: | :green_circle: |
-| Credits Scene | :green_circle: | :yellow_circle: | :green_circle: |
-| Game Scene | :green_circle: | :yellow_circle: | :x: |
-| Level Loader | :green_circle: | :yellow_circle: | :x: |
-| Game & Level State | :green_circle: | :x: | :x: |
-| Scene Loader | :green_circle: | :orange_circle: | :green_circle: |
-| Music Controller | :green_circle: | :orange_circle: | :green_circle: |
-| UI Sound Controller | :green_circle: | :orange_circle: | :green_circle: |
+| Credits Scene | :green_circle: | :yellow_square: | :green_circle: |
+| Game Scene | :green_circle: | :yellow_square: | :no_entry: |
+| Level Loader | :green_circle: | :yellow_square: | :no_entry: |
+| Game & Level State | :green_circle: | :no_entry: | :no_entry: |
+| Scene Loader | :green_circle: | :large_orange_diamond: | :green_circle: |
+| Music Controller | :green_circle: | :large_orange_diamond: | :green_circle: |
+| UI Sound Controller | :green_circle: | :large_orange_diamond: | :green_circle: |
 
-**Key: :green_circle: Included, :yellow_circle: Simplified, :orange_circle: Installed Separately, :x: Not Available**  
+**Key: :green_circle: Included, :yellow_square: Simplified, :large_orange_diamond: Installed Separately, :no_entry: Not Available**  
 
 More options are available from the [plugin suite](/addons/maaacks_game_template/docs/PluginSuite.md).  
 
