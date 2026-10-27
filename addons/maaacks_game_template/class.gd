@@ -72,6 +72,6 @@ static func are_project_paths_updated(target_path) -> bool:
 		if relative_path.is_empty():
 			continue
 		var stored_path : String = ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + key, "")
-		if stored_path != target_path + relative_path:
+		if not stored_path.contains(target_path):
 			return false
 	return true
