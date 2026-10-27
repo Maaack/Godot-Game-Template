@@ -16,6 +16,7 @@ https://maaack.itch.io/swan-song
 https://maaack.itch.io/crumbling-castle  
 https://store.steampowered.com/app/3458180/Dungeon_Bodega_Simulator/  
 https://maaack.itch.io/armed-and-altered  
+https://store.steampowered.com/app/4155880/Lucky_Break/  
 https://store.steampowered.com/app/3983290/HeartFix_Express_Demo/  
 https://store.steampowered.com/app/4029840/Zero_Warning_Burnt_Out/  
 https://maaack.itch.io/scout-quest  
