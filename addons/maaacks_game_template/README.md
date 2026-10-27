@@ -107,11 +107,10 @@ As part of setup, example scenes are copied out of `/addons/` into a desired fol
 
 ## Featured Games
 
-| Crumbling Castle | Dungeon Bodega Simulator | Rent Seek Kill |  
+| Crumbling Castle | Dungeon Bodega Simulator | Lucky Break |  
 | :-------:| :-------: | :-------: |
-| ![Crumbling Castle](/addons/maaacks_game_template/media/thumbnail-game-crumbling-castle.png) | ![Dungeon Bodega Simulator](/addons/maaacks_game_template/media/thumbnail-game-dungeon-bodega-simulator.png) | ![Rent-Seek-Kill](/addons/maaacks_game_template/media/thumbnail-game-rent-seek-kill.png) |
-| [Play on itch.io](https://maaack.itch.io/crumbling-castle) |  [Find on Steam](https://store.steampowered.com/app/3458180/Dungeon_Bodega_Simulator/)  | [Play on itch.io](https://xandruher.itch.io/rent-seek-kill)  |
-
+| ![Crumbling Castle](/addons/maaacks_game_template/media/thumbnail-game-crumbling-castle.png) | ![Dungeon Bodega Simulator](/addons/maaacks_game_template/media/thumbnail-game-dungeon-bodega-simulator.png) | ![Lucky Break](/addons/maaacks_game_template/media/thumbnail-game-lucky-break.png) |
+| [Play on itch.io](https://maaack.itch.io/crumbling-castle) |  [Find on Steam](https://store.steampowered.com/app/3458180/Dungeon_Bodega_Simulator/)  | [Play on Steam](https://store.steampowered.com/app/4155880/Lucky_Break/)  |
 
 [All Shared Games](/addons/maaacks_game_template/docs/GamesMade.md)  
 
