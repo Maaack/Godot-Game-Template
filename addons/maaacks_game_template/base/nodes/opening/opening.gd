@@ -13,6 +13,8 @@ extends Control
 @export var fade_out_time : float = 0.2
 ## The time to keep an image visible after fade-in and before fade-out.
 @export var visible_time : float = 1.6
+## The time to keep an image visible after fade-in and before fade-out.
+@export var visible_times : Array[float] = []
 @export_group("Transition")
 ## The delay before starting the first fade-in animation once ready.
 @export var start_delay : float = 0.5
@@ -84,8 +86,12 @@ func _transition_in() -> void:
 		_show_next_image()
 
 func _wait_and_fade_out(texture_rect : TextureRect) -> void:
-	var _compare_next_index = next_image_index
-	await get_tree().create_timer(visible_time, false).timeout
+	var _compare_next_index := next_image_index
+	var _visible_time_index : int = max(_compare_next_index - 1, 0)
+	var _visible_time := visible_time
+	if (not visible_times.is_empty()) and _visible_time_index < visible_times.size():
+		_visible_time = visible_times[_visible_time_index]
+	await get_tree().create_timer(_visible_time, false).timeout
 	if _compare_next_index != next_image_index : return
 	tween = create_tween()
 	tween.tween_property(texture_rect, "modulate:a", 0.0, fade_out_time)
@@ -110,7 +116,7 @@ func _show_next_image(animated : bool = true) -> void:
 			_load_next_scene()
 		return
 	var texture_rect = %ImagesContainer.get_child(next_image_index)
-	if animated: 
+	if animated:
 		tween = create_tween()
 		tween.tween_property(texture_rect, "modulate:a", 1.0, fade_in_time)
 		await tween.finished
