@@ -35,7 +35,7 @@ func _focus_first_search(control_node : Control, levels : int = 1) -> bool:
 	if control_node == null or !control_node.is_visible_in_tree():
 		return false
 	if control_node.focus_mode == FOCUS_ALL:
-		if skip_matches > matches_skipped:
+		if matches_skipped < skip_matches:
 			matches_skipped += 1
 			return false
 		control_node.grab_focus()
