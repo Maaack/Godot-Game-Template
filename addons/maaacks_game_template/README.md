@@ -19,9 +19,23 @@ The template can be the start of a new project, or plug into an existing one. It
 
 This template was originally made for Godot Wild Jam, and shares a no AI/LLM-gen policy. Please open an [issue](https://github.com/Maaack/Godot-Game-Template/issues) if there is a violation.  
 
-### Minimal
+## Choosing A Plugin
 
-Users that want a minimal set of features can try *[Maaack's Minimal Game Template](https://github.com/Maaack/Godot-Minimal-Game-Template)* or other options from the [plugin suite](/addons/maaacks_game_template/docs/PluginSuite.md).  
+| Features | Game Template  ([link](https://github.com/Maaack/Godot-Game-Template)) | Minimal Game Template  ([link](https://github.com/Maaack/Godot-Minimal-Game-Template)) | Menus Template ([link](https://github.com/Maaack/Godot-Menus-Template)) |
+| :-------:  | :-------: | :-------: | :-------: |
+| Main Menu | :green_circle: | :green_circle: | :green_circle: |
+| Options Menus | :green_circle: | :green_circle: | :green_circle: |
+| Credits Scene | :green_circle: | :large_blue_diamond: | :green_circle: |
+| Game Scene | :green_circle: | :large_blue_diamond: | :x: |
+| Level Manager | :green_circle: | :green_circle: | :x: |
+| Game & Level State | :green_circle: | :x: | :x: |
+| Scene Loader | :green_circle: | :purple_square: | :green_circle: |
+| Music Controller | :green_circle: | :purple_square: | :green_circle: |
+| UI Sound Controller | :green_circle: | :purple_square: | :green_circle: |
+
+**Key: :green_circle: Included, :large_blue_diamond: Simplified, :purple_square: Available Separately, :x: Not Available**  
+
+More options are available from the [plugin suite](/addons/maaacks_game_template/docs/PluginSuite.md).  
 
 ## Installation
 
