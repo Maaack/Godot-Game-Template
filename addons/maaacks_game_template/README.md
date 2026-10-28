@@ -21,7 +21,7 @@ This template was originally made for Godot Wild Jam, and shares a no AI/LLM-gen
 
 ## Choosing A Plugin
 
-| Features | Game Template  ([link](https://github.com/Maaack/Godot-Game-Template)) | Minimal Game Template  ([link](https://github.com/Maaack/Godot-Minimal-Game-Template)) | Menus Template ([link](https://github.com/Maaack/Godot-Minimal-Game-Template)) |
+| Features | Game Template  ([link](https://github.com/Maaack/Godot-Game-Template)) | Minimal Game Template  ([link](https://github.com/Maaack/Godot-Minimal-Game-Template)) | Menus Template ([link](https://github.com/Maaack/Godot-Menus-Template)) |
 | :-------:  | :-------: | :-------: | :-------: |
 | Main Menu | :green_circle: | :green_circle: | :green_circle: |
 | Options Menus | :green_circle: | :green_circle: | :green_circle: |
