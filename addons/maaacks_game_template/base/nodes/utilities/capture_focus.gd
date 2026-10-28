@@ -11,6 +11,8 @@ extends Control
 @export var search_depth : int = 1
 ## If true, reverse the order of searched child nodes.
 @export var reverse_search : bool = false
+## The number of matches from the beginning to skip.
+@export var skip_matches : int = 0
 ## If true, always capture focus when made visible.
 @export var enabled : bool = false
 ## If true, capture focus if nothing currently is in focus.
@@ -27,10 +29,15 @@ extends Control
 		if value_changed and not lock:
 			update_focus()
 
+var matches_skipped : int = 0
+
 func _focus_first_search(control_node : Control, levels : int = 1) -> bool:
 	if control_node == null or !control_node.is_visible_in_tree():
 		return false
 	if control_node.focus_mode == FOCUS_ALL:
+		if skip_matches > matches_skipped:
+			matches_skipped += 1
+			return false
 		control_node.grab_focus()
 		if control_node is ItemList:
 			control_node.select(0)
