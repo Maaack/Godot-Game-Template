@@ -27,7 +27,7 @@ This template was originally made for Godot Wild Jam, and shares a no AI/LLM-gen
 | Options Menus | :green_circle: | :green_circle: | :green_circle: |
 | Credits Scene | :green_circle: | :yellow_square: | :green_circle: |
 | Game Scene | :green_circle: | :yellow_square: | :no_entry: |
-| Level Loader | :green_circle: | :yellow_square: | :no_entry: |
+| Level Manager | :green_circle: | :green_circle: | :no_entry: |
 | Game & Level State | :green_circle: | :no_entry: | :no_entry: |
 | Scene Loader | :green_circle: | :large_orange_diamond: | :green_circle: |
 | Music Controller | :green_circle: | :large_orange_diamond: | :green_circle: |
