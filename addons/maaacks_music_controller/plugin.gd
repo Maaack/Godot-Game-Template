@@ -41,11 +41,11 @@ func _remove_from_auto_update_list() -> void:
 
 func _enable_plugin():
 	_add_to_auto_update_list()
-	add_autoload_singleton("ProjectMusicController", get_plugin_path() + MUSIC_CONTROLLER_RELATIVE_PATH)
+	add_autoload_singleton("MusicController", get_plugin_path() + MUSIC_CONTROLLER_RELATIVE_PATH)
 
 func _disable_plugin():
 	_remove_from_auto_update_list()
-	remove_autoload_singleton("ProjectMusicController")
+	remove_autoload_singleton("MusicController")
 
 func _enter_tree() -> void:
 	_install_audio_busses()
