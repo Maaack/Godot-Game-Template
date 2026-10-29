@@ -17,9 +17,25 @@ Setup menus and accessibility features in about 15 minutes.
 
 The template can be the start of a new project, or plug into an existing one. It is game agnostic (2D or 3D) and can work with multiple target resolutions, up to 4k and down to 640x360. It's meant to cover the needs for a typical game jam, while remaining scalable and extensible enough to support commercial games.
 
-### Minimal
+This template was originally made for Godot Wild Jam, and shares a no AI/LLM-gen policy. Please open an [issue](https://github.com/Maaack/Godot-Game-Template/issues) if there is a violation.  
 
-Users that want a minimal set of features can try *[Maaack's Minimal Game Template](https://github.com/Maaack/Godot-Minimal-Game-Template)* or other options from the [plugin suite](/addons/maaacks_game_template/docs/PluginSuite.md).  
+## Choosing A Plugin
+
+| Features | Game Template  ([link](https://github.com/Maaack/Godot-Game-Template)) | Minimal Game Template  ([link](https://github.com/Maaack/Godot-Minimal-Game-Template)) | Menus Template ([link](https://github.com/Maaack/Godot-Menus-Template)) |
+| :-------:  | :-------: | :-------: | :-------: |
+| Main Menu | :green_circle: | :green_circle: | :green_circle: |
+| Options Menus | :green_circle: | :green_circle: | :green_circle: |
+| Credits Scene | :green_circle: | :large_blue_diamond: | :green_circle: |
+| Game Scene | :green_circle: | :large_blue_diamond: | :x: |
+| Level Manager | :green_circle: | :green_circle: | :x: |
+| Game & Level State | :green_circle: | :x: | :x: |
+| Scene Loader | :green_circle: | :purple_square: | :green_circle: |
+| Music Controller | :green_circle: | :purple_square: | :green_circle: |
+| UI Sound Controller | :green_circle: | :purple_square: | :green_circle: |
+
+**Key: :green_circle: Included, :large_blue_diamond: Simplified, :purple_square: Available Separately, :x: Not Available**  
+
+More options are available from the [plugin suite](/addons/maaacks_game_template/docs/PluginSuite.md).  
 
 ## Installation
 
@@ -105,11 +121,10 @@ As part of setup, example scenes are copied out of `/addons/` into a desired fol
 
 ## Featured Games
 
-| HeartFix Express | Baking Godium | Rent Seek Kill |  
+| Crumbling Castle | Dungeon Bodega Simulator | Lucky Break |  
 | :-------:| :-------: | :-------: |
-| ![HeartFix Express](/addons/maaacks_game_template/media/thumbnail-game-heartfix-express.png) | ![Baking Godium](/addons/maaacks_game_template/media/thumbnail-game-baking-godium.png) | ![Rent-Seek-Kill](/addons/maaacks_game_template/media/thumbnail-game-rent-seek-kill.png) |
-|  [Find on Steam](https://store.steampowered.com/app/3983290/HeartFix_Express_Demo/)  | [Play on itch.io](https://maaack.itch.io/baking-godium) | [Play on itch.io](https://xandruher.itch.io/rent-seek-kill)  |
-
+| ![Crumbling Castle](/addons/maaacks_game_template/media/thumbnail-game-crumbling-castle.png) | ![Dungeon Bodega Simulator](/addons/maaacks_game_template/media/thumbnail-game-dungeon-bodega-simulator.png) | ![Lucky Break](/addons/maaacks_game_template/media/thumbnail-game-lucky-break.png) |
+| [Play on itch.io](https://maaack.itch.io/crumbling-castle) |  [Find on Steam](https://store.steampowered.com/app/3458180/Dungeon_Bodega_Simulator/)  | [Play on Steam](https://store.steampowered.com/app/4155880/Lucky_Break/)  |
 
 [All Shared Games](/addons/maaacks_game_template/docs/GamesMade.md)  
 

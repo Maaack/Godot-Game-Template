@@ -1,6 +1,6 @@
 # Adding UI Sound Effects
 
-This page covers *UISoundController*, a node used for adding sound effects to common UI elements like buttons and sliders. *ProjectUISoundController* is an autoload used to dynamically add sound effects to every scene.
+This page covers the *UISoundController*, a node used for adding sound effects to common UI elements like buttons and sliders. *UISoundController* is also an autoload used to dynamically add sound effects to every scene.
 
 1.  Verify the *SFX* audio bus.
 
@@ -19,7 +19,7 @@ This page covers *UISoundController*, a node used for adding sound effects to co
 
     2.  Project-wide.
 
-        1.  Open `project_ui_sound_controller.tscn`.
+        1.  Open `ui_sound_controller.tscn`.
         2.  In the Scene Tree, select the *UISoundController* node.
         3.  In the Inspector, add audio streams to the various UI node events.
         4.  Save the scene.  

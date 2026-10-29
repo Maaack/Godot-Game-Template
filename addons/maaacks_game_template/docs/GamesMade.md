@@ -5,14 +5,18 @@ If you have a game you'd like to share, join the [Discord server](https://discor
 
 ## Featured
 
-| HeartFix Express | Baking Godium | Rent Seek Kill |  
+| Crumbling Castle | Dungeon Bodega Simulator | Lucky Break |  
 | :-------:| :-------: | :-------: |
-| ![HeartFix Express](/addons/maaacks_game_template/media/thumbnail-game-heartfix-express.png) | ![Baking Godium](/addons/maaacks_game_template/media/thumbnail-game-baking-godium.png) | ![Rent-Seek-Kill](/addons/maaacks_game_template/media/thumbnail-game-rent-seek-kill.png) |
-|  [Find on Steam](https://store.steampowered.com/app/3983290/HeartFix_Express_Demo/)  | [Play on itch.io](https://maaack.itch.io/baking-godium) | [Play on itch.io](https://xandruher.itch.io/rent-seek-kill)  |
+| ![Crumbling Castle](/addons/maaacks_game_template/media/thumbnail-game-crumbling-castle.png) | ![Dungeon Bodega Simulator](/addons/maaacks_game_template/media/thumbnail-game-dungeon-bodega-simulator.png) | ![Lucky Break](/addons/maaacks_game_template/media/thumbnail-game-lucky-break.png) |
+| [Play on itch.io](https://maaack.itch.io/crumbling-castle) |  [Find on Steam](https://store.steampowered.com/app/3458180/Dungeon_Bodega_Simulator/)  | [Play on Steam](https://store.steampowered.com/app/4155880/Lucky_Break/)  |
 
 ## All Shared
 ### 2026  
+https://maaack.itch.io/swan-song  
+https://maaack.itch.io/crumbling-castle  
+https://store.steampowered.com/app/3458180/Dungeon_Bodega_Simulator/  
 https://maaack.itch.io/armed-and-altered  
+https://store.steampowered.com/app/4155880/Lucky_Break/  
 https://store.steampowered.com/app/3983290/HeartFix_Express_Demo/  
 https://store.steampowered.com/app/4029840/Zero_Warning_Burnt_Out/  
 https://maaack.itch.io/scout-quest  

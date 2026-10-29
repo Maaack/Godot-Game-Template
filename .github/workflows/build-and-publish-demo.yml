@@ -72,7 +72,7 @@ jobs:
           godot --headless --verbose --export-release "Web" "$EXPORT_DIR/web/index.html"
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: web
           path: build/web
@@ -116,7 +116,7 @@ jobs:
         shell: bash
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: windows
           path: build/${{ env.EXPORT_NAME }}-windows.zip
@@ -160,7 +160,7 @@ jobs:
         shell: bash
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: linux
           path: build/${{ env.EXPORT_NAME }}-linux.zip
@@ -192,7 +192,7 @@ jobs:
           godot --headless --verbose --export-release "macOS" "$EXPORT_DIR/mac/${EXPORT_NAME}-mac.zip"
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: mac
           path: build/mac
