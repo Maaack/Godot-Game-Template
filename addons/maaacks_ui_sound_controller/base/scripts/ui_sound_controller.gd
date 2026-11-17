@@ -1,4 +1,3 @@
-class_name UISoundController
 extends Node
 ## Controller for managing all UI sounds in a scene from one place.
 ##

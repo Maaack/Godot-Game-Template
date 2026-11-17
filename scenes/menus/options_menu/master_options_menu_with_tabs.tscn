@@ -16,6 +16,7 @@ grow_vertical = 2
 tab_alignment = 1
 current_tab = 0
 script = ExtResource("1_fqpxk")
+show_input_sensitivity = true
 
 [node name="Controls" parent="." unique_id=1827648101 instance=ExtResource("2_w1dvr")]
 layout_mode = 2

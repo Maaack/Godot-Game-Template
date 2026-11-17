@@ -119,7 +119,7 @@ For example, if you don't want to export for macOS, delete this part which build
           file: build/mac/${{ env.EXPORT_NAME }}-mac.zip
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: mac
           path: build/mac

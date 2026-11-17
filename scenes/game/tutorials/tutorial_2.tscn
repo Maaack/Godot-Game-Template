@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://dv5cs1lbxmxva"]
 
-[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/nodes/windows/popup_window_panel.tscn" id="1_b5leo"]
-[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/nodes/input_hint/input_hint.tscn" id="2_58b8s"]
-[ext_resource type="PackedScene" path="res://scenes/menus/options_menu/input/input_icon_mapper.tscn" id="3_2rca4"]
+[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/nodes/windows/popup_window_panel.tscn" id="1_58b8s"]
+[ext_resource type="Script" path="res://scenes/game/tutorials/custom_controls_check.gd" id="2_2rca4"]
+[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/nodes/input_hint/input_hint.tscn" id="3_q86tm"]
+[ext_resource type="PackedScene" path="res://scenes/menus/options_menu/input/input_icon_mapper.tscn" id="4_34quy"]
 
-[node name="PopupWindowPanel" unique_id=902196267 instance=ExtResource("1_b5leo")]
+[node name="PopupWindowPanel" unique_id=902196267 instance=ExtResource("1_58b8s")]
 process_mode = 3
 custom_minimum_size = Vector2(420, 200)
 pauses_game = true
@@ -22,26 +23,51 @@ theme_override_constants/separation = 12
 [node name="DescriptionLabel" parent="ContentContainer/BoxContainer/BodyMargin/BoxContainer" index="0" unique_id=617407155]
 text = "Use a keyboard or gamepad to move left, move right, and jump!"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ContentContainer/BoxContainer/BodyMargin/BoxContainer" index="1" unique_id=65354983]
+[node name="CustomHBoxContainer" type="HBoxContainer" parent="ContentContainer/BoxContainer/BodyMargin/BoxContainer" index="1" unique_id=65354983 node_paths=PackedStringArray("default_action_container")]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+script = ExtResource("2_2rca4")
+custom_actions = Array[StringName]([&"move_left", &"move_right", &"jump"])
+default_action_container = NodePath("../DefaultHBoxContainer")
+
+[node name="InputHint" parent="ContentContainer/BoxContainer/BodyMargin/BoxContainer/CustomHBoxContainer" index="0" unique_id=352483959 node_paths=PackedStringArray("input_icon_mapper") instance=ExtResource("3_q86tm")]
+layout_mode = 2
+size_flags_horizontal = 3
+action_name = &"move_left"
+input_icon_mapper = NodePath("../../../../../../InputIconMapper")
+
+[node name="InputHint2" parent="ContentContainer/BoxContainer/BodyMargin/BoxContainer/CustomHBoxContainer" index="1" unique_id=770503614 node_paths=PackedStringArray("input_icon_mapper") instance=ExtResource("3_q86tm")]
+layout_mode = 2
+size_flags_horizontal = 3
+action_name = &"move_right"
+input_icon_mapper = NodePath("../../../../../../InputIconMapper")
+
+[node name="InputHint3" parent="ContentContainer/BoxContainer/BodyMargin/BoxContainer/CustomHBoxContainer" index="2" unique_id=8792550 node_paths=PackedStringArray("input_icon_mapper") instance=ExtResource("3_q86tm")]
+layout_mode = 2
+size_flags_horizontal = 3
+action_name = &"jump"
+input_icon_mapper = NodePath("../../../../../../InputIconMapper")
+
+[node name="DefaultHBoxContainer" type="HBoxContainer" parent="ContentContainer/BoxContainer/BodyMargin/BoxContainer" index="2" unique_id=1921645826]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 
-[node name="InputHint" parent="ContentContainer/BoxContainer/BodyMargin/BoxContainer/HBoxContainer" index="0" unique_id=352483959 node_paths=PackedStringArray("input_icon_mapper") instance=ExtResource("2_58b8s")]
+[node name="InputHint" parent="ContentContainer/BoxContainer/BodyMargin/BoxContainer/DefaultHBoxContainer" index="0" unique_id=1051985968 node_paths=PackedStringArray("input_icon_mapper") instance=ExtResource("3_q86tm")]
 layout_mode = 2
 size_flags_horizontal = 3
 action_name = &"ui_left"
 input_icon_mapper = NodePath("../../../../../../InputIconMapper")
 
-[node name="InputHint2" parent="ContentContainer/BoxContainer/BodyMargin/BoxContainer/HBoxContainer" index="1" unique_id=770503614 node_paths=PackedStringArray("input_icon_mapper") instance=ExtResource("2_58b8s")]
+[node name="InputHint2" parent="ContentContainer/BoxContainer/BodyMargin/BoxContainer/DefaultHBoxContainer" index="1" unique_id=370270930 node_paths=PackedStringArray("input_icon_mapper") instance=ExtResource("3_q86tm")]
 layout_mode = 2
 size_flags_horizontal = 3
 action_name = &"ui_right"
 input_icon_mapper = NodePath("../../../../../../InputIconMapper")
 
-[node name="InputHint3" parent="ContentContainer/BoxContainer/BodyMargin/BoxContainer/HBoxContainer" index="2" unique_id=8792550 node_paths=PackedStringArray("input_icon_mapper") instance=ExtResource("2_58b8s")]
+[node name="InputHint3" parent="ContentContainer/BoxContainer/BodyMargin/BoxContainer/DefaultHBoxContainer" index="2" unique_id=1361877373 node_paths=PackedStringArray("input_icon_mapper") instance=ExtResource("3_q86tm")]
 layout_mode = 2
 size_flags_horizontal = 3
 action_name = &"ui_accept"
 input_icon_mapper = NodePath("../../../../../../InputIconMapper")
 
-[node name="InputIconMapper" parent="." index="1" unique_id=2136107125 instance=ExtResource("3_2rca4")]
+[node name="InputIconMapper" parent="." index="1" unique_id=2136107125 instance=ExtResource("4_34quy")]

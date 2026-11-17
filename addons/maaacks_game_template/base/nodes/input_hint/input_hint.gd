@@ -33,6 +33,8 @@ const KEYBOARD_AND_MOUSE := [InputEventHelper.DEVICE_KEYBOARD, InputEventHelper.
 		expand_mode = value
 		if is_inside_tree():
 			_icon_texture_rect.expand_mode = expand_mode
+## If true, will only the hint if an icon is available.
+@export var icons_only : bool = false
 
 var _last_input_device : String = InputEventHelper.DEVICE_GENERIC
 var _can_update_last_device : bool = false
@@ -64,9 +66,12 @@ func _refresh() -> void:
 	if icon_texture:
 		_icon_texture_rect.texture = icon_texture
 		_name_label.text = ""
-	else:
+	elif not icons_only:
 		_icon_texture_rect.texture = null
 		_name_label.text = "[ %s ]" % InputEventHelper.get_text(input_event)
+	else:
+		input_number += 1
+		_refresh()
 
 func _ready() -> void:
 	_refresh.call_deferred()

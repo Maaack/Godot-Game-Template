@@ -45,6 +45,9 @@ key = "ScreenResolution"
 section = "VideoSettings"
 property_type = 6
 
+[node name="HSeparator" type="HSeparator" parent="." unique_id=1853150065]
+layout_mode = 2
+
 [node name="AudioControlContainer" type="VBoxContainer" parent="." unique_id=2081802894]
 unique_name_in_owner = true
 layout_mode = 2
@@ -52,4 +55,47 @@ theme_override_constants/separation = 8
 script = ExtResource("3_jiivx")
 search_depth = 2
 
+[node name="SensitivityControlContainer" type="VBoxContainer" parent="." unique_id=1252529169]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="SensitivityControlContainer" unique_id=1517569597]
+layout_mode = 2
+
+[node name="MouseSensitivityControl" parent="SensitivityControlContainer" unique_id=1557081957 instance=ExtResource("2_t2ulr")]
+layout_mode = 2
+option_name = "Mouse Sensitivity"
+option_section = 1
+key = "MouseSensitivity"
+section = "InputSettings"
+
+[node name="OptionLabel" parent="SensitivityControlContainer/MouseSensitivityControl" index="0" unique_id=1854788461]
+text = "Mouse Sensitivity :"
+
+[node name="HSlider" parent="SensitivityControlContainer/MouseSensitivityControl" index="1" unique_id=424108384]
+min_value = 0.25
+max_value = 2.0
+tick_count = 8
+
+[node name="JoypadSensitivityControl" parent="SensitivityControlContainer" unique_id=1605581650 instance=ExtResource("2_t2ulr")]
+layout_mode = 2
+option_name = "Joypad Sensitivity"
+option_section = 1
+key = "JoypadSensitivity"
+section = "InputSettings"
+
+[node name="OptionLabel" parent="SensitivityControlContainer/JoypadSensitivityControl" index="0" unique_id=1854788461]
+text = "Joypad Sensitivity :"
+
+[node name="HSlider" parent="SensitivityControlContainer/JoypadSensitivityControl" index="1" unique_id=424108384]
+min_value = 0.25
+max_value = 2.0
+tick_count = 8
+
 [connection signal="setting_changed" from="FullscreenControl" to="." method="_on_fullscreen_control_setting_changed"]
+
+[editable path="SensitivityControlContainer/MouseSensitivityControl"]
+[editable path="SensitivityControlContainer/JoypadSensitivityControl"]

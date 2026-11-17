@@ -58,7 +58,7 @@ static func set_project_paths(target_path : String, overwrite : bool = true) -> 
 		var stored_path := ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + key)
 		if (not overwrite) and stored_path != null:
 			continue
-		if relative_path.is_empty() and (not stored_path.is_empty()):
+		if relative_path.is_empty() and not (stored_path == null or stored_path.is_empty()):
 			continue
 		var full_path = ""
 		if not relative_path.is_empty():
@@ -66,12 +66,12 @@ static func set_project_paths(target_path : String, overwrite : bool = true) -> 
 		ProjectSettings.set_setting(PROJECT_SETTINGS_PATH + key, full_path)
 	ProjectSettings.save()
 
-static func are_project_paths_updated(target_path) -> bool:
+static func are_project_paths_updated(original_path) -> bool:
 	for key in SCENE_PATHS:
 		var relative_path = SCENE_PATHS[key]
 		if relative_path.is_empty():
 			continue
 		var stored_path : String = ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + key, "")
-		if stored_path != target_path + relative_path:
+		if stored_path.contains(original_path):
 			return false
 	return true

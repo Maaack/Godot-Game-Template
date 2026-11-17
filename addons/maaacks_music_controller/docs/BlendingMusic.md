@@ -9,7 +9,7 @@ This page covers the *ProjectMusicController*, which is an autoload used to blen
     1.  Open the Audio bus editor.
     2.  Confirm that *Music* audio bus is available.  
         -  If the last bus is *New Bus*, try restarting the editor and checking again.
-    3.  If the audio bus doesn't exist, add it and save the project.
+        -  If the audio bus doesn't exist, add it and save the project.
 
 2.  Verify the *ProjectMusicController* autoload.
 
