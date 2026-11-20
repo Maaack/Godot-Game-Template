@@ -49,7 +49,7 @@ Refer to [Blending Music](/addons/maaacks_music_controller/docs/BlendingMusic.md
 | HeartFix Express | Baking Godium | Rent Seek Kill |  
 | :-------:| :-------: | :-------: |
 | ![HeartFix Express](/addons/maaacks_music_controller/media/thumbnail-game-heartfix-express.png) | ![Baking Godium](/addons/maaacks_music_controller/media/thumbnail-game-baking-godium.png) | ![Rent-Seek-Kill](/addons/maaacks_music_controller/media/thumbnail-game-rent-seek-kill.png) |
-|  [Find on Steam](https://store.steampowered.com/app/3983290/HeartFix_Express_Demo/)  | [Play on itch.io](https://maaack.itch.io/baking-godium) | [Play on itch.io](https://xandruher.itch.io/rent-seek-kill)  |
+|  [Play on Steam](https://store.steampowered.com/app/3983290/HeartFix_Express_Demo/)  | [Play on itch.io](https://maaack.itch.io/baking-godium) | [Play on itch.io](https://xandruher.itch.io/rent-seek-kill)  |
 
 
 [All Shared Games](/addons/maaacks_music_controller/docs/GamesMade.md)  

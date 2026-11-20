@@ -124,7 +124,7 @@ As part of setup, example scenes are copied out of `/addons/` into a desired fol
 | Crumbling Castle | Dungeon Bodega Simulator | Lucky Break |  
 | :-------:| :-------: | :-------: |
 | ![Crumbling Castle](/media/thumbnail-game-crumbling-castle.png) | ![Dungeon Bodega Simulator](/media/thumbnail-game-dungeon-bodega-simulator.png) | ![Lucky Break](/media/thumbnail-game-lucky-break.png) |
-| [Play on itch.io](https://maaack.itch.io/crumbling-castle) |  [Find on Steam](https://store.steampowered.com/app/3458180/Dungeon_Bodega_Simulator/)  | [Play on Steam](https://store.steampowered.com/app/4155880/Lucky_Break/)  |
+| [Play on itch.io](https://maaack.itch.io/crumbling-castle) |  [Play on Steam](https://store.steampowered.com/app/3458180/Dungeon_Bodega_Simulator/)  | [Play on Steam](https://store.steampowered.com/app/4155880/Lucky_Break/)  |
 
 [All Shared Games](/docs/GamesMade.md)  
 

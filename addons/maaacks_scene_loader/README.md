@@ -58,7 +58,7 @@ Change scenes in your project using paths by calling `SceneLoader.load_scene(_pa
 | HeartFix Express | Baking Godium | Rent Seek Kill |  
 | :-------:| :-------: | :-------: |
 | ![HeartFix Express](/addons/maaacks_scene_loader/media/thumbnail-game-heartfix-express.png) | ![Baking Godium](/addons/maaacks_scene_loader/media/thumbnail-game-baking-godium.png) | ![Rent-Seek-Kill](/addons/maaacks_scene_loader/media/thumbnail-game-rent-seek-kill.png) |
-|  [Find on Steam](https://store.steampowered.com/app/3983290/HeartFix_Express_Demo/)  | [Play on itch.io](https://maaack.itch.io/baking-godium) | [Play on itch.io](https://xandruher.itch.io/rent-seek-kill)  |
+|  [Play on Steam](https://store.steampowered.com/app/3983290/HeartFix_Express_Demo/)  | [Play on itch.io](https://maaack.itch.io/baking-godium) | [Play on itch.io](https://xandruher.itch.io/rent-seek-kill)  |
 
 [All Shared Games](/addons/maaacks_scene_loader/docs/GamesMade.md)  
 
