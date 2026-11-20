@@ -17,7 +17,6 @@ const MASTER_BUS_INDEX = 0
 const SYSTEM_BUS_NAME_PREFIX = "_"
 
 # Input
-static var default_action_events : Dictionary
 static var initial_bus_volumes : Array
 
 static func get_config_input_events(action_name : String, default = null) -> Array:
@@ -65,16 +64,7 @@ static func get_action_names(built_in_actions : bool = false) -> Array[StringNam
 
 static func reset_to_default_inputs() -> void:
 	_clear_config_input_events()
-	for action_name in default_action_events:
-		InputMap.action_erase_events(action_name)
-		var input_events = default_action_events[action_name]
-		for input_event in input_events:
-			InputMap.action_add_event(action_name, input_event)
-
-static func set_default_inputs() -> void:
-	var action_list : Array[StringName] = _get_action_names()
-	for action_name in action_list:
-		default_action_events[action_name] = InputMap.action_get_events(action_name)
+	InputMap.load_from_project_settings()
 
 static func set_inputs_from_config() -> void:
 	var action_list : Array[StringName] = _get_action_names()
@@ -183,7 +173,6 @@ static func set_video_from_config(window : Window) -> void:
 # All
 
 static func set_from_config() -> void:
-	set_default_inputs()
 	set_inputs_from_config()
 	set_audio_from_config()
 
