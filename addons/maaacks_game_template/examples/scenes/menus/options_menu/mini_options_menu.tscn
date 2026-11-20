@@ -24,6 +24,7 @@ theme_override_constants/separation = 8
 alignment = 1
 script = ExtResource("2_hcx71")
 audio_control_scene = ExtResource("2_t2ulr")
+show_input_sensitivity = true
 
 [node name="FullscreenControl" parent="." unique_id=311912129 instance=ExtResource("4_tv8jp")]
 unique_name_in_owner = true
