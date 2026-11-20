@@ -10,7 +10,7 @@ The _Setup Wizard_ shows the user's progress through the setup process.
 
 Open the _Setup Wizard_ by navigating to `Project > Tools > Run Maaack's Game Template Setup...`.
 
-![Setup Wizard Location](/addons/maaacks_game_template/media/setup-wizard-location.png)
+![Setup Wizard Location](/media/setup-wizard-location.png)
 
 ### Check & Complete
 
@@ -21,7 +21,7 @@ A typical full installation will have the following steps completed:
 -  Delete Example Files
 -  Set Main Scene
 
-![Setup Wizard Window](/addons/maaacks_game_template/media/setup-wizard-window.png)
+![Setup Wizard Window](/media/setup-wizard-window.png)
 
 Depending on how the template was installed, or if any issues occurred, some of these may need to be run from the wizard to be completed.
 
@@ -54,16 +54,16 @@ To change the _Opening_:
 ## Next Steps
 
 ### Recommended
-1.  [Main Menu Setup](/addons/maaacks_game_template/docs/MainMenuSetup.md)  
-2.  [Options Menu Setup](/addons/maaacks_game_template/docs/OptionsMenuSetup.md)  
-3.  [Game Scene Setup](/addons/maaacks_game_template/docs/GameSceneSetup.md)  
-4.  [Updating Credits](/addons/maaacks_game_template/docs/UpdatingCredits.md)  
+1.  [Main Menu Setup](/docs/MainMenuSetup.md)  
+2.  [Options Menu Setup](/docs/OptionsMenuSetup.md)  
+3.  [Game Scene Setup](/docs/GameSceneSetup.md)  
+4.  [Updating Credits](/docs/UpdatingCredits.md)  
 5.  [Blending Music](/addons/maaacks_music_controller/docs/BlendingMusic.md)  
 6.  [Adding UI Sound Effects](/addons/maaacks_ui_sound_controller/docs/AddingUISFX.md)  
 
 ### Extra
-1.  [Adding Icons to the Input Options](/addons/maaacks_game_template/docs/InputIconMapping.md)  
-2.  [Supporting Joypad Inputs](/addons/maaacks_game_template/docs/JoypadInputs.md)  
+1.  [Adding Icons to the Input Options](/docs/InputIconMapping.md)  
+2.  [Supporting Joypad Inputs](/docs/JoypadInputs.md)  
 3.  [Loading scenes asynchronously](/addons/maaacks_scene_loader/docs/LoadingScenes.md)  
-4.  [Utilizing Game Saving](/addons/maaacks_game_template/docs/GameSaving.md)  
-5.  [Uploading to itch.io](/addons/maaacks_game_template/docs/UploadingToItchIo.md)  
+4.  [Utilizing Game Saving](/docs/GameSaving.md)  
+5.  [Uploading to itch.io](/docs/UploadingToItchIo.md)  

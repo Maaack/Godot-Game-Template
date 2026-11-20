@@ -1,7 +1,7 @@
 # New Projects
 
 > [!WARNING]  
-> This page is being deprecated in favor of [Basic Setup](/addons/maaacks_game_template/docs/BasicSetup.md).
+> This page is being deprecated in favor of [Basic Setup](/docs/BasicSetup.md).
 
 These instructions assume starting with the entire contents of the project folder. This will be the case when cloning the repo, or starting from the *template* version in the Godot Asset Library accessible from the Project Manager window.
   
@@ -41,7 +41,7 @@ These instructions assume starting with the entire contents of the project folde
 
     1.  Open `mini_options_menu.tscn` or `[audio|visual|input|game]_options_menu.tscn` scenes to edit their options.
     2.  If an option is not desired, it can always be hidden, or removed entirely (sometimes with some additional work).
-    3.  If a new option is desired, refer to [Adding Custom Options.](/addons/maaacks_game_template/docs/AddingCustomOptions.md)
+    3.  If a new option is desired, refer to [Adding Custom Options.](/docs/AddingCustomOptions.md)
 
 
 4.  Update the game credits / attribution.
@@ -56,11 +56,11 @@ These instructions assume starting with the entire contents of the project folde
 
 5.  Continue with:
 
-    1.  [Setting up the Main Menu.](/addons/maaacks_game_template/docs/MainMenuSetup.md)  
-    2.  [Setting up a Game Scene.](/addons/maaacks_game_template/docs/GameSceneSetup.md)  
+    1.  [Setting up the Main Menu.](/docs/MainMenuSetup.md)  
+    2.  [Setting up a Game Scene.](/docs/GameSceneSetup.md)  
     3.  [Loading scenes asynchronously.](/addons/maaacks_scene_loader/docs/LoadingScenes.md)  
-    4.  [Adding icons to the Input Options.](/addons/maaacks_game_template/docs/InputIconMapping.md)  
+    4.  [Adding icons to the Input Options.](/docs/InputIconMapping.md)  
     5.  [Blending Music.](/addons/maaacks_music_controller/docs/BlendingMusic.md)  
     6.  [Adding UI Sound Effects.](/addons/maaacks_ui_sound_controller/docs/AddingUISFX.md)  
-    7.  [Adding Custom Options.](/addons/maaacks_game_template/docs/AddingCustomOptions.md)
-    8.  [Utilizing Game Saving.](/addons/maaacks_game_template/docs/GameSaving.md)  
+    7.  [Adding Custom Options.](/docs/AddingCustomOptions.md)
+    8.  [Utilizing Game Saving.](/docs/GameSaving.md)  
