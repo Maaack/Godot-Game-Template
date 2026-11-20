@@ -95,6 +95,7 @@ As part of setup, example scenes are copied out of `/addons/` into a desired fol
 [Blending Music](/addons/maaacks_music_controller/docs/BlendingMusic.md)  
 [Adding UI Sound Effects](/addons/maaacks_ui_sound_controller/docs/AddingUISFX.md)  
 [Loading Scenes](/addons/maaacks_scene_loader/docs/LoadingScenes.md)  
+[Input Remapping Menus](/docs/InputRemappingMenus.md)  
 [Input Icon Mapping](/docs/InputIconMapping.md)  
 [Joypad Inputs](/docs/JoypadInputs.md)  
 [Game Saving](/docs/GameSaving.md)  
@@ -127,7 +128,6 @@ As part of setup, example scenes are copied out of `/addons/` into a desired fol
 | [Play on itch.io](https://maaack.itch.io/crumbling-castle) |  [Play on Steam](https://store.steampowered.com/app/3458180/Dungeon_Bodega_Simulator/)  | [Play on Steam](https://store.steampowered.com/app/4155880/Lucky_Break/)  |
 
 [All Shared Games](/docs/GamesMade.md)  
-
 
 ## Community
 
