@@ -5,15 +5,15 @@ extends Node
 signal scene_loaded
 
 ## Path to the loading screen to display to players while loading a scene.
-## Will use ProjectSettings paths if left empty.
+## Will use [ProjectSettings] paths if left empty.
 @export_file("*.tscn") var loading_screen_path : String : get = get_loading_screen_path, set = set_loading_screen_path
 
 @export_group("Debug")
 ## If true, enable debug mode.
 @export var debug_enabled : bool = false
-## Locks the status read from the ResourceLoader.
+## Locks the status read from the [ResourceLoader].
 @export var debug_lock_status : ResourceLoader.ThreadLoadStatus
-## Locks the progress read from the ResourceLoader.
+## Locks the progress read from the [ResourceLoader].
 @export_range(0, 1) var debug_lock_progress : float = 0.0
 
 var _loading_screen : PackedScene

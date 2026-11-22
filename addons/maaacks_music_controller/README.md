@@ -1,4 +1,4 @@
-![Package Icon](/addons/maaacks_music_controller/media/music_controller-icon-black-transparent-256x256.png)  
+![Package Icon](/media/music_controller-icon-black-transparent-256x256.png)  
 
 # Godot Music Controller
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/Maaack/Godot-Music-Controller)
@@ -15,9 +15,11 @@ For *Godot 4.7* (4.3+ compatible)
 
 Setup blending between audio stream players in your scenes within 5 minutes.
 
+This plugin was originally made for Godot Wild Jam, and shares a no AI/LLM-gen policy. Please open an [issue](https://github.com/Maaack/Godot-Music-Controller/issues) if there is a violation.  
+
 ### Extras or Components
 
-Users that want additional features can try *[Maaack's Game Template](https://github.com/Maaack/Godot-Game-Template)* or other options from the [plugin suite](/addons/maaacks_music_controller/docs/PluginSuite.md).  
+Users that want additional features can try *[Maaack's Game Template](https://github.com/Maaack/Godot-Game-Template)* or other options from the [plugin suite](/docs/PluginSuite.md).  
 
 ## Installation
 
@@ -36,23 +38,22 @@ While editing a project in *Godot*:
 8.  Enable the plugin from the **Project > Project Settings > Plugins** tab.
 
 ## Usage
-Open up the `project_music_controller.tscn` autoload scene and adjust the *Fade In/Out Duration*.  
+Open up the `music_controller.tscn` autoload scene and adjust the *Fade In/Out Duration*.  
 
-Refer to [Blending Music](/addons/maaacks_music_controller/docs/BlendingMusic.md) for more details.
+Refer to [Blending Music](/docs/BlendingMusic.md) for more details.
 
 ### More Documentation
 
-[Automatic Updating](/addons/maaacks_music_controller/docs/AutomaticUpdating.md)  
+[Automatic Updating](/docs/AutomaticUpdating.md)  
 
-## Featured Games
+## Featured
 
-| HeartFix Express | Baking Godium | Rent Seek Kill |  
+| Crumbling Castle | Dungeon Bodega Simulator | Lucky Break |  
 | :-------:| :-------: | :-------: |
-| ![HeartFix Express](/addons/maaacks_music_controller/media/thumbnail-game-heartfix-express.png) | ![Baking Godium](/addons/maaacks_music_controller/media/thumbnail-game-baking-godium.png) | ![Rent-Seek-Kill](/addons/maaacks_music_controller/media/thumbnail-game-rent-seek-kill.png) |
-|  [Play on Steam](https://store.steampowered.com/app/3983290/HeartFix_Express_Demo/)  | [Play on itch.io](https://maaack.itch.io/baking-godium) | [Play on itch.io](https://xandruher.itch.io/rent-seek-kill)  |
+| ![Crumbling Castle](/media/thumbnail-game-crumbling-castle.png) | ![Dungeon Bodega Simulator](/media/thumbnail-game-dungeon-bodega-simulator.png) | ![Lucky Break](/media/thumbnail-game-lucky-break.png) |
+| [Play on itch.io](https://maaack.itch.io/crumbling-castle) |  [Play on Steam](https://store.steampowered.com/app/3458180/Dungeon_Bodega_Simulator/)  | [Play on Steam](https://store.steampowered.com/app/4155880/Lucky_Break/)  |
 
-
-[All Shared Games](/addons/maaacks_music_controller/docs/GamesMade.md)  
+[All Shared Games](/docs/GamesMade.md)  
 
 ## Community
 
