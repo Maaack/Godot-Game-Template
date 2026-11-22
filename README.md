@@ -30,7 +30,7 @@ The *Game Template* is the original fully featured template. The *Minimal Game T
 | [Credits Scene](https://github.com/Maaack/Godot-Credits-Scene) | :green_circle: | :large_blue_diamond: | :green_circle: |
 | Game Scene | :green_circle: | :large_blue_diamond: | :x: |
 | Level Manager | :green_circle: | :green_circle: | :x: |
-| Game & Level State | :green_circle: | :x: | :x: |
+| Game Auto-Save | :green_circle: | :x: | :x: |
 | [Scene Loader](https://github.com/Maaack/Godot-Scene-Loader) | :green_circle: | :purple_square: | :purple_square: |
 | [Music Controller](https://github.com/Maaack/Godot-Music-Controller) | :green_circle: | :purple_square: | :purple_square: |
 | [UI Sound Controller](https://github.com/Maaack/Godot-UI-Sound-Controller) | :green_circle: | :purple_square: | :purple_square: |
