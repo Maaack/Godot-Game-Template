@@ -2,26 +2,26 @@ class_name InputEventHelper
 extends Node
 ## Helper class for organizing constants related to [InputEvent].
 
-const DEVICE_KEYBOARD = "Keyboard"
-const DEVICE_MOUSE = "Mouse"
-const DEVICE_JOYPAD = "Joypad"
-const DEVICE_SCREEN = "Screen"
-const DEVICE_XBOX_CONTROLLER = "Xbox"
-const DEVICE_SWITCH_CONTROLLER = "Switch"
-const DEVICE_SWITCH_JOYCON_LEFT_CONTROLLER = "Switch Left Joycon"
-const DEVICE_SWITCH_JOYCON_RIGHT_CONTROLLER = "Switch Right Joycon"
-const DEVICE_SWITCH_JOYCON_COMBINED_CONTROLLER = "Switch Combined Joycons"
-const DEVICE_PLAYSTATION_CONTROLLER = "Playstation"
-const DEVICE_STEAMDECK_CONTROLLER = "Steamdeck"
-const DEVICE_GENERIC = "Generic"
+const DEVICE_KEYBOARD = &"Keyboard"
+const DEVICE_MOUSE = &"Mouse"
+const DEVICE_JOYPAD = &"Joypad"
+const DEVICE_SCREEN = &"Screen"
+const DEVICE_XBOX_CONTROLLER = &"Xbox"
+const DEVICE_SWITCH_CONTROLLER = &"Switch"
+const DEVICE_SWITCH_JOYCON_LEFT_CONTROLLER = &"Switch Left Joycon"
+const DEVICE_SWITCH_JOYCON_RIGHT_CONTROLLER = &"Switch Right Joycon"
+const DEVICE_SWITCH_JOYCON_COMBINED_CONTROLLER = &"Switch Combined Joycons"
+const DEVICE_PLAYSTATION_CONTROLLER = &"Playstation"
+const DEVICE_STEAMDECK_CONTROLLER = &"Steamdeck"
+const DEVICE_GENERIC = &"Generic"
 
-const JOYSTICK_LEFT_NAME = "Left Stick"
-const JOYSTICK_RIGHT_NAME = "Right Stick"
-const D_PAD_NAME = "Dpad"
+const JOYSTICK_LEFT_NAME = &"Left Stick"
+const JOYSTICK_RIGHT_NAME = &"Right Stick"
+const D_PAD_NAME = &"Dpad"
 
-const MOUSE_BUTTONS : Array = ["None", "Left", "Right", "Middle", "Scroll Up", "Scroll Down", "Wheel Left", "Wheel Right"]
+const MOUSE_BUTTONS : Array[String] = ["None", "Left", "Right", "Middle", "Scroll Up", "Scroll Down", "Wheel Left", "Wheel Right"]
 
-const JOYPAD_BUTTON_NAME_MAP : Dictionary = {
+const JOYPAD_BUTTON_NAME_MAP : Dictionary[StringName, Array] = {
 	DEVICE_GENERIC : ["Trigger A", "Trigger B", "Trigger C", "", "", "", "", "Left Stick Press", "Right Stick Press", "Left Shoulder", "Right Shoulder", "Up", "Down", "Left", "Right"],
 	DEVICE_XBOX_CONTROLLER : ["A", "B", "X", "Y", "View", "Home", "Menu", "Left Stick Press", "Right Stick Press", "Left Shoulder", "Right Shoulder", "Up", "Down", "Left", "Right", "Share"],
 	DEVICE_SWITCH_CONTROLLER : ["B", "A", "Y", "X", "Minus", "", "Plus", "Left Stick Press", "Right Stick Press", "Left Shoulder", "Right Shoulder", "Up", "Down", "Left", "Right", "Capture"],
@@ -29,7 +29,7 @@ const JOYPAD_BUTTON_NAME_MAP : Dictionary = {
 	DEVICE_STEAMDECK_CONTROLLER : ["A", "B", "X", "Y", "View", "", "Options", "Left Stick Press", "Right Stick Press", "Left Shoulder", "Right Shoulder", "Up", "Down", "Left", "Right"]
 } # Dictionary[String, Array]
 
-const SDL_DEVICE_NAMES: Dictionary = {
+const SDL_DEVICE_NAMES: Dictionary[StringName, Array]  = {
 	DEVICE_XBOX_CONTROLLER: ["XInput", "XBox"],
 	DEVICE_PLAYSTATION_CONTROLLER: ["Sony", "PS5", "PS4", "Nacon"],
 	DEVICE_STEAMDECK_CONTROLLER: ["Steam"],
@@ -39,7 +39,7 @@ const SDL_DEVICE_NAMES: Dictionary = {
 	DEVICE_SWITCH_JOYCON_COMBINED_CONTROLLER: ["Joy-Con (L/R)", "Combined Joy-Cons"],
 }
 
-const JOY_BUTTON_NAMES : Dictionary = {
+const JOY_BUTTON_NAMES : Dictionary[JoyButton, String]  = {
 	JOY_BUTTON_A: "Button A",
 	JOY_BUTTON_B: "Button B",
 	JOY_BUTTON_X: "Button X",
@@ -58,19 +58,19 @@ const JOY_BUTTON_NAMES : Dictionary = {
 	JOY_BUTTON_MISC1 : "Misc",
 }
 
-const JOYPAD_DPAD_NAMES : Dictionary = {
+const JOYPAD_DPAD_NAMES : Dictionary[JoyButton, String] = {
 	JOY_BUTTON_DPAD_UP : D_PAD_NAME + " Up",
 	JOY_BUTTON_DPAD_DOWN : D_PAD_NAME + " Down",
 	JOY_BUTTON_DPAD_LEFT : D_PAD_NAME + " Left",
 	JOY_BUTTON_DPAD_RIGHT : D_PAD_NAME + " Right",
 }
 
-const JOY_AXIS_NAMES : Dictionary = {
+const JOY_AXIS_NAMES : Dictionary[JoyAxis, String]  = {
 	JOY_AXIS_TRIGGER_LEFT: "Left Trigger",
 	JOY_AXIS_TRIGGER_RIGHT: "Right Trigger",
 }
 
-const BUILT_IN_ACTION_NAME_MAP : Dictionary = {
+const BUILT_IN_ACTION_NAME_MAP : Dictionary[StringName, String]  = {
 	"ui_accept" : "Accept",
 	"ui_select" : "Select",
 	"ui_cancel" : "Cancel",

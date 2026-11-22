@@ -1,4 +1,4 @@
-![Package Icon](/addons/maaacks_ui_sound_controller/media/ui_sound_controller-icon-black-transparent-256x256.png)  
+![Package Icon](/media/ui_sound_controller-icon-black-transparent-256x256.png)  
 
 # Godot UI Sound Controller
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/Maaack/Godot-UI-Sound-Controller)
@@ -12,11 +12,14 @@ For *Godot 4.7* (4.3+ compatible)
 [Example on itch.io](https://maaack.itch.io/godot-game-template) of *[Maaack's Game Template](https://github.com/Maaack/Godot-Game-Template)*, which includes additional features.
 
 ## Objective
+
 Add SFX to all your project's UI elements from one node in 5 minutes.
+
+This plugin was originally made for Godot Wild Jam, and shares a no AI/LLM-gen policy. Please open an [issue](https://github.com/Maaack/Godot-UI-Sound-Controller/issues) if there is a violation.  
 
 ### Extras or Components
 
-Users that want additional features can try *[Maaack's Game Template](https://github.com/Maaack/Godot-Game-Template)* or other options from the [plugin suite](/addons/maaacks_ui_sound_controller/docs/PluginSuite.md).  
+Users that want additional features can try *[Maaack's Game Template](https://github.com/Maaack/Godot-Game-Template)* or other options from the [plugin suite](/docs/PluginSuite.md).  
 
 ## Installation
 
@@ -40,21 +43,20 @@ Attach the `ui_sound_controller.gd` script to a node that is in a UI scene. Sele
 
 Alternatively, if using the autoload, open `ui_sound_controller.tscn`, select the root node, and assign audio streams to the supported UI events project-wide.
 
-Refer to [Adding UI SFX](/addons/maaacks_ui_sound_controller/docs/AddingUISFX.md) for more details.
+Refer to [Adding UI SFX](/docs/AddingUISFX.md) for more details.
 
 ### More Documentation
 
-[Automatic Updating](/addons/maaacks_ui_sound_controller/docs/AutomaticUpdating.md)  
+[Automatic Updating](/docs/AutomaticUpdating.md)  
 
-## Featured Games
+## Featured
 
-| HeartFix Express | Baking Godium | Rent Seek Kill |  
+| Crumbling Castle | Dungeon Bodega Simulator | Lucky Break |  
 | :-------:| :-------: | :-------: |
-| ![HeartFix Express](/addons/maaacks_ui_sound_controller/media/thumbnail-game-heartfix-express.png) | ![Baking Godium](/addons/maaacks_ui_sound_controller/media/thumbnail-game-baking-godium.png) | ![Rent-Seek-Kill](/addons/maaacks_ui_sound_controller/media/thumbnail-game-rent-seek-kill.png) |
-|  [Find on Steam](https://store.steampowered.com/app/3983290/HeartFix_Express_Demo/)  | [Play on itch.io](https://maaack.itch.io/baking-godium) | [Play on itch.io](https://xandruher.itch.io/rent-seek-kill)  |
+| ![Crumbling Castle](/media/thumbnail-game-crumbling-castle.png) | ![Dungeon Bodega Simulator](/media/thumbnail-game-dungeon-bodega-simulator.png) | ![Lucky Break](/media/thumbnail-game-lucky-break.png) |
+| [Play on itch.io](https://maaack.itch.io/crumbling-castle) |  [Play on Steam](https://store.steampowered.com/app/3458180/Dungeon_Bodega_Simulator/)  | [Play on Steam](https://store.steampowered.com/app/4155880/Lucky_Break/)  |
 
-
-[All Shared Games](/addons/maaacks_ui_sound_controller/docs/GamesMade.md)  
+[All Shared Games](/docs/GamesMade.md)  
 
 ## Community
 

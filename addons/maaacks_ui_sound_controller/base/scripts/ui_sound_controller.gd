@@ -5,13 +5,14 @@ extends Node
 ## When attached just below the root node of a scene tree, it will manage
 ## all of the UI sounds in that scene.
 
+## The maximum depth traversed to pass nodes into [method connect_ui_sounds] when ready.
 const MAX_DEPTH = 16
 
-## Path to node where added children should be scanned.
+## Path to node where added children should be run through [method connect_ui_sounds].
 @export var root_path : NodePath = ^".."
 ## Audio bus for any audio streams created.
 @export var audio_bus : StringName = &"SFX"
-## Continually check any new nodes added to the scene tree.
+## If true, continually check any new nodes added to the [SceneTree].
 @export var persistent : bool = true :
 	set(value):
 		persistent = value
@@ -162,6 +163,7 @@ func _connect_stream_player(node : Node, stream_player : AudioStreamPlayer, sign
 	if stream_player != null and not node.is_connected(signal_name, callable.bind(stream_player)):
 		node.connect(signal_name, callable.bind(stream_player))
 
+## Checks a [Node] for needing sounds attached to its signals.
 func connect_ui_sounds(node: Node) -> void:
 	if node is Button:
 		_connect_stream_player(node, button_hovered_player, &"mouse_entered", _play_stream)
