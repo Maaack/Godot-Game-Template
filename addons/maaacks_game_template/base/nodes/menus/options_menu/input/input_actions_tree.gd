@@ -8,25 +8,6 @@ signal minimum_reached(action_name : String)
 signal add_button_clicked(action_name : String)
 signal remove_button_clicked(action_name : String, input_name : String)
 
-## The names of the action names that should be listed for editing.
-@export var input_action_names : Array[StringName] :
-	set(value):
-		var _value_changed = input_action_names != value
-		input_action_names = value
-		if _value_changed:
-			_refresh_readable_action_names()
-## The readable names of the action names that should be listed for editing.
-@export var readable_action_names : Array[String] :
-	set(value):
-		var _value_changed = readable_action_names != value
-		readable_action_names = value
-		if _value_changed:
-			var _new_action_name_map : Dictionary
-			for iter in range(input_action_names.size()):
-				var _input_name : StringName = input_action_names[iter]
-				var _readable_name : String = readable_action_names[iter]
-				_new_action_name_map[_input_name] = _readable_name
-			action_name_map = _new_action_name_map
 ## If true, capitalizes action names in order to make them readable.
 @export var capitalize_action_names : bool = true :
 	set(value):
@@ -34,6 +15,13 @@ signal remove_button_clicked(action_name : String, input_name : String)
 		_refresh_readable_action_names()
 ## Show action names that are not explicitely listed in an action name map.
 @export var show_all_actions : bool = true
+## Maps the names of input actions to readable names for users.
+@export var action_name_map : Dictionary[StringName, String] :
+	set(value):
+		var _value_changed = action_name_map != value
+		action_name_map = value
+		if _value_changed:
+			_refresh_readable_action_names()
 @export_group("Icons")
 ## Icon for the button that adds a new input to an action name.
 @export var add_button_texture : Texture2D
@@ -48,9 +36,6 @@ signal remove_button_clicked(action_name : String, input_name : String)
 @export var catch_built_in_duplicate_inputs : bool = false
 ## Maps the names of built-in input actions to readable names for users.
 @export var built_in_action_name_map := InputEventHelper.BUILT_IN_ACTION_NAME_MAP
-@export_group("Debug")
-## Maps the names of input actions to readable names for users.
-@export var action_name_map : Dictionary
 
 var tree_item_add_map : Dictionary = {}
 var tree_item_remove_map : Dictionary = {}
@@ -58,15 +43,16 @@ var tree_item_action_map : Dictionary = {}
 var assigned_input_events : Dictionary = {}
 var editing_action_name : String = ""
 var editing_item
-var last_input_readable_name
 
 func _refresh_readable_action_names():
-		var _new_readable_action_names : Array[String]
-		for action_name in input_action_names:
-			if capitalize_action_names:
-				action_name = action_name.capitalize()
-			_new_readable_action_names.append(action_name)
-		readable_action_names = _new_readable_action_names
+	for action_name in action_name_map:
+		if not action_name_map[action_name].is_empty(): continue
+		var readable_action_name : String
+		if capitalize_action_names:
+			readable_action_name = action_name.capitalize()
+		else:
+			readable_action_name = action_name.replace("_", " ")
+		action_name_map[action_name] = readable_action_name
 
 func _start_tree() -> void:
 	clear()
@@ -96,14 +82,10 @@ func _add_action_as_tree_item(readable_name : String, action_name : String, inpu
 		_add_input_event_as_tree_item(action_name, input_event, action_tree_item)
 
 func _get_all_action_names(include_built_in : bool = false) -> Array[StringName]:
-	var action_names : Array[StringName] = input_action_names.duplicate()
-	var full_action_name_map = action_name_map.duplicate()
+	var action_names : Array[StringName] = action_name_map.keys()
 	if include_built_in:
 		for action_name in built_in_action_name_map:
-			if action_name is String:
-				action_name = StringName(action_name)
-			if action_name is StringName:
-				action_names.append(action_name)
+			action_names.append(action_name)
 	if show_all_actions:
 		var all_actions := AppSettings.get_action_names(include_built_in)
 		for action_name in all_actions:
@@ -134,11 +116,11 @@ func _build_ui_tree() -> void:
 		var readable_name : String = _get_action_readable_name(action_name)
 		_add_action_as_tree_item(readable_name, action_name, input_events)
 
-func _assign_input_event(input_event : InputEvent, action_name : String) -> void:
+func _add_assigned_input_event(input_event : InputEvent, action_name : String) -> void:
 	assigned_input_events[InputEventHelper.get_text(input_event)] = action_name
 		
 func _assign_input_event_to_action(input_event : InputEvent, action_name : String) -> void:
-	_assign_input_event(input_event, action_name)
+	_add_assigned_input_event(input_event, action_name)
 	InputMap.action_add_event(action_name, input_event)
 	var action_events = InputMap.action_get_events(action_name)
 	AppSettings.set_config_input_events(action_name, action_events)
@@ -160,22 +142,21 @@ func _build_assigned_input_events() -> void:
 	for action_name in action_names:
 		var input_events = InputMap.action_get_events(action_name)
 		for input_event in input_events:
-			_assign_input_event(input_event, action_name)
+			_add_assigned_input_event(input_event, action_name)
 
 func _get_action_for_input_event(input_event : InputEvent) -> String:
 	if InputEventHelper.get_text(input_event) in assigned_input_events:
 		return assigned_input_events[InputEventHelper.get_text(input_event)] 
 	return ""
 
-func add_action_event(last_input_text : String, last_input_event : InputEvent):
-	last_input_readable_name = last_input_text
-	if last_input_event != null:
-		var assigned_action := _get_action_for_input_event(last_input_event)
+func add_action_event(input_readable_text : String, input_event : InputEvent):
+	if input_event != null:
+		var assigned_action := _get_action_for_input_event(input_event)
 		if not assigned_action.is_empty():
 			var readable_action_name = tr(_get_action_readable_name(assigned_action))
-			already_assigned.emit(readable_action_name, last_input_readable_name)
+			already_assigned.emit(readable_action_name, input_readable_text)
 		else:
-			_assign_input_event_to_action(last_input_event, editing_action_name)
+			_assign_input_event_to_action(input_event, editing_action_name)
 	editing_action_name = ""
 
 func remove_action_event(item : TreeItem) -> void:
@@ -192,7 +173,6 @@ func remove_action_event(item : TreeItem) -> void:
 	parent_tree_item.remove_child(item)
 
 func reset() -> void:
-	AppSettings.reset_to_default_inputs()
 	_build_assigned_input_events()
 	_build_ui_tree()
 

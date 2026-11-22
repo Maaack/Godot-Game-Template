@@ -1,32 +1,40 @@
 extends Node
 ## Controller for music playback across scenes.
 ##
-## This node persistently checks for stream players added to the scene tree.
-## It detects stream players that match the audio bus and have autoplay on.
+## This node persistently checks for [AudioStreamPlayer] added to the scene tree.
+## It detects stream players that match the [member audio_bus] and have autoplay on.
 ## It then reparents the stream players to itself, and handles blending.
 ## The expected use-case is to attach this script to an autoloaded scene.
 
+## The prefix given to busses that should be ignored by user-facing volume controls.
 const SYSTEM_BUS_NAME_PREFIX : String = "_"
+## The prefix given to busses used for blending music streams.
 const BLEND_BUS_PREFIX : String = "Blend"
-const MAX_DEPTH = 16
+## The minimum volume in decibels for an [AudioStreamPlayer].
 const MINIMUM_VOLUME_DB = -80
 
 ## Detect stream players with matching audio bus.
 @export var audio_bus : StringName = &"Music"
 
 @export_group("Blending")
+## The duration that the current stream will fade [member AudioStreamPlayer.volume_db] down to
+## [constant MINIMUM_VOLUME_DB] when transitioning between tracks.
 @export_range(0, 5.0, 0.01, "or_greater") var fade_out_duration : float = 0.0 :
 	set(value):
 		fade_out_duration = value
 		if fade_out_duration < 0:
 			fade_out_duration = 0
 
+## The duration that the current stream will fade [member AudioStreamPlayer.volume_db] up from
+## [constant MINIMUM_VOLUME_DB] when transitioning between tracks.
 @export_range(0, 5.0, 0.01, "or_greater") var fade_in_duration : float = 0.0 :
 	set(value):
 		fade_in_duration = value
 		if fade_in_duration < 0:
 			fade_in_duration = 0
 
+## The duration that the current stream will blend [member AudioStreamPlayer.pitch_scale] when
+## transitioning between tracks.
 @export_range(0, 5.0, 0.01, "or_greater") var pitch_blend_duration : float = 0.0 :
 	set(value):
 		pitch_blend_duration = value

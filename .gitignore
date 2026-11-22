@@ -24,6 +24,9 @@ Exports/
 .idea/
 .DS_Store
 
+# Dev specific
+.dev_scripts/
+
 # Plugin specific
 addons/script-ide/
 addons/ef_ds_uids/
