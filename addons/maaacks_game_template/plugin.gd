@@ -10,7 +10,7 @@ const WINDOW_OPEN_DELAY : float = 0.5
 const RUNNING_CHECK_DELAY : float = 0.25
 const OPEN_EDITOR_DELAY : float = 0.1
 const MAX_PHYSICS_FRAMES_FROM_START : int = 60
-const AVAILABLE_TRANSLATIONS : Array = ["en", "fr"]
+const AVAILABLE_TRANSLATIONS : Array = ["en", "fr", "zh_CN", "zh_TW"]
 
 static var instance : MaaacksGameTemplatePlugin
 
