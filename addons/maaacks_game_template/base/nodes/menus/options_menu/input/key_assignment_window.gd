@@ -2,7 +2,7 @@
 extends ConfirmationPopupWindowPanel
 ## Scene to confirm a new input for an action name.
 
-const LISTENING_TEXT : String = "Listening for input..."
+const LISTENING_TEXT : String = "Listening for %s input..."
 const FOCUS_HERE_TEXT : String = "Focus here to assign inputs."
 const CONFIRM_INPUT_TEXT : String = "Press again to confirm..."
 const NO_INPUT_TEXT : String = "None"
@@ -14,6 +14,7 @@ enum InputConfirmation {
 }
 ## Confirmations required before a new input is accepted for an aciton.
 @export var input_confirmation : InputConfirmation = InputConfirmation.SINGLE
+@export var accept_input_devices : Array = []
 
 @onready var input_label = %InputLabel
 @onready var input_text_edit = %InputTextEdit
@@ -35,15 +36,30 @@ func _record_input_event(event : InputEvent) -> void:
 
 func _is_recordable_input(event : InputEvent) -> bool:
 	return event != null and \
-		(event is InputEventKey or \
-		event is InputEventMouseButton or \
-		event is InputEventJoypadButton or \
-		(event is InputEventJoypadMotion and \
-		abs(event.axis_value) > 0.5)) and \
-		event.is_pressed()
+	(event is InputEventKey or \
+	event is InputEventMouseButton or \
+	event is InputEventJoypadButton or \
+	(event is InputEventJoypadMotion and \
+	abs(event.axis_value) > 0.5)) and \
+	event.is_pressed()
+
+func _is_accepted_input_device(event : InputEvent) -> bool:
+	if accept_input_devices.is_empty():
+		return true
+	if event is InputEventKey and accept_input_devices.has(InputEventHelper.DEVICE_KEYBOARD):
+		return true
+	if event is InputEventMouseButton and accept_input_devices.has(InputEventHelper.DEVICE_MOUSE):
+		return true
+	if (event is InputEventJoypadButton or event is InputEventJoypadMotion) \
+	and accept_input_devices.has(InputEventHelper.DEVICE_JOYPAD):
+		return true
+	return false
 
 func _start_listening() -> void:
-	input_text_edit.placeholder_text = LISTENING_TEXT
+	var device_types := "any"
+	if not accept_input_devices.is_empty():
+		device_types = " or ".join(accept_input_devices)
+	input_text_edit.placeholder_text = LISTENING_TEXT % device_types
 	listening = true
 	delay_timer.start()
 
@@ -76,7 +92,8 @@ func _input_confirms_choice(event : InputEvent) -> bool:
 	return confirming and not _is_mouse_input(event) and _input_matches_last(event)
 
 func _should_process_input_event(event : InputEvent) -> bool:
-	return listening and _is_recordable_input(event) and delay_timer.is_stopped()
+	return listening and _is_recordable_input(event) and _is_accepted_input_device(event) \
+	and delay_timer.is_stopped()
 
 func _should_confirm_input_event(event : InputEvent) -> bool:
 	return not _is_mouse_input(event)

@@ -7,10 +7,7 @@
 [node name="Opening" unique_id=1930105641 instance=ExtResource("1_ke3tw")]
 images = Array[Texture2D]([ExtResource("2_ke3tw")])
 
-[node name="BackgroundMusicPlayer" parent="." index="0"]
-stream = ExtResource("3_yhkvs")
-
-[node name="BackgroundMusicPlayer" parent="." index="0"]
+[node name="BackgroundMusicPlayer" parent="." index="1" unique_id=1317385298]
 stream = ExtResource("3_yhkvs")
 
 [node name="ImagesContainer" parent="." index="2" unique_id=1471559661]

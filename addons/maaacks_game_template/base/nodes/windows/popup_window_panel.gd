@@ -86,7 +86,7 @@ func _add_parent_instance_coroutine() -> void:
 	add_sibling.call_deferred(_parent_instance)
 	await _parent_instance.ready
 	if _parent_instance is CanvasLayer:
-		var _next_layer = 1
+		var _next_layer = _parent_instance.layer
 		if _canvas_layer_node:
 			_next_layer = _canvas_layer_node.layer * 2
 		_parent_instance.layer = _next_layer

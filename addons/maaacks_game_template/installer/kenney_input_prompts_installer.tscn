@@ -10,7 +10,7 @@ copy_dir_path = "res://"
 extract_extension = "assets/kenney_input-prompts"
 
 [node name="DownloadAndExtract" parent="." unique_id=227176651 instance=ExtResource("3_ebstj")]
-zip_url = "https://github.com/Maaack/Kenney-Input-Prompts/archive/refs/tags/1.3.zip"
+zip_url = "https://github.com/Maaack/Kenney-Input-Prompts/archive/refs/tags/1.5.zip"
 extract_path = "res://assets/kenney_input-prompts/"
 skip_base_zip_dir = true
 zip_file_path = "res://kenney_input-prompts.zip"

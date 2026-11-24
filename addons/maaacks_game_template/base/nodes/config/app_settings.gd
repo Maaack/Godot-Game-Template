@@ -17,7 +17,6 @@ const MASTER_BUS_INDEX = 0
 const SYSTEM_BUS_NAME_PREFIX = "_"
 
 # Input
-static var default_action_events : Dictionary
 static var initial_bus_volumes : Array
 
 static func get_config_input_events(action_name : String, default = null) -> Array:
@@ -65,16 +64,7 @@ static func get_action_names(built_in_actions : bool = false) -> Array[StringNam
 
 static func reset_to_default_inputs() -> void:
 	_clear_config_input_events()
-	for action_name in default_action_events:
-		InputMap.action_erase_events(action_name)
-		var input_events = default_action_events[action_name]
-		for input_event in input_events:
-			InputMap.action_add_event(action_name, input_event)
-
-static func set_default_inputs() -> void:
-	var action_list : Array[StringName] = _get_action_names()
-	for action_name in action_list:
-		default_action_events[action_name] = InputMap.action_get_events(action_name)
+	InputMap.load_from_project_settings()
 
 static func set_inputs_from_config() -> void:
 	var action_list : Array[StringName] = _get_action_names()
@@ -85,7 +75,7 @@ static func set_inputs_from_config() -> void:
 
 static func get_bus_volume(bus_index : int) -> float:
 	var initial_linear = 1.0
-	if initial_bus_volumes.size() > bus_index:
+	if bus_index < initial_bus_volumes.size() and initial_bus_volumes[bus_index] != null:
 		initial_linear = initial_bus_volumes[bus_index]
 	var linear = db_to_linear(AudioServer.get_bus_volume_db(bus_index))
 	linear /= initial_linear
@@ -93,7 +83,7 @@ static func get_bus_volume(bus_index : int) -> float:
 
 static func set_bus_volume(bus_index : int, linear : float) -> void:
 	var initial_linear = 1.0
-	if initial_bus_volumes.size() > bus_index:
+	if bus_index < initial_bus_volumes.size() and initial_bus_volumes[bus_index] != null:
 		initial_linear = initial_bus_volumes[bus_index]
 	linear *= initial_linear
 	AudioServer.set_bus_volume_db(bus_index, linear_to_db(linear))
@@ -108,10 +98,13 @@ static func get_audio_bus_name(bus_iter : int) -> String:
 	return AudioServer.get_bus_name(bus_iter)
 
 static func set_audio_from_config() -> void:
-	for bus_iter in AudioServer.bus_count:
+	var bus_count := AudioServer.bus_count
+	initial_bus_volumes.resize(bus_count)
+	for bus_iter in bus_count:
 		var bus_key : String = get_audio_bus_name(bus_iter).to_pascal_case()
 		var bus_volume : float = get_bus_volume(bus_iter)
-		initial_bus_volumes.append(bus_volume)
+		if initial_bus_volumes[bus_iter] == null:
+			initial_bus_volumes[bus_iter] = bus_volume
 		bus_volume = PlayerConfig.get_config(AUDIO_SECTION, bus_key, bus_volume)
 		if is_nan(bus_volume):
 			bus_volume = 1.0
@@ -180,7 +173,6 @@ static func set_video_from_config(window : Window) -> void:
 # All
 
 static func set_from_config() -> void:
-	set_default_inputs()
 	set_inputs_from_config()
 	set_audio_from_config()
 

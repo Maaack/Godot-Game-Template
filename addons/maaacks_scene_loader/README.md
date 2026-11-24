@@ -1,4 +1,4 @@
-![Package Icon](/addons/maaacks_scene_loader/media/scene_loader-icon-black-transparent-256x256.png)  
+![Package Icon](/media/scene_loader-icon-black-transparent-256x256.png)  
 
 # Godot Scene Loader
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/Maaack/Godot-Scene-Loader)
@@ -13,11 +13,13 @@ For *Godot 4.7* (4.3+ compatible)
 
 ## Objective
 
-For quickly adding a loading screen with a progress bar in-between your scene changes.
+Add a loading screen with a progress bar in-between your scene transitions.
+
+This addon was originally made for Godot Wild Jam, and shares a no AI/LLM-gen policy. Please open an [issue](https://github.com/Maaack/Godot-Scene-Loader/issues) if there is a violation.  
 
 ### Extras or Components
 
-Users that want additional features can try *[Maaack's Game Template](https://github.com/Maaack/Godot-Game-Template)* or other options from the [plugin suite](/addons/maaacks_scene_loader/docs/PluginSuite.md).  
+Users that want additional features can try *[Maaack's Game Template](https://github.com/Maaack/Godot-Game-Template)* or other options from the [plugin suite](/docs/PluginSuite.md).  
 
 ## Installation
 
@@ -41,26 +43,26 @@ Change scenes in your project using paths by calling `SceneLoader.load_scene(_pa
 
 ### More Documentation
 
-[Loading Scenes](/addons/maaacks_scene_loader/docs/LoadingScenes.md)  
-[Automatic Updating](/addons/maaacks_scene_loader/docs/AutomaticUpdating.md)  
+[Loading Scenes](/docs/LoadingScenes.md)  
+[Automatic Updating](/docs/AutomaticUpdating.md)  
 
 ## Media
 
 ### Screenshots
 
-![Loading 33%](/addons/maaacks_scene_loader/media/screenshot-6-loading-screen-1.png)  
-![Still Loading 69%](/addons/maaacks_scene_loader/media/screenshot-6-loading-screen-3.png)  
-![Stalled Loaded 69%](/addons/maaacks_scene_loader/media/screenshot-6-loading-screen-4.png)  
-[More Screenshots](/addons/maaacks_scene_loader/docs/Screenshots.md)  
+![Loading 33%](/media/screenshot-6-loading-screen-1.png)  
+![Still Loading 69%](/media/screenshot-6-loading-screen-3.png)  
+![Stalled Loaded 69%](/media/screenshot-6-loading-screen-4.png)  
+[More Screenshots](/docs/Screenshots.md)  
 
 ## Featured Games
 
-| HeartFix Express | Baking Godium | Rent Seek Kill |  
+| Crumbling Castle | Dungeon Bodega Simulator | Lucky Break |  
 | :-------:| :-------: | :-------: |
-| ![HeartFix Express](/addons/maaacks_scene_loader/media/thumbnail-game-heartfix-express.png) | ![Baking Godium](/addons/maaacks_scene_loader/media/thumbnail-game-baking-godium.png) | ![Rent-Seek-Kill](/addons/maaacks_scene_loader/media/thumbnail-game-rent-seek-kill.png) |
-|  [Find on Steam](https://store.steampowered.com/app/3983290/HeartFix_Express_Demo/)  | [Play on itch.io](https://maaack.itch.io/baking-godium) | [Play on itch.io](https://xandruher.itch.io/rent-seek-kill)  |
+| ![Crumbling Castle](/media/thumbnail-game-crumbling-castle.png) | ![Dungeon Bodega Simulator](/media/thumbnail-game-dungeon-bodega-simulator.png) | ![Lucky Break](/media/thumbnail-game-lucky-break.png) |
+| [Play on itch.io](https://maaack.itch.io/crumbling-castle) |  [Play on Steam](https://store.steampowered.com/app/3458180/Dungeon_Bodega_Simulator/)  | [Play on Steam](https://store.steampowered.com/app/4155880/Lucky_Break/)  |
 
-[All Shared Games](/addons/maaacks_scene_loader/docs/GamesMade.md)  
+[All Shared Games](/docs/GamesMade.md)  
 
 ## Community
 

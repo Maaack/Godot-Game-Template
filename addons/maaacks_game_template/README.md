@@ -1,4 +1,4 @@
-![Package Icon](/addons/maaacks_game_template/media/game-icon-black-transparent-256x256.png)  
+![Package Icon](/media/game-icon-black-transparent-256x256.png)  
 
 # Godot Game Template
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/Maaack/Godot-Game-Template)
@@ -17,9 +17,28 @@ Setup menus and accessibility features in about 15 minutes.
 
 The template can be the start of a new project, or plug into an existing one. It is game agnostic (2D or 3D) and can work with multiple target resolutions, up to 4k and down to 640x360. It's meant to cover the needs for a typical game jam, while remaining scalable and extensible enough to support commercial games.
 
-### Minimal
+This template was originally made for Godot Wild Jam, and shares a no AI/LLM-gen policy. Please open an [issue](https://github.com/Maaack/Godot-Game-Template/issues) if there is a violation.  
 
-Users that want a minimal set of features can try *[Maaack's Minimal Game Template](https://github.com/Maaack/Godot-Minimal-Game-Template)* or other options from the [plugin suite](/addons/maaacks_game_template/docs/PluginSuite.md).  
+## Choosing A Template
+
+The *Game Template* is the original fully featured template. The *Minimal Game Template* is intended for devs new to Godot or those who find the full *Game Template* excessive. The *Menus Template* is for devs experienced with Godot who already have a game scene, only want menus, and can follow documentation for integrating them together.
+
+| Features | Game Template  ([link](https://github.com/Maaack/Godot-Game-Template)) | Minimal Game Template  ([link](https://github.com/Maaack/Godot-Minimal-Game-Template)) | Menus Template ([link](https://github.com/Maaack/Godot-Menus-Template)) |
+| :-------:  | :-------: | :-------: | :-------: |
+| Main Menu | :green_circle: | :green_circle: | :green_circle: |
+| [Options Menus](https://github.com/Maaack/Godot-Options-Menus) | :green_circle: | :green_circle: | :green_circle: |
+| [Credits Scene](https://github.com/Maaack/Godot-Credits-Scene) | :green_circle: | :large_blue_diamond: | :green_circle: |
+| Game Scene | :green_circle: | :large_blue_diamond: | :x: |
+| Level Manager | :green_circle: | :green_circle: | :x: |
+| Game Auto-Save | :green_circle: | :x: | :x: |
+| [Scene Loader](https://github.com/Maaack/Godot-Scene-Loader) | :green_circle: | :purple_square: | :purple_square: |
+| [Music Controller](https://github.com/Maaack/Godot-Music-Controller) | :green_circle: | :purple_square: | :purple_square: |
+| [UI Sound Controller](https://github.com/Maaack/Godot-UI-Sound-Controller) | :green_circle: | :purple_square: | :purple_square: |
+| [Plugin Updater](https://github.com/Maaack/Godot-Plugin-Updater) | :green_circle: | :green_circle: | :green_circle: |
+
+**Key: :green_circle: Included, :large_blue_diamond: Simplified, :purple_square: Available Separately, :x: Not Available**  
+
+More options are available from the [plugin suite](/docs/PluginSuite.md).  
 
 ## Installation
 
@@ -34,7 +53,7 @@ While in the *Godot Project Manager*:
 4.  Click to **Download**.
 5.  Give the project a new name and destination.
 6.  Click to **Install & Edit**.
-7.  Continue with the [Basic Setup](/addons/maaacks_game_template/docs/BasicSetup.md).
+7.  Continue with the [Basic Setup](/docs/BasicSetup.md).
 
 ### Existing Project
 While editing a project in *Godot*:
@@ -61,58 +80,57 @@ Conflicts that are safe to ignore:
     2.  Enable *Maaack's Game Template*.
     3.  If it's enabled for the first time, the setup wizard will start.  
         Close the window behind it and complete the setup wizard.  
-9.  Continue with the [Basic Setup](/addons/maaacks_game_template/docs/BasicSetup.md).
+9.  Continue with the [Basic Setup](/docs/BasicSetup.md).
 
 ## Usage
 
-[Basic Setup](/addons/maaacks_game_template/docs/BasicSetup.md) is done through the setup wizard at **Project > Tools > Run Maaack's Game Template Setup...**.  
+[Basic Setup](/docs/BasicSetup.md) is done through the setup wizard at **Project > Tools > Run Maaack's Game Template Setup...**.  
 
 As part of setup, example scenes are copied out of `/addons/` into a desired folder (project root by default). These can be edited to fit requirements.
 
 ### More Documentation
 
-[Feature List](/addons/maaacks_game_template/docs/FeatureList.md)  
-[Main Menu Setup](/addons/maaacks_game_template/docs/MainMenuSetup.md)  
-[Options Menu Setup](/addons/maaacks_game_template/docs/OptionsMenuSetup.md)  
-[Game Scene Setup](/addons/maaacks_game_template/docs/GameSceneSetup.md)  
-[Updating Credits](/addons/maaacks_game_template/docs/UpdatingCredits.md)  
-[Blending Music](/addons/maaacks_music_controller/docs/BlendingMusic.md)  
-[Adding UI Sound Effects](/addons/maaacks_ui_sound_controller/docs/AddingUISFX.md)  
-[Loading Scenes](/addons/maaacks_scene_loader/docs/LoadingScenes.md)  
-[Input Icon Mapping](/addons/maaacks_game_template/docs/InputIconMapping.md)  
-[Joypad Inputs](/addons/maaacks_game_template/docs/JoypadInputs.md)  
-[Game Saving](/addons/maaacks_game_template/docs/GameSaving.md)  
-[How Parts Work](/addons/maaacks_game_template/docs/HowPartsWork.md)  
-[Moving Files](/addons/maaacks_game_template/docs/MovingFiles.md)  
-[Uploading to itch.io](/addons/maaacks_game_template/docs/UploadingToItchIo.md)  
-[Build and Publish Your Game Using CICD](/addons/maaacks_game_template/docs/BuildAndPublish.md)  
-[Automatic Updating](/addons/maaacks_game_template/docs/AutomaticUpdating.md)  
-[Exhibiting Your Game](/addons/maaacks_game_template/docs/Exhibiting.md)  
+[Feature List](/docs/FeatureList.md)  
+[Main Menu Setup](/docs/MainMenuSetup.md)  
+[Options Menu Setup](/docs/OptionsMenuSetup.md)  
+[Game Scene Setup](/docs/GameSceneSetup.md)  
+[Updating Credits](/docs/UpdatingCredits.md)  
+[Blending Music](/docs/BlendingMusic.md)  
+[Adding UI Sound Effects](/docs/AddingUISFX.md)  
+[Loading Scenes](/docs/LoadingScenes.md)  
+[Input Remapping Menus](/docs/InputRemappingMenus.md)  
+[Input Icon Mapping](/docs/InputIconMapping.md)  
+[Joypad Inputs](/docs/JoypadInputs.md)  
+[Game Saving](/docs/GameSaving.md)  
+[How Parts Work](/docs/HowPartsWork.md)  
+[Moving Files](/docs/MovingFiles.md)  
+[Uploading to itch.io](/docs/UploadingToItchIo.md)  
+[Build and Publish Your Game Using CICD](/docs/BuildAndPublish.md)  
+[Automatic Updating](/docs/AutomaticUpdating.md)  
+[Exhibiting Your Game](/docs/Exhibiting.md)  
 
 ## Media
 
 ### Videos
 
 [![Quick Intro Video](https://img.youtube.com/vi/U9CB3vKINVw/hqdefault.jpg)](https://youtu.be/U9CB3vKINVw)  
-[More Videos](/addons/maaacks_game_template/docs/Videos.md)
+[More Videos](/docs/Videos.md)
 
 ### Screenshots
 
-![Main Menu](/addons/maaacks_game_template/media/screenshot-6-main-menu-5.png)  
-![Key Rebinding](/addons/maaacks_game_template/media/screenshot-6-input-list-8.png)  
-![Audio Controls](/addons/maaacks_game_template/media/screenshot-6-audio-options-2.png)  
-[More Screenshots](/addons/maaacks_game_template/docs/Screenshots.md)  
+![Main Menu](/media/screenshot-6-main-menu-5.png)  
+![Key Rebinding](/media/screenshot-6-input-list-8.png)  
+![Audio Controls](/media/screenshot-6-audio-options-2.png)  
+[More Screenshots](/docs/Screenshots.md)  
 
 ## Featured Games
 
-| HeartFix Express | Baking Godium | Rent Seek Kill |  
+| Crumbling Castle | Dungeon Bodega Simulator | Lucky Break |  
 | :-------:| :-------: | :-------: |
-| ![HeartFix Express](/addons/maaacks_game_template/media/thumbnail-game-heartfix-express.png) | ![Baking Godium](/addons/maaacks_game_template/media/thumbnail-game-baking-godium.png) | ![Rent-Seek-Kill](/addons/maaacks_game_template/media/thumbnail-game-rent-seek-kill.png) |
-|  [Find on Steam](https://store.steampowered.com/app/3983290/HeartFix_Express_Demo/)  | [Play on itch.io](https://maaack.itch.io/baking-godium) | [Play on itch.io](https://xandruher.itch.io/rent-seek-kill)  |
+| ![Crumbling Castle](/media/thumbnail-game-crumbling-castle.png) | ![Dungeon Bodega Simulator](/media/thumbnail-game-dungeon-bodega-simulator.png) | ![Lucky Break](/media/thumbnail-game-lucky-break.png) |
+| [Play on itch.io](https://maaack.itch.io/crumbling-castle) |  [Play on Steam](https://store.steampowered.com/app/3458180/Dungeon_Bodega_Simulator/)  | [Play on Steam](https://store.steampowered.com/app/4155880/Lucky_Break/)  |
 
-
-[All Shared Games](/addons/maaacks_game_template/docs/GamesMade.md)  
-
+[All Shared Games](/docs/GamesMade.md)  
 
 ## Community
 

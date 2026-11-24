@@ -443,6 +443,7 @@ replace_strings = {
 "Trigger R 2": "Right Trigger"
 }
 filtered_strings = Array[String](["keyboard", "color", "button", "arrow"])
+intial_joypad_device = "Xbox"
 matching_icons = {
 "0": ExtResource("10_arkuj"),
 "1": ExtResource("11_gt304"),

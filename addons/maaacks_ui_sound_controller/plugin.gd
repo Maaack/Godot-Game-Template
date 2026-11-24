@@ -3,7 +3,7 @@ class_name MaaacksUISoundControllerPlugin
 extends EditorPlugin
 
 const PLUGIN_REPO_URL = "https://github.com/Maaack/Godot-UI-Sound-Controller"
-const UI_SOUND_CONTROLLER_RELATIVE_PATH = "base/scenes/autoloads/project_ui_sound_controller.tscn"
+const UI_SOUND_CONTROLLER_RELATIVE_PATH = "base/scenes/autoloads/ui_sound_controller.tscn"
 const OPEN_EDITOR_DELAY : float = 0.1
 const MAX_PHYSICS_FRAMES_FROM_START : int = 60
 
@@ -43,11 +43,11 @@ func _remove_from_auto_update_list() -> void:
 
 func _enable_plugin():
 	_add_to_auto_update_list()
-	add_autoload_singleton("ProjectUISoundController", get_plugin_path() + UI_SOUND_CONTROLLER_RELATIVE_PATH)
+	add_autoload_singleton("UISoundController", get_plugin_path() + UI_SOUND_CONTROLLER_RELATIVE_PATH)
 
 func _disable_plugin():
 	_remove_from_auto_update_list()
-	remove_autoload_singleton("ProjectUISoundController")
+	remove_autoload_singleton("UISoundController")
 
 func _enter_tree() -> void:
 	_install_audio_busses()
